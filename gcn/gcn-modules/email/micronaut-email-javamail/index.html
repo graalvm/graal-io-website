@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:image" content="/gcn/resources/img/graalvm.png" />
+  <meta name="twitter:widgets:border-color" content="#55acee">
+
+  <title>
+    
+      Create an Application to Send Email Using JavaMail with Gmail
+    
+  </title>
+  <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
+  <meta name="last_modified" content="2023-09-20 14:57:13 +0000"/>
+  <link rel="stylesheet" href="/gcn/assets/main.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/gcn/resources/img/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/resources/img/favicon/site.webmanifest">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="google-site-verification" content="-vRqwa9WYn6AaQGnl88xvrLw6ac4xoKVkZkhanmlRhU" />
+  <link rel="canonical" href="https://www.graal.cloud/gcn/gcn-modules/email/micronaut-email-javamail/">
+
+  <!-- jQuery UI Tabs -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/gcn/resources/lib/jquery/jquery-ui.css">
+</head>
+
+      <script src="/gcn/resources/lib/jquery/jquery-3.6.1.min.js"></script>
+    <script src="/gcn/resources/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src='/gcn/resources/lib/sticky-sidebar/resizeSensor.js'></script>
+    <script src='/gcn/resources/lib/sticky-sidebar/sticky-sidebar.min.js'></script>
+    <script src="/gcn/resources/lib/highlight/highlight.min.js"></script>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- Add TRUSTe Consent Script and Analytics -->
+    <script async="async" type="text/javascript" src='//consent.trustarc.com/notice?domain=oracle.com&c=teconsent&js=bb&noticeType=bb&text=true&cdn=1&pcookie&gtm=1' crossorigin></script>
+    <script src="https://www.oracle.com/assets/truste-oraclelib.js"></script>
+    <!-- jQuery UI Tabs -->
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+
+  <body class="preload">
+
+    <div  class="wrapper wrapper--nofooter" >
+
+      <header  class="header header--content" 
+  role="banner">
+
+  
+
+  
+
+    <nav class="menu">
+      <div class="menu__row">
+        <div>
+          <a href="/gcn/">
+            <img class="logo-mobile" src="/gcn/resources/img/gcn-logo-01.svg" alt="Graal Cloud Native logo">
+          </a>
+        </div>
+        <div class="menu__container">
+          <ul class="menu__list">
+            <li class="menu__item">
+              <a href="/gcn/about/" class="menu__link">About</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gcn/get-started/" class="menu__link">Get Started</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gcn/modules/" class="menu__link">Modules</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gcn/guides/" class="menu__link">Guides</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gcn/hands-on-labs/" class="menu__link">Hands-On Labs</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gcn/vscode-tools/" class="menu__link">Tools</a>
+            </li>
+            <li class="menu__launch__mobile">
+              <a href="/gcn/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
+            </li>
+          </ul>
+        </div>
+        <div class="menu__launch">
+          <a href="/gcn/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
+        </div>
+      </div>
+
+      <div role="button" class="menu-btn menu-btn--menu js-show-menu" tabindex="-1" title="sweet hamburger">
+        <div class="hamburger">
+          <div class="inner"></div>
+        </div>
+      </div>
+      <button aria-label="hamburger mobile menu" class="btn btn-mobile-menu js-show-menu">
+        <div class="inner"></div>
+      </button>
+    </nav>
+
+  
+</header>
+
+<!-- <header  class="header header--content" >
+
+  
+
+  
+
+    <nav class="menu">
+      <div class="menu__row">
+        <div>
+          <a href="/gcn/graal">
+            <img class="logo-mobile" src="/gcn/resources/img/gcn-logo-01.svg" alt="Graal Cloud Native logo">
+          </a>
+        </div>
+        <div class="menu__container">
+          <ul class="menu__list">
+            <li class="menu__item">
+              <a href="/gcn/graal/#whatisgraal" class="menu__link">About</a>
+            </li>
+            <li class="menu__item">
+              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
+            </li>
+            <li class="menu__item">
+              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
+            </li>
+            <li class="menu__item">
+              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div role="button" class="menu-btn menu-btn--menu js-show-menu" tabindex="-1" title="sweet hamburger">
+        <div class="hamburger">
+          <div class="inner"></div>
+        </div>
+      </div>
+      <button aria-label="hamburger mobile menu" class="btn btn-mobile-menu js-show-menu">
+        <div class="inner"></div>
+      </button>
+    </nav>
+
+  
+</header> -->
+
+      <main  class="content"   aria-label="Content">
+        <div class="wrapper wrapper-content">
+  <article>
+  <div class="row d-flex flex-wrap">
+    <div class="col-sm-3 docsimpro col-bg">
+      <div class="sidebar-wrap">
+        <div class="sidebar">
+          <div class="menuabout">
+            <img id="sidebarClose" src="/gcn/resources/img/arrow_sidebar(close).svg" alt="Expand or collapse sidebar"
+              class="btn-color no-display">
+            <img id="sidebarOpen" src="/gcn/resources/img/arrow_sidebar.svg" alt="Expand or collapse sidebar">
+          </div>
+          
+<div class="toc-floating">
+
+
+<div class="toc-bullets">
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+
+    
+      
+        
+          <li class="toc-bullets-main">
+        
+          
+          <a href="/gcn/docs/gcn-modules/email/" class="_icon-book">
+            Email
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+          
+          <li class="toc-bullets-sub toc-bullets-highlight">
+          
+            
+            <a href="/gcn/gcn-modules/email/micronaut-email-javamail/">
+              Create an Application to Send Email Using JavaMail
+            </a>
+          </li>
+
+          
+            <div>
+  <script>
+    var scriptElement = document.currentScript;
+    var div = $(scriptElement.parentElement);
+    $(window).on("load", function () {
+      $("#content-wrapper h2").each(function () {
+        var li = $("<li></li>", { class: "toc-bullets-sub toc-bullets-sub-3" });
+        var a = $("<a></a>", { href: "#" + $(this).attr("id") });
+        a.text($(this).text().replace('#', ''));
+        li.append(a);
+        li.click(function (e) {
+          e.preventDefault();
+          var target = $(a.attr('href'));
+          var scrollTo = target.offset().top - 80; // 80 - indent
+          $('html, body').animate({ scrollTop: scrollTo }, 1000);
+        });
+        div.append(li);
+      });
+    });
+  </script>
+</div>
+          
+        
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<!-- <li class="search additional-search">
+  <form class="form-inline sidebar" action="/docs/search" autocomplete="on" method="get">
+    <input class="input-search sidebar" type="text" id="search-box" name="query" placeholder="Search">
+    <button type="submit sidebar" class="search-button"></button>
+  </form>
+</li> -->
+
+</div>
+  <!-- Search form -->
+  <!-- <form class="search-container" action="/docs/search" autocomplete="on" method="get">
+   <label for="search-box">Search</label>
+    <input type="text" id="search-box" name="query">
+    <button type="submit" class="searchbttn"></button>
+  </form> -->
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-9 docsmod">
+      <div id="content-wrapper" class="docs-content docs-content--with-sidebar">
+        <h1 id="create-an-application-to-send-email-using-javamail">
+        
+        
+          Create an Application to Send Email Using JavaMail
+        
+        
+      </h1>
+
+<p>This guide describes how to use GCN to create a Java application that sends email using <a href="https://javaee.github.io/javamail/">JavaMail</a> and the <a href="https://micronaut-projects.github.io/micronaut-email/latest/guide/">Micronaut Email</a> implementation of the JavaMail API. It assumes you have an existing <a href="https://mail.google.com/mail/">Gmail</a> account.</p>
+    
+      <h3 id="prerequisites">
+        
+        
+          Prerequisites <a href="#prerequisites" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<ul>
+  <li>JDK 17 or higher. See <a href="/gcn/get-started/setting-up-desktop/">Setting up Your Desktop</a>.</li>
+  <li>A Gmail account. See <a href="https://support.google.com/mail/answer/56256">Create a Gmail account</a>.</li>
+  <li>The GCN CLI. See <a href="/gcn/get-started/setting-up-desktop/">Setting up Your Desktop</a>. (Optional.)</li>
+</ul>
+
+<p>Create the application from scratch. However, you can also download the completed example in Java:</p>
+
+<div id="tabs-doc1">
+    <ul>
+        <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <p><a href="/gcn/docs/gcn-modules/email/archives/email-demo-java-gradle.zip">Gradle Email Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" />
+        </a>
+        </p>
+    </div>
+    <div id="maven">
+        <p><a href="/gcn/docs/gcn-modules/email/archives/email-demo-java-maven.zip">Maven Email Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" /></a>
+        </p>
+    </div>
+</div>
+    
+      <h4 id="a-note-regarding-your-development-environment">
+        
+        
+          A note regarding your development environment
+        
+        
+      </h4>
+
+<p>Consider using Visual Studio Code that provides native support for developing applications with the <a href="/gcn/vscode-tools/using-gcn-vscode-tools/">Graal Cloud Native extension</a>.</p>
+
+<blockquote>
+  <p>Note: If you use IntelliJ IDEA, <a href="/gcn/resources/img/annotationprocessorsintellij.png">enable annotation processing</a>.</p>
+</blockquote>
+    
+      <h2 id="1-create-the-application">
+        
+        
+          1. Create the Application <a href="#1-create-the-application" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>Create an application using the GCN Launcher.</p>
+
+<ol>
+  <li>
+    <p>Open the <a href="/gcn/launcher/?advanced=true">GCN Launcher in advanced mode</a>.</p>
+  </li>
+  <li>Create a new project using the following selections.
+    <ul>
+      <li><strong>Project Type</strong>: <em>Application</em> (Default)</li>
+      <li><strong>Project Name</strong>: <em>email-demo</em></li>
+      <li><strong>Base Package</strong>: <em>com.example</em> (Default)</li>
+      <li><strong>Clouds</strong>: <em>None</em></li>
+      <li><strong>Language</strong>: <em>Java</em> (Default)</li>
+      <li><strong>Build Tool</strong>: <em>Gradle (Groovy)</em> or <em>Maven</em></li>
+      <li><strong>Test Framework</strong>: <em>JUnit</em> (Default)</li>
+      <li><strong>Java Version</strong>: <em>17</em> (Default)</li>
+      <li><strong>Micronaut Version</strong>: (Default)</li>
+      <li><strong>Cloud Services</strong>: <em>Email</em></li>
+      <li><strong>Features</strong>: <em>GraalVM Native Image</em> (Default)</li>
+      <li><strong>Sample Code</strong>: <em>Yes</em> (Default)</li>
+    </ul>
+  </li>
+  <li>Click <strong>Generate Project</strong>. The GCN Launcher creates an application with the default package <code>com.example</code> in a directory named <em>email-demo</em>. The application ZIP file will be downloaded in your default downloads directory. Unzip it, open in your code editor, and proceed to the next steps.</li>
+</ol>
+
+<p>Alternatively, use the GCN CLI as follows:</p>
+
+<div id="tabs-doc2">
+    <ul>
+        <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <pre><code class="language-bash">gcn create-app com.example.email-demo \
+    --services=email \
+    --features=graalvm \
+    --build=gradle \
+    --lang=java</code></pre>
+    </div>
+    <div id="maven">
+        <pre><code class="language-bash">gcn create-app com.example.email-demo \
+    --services=email \
+    --features=graalvm \
+    --build=maven \
+    --lang=java</code></pre>
+    </div>
+</div>
+
+<p>For more information, see <a href="/gcn/get-started/using-gcn-cli/">Using the GCN CLI</a>.</p>
+    
+      <h3 id="11-emailcontroller">
+        
+        
+          1.1. EmailController <a href="#11-emailcontroller" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>You can send email synchronously using the <a href="https://micronaut-projects.github.io/micronaut-email/latest/api/io/micronaut/email/EmailSender.html">EmailSender</a> or asynchronously using the <a href="https://micronaut-projects.github.io/micronaut-email/latest/api/io/micronaut/email/AsyncEmailSender.html">AsyncEmailSender</a> API.</p>
+
+<p>The launcher created a file named <em>src/main/java/com/example/EmailController.java</em> with the following content:</p>
+
+<pre><code class="language-java">package com.example;
+
+import io.micronaut.email.Email;
+import io.micronaut.email.EmailException;
+import io.micronaut.email.EmailSender;
+import io.micronaut.http.HttpResponse;
+import io.micronaut.http.annotation.Body;
+import io.micronaut.http.annotation.Controller;
+import io.micronaut.http.annotation.Post;
+import io.micronaut.scheduling.TaskExecutors;
+import io.micronaut.scheduling.annotation.ExecuteOn;
+
+import static io.micronaut.email.BodyType.HTML;
+
+@ExecuteOn(TaskExecutors.IO) // &lt;1&gt;
+@Controller("/email") // &lt;2&gt;
+public class EmailController {
+
+    private final EmailSender&lt;?, ?&gt; emailSender;
+
+    EmailController(EmailSender&lt;?, ?&gt; emailSender) { // &lt;3&gt;
+        this.emailSender = emailSender;
+    }
+
+    @Post("/send") // &lt;4&gt;
+    public HttpResponse&lt;?&gt; send(@Body("to") String to) { // &lt;5&gt;
+
+        try {
+            emailSender.send(Email.builder()
+                    .to(to)
+                    .subject("Sending email with JavaMail is Fun")
+                    .body("and &lt;em&gt;easy&lt;/em&gt; to do anywhere with &lt;strong&gt;Micronaut Email&lt;/strong&gt;", HTML)); // &lt;6&gt;
+        } catch (EmailException ignored) {
+            return HttpResponse.unprocessableEntity(); // &lt;7&gt;
+        }
+
+        return HttpResponse.accepted(); // &lt;8&gt;
+    }
+}
+</code></pre>
+
+<p><strong>1</strong> It is critical that any blocking I/O operations are offloaded to a separate thread pool that does not block the Event loop.</p>
+
+<p><strong>2</strong> The class is defined as a controller with the <a href="https://docs.micronaut.io/latest/api/io/micronaut/http/annotation/Controller.html"><code>@Controller</code></a> annotation mapped to the path <code>/email</code>.</p>
+
+<p><strong>3</strong> Use constructor injection to inject a bean of type <code>EmailSender</code>.</p>
+
+<p><strong>4</strong> The <a href="https://docs.micronaut.io/latest/api/io/micronaut/http/annotation/Post.html"><code>@Post</code></a> annotation maps the <code>send</code> method to an HTTP POST request on <code>/email/send</code>.</p>
+
+<p><strong>5</strong> You can use a qualifier within the HTTP request body. For example, you can use a reference to a nested JSON attribute.</p>
+
+<p><strong>6</strong> Body of the mail can be plain text or HTML.</p>
+
+<p><strong>7</strong> Return 422 UNPROCESSABLE ENTITY as the result if there were any issues with the email delivery.</p>
+
+<p><strong>8</strong> Return 202 ACCEPTED as the result if the email delivery succeeds.</p>
+    
+      <h3 id="12-configurations">
+        
+        
+          1.2. Configurations <a href="#12-configurations" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>As you can see in the <code>EmailController</code> class above, the Sender Email wasn’t specified.</p>
+
+<p>If you always use the same Sender you can use <a href="https://micronaut-projects.github.io/micronaut-email/latest/guide/index.html#decorators">Email Decorators</a> to set the email and name.</p>
+
+<p><em>/src/main/resources/application.properties</em></p>
+<pre><code># &lt;1&gt;
+javamail.authentication.password=${FROM_PASSWORD}
+javamail.authentication.username=${FROM_EMAIL}
+javamail.properties.mail.smtp.auth=true
+javamail.properties.mail.smtp.host=smtp.gmail.com
+javamail.properties.mail.smtp.port=465
+javamail.properties.mail.smtp.ssl.enable=true
+javamail.properties.mail.smtp.starttls.enable=false
+micronaut.application.name=emailDemo
+# &lt;2&gt;
+micronaut.email.from.email=${FROM_EMAIL}
+# &lt;3&gt;
+micronaut.email.from.name=${FROM_NAME\:}
+</code></pre>
+
+<p><strong>1</strong> Google account password or App Password</p>
+
+<p><strong>2</strong> Required to send an email, however Gmail uses the authenticated user’s email address.</p>
+
+<p><strong>3</strong> Optional name to be displayed instead of an email address.</p>
+    
+      <h3 id="13-mailcontrollertest">
+        
+        
+          1.3. MailControllerTest <a href="#13-mailcontrollertest" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>The launcher created a file named <em>src/test/java/com/example/MailControllerTest.java</em> with the following content:</p>
+
+<pre><code class="language-java">package com.example;
+
+import io.micronaut.context.annotation.Property;
+import io.micronaut.email.Email;
+import io.micronaut.email.EmailException;
+import io.micronaut.email.TransactionalEmailSender;
+import io.micronaut.http.HttpRequest;
+import io.micronaut.http.client.HttpClient;
+import io.micronaut.http.client.annotation.Client;
+import io.micronaut.test.annotation.MockBean;
+import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
+import jakarta.mail.Message;
+import org.junit.jupiter.api.Test;
+
+import java.util.Map;
+import java.util.function.Consumer;
+
+import static io.micronaut.email.BodyType.HTML;
+import static io.micronaut.http.HttpStatus.ACCEPTED;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+@Property(name = "FROM_EMAIL", value = "bob@gcn.example") // &lt;1&gt;
+@Property(name = "FROM_PASSWORD", value = "example-password")
+@MicronautTest // &lt;2&gt;
+public class EmailControllerTest {
+
+    @Inject
+    @Client("/")
+    HttpClient client; // &lt;3&gt;
+
+    Email sentEmail;
+
+    @Test
+    void testSend() {
+        var response = client.toBlocking().exchange(
+                HttpRequest.POST("/email/send",
+                        Map.of("to", "alice@gcn.example"))); // &lt;4&gt;
+
+        assertEquals(ACCEPTED, response.status());
+
+        assertNotNull(sentEmail);
+        assertEquals("bob@gcn.example", sentEmail.getFrom().getEmail());
+        assertEquals(1, sentEmail.getTo().size());
+        assertEquals("alice@gcn.example", sentEmail.getTo().stream().findFirst().get().getEmail());
+        assertEquals("Sending email with JavaMail is Fun", sentEmail.getSubject());
+        assertNotNull(sentEmail.getBody());
+        assertEquals("and &lt;em&gt;easy&lt;/em&gt; to do anywhere with &lt;strong&gt;Micronaut Email&lt;/strong&gt;",
+                sentEmail.getBody().get(HTML).get());
+
+    }
+
+    @MockBean(TransactionalEmailSender.class) // &lt;5&gt;
+    @Named("mock")
+    TransactionalEmailSender&lt;Message, Void&gt; mockSender() {
+        return new TransactionalEmailSender&lt;&gt;() {
+
+            @Override
+            public String getName() {
+                return "test";
+            }
+
+            @Override
+            public Void send(Email email, Consumer emailRequest) throws EmailException {
+                sentEmail = email;
+                return null;
+            }
+        };
+    }
+}
+</code></pre>
+
+<p><strong>1</strong> Set <code>FROM_EMAIL</code> and <code>FROM_PASSWORD</code> environment variables so they are substituted in the <em>application.properties</em> file.</p>
+
+<p><strong>2</strong> Annotate the class with <code>@MicronautTest</code> so the Micronaut framework will initialize the application context and the embedded server.</p>
+
+<p><strong>3</strong> Inject the <code>HttpClient</code> bean and point it to the embedded server.</p>
+
+<p><strong>4</strong> Send a HTTP POST to <code>/email/send</code> with JSON body <code>{"to":"alice@gcn.example"}</code>.</p>
+
+<p><strong>5</strong> Replace the <code>TransactionalEmailSender</code> with a stub.</p>
+    
+      <h2 id="2-run-the-test">
+        
+        
+          2. Run the Test <a href="#2-run-the-test" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>Use the following command to run the test.</p>
+
+<div id="tabs-doc3">
+    <ul>
+        <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <pre><code class="language-bash">./gradlew test</code></pre>
+         <p>Then open the file <em>build/reports/tests/test/index.html</em> in a browser to view the results.</p>
+    </div>
+    <div id="maven">
+        <pre><code class="language-bash">./mvnw test</code></pre>
+    </div>
+</div>
+    
+      <h2 id="3-set-up-gmail-email-delivery">
+        
+        
+          3. Set Up Gmail Email Delivery <a href="#3-set-up-gmail-email-delivery" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>To use the Micronaut JavaMail with Gmail, you need a <a href="https://myaccount.google.com/">Google Account</a>.</p>
+
+<p>Set environment variables using the following commands:</p>
+
+<pre><code class="language-bash">export FROM_NAME='GCN EMAIL'
+export FROM_EMAIL=&lt;email@gmail.com&gt;
+export FROM_PASSWORD=&lt;password or app password&gt;
+</code></pre>
+
+<p>If you have 2-Step-Verification, you must use a “App Password”. If you do not already have one, follow these steps:</p>
+<ol>
+  <li>Go to your <a href="https://myaccount.google.com/">Google Account</a></li>
+  <li>Use the “Search Google Account” bar and enter <strong>App Password</strong></li>
+  <li>Generate an App Password
+    <ol>
+      <li><strong>Select app</strong>: <em>Mail</em></li>
+      <li><strong>Select device</strong>: (the device you are using)</li>
+      <li>Click <strong>Generate</strong></li>
+    </ol>
+  </li>
+</ol>
+    
+      <h2 id="4-run-the-application">
+        
+        
+          4. Run the Application <a href="#4-run-the-application" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>To run the application, use the following command, which starts the application on port 8080.</p>
+
+<div id="tabs-doc4">
+    <ul>
+        <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <pre><code class="language-bash">./gradlew run</code></pre>
+    </div>
+    <div id="maven">
+        <pre><code class="language-bash">./mvnw mn:run</code></pre>
+    </div>
+</div>
+    
+      <h2 id="5-test-the-application">
+        
+        
+          5. Test the Application <a href="#5-test-the-application" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>Test the application by accessing the REST endpoint of the application.</p>
+
+<pre><code class="language-bash">curl -i -d '{"to":"rabbit@gcn.example"}' \
+     -H "Content-Type: application/json" \
+     -X POST http://localhost:8080/email/send
+</code></pre>
+    
+      <h2 id="6-generate-a-native-executable-using-graalvm">
+        
+        
+          6. Generate a Native Executable Using GraalVM <a href="#6-generate-a-native-executable-using-graalvm" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>GCN supports compiling a Java application ahead-of-time into a native executable using <a href="https://www.graalvm.org/native-image/">GraalVM Native Image</a>. You can use the <em><a href="https://graalvm.github.io/native-build-tools/latest/gradle-plugin.html">Gradle plugin for GraalVM Native Image building</a>/<a href="https://graalvm.github.io/native-build-tools/latest/maven-plugin.html">Maven  plugin for GraalVM Native Image building</a></em>. Packaged as a native executable, it significantly reduces application startup time and memory footprint.</p>
+
+<p>To generate a native executable, run the following command:</p>
+
+<div id="tabs-doc5">
+  <ul>
+    <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
+    <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
+  </ul>
+  <div id="gradle">
+    <pre><code class="language-bash">./gradlew nativeCompile</code></pre>
+    <p>The native executable is created in the <em>build/native/nativeCompile</em> directory and can be run with the following command:</p>
+    <pre><code class="language-bash">build/native/nativeCompile/email-demo</code></pre>
+  </div>
+  <div id="maven">
+    <pre><code class="language-bash">./mvnw package -Dpackaging=native-image</code></pre>
+    <p>The native executable is created in the <em>target</em> directory and can be run with the following command:</p>
+    <pre><code class="language-bash">target/email-demo</code></pre>
+  </div>
+</div>
+    
+      <h2 id="7-run-and-test-the-native-executable">
+        
+        
+          7. Run and Test the Native Executable <a href="#7-run-and-test-the-native-executable" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>Run the native executable, and then perform the same test as in step <strong>5</strong>.</p>
+    
+      <h3 id="summary">
+        
+        
+          Summary <a href="#summary" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>This guide demonstrated how to use GCN to create an application that sends email via JavaMail and the Micronaut Email module. Then you saw how to generate a native executable with GraalVM Native Image for faster startup and lower memory footprint.</p>
+    
+      <h3 id="related-documentation">
+        
+        
+          Related Documentation <a href="#related-documentation" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<ul>
+  <li><a href="https://micronaut-projects.github.io/micronaut-email/latest/guide/">Micronaut Email integration</a></li>
+</ul>
+
+      </div>
+
+      <div role="button" class="menu-btn menu-btn--sidebar js-show-sidebar" title="sweet hamburger">
+        <div class="hamburger">
+          <div class="inner"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+</div>
+
+      </main>
+
+      
+<footer class="footer footer__mobile">
+
+  <div class="container-fluid container-fluid--custom-sm">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row footer-content">
+          <div class="col-md-3 col-sm-4">
+            <h6 class="title-footer" onclick="fadeInAndOut(this)">Learn</h6>
+            <div class="grow">
+              <ul class="footer-list">
+                <li class="footer-list__item"><a href="/gcn/get-started/">Get Started</a></li>
+                <li class="footer-list__item"><a href="/gcn/guides/">Guides</a></li>
+                <li class="footer-list__item"><a href="/gcn/hands-on-labs/">Labs</a></li>
+                <li class="footer-list__github">
+                  <img class="footer__icon" src="/gcn/resources/img/footer/logo-github.svg" alt="Github icon">
+                  <a href="https://github.com/oracle/gcn">Github</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-4">
+            <h6 class="title-footer" onclick="fadeInAndOut(this)">About</h6>
+            <div class="grow">
+              <ul class="footer-list">
+                <li class="footer-list__item"><a href="/gcn/about/#gcn-support" target="blank">Commercial Support</a></li>
+                <li class="footer-list__item"><a href="https://www.graalvm.org/" target="blank">GraalVM Native Image</a></li>
+                <li class="footer-list__item"><a href="https://micronaut.io/" target="_blank">Micronaut</a></li>
+                <li class="footer-list__item"><a href="https://www.oracle.com/cloud/multicloud/what-is-multicloud/" target="_blank">Multicloud</a></li>
+                <li class="footer-list__item"><a href="https://www.oracle.com/cloud/" target="blank">Oracle Cloud Infrastructure</a></li>
+                <li class="footer-list__item"><a href="https://marketplace.visualstudio.com/items?itemName=oracle-labs-graalvm.graal-cloud-native-pack" target="blank">VS Code Tools</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-12 aligning_1024">
+            <div class="card--footer card--hovered box">
+              <div>
+                <div class="rubber-footer footer__oci-section">
+                  <p class="title-footer quickstart">Build, test, and deploy applications on Oracle Cloud Infrastructure for free</p>
+                  <a href="https://www.oracle.com/cloud/free/" target="_blank"
+                    class="btn btn-primary">Try Oracle Cloud Infrastructure Free Tier</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+          <div class="row">
+            <div class="col-sm-12">
+              <p class="copyright">
+                Copyright © 2023, Oracle and/or its affiliates. All rights reserved. Oracle and Java are
+                registered trademarks. Other names may be trademarks of their respective owners.
+              </p>
+              <div id="teconsent"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+<script>
+  function fadeInAndOut(thz) {
+    var elmt = thz.nextElementSibling;//Get the element that is below the button that
+    //was just clicked
+    if (elmt.clientHeight) {
+      elmt.style.height = 0;
+    } else {
+      var wrapper = elmt.querySelector('ul');
+      elmt.style.height = wrapper.clientHeight + "px";
+    }
+    /*
+        elmt.classList.toggle("acordianPanelHidden");//Toggle the class which changes
+        //attributes which triggers the transition CSS
+        */
+  }
+
+  // Check TRUSTe Consent for Functional or Implied Approval
+  // The if test verifies if the user has given the consent
+  if ( (oracle.truste.api.getGdprConsentDecision().consentDecision) &&
+      (oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(0) != -1 ||
+        oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(2) != -1) ) {
+
+      //The following is a sample of a Maxymiser Tag being written to the DOM
+      //If the user did not give consent, then the tag is not included and not invoked in the Browser
+      document.write('<script type="text/javascript" src="//service.maxymiser.net/cdn/oracle/js/mmcore.js"><\/script>');
+  }
+
+  // Check TRUSTe Consent for Advertising or Implied Approval
+  // The if test verifies if the user has given the consent
+  if ( (oracle.truste.api.getGdprConsentDecision().consentDecision) &&
+      (oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(0) != -1 ||
+        oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(3) != -1) ) {
+
+      //The following is a sample of a BlueKai Core Tag being written to the DOM
+      //If the user did not give consent, then the tag is not included and not invoked in the Browser
+      document.write('<script type="text/javascript">' +
+      'window.bk_async = function() { ' +
+      'BKTAG.doTag(62581, 1); }; ' +
+      '(function() { ' +
+      'var scripts = document.getElementsByTagName(\'script\')[0]; ' +
+      'var s = document.createElement(\'script\'); ' +
+      's.async = true; ' +
+      's.src = "https://tags.bkrtx.com/js/bk-coretag.js"; ' +
+      'scripts.parentNode.insertBefore(s, scripts); ' +
+      '}()); ' +
+      '<\/script>');
+  }
+</script>
+
+    </div>
+    <div class="overlay"></div>
+
+    <!-- Start SiteCatalyst code -->
+    <script language="JavaScript" src="https://www.oracle.com/us/assets/metrics/ora_otn.js"></script>
+    <!-- End SiteCatalyst code -->
+
+    <script src='/gcn/resources/lib/slick-slider/slick.min.js'></script>
+    <script src='/gcn/resources/js/main.js'></script>
+    <script src='/gcn/resources/js/ui.js'></script>
+    <script src='/gcn/resources/js/filters.js'></script>
+    <script src='/gcn/resources/js/sidebar.js'></script>
+  </body>
+</html>

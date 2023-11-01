@@ -1,0 +1,1618 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:image" content="/gcn/resources/img/graalvm.png" />
+  <meta name="twitter:widgets:border-color" content="#55acee">
+
+  <title>
+    
+      Create a Micronaut Application to Collect Metrics and Monitor Them on Google Cloud Monitoring
+    
+  </title>
+  <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
+  <meta name="last_modified" content="2023-10-12 09:43:06 +0000"/>
+  <link rel="stylesheet" href="/gcn/assets/main.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/gcn/resources/img/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/resources/img/favicon/site.webmanifest">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="google-site-verification" content="-vRqwa9WYn6AaQGnl88xvrLw6ac4xoKVkZkhanmlRhU" />
+  <link rel="canonical" href="https://www.graal.cloud/gcn/gcn-modules/metrics/micronaut-metrics-google/">
+
+  <!-- jQuery UI Tabs -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/gcn/resources/lib/jquery/jquery-ui.css">
+</head>
+
+      <script src="/gcn/resources/lib/jquery/jquery-3.6.1.min.js"></script>
+    <script src="/gcn/resources/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src='/gcn/resources/lib/sticky-sidebar/resizeSensor.js'></script>
+    <script src='/gcn/resources/lib/sticky-sidebar/sticky-sidebar.min.js'></script>
+    <script src="/gcn/resources/lib/highlight/highlight.min.js"></script>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- Add TRUSTe Consent Script and Analytics -->
+    <script async="async" type="text/javascript" src='//consent.trustarc.com/notice?domain=oracle.com&c=teconsent&js=bb&noticeType=bb&text=true&cdn=1&pcookie&gtm=1' crossorigin></script>
+    <script src="https://www.oracle.com/assets/truste-oraclelib.js"></script>
+    <!-- jQuery UI Tabs -->
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+
+  <body class="preload">
+
+    <div  class="wrapper wrapper--nofooter" >
+
+      <header  class="header header--content" 
+  role="banner">
+
+  
+
+  
+
+    <nav class="menu">
+      <div class="menu__row">
+        <div>
+          <a href="/gcn/">
+            <img class="logo-mobile" src="/gcn/resources/img/gcn-logo-01.svg" alt="Graal Cloud Native logo">
+          </a>
+        </div>
+        <div class="menu__container">
+          <ul class="menu__list">
+            <li class="menu__item">
+              <a href="/gcn/about/" class="menu__link">About</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gcn/get-started/" class="menu__link">Get Started</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gcn/modules/" class="menu__link">Modules</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gcn/guides/" class="menu__link">Guides</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gcn/hands-on-labs/" class="menu__link">Hands-On Labs</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gcn/vscode-tools/" class="menu__link">Tools</a>
+            </li>
+            <li class="menu__launch__mobile">
+              <a href="/gcn/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
+            </li>
+          </ul>
+        </div>
+        <div class="menu__launch">
+          <a href="/gcn/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
+        </div>
+      </div>
+
+      <div role="button" class="menu-btn menu-btn--menu js-show-menu" tabindex="-1" title="sweet hamburger">
+        <div class="hamburger">
+          <div class="inner"></div>
+        </div>
+      </div>
+      <button aria-label="hamburger mobile menu" class="btn btn-mobile-menu js-show-menu">
+        <div class="inner"></div>
+      </button>
+    </nav>
+
+  
+</header>
+
+<!-- <header  class="header header--content" >
+
+  
+
+  
+
+    <nav class="menu">
+      <div class="menu__row">
+        <div>
+          <a href="/gcn/graal">
+            <img class="logo-mobile" src="/gcn/resources/img/gcn-logo-01.svg" alt="Graal Cloud Native logo">
+          </a>
+        </div>
+        <div class="menu__container">
+          <ul class="menu__list">
+            <li class="menu__item">
+              <a href="/gcn/graal/#whatisgraal" class="menu__link">About</a>
+            </li>
+            <li class="menu__item">
+              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
+            </li>
+            <li class="menu__item">
+              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
+            </li>
+            <li class="menu__item">
+              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div role="button" class="menu-btn menu-btn--menu js-show-menu" tabindex="-1" title="sweet hamburger">
+        <div class="hamburger">
+          <div class="inner"></div>
+        </div>
+      </div>
+      <button aria-label="hamburger mobile menu" class="btn btn-mobile-menu js-show-menu">
+        <div class="inner"></div>
+      </button>
+    </nav>
+
+  
+</header> -->
+
+      <main  class="content"   aria-label="Content">
+        <div class="wrapper wrapper-content">
+  <article>
+  <div class="row d-flex flex-wrap">
+    <div class="col-sm-3 docsimpro col-bg">
+      <div class="sidebar-wrap">
+        <div class="sidebar">
+          <div class="menuabout">
+            <img id="sidebarClose" src="/gcn/resources/img/arrow_sidebar(close).svg" alt="Expand or collapse sidebar"
+              class="btn-color no-display">
+            <img id="sidebarOpen" src="/gcn/resources/img/arrow_sidebar.svg" alt="Expand or collapse sidebar">
+          </div>
+          
+<div class="toc-floating">
+
+
+<div class="toc-bullets">
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+
+    
+      
+        
+          <li class="toc-bullets-main">
+        
+          
+          <a href="/gcn/docs/gcn-modules/metrics/" class="_icon-book">
+            Metrics
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+          
+          <li class="toc-bullets-sub toc-bullets-highlight">
+          
+            
+            <a href="/gcn/gcn-modules/metrics/micronaut-metrics-google/">
+              Create a Micronaut Application to Collect Metrics and Monitor Them on Google Cloud Monitoring
+            </a>
+          </li>
+
+          
+            <div>
+  <script>
+    var scriptElement = document.currentScript;
+    var div = $(scriptElement.parentElement);
+    $(window).on("load", function () {
+      $("#content-wrapper h2").each(function () {
+        var li = $("<li></li>", { class: "toc-bullets-sub toc-bullets-sub-3" });
+        var a = $("<a></a>", { href: "#" + $(this).attr("id") });
+        a.text($(this).text().replace('#', ''));
+        li.append(a);
+        li.click(function (e) {
+          e.preventDefault();
+          var target = $(a.attr('href'));
+          var scrollTo = target.offset().top - 80; // 80 - indent
+          $('html, body').animate({ scrollTop: scrollTo }, 1000);
+        });
+        div.append(li);
+      });
+    });
+  </script>
+</div>
+          
+        
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<!-- <li class="search additional-search">
+  <form class="form-inline sidebar" action="/docs/search" autocomplete="on" method="get">
+    <input class="input-search sidebar" type="text" id="search-box" name="query" placeholder="Search">
+    <button type="submit sidebar" class="search-button"></button>
+  </form>
+</li> -->
+
+</div>
+  <!-- Search form -->
+  <!-- <form class="search-container" action="/docs/search" autocomplete="on" method="get">
+   <label for="search-box">Search</label>
+    <input type="text" id="search-box" name="query">
+    <button type="submit" class="searchbttn"></button>
+  </form> -->
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-9 docsmod">
+      <div id="content-wrapper" class="docs-content docs-content--with-sidebar">
+        <h1 id="create-a-micronaut-application-to-collect-metrics-and-monitor-them-on-google-cloud-monitoring">
+        
+        
+          Create a Micronaut Application to Collect Metrics and Monitor Them on Google Cloud Monitoring
+        
+        
+      </h1>
+
+<p>This guide describes how to create a Micronaut application that collects standard and custom metrics, then publishes and monitors them on <a href="https://cloud.google.com/monitoring/docs">Google Cloud Monitoring</a>, using the Micronaut Google Cloud Platform integration.</p>
+
+<p>The application stores book information in a database and provides endpoints to query books. The application collects
+metrics for the whole application and measures total computation time for a particular endpoint.</p>
+
+<blockquote>
+  <p><a href="https://cloud.google.com/monitoring/docs">Google Cloud Monitoring</a> provides visibility into the performance, uptime, and overall health of cloud-powered applications. It collects metrics, events, and metadata from Google Cloud services, hosted uptime probes, application instrumentation, and a variety of common application components.</p>
+</blockquote>
+
+<blockquote>
+  <p><a href="https://micronaut-projects.github.io/micronaut-gcp/latest/guide/#introduction">Micronaut GCP</a> provides integration between Micronaut and Google Cloud Platform, including the Operations Suite.</p>
+</blockquote>
+
+<p>The application uses <a href="https://micronaut-projects.github.io/micronaut-micrometer/latest/guide/">Micronaut Micrometer</a> to expose application metric data with <a href="https://micrometer.io/">Micrometer</a>.</p>
+    
+      <h3 id="prerequisites">
+        
+        
+          Prerequisites <a href="#prerequisites" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<ul>
+  <li>JDK 17 or higher. See <a href="/gcn/get-started/setting-up-desktop/">Setting up Your Desktop</a>.</li>
+  <li>A Google Cloud Platform (GCP) account. See <a href="/gcn/get-started/setting-up-cloud-accounts/">Setting up Your Cloud Accounts</a>.</li>
+  <li>The Google Cloud CLI. (The CLI is part of the Google Cloud SDK; for more information, see <a href="https://cloud.google.com/sdk">Cloud SDK</a>.)</li>
+  <li>A Docker-API compatible container runtime such as <a href="https://docs.rancherdesktop.io/getting-started/installation/">Rancher Desktop</a> or <a href="https://www.docker.io/gettingstarted/">Docker</a> installed to run MySQL and to run tests using <a href="https://www.testcontainers.org">Testcontainers</a>.</li>
+  <li>The GCN CLI. See <a href="/gcn/get-started/setting-up-desktop/">Setting up Your Desktop</a>. (Optional.)</li>
+</ul>
+
+<blockquote>
+  <p>Note: This guide uses paid services; you may need to <a href="https://cloud.google.com/billing/docs/how-to/modify-project">enable billing</a> in Google Cloud to complete some steps in this guide.</p>
+</blockquote>
+
+<p>Follow the steps below to create the application from scratch. However, you can also download the completed example in Java:</p>
+
+<div id="tabs-doc1">
+    <ul>
+        <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <p><a href="/gcn/docs/gcn-modules/metrics/archives/gcp-metrics-demo-java-gradle.zip">Gradle GCP Metrics Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" />
+        </a>
+        </p>
+    </div>
+    <div id="maven">
+        <p><a href="/gcn/docs/gcn-modules/metrics/archives/gcp-metrics-demo-java-maven.zip">Maven GCP Metrics Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" /></a>
+        </p>
+    </div>
+</div>
+    
+      <h4 id="a-note-regarding-your-development-environment">
+        
+        
+          A note regarding your development environment
+        
+        
+      </h4>
+
+<p>Consider using Visual Studio Code that provides native support for developing applications with the <a href="/gcn/vscode-tools/using-gcn-vscode-tools/">Graal Cloud Native Tools extension</a>.</p>
+
+<blockquote>
+  <p>Note: If you use IntelliJ IDEA, <a href="/gcn/resources/img/annotationprocessorsintellij.png">enable annotation processing</a>.</p>
+</blockquote>
+    
+      <h2 id="1-create-the-application">
+        
+        
+          1. Create the Application <a href="#1-create-the-application" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>Create an application using the GCN Launcher.</p>
+
+<ol>
+  <li>
+    <p>Open the <a href="/gcn/launcher/?advanced=true">GCN Launcher in advanced mode</a>.</p>
+  </li>
+  <li>Create a new project using the following selections.
+    <ul>
+      <li><strong>Project Type</strong>: <em>Application</em> (Default)</li>
+      <li><strong>Project name</strong>: <em>gcp-metrics-demo</em></li>
+      <li><strong>Base Package</strong>: <em>com.example</em> (Default)</li>
+      <li><strong>Clouds</strong>: <em>GCP</em></li>
+      <li><strong>Build Tool</strong>: <em>Gradle (Groovy)</em> or <em>Maven</em></li>
+      <li><strong>Test Framework</strong>: <em>JUnit</em> (Default)</li>
+      <li><strong>Java Version</strong>: <em>17</em> (Default)</li>
+      <li><strong>Micronaut Version</strong>: (Default)</li>
+      <li><strong>Cloud Services</strong>: <em>Database</em> and <em>Metrics</em></li>
+      <li><strong>Features</strong>: <em>Flyway Database Migration</em>, <em>GraalVM Native Image</em>, and <em>Micrometer Annotation</em></li>
+      <li><strong>Sample Code</strong>: <em>No</em></li>
+    </ul>
+  </li>
+  <li>Click <strong>Generate Project</strong>. The GCN Launcher creates a Java project with the default package <code>com.example</code> in a directory named <em>gcp-metrics-demo</em>. The application ZIP file will be downloaded in your default downloads directory. Unzip it, open in your code editor, and proceed to the next steps.</li>
+</ol>
+
+<p>Alternatively, use the GCN CLI as follows:</p>
+
+<div id="tabs-doc2">
+  <ul>
+    <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
+    <li class="tabs-maven"><a href="#maven">Maven</a></li>
+  </ul>
+  <div id="gradle">
+    <pre><code class="language-bash">gcn create-app com.example.gcp-metrics-demo
+    --clouds=gcp \
+    --services=database,metrics \
+    --features=graalvm,flyway,micrometer-annotation \
+    --build=gradle \
+    --lang=java</code></pre>
+  </div>
+  <div id="maven">
+    <pre><code class="language-bash">gcn create-app com.example.gcp-metrics-demo
+    --clouds=gcp \
+    --services=database,metrics \
+    --features=graalvm,flyway,micrometer-annotation \
+    --build=maven \
+    --lang=java</code></pre>
+  </div>
+</div>
+
+<p>For more information, see <a href="/gcn/get-started/using-gcn-cli/">Using the GCN CLI</a>.</p>
+
+<p>GCN Launcher creates a multi-module project with two subprojects: <em>gcp</em>, and <em>lib</em>. The common application logic is in the <em>lib</em> subproject, and the <em>gcp</em> subproject contain logic specific to the GCP cloud platform.
+When creating the application with GCN, the necessary features such as <a href="https://micronaut-projects.github.io/micronaut-micrometer/latest/guide/">Micronaut Micrometer</a>, and others were added for you. These features will be used in the guide.</p>
+    
+      <h3 id="11-configure-metrics-collection">
+        
+        
+          1.1. Configure Metrics Collection <a href="#11-configure-metrics-collection" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>The project generated by the GCN Launcher has <a href="https://micrometer.io/">Micrometer</a> as a dependency.</p>
+
+<blockquote>
+  <p><a href="https://micrometer.io/">Micrometer</a> provides a simple facade over the instrumentation clients for a number of popular monitoring systems.</p>
+</blockquote>
+
+<p>To configure Micrometer, the following properties were added to the configuration file, <em>aws/src/main/resources/application-ec2.properties</em>, as follows:</p>
+
+<pre><code>micronaut.metrics.enabled=true
+micronaut.metrics.binders.files.enabled=true
+micronaut.metrics.binders.jdbc.enabled=true
+micronaut.metrics.binders.jvm.enabled=true
+micronaut.metrics.binders.logback.enabled=true
+micronaut.metrics.binders.processor.enabled=true
+micronaut.metrics.binders.uptime.enabled=true
+micronaut.metrics.export.stackdriver.enabled=true
+</code></pre>
+
+<p>Several groups of metrics are enabled by default: these include system metrics (such as JVM information and uptime), as well as metrics tracking web requests, data sources activity, and others. Overall metrics can be enabled or disabled, and groups can be individually enabled or disabled in configuration. In this case all metrics are enabled. To disable, change to <code>false</code>, for example, per-environment.</p>
+
+<p>To export metrics to Google Cloud Monitoring, enable Stackdriver as an export location for Micrometer. Then, create queries and monitor your metrics on <a href="https://console.cloud.google.com/monitoring/metrics-explorer">Google Cloud Monitoring</a>.</p>
+
+<p>Finally, add the following to your build file, in order to use Stackdriver for Micrometer for this project:</p>
+
+<div id="tabs-doc8">
+     <ul>
+         <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
+         <li class="tabs-maven"><a href="#maven">Maven</a></li>
+     </ul>
+     <div id="gradle">
+         <p><em>build.gradle</em></p>
+         <pre><code class="language-java">implementation("io.micronaut.micrometer:micronaut-micrometer-registry-stackdriver")</code></pre>
+     </div>
+     <div id="maven">
+         <p><em>pom.xml</em></p>
+         <pre><code class="language-xml">&lt;dependency&gt;
+   &lt;groupId&gt;io.micronaut.micrometer&lt;/groupId&gt;
+   &lt;artifactId&gt;micronaut-micrometer-registry-stackdriver&lt;/artifactId&gt;
+   &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;</code></pre>
+      </div>
+   </div>
+    
+      <h3 id="12-create-a-google-cloud-platform-project">
+        
+        
+          1.2. Create a Google Cloud Platform Project <a href="#12-create-a-google-cloud-platform-project" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>Create a new GCP project named “gcn-guides” (follow the instructions in <a href="https://cloud.google.com/resource-manager/docs/creating-managing-projects">Creating and managing projects</a>).</p>
+    
+      <h4 id="121-install-the-cloud-sdk">
+        
+        
+          1.2.1. Install the Cloud SDK
+        
+        
+      </h4>
+
+<p>The Cloud SDK includes the <code>gcloud</code> command-line tool.</p>
+
+<ol>
+  <li>Initialize the Cloud SDK:
+    <pre><code class="language-bash"> gcloud init
+</code></pre>
+  </li>
+  <li>Log in to the Google Cloud Platform:
+    <pre><code class="language-bash"> gcloud auth login
+</code></pre>
+  </li>
+  <li>Authenticate application default credentials:
+    <pre><code class="language-bash"> gcloud auth application-default login
+</code></pre>
+  </li>
+  <li>Select your project:
+    <pre><code class="language-bash"> gcloud config set project gcn-guides
+</code></pre>
+  </li>
+  <li>
+    <p>Configure the project in <em>gcp/src/main/resources/application-gcp.yml</em>:</p>
+
+    <pre><code class="language-yml"> export:
+   stackdriver:
+     enabled: true
+     projectId: gcn-guides
+</code></pre>
+  </li>
+</ol>
+    
+      <h3 id="13-database-migration-with-flyway">
+        
+        
+          1.3. Database Migration with Flyway <a href="#13-database-migration-with-flyway" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>To create the database schema, the application uses the <a href="https://micronaut-projects.github.io/micronaut-flyway/latest/guide/">Micronaut integration with Flyway</a>. Flyway automates schema changes, significantly simplifying schema management tasks, such as migrating, rolling back, and reproducing in multiple environments.</p>
+
+<ol>
+  <li>
+    <p>You specified Flyway as a project feature in the GCN Launcher, so the build file includes it as a dependency:</p>
+
+    <div id="tabs-doc4">
+     <ul>
+         <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
+         <li class="tabs-maven"><a href="#maven">Maven</a></li>
+     </ul>
+     <div id="gradle">
+         <p><em>build.gradle</em></p>
+         <pre><code class="language-java">implementation("io.micronaut.flyway:micronaut-flyway")
+runtimeOnly("org.flywaydb:flyway-mysql")</code></pre>
+     </div>
+     <div id="maven">
+         <p><em>pom.xml</em></p>
+         <pre><code class="language-xml">&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.flyway&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-flyway&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.flywaydb&lt;/groupId&gt;
+    &lt;artifactId&gt;flyway-mysql&lt;/artifactId&gt;
+    &lt;scope&gt;runtime&lt;/scope&gt;
+&lt;/dependency&gt;</code></pre>
+     </div>
+ </div>
+  </li>
+  <li>
+    <p>The file <em>gcp/src/main/resources/application-gcp.properties</em> was modified to enable Flyway to perform migrations on the default datasources, by adding the following:</p>
+
+    <pre><code> flyway.datasources.default.enabled=true
+</code></pre>
+    <p>Configuring multiple <code>datasources</code> is as simple. You can also specify directories that will be used for migrating each datasource. For more information, see <a href="https://micronaut-projects.github.io/micronaut-flyway/latest/guide/">Micronaut integration with Flyway</a>.</p>
+  </li>
+  <li>
+    <p>The launcher created a migration file in the <em>lib/src/main/resources/db/migration</em> directory named <em>V1__schema.sql</em> to contain the database schema, as follows:</p>
+    <pre><code class="language-sql">DROP TABLE IF EXISTS book;
+
+CREATE TABLE book (
+    id   BIGINT NOT NULL AUTO_INCREMENT UNIQUE PRIMARY KEY,
+   name  VARCHAR(255) NOT NULL UNIQUE,
+   isbn  CHAR(13) NOT NULL UNIQUE
+);
+
+INSERT INTO book (isbn, name)
+VALUES ("9781491950357", "Building Microservices"),
+       ("9781680502398", "Release It!"),
+       ("9780321601919", "Continuous Delivery"),
+       ("9781617294549", "Microservices Patterns");
+</code></pre>
+  </li>
+</ol>
+
+<p>Flyway migration is automatically triggered before your application starts and Flyway reads migration file(s) from the <em>lib/src/main/resources/db/migration/</em> directory. During application startup, Flyway runs the commands in the SQL file and creates the schema needed for the application.</p>
+
+<p>Using the SQL statements in <em>V1__schema.sql</em>, Flyway creates a table with the name <code>book</code> and populates it with four records.</p>
+    
+      <h3 id="14-domain-entity">
+        
+        
+          1.4. Domain Entity <a href="#14-domain-entity" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>The launcher created a <code>Book</code> domain class that uses <a href="https://micronaut-projects.github.io/micronaut-data/latest/guide/#sql">Micronaut Data JDBC</a> in a file named <em>lib/src/main/java/com/example/Book.java</em>, as follows:</p>
+
+<pre><code class="language-java">package com.example;
+
+import io.micronaut.data.annotation.GeneratedValue;
+import io.micronaut.data.annotation.Id;
+import io.micronaut.data.annotation.MappedEntity;
+
+import static io.micronaut.data.annotation.GeneratedValue.Type.AUTO;
+
+import io.micronaut.serde.annotation.Serdeable;
+import jakarta.validation.constraints.Size;
+
+@Serdeable
+@MappedEntity // &lt;1&gt;
+public class Book {
+
+    @Id
+    @GeneratedValue(AUTO)
+    private Long id;
+
+    private String name;
+
+    @Size(min=13, max=13)
+    private String isbn;
+
+    public Book(String isbn, String name) {
+        this.isbn = isbn;
+        this.name = name;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
+}
+</code></pre>
+
+<p><strong>1</strong> The annotation <a href="https://micronaut-projects.github.io/micronaut-data/latest/api/io/micronaut/data/annotation/MappedEntity.html"><code>@MappedEntity</code></a> maps the class to the table defined in the schema.</p>
+    
+      <h3 id="15-repository-interface">
+        
+        
+          1.5. Repository Interface <a href="#15-repository-interface" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>A repository interface defines the operations to access the database. Micronaut Data implements the interface at compilation time.
+The launcher created a <code>BookRepository</code> interface in a file named <em>lib/src/main/java/com/example/BookRepository.java</em>:</p>
+
+<pre><code class="language-java">package com.example;
+
+import io.micronaut.core.annotation.NonNull;
+import io.micronaut.data.jdbc.annotation.JdbcRepository;
+import io.micronaut.data.repository.CrudRepository;
+import jakarta.validation.constraints.NotBlank;
+
+import java.util.Optional;
+
+import static io.micronaut.data.model.query.builder.sql.Dialect.MYSQL;
+
+@JdbcRepository(dialect = MYSQL) // &lt;1&gt;
+public interface BookRepository extends CrudRepository&lt;Book, Long&gt; { // &lt;2&gt;
+
+    @NonNull
+    Optional&lt;Book&gt; findByIsbn(@NotBlank String isbn);
+}
+</code></pre>
+
+<p><strong>1</strong> A database dialect is specified with the <code>@JdbcRepository</code> annotation.</p>
+
+<p><strong>2</strong> The <code>Book</code> is the root entity, and the primary key type is <code>Long</code>.</p>
+    
+      <h3 id="16-controller-class">
+        
+        
+          1.6. Controller Class <a href="#16-controller-class" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>The launcher created a controller to access <code>Book</code> instances (and to trigger the JDBC metric data) in a file named <em>lib/src/main/java/com/example/BookController.java</em> with the following content:</p>
+
+<pre><code class="language-java">package com.example;
+
+import io.micronaut.http.annotation.Controller;
+import io.micronaut.http.annotation.Get;
+import io.micronaut.scheduling.TaskExecutors;
+import io.micronaut.scheduling.annotation.ExecuteOn;
+import io.micrometer.core.annotation.Timed;
+import io.micrometer.core.annotation.Counted;
+
+import java.util.Optional;
+
+@Controller("/books") // &lt;1&gt;
+@ExecuteOn(TaskExecutors.IO)
+class BookController {
+
+    private final BookRepository bookRepository;
+
+    BookController(BookRepository bookRepository) {
+        this.bookRepository = bookRepository;
+    }
+
+    @Get // &lt;2&gt;
+    @Timed("books.index") // &lt;3&gt;
+    Iterable&lt;Book&gt; index() {
+        return bookRepository.findAll();
+    }
+
+    @Get("/{isbn}") // &lt;3&gt;
+    @Counted("books.find") // &lt;4&gt;
+    Optional&lt;Book&gt; findBook(String isbn) {
+        return bookRepository.findByIsbn(isbn);
+    }
+}
+</code></pre>
+
+<p><strong>1</strong> The class is defined as a controller with the <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Controller.html"><code>@Controller</code></a> annotation mapped to the path <code>/books</code>.</p>
+
+<p><strong>2</strong> Use a Micrometer <code>@Timed</code> annotation, with the value “books.index”, to create a timer metric.</p>
+
+<p><strong>3</strong> The controller maps a <code>GET</code> request to <code>/books</code>, which returns a list of <code>Book</code>.</p>
+
+<p><strong>4</strong> Use a Micrometer <code>@Counted</code> annotation, with the value “books.find”, to create a counter metric.</p>
+    
+      <h2 id="2-create-tests">
+        
+        
+          2. Create Tests <a href="#2-create-tests" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<blockquote>
+  <p>Note: You require a running Docker container to run the tests.</p>
+</blockquote>
+
+<ol>
+  <li>
+    <p>For tests to run correctly, the launcher created a test configuration file named <em>gcp/src/test/resources/application-test.properties</em> with the following content:</p>
+
+    <pre><code> customMetrics.initialDelay=10h
+ datasources.default.db-type=mysql
+ datasources.default.dialect=MYSQL
+ datasources.default.driverClassName=com.mysql.cj.jdbc.Driver
+ flyway.datasources.default.enabled=true
+ micronaut.metrics.enabled=true
+ micronaut.metrics.export.cloudwatch.enabled=false
+ micronaut.metrics.export.oraclecloud.enabled=false
+</code></pre>
+
+    <p>The configuration enables the metrics and specifies a MySQL datasource.
+ Since it does not specify a URL for the source, <a href="https://micronaut-projects.github.io/micronaut-test-resources/latest/guide/">Micronaut Test Resources</a> automatically creates a test container for the database. 
+ The configuration also enables Flyway to create the <code>books</code> tables the same way as in a production environment.</p>
+  </li>
+  <li>
+    <p>The launcher created a test class, named <code>BookControllerMetricsTest</code>, to verify metrics functionality in a file named <em>gcp/src/test/java/com/example/BookControllerMetricsTest.java</em> with the following content:</p>
+
+    <pre><code class="language-java"> package com.example;
+
+ import io.micrometer.core.instrument.Counter;
+ import io.micrometer.core.instrument.MeterRegistry;
+ import io.micrometer.core.instrument.Tags;
+ import io.micrometer.core.instrument.Timer;
+ import io.micronaut.core.type.Argument;
+ import io.micronaut.http.HttpRequest;
+ import io.micronaut.http.client.HttpClient;
+ import io.micronaut.http.client.annotation.Client;
+ import io.micronaut.logging.LoggingSystem;
+ import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
+ import jakarta.inject.Inject;
+ import org.junit.jupiter.api.Test;
+ import org.slf4j.Logger;
+ import org.slf4j.LoggerFactory;
+
+ import java.util.List;
+ import java.util.Map;
+ import java.util.Set;
+ import java.util.stream.Collectors;
+ import java.util.concurrent.TimeUnit;
+
+ import static io.micronaut.logging.LogLevel.ALL;
+ import static org.junit.jupiter.api.Assertions.assertEquals;
+ import static org.junit.jupiter.api.Assertions.assertFalse;
+ import static org.junit.jupiter.api.Assertions.assertTrue;
+
+ @MicronautTest
+ class BookControllerMetricsTest {
+
+     @Inject
+     MeterRegistry meterRegistry;
+
+     @Inject
+     LoggingSystem loggingSystem;
+
+     @Inject
+     @Client("/")
+     HttpClient httpClient;
+
+     @Test
+     void testExpectedMeters() {
+
+         Set&lt;String&gt; names = meterRegistry.getMeters().stream()
+                 .map(meter -&gt; meter.getId().getName())
+                 .collect(Collectors.toSet());
+
+         // check that a subset of expected meters exist
+         assertTrue(names.contains("jvm.memory.max"));
+         assertTrue(names.contains("process.uptime"));
+         assertTrue(names.contains("system.cpu.usage"));
+         assertTrue(names.contains("logback.events"));
+         assertTrue(names.contains("hikaricp.connections.max"));
+
+         // these will be lazily created
+         assertFalse(names.contains("http.client.requests"));
+         assertFalse(names.contains("http.server.requests"));
+     }
+
+     @Test
+     void testHttp() {
+
+         Timer timer = meterRegistry.timer("http.server.requests", Tags.of(
+                 "exception", "none",
+                 "method", "GET",
+                 "status", "200",
+                 "uri", "/books"));
+         assertEquals(0, timer.count());
+
+         Timer bookIndexTimer = meterRegistry.timer("books.index",
+                 Tags.of("exception", "none"));
+         assertEquals(0, bookIndexTimer.count());
+
+         httpClient.toBlocking().retrieve(
+                 HttpRequest.GET("/books"),
+                 Argument.listOf(Book.class));
+
+         assertEquals(1, timer.count());
+         assertEquals(1, bookIndexTimer.count());
+         assertTrue(0.0 &lt; bookIndexTimer.totalTime(TimeUnit.MILLISECONDS));
+         assertTrue(0.0 &lt; bookIndexTimer.max(TimeUnit.MILLISECONDS));
+
+         Counter bookFindCounter = meterRegistry.counter("books.find",
+                 Tags.of("result", "success",
+                         "exception", "none"));
+         assertEquals(0, bookFindCounter.count());
+
+         httpClient.toBlocking().retrieve(
+                 HttpRequest.GET("/books/9781491950357"),
+                 Argument.of(Book.class));
+
+         assertEquals(1, bookFindCounter.count());
+     }
+
+     @Test
+     void testLogback() {
+
+         Counter counter = meterRegistry.counter("logback.events", Tags.of("level", "info"));
+         double initial = counter.count();
+
+         Logger logger = LoggerFactory.getLogger("testing.testing");
+         loggingSystem.setLogLevel("testing.testing", ALL);
+
+         logger.trace("trace");
+         logger.debug("debug");
+         logger.info("info");
+         logger.warn("warn");
+         logger.error("error");
+
+         assertEquals(initial + 1, counter.count(), 0.000001);
+     }
+
+     @Test
+     void testMetricsEndpoint() {
+
+         Map&lt;String, Object&gt; response = httpClient.toBlocking().retrieve(
+                 HttpRequest.GET("/metrics"),
+                 Argument.mapOf(String.class, Object.class));
+
+         assertTrue(response.containsKey("names"));
+         assertTrue(response.get("names") instanceof List);
+
+         List&lt;String&gt; names = (List&lt;String&gt;) response.get("names");
+
+         // check that a subset of expected meters exist
+         assertTrue(names.contains("jvm.memory.max"));
+         assertTrue(names.contains("process.uptime"));
+         assertTrue(names.contains("system.cpu.usage"));
+         assertTrue(names.contains("logback.events"));
+         assertTrue(names.contains("hikaricp.connections.max"));
+     }
+
+     @Test
+     void testOneMetricEndpoint() {
+
+         Map&lt;String, Object&gt; response = httpClient.toBlocking().retrieve(
+                 HttpRequest.GET("/metrics/jvm.memory.used"),
+                 Argument.mapOf(String.class, Object.class));
+
+         String name = (String) response.get("name");
+         assertEquals("jvm.memory.used", name);
+
+         List&lt;Map&lt;String, Object&gt;&gt; measurements = (List&lt;Map&lt;String, Object&gt;&gt;) response.get("measurements");
+         assertEquals(1, measurements.size());
+
+         double value = (double) measurements.get(0).get("value");
+         assertTrue(value &gt; 0);
+     }
+ }
+</code></pre>
+
+    <p>The tests verify that certain metrics are present, including the ones that you enabled in the application configuration file, and the ones that you collected thanks to the <code>@Counter</code> and <code>@Timer</code> annotations.</p>
+
+    <p>Note that, since the <code>@MicronautTest</code> annotation is used, Micronaut initializes the application context and the embedded server with the endpoints you created earlier. (For more information, see the <a href="https://micronaut-projects.github.io/micronaut-test/latest/guide/">Micronaut Test guide</a>.)</p>
+  </li>
+</ol>
+    
+      <h2 id="3-create-custom-metrics">
+        
+        
+          3. Create Custom Metrics <a href="#3-create-custom-metrics" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<ol>
+  <li>
+    <p>The launcher created a service that retrieves information from the database and publishes custom metrics based on it. The custom metrics provide the number of books about microservices. The service is in a file named <em>lib/src/main/java/com/example/MicroserviceBooksNumberService.java</em> with the following content:</p>
+
+    <pre><code class="language-java"> package com.example;
+
+ import io.micrometer.core.instrument.Counter;
+ import io.micrometer.core.instrument.MeterRegistry;
+ import io.micrometer.core.instrument.Timer;
+ import io.micronaut.scheduling.annotation.Scheduled;
+ import jakarta.inject.Singleton;
+ import org.slf4j.Logger;
+ import org.slf4j.LoggerFactory;
+
+ import java.util.concurrent.atomic.AtomicInteger;
+ import java.util.stream.StreamSupport;
+
+ @Singleton
+ public class MicroserviceBooksNumberService {
+
+     private final Logger log = LoggerFactory.getLogger(getClass().getName());
+
+     private final BookRepository bookRepository;
+     private final Counter checks;
+     private final Timer time;
+     private final AtomicInteger microserviceBooksNumber = new AtomicInteger(0);
+
+     private static final String SEARCH_KEY = "microservice";
+
+     MicroserviceBooksNumberService(BookRepository bookRepository,
+                                    MeterRegistry meterRegistry) { // &lt;1&gt;
+         this.bookRepository = bookRepository;
+         checks = meterRegistry.counter("microserviceBooksNumber.checks");
+         time = meterRegistry.timer("microserviceBooksNumber.time");
+         meterRegistry.gauge("microserviceBooksNumber.latest", microserviceBooksNumber);
+     }
+
+     @Scheduled(fixedRate = "${customMetrics.updateFrequency:1h}",
+                initialDelay = "${customMetrics.initialDelay:0s}") // &lt;2&gt;
+     public void updateNumber() {
+         time.record(() -&gt; {
+             try {
+                 Iterable&lt;Book&gt; allBooks = bookRepository.findAll();
+                 long booksNumber = StreamSupport.stream(allBooks.spliterator(), false)
+                         .filter(b -&gt; b.getName().toLowerCase().contains(SEARCH_KEY))
+                         .count();
+
+                 checks.increment();
+                 microserviceBooksNumber.set((int) booksNumber);
+             } catch (Exception e) {
+                 log.error("Problem setting the number of microservice books", e);
+             }
+         });
+     }
+ }
+</code></pre>
+
+    <p><strong>1</strong> The code registers custom meters, queries the database, counts books containing <code>microservice</code> in the name and updates the <code>microserviceBooksNumber.latest</code> meter with the value. <code>microserviceBooksNumber.checks</code> stores the number of updates performed, and  <code>microserviceBooksNumber.time</code> stores the total time spent on the updates for the metric.</p>
+
+    <p><strong>2</strong> The metric update is scheduled. The <code>customMetrics.updateFrequency</code> parameter corresponds to the update rate and has the default value of one hour. The <code>customMetrics.initialDelay</code> parameter corresponds to a delay after application startup before metrics calculation and has a default value of zero seconds.</p>
+  </li>
+  <li>
+    <p>Create a test for the custom metrics in a class named <code>MicroserviceBooksNumberTest</code>. Create a new file named <em>gcp/src/test/java/com/example/MicroserviceBooksNumberTest.java</em> with the following content:</p>
+
+    <pre><code class="language-java"> package com.example;
+
+ import io.micrometer.core.instrument.Counter;
+ import io.micrometer.core.instrument.Gauge;
+ import io.micrometer.core.instrument.MeterRegistry;
+ import io.micrometer.core.instrument.Timer;
+ import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
+ import jakarta.inject.Inject;
+ import org.junit.jupiter.api.Test;
+
+ import static java.util.concurrent.TimeUnit.MILLISECONDS;
+ import static org.junit.jupiter.api.Assertions.assertEquals;
+ import static org.junit.jupiter.api.Assertions.assertTrue;
+
+ @MicronautTest
+ class MicroserviceBooksNumberTest {
+
+     @Inject
+     MeterRegistry meterRegistry;
+
+     @Inject
+     MicroserviceBooksNumberService service;
+
+     @Test
+     void testMicroserviceBooksNumberUpdates() {
+         Counter counter = meterRegistry.counter("microserviceBooksNumber.checks");
+         Timer timer = meterRegistry.timer("microserviceBooksNumber.time");
+         Gauge gauge = meterRegistry.get("microserviceBooksNumber.latest").gauge();
+
+         assertEquals(0.0, counter.count());
+         assertEquals(0.0, timer.totalTime(MILLISECONDS));
+         assertEquals(0.0, gauge.value());
+
+         int checks = 3;
+         for (int i = 0; i &lt; checks; i++) { // &lt;1&gt;
+             service.updateNumber();
+         }
+
+         assertEquals((double) checks, counter.count());
+         assertTrue(timer.totalTime(MILLISECONDS) &gt; 0);
+         assertEquals(2.0, gauge.value());
+     }
+ }
+</code></pre>
+
+    <p><strong>1</strong> The test calls the service three times and verifies that the metrics are collected correctly. Because the Flyway schema added two books with titles containing the word “microservices”, the value of <code>microserviceBooksNumber.latest</code> is <code>2.0</code>.</p>
+
+    <p>To make sure that the test works as expected and only three updates of the metric are performed, change the test configuration (in the file <em>gcp/src/test/resources/application-test.properties</em>) so that it does not perform scheduled updates for the custom metric. TTo achieve this, change the <code>customMetrics.initialDelay</code> parameter to a large value, such as <code>10</code> hours. For example:</p>
+
+    <pre><code> customMetrics.initialDelay=10h
+</code></pre>
+  </li>
+</ol>
+    
+      <h2 id="4-run-the-tests">
+        
+        
+          4. Run the Tests <a href="#4-run-the-tests" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>To run the tests, use the following command:</p>
+
+<div id="tabs-doc3">
+    <ul>
+        <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <pre><code class="language-bash">./gradlew test</code></pre>
+        <p>Then open the file <em>gcp/build/reports/tests/test/index.html</em> in a browser to view the results.</p>
+    </div>
+    <div id="maven">
+        <pre><code class="language-bash">./mvnw test</code></pre>
+    </div>
+</div>
+
+<p>The tests could be run locally without any cloud credentials, as metrics are not exported to the cloud, and a database is automatically provided by Micronaut test containers.</p>
+    
+      <h2 id="5-configure-the-application">
+        
+        
+          5. Configure the Application <a href="#5-configure-the-application" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<ol>
+  <li>
+    <p>The launcher configured an initial datasource in <em>gcp/src/main/resources/application-gcp.properties</em> with the following properties:</p>
+
+    <pre><code> datasources.default.db-type=mysql
+ datasources.default.dialect=MYSQL
+ datasources.default.driverClassName=com.mysql.cj.jdbc.Driver
+</code></pre>
+
+    <p>You can set values for the missing <code>datasources.default.url</code>, <code>datasources.default.username</code>, and <code>datasources.default.password</code> properties  with these environment variables:</p>
+
+    <pre><code class="language-bash"> export DATASOURCES_DEFAULT_URL=jdbc:mysql://&lt;Datasource URL, IP or localhost&gt;:3306/gcn
+ export DATASOURCES_DEFAULT_USERNAME=&lt;Username&gt;
+ export DATASOURCES_DEFAULT_PASSWORD=&lt;Password&gt;
+</code></pre>
+
+    <p>This approach requires an existing database, or requires you to manually start a server in a Docker container.
+ Instead, to simplify things, do not set the environment variables: if you do not specify a datasource URL, Micronaut Test Resources automatically starts a MySQL server in a Docker container when running the application locally or running tests.</p>
+  </li>
+</ol>
+    
+      <h2 id="6-run-the-application">
+        
+        
+          6. Run the Application <a href="#6-run-the-application" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>To run the application, use the following command, which starts the application on port 8080.</p>
+
+<div id="tabs-doc5">
+    <ul>
+        <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <pre><code class="language-bash">./gradlew :gcp:run</code></pre>
+        <p>Alternatively, to cause the custom metric update to occur more frequently (to see the effects on metrics), start the application with a configuration override to update every five seconds, as follows:</p>
+        <pre><code class="language-bash">./gradlew :gcp:run --args="-customMetrics.updateFrequency=5s"</code></pre>
+    </div>
+    <div id="maven">
+        <pre><code class="language-bash">./mvnw install -pl lib -am &amp;&amp; ./mvnw mn:run -pl gcp</code></pre>
+        <p>Alternatively, to cause the custom metric update to occur more frequently (to see the effects on metrics), start the application with a configuration override to update every five seconds, as follows:</p>
+        <pre><code class="language-bash">./mvnw install -pl lib -am &amp;&amp; ./mvnw mn:run -pl gcp -Dmn.appArgs="-customMetrics.updateFrequency=5s"</code></pre>
+    </div>
+</div>
+
+<p>Send a few test requests with cURL, as follows:</p>
+
+<ul>
+  <li>Get all the books:
+    <pre><code class="language-bash">curl localhost:8080/books
+</code></pre>
+    <pre><code class="language-bash">[{"id": 1, "name": "Building Microservices", "isbn": "9781491950357"},
+{"id": 2, "name": "Release It!", "isbn": "9781680502398"},
+{"id": 3, "name": "Continuous Delivery", "isbn": "9780321601919"}]
+</code></pre>
+  </li>
+  <li>Get a book by its ISBN:
+    <pre><code class="language-bash">curl localhost:8080/books/9781680502398
+</code></pre>
+    <pre><code class="language-json">{"id": 2, "name": "Release It!", "isbn": "9781680502398"}
+</code></pre>
+  </li>
+  <li>Get a list of all the available metrics:
+    <pre><code class="language-bash">curl localhost:8080/metrics
+</code></pre>
+    <pre><code class="language-json">{"names": [
+  "books.find",
+  "books.index",
+  ...,
+  "microserviceBooksNumber.latest",
+  "microserviceBooksNumber.time",
+  ...,
+  "http.server.requests",
+  "process.uptime",
+  ...
+]}
+</code></pre>
+  </li>
+  <li>Get the value of a particular metric:
+    <pre><code class="language-bash">curl localhost:8080/metrics/http.server.requests
+</code></pre>
+    <pre><code class="language-json">{"name": "http.server.requests",
+"measurements": [
+    {"statistic": "COUNT", "value": 3.0},
+    {"statistic": "TOTAL_TIME", "value": 0.6045995000000001},
+    {"statistic": "MAX", "value": 0.0343463}
+], ...
+}
+</code></pre>
+  </li>
+  <li>Get the value of the metric that you created on the <code>books</code> endpoint:
+    <pre><code class="language-bash">curl localhost:8080/metrics/books.index
+</code></pre>
+    <pre><code class="language-json">{"name": "books.index",
+"measurements": [
+    {"statistic": "COUNT", "value": 1.0},
+    {"statistic": "TOTAL_TIME", "value": 0.3218636},
+    {"statistic":"MAX","value":0.0}
+], ...
+}
+</code></pre>
+  </li>
+  <li>Get the value of the custom metric calculating the number of books with <code>microservice</code> in their title:
+    <pre><code class="language-bash">curl localhost:8080/metrics/microserviceBooksNumber.latest
+</code></pre>
+    <pre><code class="language-json">{"name": "microserviceBooksNumber.latest",
+"measurements": [{"statistic": "VALUE", "value" :2.0}]
+}
+</code></pre>
+  </li>
+</ul>
+    
+      <h2 id="7-monitor-metrics-on-google-cloud-monitoring">
+        
+        
+          7. Monitor Metrics on Google Cloud Monitoring <a href="#7-monitor-metrics-on-google-cloud-monitoring" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>Use the <a href="https://console.cloud.google.com/monitoring/metrics-explorer">Google Cloud Monitoring’s Metrics Explorer UI</a> to view the collected metrics.</p>
+
+<ol>
+  <li>
+    <p>Sign in to the GCP console, open the navigation menu, and find <strong>Metrics Explorer</strong>:</p>
+
+    <p><img src="/gcn/docs/gcn-modules/metrics/img/gcp1.png" alt="GCP console" />
+<br />
+<br /></p>
+  </li>
+  <li>
+    <p>In the query editor, create a query that you want to monitor. Find the metrics you want to observe by opening the metrics dropdown (#1), searching for them in the search bar (#2), and selecting them, for example <code>microserviceBooksNumber.latest</code> (#3). Click <strong>Apply</strong> to run the query:</p>
+
+    <p><img src="/gcn/docs/gcn-modules/metrics/img/gcp2.png" alt="GCP Metrics Browse" />
+<br />
+<br /></p>
+  </li>
+  <li>
+    <p>Observe the changes of the value over time on the graph:</p>
+
+    <p><img src="/gcn/docs/gcn-modules/metrics/img/gcp3.png" alt="GCP Metrics Graph" /></p>
+  </li>
+</ol>
+    
+      <h2 id="8-generate-a-native-executable-using-graalvm">
+        
+        
+          8. Generate a Native Executable using GraalVM <a href="#8-generate-a-native-executable-using-graalvm" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>GCN supports compiling Java applications ahead-of-time into native executables using <a href="https://www.graalvm.org/native-image/">GraalVM Native Image</a> and <a href="https://graalvm.github.io/native-build-tools/latest/index.html">Native Build Tools</a>. Packaged as a native executable, it significantly reduces the application startup time and memory footprint.</p>
+    
+      <h3 id="81-build-the-native-executable">
+        
+        
+          8.1. Build the Native Executable <a href="#81-build-the-native-executable" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>To generate a native executable, run the following command:</p>
+
+<div id="tabs-doc6">
+  <ul>
+    <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
+    <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
+  </ul>
+  <div id="gradle">
+    <pre><code class="language-bash">./gradlew :gcp:nativeCompile</code></pre>
+  </div>
+  <div id="maven">
+    <pre><code class="language-bash">./mvnw install -pl lib -am &amp;&amp; ./mvnw package -pl gcp -Dpackaging=native-image</code></pre>
+  </div>
+</div>
+    
+      <h3 id="82-run-the-native-executable">
+        
+        
+          8.2. Run the Native Executable <a href="#82-run-the-native-executable" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>To start the native executable, run a Docker container with a MySQL database:</p>
+<pre><code class="language-shell">docker run -it --rm \
+    --name "mysql.8" \
+    -p 3306:3306 \
+    -e MYSQL_DATABASE=gcn \
+    -e MYSQL_USER=guide_user \
+    -e MYSQL_PASSWORD=User123User! \
+    -e MYSQL_ALLOW_EMPTY_PASSWORD=true \
+    mysql:8
+</code></pre>
+
+<p>Set environment variables to provide values for the missing datasource url, username, and password properties:</p>
+<pre><code class="language-shell">export DATASOURCES_DEFAULT_URL=jdbc:mysql://localhost:3306/gcn
+export DATASOURCES_DEFAULT_USERNAME=guide_user
+export DATASOURCES_DEFAULT_PASSWORD=User123User!
+</code></pre>
+<blockquote>
+  <p>Note: On Windows use <code>set</code> instead of the <code>export</code> keyword in the commands above.</p>
+</blockquote>
+
+<p>Start the generated native executable:</p>
+<div id="tabs-doc7">
+  <ul>
+    <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
+    <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
+  </ul>
+  <div id="gradle">
+    <pre><code class="language-bash">./gcp/build/native/nativeCompile/gcp</code></pre>
+  </div>
+  <div id="maven">
+    <pre><code class="language-bash">./gcp/target/gcp</code></pre>
+  </div>
+</div>
+<blockquote>
+  <p>Note: With Gradle you can run <code>./gradlew :gcp:nativeRun</code> to start the native executable in development mode, which uses Micronaut Test Resources and therefore doesn’t require you to start a MySQL server.</p>
+</blockquote>
+
+<p>Run the same <code>curl</code> commands from above to confirm that the application works the same way as before, but with faster startup and response times.</p>
+
+<p>Then return to <a href="https://console.cloud.google.com/monitoring/metrics-explorer">Google Cloud Monitoring’s Metrics Explorer console</a> to review the metrics.</p>
+    
+      <h2 id="9-clean-up">
+        
+        
+          9. Clean up <a href="#9-clean-up" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>When you have completed the guide, you can clean up the resources you created on Google Cloud Platform so you will not be billed for them in the future.</p>
+    
+      <h3 id="91-delete-the-project">
+        
+        
+          9.1. Delete the Project <a href="#91-delete-the-project" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>The easiest way to eliminate billing is to delete the project you created.</p>
+
+<p>Deleting a project has the following consequences:</p>
+
+<ul>
+  <li>
+    <p>If you used an existing project, you will also delete any other work you have done in the project.</p>
+  </li>
+  <li>
+    <p>You cannot reuse the project ID of a deleted project. If you created a custom project ID that you plan to use in the future, you should delete the resources inside the project instead. This ensures that URLs that use the project ID, such as an <em>appspot.com</em> URL, remain available.</p>
+  </li>
+  <li>
+    <p>If you are exploring multiple guides, reusing projects instead of deleting them prevents you from exceeding project quota limits.</p>
+  </li>
+</ul>
+    
+      <h4 id="911-via-the-cli">
+        
+        
+          9.1.1. Via the CLI
+        
+        
+      </h4>
+<p>To delete the project using the Google Cloud CLI, run the following command:</p>
+
+<pre><code class="language-bash">gcloud projects delete gcn-guides
+</code></pre>
+    
+      <h4 id="912-via-the-cloud-platform-console">
+        
+        
+          9.1.2. Via the Cloud Platform Console
+        
+        
+      </h4>
+
+<ol>
+  <li>
+    <p>In the Cloud Platform Console, go to the <a href="https://console.cloud.google.com/iam-admin/projects">Projects page</a>.</p>
+  </li>
+  <li>
+    <p>In the project list, select the project you want to delete and click <strong>Delete project</strong>. Select the check box next to the project name and click <strong>Delete project</strong>.</p>
+  </li>
+  <li>
+    <p>In the dialog box, enter the project ID, and then click <strong>Shut down</strong> to delete the project.</p>
+  </li>
+</ol>
+    
+      <h3 id="summary">
+        
+        
+          Summary <a href="#summary" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>This guide demonstrated how to create a Micronaut application that collects standard and custom metrics, then publishes and monitors them on <a href="https://cloud.google.com/monitoring/docs">Google Cloud Monitoring</a>. The application uses <a href="https://micronaut-projects.github.io/micronaut-micrometer/latest/guide/">Micronaut Micrometer</a> to expose application metric data with <a href="https://micrometer.io/">Micrometer</a>.</p>
+    
+      <h3 id="related-documentation">
+        
+        
+          Related Documentation <a href="#related-documentation" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<ul>
+  <li><a href="https://micronaut-projects.github.io/micronaut-micrometer/latest/guide/">Micronaut Micrometer documentation</a></li>
+  <li><a href="https://cloud.google.com/monitoring/">Google Cloud Monitoring</a></li>
+  <li><a href="https://graalvm.github.io/native-build-tools/latest/index.html">Native Build Tools</a></li>
+  <li><a href="https://www.graalvm.org/native-image/">GraalVM Native Image</a></li>
+</ul>
+
+      </div>
+
+      <div role="button" class="menu-btn menu-btn--sidebar js-show-sidebar" title="sweet hamburger">
+        <div class="hamburger">
+          <div class="inner"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+</div>
+
+      </main>
+
+      
+<footer class="footer footer__mobile">
+
+  <div class="container-fluid container-fluid--custom-sm">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row footer-content">
+          <div class="col-md-3 col-sm-4">
+            <h6 class="title-footer" onclick="fadeInAndOut(this)">Learn</h6>
+            <div class="grow">
+              <ul class="footer-list">
+                <li class="footer-list__item"><a href="/gcn/get-started/">Get Started</a></li>
+                <li class="footer-list__item"><a href="/gcn/guides/">Guides</a></li>
+                <li class="footer-list__item"><a href="/gcn/hands-on-labs/">Labs</a></li>
+                <li class="footer-list__github">
+                  <img class="footer__icon" src="/gcn/resources/img/footer/logo-github.svg" alt="Github icon">
+                  <a href="https://github.com/oracle/gcn">Github</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-4">
+            <h6 class="title-footer" onclick="fadeInAndOut(this)">About</h6>
+            <div class="grow">
+              <ul class="footer-list">
+                <li class="footer-list__item"><a href="/gcn/about/#gcn-support" target="blank">Commercial Support</a></li>
+                <li class="footer-list__item"><a href="https://www.graalvm.org/" target="blank">GraalVM Native Image</a></li>
+                <li class="footer-list__item"><a href="https://micronaut.io/" target="_blank">Micronaut</a></li>
+                <li class="footer-list__item"><a href="https://www.oracle.com/cloud/multicloud/what-is-multicloud/" target="_blank">Multicloud</a></li>
+                <li class="footer-list__item"><a href="https://www.oracle.com/cloud/" target="blank">Oracle Cloud Infrastructure</a></li>
+                <li class="footer-list__item"><a href="https://marketplace.visualstudio.com/items?itemName=oracle-labs-graalvm.graal-cloud-native-pack" target="blank">VS Code Tools</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-12 aligning_1024">
+            <div class="card--footer card--hovered box">
+              <div>
+                <div class="rubber-footer footer__oci-section">
+                  <p class="title-footer quickstart">Build, test, and deploy applications on Oracle Cloud Infrastructure for free</p>
+                  <a href="https://www.oracle.com/cloud/free/" target="_blank"
+                    class="btn btn-primary">Try Oracle Cloud Infrastructure Free Tier</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+          <div class="row">
+            <div class="col-sm-12">
+              <p class="copyright">
+                Copyright © 2023, Oracle and/or its affiliates. All rights reserved. Oracle and Java are
+                registered trademarks. Other names may be trademarks of their respective owners.
+              </p>
+              <div id="teconsent"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+<script>
+  function fadeInAndOut(thz) {
+    var elmt = thz.nextElementSibling;//Get the element that is below the button that
+    //was just clicked
+    if (elmt.clientHeight) {
+      elmt.style.height = 0;
+    } else {
+      var wrapper = elmt.querySelector('ul');
+      elmt.style.height = wrapper.clientHeight + "px";
+    }
+    /*
+        elmt.classList.toggle("acordianPanelHidden");//Toggle the class which changes
+        //attributes which triggers the transition CSS
+        */
+  }
+
+  // Check TRUSTe Consent for Functional or Implied Approval
+  // The if test verifies if the user has given the consent
+  if ( (oracle.truste.api.getGdprConsentDecision().consentDecision) &&
+      (oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(0) != -1 ||
+        oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(2) != -1) ) {
+
+      //The following is a sample of a Maxymiser Tag being written to the DOM
+      //If the user did not give consent, then the tag is not included and not invoked in the Browser
+      document.write('<script type="text/javascript" src="//service.maxymiser.net/cdn/oracle/js/mmcore.js"><\/script>');
+  }
+
+  // Check TRUSTe Consent for Advertising or Implied Approval
+  // The if test verifies if the user has given the consent
+  if ( (oracle.truste.api.getGdprConsentDecision().consentDecision) &&
+      (oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(0) != -1 ||
+        oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(3) != -1) ) {
+
+      //The following is a sample of a BlueKai Core Tag being written to the DOM
+      //If the user did not give consent, then the tag is not included and not invoked in the Browser
+      document.write('<script type="text/javascript">' +
+      'window.bk_async = function() { ' +
+      'BKTAG.doTag(62581, 1); }; ' +
+      '(function() { ' +
+      'var scripts = document.getElementsByTagName(\'script\')[0]; ' +
+      'var s = document.createElement(\'script\'); ' +
+      's.async = true; ' +
+      's.src = "https://tags.bkrtx.com/js/bk-coretag.js"; ' +
+      'scripts.parentNode.insertBefore(s, scripts); ' +
+      '}()); ' +
+      '<\/script>');
+  }
+</script>
+
+    </div>
+    <div class="overlay"></div>
+
+    <!-- Start SiteCatalyst code -->
+    <script language="JavaScript" src="https://www.oracle.com/us/assets/metrics/ora_otn.js"></script>
+    <!-- End SiteCatalyst code -->
+
+    <script src='/gcn/resources/lib/slick-slider/slick.min.js'></script>
+    <script src='/gcn/resources/js/main.js'></script>
+    <script src='/gcn/resources/js/ui.js'></script>
+    <script src='/gcn/resources/js/filters.js'></script>
+    <script src='/gcn/resources/js/sidebar.js'></script>
+  </body>
+</html>

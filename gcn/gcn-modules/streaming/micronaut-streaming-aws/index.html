@@ -1,0 +1,2721 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:image" content="/gcn/resources/img/graalvm.png" />
+  <meta name="twitter:widgets:border-color" content="#55acee">
+
+  <title>
+    
+      Create and Deploy a Streaming Application with Amazon Managed Streaming for Apache Kafka
+    
+  </title>
+  <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
+  <meta name="last_modified" content="2023-10-12 08:03:05 +0000"/>
+  <link rel="stylesheet" href="/gcn/assets/main.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/gcn/resources/img/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/resources/img/favicon/site.webmanifest">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="google-site-verification" content="-vRqwa9WYn6AaQGnl88xvrLw6ac4xoKVkZkhanmlRhU" />
+  <link rel="canonical" href="https://www.graal.cloud/gcn/gcn-modules/streaming/micronaut-streaming-aws/">
+
+  <!-- jQuery UI Tabs -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/gcn/resources/lib/jquery/jquery-ui.css">
+</head>
+
+      <script src="/gcn/resources/lib/jquery/jquery-3.6.1.min.js"></script>
+    <script src="/gcn/resources/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src='/gcn/resources/lib/sticky-sidebar/resizeSensor.js'></script>
+    <script src='/gcn/resources/lib/sticky-sidebar/sticky-sidebar.min.js'></script>
+    <script src="/gcn/resources/lib/highlight/highlight.min.js"></script>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- Add TRUSTe Consent Script and Analytics -->
+    <script async="async" type="text/javascript" src='//consent.trustarc.com/notice?domain=oracle.com&c=teconsent&js=bb&noticeType=bb&text=true&cdn=1&pcookie&gtm=1' crossorigin></script>
+    <script src="https://www.oracle.com/assets/truste-oraclelib.js"></script>
+    <!-- jQuery UI Tabs -->
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+
+  <body class="preload">
+
+    <div  class="wrapper wrapper--nofooter" >
+
+      <header  class="header header--content" 
+  role="banner">
+
+  
+
+  
+
+    <nav class="menu">
+      <div class="menu__row">
+        <div>
+          <a href="/gcn/">
+            <img class="logo-mobile" src="/gcn/resources/img/gcn-logo-01.svg" alt="Graal Cloud Native logo">
+          </a>
+        </div>
+        <div class="menu__container">
+          <ul class="menu__list">
+            <li class="menu__item">
+              <a href="/gcn/about/" class="menu__link">About</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gcn/get-started/" class="menu__link">Get Started</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gcn/modules/" class="menu__link">Modules</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gcn/guides/" class="menu__link">Guides</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gcn/hands-on-labs/" class="menu__link">Hands-On Labs</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gcn/vscode-tools/" class="menu__link">Tools</a>
+            </li>
+            <li class="menu__launch__mobile">
+              <a href="/gcn/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
+            </li>
+          </ul>
+        </div>
+        <div class="menu__launch">
+          <a href="/gcn/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
+        </div>
+      </div>
+
+      <div role="button" class="menu-btn menu-btn--menu js-show-menu" tabindex="-1" title="sweet hamburger">
+        <div class="hamburger">
+          <div class="inner"></div>
+        </div>
+      </div>
+      <button aria-label="hamburger mobile menu" class="btn btn-mobile-menu js-show-menu">
+        <div class="inner"></div>
+      </button>
+    </nav>
+
+  
+</header>
+
+<!-- <header  class="header header--content" >
+
+  
+
+  
+
+    <nav class="menu">
+      <div class="menu__row">
+        <div>
+          <a href="/gcn/graal">
+            <img class="logo-mobile" src="/gcn/resources/img/gcn-logo-01.svg" alt="Graal Cloud Native logo">
+          </a>
+        </div>
+        <div class="menu__container">
+          <ul class="menu__list">
+            <li class="menu__item">
+              <a href="/gcn/graal/#whatisgraal" class="menu__link">About</a>
+            </li>
+            <li class="menu__item">
+              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
+            </li>
+            <li class="menu__item">
+              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
+            </li>
+            <li class="menu__item">
+              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div role="button" class="menu-btn menu-btn--menu js-show-menu" tabindex="-1" title="sweet hamburger">
+        <div class="hamburger">
+          <div class="inner"></div>
+        </div>
+      </div>
+      <button aria-label="hamburger mobile menu" class="btn btn-mobile-menu js-show-menu">
+        <div class="inner"></div>
+      </button>
+    </nav>
+
+  
+</header> -->
+
+      <main  class="content"   aria-label="Content">
+        <div class="wrapper wrapper-content">
+  <article>
+  <div class="row d-flex flex-wrap">
+    <div class="col-sm-3 docsimpro col-bg">
+      <div class="sidebar-wrap">
+        <div class="sidebar">
+          <div class="menuabout">
+            <img id="sidebarClose" src="/gcn/resources/img/arrow_sidebar(close).svg" alt="Expand or collapse sidebar"
+              class="btn-color no-display">
+            <img id="sidebarOpen" src="/gcn/resources/img/arrow_sidebar.svg" alt="Expand or collapse sidebar">
+          </div>
+          
+<div class="toc-floating">
+
+
+<div class="toc-bullets">
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+
+    
+      
+        
+          <li class="toc-bullets-main">
+        
+          
+          <a href="/gcn/docs/gcn-modules/streaming/" class="_icon-book">
+            Streaming
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+          
+          <li class="toc-bullets-sub toc-bullets-highlight">
+          
+            
+            <a href="/gcn/gcn-modules/streaming/micronaut-streaming-aws/">
+              Create and Deploy a Streaming Application with Amazon Managed Streaming for Apache Kafka
+            </a>
+          </li>
+
+          
+            <div>
+  <script>
+    var scriptElement = document.currentScript;
+    var div = $(scriptElement.parentElement);
+    $(window).on("load", function () {
+      $("#content-wrapper h2").each(function () {
+        var li = $("<li></li>", { class: "toc-bullets-sub toc-bullets-sub-3" });
+        var a = $("<a></a>", { href: "#" + $(this).attr("id") });
+        a.text($(this).text().replace('#', ''));
+        li.append(a);
+        li.click(function (e) {
+          e.preventDefault();
+          var target = $(a.attr('href'));
+          var scrollTo = target.offset().top - 80; // 80 - indent
+          $('html, body').animate({ scrollTop: scrollTo }, 1000);
+        });
+        div.append(li);
+      });
+    });
+  </script>
+</div>
+          
+        
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<!-- <li class="search additional-search">
+  <form class="form-inline sidebar" action="/docs/search" autocomplete="on" method="get">
+    <input class="input-search sidebar" type="text" id="search-box" name="query" placeholder="Search">
+    <button type="submit sidebar" class="search-button"></button>
+  </form>
+</li> -->
+
+</div>
+  <!-- Search form -->
+  <!-- <form class="search-container" action="/docs/search" autocomplete="on" method="get">
+   <label for="search-box">Search</label>
+    <input type="text" id="search-box" name="query">
+    <button type="submit" class="searchbttn"></button>
+  </form> -->
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-9 docsmod">
+      <div id="content-wrapper" class="docs-content docs-content--with-sidebar">
+        <h1 id="create-and-deploy-a-streaming-application-with-amazon-managed-streaming-for-apache-kafka-msk">
+        
+        
+          Create and Deploy a Streaming Application with Amazon Managed Streaming for Apache Kafka (MSK)
+        
+        
+      </h1>
+
+<p>This guide describes how to create a streaming application that demonstrates how to use the Micronaut Streaming API. The application consists of two Micronaut microservices that use Amazon MSK to communicate with each other in an asynchronous and decoupled way.</p>
+
+<p><a href="https://aws.amazon.com/msk/">Amazon Managed Streaming for Apache Kafka (MSK)</a> securely streams data with a fully managed, highly available Apache Kafka service.</p>
+    
+      <h3 id="prerequisites">
+        
+        
+          Prerequisites <a href="#prerequisites" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<ul>
+  <li>JDK 17 or higher. See <a href="/gcn/get-started/setting-up-desktop/">Setting up Your Desktop</a>.</li>
+  <li>An Amazon Web Services (AWS) account. See <a href="/gcn/get-started/setting-up-cloud-accounts/">Setting up Your Cloud Accounts</a>.</li>
+  <li>The <a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html">AWS CLI</a>.</li>
+  <li>An AWS user with enough permissions to create and manage the AWS MSK service.</li>
+  <li>A Docker-API compatible container runtime such as <a href="https://docs.rancherdesktop.io/getting-started/installation/">Rancher Desktop</a> or <a href="https://www.docker.io/gettingstarted/">Docker</a> installed.</li>
+  <li>The GCN CLI. See <a href="/gcn/get-started/setting-up-desktop/">Setting up Your Desktop</a>. (Optional.)</li>
+</ul>
+
+<p>Follow the steps below to create the application from scratch. However, you can also download the completed example in Java:</p>
+
+<div id="tabs-doc1">
+    <ul>
+        <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <p><a href="/gcn/docs/gcn-modules/streaming/archives/aws-streaming-demo-java-gradle.zip">Gradle AWS Streaming Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" />
+        </a>
+        </p>
+    </div>
+    <div id="maven">
+        <p><a href="/gcn/docs/gcn-modules/streaming/archives/aws-streaming-demo-java-maven.zip">Maven AWS Streaming Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" /></a>
+        </p>
+    </div>
+</div>
+    
+      <h4 id="a-note-regarding-your-development-environment">
+        
+        
+          A note regarding your development environment
+        
+        
+      </h4>
+
+<p>Consider using Visual Studio Code that provides native support for developing applications with the <a href="/gcn/vscode-tools/using-gcn-vscode-tools/">Graal Cloud Native Tools extension</a>.</p>
+
+<blockquote>
+  <p>Note: If you use IntelliJ IDEA, <a href="/gcn/resources/img/annotationprocessorsintellij.png">enable annotation processing</a>.</p>
+</blockquote>
+    
+      <h2 id="1-create-the-microservices">
+        
+        
+          1. Create the Microservices <a href="#1-create-the-microservices" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>The two microservices are:</p>
+
+<ul>
+  <li><em>Books</em> returns a list of books. It uses a domain consisting of a book name and an International Standard Book Number (ISBN). It also publishes a message to the streaming service every time a book is accessed.</li>
+  <li><em>Analytics</em> connects to the streaming service to update the analytics for every book (a counter). It also exposes an endpoint to retrieve the counter.</li>
+</ul>
+    
+      <h3 id="11-create-the-books-microservice">
+        
+        
+          1.1. Create the <em>Books</em> Microservice <a href="#11-create-the-books-microservice" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<ol>
+  <li>
+    <p>Open the <a href="/gcn/launcher/?advanced=true">GCN Launcher in advanced mode</a>.</p>
+  </li>
+  <li>Create a new project using the following selections.
+    <ul>
+      <li><strong>Project Type</strong>: <em>Application</em> (Default)</li>
+      <li><strong>Project Name</strong>: <em>books</em></li>
+      <li><strong>Base Package</strong>: <em>com.example.publisher</em></li>
+      <li><strong>Clouds</strong>: <em>AWS</em></li>
+      <li><strong>Language</strong>: <em>Java</em> (Default)</li>
+      <li><strong>Build Tool</strong>: <em>Gradle (Groovy)</em> or <em>Maven</em></li>
+      <li><strong>Test Framework</strong>: <em>JUnit</em> (Default)</li>
+      <li><strong>Java Version</strong>: <em>17</em> (Default)</li>
+      <li><strong>Micronaut Version</strong>: (Default)</li>
+      <li><strong>Cloud Services</strong>: <em>Streaming</em></li>
+      <li><strong>Features</strong>: <em>Awaitility Framework</em>, <em>GraalVM Native Image</em>, <em>Micronaut Serialization Jackson Core</em>, and <em>Reactor</em></li>
+      <li><strong>Sample Code</strong>: <em>No</em></li>
+    </ul>
+  </li>
+  <li>Click <strong>Generate Project</strong>. The GCN Launcher creates an application with the default package <code>com.example.publisher</code> in a directory named <em>books</em>. The application ZIP file will be downloaded in your default downloads directory. Unzip it, open in your code editor, and proceed to the next steps.</li>
+</ol>
+
+<p>Alternatively, use the <a href="/gcn/get-started/using-gcn-cli/">GCN CLI</a> as follows:</p>
+
+<div id="tabs-doc2">
+    <ul>
+        <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <pre><code class="language-bash">gcn create-app com.example.publisher.books \
+    --clouds=aws \
+    --services=streaming \
+    --features=awaitility,graalvm,reactor,serialization-jackson \
+    --build=gradle \
+    --lang=java \
+    --example-code=false</code></pre>
+    </div>
+    <div id="maven">
+        <pre><code class="language-bash">gcn create-app com.example.publisher.books \
+    --clouds=aws \
+    --services=streaming \
+    --features=awaitility,graalvm,reactor,serialization-jackson \
+    --build=maven \
+    --lang=java \
+    --example-code=false</code></pre>
+    </div>
+</div>
+    
+      <h4 id="111-book-domain-class">
+        
+        
+          1.1.1. Book Domain Class
+        
+        
+      </h4>
+
+<p>The launcher created a <code>Book</code> domain class in a file named <em>lib/src/main/java/com/example/publisher/Book.java</em>, as follows:</p>
+
+<pre><code class="language-java">package com.example.publisher;
+
+import io.micronaut.core.annotation.Creator;
+import io.micronaut.serde.annotation.Serdeable;
+
+import java.util.Objects;
+
+@Serdeable
+public class Book {
+
+    private final String isbn;
+    private final String name;
+
+    @Creator
+    public Book(String isbn, String name) {
+        this.isbn = isbn;
+        this.name = name;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "isbn='" + isbn + '\'' +
+                ", name='" + name + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Book other = (Book) o;
+        return Objects.equals(isbn, other.isbn) &amp;&amp;
+                Objects.equals(name, other.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(isbn, name);
+    }
+}
+</code></pre>
+    
+      <h4 id="112-bookservice">
+        
+        
+          1.1.2. BookService
+        
+        
+      </h4>
+
+<p>To keep this guide simple there is no database persistence: the <em>Books</em> microservice keeps the list of books in memory. The launcher created a class named <code>BookService</code> in <em>lib/src/main/java/com/example/publisher/BookService.java</em> with the following content:</p>
+
+<pre><code class="language-java">package com.example.publisher;
+
+import jakarta.annotation.PostConstruct;
+import jakarta.inject.Singleton;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+@Singleton
+public class BookService {
+
+    private final List&lt;Book&gt; bookStore = new ArrayList&lt;&gt;();
+
+    @PostConstruct
+    void init() {
+        bookStore.add(new Book("1491950358", "Building Microservices"));
+        bookStore.add(new Book("1680502395", "Release It!"));
+        bookStore.add(new Book("0321601912", "Continuous Delivery"));
+    }
+
+    public List&lt;Book&gt; listAll() {
+        return bookStore;
+    }
+
+    public Optional&lt;Book&gt; findByIsbn(String isbn) {
+        return bookStore.stream()
+                .filter(b -&gt; b.getIsbn().equals(isbn))
+                .findFirst();
+    }
+}
+</code></pre>
+    
+      <h4 id="113-bookcontroller">
+        
+        
+          1.1.3. BookController
+        
+        
+      </h4>
+
+<p>The launcher created a controller to access <code>Book</code> instances in a file named <em>lib/src/main/java/com/example/publisher/BookController.java</em> with the following content:</p>
+
+<pre><code class="language-java">package com.example.publisher;
+
+import io.micronaut.http.annotation.Controller;
+import io.micronaut.http.annotation.Get;
+
+import java.util.List;
+import java.util.Optional;
+
+@Controller("/books") // &lt;1&gt;
+class BookController {
+
+    private final BookService bookService;
+
+    BookController(BookService bookService) { // &lt;2&gt;
+        this.bookService = bookService;
+    }
+
+    @Get // &lt;3&gt;
+    List&lt;Book&gt; listAll() {
+        return bookService.listAll();
+    }
+
+    @Get("/{isbn}") // &lt;4&gt;
+    Optional&lt;Book&gt; findBook(String isbn) {
+        return bookService.findByIsbn(isbn);
+    }
+}
+</code></pre>
+
+<p><strong>1</strong> The <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Controller.html"><code>@Controller</code></a> annotation defines the class as a controller mapped to the root URI <code>/books</code>.</p>
+
+<p><strong>2</strong> Use constructor injection to inject a bean of type <code>BookService</code>.</p>
+
+<p><strong>3</strong> The <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Get.html"><code>@Get</code></a> annotation maps the <code>listAll</code> method to an HTTP GET request on <code>/books</code>.</p>
+
+<p><strong>4</strong> The <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Get.html"><code>@Get</code></a> annotation maps the <code>findBook</code> method to an HTTP GET request on <code>/books/{isbn}</code>.</p>
+    
+      <h4 id="114-bookcontrollertest">
+        
+        
+          1.1.4. BookControllerTest
+        
+        
+      </h4>
+
+<p>The launcher created a test for <code>BookController</code> to verify the interaction with the <em>Analytics</em> microservice in a file named <em>aws/src/test/java/com/example/publisher/BookControllerTest.java</em> with the following content:</p>
+
+<pre><code class="language-java">package com.example.publisher;
+
+import io.micronaut.configuration.kafka.annotation.KafkaListener;
+import io.micronaut.configuration.kafka.annotation.Topic;
+import io.micronaut.core.type.Argument;
+import io.micronaut.http.HttpRequest;
+import io.micronaut.http.client.HttpClient;
+import io.micronaut.http.client.annotation.Client;
+import io.micronaut.http.client.exceptions.HttpClientResponseException;
+import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+
+import jakarta.inject.Inject;
+import java.util.Collection;
+import java.util.Optional;
+import java.util.concurrent.ConcurrentLinkedDeque;
+
+import static io.micronaut.configuration.kafka.annotation.OffsetReset.EARLIEST;
+import static java.util.concurrent.TimeUnit.SECONDS;
+import static org.awaitility.Awaitility.await;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.TestInstance.Lifecycle.PER_CLASS;
+
+@MicronautTest
+@TestInstance(PER_CLASS) // &lt;1&gt;
+class BookControllerTest {
+
+    private static final Collection&lt;Book&gt; received = new ConcurrentLinkedDeque&lt;&gt;();
+
+    @Inject
+    AnalyticsListener analyticsListener; // &lt;2&gt;
+
+    @Inject
+    @Client("/")
+    HttpClient client; // &lt;3&gt;
+
+    @Test
+    void testMessageIsPublishedToKafkaWhenBookFound() {
+        String isbn = "1491950358";
+
+        Optional&lt;Book&gt; result = retrieveGet("/books/" + isbn); // &lt;4&gt;
+        assertNotNull(result);
+        assertTrue(result.isPresent());
+        assertEquals(isbn, result.get().getIsbn());
+
+        await().atMost(5, SECONDS).until(() -&gt; !received.isEmpty()); // &lt;5&gt;
+
+        assertEquals(1, received.size()); // &lt;6&gt;
+        Book bookFromKafka = received.iterator().next();
+        assertNotNull(bookFromKafka);
+        assertEquals(isbn, bookFromKafka.getIsbn());
+    }
+
+    @Test
+    void testMessageIsNotPublishedToKafkaWhenBookNotFound() throws Exception {
+        assertThrows(HttpClientResponseException.class, () -&gt; {
+            retrieveGet("/books/INVALID");
+        });
+
+        Thread.sleep(5_000); // &lt;7&gt;
+        assertEquals(0, received.size());
+    }
+
+    @AfterEach
+    void cleanup() {
+        received.clear();
+    }
+
+    @KafkaListener(offsetReset = EARLIEST)
+    static class AnalyticsListener {
+
+        @Topic("analytics")
+        void updateAnalytics(Book book) {
+            received.add(book);
+        }
+    }
+
+    private Optional&lt;Book&gt; retrieveGet(String url) {
+        return client.toBlocking().retrieve(HttpRequest.GET(url), Argument.of(Optional.class, Book.class));
+    }
+}
+</code></pre>
+
+<p><strong>1</strong> Classes that implement <code>TestPropertyProvider</code> must use this annotation to create a single class instance for all tests.</p>
+
+<p><strong>2</strong> Dependency injection for the <code>AnalyticsListener</code> class declared later in the file. This is a listener class that replicates the functionality of the class of the same name in the <em>Analytics</em> microservice.</p>
+
+<p><strong>3</strong> Dependency injection for an HTTP client that the Micronaut framework will implement at compile to make calls to <code>BookController</code>.</p>
+
+<p><strong>4</strong> Use the <code>HttpClient</code> to retrieve the details of a <code>Book</code>, which will trigger sending a message.</p>
+
+<p><strong>5</strong> Wait a few seconds for the message to arrive; it should happen very quickly, but the message will be sent on a separate thread.</p>
+
+<p><strong>6</strong> Verify that the message was received and that it has the correct data.</p>
+
+<p><strong>7</strong> Wait a few seconds to ensure no message is received.</p>
+    
+      <h4 id="115-analyticsclient">
+        
+        
+          1.1.5. AnalyticsClient
+        
+        
+      </h4>
+
+<p>The launcher created a client interface to send messages to the streaming service in a file named <em>lib/src/main/java/com/example/publisher/AnalyticsClient.java</em> with the content shown below. (Micronaut generates an implementation for the client interface at compilation time.)</p>
+
+<pre><code class="language-java">package com.example.publisher;
+
+import io.micronaut.configuration.kafka.annotation.KafkaClient;
+import io.micronaut.configuration.kafka.annotation.Topic;
+import reactor.core.publisher.Mono;
+
+@KafkaClient
+public interface AnalyticsClient {
+
+    @Topic("analytics") // &lt;1&gt;
+    Mono&lt;Book&gt; updateAnalytics(Book book); // &lt;2&gt;
+}
+</code></pre>
+
+<p><strong>1</strong> Set the name of the topic.</p>
+
+<p><strong>2</strong> Send the <code>Book</code> POJO. Micronaut will automatically convert it to JSON before sending it.</p>
+    
+      <h4 id="116-analyticsfilter">
+        
+        
+          1.1.6. AnalyticsFilter
+        
+        
+      </h4>
+
+<p>Sending a message to the streaming service is as simple as injecting <code>AnalyticsClient</code> and calling its <code>updateAnalytics</code> method. 
+The goal is to send a message every time the details of a book are returned from the <em>Books</em> microservice or, in other words, every time there is a call to <code>http://localhost:8080/books/{isbn}</code>.
+To achieve this, the launcher created an <a href="https://docs.micronaut.io/4.0.3/guide/#filters">Http Server Filter</a> in a file named <em>lib/src/main/java/com/example/publisher/AnalyticsFilter.java</em> as follows:</p>
+
+<pre><code class="language-java">package com.example.publisher;
+
+import io.micronaut.http.HttpRequest;
+import io.micronaut.http.MutableHttpResponse;
+import io.micronaut.http.annotation.Filter;
+import io.micronaut.http.filter.HttpServerFilter;
+import io.micronaut.http.filter.ServerFilterChain;
+import reactor.core.publisher.Flux;
+import org.reactivestreams.Publisher;
+
+@Filter("/books/?*") // &lt;1&gt;
+class AnalyticsFilter implements HttpServerFilter { // &lt;2&gt;
+
+    private final AnalyticsClient analyticsClient;
+
+    AnalyticsFilter(AnalyticsClient analyticsClient) { // &lt;3&gt;
+        this.analyticsClient = analyticsClient;
+    }
+
+    @Override
+    public Publisher&lt;MutableHttpResponse&lt;?&gt;&gt; doFilter(HttpRequest&lt;?&gt; request,
+                                                      ServerFilterChain chain) { // &lt;4&gt;
+        return Flux
+                .from(chain.proceed(request)) // &lt;5&gt;
+                .flatMap(response -&gt; {
+                    Book book = response.getBody(Book.class).orElse(null); // &lt;6&gt;
+                    if (book == null) {
+                        return Flux.just(response);
+                    }
+                    return Flux.from(analyticsClient.updateAnalytics(book)).map(b -&gt; response); // &lt;7&gt;
+                });
+    }
+}
+</code></pre>
+
+<p><strong>1</strong> Annotate the class with <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Filter.html"><code>@Filter</code></a> and define the <a href="https://ant.apache.org/manual/dirtasks.html#patterns">Ant-style matcher pattern</a> to intercept all calls to the desired URIs.</p>
+
+<p><strong>2</strong> The class must implement <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/filter/HttpServerFilter.html"><code>HttpServerFilter</code></a>.</p>
+
+<p><strong>3</strong> Dependency injection for <code>AnalyticsClient</code>.</p>
+
+<p><strong>4</strong> Implement the <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/filter/HttpServerFilter.html#doFilter-io.micronaut.http.HttpRequest-io.micronaut.http.filter.FilterChain-"><code>doFilter</code></a> method.</p>
+
+<p><strong>5</strong> Call the request; this will invoke the controller action.</p>
+
+<p><strong>6</strong> Get the response from the controller and return the body as an instance of the <code>Book</code> class.</p>
+
+<p><strong>7</strong> If the book is retrieved, use the client to send a message.</p>
+    
+      <h4 id="117-test-the-microservice">
+        
+        
+          1.1.7. Test the Microservice
+        
+        
+      </h4>
+
+<p>Use the following command to test the <em>Books</em> microservice:</p>
+
+<div id="tabs-doc4">
+    <ul>
+        <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <pre><code class="language-bash">./gradlew :aws:test</code></pre>
+    </div>
+    <div id="maven">
+        <pre><code class="language-bash">./mvnw install -pl lib -am &amp;&amp; ./mvnw package -pl aws -DskipTests
+./mvnw test</code></pre>
+    </div>
+</div>
+    
+      <h3 id="12-create-the-analytics-microservice">
+        
+        
+          1.2. Create the <em>Analytics</em> Microservice <a href="#12-create-the-analytics-microservice" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<ol>
+  <li>
+    <p>Open the <a href="/gcn/launcher/?advanced=true">GCN Launcher in advanced mode</a>.</p>
+  </li>
+  <li>Create a new project using the following selections.
+    <ul>
+      <li><strong>Project Type</strong>: <em>Application</em> (Default)</li>
+      <li><strong>Project Name</strong>: <em>analytics</em></li>
+      <li><strong>Base Package</strong>: <em>com.example.consumer</em></li>
+      <li><strong>Clouds</strong>: <em>AWS</em></li>
+      <li><strong>Language</strong>: <em>Java</em> (Default)</li>
+      <li><strong>Build Tool</strong>: <em>Gradle (Groovy)</em> or <em>Maven</em></li>
+      <li><strong>Test Framework</strong>: <em>JUnit</em> (Default)</li>
+      <li><strong>Java Version</strong>: <em>17</em> (Default)</li>
+      <li><strong>Micronaut Version</strong>: (Default)</li>
+      <li><strong>Cloud Services</strong>: <em>Streaming</em></li>
+      <li><strong>Features</strong>: <em>Awaitility Framework</em>, <em>GraalVM Native Image</em> and <em>Micronaut Serialization Jackson Core</em></li>
+      <li><strong>Sample Code</strong>: <em>No</em></li>
+    </ul>
+  </li>
+  <li>Click <strong>Generate Project</strong>. The GCN Launcher creates an application with the default package <code>com.example.consumer</code> in a directory named <em>analytics</em>. The application ZIP file will be downloaded in your default downloads directory. Unzip it, open in your code editor, and proceed to the next steps.</li>
+</ol>
+
+<p>Alternatively, use the <a href="/gcn/get-started/using-gcn-cli/">GCN CLI</a> as follows:</p>
+
+<div id="tabs-doc5">
+    <ul>
+        <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <pre><code class="language-bash">gcn create-app com.example.consumer.analytics \
+    --clouds=aws \
+    --services=streaming \
+    --features=awaitility,graalvm,serialization-jackson \
+    --build=gradle \
+    --lang=java \
+    --example-code=false</code></pre>
+    </div>
+    <div id="maven">
+        <pre><code class="language-bash">gcn create-app com.example.consumer.analytics \
+    --clouds=aws \
+    --services=streaming \
+    --features=awaitility,graalvm,serialization-jackson \
+    --build=maven \
+    --lang=java \
+    --example-code=false</code></pre>
+    </div>
+</div>
+    
+      <h4 id="121-domain-classes">
+        
+        
+          1.2.1. Domain Classes
+        
+        
+      </h4>
+
+<p>The launcher created a <code>Book</code> domain class in a file named <em>lib/src/main/java/com/example/consumer/Book.java</em>, as shown below. (This <code>Book</code> POJO is the same as the one in the <em>Books</em> microservice. In a real application this would be in a shared library but to keep things simple, just duplicate it.)</p>
+
+<pre><code class="language-java">package com.example.consumer;
+
+import io.micronaut.core.annotation.Creator;
+import io.micronaut.serde.annotation.Serdeable;
+
+import java.util.Objects;
+
+@Serdeable
+public class Book {
+
+    private final String isbn;
+    private final String name;
+
+    @Creator
+    public Book(String isbn, String name) {
+        this.isbn = isbn;
+        this.name = name;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "isbn='" + isbn + '\'' +
+                ", name='" + name + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Book other = (Book) o;
+        return Objects.equals(isbn, other.isbn) &amp;&amp;
+                Objects.equals(name, other.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(isbn, name);
+    }
+}
+</code></pre>
+
+<p>The launcher also created a <code>BookAnalytics</code> domain class in a file named <em>lib/src/main/java/com/example/consumer/BookAnalytics.java</em>, as follows:</p>
+
+<pre><code class="language-java">package com.example.consumer;
+
+import io.micronaut.core.annotation.Creator;
+import io.micronaut.serde.annotation.Serdeable;
+
+@Serdeable
+public class BookAnalytics {
+
+    private final String bookIsbn;
+    private final long count;
+
+    @Creator
+    public BookAnalytics(String bookIsbn, long count) {
+        this.bookIsbn = bookIsbn;
+        this.count = count;
+    }
+
+    public String getBookIsbn() {
+        return bookIsbn;
+    }
+
+    public long getCount() {
+        return count;
+    }
+}
+</code></pre>
+    
+      <h4 id="122-analyticsservice">
+        
+        
+          1.2.2. AnalyticsService
+        
+        
+      </h4>
+
+<p>To keep this guide simple there is no database persistence: the <em>Analytics</em> microservice keeps book analytics in memory. The launcher created a class named <code>AnalyticsService</code> in <em>lib/src/main/java/com/example/consumer/AnalyticsService.java</em> with the following content:</p>
+
+<pre><code class="language-java">package com.example.consumer;
+
+import jakarta.inject.Singleton;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
+
+@Singleton
+public class AnalyticsService {
+
+    private final Map&lt;Book, Long&gt; bookAnalytics = new ConcurrentHashMap&lt;&gt;(); // &lt;1&gt;
+
+    public void updateBookAnalytics(Book book) { // &lt;2&gt;
+        bookAnalytics.compute(book, (k, v) -&gt; {
+            return v == null ? 1L : v + 1;
+        });
+    }
+
+    public List&lt;BookAnalytics&gt; listAnalytics() { // &lt;3&gt;
+        return bookAnalytics
+                .entrySet()
+                .stream()
+                .map(e -&gt; new BookAnalytics(e.getKey().getIsbn(), e.getValue()))
+                .collect(Collectors.toList());
+    }
+}
+</code></pre>
+
+<p><strong>1</strong> Keep the book analytics in memory.</p>
+
+<p><strong>2</strong> Initialize and update the analytics for the book passed as parameter.</p>
+
+<p><strong>3</strong> Return all the analytics.</p>
+    
+      <h4 id="123-analyticsservicetest">
+        
+        
+          1.2.3. AnalyticsServiceTest
+        
+        
+      </h4>
+
+<p>The launcher created a test for the <code>AnalyticsService</code> class, in a file named <em>aws/src/test/java/com/example/consumer/AnalyticsServiceTest.java</em>, as follows:</p>
+
+<pre><code class="language-java">package com.example.consumer;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
+import org.junit.jupiter.api.Test;
+
+import jakarta.inject.Inject;
+import java.util.List;
+
+@MicronautTest
+class AnalyticsServiceTest {
+
+    @Inject
+    AnalyticsService analyticsService;
+
+    @Test
+    void testUpdateBookAnalyticsAndGetAnalytics() {
+        Book b1 = new Book("1491950358", "Building Microservices");
+        Book b2 = new Book("1680502395", "Release It!");
+
+        analyticsService.updateBookAnalytics(b1);
+        analyticsService.updateBookAnalytics(b1);
+        analyticsService.updateBookAnalytics(b1);
+        analyticsService.updateBookAnalytics(b2);
+
+        List&lt;BookAnalytics&gt; analytics = analyticsService.listAnalytics();
+        assertEquals(2, analytics.size());
+
+        assertEquals(3, findBookAnalytics(b1, analytics).getCount());
+        assertEquals(1, findBookAnalytics(b2, analytics).getCount());
+    }
+
+    private BookAnalytics findBookAnalytics(Book b, List&lt;BookAnalytics&gt; analytics) {
+        return analytics
+                .stream()
+                .filter(bookAnalytics -&gt; bookAnalytics.getBookIsbn().equals(b.getIsbn()))
+                .findFirst()
+                .orElseThrow(() -&gt; new RuntimeException("Book not found"));
+    }
+}
+</code></pre>
+    
+      <h4 id="124-analyticscontroller">
+        
+        
+          1.2.4. AnalyticsController
+        
+        
+      </h4>
+
+<p>The launcher created a Controller to create an endpoint for the <em>Analytics</em> microservice in a file named <em>lib/src/main/java/com/example/consumer/AnalyticsController.java</em>, as follows:</p>
+
+<pre><code class="language-java">package com.example.consumer;
+
+import io.micronaut.http.annotation.Controller;
+import io.micronaut.http.annotation.Get;
+
+import java.util.List;
+
+@Controller("/analytics") // &lt;1&gt;
+class AnalyticsController {
+
+    private final AnalyticsService analyticsService;
+
+    AnalyticsController(AnalyticsService analyticsService) {
+        this.analyticsService = analyticsService;
+    }
+
+    @Get // &lt;2&gt;
+    List&lt;BookAnalytics&gt; listAnalytics() {
+        return analyticsService.listAnalytics();
+    }
+}
+</code></pre>
+
+<p><strong>1</strong> The <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Controller.html"><code>@Controller</code></a> annotation defines the class as a controller mapped to the root URI <code>/analytics</code>.</p>
+
+<p><strong>2</strong> The <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Get.html"><code>@Get</code></a> annotation maps the <code>listAnalytics</code> method to an HTTP GET request on <code>/analytics</code>.</p>
+
+<p>The application doesn’t expose the method <code>updateBookAnalytics</code> created in <code>AnalyticsService</code>. This method will be invoked when reading messages from Kafka.</p>
+    
+      <h4 id="125-analyticslistener">
+        
+        
+          1.2.5. AnalyticsListener
+        
+        
+      </h4>
+
+<p>The launcher created a class to act as a consumer of the messages sent to the streaming service by the <em>Books</em> microservice. The Micronaut framework implements logic to invoke the consumer at compile time. The <code>AnalyticsListener</code> class is in a file named <em>lib/src/main/java/com/example/consumer/AnalyticsListener.java</em>, as follows:</p>
+
+<pre><code class="language-java">package com.example.consumer;
+
+import io.micronaut.configuration.kafka.annotation.KafkaListener;
+import io.micronaut.configuration.kafka.annotation.Topic;
+import io.micronaut.context.annotation.Requires;
+import io.micronaut.context.env.Environment;
+
+@Requires(notEnv = Environment.TEST) // &lt;1&gt;
+@KafkaListener // &lt;2&gt;
+class AnalyticsListener {
+
+    private final AnalyticsService analyticsService; // &lt;3&gt;
+
+    AnalyticsListener(AnalyticsService analyticsService) { // &lt;3&gt;
+        this.analyticsService = analyticsService;
+    }
+
+    @Topic("analytics") // &lt;4&gt;
+    void updateAnalytics(Book book) {
+        analyticsService.updateBookAnalytics(book); // &lt;5&gt;
+    }
+}
+</code></pre>
+
+<p><strong>1</strong> Do not load this bean in the <code>test</code> environment: you can run tests without access to a streaming service.</p>
+
+<p><strong>2</strong> Annotate the class with <code>@KafkaListener</code> to indicate that this bean consumes messages from Kafka.</p>
+
+<p><strong>3</strong> Constructor injection for <code>AnalyticsService</code>.</p>
+
+<p><strong>4</strong> Annotate the method with <code>@Topic</code> and specify the topic name.</p>
+
+<p><strong>5</strong> Call <code>AnalyticsService</code> to update the analytics for the book.</p>
+    
+      <h4 id="126-test-the-microservice">
+        
+        
+          1.2.6. Test the Microservice
+        
+        
+      </h4>
+
+<p>Use the following command to test the <em>Analytics</em> microservice:</p>
+
+<div id="tabs-doc6">
+    <ul>
+        <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <pre><code class="language-bash">./gradlew :aws:test</code></pre>
+    </div>
+    <div id="maven">
+        <pre><code class="language-bash">./mvnw install -pl lib -am &amp;&amp; ./mvnw package -pl aws -DskipTests
+./mvnw test</code></pre>
+    </div>
+</div>
+    
+      <h4 id="127-change-the-port-of-the-analytics-microservice">
+        
+        
+          1.2.7. Change the port of the <em>Analytics</em> Microservice
+        
+        
+      </h4>
+
+<p>The <em>Books</em> and <em>Analytics</em> microservices are both run on the same AWS EC2 instance, so they must run on different ports. Change the port that <em>Analytics</em> runs on by editing the <em>aws/src/main/resources/application-ec2.properties</em> file so that it has the following content:</p>
+
+<pre><code>micronaut.application.name=aws
+micronaut.server.port=8080
+</code></pre>
+    
+      <h2 id="2-run-the-microservices">
+        
+        
+          2. Run the Microservices <a href="#2-run-the-microservices" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>To run the microservices locally, starting from <code>bootstrap</code>, comment out the Kafka section of each microservice’s <em>application-ec2.properties</em> file by inserting “#” at the beginning of each line, as shown below:</p>
+
+<pre><code># kafka.bootstrap.servers=${KAFKA_BOOTSTRAP_SERVERS}
+# kafka.max.partition.fetch.bytes=1048576
+# kafka.max.request.size=1048576
+# kafka.retries=3
+# kafka.sasl.client.callback.handler.class=software.amazon.msk.auth.iam.IAMClientCallbackHandler
+# kafka.sasl.jaas.config=software.amazon.msk.auth.iam.IAMLoginModule required;
+# kafka.sasl.mechanism=AWS_MSK_IAM
+# kafka.security.protocol=SASL_SSL
+</code></pre>
+    
+      <h3 id="21-start-the-books-microservice">
+        
+        
+          2.1. Start the <em>Books</em> Microservice <a href="#21-start-the-books-microservice" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>To run the <em>Books</em> microservice, use the following command, which starts the application on port 8080.</p>
+
+<div id="tabs-doc7">
+    <ul>
+        <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <pre><code class="language-bash">./gradlew :aws:run</code></pre>
+    </div>
+    <div id="maven">
+        <pre><code class="language-bash">./mvnw install -pl lib -am &amp;&amp; ./mvnw -pl aws mn:run</code></pre>
+    </div>
+</div>
+    
+      <h3 id="22-start-the-analytics-microservice">
+        
+        
+          2.2. Start the <em>Analytics</em> Microservice <a href="#22-start-the-analytics-microservice" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>To run the <em>Analytics</em> microservice, use the following command, which starts the application on port 8081.</p>
+
+<div id="tabs-doc8">
+    <ul>
+        <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <pre><code class="language-bash">./gradlew :aws:run</code></pre>
+    </div>
+    <div id="maven">
+        <pre><code class="language-bash">./mvnw install -pl lib -am &amp;&amp; ./mvnw -pl aws mn:run</code></pre>
+    </div>
+</div>
+    
+      <h3 id="23-test-the-microservices">
+        
+        
+          2.3. Test the Microservices <a href="#23-test-the-microservices" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>Use <code>curl</code> to test the microservices, as follows.</p>
+
+<ol>
+  <li>
+    <p>Retrieve the list of books:</p>
+
+    <pre><code class="language-bash"> curl http://localhost:8080/books
+</code></pre>
+
+    <pre><code class="language-json"> [{"isbn":"1491950358","name":"Building Microservices"},{"isbn":"1680502395","name":"Release It!"},{"isbn":"0321601912","name":"Continuous Delivery"}]
+</code></pre>
+  </li>
+  <li>
+    <p>Retrieve the details of a specified book:</p>
+
+    <pre><code class="language-bash"> curl http://localhost:8080/books/1491950358
+</code></pre>
+
+    <pre><code class="language-json"> {"isbn":"1491950358","name":"Building Microservices"}
+</code></pre>
+  </li>
+  <li>
+    <p>Retrieve the analytics:</p>
+
+    <pre><code class="language-bash"> curl http://localhost:8081/analytics
+</code></pre>
+
+    <pre><code class="language-json"> [{"bookIsbn":"1491950358","count":1}]
+</code></pre>
+  </li>
+</ol>
+
+<p>Update the <code>curl</code> command to the <em>Books</em> microservice to retrieve other books and repeat the invocations, then re-run the <code>curl</code> command to the <em>Analytics</em> microservice to see that the counts increase.</p>
+    
+      <h2 id="3-generate-a-native-executable-using-graalvm">
+        
+        
+          3. Generate a Native Executable Using GraalVM <a href="#3-generate-a-native-executable-using-graalvm" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>GCN supports compiling a Java application ahead-of-time into a native executable using <a href="https://www.graalvm.org/native-image/">GraalVM Native Image</a>. You can use the <em><a href="https://graalvm.github.io/native-build-tools/latest/gradle-plugin.html">Gradle plugin for GraalVM Native Image building</a></em>/<em><a href="https://graalvm.github.io/native-build-tools/latest/maven-plugin.html">Maven plugin for GraalVM Native Image building</a></em>. Packaged as a native executable, it significantly reduces application startup time and memory footprint.</p>
+
+<p><br /></p>
+
+<p>Before running this native executable, you must start and connect to a Kafka instance. You can use a Kafka container.</p>
+
+<p><br /></p>
+
+<ol>
+  <li>
+    <p>Install a Kafka container:</p>
+
+    <pre><code class="language-bash"> docker pull spotify/kafka
+</code></pre>
+  </li>
+  <li>
+    <p>Start the Kafka container (use CTRL-C to stop it):</p>
+
+    <pre><code class="language-bash">   docker run -p 2181:2181 \
+     -p 9092:9092 \
+     --name kafka-docker-container \
+     --env ADVERTISED_HOST=127.0.0.1 \
+     --env ADVERTISED_PORT=9092 \
+     spotify/kafka
+</code></pre>
+  </li>
+  <li>
+    <p>To run the microservices locally, add the <code>bootstrap.servers</code> configuration to each microservice’s <em>application-aws.properties</em> file. Remove the <code>bootstrap.servers</code> configuration when you finish testing the native executables.</p>
+
+    <pre><code> kafka.enabled=true
+ kafka.bootstrap.servers=localhost:9092
+</code></pre>
+
+    <p>Alternatively you can <a href="https://kafka.apache.org/quickstart">install and run a local Kafka instance</a>.</p>
+  </li>
+  <li>
+    <p>To generate a native executable, run the following command for each microservice:</p>
+
+    <div id="tabs-doc9">
+   <ul>
+     <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
+     <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
+   </ul>
+   <div id="gradle">
+     <pre><code class="language-bash">./gradlew :aws:nativeCompile</code></pre>
+     <p>The native executable is created in the <em>aws/build/native/nativeCompile</em> directory and can be run with the following command.</p>
+     <pre><code class="language-bash">aws/build/native/nativeCompile/aws</code></pre>
+   </div>
+   <div id="maven">
+     <pre><code class="language-bash">./mvnw install -pl lib -am &amp;&amp; ./mvnw package -pl aws -Dpackaging=native-image</code></pre>
+     <p>The native executable is created in the <em>aws/target/</em> directory and can be run with the following command:</p>
+     <pre><code class="language-bash">aws/target/aws</code></pre>
+   </div>
+ </div>
+  </li>
+</ol>
+
+<p>Start the native executables for the two microservices and run the same <code>curl</code> requests as before to check that everything works as expected.</p>
+
+<p>You can see that the microservices behave identically as if you run them from JAR files, but with reduced startup time and smaller memory footprint.</p>
+    
+      <h2 id="4-set-up-aws-resources">
+        
+        
+          4. Set up AWS Resources <a href="#4-set-up-aws-resources" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>Start with creating an administrator account, then set up the networking, the Kafka cluster, and configure the AWS EC2 instance.</p>
+
+<blockquote>
+  <p>Note: In the instructions that follow, Windows users should replace the <code>export</code> keyword with <code>set</code>.</p>
+</blockquote>
+    
+      <h3 id="41-create-an-administrator-account">
+        
+        
+          4.1. Create an Administrator Account <a href="#41-create-an-administrator-account" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>Instead of using your AWS root account, use an administrator account. If you do not have one already, follow the steps below to create one:</p>
+
+<pre><code class="language-bash">aws iam create-group --group-name Administrators
+aws iam create-user --user-name Administrator
+aws iam add-user-to-group \
+    --user-name Administrator \
+    --group-name Administrators
+aws iam attach-group-policy \
+    --group-name Administrators \
+    --policy-arn $(aws iam list-policies \
+    --query "Policies[?PolicyName==`AdministratorAccess`].{ARN:Arn}" \
+    --output text)
+aws iam create-access-key --user-name Administrator
+</code></pre>
+
+<p>Then run <code>aws configure</code> to configure your AWS CLI to use the Administrator IAM user that you just created. (This must include your default region.)</p>
+    
+      <h3 id="42-create-a-virtual-private-cloud-an-internet-gateway-and-a-route-table">
+        
+        
+          4.2. Create a Virtual Private Cloud, an Internet Gateway, and a Route Table <a href="#42-create-a-virtual-private-cloud-an-internet-gateway-and-a-route-table" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<ol>
+  <li>
+    <p>Create a virtual private cloud using the following command:</p>
+
+    <pre><code class="language-bash"> aws ec2 create-vpc --cidr-block 10.0.0.0/16
+</code></pre>
+
+    <p>Copy the value of the <code>Vpc.VpcId</code> property and export it for later use, as follows:</p>
+
+    <pre><code class="language-bash"> export VPC_ID=&lt;replace_with_the_copied_value&gt;
+</code></pre>
+  </li>
+  <li>
+    <p>Create an internet gateway using the following command:</p>
+
+    <pre><code class="language-bash"> aws ec2 create-internet-gateway
+</code></pre>
+
+    <p>Copy the value of the <code>InternetGateway.InternetGatewayId</code> property and export it for later use, as follows:</p>
+
+    <pre><code class="language-bash"> export IG_ID=&lt;replace_with_the_copied_value&gt;
+</code></pre>
+  </li>
+  <li>
+    <p>Configure route tables using the following commands:</p>
+
+    <pre><code class="language-bash"> aws ec2 attach-internet-gateway --internet-gateway-id $IG_ID --vpc-id $VPC_ID
+ aws ec2 modify-vpc-attribute --enable-dns-hostnames --vpc-id $VPC_ID
+ aws ec2 describe-route-tables --filters "Name=vpc-id,Values=$VPC_ID"
+</code></pre>
+
+    <p>Copy the value of the <code>RouteTables[].RouteTableId</code> property and export it for later use, as follows:</p>
+
+    <pre><code class="language-bash"> export RT_ID=&lt;replace_with_the_copied_value&gt;
+</code></pre>
+  </li>
+  <li>
+    <p>Finally, create the route table using the following command:</p>
+
+    <pre><code class="language-bash"> aws ec2 create-route \
+     --route-table-id $RT_ID \
+     --destination-cidr-block 0.0.0.0/0 \
+     --gateway-id $IG_ID
+</code></pre>
+  </li>
+</ol>
+    
+      <h3 id="43-create-subnets">
+        
+        
+          4.3. Create Subnets <a href="#43-create-subnets" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<ol>
+  <li>
+    <p>Export the values of the AWS availability zones using the following commands:</p>
+
+    <pre><code class="language-bash"> export AZ_0=$(aws ec2 describe-availability-zones \
+     --filters "Name=state,Values=available" \
+     --query "AvailabilityZones[0].ZoneName" \
+     --output text)
+ export AZ_1=$(aws ec2 describe-availability-zones \
+     --filters "Name=state,Values=available" \
+     --query "AvailabilityZones[1].ZoneName" \
+     --output text)
+ export AZ_2=$(aws ec2 describe-availability-zones \
+     --filters "Name=state,Values=available" \
+     --query "AvailabilityZones[2].ZoneName" \
+     --output text)
+</code></pre>
+  </li>
+  <li>
+    <p>Create three subnets using the following commands:</p>
+
+    <pre><code class="language-bash"> aws ec2 create-subnet \
+     --vpc-id $VPC_ID \
+     --cidr-block 10.0.0.0/24 \
+     --availability-zone $AZ_0
+</code></pre>
+
+    <p>Copy the value of the <code>Subnet.SubnetId</code> property and export it for later use, as follows:</p>
+
+    <pre><code class="language-bash"> export SN0_ID=&lt;replace_with_the_copied_value&gt;
+</code></pre>
+
+    <pre><code class="language-bash"> aws ec2 create-subnet \
+     --vpc-id $VPC_ID \
+     --cidr-block 10.0.1.0/24 \
+     --availability-zone $AZ_1
+</code></pre>
+
+    <p>Copy the value of the <code>Subnet.SubnetId</code> property and export it for later use, as follows:</p>
+
+    <pre><code class="language-bash"> export SN1_ID=&lt;replace_with_the_copied_value&gt;
+</code></pre>
+
+    <pre><code class="language-bash"> aws ec2 create-subnet \
+     --vpc-id $VPC_ID \
+     --cidr-block 10.0.2.0/24 \
+     --availability-zone $AZ_2
+</code></pre>
+
+    <p>Copy the value of the <code>Subnet.SubnetId</code> property and export it for later use, as follows:</p>
+
+    <pre><code class="language-bash"> export SN2_ID=&lt;replace_with_the_copied_value&gt;
+</code></pre>
+  </li>
+</ol>
+    
+      <h3 id="44-configure-a-msk-kafka-cluster">
+        
+        
+          4.4. Configure a MSK Kafka Cluster <a href="#44-configure-a-msk-kafka-cluster" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<ol>
+  <li>
+    <p>Create a new file named <em>aws_msk_cluster_broker_info.json</em> with the following content. Replace the <code>ClientSubnets</code> values with the IDs of your subnets.</p>
+
+    <pre><code class="language-json"> {
+   "InstanceType": "kafka.m5.xlarge",
+   "BrokerAZDistribution": "DEFAULT",
+   "ClientSubnets": [
+     "&lt;replace_with_the_subnet_id_0&gt;",
+     "&lt;replace_with_the_subnet_id_1&gt;",
+     "&lt;replace_with_the_subnet_id_2&gt;"
+   ]
+ }
+</code></pre>
+  </li>
+  <li>
+    <p>Create a new file named <em>aws_msk_cluster_auth_info.json</em> with the following content:</p>
+
+    <pre><code class="language-json"> {
+   "Sasl": {
+     "Iam": {
+       "Enabled": true
+     }
+   }
+ }
+</code></pre>
+  </li>
+  <li>
+    <p>Create a Kafka cluster using the following command:</p>
+
+    <pre><code class="language-bash"> aws kafka create-cluster \
+     --cluster-name "AWSKafkaGCNGuide" \
+     --broker-node-group-info file://aws_msk_cluster_broker_info.json \
+     --client-authentication  file://aws_msk_cluster_auth_info.json \
+     --kafka-version "2.8.1" \
+     --number-of-broker-nodes 3
+</code></pre>
+
+    <blockquote>
+      <p>Note: You may have to wait up to 30 minutes before the cluster is in the ACTIVE state.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Get and copy the <code>BootstrapBrokerStringSaslIam</code>, which you are going to use later.</p>
+
+    <pre><code class="language-bash"> aws kafka get-bootstrap-brokers --cluster-arn &lt;replace_with_the_ClusterArn&gt;
+</code></pre>
+
+    <blockquote>
+      <p>Note: This command does not return results while cluster is in the CREATING state.</p>
+    </blockquote>
+  </li>
+</ol>
+    
+      <h3 id="45-configure-network">
+        
+        
+          4.5. Configure Network <a href="#45-configure-network" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<ol>
+  <li>
+    <p>Associate route table type for one subnet, to make it publicly available, using the following command:</p>
+
+    <pre><code class="language-bash"> aws ec2 associate-route-table --subnet-id $SN0_ID --route-table-id $RT_ID
+</code></pre>
+  </li>
+  <li>
+    <p>Map the public IP to the subnet using the following command:</p>
+
+    <pre><code class="language-bash"> aws ec2 modify-subnet-attribute --subnet-id $SN0_ID --map-public-ip-on-launch
+</code></pre>
+  </li>
+  <li>
+    <p>Create a security group using the following command:</p>
+
+    <pre><code class="language-bash"> aws ec2 create-security-group \
+     --group-name gcn-guides-streaming-sg \
+     --description "Security Group for the GCN Streaming guide" \
+     --vpc-id $VPC_ID
+</code></pre>
+
+    <p>Copy the <code>GroupId</code> value and export it for later use, as follows:</p>
+
+    <pre><code class="language-bash"> export SG_ID=&lt;replace_with_the_copied_group_id_value&gt;
+</code></pre>
+  </li>
+  <li>
+    <p>Create ingress rules to be able to connect to the instance via SSH, using the following command:</p>
+
+    <pre><code class="language-bash"> aws ec2 authorize-security-group-ingress \
+     --group-id $SG_ID \
+     --protocol tcp \
+     --port 22 \
+     --cidr 0.0.0.0/0
+</code></pre>
+  </li>
+  <li>
+    <p>To be able to issue requests to the <em>Books</em> and <em>Analytics</em> microservices, run the following commands:</p>
+
+    <pre><code class="language-bash"> aws ec2 authorize-security-group-ingress \
+     --group-id $SG_ID \
+     --protocol tcp \
+     --port 8080 \
+     --cidr 0.0.0.0/0
+ aws ec2 authorize-security-group-ingress \
+     --group-id $SG_ID \
+     --protocol tcp \
+     --port 8081 \
+     --cidr 0.0.0.0/0
+</code></pre>
+  </li>
+</ol>
+    
+      <h3 id="46-launch-an-ec2-instance">
+        
+        
+          4.6. Launch an EC2 Instance <a href="#46-launch-an-ec2-instance" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<ol>
+  <li>
+    <p>Generate and prepare an SSH key to be uploaded, using the following command:</p>
+
+    <pre><code class="language-bash"> aws ec2 create-key-pair \
+     --key-name AWS-Keypair \
+     --query "KeyMaterial" \
+     --output text &gt; "AWS_Keypair.pem"
+</code></pre>
+  </li>
+  <li>
+    <p>Get the most current Amazon Machine Image (AMI) ID for your region:</p>
+
+    <pre><code class="language-bash">aws ec2 describe-images \
+   --owners amazon \
+   --filters "Name=name,Values=amzn*gp2" "Name=virtualization-type,Values=hvm" \
+   --query "sort_by(Images, &amp;CreationDate)[-1].ImageId" \
+   --output text
+</code></pre>
+
+    <blockquote>
+      <p>Note: Copy the resulting AMI ID for later use.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Launch an EC2 instance, as follows:</p>
+
+    <pre><code class="language-bash"> aws ec2 run-instances \
+     --image-id &lt;replace_with_the_copied_ami_image_id_value&gt; \
+     --count 1 \
+     --instance-type t2.large \
+     --key-name AWS-Keypair \
+     --subnet-id $SN0_ID \
+     --block-device-mappings '[{"DeviceName":"/dev/xvda","Ebs":{"VolumeSize":8}}]'
+</code></pre>
+  </li>
+  <li>
+    <p>Copy the value of the <code>Instances.InstanceId</code> property and export it for later use, as follows:</p>
+
+    <pre><code class="language-bash"> export INST_ID=&lt;replace_with_the_copied_value&gt;
+</code></pre>
+  </li>
+  <li>
+    <p>To verify and get instance details, run the following command:</p>
+
+    <pre><code class="language-bash"> aws ec2 describe-instances --instance-id $INST_ID
+</code></pre>
+  </li>
+  <li>
+    <p>Copy the value of the <code>Reservations.Instances.PublicIpAddress</code> property and export it for later use, as follows:</p>
+
+    <pre><code class="language-bash"> export PIPA=&lt;replace_with_the_copied_value&gt;
+</code></pre>
+  </li>
+  <li>
+    <p>There is a default security group assigned to the EC2 instance.
+ However, you must add the custom security group that you created earlier. 
+ Run the following command to retrieve the existing security groups:</p>
+
+    <pre><code class="language-bash"> export CURRENT_SG_IDS=$(aws ec2 describe-instances \
+     --instance-ids $INST_ID \
+     --query "Reservations[*].Instances[*].SecurityGroups[*].GroupId" \
+     --output text)
+</code></pre>
+  </li>
+  <li>
+    <p>Use the following commands to print the values of the the existing security groups and the group you created earlier.
+ Create a new set by combining the values of each group.
+ (The set must contain distinct entries.)
+ Each entry must be enclosed by double quotes and separated by whitespace (for example, “sg-0f8eb8d4b8f66503f” “sg-0814ae2f87013d7f7”):</p>
+
+    <pre><code class="language-bash"> echo $SG_ID
+ echo $CURRENT_SG_IDS
+</code></pre>
+  </li>
+  <li>
+    <p>Add the set of security groups to your EC2 instance, as follows:</p>
+
+    <pre><code class="language-bash"> aws ec2 modify-instance-attribute \
+     --instance-id $INST_ID \
+     --groups &lt;replace_with_your_set&gt;
+</code></pre>
+  </li>
+</ol>
+
+<blockquote>
+  <p>Note: You will use this EC2 instance to install the Kafka client library and to deploy <em>Books</em> and <em>Analytics</em> microservices.</p>
+</blockquote>
+    
+      <h3 id="47-configure-role-and-policy">
+        
+        
+          4.7. Configure Role and Policy <a href="#47-configure-role-and-policy" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>Add the role and the policy for the EC2 instance to be able to interact with the Amazon MSK cluster.</p>
+
+<ol>
+  <li>
+    <p>Create a file named <em>msk-gcn-guide-policy.json</em> with the following content:</p>
+
+    <pre><code class="language-json"> {
+   "Version": "2012-10-17",
+   "Statement": [
+     {
+       "Effect": "Allow",
+       "Action": [
+         "kafka-cluster:Connect",
+         "kafka-cluster:AlterCluster",
+         "kafka-cluster:DescribeCluster"
+       ],
+       "Resource": [
+         "arn:aws:kafka:&lt;region&gt;:&lt;Account-ID&gt;:cluster/AWSKafkaGCNGuide/*"
+       ]
+     },
+     {
+       "Effect": "Allow",
+       "Action": [
+         "kafka-cluster:*Topic*",
+         "kafka-cluster:WriteData",
+         "kafka-cluster:ReadData"
+       ],
+       "Resource": [
+         "arn:aws:kafka:&lt;region&gt;:&lt;Account-ID&gt;:topic/AWSKafkaGCNGuide/*"
+       ]
+     },
+     {
+       "Effect": "Allow",
+       "Action": [
+         "kafka-cluster:AlterGroup",
+         "kafka-cluster:DescribeGroup"
+       ],
+       "Resource": [
+         "arn:aws:kafka:&lt;region&gt;:&lt;Account-ID&gt;:group/AWSKafkaGCNGuide/*"
+       ]
+     }
+   ]
+ }
+</code></pre>
+
+    <p>Replace <code>&lt;region&gt;</code> with the code of the Amazon Web Services Region where you created your cluster. Replace <code>&lt;Account-ID&gt;</code> with your account ID.</p>
+  </li>
+  <li>
+    <p>Create a new file named <em>msk-gcn-guide-role-trust-policy.json</em> with the following content:</p>
+
+    <pre><code class="language-json"> {
+   "Version": "2012-10-17",
+   "Statement": [
+     {
+       "Effect": "Allow",
+       "Principal": {
+         "Service": "ec2.amazonaws.com"
+       },
+       "Action": "sts:AssumeRole"
+     }
+   ]
+ }
+</code></pre>
+  </li>
+  <li>
+    <p>Create a role named “msk-gcn-guide-role” with the trust policy, as follows:</p>
+
+    <pre><code class="language-bash"> aws iam create-role \
+     --role-name msk-gcn-guide-role \
+     --assume-role-policy-document file://msk-gcn-guide-role-trust-policy.json
+</code></pre>
+  </li>
+  <li>
+    <p>Attach an inline policy to the role using the following command:</p>
+
+    <pre><code class="language-bash"> aws iam put-role-policy \
+     --role-name msk-gcn-guide-role \
+     --policy-name msk-gcn-guide-policy \
+     --policy-document file://msk-gcn-guide-policy.json
+</code></pre>
+  </li>
+  <li>
+    <p>Create an IAM instance profile. The instance profile allows EC2 to pass the IAM role. Use the following commands:</p>
+
+    <pre><code class="language-bash"> aws iam create-instance-profile \
+     --instance-profile-name msk-gcn-guide-role-instance-profile
+ aws iam add-role-to-instance-profile \
+     --role-name msk-gcn-guide-role \
+     --instance-profile-name msk-gcn-guide-role-instance-profile
+</code></pre>
+  </li>
+  <li>
+    <p>Attach the IAM role to an existing EC2 instance, as follows:</p>
+
+    <pre><code class="language-bash"> aws ec2 associate-iam-instance-profile \
+     --instance-id $INST_ID \
+     --iam-instance-profile Name=msk-gcn-guide-role-instance-profile
+</code></pre>
+  </li>
+  <li>
+    <p>You can verify that the IAM role is now attached to the instance using the following command:</p>
+
+    <pre><code class="language-bash"> aws ec2 describe-iam-instance-profile-associations
+</code></pre>
+  </li>
+</ol>
+    
+      <h3 id="48-install-and-configure-a-kafka-client">
+        
+        
+          4.8. Install and Configure a Kafka Client <a href="#48-install-and-configure-a-kafka-client" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>Install and configure a Kafka client library on the EC2 instance.</p>
+
+<blockquote>
+  <p>Note: Apache Kafka version numbers used in this guide are examples only. When you need to connect to your Amazon MSK cluster using the Apache Kafka client, to create or change a topic configuration for example, ensure that the Apache Kafka client version you’re using matches your Amazon MSK cluster version. Be aware that using an Apache Kafka client version that is not the same as your MSK cluster version may lead to Apache Kafka data corruption, loss, and down time.</p>
+</blockquote>
+
+<ol>
+  <li>
+    <p>Use SSH to connect the client EC2 instance, using the following command:</p>
+
+    <pre><code class="language-bash"> ssh -i /path/AWS_Keypair.pem ec2-user@$PIPA
+</code></pre>
+  </li>
+  <li>
+    <p>Once connected, install GraalVM Native Image and JDK for Java 17. See <a href="https://www.graalvm.org/downloads/">Install GraalVM JDK with Native Image</a>.</p>
+  </li>
+  <li>
+    <p>Export the MSK version, as follows:</p>
+
+    <pre><code class="language-bash"> export MSK_VERSION=2.8.1
+</code></pre>
+  </li>
+  <li>
+    <p>Run the following command to download an Apache Kafka client:</p>
+
+    <pre><code class="language-bash"> wget https://archive.apache.org/dist/kafka/$MSK_VERSION/kafka_2.12-$MSK_VERSION.tgz
+</code></pre>
+  </li>
+  <li>
+    <p>Run the following command in the home directory where you downloaded the file in the previous step:</p>
+
+    <pre><code class="language-bash"> tar -xzf kafka_2.12-$MSK_VERSION.tgz
+</code></pre>
+  </li>
+  <li>
+    <p>Go to the Kafka client directory, as follows:</p>
+
+    <pre><code class="language-bash"> cd kafka_2.12-$MSK_VERSION/bin
+</code></pre>
+  </li>
+  <li>
+    <p>Enable the IAM SASL mechanism to be able to connect to MSK from the client EC2 instance by creating a file named <em>client.properties</em> with the following content:</p>
+
+    <pre><code> security.protocol=SASL_SSL
+ sasl.mechanism=AWS_MSK_IAM
+ sasl.jaas.config=software.amazon.msk.auth.iam.IAMLoginModule required;
+ sasl.client.callback.handler.class=software.amazon.msk.auth.iam.IAMClientCallbackHandler
+</code></pre>
+  </li>
+  <li>
+    <p>Go to the home directory:</p>
+
+    <pre><code class="language-bash"> cd ~
+</code></pre>
+  </li>
+  <li>
+    <p>Download the <code>aws-msk-iam-auth</code> library:</p>
+
+    <pre><code class="language-bash"> wget https://github.com/aws/aws-msk-iam-auth/releases/download/v1.1.5/aws-msk-iam-auth-1.1.5-all.jar
+</code></pre>
+  </li>
+  <li>
+    <p>Add the <code>aws-msk-iam-auth</code> library to the Kafka client classpath:</p>
+
+    <pre><code class="language-bash">cp aws-msk-iam-auth-1.1.5-all.jar kafka_2.12-$MSK_VERSION/libs
+</code></pre>
+  </li>
+</ol>
+    
+      <h3 id="49-create-a-kafka-topic">
+        
+        
+          4.9. Create a Kafka Topic <a href="#49-create-a-kafka-topic" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<ol>
+  <li>
+    <p>Export the bootstrap string which you saved earlier when you created the MSK cluster:</p>
+
+    <pre><code class="language-bash"> export KAFKA_BOOTSTRAP_SERVERS=&lt;replace_with_your_bootstrap_string&gt;
+</code></pre>
+  </li>
+  <li>
+    <p>Go to the Kafka client <em>bin</em> directory:</p>
+
+    <pre><code class="language-bash"> cd kafka_2.12-$MSK_VERSION/bin
+</code></pre>
+  </li>
+  <li>
+    <p>Create a Kafka topic named “analytics”:</p>
+
+    <pre><code class="language-bash"> ./kafka-topics.sh --bootstrap-server $KAFKA_BOOTSTRAP_SERVERS \
+     --command-config client.properties \
+     --create \
+     --topic analytics \
+     --partitions 1 \
+     --replication-factor 3
+</code></pre>
+  </li>
+</ol>
+    
+      <h2 id="5-configure-microservices">
+        
+        
+          5. Configure Microservices <a href="#5-configure-microservices" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<ol>
+  <li>
+    <p>Edit the file named <em>aws/src/main/resources/application-ec2.properties</em> for the <em>Books</em> microservice so that it matches the following content. (The Micronaut framework applies this configuration file only for the <code>ec2</code> environment.)</p>
+
+    <pre><code>micronaut.application.name=aws
+micronaut.server.port=8080
+netty.default.allocator.max-order=3
+kafka.bootstrap.servers=${KAFKA_BOOTSTRAP_SERVERS}
+kafka.max.partition.fetch.bytes=1048576
+kafka.max.request.size=1048576
+kafka.retries=3
+kafka.sasl.client.callback.handler.class=software.amazon.msk.auth.iam.IAMClientCallbackHandler
+kafka.sasl.jaas.config=software.amazon.msk.auth.iam.IAMLoginModule required;
+kafka.sasl.mechanism=AWS_MSK_IAM
+kafka.security.protocol=SASL_SSL
+</code></pre>
+  </li>
+  <li>
+    <p>Edit the file named <em>aws/src/main/resources/application-ec2.properties</em> for the <em>Analytics</em> microservice so that it matches the following content. (The Micronaut framework applies this configuration file only for the <code>ec2</code> environment.)</p>
+
+    <pre><code>micronaut.application.name=aws
+micronaut.server.port=8081
+netty.default.allocator.max-order=3
+kafka.bootstrap.servers=${KAFKA_BOOTSTRAP_SERVERS}
+kafka.max.partition.fetch.bytes=1048576
+kafka.max.request.size=1048576
+kafka.retries=3
+kafka.sasl.client.callback.handler.class=software.amazon.msk.auth.iam.IAMClientCallbackHandler
+kafka.sasl.jaas.config=software.amazon.msk.auth.iam.IAMLoginModule required;
+kafka.sasl.mechanism=AWS_MSK_IAM
+kafka.security.protocol=SASL_SSL
+</code></pre>
+  </li>
+  <li>
+    <p>After you deploy your applications to the AWS EC2 instance, make sure that the following environment variable is exported:</p>
+
+    <pre><code class="language-bash"> export KAFKA_BOOTSTRAP_SERVERS=&lt;use the bootstrap string which you saved earlier when MSK cluster was created and promoted to the ACTIVE state&gt;
+</code></pre>
+  </li>
+  <li>
+    <p>Add the runtime-only <code>aws-msk-iam-auth</code> dependency to be able to authenticate the <em>Books</em> and <em>Analytics</em> microservices with the AWS MSK cluster. This is the same library that you have already added for the Kafka command line client to be able to create topics.</p>
+
+    <div id="tabs-doc10">
+     <ul>
+         <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
+         <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
+     </ul>
+     <div id="gradle">
+         <p><em>build.gradle</em></p>
+         <pre><code class="language-java">runtimeOnly("software.amazon.msk:aws-msk-iam-auth:1.1.5")</code></pre>
+     </div>
+     <div id="maven">
+         <p><em>pom.xml</em></p>
+         <pre><code class="language-xml">&lt;dependency&gt;
+     &lt;groupId&gt;software.amazon.msk&lt;/groupId&gt;
+     &lt;artifactId&gt;aws-msk-iam-auth&lt;/artifactId&gt;
+     &lt;version&gt;1.1.5&lt;/version&gt;
+     &lt;scope&gt;runtime&lt;/scope&gt;
+ &lt;/dependency&gt;</code></pre>
+     </div>
+ </div>
+  </li>
+</ol>
+    
+      <h2 id="6-deploy-the-books-microservice-to-aws-cloud">
+        
+        
+          6. Deploy the <em>Books</em> Microservice to AWS Cloud <a href="#6-deploy-the-books-microservice-to-aws-cloud" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<ol>
+  <li>
+    <p>Ensure that the private key you downloaded has the correct permissions, as follows:</p>
+
+    <pre><code class="language-bash"> chmod 400 /path/to/AWS_Keypair.pem
+</code></pre>
+  </li>
+  <li>
+    <p>Create a JAR file containing all the microservice’s dependencies, as follows:</p>
+
+    <div id="tabs-doc11">
+     <ul>
+         <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
+         <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
+     </ul>
+     <div id="gradle">
+         <pre><code class="language-bash">./gradlew :aws:shadowJar</code></pre>
+     </div>
+     <div id="maven">
+         <pre><code class="language-bash">./mvnw install -pl lib -am &amp;&amp; ./mvnw package -pl aws -DskipTests</code></pre>
+     </div>
+ </div>
+  </li>
+  <li>
+    <p>Copy the JAR file to your EC2 instance, as follows:</p>
+
+    <div id="tabs-doc12">
+     <ul>
+         <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
+         <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
+     </ul>
+     <div id="gradle">
+         <pre><code class="language-bash">scp -i /path/to/AWS_Keypair.pem aws/build/libs/aws-1.0-SNAPSHOT-all.jar ec2-user@$PIPA:/home/ec2-user/books_application.jar</code></pre>
+     </div>
+     <div id="maven">
+         <pre><code class="language-bash">scp -i /path/to/AWS_Keypair.pem aws/target/aws-1.0-SNAPSHOT-all.jar ec2-user@$PIPA:/home/ec2-user/books_application.jar</code></pre>
+     </div>
+ </div>
+  </li>
+  <li>
+    <p>Connect to the EC2 instance:</p>
+
+    <pre><code class="language-bash"> ssh -i /path/to/AWS_Keypair.pem ec2-user@$PIPA
+</code></pre>
+  </li>
+  <li>
+    <p>Start the <em>Books</em> microservice, as follows:</p>
+
+    <pre><code class="language-bash"> java -jar books_application.jar
+</code></pre>
+  </li>
+  <li>
+    <p>Verify that the application is running by invoking the controller at http://[EC2_PUBLIC_IP]:8080/books using <code>curl</code>:</p>
+
+    <pre><code class="language-bash"> curl -i http://$PIPA:8080/books
+</code></pre>
+  </li>
+  <li>
+    <p>Invoke the controller endpoint to trigger a message to be published to the Streaming service. You can test other ISBNs as well.</p>
+
+    <pre><code class="language-bash"> curl -i http://$PIPA:8080/books/1491950358
+</code></pre>
+  </li>
+</ol>
+    
+      <h2 id="7-deploy-the-analytics-microservice-to-aws-cloud">
+        
+        
+          7. Deploy the <em>Analytics</em> Microservice to AWS Cloud <a href="#7-deploy-the-analytics-microservice-to-aws-cloud" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<ol>
+  <li>
+    <p>Create a JAR file containing all the microservice’s dependencies, as follows:</p>
+
+    <div id="tabs-doc13">
+     <ul>
+         <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
+         <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
+     </ul>
+     <div id="gradle">
+         <pre><code class="language-bash">./gradlew :aws:shadowJar</code></pre>
+     </div>
+     <div id="maven">
+         <pre><code class="language-bash">./mvnw install -pl lib -am &amp;&amp; ./mvnw package -pl aws -DskipTests</code></pre>
+     </div>
+ </div>
+  </li>
+  <li>
+    <p>Copy the JAR file to your EC2 instance, as follows:</p>
+
+    <div id="tabs-doc14">
+     <ul>
+         <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
+         <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
+     </ul>
+     <div id="gradle">
+         <pre><code class="language-bash">scp -i /path/to/AWS_Keypair.pem aws/build/libs/aws-1.0-SNAPSHOT-all.jar ec2-user@$PIPA:/home/ec2-user/analytics_application.jar</code></pre>
+     </div>
+     <div id="maven">
+         <pre><code class="language-bash">scp -i /path/to/AWS_Keypair.pem aws/target/aws-1.0-SNAPSHOT-all.jar ec2-user@$PIPA:/home/ec2-user/analytics_application.jar</code></pre>
+     </div>
+ </div>
+  </li>
+  <li>
+    <p>Connect to the EC2 instance:</p>
+
+    <pre><code class="language-bash"> ssh -i /path/to/AWS_Keypair.pem ec2-user@$PIPA
+</code></pre>
+  </li>
+  <li>
+    <p>Start the <em>Analytics</em> microservice, as follows:</p>
+
+    <pre><code class="language-bash"> java -jar analytics_application.jar
+</code></pre>
+  </li>
+  <li>
+    <p>Verify that the application is running by invoking the controller at http://[EC2_PUBLIC_IP]:8081/analytics using <code>curl</code>:</p>
+
+    <pre><code class="language-bash"> curl -i http://$PIPA:8081/analytics
+</code></pre>
+  </li>
+</ol>
+    
+      <h2 id="8-deploy-native-executables-to-aws-cloud">
+        
+        
+          8. Deploy Native Executables to AWS Cloud <a href="#8-deploy-native-executables-to-aws-cloud" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>If you build a native executable locally, it will only run on your OS. To deploy to AWS Cloud, create a native executable using a different packaging command that builds the executable inside a container. You will extract the executable from the container in the cloud.</p>
+    
+      <h3 id="81-configure-native-image">
+        
+        
+          8.1. Configure Native Image <a href="#81-configure-native-image" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>The <code>aws-msk-iam-auth</code> authentication library relies on the Java reflection mechanism. GraalVM Native Image requires you to manually configure the library elements that are reflectively accessed at runtime. Create two configuration files for each microservice as follows:</p>
+
+<p><br /></p>
+
+<p>For <em>Books</em>:</p>
+
+<p><em>aws/src/main/resources/META-INF/native-image/com.example.publisher/resource-config.json</em></p>
+
+<p>and</p>
+
+<p><em>aws/src/main/resources/META-INF/native-image/com.example.publisher/reflect-config.json</em></p>
+
+<p><br /></p>
+
+<p>For <em>Analytics</em>:</p>
+
+<p><em>aws/src/main/resources/META-INF/native-image/com.example.consumer/resource-config.json</em></p>
+
+<p>and</p>
+
+<p><em>aws/src/main/resources/META-INF/native-image/com.example.consumer/reflect-config.json</em></p>
+
+<p><br /></p>
+
+<p>The contents of the files are provided below.</p>
+
+<p><em>resource-config.json</em>:</p>
+
+<pre><code class="language-json">{
+  "resources":{
+    "includes":[
+      {
+        "pattern":"\\QMETA-INF/micronaut/io.micronaut.context.ApplicationContextConfigurer\\E"
+      },
+      {
+        "pattern":"\\QMETA-INF/micronaut/io.micronaut.inject.BeanConfiguration\\E"
+      },
+      {
+        "pattern":"\\QMETA-INF/micronaut/io.micronaut.inject.BeanDefinitionReference\\E"
+      },
+      {
+        "pattern":"\\QMETA-INF/services/com.fasterxml.jackson.databind.Module\\E"
+      },
+      {
+        "pattern":"\\QMETA-INF/services/io.micronaut.context.env.PropertySourceLoader\\E"
+      },
+      {
+        "pattern":"\\QMETA-INF/services/io.micronaut.core.convert.TypeConverterRegistrar\\E"
+      },
+      {
+        "pattern":"\\QMETA-INF/services/io.micronaut.core.type.TypeInformationProvider\\E"
+      },
+      {
+        "pattern":"\\QMETA-INF/services/io.micronaut.http.HttpRequestFactory\\E"
+      },
+      {
+        "pattern":"\\QMETA-INF/services/io.micronaut.http.client.HttpClientFactory\\E"
+      },
+      {
+        "pattern":"\\QMETA-INF/services/java.nio.file.spi.FileSystemProvider\\E"
+      },
+      {
+        "pattern":"\\Qapplication-ec2.properties\\E"
+      },
+      {
+        "pattern":"\\Qcom/amazonaws/internal/config/awssdk_config_default.json\\E"
+      },
+      {
+        "pattern":"\\Qcom/amazonaws/sdk/versionInfo.properties\\E"
+      },
+      {
+        "pattern":"\\Qkafka/kafka-version.properties\\E"
+      },
+      {
+        "pattern":"\\Qlogback.xml\\E"
+      },
+      {
+        "pattern":"\\Qmicronaut-version.properties\\E"
+      },
+      {
+        "pattern":"\\Qorg/slf4j/impl/StaticLoggerBinder.class\\E"
+      },
+      {
+        "pattern":"\\Qtest-resources.properties\\E"
+      },
+      {
+        "pattern":"\\Qcom/amazonaws/partitions/endpoints.json\\E"
+      },
+      {
+        "pattern":"org/joda/time/tz/data/.*"
+      }
+    ]},
+  "bundles":[{
+    "name":"sun.security.util.Resources",
+    "classNames":["sun.security.util.Resources"]
+  }]
+}
+</code></pre>
+
+<p><em>reflect-config.json</em>:</p>
+
+<pre><code class="language-json">[
+  {
+    "name":"software.amazon.msk.auth.iam.IAMClientCallbackHandler",
+    "methods":[{"name":"&lt;init&gt;","parameterTypes":[] }]
+  },
+  {
+    "name":"org.apache.commons.logging.impl.Jdk14Logger",
+    "methods":[{"name":"&lt;init&gt;","parameterTypes":["java.lang.String"] }]
+  },
+  {
+    "name":"org.apache.commons.logging.impl.Log4JLogger"
+  },
+  {
+    "name":"org.apache.commons.logging.impl.LogFactoryImpl",
+    "methods":[{"name":"&lt;init&gt;","parameterTypes":[] }]
+  },
+  {
+    "name":"com.amazonaws.internal.config.InternalConfigJsonHelper",
+    "allDeclaredFields":true,
+    "queryAllDeclaredMethods":true,
+    "queryAllDeclaredConstructors":true,
+    "methods":[
+      {"name":"&lt;init&gt;","parameterTypes":[] },
+      {"name":"setDefaultSigner","parameterTypes":["com.amazonaws.internal.config.SignerConfigJsonHelper"] },
+      {"name":"setHostRegexToRegionMappings","parameterTypes":["com.amazonaws.internal.config.HostRegexToRegionMappingJsonHelper[]"] },
+      {"name":"setHttpClients","parameterTypes":["com.amazonaws.internal.config.JsonIndex[]"] },
+      {"name":"setRegionSigners","parameterTypes":["com.amazonaws.internal.config.JsonIndex[]"] },
+      {"name":"setServiceRegionSigners","parameterTypes":["com.amazonaws.internal.config.JsonIndex[]"] },
+      {"name":"setServiceSigners","parameterTypes":["com.amazonaws.internal.config.JsonIndex[]"] },
+      {"name":"setUserAgentTemplate","parameterTypes":["java.lang.String"] }
+      ]
+  },
+  {
+    "name":"com.amazonaws.internal.config.SignerConfigJsonHelper",
+    "allDeclaredFields":true,
+    "queryAllDeclaredMethods":true,
+    "queryAllDeclaredConstructors":true,
+    "methods":[
+      {"name":"&lt;init&gt;","parameterTypes":[] },
+      {"name":"setSignerType","parameterTypes":["java.lang.String"] }
+    ]
+  },
+  {
+    "name":"com.amazonaws.internal.config.JsonIndex",
+    "allDeclaredFields":true,
+    "queryAllDeclaredMethods":true,
+    "queryAllDeclaredConstructors":true,
+    "methods":[
+      {"name":"&lt;init&gt;","parameterTypes":[] },
+      {"name":"setConfig","parameterTypes":["com.amazonaws.internal.config.Builder"] },
+      {"name":"setKey","parameterTypes":["java.lang.String"] }
+    ]
+  },
+  {
+    "name":"com.amazonaws.internal.config.HttpClientConfigJsonHelper",
+    "allDeclaredFields":true,
+    "queryAllDeclaredMethods":true,
+    "queryAllDeclaredConstructors":true,
+    "methods":[
+      {"name":"&lt;init&gt;","parameterTypes":[] },
+      {"name":"setRegionMetadataServiceName","parameterTypes":["java.lang.String"] },
+      {"name":"setServiceName","parameterTypes":["java.lang.String"] }
+    ]
+  },
+  {
+    "name":"com.amazonaws.internal.config.HostRegexToRegionMappingJsonHelper",
+    "allDeclaredFields":true,
+    "queryAllDeclaredMethods":true,
+    "queryAllDeclaredConstructors":true,
+    "methods":[
+      {"name":"&lt;init&gt;","parameterTypes":[] },
+      {"name":"setHostNameRegex","parameterTypes":["java.lang.String"] },
+      {"name":"setRegionName","parameterTypes":["java.lang.String"] }
+    ]
+  },
+  {
+    "name":"software.amazon.msk.auth.iam.internals.AuthenticationResponse",
+    "allDeclaredFields":true,
+    "queryAllDeclaredMethods":true,
+    "queryAllDeclaredConstructors":true,
+    "methods":[{"name":"&lt;init&gt;","parameterTypes":["java.lang.String","java.lang.String"] }]
+  },
+  {
+    "name":"software.amazon.msk.auth.iam.IAMLoginModule",
+    "methods":[{"name":"&lt;init&gt;","parameterTypes":[] }]
+  },
+  {
+    "name":"software.amazon.msk.auth.iam.internals.IAMSaslClient$ClassLoaderAwareIAMSaslClientFactory",
+    "methods":[{"name":"&lt;init&gt;","parameterTypes":[] }]
+  },
+  {
+    "name":"software.amazon.msk.auth.iam.internals.IAMSaslClient$IAMSaslClientFactory",
+    "methods":[{"name":"&lt;init&gt;","parameterTypes":[] }]
+  },
+  {
+    "name":"com.amazonaws.partitions.model.CredentialScope",
+    "allDeclaredFields":true,
+    "queryAllDeclaredMethods":true,
+    "queryAllDeclaredConstructors":true,
+    "methods":[
+      {"name":"&lt;init&gt;","parameterTypes":[] },
+      {"name":"setRegion","parameterTypes":["java.lang.String"] },
+      {"name":"setService","parameterTypes":["java.lang.String"] }
+    ]
+  },
+  {
+    "name":"com.amazonaws.partitions.model.Endpoint",
+    "allDeclaredFields":true,
+    "queryAllDeclaredMethods":true,
+    "queryAllDeclaredConstructors":true,
+    "methods":[
+      {"name":"&lt;init&gt;","parameterTypes":[] },
+      {"name":"setCredentialScope","parameterTypes":["com.amazonaws.partitions.model.CredentialScope"] },
+      {"name":"setHostName","parameterTypes":["java.lang.String"] },
+      {"name":"setProtocols","parameterTypes":["java.util.Set"] },
+      {"name":"setSignatureVersions","parameterTypes":["java.util.Set"] },
+      {"name":"setSslCommonName","parameterTypes":["java.lang.String"] }
+    ]
+  },
+  {
+    "name":"com.amazonaws.partitions.model.Partition",
+    "allDeclaredFields":true,
+    "queryAllDeclaredMethods":true,
+    "queryAllDeclaredConstructors":true,
+    "methods":[
+      {"name":"&lt;init&gt;","parameterTypes":["java.lang.String","java.util.Map","java.util.Map"] },
+      {"name":"setDefaults","parameterTypes":["com.amazonaws.partitions.model.Endpoint"] },
+      {"name":"setDnsSuffix","parameterTypes":["java.lang.String"] },
+      {"name":"setPartitionName","parameterTypes":["java.lang.String"] },
+      {"name":"setRegionRegex","parameterTypes":["java.lang.String"] }
+    ]
+  },
+  {
+    "name":"com.amazonaws.partitions.model.Partitions",
+    "allDeclaredFields":true,
+    "queryAllDeclaredMethods":true,
+    "queryAllDeclaredConstructors":true,
+    "methods":[{"name":"&lt;init&gt;","parameterTypes":["java.lang.String","java.util.List"] }]
+  },
+  {
+    "name":"com.amazonaws.partitions.model.Region",
+    "allDeclaredFields":true,
+    "queryAllDeclaredMethods":true,
+    "queryAllDeclaredConstructors":true,
+    "methods":[{"name":"&lt;init&gt;","parameterTypes":["java.lang.String"] }]
+  },
+  {
+    "name":"com.amazonaws.partitions.model.Service",
+    "allDeclaredFields":true,
+    "queryAllDeclaredMethods":true,
+    "queryAllDeclaredConstructors":true,
+    "methods":[
+      {"name":"&lt;init&gt;","parameterTypes":["java.util.Map"] },
+      {"name":"setDefaults","parameterTypes":["com.amazonaws.partitions.model.Endpoint"] },
+      {"name":"setPartitionEndpoint","parameterTypes":["java.lang.String"] },
+      {"name":"setRegionalized","parameterTypes":["boolean"] }
+    ]
+  }
+]
+</code></pre>
+    
+      <h3 id="82-run-native-executables-on-ec2-instance">
+        
+        
+          8.2. Run Native Executables on EC2 Instance <a href="#82-run-native-executables-on-ec2-instance" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<ol>
+  <li>
+    <p>Copy the compressed sample file to the EC2 instance:</p>
+
+    <pre><code class="language-bash">scp -i /path/to/AWS_Keypair.pem /path/to/downloaded/sample/zip ec2-user@$PIPA:/home/ec2-user/streaming_sample.zip
+</code></pre>
+  </li>
+  <li>
+    <p>Once copied, connect to the EC2 instance (if it has disconnected by now):</p>
+
+    <pre><code class="language-bash"> ssh -i /path/to/AWS_Keypair.pem ec2-user@$PIPA
+</code></pre>
+  </li>
+  <li>
+    <p>Unpack the compressed file:</p>
+
+    <pre><code class="language-bash">sudo yum install unzip
+unzip streaming_sample.zip
+</code></pre>
+  </li>
+  <li>
+    <p>Install the packages that GraalVM needs to work properly on EC2:</p>
+
+    <pre><code class="language-bash">sudo yum -y install gcc
+sudo yum -y install zlib*
+</code></pre>
+  </li>
+  <li>
+    <p>You must apply the settings from sections <strong>5</strong> (Configure Microservices) and <strong>8.1</strong> (Configure Native Image).</p>
+  </li>
+  <li>
+    <p>To generate a native executable, run the following command for each microservice:</p>
+
+    <div id="tabs-doc9">
+   <ul>
+     <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
+     <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
+   </ul>
+   <div id="gradle">
+     <pre><code class="language-bash">./gradlew :aws:nativeCompile</code></pre>
+     <p>The native executable is created in the <em>aws/build/native/nativeCompile</em> directory and can be run with the following command.</p>
+     <pre><code class="language-bash">aws/build/native/nativeCompile/aws</code></pre>
+   </div>
+   <div id="maven">
+     <pre><code class="language-bash">./mvnw install -pl lib -am &amp;&amp; ./mvnw package -pl aws -Dpackaging=native-image</code></pre>
+     <p>The native executable is created in the <em>aws/target</em> directory and can be run with the following command:</p>
+     <pre><code class="language-bash">aws/target/aws</code></pre>
+   </div>
+ </div>
+
+    <p>Start the native executables for the two microservices and run the same <code>curl</code> requests as before to check that everything works as expected.</p>
+  </li>
+</ol>
+
+<p>You can see that the microservices behave identically as if you run them from JAR files, but with reduced startup time and smaller memory footprint.</p>
+    
+      <h3 id="summary">
+        
+        
+          Summary <a href="#summary" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>In this guide you created a streaming application with the Micronaut framework, Kafka, and Amazon Managed Streaming for Apache Kafka (MSK). The communication between two microservices acting as a producer and consumer ran asynchronously. Then you packaged these microservices into native executables with GraalVM Native Image for their faster startup and reduced memory footprint, and deployed to AWS Cloud.</p>
+    
+      <h3 id="related-documentation">
+        
+        
+          Related Documentation <a href="#related-documentation" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<ul>
+  <li><a href="https://aws.amazon.com/msk/">Amazon Managed Streaming for Apache Kafka (MSK)</a></li>
+  <li><a href="https://micronaut-projects.github.io/micronaut-kafka/latest/guide/">Kafka support in Micronaut</a></li>
+  <li><a href="https://developer.oracle.com/languages/graalvm/graal-cloud-native.html">Graal Cloud Native</a></li>
+  <li><a href="https://luna.oracle.com/lab/47dafec8-4095-4fba-8313-dad43a64dee4">GraalVM Native Image Quick Start</a></li>
+</ul>
+
+      </div>
+
+      <div role="button" class="menu-btn menu-btn--sidebar js-show-sidebar" title="sweet hamburger">
+        <div class="hamburger">
+          <div class="inner"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+</div>
+
+      </main>
+
+      
+<footer class="footer footer__mobile">
+
+  <div class="container-fluid container-fluid--custom-sm">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row footer-content">
+          <div class="col-md-3 col-sm-4">
+            <h6 class="title-footer" onclick="fadeInAndOut(this)">Learn</h6>
+            <div class="grow">
+              <ul class="footer-list">
+                <li class="footer-list__item"><a href="/gcn/get-started/">Get Started</a></li>
+                <li class="footer-list__item"><a href="/gcn/guides/">Guides</a></li>
+                <li class="footer-list__item"><a href="/gcn/hands-on-labs/">Labs</a></li>
+                <li class="footer-list__github">
+                  <img class="footer__icon" src="/gcn/resources/img/footer/logo-github.svg" alt="Github icon">
+                  <a href="https://github.com/oracle/gcn">Github</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-4">
+            <h6 class="title-footer" onclick="fadeInAndOut(this)">About</h6>
+            <div class="grow">
+              <ul class="footer-list">
+                <li class="footer-list__item"><a href="/gcn/about/#gcn-support" target="blank">Commercial Support</a></li>
+                <li class="footer-list__item"><a href="https://www.graalvm.org/" target="blank">GraalVM Native Image</a></li>
+                <li class="footer-list__item"><a href="https://micronaut.io/" target="_blank">Micronaut</a></li>
+                <li class="footer-list__item"><a href="https://www.oracle.com/cloud/multicloud/what-is-multicloud/" target="_blank">Multicloud</a></li>
+                <li class="footer-list__item"><a href="https://www.oracle.com/cloud/" target="blank">Oracle Cloud Infrastructure</a></li>
+                <li class="footer-list__item"><a href="https://marketplace.visualstudio.com/items?itemName=oracle-labs-graalvm.graal-cloud-native-pack" target="blank">VS Code Tools</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-12 aligning_1024">
+            <div class="card--footer card--hovered box">
+              <div>
+                <div class="rubber-footer footer__oci-section">
+                  <p class="title-footer quickstart">Build, test, and deploy applications on Oracle Cloud Infrastructure for free</p>
+                  <a href="https://www.oracle.com/cloud/free/" target="_blank"
+                    class="btn btn-primary">Try Oracle Cloud Infrastructure Free Tier</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+          <div class="row">
+            <div class="col-sm-12">
+              <p class="copyright">
+                Copyright © 2023, Oracle and/or its affiliates. All rights reserved. Oracle and Java are
+                registered trademarks. Other names may be trademarks of their respective owners.
+              </p>
+              <div id="teconsent"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+<script>
+  function fadeInAndOut(thz) {
+    var elmt = thz.nextElementSibling;//Get the element that is below the button that
+    //was just clicked
+    if (elmt.clientHeight) {
+      elmt.style.height = 0;
+    } else {
+      var wrapper = elmt.querySelector('ul');
+      elmt.style.height = wrapper.clientHeight + "px";
+    }
+    /*
+        elmt.classList.toggle("acordianPanelHidden");//Toggle the class which changes
+        //attributes which triggers the transition CSS
+        */
+  }
+
+  // Check TRUSTe Consent for Functional or Implied Approval
+  // The if test verifies if the user has given the consent
+  if ( (oracle.truste.api.getGdprConsentDecision().consentDecision) &&
+      (oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(0) != -1 ||
+        oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(2) != -1) ) {
+
+      //The following is a sample of a Maxymiser Tag being written to the DOM
+      //If the user did not give consent, then the tag is not included and not invoked in the Browser
+      document.write('<script type="text/javascript" src="//service.maxymiser.net/cdn/oracle/js/mmcore.js"><\/script>');
+  }
+
+  // Check TRUSTe Consent for Advertising or Implied Approval
+  // The if test verifies if the user has given the consent
+  if ( (oracle.truste.api.getGdprConsentDecision().consentDecision) &&
+      (oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(0) != -1 ||
+        oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(3) != -1) ) {
+
+      //The following is a sample of a BlueKai Core Tag being written to the DOM
+      //If the user did not give consent, then the tag is not included and not invoked in the Browser
+      document.write('<script type="text/javascript">' +
+      'window.bk_async = function() { ' +
+      'BKTAG.doTag(62581, 1); }; ' +
+      '(function() { ' +
+      'var scripts = document.getElementsByTagName(\'script\')[0]; ' +
+      'var s = document.createElement(\'script\'); ' +
+      's.async = true; ' +
+      's.src = "https://tags.bkrtx.com/js/bk-coretag.js"; ' +
+      'scripts.parentNode.insertBefore(s, scripts); ' +
+      '}()); ' +
+      '<\/script>');
+  }
+</script>
+
+    </div>
+    <div class="overlay"></div>
+
+    <!-- Start SiteCatalyst code -->
+    <script language="JavaScript" src="https://www.oracle.com/us/assets/metrics/ora_otn.js"></script>
+    <!-- End SiteCatalyst code -->
+
+    <script src='/gcn/resources/lib/slick-slider/slick.min.js'></script>
+    <script src='/gcn/resources/js/main.js'></script>
+    <script src='/gcn/resources/js/ui.js'></script>
+    <script src='/gcn/resources/js/filters.js'></script>
+    <script src='/gcn/resources/js/sidebar.js'></script>
+  </body>
+</html>

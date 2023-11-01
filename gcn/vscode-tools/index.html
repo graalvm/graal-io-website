@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:image" content="/gcn/resources/img/graalvm.png" />
+  <meta name="twitter:widgets:border-color" content="#55acee">
+
+  <title>
+    
+      Visual Studio Code Tools
+    
+  </title>
+  <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
+  <meta name="last_modified" content="2023-09-20 14:45:51 +0000"/>
+  <link rel="stylesheet" href="/gcn/assets/main.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/gcn/resources/img/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/resources/img/favicon/site.webmanifest">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="google-site-verification" content="-vRqwa9WYn6AaQGnl88xvrLw6ac4xoKVkZkhanmlRhU" />
+  <link rel="canonical" href="https://www.graal.cloud/gcn/vscode-tools/">
+
+  <!-- jQuery UI Tabs -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/gcn/resources/lib/jquery/jquery-ui.css">
+</head>
+
+      <script src="/gcn/resources/lib/jquery/jquery-3.6.1.min.js"></script>
+    <script src="/gcn/resources/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src='/gcn/resources/lib/sticky-sidebar/resizeSensor.js'></script>
+    <script src='/gcn/resources/lib/sticky-sidebar/sticky-sidebar.min.js'></script>
+    <script src="/gcn/resources/lib/highlight/highlight.min.js"></script>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- Add TRUSTe Consent Script and Analytics -->
+    <script async="async" type="text/javascript" src='//consent.trustarc.com/notice?domain=oracle.com&c=teconsent&js=bb&noticeType=bb&text=true&cdn=1&pcookie&gtm=1' crossorigin></script>
+    <script src="https://www.oracle.com/assets/truste-oraclelib.js"></script>
+    <!-- jQuery UI Tabs -->
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+
+  <body class="preload">
+
+    <div  class="wrapper wrapper--nofooter" >
+
+      <header  class="header header--content" 
+  role="banner">
+
+  
+
+  
+
+    <nav class="menu">
+      <div class="menu__row">
+        <div>
+          <a href="/gcn/">
+            <img class="logo-mobile" src="/gcn/resources/img/gcn-logo-01.svg" alt="Graal Cloud Native logo">
+          </a>
+        </div>
+        <div class="menu__container">
+          <ul class="menu__list">
+            <li class="menu__item">
+              <a href="/gcn/about/" class="menu__link">About</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gcn/get-started/" class="menu__link">Get Started</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gcn/modules/" class="menu__link">Modules</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gcn/guides/" class="menu__link">Guides</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gcn/hands-on-labs/" class="menu__link">Hands-On Labs</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gcn/vscode-tools/" class="menu__link">Tools</a>
+            </li>
+            <li class="menu__launch__mobile">
+              <a href="/gcn/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
+            </li>
+          </ul>
+        </div>
+        <div class="menu__launch">
+          <a href="/gcn/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
+        </div>
+      </div>
+
+      <div role="button" class="menu-btn menu-btn--menu js-show-menu" tabindex="-1" title="sweet hamburger">
+        <div class="hamburger">
+          <div class="inner"></div>
+        </div>
+      </div>
+      <button aria-label="hamburger mobile menu" class="btn btn-mobile-menu js-show-menu">
+        <div class="inner"></div>
+      </button>
+    </nav>
+
+  
+</header>
+
+<!-- <header  class="header header--content" >
+
+  
+
+  
+
+    <nav class="menu">
+      <div class="menu__row">
+        <div>
+          <a href="/gcn/graal">
+            <img class="logo-mobile" src="/gcn/resources/img/gcn-logo-01.svg" alt="Graal Cloud Native logo">
+          </a>
+        </div>
+        <div class="menu__container">
+          <ul class="menu__list">
+            <li class="menu__item">
+              <a href="/gcn/graal/#whatisgraal" class="menu__link">About</a>
+            </li>
+            <li class="menu__item">
+              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
+            </li>
+            <li class="menu__item">
+              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
+            </li>
+            <li class="menu__item">
+              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div role="button" class="menu-btn menu-btn--menu js-show-menu" tabindex="-1" title="sweet hamburger">
+        <div class="hamburger">
+          <div class="inner"></div>
+        </div>
+      </div>
+      <button aria-label="hamburger mobile menu" class="btn btn-mobile-menu js-show-menu">
+        <div class="inner"></div>
+      </button>
+    </nav>
+
+  
+</header> -->
+
+      <main  class="content"   aria-label="Content">
+        <!-- Home Screen -->
+
+<section class="tools-banner tools-video video-back">
+  <div class="banner_home_tools container-fluid container-fluid--custom-sm">
+    <div class="tools-home">
+      <div>
+        <div class="tagline_tools">
+          <p>Graal Cloud Native Tools
+          </p>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="vlog__video">
+          <div class="video-card card--hovered">
+            <img src="/gcn/resources/img/thumbnail-toolspage.png" class="video-cover"
+              alt="Graal Cloud Native Introduction">
+            <a href="https://www.youtube.com/watch?v=MmRlFe21_g4" data-video="MmRlFe21_g4"
+              class="btn btn-primary--filledp js-popup">
+              <img src="/gcn/resources/img/resources_page/play_button.svg"
+                class="btn btn-primary--filledp js-popup play-btn" alt="play button">
+            </a>
+          </div>
+        </div>
+        <div id="video-view" class="modal-window">
+          <div class="modal-window__content">
+            <button type="button" title="Close" id="js-close" class="modal-window__close">
+              <img src="/gcn/resources/img/resources_page/btn-close.svg" alt="close_video"></button>
+            <div class="modal-window__video">
+              <div id="player"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Intro section-->
+
+<section class="content-section tools-first tools-container">
+  <div class="container-fluid container-fluid--custom-sm">
+    <p class="text-tools">
+      Graal Cloud Native Tools make it easy to develop Graal Cloud Native applications.
+      You can easily create a new Graal Cloud Native (or <a href="https://micronaut.io/" class="tools-link"
+        target="blank">Micronaut</a><sup>&reg;</sup>) application,
+      then deploy and run it in the cloud&mdash;all from within your IDE.
+      The tools offer full-featured support for the Micronaut framework
+      and seamlessly integrate with the cloud SDKs and tools you already use.
+    </p>
+    <p class="text-tools">
+      The tools are built for <a href="https://code.visualstudio.com/" class="tools-link" target="blank">Visual Studio
+        (VS) Code</a>.
+      VS Code is a modern, fast, lightweight, open source IDE with extensive features to help you develop your Java
+      applications.
+    </p>
+    <p class="text-tools">
+      In addition, if you use <a href="https://www.oracle.com/cloud/" class="tools-link" target="blank">Oracle Cloud
+        Infrastructure</a> (OCI),
+      you'll find that it's never been easier to deploy to <a
+        href="https://www.oracle.com/cloud/cloud-native/container-engine-kubernetes/" class="tools-link"
+        target="blank">Oracle Kubernetes Engine</a> (OKE)
+      thanks to the support for the <a href="https://www.oracle.com/devops/devops-service/" class="tools-link"
+        target="blank">Oracle Cloud Infrastructure DevOps</a> service.
+    </p>
+  </div>
+</section>
+
+<!-- Install -->
+<section class="content-section install-section">
+  <div class="container-fluid container-fluid--custom-sm">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+      </div>
+      <div class="install-tools">
+        <p class="tools-install-texts-zero">To start using the tooling, you will need:</p>
+        <ol style="color:#C4D1EE">
+          <li class="tools-install-lists">
+            VS Code <a href="https://code.visualstudio.com/download" target="_blank">installed</a>.
+          </li>
+          <li class="tools-install-lists">
+            A Java installation, such as <a href="https://www.graalvm.org/downloads/" target="_blank">Oracle
+              GraalVM</a>.
+          </li>
+        </ol>
+        <p class="tools-install-texts">Then install the <a
+            href="https://marketplace.visualstudio.com/items?itemName=oracle-labs-graalvm.graal-cloud-native-pack"
+            target="_blank">Graal Cloud Native Extension Pack</a> from the VS Code Marketplace, by simply clicking
+          <strong class="tools-strong">Install</strong>.
+        </p>
+        <a href="https://marketplace.visualstudio.com/items?itemName=oracle-labs-graalvm.graal-cloud-native-pack"
+          target="_blank"><img src="/gcn/resources/img/marketplace-screen.png" class="tools-screen"
+            alt="GCN Extension Pack"></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Video section -->
+<!-- 
+<section class="content-section tools-video video-back">
+<div class="container-fluid container-fluid--custom-sm">
+  <div class="row">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="row">
+        <p class="tools-title">Videos</p>
+      </div>
+        <div class="row">
+
+          <div class="col-sm-4">
+            <div class="vlog__video">
+              <div class="video-card card--hovered">
+                <img src="/gcn/resources/img/resources_page/Video_temp_cover.svg" class="video-cover" alt="Multicloud by design">
+                <a href="https://www.youtube.com/watch?v=MmRlFe21_g4" data-video="MmRlFe21_g4" class="btn btn-primary--filledp js-popup">
+                <img src="/gcn/resources/img/resources_page/play_button.svg" class="btn btn-primary--filledp js-popup" alt="play button">
+                </a>
+              </div>
+            </div>
+            <p class="video-title">Multicloud by Design</p>
+            <div id="video-view" class="modal-window">
+              <div class="modal-window__content">
+                <button type="button" title="Close" id="js-close" class="modal-window__close">
+                  <img src="/gcn/resources/img/resources_page/btn-close 1.svg" alt="close_video"></button>
+                <div class="modal-window__video">
+                    <div id="player"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-4">
+            <div class="vlog__video">
+              <div class="video-card card--hovered">
+                <img src="/gcn/resources/img/resources_page/Video_temp_cover.svg" class="video-cover" alt="Application modernization">
+                <a href="https://youtu.be/6F74n3E4-sI" data-video="6F74n3E4-sI" class="btn btn-primary--filledp js-popup">
+                <img src="/gcn/resources/img/resources_page/play_button.svg" class="btn btn-primary--filledp js-popup" alt="play button">
+                </a>
+              </div>
+            </div>
+            <p class="video-title">GraalVM Enterprise with Micronaut to Modernize Applications</p>
+            <div id="video-view" class="modal-window">
+              <div class="modal-window__content">
+                <button type="button" title="Close" id="js-close" class="modal-window__close">
+                  <img src="/gcn/resources/img/resources_page/btn-close 1.svg" alt="close_video"></button>
+                <div class="modal-window__video">
+                    <div id="player"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-4">
+            <div class="vlog__video">
+              <div class="video-card card--hovered">
+                <img src="/gcn/resources/img/resources_page/Video_temp_cover.svg" class="video-cover" alt="Faster microservices">
+                <a href="https://youtu.be/IGbiznw0TSE" data-video="IGbiznw0TSE" class="btn btn-primary--filledp js-popup">
+                <img src="/gcn/resources/img/resources_page/play_button.svg" class="btn btn-primary--filledp js-popup" alt="play button">
+                </a>
+              </div>
+            </div>
+            <p class="video-title">Faster Microservices with Micronaut, Kafka, and GraalVM Enterprise</p>
+            <div id="video-view" class="modal-window">
+              <div class="modal-window__content">
+                <button type="button" title="Close" id="js-close" class="modal-window__close">
+                  <img src="/gcn/resources/img/resources_page/btn-close 1.svg" alt="close_video"></button>
+                <div class="modal-window__video">
+                    <div id="player"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+    </div>
+  </div>
+</div>
+</section> -->
+
+<!-- GCN Extensions -->
+
+<section class="content-section tools-blogposts">
+  <div class="container-fluid container-fluid--custom-sm">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row">
+          <p class="tools-title">Learn More About the Extensions</p>
+        </div>
+        <div class="row">
+          <div class="col-sm-6 extension-tools guides-section-indent">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <p class="guide-title">Graal Cloud Native Launcher</p>
+                  <p class="guide-text">
+                    This extension provides a launcher to easily create a new Graal Cloud Native
+                    project.
+                    A wizard helps you create different types of projects, including serverless applications and
+                    gateway functions.
+                  </p>
+                </div>
+              </div>
+              <div>
+                <a href="/gcn/vscode-tools/graal-cloud-native-launcher/" target="_blank"
+                  class="btn btn-primary guides">Learn More</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 extension-tools guides-section-indent">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <p class="guide-title">OCI DevOps Tools</p>
+                  <p class="guide-text">
+                    The OCI DevOps service can host your source code in Oracle Cloud Infrastructure and
+                    build, then deploy, your projects in hosted CI/CD pipelines.
+                  </p>
+                </div>
+              </div>
+              <div>
+                <a href="/gcn/vscode-tools/oci-devops-tools/" target="_blank" class="btn btn-primary guides">Learn
+                  More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-6 extension-tools guides-section-indent">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <p class="guide-title">Micronaut Launch</p>
+                  <p class="guide-text">Micronaut Launch is a lightweight extension to create a new Micronaut
+                    application from within VS Code.</p>
+                </div>
+              </div>
+              <div>
+                <a href="/gcn/vscode-tools/micronaut-launch/" target="_blank" class="btn btn-primary guides">Learn
+                  More</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 extension-tools guides-section-indent">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <p class="guide-title">Micronaut Tools</p>
+                  <p class="guide-text">Micronaut Tools is a powerful extension that enables you to develop
+                    Micronaut framework and Graal Cloud Native applications using GraalVM.</p>
+                </div>
+              </div>
+              <div>
+                <a href="/gcn/vscode-tools/micronaut-tools/" target="_blank" class="btn btn-primary guides">Learn
+                  More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+
+<!-- Tools Guides -->
+
+<section class="guides-content-section guides-back">
+  <div class="container-fluid container-fluid--custom-sm">
+    <div class="row">
+      <p class="tools-title">Tools Guides</p>
+
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row">
+          <div class="col-sm guides-tools guides-section-indent">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <p class="guide-title">Setting OCI DevOps Build and Development Pipelines in VS Code</p>
+                  <p class="guide-text">This guide shows you how to set up OCI DevOps service pipelines in VS Code so
+                    you can build and deploy your application in Oracle Cloud Infrastructure.</p>
+                </div>
+              </div>
+              <div>
+                <a href="/gcn/vscode-guides/setting-oci-devops-pipeline-in-vscode/" target="_blank"
+                  class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row">
+          <div class="col-sm guides-tools guides-section-indent">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <p class="guide-title">Deploying a Java Application to Amazon Web Services App Runner in VS Code</p>
+                  <p class="guide-text">This guide shows you how to create and deploy a containerized Java application
+                    to Amazon Web Services App Runner.</p>
+                </div>
+              </div>
+              <div>
+                <a href="/gcn/vscode-guides/deploy-to-aws-apprunner-in-vscode/" target="_blank"
+                  class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row">
+          <div class="col-sm guides-tools guides-section-indent">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <p class="guide-title">Deploying a Java Application to Amazon Elastic Kubernetes Cluster in VS Code
+                  </p>
+                  <p class="guide-text">This guide shows you how to create a Java application, containerize and deploy
+                    it to Amazon Elastic Kubernetes Service from within VS Code with ease, using the Graal Cloud
+                    Native Tools.</p>
+                </div>
+              </div>
+              <div>
+                <a href="/gcn/vscode-guides/deploy-to-aws-eks-in-vscode/" target="_blank"
+                  class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row">
+          <div class="col-sm guides-tools guides-section-indent">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <p class="guide-title">Deploying a Java Application to Google Cloud Run in VS Code</p>
+                  <p class="guide-text">This guide shows you how to create a Java application, containerize, and deploy
+                    it to Google Cloud Run using the Graal Cloud Native Tools for VS Code.</p>
+                </div>
+              </div>
+              <div>
+                <a href="/gcn/vscode-guides/deploy-to-google-cloud-run-in-vscode/" target="_blank"
+                  class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>-->
+
+      <!-- <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row">
+          <div class="col-sm guides-tools guides-section-indent">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <p class="guide-title">Deploying a Java Application to Google Kubernetes Engine in VS Code</p>
+                  <p class="guide-text">This guide shows you how to create a Java application, containerize, and deploy
+                    it to Google Kubernetes Engine (GKE) from within VS Code, using the Graal Cloud Native Tools.</p>
+                </div>
+              </div>
+              <div>
+                <a href="/gcn/vscode-guides/deploy-to-google-k8s-engine-in-vscode/" target="_blank"
+                  class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row">
+          <div class="col-sm guides-tools guides-section-indent">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <p class="guide-title">Creating a Database Application and Connecting to an Oracle Autonomous Database</p>
+                  <p class="guide-text">This guide shows you how to use the Graal Cloud Native tools in
+                    VS Code to create a Java application from an existing Oracle
+                    Autonomous Database schema.</p>
+                </div>
+              </div>
+              <div>
+                <a href="/gcn/vscode-guides/creating-gcn-db-application-with-atp-connection/" target="_blank"
+                  class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+</section>
+      </main>
+
+      
+<footer class="footer footer__mobile">
+
+  <div class="container-fluid container-fluid--custom-sm">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row footer-content">
+          <div class="col-md-3 col-sm-4">
+            <h6 class="title-footer" onclick="fadeInAndOut(this)">Learn</h6>
+            <div class="grow">
+              <ul class="footer-list">
+                <li class="footer-list__item"><a href="/gcn/get-started/">Get Started</a></li>
+                <li class="footer-list__item"><a href="/gcn/guides/">Guides</a></li>
+                <li class="footer-list__item"><a href="/gcn/hands-on-labs/">Labs</a></li>
+                <li class="footer-list__github">
+                  <img class="footer__icon" src="/gcn/resources/img/footer/logo-github.svg" alt="Github icon">
+                  <a href="https://github.com/oracle/gcn">Github</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-4">
+            <h6 class="title-footer" onclick="fadeInAndOut(this)">About</h6>
+            <div class="grow">
+              <ul class="footer-list">
+                <li class="footer-list__item"><a href="/gcn/about/#gcn-support" target="blank">Commercial Support</a></li>
+                <li class="footer-list__item"><a href="https://www.graalvm.org/" target="blank">GraalVM Native Image</a></li>
+                <li class="footer-list__item"><a href="https://micronaut.io/" target="_blank">Micronaut</a></li>
+                <li class="footer-list__item"><a href="https://www.oracle.com/cloud/multicloud/what-is-multicloud/" target="_blank">Multicloud</a></li>
+                <li class="footer-list__item"><a href="https://www.oracle.com/cloud/" target="blank">Oracle Cloud Infrastructure</a></li>
+                <li class="footer-list__item"><a href="https://marketplace.visualstudio.com/items?itemName=oracle-labs-graalvm.graal-cloud-native-pack" target="blank">VS Code Tools</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-12 aligning_1024">
+            <div class="card--footer card--hovered box">
+              <div>
+                <div class="rubber-footer footer__oci-section">
+                  <p class="title-footer quickstart">Build, test, and deploy applications on Oracle Cloud Infrastructure for free</p>
+                  <a href="https://www.oracle.com/cloud/free/" target="_blank"
+                    class="btn btn-primary">Try Oracle Cloud Infrastructure Free Tier</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+          <div class="row">
+            <div class="col-sm-12">
+              <p class="copyright">
+                Copyright © 2023, Oracle and/or its affiliates. All rights reserved. Oracle and Java are
+                registered trademarks. Other names may be trademarks of their respective owners.
+              </p>
+              <div id="teconsent"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+<script>
+  function fadeInAndOut(thz) {
+    var elmt = thz.nextElementSibling;//Get the element that is below the button that
+    //was just clicked
+    if (elmt.clientHeight) {
+      elmt.style.height = 0;
+    } else {
+      var wrapper = elmt.querySelector('ul');
+      elmt.style.height = wrapper.clientHeight + "px";
+    }
+    /*
+        elmt.classList.toggle("acordianPanelHidden");//Toggle the class which changes
+        //attributes which triggers the transition CSS
+        */
+  }
+
+  // Check TRUSTe Consent for Functional or Implied Approval
+  // The if test verifies if the user has given the consent
+  if ( (oracle.truste.api.getGdprConsentDecision().consentDecision) &&
+      (oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(0) != -1 ||
+        oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(2) != -1) ) {
+
+      //The following is a sample of a Maxymiser Tag being written to the DOM
+      //If the user did not give consent, then the tag is not included and not invoked in the Browser
+      document.write('<script type="text/javascript" src="//service.maxymiser.net/cdn/oracle/js/mmcore.js"><\/script>');
+  }
+
+  // Check TRUSTe Consent for Advertising or Implied Approval
+  // The if test verifies if the user has given the consent
+  if ( (oracle.truste.api.getGdprConsentDecision().consentDecision) &&
+      (oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(0) != -1 ||
+        oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(3) != -1) ) {
+
+      //The following is a sample of a BlueKai Core Tag being written to the DOM
+      //If the user did not give consent, then the tag is not included and not invoked in the Browser
+      document.write('<script type="text/javascript">' +
+      'window.bk_async = function() { ' +
+      'BKTAG.doTag(62581, 1); }; ' +
+      '(function() { ' +
+      'var scripts = document.getElementsByTagName(\'script\')[0]; ' +
+      'var s = document.createElement(\'script\'); ' +
+      's.async = true; ' +
+      's.src = "https://tags.bkrtx.com/js/bk-coretag.js"; ' +
+      'scripts.parentNode.insertBefore(s, scripts); ' +
+      '}()); ' +
+      '<\/script>');
+  }
+</script>
+
+    </div>
+    <div class="overlay"></div>
+
+    <!-- Start SiteCatalyst code -->
+    <script language="JavaScript" src="https://www.oracle.com/us/assets/metrics/ora_otn.js"></script>
+    <!-- End SiteCatalyst code -->
+
+    <script src='/gcn/resources/lib/slick-slider/slick.min.js'></script>
+    <script src='/gcn/resources/js/main.js'></script>
+    <script src='/gcn/resources/js/ui.js'></script>
+    <script src='/gcn/resources/js/filters.js'></script>
+    <script src='/gcn/resources/js/sidebar.js'></script>
+  </body>
+</html>

@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:image" content="/gcn/resources/img/graalvm.png" />
+  <meta name="twitter:widgets:border-color" content="#55acee">
+
+  <title>
+    
+      Graal Cloud Native
+    
+  </title>
+  <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
+  <meta name="last_modified" content="2022-07-21 14:06:29 +0000"/>
+  <link rel="stylesheet" href="/gcn/assets/main.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/gcn/resources/img/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/resources/img/favicon/site.webmanifest">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="google-site-verification" content="-vRqwa9WYn6AaQGnl88xvrLw6ac4xoKVkZkhanmlRhU" />
+  <link rel="canonical" href="https://www.graal.cloud/gcn/">
+
+  <!-- jQuery UI Tabs -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/gcn/resources/lib/jquery/jquery-ui.css">
+</head>
+
+      <script src="/gcn/resources/lib/jquery/jquery-3.6.1.min.js"></script>
+    <script src="/gcn/resources/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src='/gcn/resources/lib/sticky-sidebar/resizeSensor.js'></script>
+    <script src='/gcn/resources/lib/sticky-sidebar/sticky-sidebar.min.js'></script>
+    <script src="/gcn/resources/lib/highlight/highlight.min.js"></script>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- Add TRUSTe Consent Script and Analytics -->
+    <script async="async" type="text/javascript" src='//consent.trustarc.com/notice?domain=oracle.com&c=teconsent&js=bb&noticeType=bb&text=true&cdn=1&pcookie&gtm=1' crossorigin></script>
+    <script src="https://www.oracle.com/assets/truste-oraclelib.js"></script>
+    <!-- jQuery UI Tabs -->
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+
+  <body class="preload">
+
+    <div  class="wrapper" >
+
+      <header  class="header header--content" 
+  role="banner">
+
+  
+
+  
+
+    <nav class="menu">
+      <div class="menu__row">
+        <div>
+          <a href="/gcn/">
+            <img class="logo-mobile" src="/gcn/resources/img/gcn-logo-01.svg" alt="Graal Cloud Native logo">
+          </a>
+        </div>
+        <div class="menu__container">
+          <ul class="menu__list">
+            <li class="menu__item">
+              <a href="/gcn/about/" class="menu__link">About</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gcn/get-started/" class="menu__link">Get Started</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gcn/modules/" class="menu__link">Modules</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gcn/guides/" class="menu__link">Guides</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gcn/hands-on-labs/" class="menu__link">Hands-On Labs</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gcn/vscode-tools/" class="menu__link">Tools</a>
+            </li>
+            <li class="menu__launch__mobile">
+              <a href="/gcn/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
+            </li>
+          </ul>
+        </div>
+        <div class="menu__launch">
+          <a href="/gcn/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
+        </div>
+      </div>
+
+      <div role="button" class="menu-btn menu-btn--menu js-show-menu" tabindex="-1" title="sweet hamburger">
+        <div class="hamburger">
+          <div class="inner"></div>
+        </div>
+      </div>
+      <button aria-label="hamburger mobile menu" class="btn btn-mobile-menu js-show-menu">
+        <div class="inner"></div>
+      </button>
+    </nav>
+
+  
+</header>
+
+<!-- <header  class="header header--content" >
+
+  
+
+  
+
+    <nav class="menu">
+      <div class="menu__row">
+        <div>
+          <a href="/gcn/graal">
+            <img class="logo-mobile" src="/gcn/resources/img/gcn-logo-01.svg" alt="Graal Cloud Native logo">
+          </a>
+        </div>
+        <div class="menu__container">
+          <ul class="menu__list">
+            <li class="menu__item">
+              <a href="/gcn/graal/#whatisgraal" class="menu__link">About</a>
+            </li>
+            <li class="menu__item">
+              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
+            </li>
+            <li class="menu__item">
+              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
+            </li>
+            <li class="menu__item">
+              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div role="button" class="menu-btn menu-btn--menu js-show-menu" tabindex="-1" title="sweet hamburger">
+        <div class="hamburger">
+          <div class="inner"></div>
+        </div>
+      </div>
+      <button aria-label="hamburger mobile menu" class="btn btn-mobile-menu js-show-menu">
+        <div class="inner"></div>
+      </button>
+    </nav>
+
+  
+</header> -->
+
+      <main  class="content content--home"   aria-label="Content">
+        <!-- Home Screen -->
+
+<section class="showcase-banner showcase-graphic">
+  <div class="banner__home container-fluid container-fluid--custom-sm">
+    <div class="tagline_home_gcn">
+      <p>Graal Cloud Native
+      </p>
+    </div>
+    <div class="slogan_home">
+      <p>Build portable cloud native Java microservices that start instantly and use fewer resources to reduce compute costs.
+      </p>
+      <p>Graal Cloud Native (GCN) is a curated set of open source Micronaut<sup>&reg;</sup> framework modules designed from the ground up to be compiled ahead-of-time with GraalVM Native Image resulting in native executables ideal for microservices.
+      </p>
+    </div>
+    <div class="row buttons">
+      <div class="col-sm text-left">
+        <a href="/gcn/get-started/" class="btn btn-primary getstart">Get Started</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MIDDLE PART -->
+
+<!--Multicloud-->
+<section class="content-section multicloud">
+  <div class="container-fluid container-fluid--custom-sm">
+    <div class="title">
+      <p class="title-section_gcn">
+        Multicloud Portable Applications
+      </p>
+    </div>
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-10 offset-lg-1">
+        <div class="text_multicloud">
+          <p>Graal Cloud Native lets you take full advantage of powerful cloud services without coupling to proprietary platform APIs. The lack of standard APIs across clouds makes it nearly impossible to write portable applications, but with Graal Cloud Native portability becomes possible. Leverage services such as object-storage, monitoring, security, secret management, and more and deploy to popular cloud platforms.</p>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="content-section_why why_graal">
+  <div class="container-fluid container-fluid--custom-sm">
+    <div>
+      <img src="/gcn/resources/img/gcn_home_page/Scheme_main_page_v3.svg" class="gcn_scheme" alt="graal cloud native scheme">
+      <img src="/gcn/resources/img/gcn_home_page/scheme_mobile_vertical_v2.svg" class="gcn_scheme_mobile" alt="graal cloud native scheme">
+    </div>
+
+  <!-- WHY GCN -->
+
+    <div class="title_right">
+      <p class="title-section_gcn_right">
+       Why Graal
+      </p>
+      <p class="title-section_gcn_right">
+        Cloud Native?
+       </p>
+    </div>
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-10 offset-lg-1">
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- WHY Cards -->
+<section class="content-section_why reasons">
+  <div class="container-fluid container-fluid--custom-sm">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+          <div class="row">
+            <div class="col-12 reason-card">
+              <div class="card card--hovered box card-main">
+                <div class="row">
+                  <div class="col-2 col-sm-2 col-md-2">
+                      <img src="/gcn/resources/img/gcn_home_page/icon_03_multicloud_apps.svg" class="why_icon" alt="box">
+                  </div>
+                  <div class="col-10 col-sm-10 col-md-10 card_mobile">
+                      <h4 class="card__title">Multicloud Portability</h4>
+                      <p>Write applications once and run them on any public cloud. Develop applications without worrying about cloud-proprietary APIs and libraries, and thus prevent cloud lock-in.
+                      </p>
+                      <div class="why-link">
+                        <a href="https://youtu.be/6F74n3E4-sI" target="_blank">&#10095 Multicloud by Design (13:13)</a>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 reason-card">
+              <div class="card-main card card--hovered box">
+                <div class="row">
+                  <div class="col-2 col-sm-2 col-md-2">
+                    <img src="/gcn/resources/img/gcn_home_page/icon_02_high_performance.svg" class="why_icon" alt="box">
+                  </div>
+                  <div class="col-10 col-sm-10 col-md-10 card_mobile">
+                      <h4 class="card__title">Developer Productivity</h4>
+                      <p>Reduce development time with out-of-the-box cloud service integrations and compile-time validation that detects errors at build time, not runtime.
+                      </p>
+                      <a href=" https://youtu.be/fGSikAt6PqQ" target="_blank">&#10095 Build Micronaut<sup>&reg;</sup> Apps (03:53)</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+          <div class="row">
+            <div class="col-12 reason-card">
+              <div class="card-main card card--hovered box">
+                <div class="row">
+                  <div class="col-2 col-sm-2 col-md-2">
+                    <img src="/gcn/resources/img/gcn_home_page/icon_04_productivity.svg" class="why_icon" alt="box">
+                  </div>
+                  <div class="col-10 col-sm-10 col-md-10 card_mobile">
+                      <h4 class="card__title">Faster and Cheaper</h4>
+                      <p>Graal Cloud Native applications compiled by GraalVM Native Image start instantly, provide peak performance with no warmup, and have a small memory footprint.
+                      </p>
+                      <a href="https://youtu.be/vyMVyQumUj8" target="_blank">&#10095 Build Performant Apps (3:03)</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 reason-card">
+              <div class="card-main card card--hovered box">
+                <div class="row">
+                  <div class="col-2 col-sm-2 col-md-2">
+                      <img src="/gcn/resources/img/gcn_home_page/support_icon.svg" class="why_icon" alt="box">
+                  </div>
+                  <div class="col-10 col-sm-10 col-md-10 card_mobile">
+                      <h4 class="card__title">Supported on Oracle Cloud Infrastructure</h4>
+                      <p>Run Graal Cloud Native applications in production on Oracle Cloud Infrastructure with full commercial support at no additional charge.
+                      </p>
+                      <a href="https://youtu.be/qh6BtwfDWQg" target="_blank">&#10095 Use Oracle Cloud Infrastructure Services (20:37)</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOTTOM PART -->
+<section class="content-section bottom-section-gcn">
+  <div class="container-fluid container-fluid--custom-sm">
+    <div class="row buttons">
+      <div class="col-sm text-bottom-btn">
+        <a href="/gcn/get-started/" class="btn btn-primary getstart">Get Started</a>
+        <!-- <a href="#" class="btn btn-primary tutorial">Take a Tutorial</a> -->
+        <!-- <a href="#" class="btn btn-primary getstart">Get Started in VS Code</a> -->
+      </div>
+    </div>
+  </div>
+</section>
+
+      </main>
+
+      
+<footer class="footer footer__mobile">
+
+  <div class="container-fluid container-fluid--custom-sm">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row footer-content">
+          <div class="col-md-3 col-sm-4">
+            <h6 class="title-footer" onclick="fadeInAndOut(this)">Learn</h6>
+            <div class="grow">
+              <ul class="footer-list">
+                <li class="footer-list__item"><a href="/gcn/get-started/">Get Started</a></li>
+                <li class="footer-list__item"><a href="/gcn/guides/">Guides</a></li>
+                <li class="footer-list__item"><a href="/gcn/hands-on-labs/">Labs</a></li>
+                <li class="footer-list__github">
+                  <img class="footer__icon" src="/gcn/resources/img/footer/logo-github.svg" alt="Github icon">
+                  <a href="https://github.com/oracle/gcn">Github</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-4">
+            <h6 class="title-footer" onclick="fadeInAndOut(this)">About</h6>
+            <div class="grow">
+              <ul class="footer-list">
+                <li class="footer-list__item"><a href="/gcn/about/#gcn-support" target="blank">Commercial Support</a></li>
+                <li class="footer-list__item"><a href="https://www.graalvm.org/" target="blank">GraalVM Native Image</a></li>
+                <li class="footer-list__item"><a href="https://micronaut.io/" target="_blank">Micronaut</a></li>
+                <li class="footer-list__item"><a href="https://www.oracle.com/cloud/multicloud/what-is-multicloud/" target="_blank">Multicloud</a></li>
+                <li class="footer-list__item"><a href="https://www.oracle.com/cloud/" target="blank">Oracle Cloud Infrastructure</a></li>
+                <li class="footer-list__item"><a href="https://marketplace.visualstudio.com/items?itemName=oracle-labs-graalvm.graal-cloud-native-pack" target="blank">VS Code Tools</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-12 aligning_1024">
+            <div class="card--footer card--hovered box">
+              <div>
+                <div class="rubber-footer footer__oci-section">
+                  <p class="title-footer quickstart">Build, test, and deploy applications on Oracle Cloud Infrastructure for free</p>
+                  <a href="https://www.oracle.com/cloud/free/" target="_blank"
+                    class="btn btn-primary">Try Oracle Cloud Infrastructure Free Tier</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+          <div class="row">
+            <div class="col-sm-12">
+              <p class="copyright">
+                Copyright © 2023, Oracle and/or its affiliates. All rights reserved. Oracle and Java are
+                registered trademarks. Other names may be trademarks of their respective owners.
+              </p>
+              <div id="teconsent"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+<script>
+  function fadeInAndOut(thz) {
+    var elmt = thz.nextElementSibling;//Get the element that is below the button that
+    //was just clicked
+    if (elmt.clientHeight) {
+      elmt.style.height = 0;
+    } else {
+      var wrapper = elmt.querySelector('ul');
+      elmt.style.height = wrapper.clientHeight + "px";
+    }
+    /*
+        elmt.classList.toggle("acordianPanelHidden");//Toggle the class which changes
+        //attributes which triggers the transition CSS
+        */
+  }
+
+  // Check TRUSTe Consent for Functional or Implied Approval
+  // The if test verifies if the user has given the consent
+  if ( (oracle.truste.api.getGdprConsentDecision().consentDecision) &&
+      (oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(0) != -1 ||
+        oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(2) != -1) ) {
+
+      //The following is a sample of a Maxymiser Tag being written to the DOM
+      //If the user did not give consent, then the tag is not included and not invoked in the Browser
+      document.write('<script type="text/javascript" src="//service.maxymiser.net/cdn/oracle/js/mmcore.js"><\/script>');
+  }
+
+  // Check TRUSTe Consent for Advertising or Implied Approval
+  // The if test verifies if the user has given the consent
+  if ( (oracle.truste.api.getGdprConsentDecision().consentDecision) &&
+      (oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(0) != -1 ||
+        oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(3) != -1) ) {
+
+      //The following is a sample of a BlueKai Core Tag being written to the DOM
+      //If the user did not give consent, then the tag is not included and not invoked in the Browser
+      document.write('<script type="text/javascript">' +
+      'window.bk_async = function() { ' +
+      'BKTAG.doTag(62581, 1); }; ' +
+      '(function() { ' +
+      'var scripts = document.getElementsByTagName(\'script\')[0]; ' +
+      'var s = document.createElement(\'script\'); ' +
+      's.async = true; ' +
+      's.src = "https://tags.bkrtx.com/js/bk-coretag.js"; ' +
+      'scripts.parentNode.insertBefore(s, scripts); ' +
+      '}()); ' +
+      '<\/script>');
+  }
+</script>
+
+    </div>
+    <div class="overlay"></div>
+
+    <!-- Start SiteCatalyst code -->
+    <script language="JavaScript" src="https://www.oracle.com/us/assets/metrics/ora_otn.js"></script>
+    <!-- End SiteCatalyst code -->
+
+    <script src='/gcn/resources/lib/slick-slider/slick.min.js'></script>
+    <script src='/gcn/resources/js/main.js'></script>
+    <script src='/gcn/resources/js/ui.js'></script>
+    <script src='/gcn/resources/js/filters.js'></script>
+    <script src='/gcn/resources/js/sidebar.js'></script>
+  </body>
+</html>

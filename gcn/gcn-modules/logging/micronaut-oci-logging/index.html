@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:image" content="/gcn/resources/img/graalvm.png" />
+  <meta name="twitter:widgets:border-color" content="#55acee">
+
+  <title>
+    
+      Publish Application Logs to Oracle Cloud Infrastructure Logging
+    
+  </title>
+  <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
+  <meta name="last_modified" content="2023-10-12 08:03:05 +0000"/>
+  <link rel="stylesheet" href="/gcn/assets/main.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/gcn/resources/img/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/resources/img/favicon/site.webmanifest">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="google-site-verification" content="-vRqwa9WYn6AaQGnl88xvrLw6ac4xoKVkZkhanmlRhU" />
+  <link rel="canonical" href="https://www.graal.cloud/gcn/gcn-modules/logging/micronaut-oci-logging/">
+
+  <!-- jQuery UI Tabs -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/gcn/resources/lib/jquery/jquery-ui.css">
+</head>
+
+      <script src="/gcn/resources/lib/jquery/jquery-3.6.1.min.js"></script>
+    <script src="/gcn/resources/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src='/gcn/resources/lib/sticky-sidebar/resizeSensor.js'></script>
+    <script src='/gcn/resources/lib/sticky-sidebar/sticky-sidebar.min.js'></script>
+    <script src="/gcn/resources/lib/highlight/highlight.min.js"></script>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- Add TRUSTe Consent Script and Analytics -->
+    <script async="async" type="text/javascript" src='//consent.trustarc.com/notice?domain=oracle.com&c=teconsent&js=bb&noticeType=bb&text=true&cdn=1&pcookie&gtm=1' crossorigin></script>
+    <script src="https://www.oracle.com/assets/truste-oraclelib.js"></script>
+    <!-- jQuery UI Tabs -->
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+
+  <body class="preload">
+
+    <div  class="wrapper wrapper--nofooter" >
+
+      <header  class="header header--content" 
+  role="banner">
+
+  
+
+  
+
+    <nav class="menu">
+      <div class="menu__row">
+        <div>
+          <a href="/gcn/">
+            <img class="logo-mobile" src="/gcn/resources/img/gcn-logo-01.svg" alt="Graal Cloud Native logo">
+          </a>
+        </div>
+        <div class="menu__container">
+          <ul class="menu__list">
+            <li class="menu__item">
+              <a href="/gcn/about/" class="menu__link">About</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gcn/get-started/" class="menu__link">Get Started</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gcn/modules/" class="menu__link">Modules</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gcn/guides/" class="menu__link">Guides</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gcn/hands-on-labs/" class="menu__link">Hands-On Labs</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gcn/vscode-tools/" class="menu__link">Tools</a>
+            </li>
+            <li class="menu__launch__mobile">
+              <a href="/gcn/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
+            </li>
+          </ul>
+        </div>
+        <div class="menu__launch">
+          <a href="/gcn/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
+        </div>
+      </div>
+
+      <div role="button" class="menu-btn menu-btn--menu js-show-menu" tabindex="-1" title="sweet hamburger">
+        <div class="hamburger">
+          <div class="inner"></div>
+        </div>
+      </div>
+      <button aria-label="hamburger mobile menu" class="btn btn-mobile-menu js-show-menu">
+        <div class="inner"></div>
+      </button>
+    </nav>
+
+  
+</header>
+
+<!-- <header  class="header header--content" >
+
+  
+
+  
+
+    <nav class="menu">
+      <div class="menu__row">
+        <div>
+          <a href="/gcn/graal">
+            <img class="logo-mobile" src="/gcn/resources/img/gcn-logo-01.svg" alt="Graal Cloud Native logo">
+          </a>
+        </div>
+        <div class="menu__container">
+          <ul class="menu__list">
+            <li class="menu__item">
+              <a href="/gcn/graal/#whatisgraal" class="menu__link">About</a>
+            </li>
+            <li class="menu__item">
+              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
+            </li>
+            <li class="menu__item">
+              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
+            </li>
+            <li class="menu__item">
+              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div role="button" class="menu-btn menu-btn--menu js-show-menu" tabindex="-1" title="sweet hamburger">
+        <div class="hamburger">
+          <div class="inner"></div>
+        </div>
+      </div>
+      <button aria-label="hamburger mobile menu" class="btn btn-mobile-menu js-show-menu">
+        <div class="inner"></div>
+      </button>
+    </nav>
+
+  
+</header> -->
+
+      <main  class="content"   aria-label="Content">
+        <div class="wrapper wrapper-content">
+  <article>
+  <div class="row d-flex flex-wrap">
+    <div class="col-sm-3 docsimpro col-bg">
+      <div class="sidebar-wrap">
+        <div class="sidebar">
+          <div class="menuabout">
+            <img id="sidebarClose" src="/gcn/resources/img/arrow_sidebar(close).svg" alt="Expand or collapse sidebar"
+              class="btn-color no-display">
+            <img id="sidebarOpen" src="/gcn/resources/img/arrow_sidebar.svg" alt="Expand or collapse sidebar">
+          </div>
+          
+<div class="toc-floating">
+
+
+<div class="toc-bullets">
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+
+    
+      
+        
+          <li class="toc-bullets-main">
+        
+          
+          <a href="/gcn/docs/gcn-modules/logging/" class="_icon-book">
+            Logging
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+          
+          <li class="toc-bullets-sub toc-bullets-highlight">
+          
+            
+            <a href="/gcn/gcn-modules/logging/micronaut-oci-logging/">
+              Publish Application Logs to Oracle Cloud Infrastructure Logging
+            </a>
+          </li>
+
+          
+            <div>
+  <script>
+    var scriptElement = document.currentScript;
+    var div = $(scriptElement.parentElement);
+    $(window).on("load", function () {
+      $("#content-wrapper h2").each(function () {
+        var li = $("<li></li>", { class: "toc-bullets-sub toc-bullets-sub-3" });
+        var a = $("<a></a>", { href: "#" + $(this).attr("id") });
+        a.text($(this).text().replace('#', ''));
+        li.append(a);
+        li.click(function (e) {
+          e.preventDefault();
+          var target = $(a.attr('href'));
+          var scrollTo = target.offset().top - 80; // 80 - indent
+          $('html, body').animate({ scrollTop: scrollTo }, 1000);
+        });
+        div.append(li);
+      });
+    });
+  </script>
+</div>
+          
+        
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<!-- <li class="search additional-search">
+  <form class="form-inline sidebar" action="/docs/search" autocomplete="on" method="get">
+    <input class="input-search sidebar" type="text" id="search-box" name="query" placeholder="Search">
+    <button type="submit sidebar" class="search-button"></button>
+  </form>
+</li> -->
+
+</div>
+  <!-- Search form -->
+  <!-- <form class="search-container" action="/docs/search" autocomplete="on" method="get">
+   <label for="search-box">Search</label>
+    <input type="text" id="search-box" name="query">
+    <button type="submit" class="searchbttn"></button>
+  </form> -->
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-9 docsmod">
+      <div id="content-wrapper" class="docs-content docs-content--with-sidebar">
+        <h1 id="publish-application-logs-to-oracle-cloud-infrastructure-logging">
+        
+        
+          Publish Application Logs to Oracle Cloud Infrastructure Logging
+        
+        
+      </h1>
+
+<p>This guide describes how to create an application that emits and pushes logs to Oracle Cloud Infrastructure Logging. Typically, application logs are written to <code>stdout</code> and to files, but the Micronaut Logging module supports multiple logging frameworks such as <a href="https://logback.qos.ch/">Logback</a>, and logging to various other appenders, to email, a database, or other destinations.</p>
+    
+      <h3 id="prerequisites">
+        
+        
+          Prerequisites <a href="#prerequisites" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<ul>
+  <li>JDK 17 or higher. See <a href="/gcn/get-started/setting-up-desktop/">Setting up Your Desktop</a>.</li>
+  <li>An Oracle Cloud Infrastructure account. See <a href="/gcn/get-started/setting-up-cloud-accounts/">Setting up Your Cloud Accounts</a>.</li>
+  <li>The Oracle Cloud Infrastructure <a href="https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/cliinstall.htm">CLI</a> installed with <a href="https://docs.oracle.com/iaas/Content/API/SDKDocs/cliinstall.htm#configfile">local access configured</a>.</li>
+  <li>An Oracle Cloud Infrastructure <a href="https://docs.oracle.com/en/cloud/paas/integration-cloud/oracle-integration-oci/creating-oci-compartment.html">compartment</a> with appropriate permissions to manage Logs granted to your Oracle Cloud Infrastructure user account.</li>
+  <li>The GCN CLI. See <a href="/gcn/get-started/setting-up-desktop/">Setting up Your Desktop</a>. (Optional.)</li>
+</ul>
+
+<p>Follow the steps below to create the application from scratch. However, you can also download the completed example in Java:</p>
+
+<div id="tabs-doc1">
+    <ul>
+        <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <p><a href="/gcn/docs/gcn-modules/logging/archives/oci-logging-demo-java-gradle.zip">Gradle Oracle Cloud Infrastructure Logging Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" />
+        </a>
+        </p>
+    </div>
+    <div id="maven">
+        <p><a href="/gcn/docs/gcn-modules/logging/archives/oci-logging-demo-java-maven.zip">Maven Oracle Cloud Infrastructure Logging Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" /></a>
+        </p>
+    </div>
+</div>
+    
+      <h4 id="a-note-regarding-your-development-environment">
+        
+        
+          A note regarding your development environment
+        
+        
+      </h4>
+
+<p>Consider using Visual Studio Code that provides native support for developing applications with the <a href="/gcn/vscode-tools/using-gcn-vscode-tools/">Graal Cloud Native extension</a>.</p>
+
+<p>If you use IntelliJ IDEA, <a href="/gcn/resources/img/annotationprocessorsintellij.png">enable annotation processing</a>.</p>
+    
+      <h2 id="1-create-the-application">
+        
+        
+          1. Create the Application <a href="#1-create-the-application" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>Create an application using the GCN Launcher.</p>
+
+<ol>
+  <li>
+    <p>Open the <a href="/gcn/launcher/?advanced=true">GCN Launcher in advanced mode</a>.</p>
+  </li>
+  <li>Create a new project using the following selections.
+    <ul>
+      <li><strong>Project Type</strong>: <em>Application</em> (Default)</li>
+      <li><strong>Project name</strong>: <em>oci-logging-demo</em></li>
+      <li><strong>Base Package</strong>: <em>com.example</em> (Default)</li>
+      <li><strong>Clouds</strong>: <em>OCI</em></li>
+      <li><strong>Language</strong>: <em>Java</em> (Default)</li>
+      <li><strong>Build Tool</strong>: <em>Gradle (Groovy)</em> or <em>Maven</em></li>
+      <li><strong>Test Framework</strong>: <em>JUnit</em> (Default)</li>
+      <li><strong>Java Version</strong>: <em>17</em> (Default)</li>
+      <li><strong>Micronaut Version</strong>: (Default)</li>
+      <li><strong>Cloud Services</strong>: <em>Logging</em></li>
+      <li><strong>Features</strong>: <em>GraalVM Native Image</em> (Default)</li>
+      <li><strong>Sample Code</strong>: <em>Yes</em> (Default)</li>
+    </ul>
+  </li>
+  <li>Click <strong>Generate Project</strong>. The GCN Launcher creates an application with the default package <code>com.example</code> in a directory named <em>oci-logging-demo</em>. The application ZIP file will be downloaded in your default downloads directory. Unzip it, open in your code editor, and proceed to the next steps.</li>
+</ol>
+
+<p>Alternatively, use the <a href="/gcn/get-started/using-gcn-cli/">GCN CLI</a> as follows:</p>
+
+<div id="tabs-doc2">
+  <ul>
+    <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
+    <li class="tabs-maven"><a href="#maven">Maven</a></li>
+  </ul>
+  <div id="gradle">
+    <pre><code class="language-bash">gcn create-app com.example.oci-logging-demo \
+    --clouds=oci \
+    --services=logging \
+    --features=graalvm \
+    --build=gradle \
+    --lang=java</code></pre>
+  </div>
+  <div id="maven">
+    <pre><code class="language-bash">gcn create-app com.example.oci-logging-demo \
+    --clouds=oci \
+    --services=logging \
+    --features=graalvm \
+    --build=maven \
+    --lang=java</code></pre>
+  </div>
+</div>
+
+<p>The GCN Launcher creates a multi-module project with two subprojects: <strong>oci</strong> for Oracle Cloud Infrastructure, and <strong>lib</strong>.
+You develop the application logic in the <strong>oci</strong> subproject. If your application is to be deployed to multiple cloud providers, use the <strong>lib</strong> subproject to create classes that can be shared between the providers. This enables you to separate the code that is different between cloud providers, while keeping most of the implementation in the common <strong>lib</strong> subproject.</p>
+    
+      <h3 id="11-logback-dependency">
+        
+        
+          1.1 Logback Dependency <a href="#11-logback-dependency" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>The GCN Logging service that you selected at the project generation step bundles Logback, Jackson Databind, Oracle Cloud Infrastructure Logging, and other necessary dependencies. If you open the <em>micronaut-cli.yml</em> file, you can see all the added features.</p>
+
+<p>The <a href="https://logback.qos.ch/">Logback</a> appender pushes logs to Oracle Cloud Infrastructure. In the project configuration file, you can find the <a href="https://micronaut-projects.github.io/micronaut-oracle-cloud/snapshot/guide/#logging">Micronaut Oracle Cloud Infrastructure Logging</a> dependency.</p>
+
+<div id="tabs-doc3">
+  <ul>
+    <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
+    <li class="tabs-maven"><a href="#maven">Maven</a></li>
+  </ul>
+  <div id="gradle">
+    <p><em>oci/build.gradle</em></p>
+    <pre><code class="language-java">implementation("ch.qos.logback.contrib:logback-jackson:0.1.5")
+implementation("ch.qos.logback.contrib:logback-json-classic:0.1.5")
+implementation("io.micronaut.oraclecloud:micronaut-oraclecloud-logging")</code></pre>
+  </div>
+  <div id="maven">
+    <p><em>oci/pom.xml</em></p>
+    <pre><code class="language-xml">&lt;dependency&gt;
+   &lt;groupId&gt;io.micronaut.oraclecloud&lt;/groupId&gt;
+   &lt;artifactId&gt;micronaut-oraclecloud-logging&lt;/artifactId&gt;
+   &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+   &lt;groupId&gt;ch.qos.logback&lt;/groupId&gt;
+   &lt;artifactId&gt;logback-classic&lt;/artifactId&gt;
+   &lt;scope&gt;runtime&lt;/scope&gt;
+&lt;/dependency&gt;</code></pre>
+  </div>
+</div>
+    
+      <h3 id="12-controller-class">
+        
+        
+          1.2. Controller Class <a href="#12-controller-class" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>The generated example code includes a controller in a file named <em>oci/src/main/java/com/example/LogController.java</em>, which enables you to send <code>POST</code> requests to log a message:</p>
+
+<pre><code class="language-java">package com.example;
+
+import io.micronaut.http.annotation.Body;
+import io.micronaut.http.annotation.Controller;
+import io.micronaut.http.annotation.Post;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+@Controller
+class LogController {
+
+    private static final Logger LOG = LoggerFactory.getLogger(LogController.class);
+
+    @Post("/log")
+    void log(@Body String message) {
+        LOG.info(message);
+    }
+}
+</code></pre>
+    
+      <h2 id="2-get-started-with-oracle-cloud-infrastructure-logging">
+        
+        
+          2. Get Started with Oracle Cloud Infrastructure Logging <a href="#2-get-started-with-oracle-cloud-infrastructure-logging" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>To use Oracle Cloud Infrastructure Logging, you need to create a <strong>Log Group</strong> and a <strong>Custom Log</strong>.</p>
+    
+      <h3 id="21-create-a-log-group">
+        
+        
+          2.1. Create a Log Group <a href="#21-create-a-log-group" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>To create a <strong>Log Group</strong>, you need the ID of the compartment where your log group will be created. It is expected that you have already created a compartment in Oracle Cloud Infrastructure (see the <a href="#prerequisites">Prerequisites</a>).</p>
+
+<ol>
+  <li>
+    <p>Find the <a href="https://docs.oracle.com/iaas/tools/oci-cli/latest/oci_cli_docs/cmdref/iam/compartment/list.html">OCID of the compartment</a> where the IAM policy will be created. Run this command to list the compartments in your root compartment:</p>
+
+    <pre><code class="language-bash">oci iam compartment list
+</code></pre>
+  </li>
+  <li>
+    <p>Find the compartment by the name or description in the JSON output. It should look like this:</p>
+
+    <pre><code class="language-json">{
+    "compartment-id": "ocid1.tenancy.oc1..aaaaaaaaud4g4e5ovjaw...",
+    "description": "...",
+    "id": "ocid1.compartment.oc1..aaaaaaaarkh3s2wcxbbm...",
+    "lifecycle-state": "ACTIVE",
+    "name": "...",
+    ...
+}
+</code></pre>
+
+    <p>The OCID is the value of the <code>id</code> property; the <code>compartment-id</code> property is the parent compartment.</p>
+  </li>
+  <li>
+    <p>Save the compartment ID as an environment variable:</p>
+
+    <pre><code class="language-bash">export C=ocid1.compartment.oc1..aaaaaaaarkh3s2wcxbbm...
+</code></pre>
+
+    <details>
+     <summary>The export command syntax varies per platform. Expand to learn more.</summary>
+     <p>If you use Linux/macOS, the export command is:</p>
+         <pre><code class="language-bash">export VARNAME=&lt;VALUE&gt;</code></pre>
+
+     <p>If you use Windows, change <code>export</code> to <code>set</code> if using the <code>cmd</code> prompt:</p>
+         <pre><code class="language-bash">set VARNAME=&lt;VALUE&gt;</code></pre>
+
+     <p>If you use PowerShell, change <code>export</code> to <code>$</code> and use quotes around the value, for example:</p>
+     <pre><code class="language-bash">$VARNAME="&lt;VALUE&gt;"</code></pre>
+
+     <p>To dereference a value in Linux/macOS or Powershell, use <code>$</code>, for example:
+     <code>/some/command -option=$VARNAME</code>
+     </p>
+     <p>If you use <code>cmd</code>, use <code>%</code> before and after the name, for example: <code>/some/command -option=%VARNAME%</code>
+     </p>
+ </details>
+  </li>
+</ol>
+
+<p>Now proceed and create a <strong>Log Group</strong>:</p>
+
+<ol>
+  <li>
+    <p><a href="https://docs.oracle.com/iaas/tools/oci-cli/latest/oci_cli_docs/cmdref/logging/log-group/create.html">Create a log group</a> by running the following command:</p>
+
+    <pre><code class="language-bash">oci logging log-group create \
+    --compartment-id $C \
+    --display-name GCNLogGroup \
+    --wait-for-state SUCCEEDED
+</code></pre>
+
+    <p>The response should look like this:</p>
+
+    <pre><code class="language-json">{
+   "data": {
+       "compartment-id": "ocid1.compartment.oc1..aaa...",
+       "id": "ocid1.logworkrequest.oc1.iad.aaa...",
+       "operation-type": "CREATE_LOG_GROUP",
+       "percent-complete": 100.0,
+       "resources": [
+       {
+           "action-type": "CREATED",
+           "entity-type": "loggroup",
+           "entity-uri": "/logGroups/ocid1.loggroup.oc1.iad.ama...",
+           "identifier": "ocid1.loggroup.oc1.iad.ama..."
+       }
+       ],
+       "status": "SUCCEEDED",
+       "time-accepted": "2022-09-08T14:13:16.034000+00:00",
+       "time-finished": "2022-09-08T14:13:16.034000+00:00",
+       "time-started": "2022-09-08T14:13:16.034000+00:00"
+   }
+}
+</code></pre>
+  </li>
+  <li>
+    <p>Save the group <code>id</code> from the <code>identifier</code> property as an environment variable:</p>
+
+    <pre><code class="language-bash">export LOG_GROUP_ID=ocid1.loggroup.oc1.iad.ama...
+</code></pre>
+  </li>
+</ol>
+    
+      <h3 id="22-create-a-custom-log">
+        
+        
+          2.2. Create a Custom Log <a href="#22-create-a-custom-log" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<ol>
+  <li>
+    <p><a href="https://docs.oracle.com/iaas/tools/oci-cli/latest/oci_cli_docs/cmdref/logging/log/create.html">Create a Custom Log</a> by running the following command:</p>
+
+    <pre><code class="language-bash">oci logging log create \
+    --display-name GCNCustomLog \
+    --log-group-id $LOG_GROUP_ID \
+    --log-type CUSTOM \
+    --wait-for-state SUCCEEDED
+</code></pre>
+
+    <p>The response should look like this:</p>
+
+    <pre><code class="language-json">{
+   "data": {
+      "compartment-id": "ocid1.compartment.oc1..aaa...",
+      "id": "ocid1.logworkrequest.oc1.iad.aaa...",
+      "operation-type": "CREATE_LOG",
+      "percent-complete": 100.0,
+      "resources": [
+         {
+             "action-type": "CREATED",
+             "entity-type": "log",
+             "entity-uri": "/logs/ocid1.log.oc1.iad.ama...",
+             "identifier": "ocid1.log.oc1.iad.ama..."
+         }
+      ],
+      "status": "SUCCEEDED",
+      "time-accepted": "2022-09-08T17:12:51.501000+00:00",
+      "time-finished": "2022-09-08T17:12:51.501000+00:00",
+      "time-started": "2022-09-08T17:12:51.501000+00:00"
+   }
+}
+</code></pre>
+  </li>
+  <li>
+    <p>Save the OCID of the log (<code>ocid1.log.oc1.iad.ama…​</code> from the <code>identifier</code> property). You will need it in the application configuration.</p>
+  </li>
+</ol>
+    
+      <h2 id="3-configure-a-logback-appender">
+        
+        
+          3. Configure a Logback Appender <a href="#3-configure-a-logback-appender" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>The <em>oci/src/main/resources/logback.xml</em> file provides the configuration for a Logback appender that sends log statements to Oracle Cloud Logging. Uncomment the <code>STDOUT</code> appender and <code>&lt;appender-ref ref='STDOUT'/&gt;</code> in <code>OracleCloudAppender</code>.</p>
+
+<pre><code class="language-xml">&lt;configuration debug='false'&gt;
+
+   &lt;!--
+   You can un-comment the STDOUT appender and &lt;appender-ref ref='STDOUT'/&gt; in
+   the cloud appender to log to STDOUT as the 'emergency' appender.
+   --&gt;
+
+   &lt;!--
+   &lt;appender name='STDOUT' class='ch.qos.logback.core.ConsoleAppender'&gt;
+       &lt;encoder&gt;
+           &lt;pattern&gt;%cyan(%d{HH:mm:ss.SSS}) %gray([%thread]) %highlight(%-5level) %magenta(%logger{36}) - %msg%n&lt;/pattern&gt;
+       &lt;/encoder&gt;
+   &lt;/appender&gt;
+   --&gt;
+
+   &lt;appender name='ORACLE' class='io.micronaut.oraclecloud.logging.OracleCloudAppender'&gt;
+      &lt;!-- &lt;appender-ref ref='STDOUT'/&gt; --&gt;
+      &lt;logId&gt;&lt;!-- TODO set the value of the Oracle Cloud log OCID here --&gt;&lt;/logId&gt;
+      &lt;encoder class='ch.qos.logback.core.encoder.LayoutWrappingEncoder'&gt;
+         &lt;layout class='ch.qos.logback.contrib.json.classic.JsonLayout'&gt;
+            &lt;jsonFormatter class='ch.qos.logback.contrib.jackson.JacksonJsonFormatter'/&gt;
+         &lt;/layout&gt;
+      &lt;/encoder&gt;
+   &lt;/appender&gt;
+
+   &lt;root level='INFO'&gt;
+      &lt;appender-ref ref='ORACLE'/&gt;
+   &lt;/root&gt;
+
+&lt;/configuration&gt;
+</code></pre>
+
+<p>Update <em>logback.xml</em> to include the custom log OCID you saved earlier. Replace this line:</p>
+
+<pre><code class="language-xml">&lt;logId&gt;&lt;!-- TODO set the value of the Oracle Cloud Infrastructure log OCID here --&gt;&lt;/logId&gt;
+</code></pre>
+
+<p>with this (using your OCID):</p>
+
+<pre><code class="language-xml">&lt;logId&gt;ocid1.log.oc1.iad.ama...&lt;/logId&gt;
+</code></pre>
+
+<p>Having configured the appender, you can proceed and run the application, collecting the logs.</p>
+    
+      <h2 id="4-run-the-application-collect-and-view-logs">
+        
+        
+          4. Run the Application, Collect and View Logs <a href="#4-run-the-application-collect-and-view-logs" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<ol>
+  <li>
+    <p>Run the application using the following command (it will start the application on port 8080):</p>
+
+    <div id="tabs-doc4">
+ <ul>
+     <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
+     <li class="tabs-maven"><a href="#maven">Maven</a></li>
+ </ul>
+ <div id="gradle">
+     <pre><code class="language-bash">./gradlew :oci:run</code></pre>
+ </div>
+ <div id="maven">
+     <pre><code class="language-bash">./mvnw install -pl lib -am &amp;&amp; ./mvnw mn:run -pl oci</code></pre>
+ </div>
+ </div>
+  </li>
+  <li>Send some <code>curl</code> requests to test logging:
+    <pre><code class="language-bash">curl -id '{"message":"your message here"}' \
+   -H "Content-Type: application/json" \
+   -X POST http://localhost:8080/log
+</code></pre>
+  </li>
+  <li>In the Oracle Cloud console, open the navigation menu, go to <strong>Observability &amp; Management</strong>. Under <strong>Logging</strong>, go to <strong>Logs</strong> to view the logs emitted by your application.</li>
+</ol>
+    
+      <h2 id="5-generate-a-native-executable-using-graalvm">
+        
+        
+          5. Generate a Native Executable Using GraalVM <a href="#5-generate-a-native-executable-using-graalvm" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>GCN supports compiling a Java application ahead-of-time into a native executable using <a href="https://www.graalvm.org/native-image/">GraalVM Native Image</a>. You can use the <em><a href="https://graalvm.github.io/native-build-tools/latest/gradle-plugin.html">Gradle plugin for GraalVM Native Image building</a>/<a href="https://graalvm.github.io/native-build-tools/latest/maven-plugin.html">Maven  plugin for GraalVM Native Image building</a></em>. Packaged as a native executable, it significantly reduces application startup time and memory footprint.</p>
+
+<p>To generate a native executable, run the following command:</p>
+
+<div id="tabs-doc5">
+  <ul>
+      <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
+      <li class="tabs-maven"><a href="#maven">Maven</a></li>
+  </ul>
+  <div id="gradle">
+      <pre><code class="language-bash">./gradlew :oci:nativeCompile</code></pre>
+      <p>The native executable will be created in the <em>oci/build/native/nativeCompile</em> directory and can be run with the following command:</p>
+    <pre><code class="language-bash">oci/build/native/nativeCompile/oci</code></pre>
+  </div>
+  <div id="maven">
+      <pre><code class="language-bash">./mvnw install -pl lib -am &amp;&amp; ./mvnw package -pl oci -Dpackaging=native-image</code></pre>
+      <p>The native executable will be created in the <em>oci/target</em> directory and can be run with the following command:</p>
+    <pre><code class="language-bash">oci/target/oci</code></pre>
+  </div>
+</div>
+    
+      <h2 id="6-run-and-test-the-native-executable">
+        
+        
+          6. Run and Test the Native Executable <a href="#6-run-and-test-the-native-executable" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>Run the native executable, and then perform the same tests as in step <strong>4</strong>.</p>
+    
+      <h3 id="summary">
+        
+        
+          Summary <a href="#summary" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>This guide demonstrated how to use GCN to create an application that writes and sends logs to Oracle Cloud Infrastructure. 
+Then, using Oracle Cloud Infrastructure Logging, you viewed the logs produced by the application. 
+Finally, you saw how to build a native executable for this application with GraalVM Native Image.</p>
+    
+      <h3 id="related-documentation">
+        
+        
+          Related Documentation <a href="#related-documentation" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<ul>
+  <li><a href="https://micronaut-projects.github.io/micronaut-oracle-cloud/latest/guide/#logging">Micronaut Oracle Cloud Infrastructure Logging</a></li>
+  <li><a href="https://docs.oracle.com/iaas/Content/Logging/Concepts/loggingoverview.htm">Oracle Cloud Infrastructure Logging Service</a></li>
+  <li><a href="https://www.graalvm.org/native-image/">GraalVM Native Image</a></li>
+</ul>
+
+      </div>
+
+      <div role="button" class="menu-btn menu-btn--sidebar js-show-sidebar" title="sweet hamburger">
+        <div class="hamburger">
+          <div class="inner"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+</div>
+
+      </main>
+
+      
+<footer class="footer footer__mobile">
+
+  <div class="container-fluid container-fluid--custom-sm">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row footer-content">
+          <div class="col-md-3 col-sm-4">
+            <h6 class="title-footer" onclick="fadeInAndOut(this)">Learn</h6>
+            <div class="grow">
+              <ul class="footer-list">
+                <li class="footer-list__item"><a href="/gcn/get-started/">Get Started</a></li>
+                <li class="footer-list__item"><a href="/gcn/guides/">Guides</a></li>
+                <li class="footer-list__item"><a href="/gcn/hands-on-labs/">Labs</a></li>
+                <li class="footer-list__github">
+                  <img class="footer__icon" src="/gcn/resources/img/footer/logo-github.svg" alt="Github icon">
+                  <a href="https://github.com/oracle/gcn">Github</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-4">
+            <h6 class="title-footer" onclick="fadeInAndOut(this)">About</h6>
+            <div class="grow">
+              <ul class="footer-list">
+                <li class="footer-list__item"><a href="/gcn/about/#gcn-support" target="blank">Commercial Support</a></li>
+                <li class="footer-list__item"><a href="https://www.graalvm.org/" target="blank">GraalVM Native Image</a></li>
+                <li class="footer-list__item"><a href="https://micronaut.io/" target="_blank">Micronaut</a></li>
+                <li class="footer-list__item"><a href="https://www.oracle.com/cloud/multicloud/what-is-multicloud/" target="_blank">Multicloud</a></li>
+                <li class="footer-list__item"><a href="https://www.oracle.com/cloud/" target="blank">Oracle Cloud Infrastructure</a></li>
+                <li class="footer-list__item"><a href="https://marketplace.visualstudio.com/items?itemName=oracle-labs-graalvm.graal-cloud-native-pack" target="blank">VS Code Tools</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-12 aligning_1024">
+            <div class="card--footer card--hovered box">
+              <div>
+                <div class="rubber-footer footer__oci-section">
+                  <p class="title-footer quickstart">Build, test, and deploy applications on Oracle Cloud Infrastructure for free</p>
+                  <a href="https://www.oracle.com/cloud/free/" target="_blank"
+                    class="btn btn-primary">Try Oracle Cloud Infrastructure Free Tier</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+          <div class="row">
+            <div class="col-sm-12">
+              <p class="copyright">
+                Copyright © 2023, Oracle and/or its affiliates. All rights reserved. Oracle and Java are
+                registered trademarks. Other names may be trademarks of their respective owners.
+              </p>
+              <div id="teconsent"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+<script>
+  function fadeInAndOut(thz) {
+    var elmt = thz.nextElementSibling;//Get the element that is below the button that
+    //was just clicked
+    if (elmt.clientHeight) {
+      elmt.style.height = 0;
+    } else {
+      var wrapper = elmt.querySelector('ul');
+      elmt.style.height = wrapper.clientHeight + "px";
+    }
+    /*
+        elmt.classList.toggle("acordianPanelHidden");//Toggle the class which changes
+        //attributes which triggers the transition CSS
+        */
+  }
+
+  // Check TRUSTe Consent for Functional or Implied Approval
+  // The if test verifies if the user has given the consent
+  if ( (oracle.truste.api.getGdprConsentDecision().consentDecision) &&
+      (oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(0) != -1 ||
+        oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(2) != -1) ) {
+
+      //The following is a sample of a Maxymiser Tag being written to the DOM
+      //If the user did not give consent, then the tag is not included and not invoked in the Browser
+      document.write('<script type="text/javascript" src="//service.maxymiser.net/cdn/oracle/js/mmcore.js"><\/script>');
+  }
+
+  // Check TRUSTe Consent for Advertising or Implied Approval
+  // The if test verifies if the user has given the consent
+  if ( (oracle.truste.api.getGdprConsentDecision().consentDecision) &&
+      (oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(0) != -1 ||
+        oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(3) != -1) ) {
+
+      //The following is a sample of a BlueKai Core Tag being written to the DOM
+      //If the user did not give consent, then the tag is not included and not invoked in the Browser
+      document.write('<script type="text/javascript">' +
+      'window.bk_async = function() { ' +
+      'BKTAG.doTag(62581, 1); }; ' +
+      '(function() { ' +
+      'var scripts = document.getElementsByTagName(\'script\')[0]; ' +
+      'var s = document.createElement(\'script\'); ' +
+      's.async = true; ' +
+      's.src = "https://tags.bkrtx.com/js/bk-coretag.js"; ' +
+      'scripts.parentNode.insertBefore(s, scripts); ' +
+      '}()); ' +
+      '<\/script>');
+  }
+</script>
+
+    </div>
+    <div class="overlay"></div>
+
+    <!-- Start SiteCatalyst code -->
+    <script language="JavaScript" src="https://www.oracle.com/us/assets/metrics/ora_otn.js"></script>
+    <!-- End SiteCatalyst code -->
+
+    <script src='/gcn/resources/lib/slick-slider/slick.min.js'></script>
+    <script src='/gcn/resources/js/main.js'></script>
+    <script src='/gcn/resources/js/ui.js'></script>
+    <script src='/gcn/resources/js/filters.js'></script>
+    <script src='/gcn/resources/js/sidebar.js'></script>
+  </body>
+</html>

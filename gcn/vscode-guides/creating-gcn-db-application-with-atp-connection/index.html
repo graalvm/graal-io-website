@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:image" content="/gcn/resources/img/graalvm.png" />
+  <meta name="twitter:widgets:border-color" content="#55acee">
+
+  <title>
+    
+      Creating a Database Application and Connecting to an Oracle Autonomous Database
+    
+  </title>
+  <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
+  <meta name="last_modified" content="2023-10-20 09:40:03 +0000"/>
+  <link rel="stylesheet" href="/gcn/assets/main.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/gcn/resources/img/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/resources/img/favicon/site.webmanifest">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="google-site-verification" content="-vRqwa9WYn6AaQGnl88xvrLw6ac4xoKVkZkhanmlRhU" />
+  <link rel="canonical" href="https://www.graal.cloud/gcn/vscode-guides/creating-gcn-db-application-with-atp-connection/">
+
+  <!-- jQuery UI Tabs -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/gcn/resources/lib/jquery/jquery-ui.css">
+</head>
+
+      <script src="/gcn/resources/lib/jquery/jquery-3.6.1.min.js"></script>
+    <script src="/gcn/resources/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src='/gcn/resources/lib/sticky-sidebar/resizeSensor.js'></script>
+    <script src='/gcn/resources/lib/sticky-sidebar/sticky-sidebar.min.js'></script>
+    <script src="/gcn/resources/lib/highlight/highlight.min.js"></script>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- Add TRUSTe Consent Script and Analytics -->
+    <script async="async" type="text/javascript" src='//consent.trustarc.com/notice?domain=oracle.com&c=teconsent&js=bb&noticeType=bb&text=true&cdn=1&pcookie&gtm=1' crossorigin></script>
+    <script src="https://www.oracle.com/assets/truste-oraclelib.js"></script>
+    <!-- jQuery UI Tabs -->
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+
+  <body class="preload">
+
+    <div  class="wrapper wrapper--nofooter" >
+
+      <header  class="header header--content" 
+  role="banner">
+
+  
+
+  
+
+    <nav class="menu">
+      <div class="menu__row">
+        <div>
+          <a href="/gcn/">
+            <img class="logo-mobile" src="/gcn/resources/img/gcn-logo-01.svg" alt="Graal Cloud Native logo">
+          </a>
+        </div>
+        <div class="menu__container">
+          <ul class="menu__list">
+            <li class="menu__item">
+              <a href="/gcn/about/" class="menu__link">About</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gcn/get-started/" class="menu__link">Get Started</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gcn/modules/" class="menu__link">Modules</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gcn/guides/" class="menu__link">Guides</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gcn/hands-on-labs/" class="menu__link">Hands-On Labs</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gcn/vscode-tools/" class="menu__link">Tools</a>
+            </li>
+            <li class="menu__launch__mobile">
+              <a href="/gcn/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
+            </li>
+          </ul>
+        </div>
+        <div class="menu__launch">
+          <a href="/gcn/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
+        </div>
+      </div>
+
+      <div role="button" class="menu-btn menu-btn--menu js-show-menu" tabindex="-1" title="sweet hamburger">
+        <div class="hamburger">
+          <div class="inner"></div>
+        </div>
+      </div>
+      <button aria-label="hamburger mobile menu" class="btn btn-mobile-menu js-show-menu">
+        <div class="inner"></div>
+      </button>
+    </nav>
+
+  
+</header>
+
+<!-- <header  class="header header--content" >
+
+  
+
+  
+
+    <nav class="menu">
+      <div class="menu__row">
+        <div>
+          <a href="/gcn/graal">
+            <img class="logo-mobile" src="/gcn/resources/img/gcn-logo-01.svg" alt="Graal Cloud Native logo">
+          </a>
+        </div>
+        <div class="menu__container">
+          <ul class="menu__list">
+            <li class="menu__item">
+              <a href="/gcn/graal/#whatisgraal" class="menu__link">About</a>
+            </li>
+            <li class="menu__item">
+              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
+            </li>
+            <li class="menu__item">
+              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
+            </li>
+            <li class="menu__item">
+              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div role="button" class="menu-btn menu-btn--menu js-show-menu" tabindex="-1" title="sweet hamburger">
+        <div class="hamburger">
+          <div class="inner"></div>
+        </div>
+      </div>
+      <button aria-label="hamburger mobile menu" class="btn btn-mobile-menu js-show-menu">
+        <div class="inner"></div>
+      </button>
+    </nav>
+
+  
+</header> -->
+
+      <main  class="content"   aria-label="Content">
+        <div class="wrapper wrapper-content">
+  <article>
+  <div class="row d-flex flex-wrap">
+    <div class="col-sm-3 docsimpro col-bg">
+      <div class="sidebar-wrap">
+        <div class="sidebar">
+          <div class="menuabout">
+            <img id="sidebarClose" src="/gcn/resources/img/arrow_sidebar(close).svg" alt="Expand or collapse sidebar"
+              class="btn-color no-display">
+            <img id="sidebarOpen" src="/gcn/resources/img/arrow_sidebar.svg" alt="Expand or collapse sidebar">
+          </div>
+          
+<div class="toc-floating">
+
+
+<div class="toc-bullets">
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+
+    
+      
+        
+          <li class="toc-bullets-main">
+        
+          
+          <a href="/gcn/vscode-tools/installing-gcn-tools/" class="_icon-book">
+            Installing Graal Cloud Native Tools
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+      
+    
+      
+        
+          <li class="toc-bullets-main">
+        
+          
+          <a href="/gcn/vscode-tools/graal-cloud-native-extension-pack/" class="_icon-book">
+            Graal Cloud Native Extensions Pack
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+      
+    
+      
+        
+          <li class="toc-bullets-main">
+        
+          
+          <a href="/gcn/vscode-guides/" class="_icon-book">
+            VS Code Guides
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+          
+          <li class="toc-bullets-sub">
+          
+            
+            <a href="/gcn/vscode-guides/setting-oci-devops-pipeline-in-vscode/">
+              Setting OCI DevOps Build and Development Pipelines in VS Code
+            </a>
+          </li>
+
+          
+        
+          
+          <li class="toc-bullets-sub toc-bullets-highlight">
+          
+            
+            <a href="/gcn/vscode-guides/creating-gcn-db-application-with-atp-connection/">
+              Creating a Database Application and Connecting to an Oracle Autonomous Database
+            </a>
+          </li>
+
+          
+            <div>
+  <script>
+    var scriptElement = document.currentScript;
+    var div = $(scriptElement.parentElement);
+    $(window).on("load", function () {
+      $("#content-wrapper h2").each(function () {
+        var li = $("<li></li>", { class: "toc-bullets-sub toc-bullets-sub-3" });
+        var a = $("<a></a>", { href: "#" + $(this).attr("id") });
+        a.text($(this).text().replace('#', ''));
+        li.append(a);
+        li.click(function (e) {
+          e.preventDefault();
+          var target = $(a.attr('href'));
+          var scrollTo = target.offset().top - 80; // 80 - indent
+          $('html, body').animate({ scrollTop: scrollTo }, 1000);
+        });
+        div.append(li);
+      });
+    });
+  </script>
+</div>
+          
+        
+          
+          <li class="toc-bullets-sub">
+          
+            
+            <a href="/gcn/vscode-guides/deploy-to-aws-apprunner-in-vscode/">
+              Deploying a Java Application to AWS App Runner in VS Code
+            </a>
+          </li>
+
+          
+        
+          
+          <li class="toc-bullets-sub">
+          
+            
+            <a href="/gcn/vscode-guides/deploy-to-aws-eks-in-vscode/">
+              Deploying a Java Application to Amazon Elastic Kubernetes Cluster in VS Code
+            </a>
+          </li>
+
+          
+        
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<!-- <li class="search additional-search">
+  <form class="form-inline sidebar" action="/docs/search" autocomplete="on" method="get">
+    <input class="input-search sidebar" type="text" id="search-box" name="query" placeholder="Search">
+    <button type="submit sidebar" class="search-button"></button>
+  </form>
+</li> -->
+
+</div>
+  <!-- Search form -->
+  <!-- <form class="search-container" action="/docs/search" autocomplete="on" method="get">
+   <label for="search-box">Search</label>
+    <input type="text" id="search-box" name="query">
+    <button type="submit" class="searchbttn"></button>
+  </form> -->
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-9 docsmod">
+      <div id="content-wrapper" class="docs-content docs-content--with-sidebar">
+        <h1 id="creating-a-database-application-and-connecting-to-an-oracle-autonomous-database">
+        
+        
+          Creating a Database Application and Connecting to an Oracle Autonomous Database
+        
+        
+      </h1>
+
+<p>This guide shows you how to use the Graal Cloud Native tools in VS Code to create a Java application from an existing Oracle Autonomous Database schema.</p>
+
+<p>After completing this guide you will understand how to create entity and repository classes from an existing database schema tables, with no coding, and quickly build a simple CRUD application that lets you interact with the data stored in the database. All this is possible to accomplish from within VS Code thanks to the <a href="/gcn/vscode-tools/graal-cloud-native-launcher/">Graal Cloud Native</a> and <a href="/gcn/vscode-tools/micronaut-tools/">Micronaut<sup>®</sup> Tools</a>.</p>
+    
+      <h3 id="prerequisites">
+        
+        
+          Prerequisites <a href="#prerequisites" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<ul>
+  <li>JDK 17 or higher. See <a href="https://www.graal.cloud/gcn/get-started/setting-up-desktop/">Setting up Your Desktop</a>. <a href="https://www.graalvm.org/downloads/">Oracle GraalVM</a> is a fast and efficient JDK from Oracle.</li>
+  <li>An Oracle Cloud Infrastructure account. See <a href="/gcn/get-started/setting-up-cloud-accounts/">Setting up Your Cloud Accounts</a>.</li>
+  <li>An Oracle Cloud Infrastructure <a href="https://docs.oracle.com/en/cloud/paas/integration-cloud/oracle-integration-oci/creating-oci-compartment.html">compartment</a>.
+html#GUID-E41FF7DB-A848-4551-A7F1-61699DCB33AB).</li>
+  <li>Graal Cloud Native Extension Pack. See <a href="/gcn/vscode-tools/installing-gcn-tools/">Installing Graal Cloud Native Extension Pack</a>.</li>
+  <li>Optional: The Oracle Developer VS Code extension. See [Installing Oracle Developer Tools for VS Code](https://docs.oracle.com/en/database/oracle/developer-tools-for-vscode/getting-started/install.</li>
+</ul>
+    
+      <h2 id="1-provision-an-oracle-autonomous-database">
+        
+        
+          1. Provision an Oracle Autonomous Database <a href="#1-provision-an-oracle-autonomous-database" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<ol>
+  <li>
+    <p>In the Oracle Cloud Console, open the navigation menu, click <strong>Oracle Database</strong>. Under <strong>Autonomous Database</strong>, click <strong>Autonomous Transaction Processing</strong>.</p>
+  </li>
+  <li>
+    <p>Enter “GCNDemo” as the display name and the database name.</p>
+  </li>
+  <li>
+    <p>Select <strong>Transaction Processing</strong> and <strong>Shared Infrastructure</strong>. If you are using a trial account, make sure you select <strong>Always Free</strong>.</p>
+  </li>
+  <li>
+    <p>Create an admin password (must be at least 12 characters and contain a number and an uppercase letter) and select <strong>Secure access from everywhere</strong> as the network access type.</p>
+  </li>
+  <li>
+    <p>Select <strong>License Included</strong> and click <strong>Create Autonomous Database</strong> to create your database.</p>
+  </li>
+  <li>
+    <p>On the <strong>Autonomous Database Details</strong> screen click <strong>Copy</strong> to copy the OCID of the database. (This is a unique identifier for your database instance which you will need later.)</p>
+  </li>
+</ol>
+    
+      <h2 id="2-install-a-sample-schema-into-the-database">
+        
+        
+          2. Install a Sample Schema into the Database <a href="#2-install-a-sample-schema-into-the-database" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>Install one of the sample schemas that Oracle supplies into your new Oracle Autonomous Database. 
+For completing this guide, use the <a href="https://github.com/oracle/db-sample-schemas/releases/latest">Oracle Sample HR Schema</a>.</p>
+    
+      <h3 id="21-connect-to-the-autonomous-database">
+        
+        
+          2.1. Connect to the Autonomous Database <a href="#21-connect-to-the-autonomous-database" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>Follow these steps to connect to your database: <a href="https://docs.oracle.com/en/database/oracle/developer-tools-for-vscode/getting-started/connecting-using-oracle-cloud-infrastructure-explorer-connect-using-credentials-files-walletless.html">Connecting Using Oracle Cloud Infrastructure Explorer to Connect Without Using Credentials Files (Walletless)</a>.</p>
+    
+      <h3 id="22-install-the-sample-schema">
+        
+        
+          2.2. Install the Sample Schema <a href="#22-install-the-sample-schema" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>Now that you are connected to your database, install the <code>HR</code> schema. This schema is a great place to start from.
+Follow these steps: <a href="https://docs.oracle.com/en/database/oracle/oracle-database/21/comsc/installing-sample-schemas.html#GUID-1E645D09-F91F-4BA6-A286-57C5EC66321D">Installation of the Sample Schemas</a>.</p>
+    
+      <h2 id="3-create-a-graal-cloud-native-project">
+        
+        
+          3. Create a Graal Cloud Native Project <a href="#3-create-a-graal-cloud-native-project" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>Now create a new Graal Cloud Native project with support for the Oracle Database Server and <a href="https://micronaut-projects.github.io/micronaut-data/latest/guide/">Micronaut Data</a>.</p>
+
+<ol>
+  <li>
+    <p>Go to <strong>View</strong>, <strong>Command Palette</strong>, search for “Graal Cloud Native”, and invoke the <strong>Graal Cloud Native: Create New Project</strong> quick action:</p>
+
+    <p><img src="/gcn/docs/vscode-tools/images/gcn-vscode-actions.png" alt="Create New Project Action" /></p>
+  </li>
+  <li>
+    <p>Step through the project creation wizard. The following list details how you should respond to each prompt:</p>
+
+    <ul>
+      <li>Pick GCN Version: <em>4.0.7</em></li>
+      <li>Pick an Application type: <em>Application</em></li>
+      <li>Pick Project Java: Select your JDK installation</li>
+      <li>Provide project name: <em>dbsample</em></li>
+      <li>Provide base package: <em>com.example</em></li>
+      <li>Pick project language: <em>Java</em></li>
+      <li>Pick project services: <em>Database</em></li>
+      <li>
+        <p>Pick project features: <em>Oracle Cloud Autonomous Transaction Processing (ATP)</em> (as shown in the screenshot below):</p>
+
+        <p><img src="/gcn/docs/vscode-tools/images/db-features/add-oracle-atp-feature.png" alt="Add GCN project services" /></p>
+      </li>
+      <li>Pick the build tool: <em>Maven</em> or <em>Gradle</em></li>
+      <li>Pick test framework: <em>JUnit</em></li>
+      <li>Select cloud providers to support: <em>Oracle Cloud Infrastructure</em></li>
+      <li>Pick generate sample code: <em>No</em></li>
+    </ul>
+  </li>
+  <li>
+    <p>Save the project and open it in a new VS Code window.</p>
+  </li>
+  <li>Remove the following two lines from <em>application-oraclecloud.properties</em>:
+    <pre><code> datasources.default.ocid=
+ datasources.default.walletPassword=
+</code></pre>
+  </li>
+  <li>Remove the Flyway dependency from your build file:
+    <div id="tabs-doc2">
+   <ul>
+     <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
+     <li class="tabs-maven"><a href="#maven">Maven</a></li>
+   </ul>
+   <div id="gradle">
+     Edit the file <em>oci/build.gradle</em> to remove the flyway dependency.
+     <pre><code class="language-java">
+     implementation("io.micronaut.flyway:micronaut-flyway")
+     runtimeOnly("org.flywaydb:flyway-database-oracle")
+     </code></pre>
+   </div>
+   <div id="maven">
+     Edit the file <em>oci/pom.xml</em> to remove the flyway dependency.
+     <pre><code class="language-xml">&lt;dependency&gt;
+   &lt;groupId&gt;org.flywaydb&lt;/groupId&gt;
+   &lt;artifactId&gt;flyway-database-oracle&lt;/artifactId&gt;
+   &lt;scope&gt;runtime&lt;/scope&gt;
+ &lt;/dependency&gt;
+ &lt;dependency&gt;
+   &lt;groupId&gt;io.micronaut.flyway&lt;/groupId&gt;
+   &lt;artifactId&gt;micronaut-flyway&lt;/artifactId&gt;
+   &lt;scope&gt;compile&lt;/scope&gt;
+ &lt;/dependency&gt;</code></pre>
+   </div>
+ </div>
+  </li>
+</ol>
+    
+      <h2 id="4-connect-to-the-oracle-autonomous-database">
+        
+        
+          4. Connect to the Oracle Autonomous Database <a href="#4-connect-to-the-oracle-autonomous-database" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>Now connect the VS Code developer tooling to your Oracle Autonomous Database.</p>
+
+<p>As you have the application opened, VS Code should show the Explorer panel. 
+Within the Explorer panel, open the <strong>DATABASES</strong> pane, as shown in the screenshot below, and click <strong>Add Oracle Autonomous DB</strong>. 
+(This is also available in the Command Palette).</p>
+
+<p><img src="/gcn/docs/vscode-tools/images/db-features/databases-initial-view.png" alt="DATABASES Actions" /></p>
+
+<p>It launches a database connection wizard. Follow the prompts:</p>
+
+<ol>
+  <li>Select the OCI profile that you wish to use (if you have multiple OCI profiles).</li>
+  <li>From the list of compartments, select the compartment that contains your database.</li>
+  <li>From the list of databases, select your database.</li>
+  <li>Enter the username for the database. It is the <code>HR</code> schema user.</li>
+  <li>
+    <p>Enter the password for the database. It is the <code>HR</code> schema user password.</p>
+
+    <p>Now the database is added to the <strong>DATABASES</strong> view in the Explorer panel. The database wallet is downloaded, and ready to use:</p>
+
+    <p><img src="/gcn/docs/vscode-tools/images/db-features/db-wallet-downloaded.png" alt="Database Wallet is downloaded" /></p>
+  </li>
+  <li>
+    <p>Open the database in the view, then right-click, and select <strong>Connect to Database</strong> from the menu:</p>
+
+    <p><img src="/gcn/docs/vscode-tools/images/db-features/connect-to-database-2.png" alt="Connect to Database" /></p>
+
+    <p>If the credentials you provided (username or password) are incorrect, it will fail to connect.</p>
+  </li>
+</ol>
+
+<p>Once you are connected to the database, you can browse the schema and see that several tables have been created from the schema.</p>
+
+<p><img src="/gcn/docs/vscode-tools/images/db-features/hr-sample-schema-tables.png" alt="HR Sample Schema Tables" /></p>
+    
+      <h2 id="5-create-micronaut-data-entities-from-tables">
+        
+        
+          5. Create Micronaut Data Entities from Tables <a href="#5-create-micronaut-data-entities-from-tables" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>You can generate Micronaut Data Entities and Repository Interfaces from a connected database within VS Code!</p>
+
+<ol>
+  <li>With the database connection setup, return to the Files view in the activity bar that shows the files within your Maven or Gradle project.</li>
+  <li>
+    <p>Open the <em>src</em> folder, as shown in the screenshot blow, right click on the <em>example</em> package and select <strong>New from Template</strong>. It launches a wizard to create Micronaut Data Entity classes directly from the database schema tables.</p>
+
+    <p><img src="/gcn/docs/vscode-tools/images/db-features/new-entity-from-template.png" alt="Create Entity class from template" /></p>
+  </li>
+  <li>
+    <p>When prompted, select <strong>Micronaut</strong>, then <strong>Micronaut Data Entity Classes from Database</strong>. It starts reading tables from the default database connected:</p>
+
+    <p><img src="/gcn/docs/vscode-tools/images/db-features/micronaut-entity-class-from-db.png" alt="Reading reading tables from a database" /></p>
+  </li>
+  <li>
+    <p>The wizard then displays a selectable list of the available tables within the database schema that you can create corresponding entities. Select all:</p>
+
+    <p><img src="/gcn/docs/vscode-tools/images/db-features/select-db-tables-for-entities.png" alt="Select database tables for Entity classes" /></p>
+  </li>
+  <li>Click <strong>Enter</strong>.</li>
+</ol>
+
+<p>The Entity classes are generated with all annotations, constructors, attributes, getters, and setters.</p>
+    
+      <h2 id="6-create-micronaut-data-repositories">
+        
+        
+          6. Create Micronaut Data Repositories <a href="#6-create-micronaut-data-repositories" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>In the same way, you can generate Micronaut Data Repositories for the corresponding Entity classes.</p>
+
+<ol>
+  <li>In the <em>src</em> folder, right-click on the <em>example</em> package, and select <strong>New From Template</strong> from the menu.</li>
+  <li>
+    <p>When prompted, select <strong>Micronaut</strong>, then <strong>Micronaut Data Repository Interfaces from Entity</strong>:</p>
+
+    <p><img src="/gcn/docs/vscode-tools/images/db-features/micronaut-repositories-from-entities.png" alt="Micronaut Data Repository Interfaces from Entity" /></p>
+  </li>
+  <li>
+    <p>From the list of entities, select the Entities for which you want to create corresponding repositories. Select all.</p>
+  </li>
+  <li>Click <strong>Enter</strong>.</li>
+</ol>
+    
+      <h2 id="7-create-a-rest-controller">
+        
+        
+          7. Create a REST Controller <a href="#7-create-a-rest-controller" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>You can also create a REST Controller from a template.</p>
+
+<ol>
+  <li>
+    <p>In the <em>src</em> folder, right-click on the <em>example</em> package, and select <strong>New From Template</strong>.</p>
+  </li>
+  <li>
+    <p>When prompted, select <strong>Micronaut</strong>, then <strong>Micronaut Controller Class</strong>:</p>
+
+    <p><img src="/gcn/docs/vscode-tools/images/db-features/micronaut-controller-class.png" alt="Micronaut Controller Class" /></p>
+
+    <p>It creates a Micronaut Controller class with a default GET endpoint.</p>
+  </li>
+  <li>
+    <p>Add the constructor with the <code>Employee</code> repository. Replace the default class with this:</p>
+
+    <pre><code class="language-java"> @Controller("/employees")
+ public class EmployeeController {
+ private final EmployeeRepository repo;
+
+ public EmployeeController(EmployeeRepository repo) {
+     this.repo = repo;
+     }
+
+ @Get(uri = "/", produces = "text/plain")
+ public String index() {
+     return repo.findAll().stream().map(e -&gt; e.getLastName()).collect(Collectors.joining("\n"));
+     }
+ }
+</code></pre>
+  </li>
+</ol>
+
+<p>Now you have a complete Java application that exposes some REST endpoints and stores data in an Oracle Autonomous Database database using Micronaut Data JDBC.</p>
+    
+      <h2 id="8-run-the-application">
+        
+        
+          8. Run the Application <a href="#8-run-the-application" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>To run the application, there is no need to configure your database connection in your project <code>application.properties</code> or <code>application.yml</code> files. 
+All you need is to keep the database connection active, and then run your application using CodeLens in the <em>Application.java</em> file  (<strong>Run main</strong>, <strong>Debug main</strong>, <strong>Run with Continuous Mode</strong>):</p>
+
+<p><img src="/gcn/docs/vscode-tools/images/db-features/run-db-app-from-codelens.png" alt="Running the application from CodeLens" /></p>
+
+<p>When the application is running, send an HTTP GET request to the <code>employees</code> endpoint from a new Terminal window:</p>
+
+<pre><code class="language-bash">curl localhost:8080/employees
+</code></pre>
+
+<p>The application runs seamlessly against a database configured for your project.
+Learn more about database management in VS Code in the <a href="/gcn/vscode-tools/database-features/">Database Features extension documentation</a>.</p>
+    
+      <h3 id="summary">
+        
+        
+          Summary <a href="#summary" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>This guide demonstrated how to create a Java application from an existing Oracle Autonomous Database schema from within VS Code. 
+Have established a connection to an Oracle Autonomous Database, you can create Micronaut Data entity and repository classes from an existing database schema tables, with no coding, and quickly build a simple CRUD application that lets you interact with the data stored in the database.</p>
+    
+      <h3 id="related-documentation">
+        
+        
+          Related Documentation <a href="#related-documentation" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<ul>
+  <li><a href="https://marketplace.visualstudio.com/items?itemName=oracle-labs-graalvm.micronaut">Micronaut Tools</a></li>
+  <li><a href="https://marketplace.visualstudio.com/items?itemName=oracle-labs-graalvm.gcn-database-drivers">Database Features</a></li>
+  <li><a href="https://micronaut-projects.github.io/micronaut-data/latest/guide/">Micronaut Data</a></li>
+  <li><a href="https://www.oracle.com/uk/autonomous-database/">Oracle Autonomous Database</a></li>
+</ul>
+
+      </div>
+
+      <div role="button" class="menu-btn menu-btn--sidebar js-show-sidebar" title="sweet hamburger">
+        <div class="hamburger">
+          <div class="inner"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+</div>
+
+      </main>
+
+      
+<footer class="footer footer__mobile">
+
+  <div class="container-fluid container-fluid--custom-sm">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row footer-content">
+          <div class="col-md-3 col-sm-4">
+            <h6 class="title-footer" onclick="fadeInAndOut(this)">Learn</h6>
+            <div class="grow">
+              <ul class="footer-list">
+                <li class="footer-list__item"><a href="/gcn/get-started/">Get Started</a></li>
+                <li class="footer-list__item"><a href="/gcn/guides/">Guides</a></li>
+                <li class="footer-list__item"><a href="/gcn/hands-on-labs/">Labs</a></li>
+                <li class="footer-list__github">
+                  <img class="footer__icon" src="/gcn/resources/img/footer/logo-github.svg" alt="Github icon">
+                  <a href="https://github.com/oracle/gcn">Github</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-4">
+            <h6 class="title-footer" onclick="fadeInAndOut(this)">About</h6>
+            <div class="grow">
+              <ul class="footer-list">
+                <li class="footer-list__item"><a href="/gcn/about/#gcn-support" target="blank">Commercial Support</a></li>
+                <li class="footer-list__item"><a href="https://www.graalvm.org/" target="blank">GraalVM Native Image</a></li>
+                <li class="footer-list__item"><a href="https://micronaut.io/" target="_blank">Micronaut</a></li>
+                <li class="footer-list__item"><a href="https://www.oracle.com/cloud/multicloud/what-is-multicloud/" target="_blank">Multicloud</a></li>
+                <li class="footer-list__item"><a href="https://www.oracle.com/cloud/" target="blank">Oracle Cloud Infrastructure</a></li>
+                <li class="footer-list__item"><a href="https://marketplace.visualstudio.com/items?itemName=oracle-labs-graalvm.graal-cloud-native-pack" target="blank">VS Code Tools</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-12 aligning_1024">
+            <div class="card--footer card--hovered box">
+              <div>
+                <div class="rubber-footer footer__oci-section">
+                  <p class="title-footer quickstart">Build, test, and deploy applications on Oracle Cloud Infrastructure for free</p>
+                  <a href="https://www.oracle.com/cloud/free/" target="_blank"
+                    class="btn btn-primary">Try Oracle Cloud Infrastructure Free Tier</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+          <div class="row">
+            <div class="col-sm-12">
+              <p class="copyright">
+                Copyright © 2023, Oracle and/or its affiliates. All rights reserved. Oracle and Java are
+                registered trademarks. Other names may be trademarks of their respective owners.
+              </p>
+              <div id="teconsent"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+<script>
+  function fadeInAndOut(thz) {
+    var elmt = thz.nextElementSibling;//Get the element that is below the button that
+    //was just clicked
+    if (elmt.clientHeight) {
+      elmt.style.height = 0;
+    } else {
+      var wrapper = elmt.querySelector('ul');
+      elmt.style.height = wrapper.clientHeight + "px";
+    }
+    /*
+        elmt.classList.toggle("acordianPanelHidden");//Toggle the class which changes
+        //attributes which triggers the transition CSS
+        */
+  }
+
+  // Check TRUSTe Consent for Functional or Implied Approval
+  // The if test verifies if the user has given the consent
+  if ( (oracle.truste.api.getGdprConsentDecision().consentDecision) &&
+      (oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(0) != -1 ||
+        oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(2) != -1) ) {
+
+      //The following is a sample of a Maxymiser Tag being written to the DOM
+      //If the user did not give consent, then the tag is not included and not invoked in the Browser
+      document.write('<script type="text/javascript" src="//service.maxymiser.net/cdn/oracle/js/mmcore.js"><\/script>');
+  }
+
+  // Check TRUSTe Consent for Advertising or Implied Approval
+  // The if test verifies if the user has given the consent
+  if ( (oracle.truste.api.getGdprConsentDecision().consentDecision) &&
+      (oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(0) != -1 ||
+        oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(3) != -1) ) {
+
+      //The following is a sample of a BlueKai Core Tag being written to the DOM
+      //If the user did not give consent, then the tag is not included and not invoked in the Browser
+      document.write('<script type="text/javascript">' +
+      'window.bk_async = function() { ' +
+      'BKTAG.doTag(62581, 1); }; ' +
+      '(function() { ' +
+      'var scripts = document.getElementsByTagName(\'script\')[0]; ' +
+      'var s = document.createElement(\'script\'); ' +
+      's.async = true; ' +
+      's.src = "https://tags.bkrtx.com/js/bk-coretag.js"; ' +
+      'scripts.parentNode.insertBefore(s, scripts); ' +
+      '}()); ' +
+      '<\/script>');
+  }
+</script>
+
+    </div>
+    <div class="overlay"></div>
+
+    <!-- Start SiteCatalyst code -->
+    <script language="JavaScript" src="https://www.oracle.com/us/assets/metrics/ora_otn.js"></script>
+    <!-- End SiteCatalyst code -->
+
+    <script src='/gcn/resources/lib/slick-slider/slick.min.js'></script>
+    <script src='/gcn/resources/js/main.js'></script>
+    <script src='/gcn/resources/js/ui.js'></script>
+    <script src='/gcn/resources/js/filters.js'></script>
+    <script src='/gcn/resources/js/sidebar.js'></script>
+  </body>
+</html>

@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:image" content="/gcn/resources/img/graalvm.png" />
+  <meta name="twitter:widgets:border-color" content="#55acee">
+
+  <title>
+    
+      OCI DevOps Tools
+    
+  </title>
+  <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
+  <meta name="last_modified" content="2023-09-26 09:12:07 +0000"/>
+  <link rel="stylesheet" href="/gcn/assets/main.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/gcn/resources/img/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/resources/img/favicon/site.webmanifest">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="google-site-verification" content="-vRqwa9WYn6AaQGnl88xvrLw6ac4xoKVkZkhanmlRhU" />
+  <link rel="canonical" href="https://www.graal.cloud/gcn/vscode-tools/oci-devops-tools/">
+
+  <!-- jQuery UI Tabs -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/gcn/resources/lib/jquery/jquery-ui.css">
+</head>
+
+      <script src="/gcn/resources/lib/jquery/jquery-3.6.1.min.js"></script>
+    <script src="/gcn/resources/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src='/gcn/resources/lib/sticky-sidebar/resizeSensor.js'></script>
+    <script src='/gcn/resources/lib/sticky-sidebar/sticky-sidebar.min.js'></script>
+    <script src="/gcn/resources/lib/highlight/highlight.min.js"></script>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- Add TRUSTe Consent Script and Analytics -->
+    <script async="async" type="text/javascript" src='//consent.trustarc.com/notice?domain=oracle.com&c=teconsent&js=bb&noticeType=bb&text=true&cdn=1&pcookie&gtm=1' crossorigin></script>
+    <script src="https://www.oracle.com/assets/truste-oraclelib.js"></script>
+    <!-- jQuery UI Tabs -->
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+
+  <body class="preload">
+
+    <div  class="wrapper wrapper--nofooter" >
+
+      <header  class="header header--content" 
+  role="banner">
+
+  
+
+  
+
+    <nav class="menu">
+      <div class="menu__row">
+        <div>
+          <a href="/gcn/">
+            <img class="logo-mobile" src="/gcn/resources/img/gcn-logo-01.svg" alt="Graal Cloud Native logo">
+          </a>
+        </div>
+        <div class="menu__container">
+          <ul class="menu__list">
+            <li class="menu__item">
+              <a href="/gcn/about/" class="menu__link">About</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gcn/get-started/" class="menu__link">Get Started</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gcn/modules/" class="menu__link">Modules</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gcn/guides/" class="menu__link">Guides</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gcn/hands-on-labs/" class="menu__link">Hands-On Labs</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gcn/vscode-tools/" class="menu__link">Tools</a>
+            </li>
+            <li class="menu__launch__mobile">
+              <a href="/gcn/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
+            </li>
+          </ul>
+        </div>
+        <div class="menu__launch">
+          <a href="/gcn/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
+        </div>
+      </div>
+
+      <div role="button" class="menu-btn menu-btn--menu js-show-menu" tabindex="-1" title="sweet hamburger">
+        <div class="hamburger">
+          <div class="inner"></div>
+        </div>
+      </div>
+      <button aria-label="hamburger mobile menu" class="btn btn-mobile-menu js-show-menu">
+        <div class="inner"></div>
+      </button>
+    </nav>
+
+  
+</header>
+
+<!-- <header  class="header header--content" >
+
+  
+
+  
+
+    <nav class="menu">
+      <div class="menu__row">
+        <div>
+          <a href="/gcn/graal">
+            <img class="logo-mobile" src="/gcn/resources/img/gcn-logo-01.svg" alt="Graal Cloud Native logo">
+          </a>
+        </div>
+        <div class="menu__container">
+          <ul class="menu__list">
+            <li class="menu__item">
+              <a href="/gcn/graal/#whatisgraal" class="menu__link">About</a>
+            </li>
+            <li class="menu__item">
+              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
+            </li>
+            <li class="menu__item">
+              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
+            </li>
+            <li class="menu__item">
+              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div role="button" class="menu-btn menu-btn--menu js-show-menu" tabindex="-1" title="sweet hamburger">
+        <div class="hamburger">
+          <div class="inner"></div>
+        </div>
+      </div>
+      <button aria-label="hamburger mobile menu" class="btn btn-mobile-menu js-show-menu">
+        <div class="inner"></div>
+      </button>
+    </nav>
+
+  
+</header> -->
+
+      <main  class="content"   aria-label="Content">
+        <div class="wrapper wrapper-content">
+  <article>
+  <div class="row d-flex flex-wrap">
+    <div class="col-sm-3 docsimpro col-bg">
+      <div class="sidebar-wrap">
+        <div class="sidebar">
+          <div class="menuabout">
+            <img id="sidebarClose" src="/gcn/resources/img/arrow_sidebar(close).svg" alt="Expand or collapse sidebar"
+              class="btn-color no-display">
+            <img id="sidebarOpen" src="/gcn/resources/img/arrow_sidebar.svg" alt="Expand or collapse sidebar">
+          </div>
+          
+<div class="toc-floating">
+
+
+<div class="toc-bullets">
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+
+    
+      
+        
+          <li class="toc-bullets-main">
+        
+          
+          <a href="/gcn/vscode-tools/installing-gcn-tools/" class="_icon-book">
+            Installing Graal Cloud Native Tools
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+      
+    
+      
+        
+          <li class="toc-bullets-main">
+        
+          
+          <a href="/gcn/vscode-tools/graal-cloud-native-extension-pack/" class="_icon-book">
+            Graal Cloud Native Extensions Pack
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+          
+          <li class="toc-bullets-sub">
+          
+            
+            <a href="/gcn/vscode-tools/graal-cloud-native-launcher/">
+              Graal Cloud Native Launcher
+            </a>
+          </li>
+
+          
+        
+          
+          <li class="toc-bullets-sub toc-bullets-highlight">
+          
+            
+            <a href="/gcn/vscode-tools/oci-devops-tools/">
+              OCI DevOps Tools
+            </a>
+          </li>
+
+          
+            <div>
+  <script>
+    var scriptElement = document.currentScript;
+    var div = $(scriptElement.parentElement);
+    $(window).on("load", function () {
+      $("#content-wrapper h2").each(function () {
+        var li = $("<li></li>", { class: "toc-bullets-sub toc-bullets-sub-3" });
+        var a = $("<a></a>", { href: "#" + $(this).attr("id") });
+        a.text($(this).text().replace('#', ''));
+        li.append(a);
+        li.click(function (e) {
+          e.preventDefault();
+          var target = $(a.attr('href'));
+          var scrollTo = target.offset().top - 80; // 80 - indent
+          $('html, body').animate({ scrollTop: scrollTo }, 1000);
+        });
+        div.append(li);
+      });
+    });
+  </script>
+</div>
+          
+        
+          
+          <li class="toc-bullets-sub">
+          
+            
+            <a href="/gcn/vscode-tools/database-features/">
+              Database Features
+            </a>
+          </li>
+
+          
+        
+          
+          <li class="toc-bullets-sub">
+          
+            
+            <a href="/gcn/vscode-tools/micronaut-tools/">
+              Micronaut Tools
+            </a>
+          </li>
+
+          
+        
+          
+          <li class="toc-bullets-sub">
+          
+            
+            <a href="/gcn/vscode-tools/micronaut-launch/">
+              Micronaut Launch
+            </a>
+          </li>
+
+          
+        
+      
+    
+      
+        
+          <li class="toc-bullets-main">
+        
+          
+          <a href="/gcn/vscode-guides/" class="_icon-book">
+            VS Code Guides
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<!-- <li class="search additional-search">
+  <form class="form-inline sidebar" action="/docs/search" autocomplete="on" method="get">
+    <input class="input-search sidebar" type="text" id="search-box" name="query" placeholder="Search">
+    <button type="submit sidebar" class="search-button"></button>
+  </form>
+</li> -->
+
+</div>
+  <!-- Search form -->
+  <!-- <form class="search-container" action="/docs/search" autocomplete="on" method="get">
+   <label for="search-box">Search</label>
+    <input type="text" id="search-box" name="query">
+    <button type="submit" class="searchbttn"></button>
+  </form> -->
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-9 docsmod">
+      <div id="content-wrapper" class="docs-content docs-content--with-sidebar">
+        <h1 id="oci-devops-tools">
+        
+        
+          OCI DevOps Tools
+        
+        
+      </h1>
+
+<p>The OCI DevOps Tools extension for Visual Studio Code (VS Code) provides features and tools to move and host a local Java project in the <a href="https://www.oracle.com/devops/devops-service/">Oracle Cloud Infrastructure (OCI) DevOps</a> service, and to perform cloud-side builds and deployments using the CI/CD pipelines.
+This extension will:</p>
+
+<ul>
+  <li>Create and configure an OCI DevOps project from a local Java project.</li>
+  <li>Trigger remote build and deployment pipelines from within VS Code.</li>
+  <li>Deploy built project containers to an Oracle Kubernetes Engine (OKE).</li>
+  <li>Audit Java projects’ third-party libraries for vulnerabilities.</li>
+</ul>
+    
+      <h3 id="supported-java-projects">
+        
+        
+          Supported Java Projects <a href="#supported-java-projects" class="anchor_heading">#</a>
+        
+        
+      </h3>
+<ul>
+  <li><a href="https://micronaut.io">Micronaut</a><sup>®</sup>.</li>
+  <li><a href="https://www.graal.cloud/gcn/">Graal Cloud Native</a>.</li>
+  <li>SpringBoot (the GraalVM Native Support dependency must be enabled in the project).</li>
+</ul>
+    
+      <h3 id="requirements">
+        
+        
+          Requirements <a href="#requirements" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<ul>
+  <li><a href="https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack">Extension Pack for Java</a>.</li>
+  <li><a href="https://marketplace.visualstudio.com/items?itemName=ms-kubernetes-tools.vscode-kubernetes-tools">Kubernetes</a>.</li>
+  <li><a href="https://www.graalvm.org/">GraalVM</a> 22.x, 23.0 Java 17, or higher.</li>
+  <li>Git version control system.</li>
+  <li>A Docker-API compatible container runtime such as <a href="https://docs.rancherdesktop.io/getting-started/installation/">Rancher Desktop</a> or <a href="https://www.docker.io/gettingstarted/">Docker</a>.</li>
+</ul>
+
+<blockquote>
+  <p>Note: The extension depends on <a href="https://marketplace.visualstudio.com/items?itemName=ASF.apache-netbeans-java">Apache NetBeans Language Server</a> and <a href="https://marketplace.visualstudio.com/items?itemName=oracle-labs-graalvm.graalvm-pack">GraalVM Extension Pack for Java</a>. VS Code installs these dependencies for you.</p>
+</blockquote>
+    
+      <h2 id="extension-installation">
+        
+        
+          Extension Installation <a href="#extension-installation" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>For the best experience you are recommended to install the <a href="https://marketplace.visualstudio.com/items?itemName=oracle-labs-graalvm.graal-cloud-native-pack">Graal Cloud Native Extensions Pack</a> which contains this extension and others.</p>
+
+<ol>
+  <li>Navigate to Extensions in the left-hand side Activity Bar.</li>
+  <li>Search for “Graal Cloud Native Extensions Pack” in the search field.</li>
+  <li>Once found, click <strong>Install</strong>. It installs the pack from the <a href="https://marketplace.visualstudio.com/items?itemName=oracle-labs-graalvm.oci-devops">VS Code Marketplace</a>.</li>
+  <li>Reload when required.</li>
+</ol>
+    
+      <h2 id="usage">
+        
+        
+          Usage <a href="#usage" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>If you are working with a Graal Cloud Native (or Spring Boot) project, the extension sets up build pipelines to build containers for your Java-based applications and native executables. 
+The extension also creates deployment pipelines that deploy these containers to an OKE cluster.</p>
+
+<p>To get started, configure access to OCI (if you have not yet):</p>
+<ul>
+  <li><a href="https://www.oracle.com/cloud/free/">Create an Oracle Cloud account</a> (free tier is supported)</li>
+  <li><a href="https://docs.oracle.com/iaas/Content/API/Concepts/apisigningkey.htm#two">Setup an API Key</a> to access OCI</li>
+  <li><a href="https://docs.oracle.com/iaas/Content/API/Concepts/sdkconfig.htm">Create an <em>.oci/config</em></a> cloud access configuration file</li>
+  <li><a href="https://docs.oracle.com/iaas/Content/API/Concepts/cliconcepts.htm">Install the OCI CLI</a> (needed for the OKE local access)</li>
+</ul>
+
+<p>Having done the above, and with a <a href="https://graal.cloud/">Graal Cloud Native</a>, or a <a href="https://spring.io">Spring Boot</a>, project, you can can now create an Oracle Cloud Infrastructure DevOps project.</p>
+    
+      <h2 id="create-an-oci-devops-project">
+        
+        
+          Create an OCI DevOps Project <a href="#create-an-oci-devops-project" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<ol>
+  <li>
+    <p>In VS Code Explorer, expand the <strong>OCI DevOps</strong> panel and click <strong>Create OCI DevOps Project</strong>. It pushes your project from the local system to a newly created DevOps project in OCI:</p>
+
+    <p><img src="/gcn/docs/vscode-tools/images/create_devops_prj.png" alt="devops-ci-jobs.png" /></p>
+  </li>
+  <li>
+    <p>Follow the prompts to complete creating the OCI DevOps project:</p>
+    <ul>
+      <li>Choose the OCI profile to be used for OCI access (if multiple profiles are defined).</li>
+      <li>Select your compartment in OCI. Your DevOps project will be created there.</li>
+      <li>Enter a name for the new DevOps Project (this must be unique within the tenancy).</li>
+      <li>Depending on your setup, you might be asked to:
+        <ul>
+          <li>Confirm the SSH keys for GIT operations and add the OCI GIT server to your SSH <strong>config</strong> and <strong>known_hosts</strong> files.</li>
+          <li>
+            <p>Select an existing <a href="https://www.oracle.com/cloud/cloud-native/container-engine-kubernetes/">Oracle Container Engine for Kubernetes (OKE)</a> cluster, or create a new one using the <a href="https://docs.oracle.com/iaas/Content/ContEng/Tasks/contengcreatingclusterusingoke_topic-Using_the_Console_to_create_a_Quick_Cluster_with_Default_Settings.htm#create-quick-cluster">OKE Quick Create</a> action.</p>
+
+            <p><img src="/gcn/docs/vscode-tools/images/oke_quick_create.png" alt="oke_quick_create.png" /></p>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <p>When the new OKE cluster is created, configure local access to the OKE Kubernetes cluster using the <code>VNC-Native Public Endpoint</code>. This is done using the Oracle Cloud Infrastructure CLI and you may have already done this in the prerequisite steps.</p>
+
+        <p><img src="/gcn/docs/vscode-tools/images/set_oke_access.png" alt="set_oke_access.png" /></p>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<p>Once an OCI DevOps Project is created, the OCI DevOps view is populated with items representing remote build and deployment pipelines for each project container artifact.</p>
+
+<p><img src="/gcn/docs/vscode-tools/images/devops-ci-jobs.png" alt="devops-ci-jobs.png" /></p>
+    
+      <h2 id="build-and-deploy-project-artifacts">
+        
+        
+          Build and Deploy Project Artifacts <a href="#build-and-deploy-project-artifacts" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>Once an OCI DevOps Project is created, the OCI DevOps view is populated with items representing remote build and deployment pipelines for each project container artifact.</p>
+
+<p>To <em>build</em> a project container artifact, invoke the <strong>Run Build Pipeline</strong> action for the appropriate build pipeline item. 
+The remote build pipeline is started and VS Code displays its state and build log. 
+After a successful build, either use the <strong>Pull Container Image</strong> action to pull the resulting container artifact locally, or proceed to deploying the container to OKE.</p>
+
+<p>To <em>deploy</em> a built container artifact, invoke the <strong>Run Deployment Pipeline</strong> action for the appropriate deployment pipeline item. 
+The remote deployment pipeline is started and VS Code displays its state and deployment log. 
+After a successful deployment, use the <strong>Open In Browser</strong> action to set up a port forward from OKE and open the deployed application in your web browser.</p>
+
+<p><img src="/gcn/docs/vscode-tools/images/oke_test_app.png" alt="Build and Deployment Pipelines" /></p>
+
+<p>The build specification files for each pipeline are stored in <em>.devops/</em>. 
+If you update the build specification file, commit and push the change to the DevOps-hosted repository, the build pipelines will be updated to reflect this change. 
+Note that the build pipelines run on custom-sized build runners in order to ensure there is sufficient memory to build all native executables using <a href="https://www.graalvm.org/">GraalVM Native Image</a>. 
+These can be customized within the Oracle Cloud Console.</p>
+    
+      <h2 id="kubernetes-deployment-with-oke">
+        
+        
+          Kubernetes Deployment with OKE <a href="#kubernetes-deployment-with-oke" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>When the build pipeline succeeds, the container image can be deployed to <a href="https://www.oracle.com/cloud/cloud-native/container-engine-kubernetes/">Oracle Container Engine for Kubernetes (OKE)</a> using the <strong>Deploy OCI Native Executable Container to OKE</strong> deployment pipeline. 
+When completed, the application can be tested in a browser by selecting the action <strong>Open in Browser</strong>.
+It sets up the port forwarding, using your local <code>kubectl</code> tool, from OKE to the <em>localhost</em> as indicated by the VS Code status bar:</p>
+
+<p><img src="/gcn/docs/vscode-tools/images/kubectl_port_fwd.png" alt="kubectl port forwarding active" />.</p>
+    
+      <h2 id="perform-vulnerability-audits">
+        
+        
+          Perform Vulnerability Audits <a href="#perform-vulnerability-audits" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>As soon as a new DevOps Project is created, its third-party libraries are audited for vulnerabilities.
+You can invoke the audit on demand using the <strong>OCI DevOps: Audit Project Vulnerability</strong> command, or from a Java Project’s view using the <strong>Run Project Audit</strong> action.</p>
+
+<p>You can also perform vulnerability audits for the Maven and Gradle Java projects not added to an OCI DevOps Project.
+Use the <strong>Devops: Shared Knowledge Base Ocid</strong> and <strong>Devops: Shared Knowledge Base Profile</strong> commands to configure the shared Knowledge Base for performing these audits.</p>
+
+<p><img src="/gcn/docs/vscode-tools/images/project_audit.png" alt="Project Audits action and reported errors" /></p>
+
+<p>When your project is moved into the DevOps service in OCI, it is scanned for vulnerabilities by the <a href="https://docs.oracle.com/iaas/Content/application-dependency-management/home.htm">Application Dependency Management service</a>.
+The results of this audit can be displayed within the <strong>OCI DevOps</strong> panel by clicking on the plus icon and selecting <strong>Add Knowledge Base</strong> from the displayed menu.</p>
+    
+      <h2 id="display-related-oci-devops-resources">
+        
+        
+          Display Related OCI DevOps Resources <a href="#display-related-oci-devops-resources" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>Initially, the only the items displayed in the OCI DevOps view are for build and deployment pipelines related to project container artifacts.
+You can manually add more resources using the <strong>Add OCI DevOps Resource…</strong> action displayed in the view caption.</p>
+
+<p><img src="/gcn/docs/vscode-tools/images/more-ci-jobs.png" alt="more-ci-jobs.png" /></p>
+    
+      <h3 id="build-pipelines">
+        
+        
+          Build Pipelines <a href="#build-pipelines" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>These additional build pipelines are preconfigured for the Java project and can be manually added to the OCI DevOps view:</p>
+<ul>
+  <li><strong>Build Fat Jar</strong>: builds a single application JAR file</li>
+  <li><strong>Build Native Executable</strong>: builds a Linux x86 native executable of an application</li>
+</ul>
+
+<p>You can also add and control externally-created build pipelines using this action.</p>
+    
+      <h3 id="deployment-pipelines">
+        
+        
+          Deployment Pipelines <a href="#deployment-pipelines" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>All preconfigured deployment pipelines are visible in the OCI DevOps view by default.
+You can add and control externally-created deployment pipelines using this action.
+You can also create and add a new deployment pipeline to the view, deploying a container to the OKE.</p>
+    
+      <h3 id="artifact-repository">
+        
+        
+          Artifact Repository <a href="#artifact-repository" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>You can add an artifact repository configured for the DevOps Project to display the non-container artifacts built for the project.
+These actions are available for an Artifact Repository:</p>
+<ul>
+  <li>Display non-container artifacts, including build date and size</li>
+  <li>Download built non-container artifacts locally</li>
+</ul>
+    
+      <h3 id="container-repository">
+        
+        
+          Container Repository <a href="#container-repository" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>You can add container repositories configured for a DevOps project to display the container images built for the project. These actions are available for a Container Repository:</p>
+<ul>
+  <li>Display container repository and the images, including a build date</li>
+  <li>Pull container images locally</li>
+</ul>
+    
+      <h3 id="knowledge-base">
+        
+        
+          Knowledge Base <a href="#knowledge-base" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>You can add a knowledge base configured for a DevOps project to display the vulnerability audits performed for the project. These actions are available for a Knowledge Base:</p>
+<ul>
+  <li>Display vulnerability reports, including an audit date and result</li>
+  <li>Shortcut to a detailed online report</li>
+</ul>
+    
+      <h2 id="settings">
+        
+        
+          Settings <a href="#settings" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Default Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>oci.devops.showToolsPage</code></td>
+      <td>Show the OCI DevOps Tools page on extension activation.</td>
+      <td><code>true</code></td>
+    </tr>
+    <tr>
+      <td><code>oci.devops.sharedKnowledgeBaseOcid</code></td>
+      <td>An OCID of the shared knowledge base for audits of Java projects, not added to an OCI DevOps project.</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>oci.devops.sharedKnowledgeBaseProfile</code></td>
+      <td>An OCI profile to access the shared knowledge base for audits of Java projects, not added to an OCI DevOps project.</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>oci.devops.bypassDeliverArtifactsStage</code></td>
+      <td>Bypass Deliver artifacts stage in Build pipelines producing Generic artifacts.</td>
+      <td><code>true</code></td>
+    </tr>
+    <tr>
+      <td><code>oci.devops.pushLocalSourcesToOciConfirmedPermanently</code></td>
+      <td>Restore confirmations before pushing local sources to a remote OCI code repository.</td>
+      <td><code>false</code></td>
+    </tr>
+  </tbody>
+</table>
+    
+      <h3 id="proxy-setup">
+        
+        
+          Proxy Setup <a href="#proxy-setup" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>When working behind a firewall over a proxy, Proxy Support in VS Code has to be turned on. In VS Code <strong>Settings</strong>, set <strong>Http: Proxy Support</strong> to <strong>ON</strong>. 
+Subsequently, when working without proxy, set this <strong>OFF</strong>.
+Learn more <a href="/gcn/vscode-guides/use-gcn-tools-on-vpn/">here</a>.</p>
+
+<p><img src="/gcn/docs/vscode-tools/images/proxy.png" alt="HTTP Proxy in VSCode" /></p>
+
+<p>Many tools for working with Java projects, such as Maven, Gradle, <code>kubectl</code>, and <code>docker</code> (if used), may require proxy configuration.</p>
+    
+      <h3 id="known-issues">
+        
+        
+          <a name="known-issues"></a>Known Issues <a href="#known-issues" class="anchor_heading">#</a>
+        
+        
+      </h3>
+<ul>
+  <li>Micronaut 4.0.0 Gradle project has a known <a href="https://github.com/micronaut-projects/micronaut-gradle-plugin/issues/781">issue #781</a> when building with GraalVM Native Image. This issue was already fixed in Micronaut 4.0.1 <code>aot</code> build plugin. Open <code>build.gradle</code> file from your project and update the <code>aot</code> plugin to version 4.0.1, e.g. <code>id("io.micronaut.aot") version "4.0.1"</code>. Then push updated <code>build.gradle</code> to OCI GIT or re-deploy the project.</li>
+</ul>
+    
+      <h3 id="feedback">
+        
+        
+          Feedback <a href="#feedback" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>If you have suggestions for new features, or if you have found a bug:</p>
+
+<ul>
+  <li><a href="https://github.com/graalvm/vscode-extensions/issues/new?labels=enhancement">Request a feature</a></li>
+  <li><a href="https://github.com/graalvm/vscode-extensions/issues/new?labels=bug">File a bug</a></li>
+</ul>
+    
+      <h3 id="related-documentation">
+        
+        
+          Related Documentation <a href="#related-documentation" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<ul>
+  <li><a href="/gcn/vscode-guides/setting-oci-devops-pipeline-in-vscode/">Setting OCI DevOps Build and Development Pipeline in VS Code​</a></li>
+  <li><a href="https://www.oracle.com/devops/devops-service/">OCI DevOps service</a></li>
+  <li><a href="https://www.oracle.com/cloud/cloud-native/container-engine-kubernetes/">Oracle Container Engine for Kubernetes (OKE)</a></li>
+</ul>
+
+      </div>
+
+      <div role="button" class="menu-btn menu-btn--sidebar js-show-sidebar" title="sweet hamburger">
+        <div class="hamburger">
+          <div class="inner"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+</div>
+
+      </main>
+
+      
+<footer class="footer footer__mobile">
+
+  <div class="container-fluid container-fluid--custom-sm">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row footer-content">
+          <div class="col-md-3 col-sm-4">
+            <h6 class="title-footer" onclick="fadeInAndOut(this)">Learn</h6>
+            <div class="grow">
+              <ul class="footer-list">
+                <li class="footer-list__item"><a href="/gcn/get-started/">Get Started</a></li>
+                <li class="footer-list__item"><a href="/gcn/guides/">Guides</a></li>
+                <li class="footer-list__item"><a href="/gcn/hands-on-labs/">Labs</a></li>
+                <li class="footer-list__github">
+                  <img class="footer__icon" src="/gcn/resources/img/footer/logo-github.svg" alt="Github icon">
+                  <a href="https://github.com/oracle/gcn">Github</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-4">
+            <h6 class="title-footer" onclick="fadeInAndOut(this)">About</h6>
+            <div class="grow">
+              <ul class="footer-list">
+                <li class="footer-list__item"><a href="/gcn/about/#gcn-support" target="blank">Commercial Support</a></li>
+                <li class="footer-list__item"><a href="https://www.graalvm.org/" target="blank">GraalVM Native Image</a></li>
+                <li class="footer-list__item"><a href="https://micronaut.io/" target="_blank">Micronaut</a></li>
+                <li class="footer-list__item"><a href="https://www.oracle.com/cloud/multicloud/what-is-multicloud/" target="_blank">Multicloud</a></li>
+                <li class="footer-list__item"><a href="https://www.oracle.com/cloud/" target="blank">Oracle Cloud Infrastructure</a></li>
+                <li class="footer-list__item"><a href="https://marketplace.visualstudio.com/items?itemName=oracle-labs-graalvm.graal-cloud-native-pack" target="blank">VS Code Tools</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-12 aligning_1024">
+            <div class="card--footer card--hovered box">
+              <div>
+                <div class="rubber-footer footer__oci-section">
+                  <p class="title-footer quickstart">Build, test, and deploy applications on Oracle Cloud Infrastructure for free</p>
+                  <a href="https://www.oracle.com/cloud/free/" target="_blank"
+                    class="btn btn-primary">Try Oracle Cloud Infrastructure Free Tier</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+          <div class="row">
+            <div class="col-sm-12">
+              <p class="copyright">
+                Copyright © 2023, Oracle and/or its affiliates. All rights reserved. Oracle and Java are
+                registered trademarks. Other names may be trademarks of their respective owners.
+              </p>
+              <div id="teconsent"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+<script>
+  function fadeInAndOut(thz) {
+    var elmt = thz.nextElementSibling;//Get the element that is below the button that
+    //was just clicked
+    if (elmt.clientHeight) {
+      elmt.style.height = 0;
+    } else {
+      var wrapper = elmt.querySelector('ul');
+      elmt.style.height = wrapper.clientHeight + "px";
+    }
+    /*
+        elmt.classList.toggle("acordianPanelHidden");//Toggle the class which changes
+        //attributes which triggers the transition CSS
+        */
+  }
+
+  // Check TRUSTe Consent for Functional or Implied Approval
+  // The if test verifies if the user has given the consent
+  if ( (oracle.truste.api.getGdprConsentDecision().consentDecision) &&
+      (oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(0) != -1 ||
+        oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(2) != -1) ) {
+
+      //The following is a sample of a Maxymiser Tag being written to the DOM
+      //If the user did not give consent, then the tag is not included and not invoked in the Browser
+      document.write('<script type="text/javascript" src="//service.maxymiser.net/cdn/oracle/js/mmcore.js"><\/script>');
+  }
+
+  // Check TRUSTe Consent for Advertising or Implied Approval
+  // The if test verifies if the user has given the consent
+  if ( (oracle.truste.api.getGdprConsentDecision().consentDecision) &&
+      (oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(0) != -1 ||
+        oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(3) != -1) ) {
+
+      //The following is a sample of a BlueKai Core Tag being written to the DOM
+      //If the user did not give consent, then the tag is not included and not invoked in the Browser
+      document.write('<script type="text/javascript">' +
+      'window.bk_async = function() { ' +
+      'BKTAG.doTag(62581, 1); }; ' +
+      '(function() { ' +
+      'var scripts = document.getElementsByTagName(\'script\')[0]; ' +
+      'var s = document.createElement(\'script\'); ' +
+      's.async = true; ' +
+      's.src = "https://tags.bkrtx.com/js/bk-coretag.js"; ' +
+      'scripts.parentNode.insertBefore(s, scripts); ' +
+      '}()); ' +
+      '<\/script>');
+  }
+</script>
+
+    </div>
+    <div class="overlay"></div>
+
+    <!-- Start SiteCatalyst code -->
+    <script language="JavaScript" src="https://www.oracle.com/us/assets/metrics/ora_otn.js"></script>
+    <!-- End SiteCatalyst code -->
+
+    <script src='/gcn/resources/lib/slick-slider/slick.min.js'></script>
+    <script src='/gcn/resources/js/main.js'></script>
+    <script src='/gcn/resources/js/ui.js'></script>
+    <script src='/gcn/resources/js/filters.js'></script>
+    <script src='/gcn/resources/js/sidebar.js'></script>
+  </body>
+</html>

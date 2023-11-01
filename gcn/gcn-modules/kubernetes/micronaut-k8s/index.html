@@ -1,0 +1,3275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:image" content="/gcn/resources/img/graalvm.png" />
+  <meta name="twitter:widgets:border-color" content="#55acee">
+
+  <title>
+    
+      Deploy a Micronaut Microservices Application to a Local Kubernetes Cluster
+    
+  </title>
+  <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
+  <meta name="last_modified" content="2023-09-15 14:16:31 +0000"/>
+  <link rel="stylesheet" href="/gcn/assets/main.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/gcn/resources/img/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/resources/img/favicon/site.webmanifest">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="google-site-verification" content="-vRqwa9WYn6AaQGnl88xvrLw6ac4xoKVkZkhanmlRhU" />
+  <link rel="canonical" href="https://www.graal.cloud/gcn/gcn-modules/kubernetes/micronaut-k8s/">
+
+  <!-- jQuery UI Tabs -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/gcn/resources/lib/jquery/jquery-ui.css">
+</head>
+
+      <script src="/gcn/resources/lib/jquery/jquery-3.6.1.min.js"></script>
+    <script src="/gcn/resources/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src='/gcn/resources/lib/sticky-sidebar/resizeSensor.js'></script>
+    <script src='/gcn/resources/lib/sticky-sidebar/sticky-sidebar.min.js'></script>
+    <script src="/gcn/resources/lib/highlight/highlight.min.js"></script>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- Add TRUSTe Consent Script and Analytics -->
+    <script async="async" type="text/javascript" src='//consent.trustarc.com/notice?domain=oracle.com&c=teconsent&js=bb&noticeType=bb&text=true&cdn=1&pcookie&gtm=1' crossorigin></script>
+    <script src="https://www.oracle.com/assets/truste-oraclelib.js"></script>
+    <!-- jQuery UI Tabs -->
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+
+  <body class="preload">
+
+    <div  class="wrapper wrapper--nofooter" >
+
+      <header  class="header header--content" 
+  role="banner">
+
+  
+
+  
+
+    <nav class="menu">
+      <div class="menu__row">
+        <div>
+          <a href="/gcn/">
+            <img class="logo-mobile" src="/gcn/resources/img/gcn-logo-01.svg" alt="Graal Cloud Native logo">
+          </a>
+        </div>
+        <div class="menu__container">
+          <ul class="menu__list">
+            <li class="menu__item">
+              <a href="/gcn/about/" class="menu__link">About</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gcn/get-started/" class="menu__link">Get Started</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gcn/modules/" class="menu__link">Modules</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gcn/guides/" class="menu__link">Guides</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gcn/hands-on-labs/" class="menu__link">Hands-On Labs</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gcn/vscode-tools/" class="menu__link">Tools</a>
+            </li>
+            <li class="menu__launch__mobile">
+              <a href="/gcn/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
+            </li>
+          </ul>
+        </div>
+        <div class="menu__launch">
+          <a href="/gcn/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
+        </div>
+      </div>
+
+      <div role="button" class="menu-btn menu-btn--menu js-show-menu" tabindex="-1" title="sweet hamburger">
+        <div class="hamburger">
+          <div class="inner"></div>
+        </div>
+      </div>
+      <button aria-label="hamburger mobile menu" class="btn btn-mobile-menu js-show-menu">
+        <div class="inner"></div>
+      </button>
+    </nav>
+
+  
+</header>
+
+<!-- <header  class="header header--content" >
+
+  
+
+  
+
+    <nav class="menu">
+      <div class="menu__row">
+        <div>
+          <a href="/gcn/graal">
+            <img class="logo-mobile" src="/gcn/resources/img/gcn-logo-01.svg" alt="Graal Cloud Native logo">
+          </a>
+        </div>
+        <div class="menu__container">
+          <ul class="menu__list">
+            <li class="menu__item">
+              <a href="/gcn/graal/#whatisgraal" class="menu__link">About</a>
+            </li>
+            <li class="menu__item">
+              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
+            </li>
+            <li class="menu__item">
+              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
+            </li>
+            <li class="menu__item">
+              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div role="button" class="menu-btn menu-btn--menu js-show-menu" tabindex="-1" title="sweet hamburger">
+        <div class="hamburger">
+          <div class="inner"></div>
+        </div>
+      </div>
+      <button aria-label="hamburger mobile menu" class="btn btn-mobile-menu js-show-menu">
+        <div class="inner"></div>
+      </button>
+    </nav>
+
+  
+</header> -->
+
+      <main  class="content"   aria-label="Content">
+        <div class="wrapper wrapper-content">
+  <article>
+  <div class="row d-flex flex-wrap">
+    <div class="col-sm-3 docsimpro col-bg">
+      <div class="sidebar-wrap">
+        <div class="sidebar">
+          <div class="menuabout">
+            <img id="sidebarClose" src="/gcn/resources/img/arrow_sidebar(close).svg" alt="Expand or collapse sidebar"
+              class="btn-color no-display">
+            <img id="sidebarOpen" src="/gcn/resources/img/arrow_sidebar.svg" alt="Expand or collapse sidebar">
+          </div>
+          
+<div class="toc-floating">
+
+
+<div class="toc-bullets">
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+
+    
+      
+        
+          <li class="toc-bullets-main">
+        
+          
+          <a href="/gcn/docs/gcn-modules/kubernetes/" class="_icon-book">
+            Kubernetes
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+          
+          <li class="toc-bullets-sub toc-bullets-highlight">
+          
+            
+            <a href="/gcn/gcn-modules/kubernetes/micronaut-k8s/">
+              Deploy a Micronaut Microservices Application to a Local Kubernetes Cluster
+            </a>
+          </li>
+
+          
+            <div>
+  <script>
+    var scriptElement = document.currentScript;
+    var div = $(scriptElement.parentElement);
+    $(window).on("load", function () {
+      $("#content-wrapper h2").each(function () {
+        var li = $("<li></li>", { class: "toc-bullets-sub toc-bullets-sub-3" });
+        var a = $("<a></a>", { href: "#" + $(this).attr("id") });
+        a.text($(this).text().replace('#', ''));
+        li.append(a);
+        li.click(function (e) {
+          e.preventDefault();
+          var target = $(a.attr('href'));
+          var scrollTo = target.offset().top - 80; // 80 - indent
+          $('html, body').animate({ scrollTop: scrollTo }, 1000);
+        });
+        div.append(li);
+      });
+    });
+  </script>
+</div>
+          
+        
+      
+    
+  
+
+<!-- <li class="search additional-search">
+  <form class="form-inline sidebar" action="/docs/search" autocomplete="on" method="get">
+    <input class="input-search sidebar" type="text" id="search-box" name="query" placeholder="Search">
+    <button type="submit sidebar" class="search-button"></button>
+  </form>
+</li> -->
+
+</div>
+  <!-- Search form -->
+  <!-- <form class="search-container" action="/docs/search" autocomplete="on" method="get">
+   <label for="search-box">Search</label>
+    <input type="text" id="search-box" name="query">
+    <button type="submit" class="searchbttn"></button>
+  </form> -->
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-9 docsmod">
+      <div id="content-wrapper" class="docs-content docs-content--with-sidebar">
+        <h1 id="deploy-a-micronaut-microservices-application-to-a-local-kubernetes-cluster">
+        
+        
+          Deploy a Micronaut Microservices Application to a Local Kubernetes Cluster
+        
+        
+      </h1>
+
+<p>This guide shows how to create a Micronaut application consisting of three microservices, build containerized versions of the microservices, and deploy them with <a href="https://kubernetes.io/">Kubernetes</a>. Thanks to the <a href="https://micronaut-projects.github.io/micronaut-kubernetes/snapshot/guide/">Micronaut Kubernetes module</a>, you can connect the microservices using Kubernetes Service Discovery and Distributed Configuration.</p>
+
+<blockquote>
+  <p><a href="https://kubernetes.io/docs/home/">Kubernetes</a> is a portable, extensible, open source platform for managing containerized workloads and services, that facilitates both declarative configuration and automation. It has a large, rapidly growing ecosystem. Kubernetes services, support, and tools are widely available.</p>
+</blockquote>
+    
+      <h3 id="prerequisites">
+        
+        
+          Prerequisites <a href="#prerequisites" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<ul>
+  <li>JDK 17 or higher. See <a href="/gcn/get-started/setting-up-desktop/">Setting up Your Desktop</a>.</li>
+  <li>A Docker-API compatible container runtime such as <a href="https://docs.rancherdesktop.io/getting-started/installation/">Rancher Desktop</a> or <a href="https://www.docker.io/gettingstarted/">Docker</a> installed to run MySQL and to run tests using <a href="https://www.testcontainers.org">Testcontainers</a>.</li>
+  <li>A local Kubernetes cluster. This guide uses <a href="https://minikube.sigs.k8s.io/docs/">Minikube</a>.</li>
+</ul>
+    
+      <h4 id="a-note-regarding-your-development-environment">
+        
+        
+          A note regarding your development environment
+        
+        
+      </h4>
+
+<p>Consider using Visual Studio Code that provides native support for developing applications with the <a href="/gcn/vscode-tools/using-gcn-vscode-tools/">Graal Cloud Native Tools extension</a>.</p>
+
+<blockquote>
+  <p>Note: If you use IntelliJ IDEA, <a href="/gcn/resources/img/annotationprocessorsintellij.png">enable annotation processing</a>.</p>
+</blockquote>
+
+<p>Follow the steps below to create the application from scratch. However, you can also download the completed example in Java:</p>
+
+<div id="tabs-doc1">
+    <ul>
+        <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <p><a href="/gcn/docs/gcn-modules/kubernetes/archives/kubernetes-demo-java-gradle.zip">Gradle Micronaut Kubernetes Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" /></a>
+        </p>
+    </div>
+    <div id="maven">
+        <p><a href="/gcn/docs/gcn-modules/kubernetes/archives/kubernetes-demo-java-maven.zip">Maven Micronaut Kubernetes Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" /></a>
+        </p>
+    </div>
+</div>
+    
+      <h2 id="note-on-the-sample-application">
+        
+        
+          Note on the Sample Application <a href="#note-on-the-sample-application" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>The application consists of three microservices:</p>
+
+<ul>
+  <li><em>users</em> - contains customer data that can place orders on items, also a new customer can be created. It requires HTTP basic authentication to access it.</li>
+  <li><em>orders</em> - contains all orders that customers have created as well as available items that customers can order. This microservice also enables the creation of new orders. It requires HTTP basic authentication to access it.</li>
+  <li><em>api</em> - acts as a gateway to the <em>orders</em> and <em>users</em> services. It combines results from both services and checks data when a customer creates a new order.</li>
+</ul>
+
+<p>Initially, the URLs of the <em>orders</em> and <em>users</em> services will be included in the code for the <em>api</em> microservice. Additionally, you will hard-code the credentials (username and password) into every microservice configuration that are required for HTTP basic authentication.</p>
+
+<p>The second part of this guide describes how to use Kubernetes Discovery Service and Kubernetes Configuration Maps to dynamically resolve the URLs of the <em>orders</em> and <em>users</em> microservices and retrieve authentication credentials. The microservices call the Kubernetes API to register when they start up and then resolve placeholders inside the microservices’ configurations.</p>
+    
+      <h2 id="1-create-the-users-microservice">
+        
+        
+          1. Create the <em>Users</em> Microservice <a href="#1-create-the-users-microservice" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>Create the <em>users</em> microservice using the GCN Launcher.</p>
+
+<ol>
+  <li>
+    <p>Open the <a href="/gcn/launcher/?advanced=true">GCN Launcher in advanced mode</a>.</p>
+  </li>
+  <li>Create a new project using the following selections.
+    <ul>
+      <li><strong>Project Type</strong>: <em>Application</em> (Default)</li>
+      <li><strong>Project name</strong>: <em>users</em></li>
+      <li><strong>Base Package</strong>: <em>com.example</em> (Default)</li>
+      <li><strong>Clouds</strong>: uncheck the selection</li>
+      <li><strong>Language</strong>: <em>Java</em> (Default)</li>
+      <li><strong>Build Tool</strong>: <em>Gradle (Groovy)</em> or <em>Maven</em></li>
+      <li><strong>Test Framework</strong>: <em>JUnit</em> (Default)</li>
+      <li><strong>Java Version</strong>: <em>17</em> (Default)</li>
+      <li><strong>Micronaut Version</strong>: (Default)</li>
+      <li><strong>Cloud Services</strong>: <em>Kubernetes</em></li>
+      <li><strong>Features</strong>: <em>GraalVM Native Image</em>, <em>Kubernetes Distributed Configuration</em>, <em>Kubernetes Service Discovery</em>, <em>Kubernetes Support</em>, <em>Micronaut Management</em>, <em>Micronaut Security</em>, and <em>Micronaut Serialization Jackson Core</em></li>
+      <li><strong>Sample Code</strong>: <em>No</em></li>
+    </ul>
+  </li>
+  <li>Click <strong>Generate Project</strong>. GCN Launcher creates a directory named <em>users</em> containing an application with a package named <code>com.example</code>. The application ZIP file will be downloaded in your default downloads directory. Unzip it, open in your code editor, and proceed to the next steps.</li>
+</ol>
+
+<p>Alternatively, use the <a href="/gcn/get-started/using-gcn-cli/">GCN CLI</a> as follows:</p>
+
+<div id="tabs-doc2">
+  <ul>
+    <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
+    <li class="tabs-maven"><a href="#maven">Maven</a></li>
+  </ul>
+  <div id="gradle">
+    <pre><code class="language-bash">gcn create-app com.example.users \
+    --services=k8s \
+    --features=config-kubernetes,discovery-kubernetes,management,security,serialization-jackson,kubernetes,graalvm \
+    --build=gradle \
+    --lang=java</code></pre>
+  </div>
+  <div id="maven">
+    <pre><code class="language-bash">gcn create-app com.example.users \
+    --services=k8s \
+    --features=config-kubernetes,discovery-kubernetes,management,security,serialization-jackson,kubernetes,graalvm \
+    --build=maven \
+    --lang=java</code></pre>
+  </div>
+</div>
+    
+      <h3 id="11-controllers-in-the-users-microservice">
+        
+        
+          1.1. Controllers in the <em>Users</em> Microservice <a href="#11-controllers-in-the-users-microservice" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<ol>
+  <li>
+    <p>The launcher created a <code>UsersController</code> class to handle incoming HTTP requests for the <em>users</em> microservice in a file named <em>users/src/main/java/com/example/controllers/UsersController.java</em>:</p>
+
+    <pre><code class="language-java"> package com.example.controllers;
+
+ import com.example.models.User;
+ import io.micronaut.http.HttpStatus;
+ import io.micronaut.http.annotation.Body;
+ import io.micronaut.http.annotation.Controller;
+ import io.micronaut.http.annotation.Get;
+ import io.micronaut.http.annotation.Post;
+ import io.micronaut.http.exceptions.HttpStatusException;
+ import io.micronaut.security.annotation.Secured;
+ import io.micronaut.security.rules.SecurityRule;
+ import io.micronaut.validation.Validated;
+ import jakarta.validation.Valid;
+ import jakarta.validation.constraints.NotNull;
+
+ import java.util.ArrayList;
+ import java.util.List;
+ import java.util.Optional;
+
+ @Controller("/users") // &lt;1&gt;
+ @Secured(SecurityRule.IS_AUTHENTICATED) // &lt;2&gt;
+ @Validated
+ class UsersController {
+     List&lt;User&gt; persons = new ArrayList&lt;&gt;();
+
+     @Post // &lt;3&gt;
+     public User add(@Body @Valid User user) {
+         Optional&lt;User&gt; existingUser = findByUsername(user.username());
+
+         if (existingUser.isPresent()) {
+             throw new HttpStatusException(HttpStatus.CONFLICT, "User with provided username already exists");
+         }
+
+         User newUser = new User(persons.size() + 1, user.firstName(), user.lastName(), user.username());
+         persons.add(newUser);
+         return newUser;
+     }
+
+     @Get("/{id}") // &lt;4&gt;
+     public User findById(int id) {
+         return persons.stream()
+                 .filter(it -&gt; it.id().equals(id))
+                 .findFirst().orElse(null);
+     }
+
+     @Get // &lt;5&gt;
+     public List&lt;User&gt; getUsers() {
+         return persons;
+     }
+
+     Optional&lt;User&gt; findByUsername(@NotNull String username) {
+         return persons.stream()
+                 .filter(it -&gt; it.username().equals(username))
+                 .findFirst();
+     }
+
+ }
+</code></pre>
+
+    <p><strong>1</strong> The class is defined as a controller with the <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Controller.html"><code>@Controller</code></a> annotation mapped to the path <code>/users</code>.</p>
+
+    <p><strong>2</strong> Annotate with <code>io.micronaut.security.Secured</code> to configure secured access. The <code>isAuthenticated()</code> expression will allow access only to authenticated users.</p>
+
+    <p><strong>3</strong> The <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Post.html"><code>@Post</code></a> annotation maps the <code>add</code> method to an HTTP POST request on <code>/users</code>.</p>
+
+    <p><strong>4</strong> The <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Get.html"><code>@Get</code></a> annotation maps the <code>findById</code> method to an HTTP GET request on <code>/users/{id}</code>.</p>
+
+    <p><strong>5</strong> The <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Get.html"><code>@Get</code></a> annotation maps the <code>getUsers</code> method to an HTTP GET request on <code>/users</code>.</p>
+  </li>
+  <li>
+    <p>The launcher created a <code>User</code> record to represent the customer in a file named <em>users/src/main/java/com/example/models/User.java</em>, as follows:</p>
+
+    <pre><code class="language-java"> package com.example.models;
+
+ import com.fasterxml.jackson.annotation.JsonProperty;
+ import io.micronaut.core.annotation.Nullable;
+ import io.micronaut.serde.annotation.Serdeable;
+
+ import jakarta.validation.constraints.Max;
+ import jakarta.validation.constraints.NotBlank;
+
+ @Serdeable // &lt;1&gt;
+ public record User(
+         @Nullable @Max(10000) Integer id, // &lt;2&gt;
+         @NotBlank @JsonProperty("first_name") String firstName,
+         @NotBlank @JsonProperty("last_name") String lastName,
+         String username
+ ) {
+ }
+</code></pre>
+
+    <p><strong>1</strong> Declare the <code>@Serdeable</code> annotation at the type level to enable the type to be serialized or deserialized.</p>
+
+    <p><strong>2</strong> The ID will be generated by the application.</p>
+  </li>
+  <li>
+    <p>The launcher created a <code>Credentials</code> class in a file named <em>users/src/main/java/com/example/auth/Credentials.java</em>, which will load and store credentials (username and password) from a configuration file:</p>
+
+    <pre><code class="language-java"> package com.example.auth;
+
+ import io.micronaut.context.annotation.ConfigurationProperties;
+
+ @ConfigurationProperties("authentication-credentials") // &lt;1&gt;
+ public record Credentials (String username, String password) {}
+</code></pre>
+
+    <p><strong>1</strong> The <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/context/annotation/ConfigurationProperties.html"><code>@ConfigurationProperties</code></a> annotation takes the configuration prefix.</p>
+  </li>
+  <li>
+    <p>The launcher created a <code>CredentialsChecker</code> class in a file named <em>users/src/main/java/com/example/auth/CredentialsChecker.java</em>, which, as the name suggests, will check if the provided credentials inside the HTTP request’s <code>Authorization</code> header are the same as those that are stored inside the <code>Credentials</code> class created above:</p>
+
+    <pre><code class="language-java"> package com.example.auth;
+
+ import io.micronaut.core.annotation.Nullable;
+ import io.micronaut.http.HttpRequest;
+ import io.micronaut.security.authentication.AuthenticationProvider;
+ import io.micronaut.security.authentication.AuthenticationRequest;
+ import io.micronaut.security.authentication.AuthenticationResponse;
+ import jakarta.inject.Singleton;
+ import org.reactivestreams.Publisher;
+ import reactor.core.publisher.Mono;
+
+ @Singleton // &lt;1&gt;
+ class CredentialsChecker implements AuthenticationProvider&lt;HttpRequest&lt;?&gt;&gt; {
+
+     private final Credentials credentials;
+
+     CredentialsChecker(Credentials credentials) {
+         this.credentials = credentials;
+     }
+
+     @Override
+     public Publisher&lt;AuthenticationResponse&gt; authenticate(@Nullable HttpRequest&lt;?&gt; httpRequest,
+                                                           AuthenticationRequest&lt;?, ?&gt; authenticationRequest) {
+         return Mono.&lt;AuthenticationResponse&gt;create(emitter -&gt; {
+             if ( authenticationRequest.getIdentity().equals(credentials.username()) &amp;&amp;
+                     authenticationRequest.getSecret().equals(credentials.password()) ) {
+                 emitter.success(AuthenticationResponse.success((String) authenticationRequest.getIdentity()));
+             } else {
+                 emitter.error(AuthenticationResponse.exception());
+             }
+         });
+     }
+ }
+</code></pre>
+
+    <p><strong>1</strong> Use <code>jakarta.inject.Singleton</code> to designate a class as a singleton.</p>
+  </li>
+</ol>
+    
+      <h3 id="12-tests-to-verify-application-logic">
+        
+        
+          1.2. Tests to Verify Application Logic <a href="#12-tests-to-verify-application-logic" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<ol>
+  <li>
+    <p>The launcher created a <code>UsersClient</code> Micronaut HTTP inline client for testing in a file named <em>users/src/test/java/com/example/UsersClient.java</em>, as follows:</p>
+
+    <pre><code class="language-java"> package com.example;
+
+ import com.example.models.User;
+ import io.micronaut.http.annotation.Body;
+ import io.micronaut.http.annotation.Get;
+ import io.micronaut.http.annotation.Header;
+ import io.micronaut.http.annotation.Post;
+ import io.micronaut.http.client.annotation.Client;
+
+ import java.util.List;
+
+ @Client("/") // &lt;1&gt;
+ public interface UsersClient {
+
+     @Get("/users/{id}")
+     User getById(@Header String authorization, int id);
+
+     @Post("/users")
+     User createUser(@Header String authorization, @Body User user);
+
+     @Get("/users")
+     List&lt;User&gt; getUsers(@Header String authorization);
+ }
+</code></pre>
+
+    <p><strong>1</strong> Use <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/client/annotation/Client.html"><code>@Client</code></a> to use <a href="https://docs.micronaut.io/4.0.3/guide/#clientAnnotation">declarative HTTP Clients</a>. You can annotate interfaces or abstract classes. You can use the <code>id</code> member to provide a service identifier or specify the URL directly as the annotation’s value.</p>
+  </li>
+  <li>
+    <p>The launcher created a <code>HealthTest</code> test that checks there is <code>/health</code> endpoint (required for service discovery) in a file named <em>users/src/test/java/com/example/HealthTest.java</em> with the following content:</p>
+
+    <pre><code class="language-java"> package com.example;
+
+ import io.micronaut.http.HttpRequest;
+ import io.micronaut.http.HttpStatus;
+ import io.micronaut.http.client.HttpClient;
+ import io.micronaut.http.client.annotation.Client;
+ import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
+ import org.junit.jupiter.api.Test;
+
+ import jakarta.inject.Inject;
+
+ import static org.junit.jupiter.api.Assertions.assertEquals;
+
+ @MicronautTest // &lt;1&gt;
+ class HealthTest {
+
+     @Inject
+     @Client("/")
+     HttpClient client; // &lt;2&gt;
+
+     @Test
+     public void healthEndpointExposed() {
+         HttpStatus status = client.toBlocking().retrieve(HttpRequest.GET("/health"), HttpStatus.class);
+         assertEquals(HttpStatus.OK, status);
+     }
+ }
+</code></pre>
+
+    <p><strong>1</strong> Annotate the class with <code>@MicronautTest</code> so the Micronaut framework will initialize the application context and the embedded server. (For more information , see <a href="https://micronaut-projects.github.io/micronaut-test/latest/guide/">Micronaut Test</a>.)</p>
+
+    <p><strong>2</strong> Inject the <code>HttpClient</code> bean and point it to the embedded server.</p>
+  </li>
+  <li>
+    <p>The launcher created a <code>UsersControllerTest</code> class to test endpoints inside the <code>UserController</code> in a file named <em>users/src/test/java/com/example/UsersControllerTest.java</em> with the following content:</p>
+
+    <pre><code class="language-java"> package com.example;
+
+ import com.example.auth.Credentials;
+ import com.example.models.User;
+ import io.micronaut.http.HttpStatus;
+ import io.micronaut.http.client.exceptions.HttpClientException;
+ import io.micronaut.http.client.exceptions.HttpClientResponseException;
+ import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
+ import jakarta.inject.Inject;
+ import org.junit.jupiter.api.Test;
+
+ import java.util.Base64;
+ import java.util.List;
+
+ import static org.junit.jupiter.api.Assertions.assertEquals;
+ import static org.junit.jupiter.api.Assertions.assertNotEquals;
+ import static org.junit.jupiter.api.Assertions.assertNotNull;
+ import static org.junit.jupiter.api.Assertions.assertNull;
+ import static org.junit.jupiter.api.Assertions.assertThrows;
+ import static org.junit.jupiter.api.Assertions.assertTrue;
+
+ @MicronautTest // &lt;1&gt;
+ class UsersControllerTest {
+
+     @Inject
+     UsersClient usersClient;
+
+     @Inject
+     Credentials credentials;
+
+     @Test
+     void testUnauthorized() {
+         HttpClientException exception = assertThrows(HttpClientException.class, () -&gt; usersClient.getUsers(""));
+         assertTrue(exception.getMessage().contains("Unauthorized"));
+     }
+
+     @Test
+     void getUserThatDoesntExists() {
+         String authHeader = "Basic " + Base64.getEncoder().encodeToString((credentials.username() + ":" + credentials.password()).getBytes());
+         User retriedUser = usersClient.getById(authHeader, 100);
+         assertNull(retriedUser);
+     }
+
+     @Test
+     void multipleUserInteraction() {
+         String authHeader = "Basic " + Base64.getEncoder().encodeToString((credentials.username() + ":" + credentials.password()).getBytes());
+
+         String firstName = "firstName";
+         String lastName = "lastName";
+         String username = "username";
+
+         User user = new User(0 ,firstName, lastName, username);
+
+         User createdUser = usersClient.createUser(authHeader, user);
+
+         assertEquals(firstName, createdUser.firstName());
+         assertEquals(lastName, createdUser.lastName());
+         assertEquals(username, createdUser.username());
+         assertNotNull(createdUser.id());
+
+         User retriedUser = usersClient.getById(authHeader, createdUser.id());
+
+         assertEquals(firstName, retriedUser.firstName());
+         assertEquals(lastName, retriedUser.lastName());
+         assertEquals(username, retriedUser.username());
+
+         List&lt;User&gt; users = usersClient.getUsers(authHeader);
+         assertNotNull(users);
+         assertTrue(users.stream()
+                 .map(User::username)
+                 .anyMatch(name -&gt; name.equals(username)));
+     }
+
+     @Test
+     void createSameUserTwice() {
+         String authHeader = "Basic " + Base64.getEncoder().encodeToString((credentials.username() + ":" + credentials.password()).getBytes());
+
+         String firstName = "SameUserFirstName";
+         String lastName = "SameUserLastName";
+         String username = "SameUserUsername";
+
+         User user = new User(0 ,firstName, lastName, username);
+
+         User createdUser = usersClient.createUser(authHeader, user);
+
+         assertEquals(firstName, createdUser.firstName());
+         assertEquals(lastName, createdUser.lastName());
+         assertEquals(username, createdUser.username());
+         assertNotNull(createdUser.id());
+         assertNotEquals(createdUser.id(), 0);
+
+         HttpClientResponseException exception = assertThrows(HttpClientResponseException.class, () -&gt; usersClient.createUser(authHeader, user));
+         assertEquals(HttpStatus.CONFLICT, exception.getStatus());
+         assertTrue(exception.getResponse().getBody(String.class).orElse("").contains("User with provided username already exists"));
+
+     }
+ }
+</code></pre>
+
+    <p><strong>1</strong> Annotate the class with <code>@MicronautTest</code> so the Micronaut framework will initialize the application context and the embedded server. (For more information, see <a href="https://micronaut-projects.github.io/micronaut-test/latest/guide/">Micronaut Test</a>.)</p>
+  </li>
+  <li>
+    <p>Edit the <em>users/src/main/resources/application-k8s.properties</em> file as follows:</p>
+
+    <pre><code> # &lt;1&gt;
+ authentication-credentials.username=${username}
+ # &lt;2&gt;
+ authentication-credentials.password=${password}
+</code></pre>
+
+    <p><strong>1</strong> Placeholder for a username that will be populated by Kubernetes.</p>
+
+    <p><strong>2</strong> Placeholder for a password that will be populated by Kubernetes.</p>
+  </li>
+  <li>
+    <p>Edit the <em>users/src/main/resources/bootstrap-k8s.properties</em> file to <a href="https://docs.micronaut.io/4.0.3/guide/#bootstrap">enable distributed configuration</a>. Modify the content so that it matches the following:</p>
+
+    <pre><code> micronaut.application.name=users
+ # &lt;1&gt;
+ micronaut.config-client.enabled=true
+ # &lt;2&gt;
+ kubernetes.client.secrets.enabled=true
+ # &lt;3&gt;
+ kubernetes.client.secrets.use-api=true
+</code></pre>
+
+    <p><strong>1</strong> Set <code>micronaut.config-client.enabled: true</code> to read and resolve configuration from distributed sources.</p>
+
+    <p><strong>2</strong> Set <code>kubernetes.client.secrets.enabled: true</code> to enable Kubernetes secrets as distributed source.</p>
+
+    <p><strong>3</strong> Set <code>kubernetes.client.secrets.use-api: true</code> to use the Kubernetes API to fetch the configuration.</p>
+  </li>
+  <li>
+    <p>The launcher created a file named <em>users/src/main/resources/application-dev.properties</em>. This configuration file is applied only for the <code>dev</code> environment.</p>
+
+    <pre><code> # &lt;1&gt;
+ micronaut.server.port=8081
+ # &lt;2&gt;
+ authentication-credentials.username=gcndemo
+ # &lt;3&gt;
+ authentication-credentials.password=example-password
+</code></pre>
+
+    <p><strong>1</strong> Configure the application to listen on port 8081.</p>
+
+    <p><strong>2</strong> Hardcoded username for the development environment.</p>
+
+    <p><strong>3</strong> Hardcoded password for the development environment.</p>
+  </li>
+  <li>
+    <p>The launcher created a file named <em>users/src/main/resources/bootstrap-dev.properties</em> to disable distributed configuration in the <code>dev</code> environment:</p>
+
+    <pre><code> # &lt;1&gt;
+ kubernetes.client.secrets.enabled=false
+</code></pre>
+
+    <p><strong>1</strong> Disable the Kubernetes secrets client.</p>
+  </li>
+  <li>
+    <p>The launcher created a file named <em>users/src/test/resources/application-test.properties</em> for use in the test environment:</p>
+
+    <pre><code> # &lt;1&gt;
+ authentication-credentials.username=gcndemo
+ # &lt;2&gt;
+ authentication-credentials.password=example-password
+</code></pre>
+
+    <p><strong>1</strong> Hardcoded username for the test environment.</p>
+
+    <p><strong>2</strong> Hardcoded password for the test environment.</p>
+  </li>
+  <li>
+    <p>Run the unit test, as follows:</p>
+
+    <div id="tabs-doc3">
+     <ul>
+         <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
+         <li class="tabs-maven"><a href="#maven">Maven</a></li>
+     </ul>
+     <div id="gradle">
+         <pre><code class="language-bash">./gradlew test</code></pre>
+     </div>
+     <div id="maven">
+         <pre><code class="language-bash">./mvnw test</code></pre>
+     </div>
+ </div>
+  </li>
+</ol>
+    
+      <h3 id="13-run-the-users-microservice">
+        
+        
+          1.3. Run the <em>Users</em> Microservice <a href="#13-run-the-users-microservice" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>Run the <em>users</em> microservice as follows:</p>
+
+<div id="tabs-doc4">
+    <ul>
+        <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <pre><code class="language-bash">MICRONAUT_ENVIRONMENTS=dev ./gradlew run</code></pre>
+         Or if you use Windows: 
+        <pre><code class="language-bash">cmd /C "set MICRONAUT_ENVIRONMENTS=dev &amp;&amp; gradlew run"</code></pre>
+    </div>
+    <div id="maven">
+        <pre><code class="language-bash">MICRONAUT_ENVIRONMENTS=dev ./mvnw mn:run</code></pre>
+         Or if you use Windows: 
+        <pre><code class="language-bash">cmd /C "set MICRONAUT_ENVIRONMENTS=dev &amp;&amp; mvnw mn:run""</code></pre>
+    </div>
+</div>
+    
+      <h2 id="2-create-the-orders-microservice">
+        
+        
+          2. Create the <em>Orders</em> Microservice <a href="#2-create-the-orders-microservice" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>Create the <em>orders</em> microservice using the GCN Launcher.</p>
+
+<ol>
+  <li>
+    <p>Open the <a href="/gcn/launcher/?advanced=true">GCN Launcher in advanced mode</a>.</p>
+  </li>
+  <li>Create a new project using the following selections.
+    <ul>
+      <li><strong>Project Type</strong>: <em>Application</em> (Default)</li>
+      <li><strong>Project name</strong>: <em>orders</em></li>
+      <li><strong>Base Package</strong>: <em>com.example</em> (Default)</li>
+      <li><strong>Clouds</strong>: uncheck the selection</li>
+      <li><strong>Language</strong>: <em>Java</em> (Default)</li>
+      <li><strong>Build Tool</strong>: <em>Gradle (Groovy)</em> or <em>Maven</em></li>
+      <li><strong>Test Framework</strong>: <em>JUnit</em> (Default)</li>
+      <li><strong>Java Version</strong>: <em>17</em> (Default)</li>
+      <li><strong>Micronaut Version</strong>: (Default)</li>
+      <li><strong>Cloud Services</strong>: <em>Kubernetes</em></li>
+      <li><strong>Features</strong>: <em>GraalVM Native Image</em>, <em>Kubernetes Distributed Configuration</em>, <em>Kubernetes Service Discovery</em>, <em>Kubernetes Support</em>, <em>Micronaut Management</em>, <em>Micronaut Security</em>, and <em>Micronaut Serialization Jackson Core</em></li>
+      <li><strong>Sample Code</strong>: <em>No</em></li>
+    </ul>
+  </li>
+  <li>Click <strong>Generate Project</strong>. GCN Launcher creates a directory named <em>orders</em> containing a Micronaut application with a package named <code>com.example</code>. The application ZIP file will be downloaded in your default downloads directory. Unzip it, open in your code editor, and proceed to the next steps.</li>
+</ol>
+
+<p>Alternatively, use the <a href="/gcn/get-started/using-gcn-cli/">GCN CLI</a> as follows:</p>
+
+<div id="tabs-doc5">
+  <ul>
+    <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
+    <li class="tabs-maven"><a href="#maven">Maven</a></li>
+  </ul>
+  <div id="gradle">
+    <pre><code class="language-bash">gcn create-app com.example.orders \
+    --services=k8s \
+    --features=config-kubernetes,discovery-kubernetes,management,security,serialization-jackson,kubernetes,graalvm \
+    --build=gradle \
+    --lang=java</code></pre>
+  </div>
+  <div id="maven">
+    <pre><code class="language-bash">gcn create-app com.example.orders \
+    --services=k8s \
+    --features=config-kubernetes,discovery-kubernetes,management,security,serialization-jackson,kubernetes,graalvm \
+    --build=maven \
+    --lang=java</code></pre>
+  </div>
+</div>
+    
+      <h3 id="21-controllers-in-the-orders-microservice">
+        
+        
+          2.1. Controllers in the <em>Orders</em> Microservice <a href="#21-controllers-in-the-orders-microservice" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<ol>
+  <li>
+    <p>The launcher created the <code>OrdersController</code> and <code>ItemsController</code> classes to handle incoming HTTP requests to the <em>orders</em> microservice. <code>OrdersController</code> is in the <em>orders/src/main/java/com/example/controllers/OrdersController.java</em> file:</p>
+
+    <pre><code class="language-java"> package com.example.controllers;
+
+ import com.example.models.Item;
+ import com.example.models.Order;
+ import io.micronaut.http.HttpStatus;
+ import io.micronaut.http.annotation.Body;
+ import io.micronaut.http.annotation.Controller;
+ import io.micronaut.http.annotation.Get;
+ import io.micronaut.http.annotation.Post;
+ import io.micronaut.http.exceptions.HttpStatusException;
+ import io.micronaut.security.annotation.Secured;
+ import io.micronaut.security.rules.SecurityRule;
+ import jakarta.validation.Valid;
+
+ import java.math.BigDecimal;
+ import java.util.ArrayList;
+ import java.util.List;
+ import java.util.stream.Collectors;
+
+ @Controller("/orders")  // &lt;1&gt;
+ @Secured(SecurityRule.IS_AUTHENTICATED) // &lt;2&gt;
+ class OrdersController {
+
+     private final List&lt;Order&gt; orders = new ArrayList&lt;&gt;();
+
+     @Get("/{id}")  // &lt;3&gt;
+     public Order findById(int id) {
+         return orders.stream()
+                 .filter(it -&gt; it.id().equals(id))
+                 .findFirst().orElse(null);
+     }
+
+     @Get  // &lt;4&gt;
+     public List&lt;Order&gt; getOrders() {
+         return orders;
+     }
+
+     @Post  // &lt;5&gt;
+     public Order createOrder(@Body @Valid Order order) {
+         if (order.itemIds() == null || order.itemIds().isEmpty()) {
+             throw new HttpStatusException(HttpStatus.BAD_REQUEST, "Items must be supplied");
+         }
+
+         List&lt;Item&gt; items = order.itemIds().stream().map(
+                 x -&gt; Item.items.stream().filter(
+                         y -&gt; y.id().equals(x)
+                 ).findFirst().orElseThrow(
+                         () -&gt; new HttpStatusException(HttpStatus.BAD_REQUEST, String.format("Item with id %s doesn't exist", x))
+                 )
+         ).collect(Collectors.toList());
+
+         BigDecimal total = items.stream().map(Item::price).reduce(BigDecimal::add).orElse(new BigDecimal("0"));
+         Order newOrder = new Order(orders.size() + 1, order.userId(), items, null, total);
+
+         orders.add(newOrder);
+         return newOrder;
+     }
+
+ }
+</code></pre>
+
+    <p><strong>1</strong> The class is defined as a controller with the <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Controller.html"><code>@Controller</code></a> annotation mapped to the path <code>/orders</code>.</p>
+
+    <p><strong>2</strong> Annotate with <code>io.micronaut.security.Secured</code> to configure secured access. The <code>isAuthenticated()</code> expression will allow access only to authenticated users.</p>
+
+    <p><strong>3</strong> The <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Get.html"><code>@Get</code></a> annotation maps the <code>findById</code> method to an HTTP GET request on <code>/orders/{id}</code>.</p>
+
+    <p><strong>4</strong> The <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Get.html"><code>@Get</code></a> annotation maps the <code>getOrders</code> method to an HTTP GET request on <code>/orders</code>.</p>
+
+    <p><strong>5</strong> The <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Post.html"><code>@Post</code></a> annotation maps the <code>createOrder</code> method to an HTTP POST request on <code>/orders</code>.</p>
+  </li>
+  <li>
+    <p>The launcher created the <code>ItemsController</code> class in a file named <em>orders/src/main/java/com/example/controllers/ItemsController.java</em>, as follows:</p>
+
+    <pre><code class="language-java"> package com.example.controllers;
+
+ import com.example.models.Item;
+ import io.micronaut.http.annotation.Controller;
+ import io.micronaut.http.annotation.Get;
+ import io.micronaut.security.annotation.Secured;
+ import io.micronaut.security.rules.SecurityRule;
+
+ import java.util.List;
+
+ @Controller("/items")  // &lt;1&gt;
+ @Secured(SecurityRule.IS_AUTHENTICATED)  // &lt;2&gt;
+ class ItemsController {
+
+     @Get("/{id}")  // &lt;3&gt;
+     public Item findById(int id) {
+         return Item.items.stream()
+                 .filter(it -&gt; it.id().equals(id))
+                 .findFirst().orElse(null);
+     }
+
+     @Get  // &lt;4&gt;
+     public List&lt;Item&gt; getItems() {
+         return Item.items;
+     }
+
+ }
+</code></pre>
+
+    <p><strong>1</strong> The class is defined as a controller with the <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Controller.html"><code>@Controller</code></a> annotation mapped to the path <code>/items</code>.</p>
+
+    <p><strong>2</strong> Annotate with <code>io.micronaut.security.Secured</code> to configure secured access. The <code>isAuthenticated()</code> expression will allow access only to authenticated users.</p>
+
+    <p><strong>3</strong> The <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Get.html"><code>@Get</code></a> annotation maps the <code>findById</code> method to an HTTP GET request on <code>/items/{id}</code>.</p>
+
+    <p><strong>4</strong> The <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Get.html"><code>@Get</code></a> annotation maps the <code>getItems</code> method to an HTTP GET request on <code>/items</code>.</p>
+  </li>
+  <li>
+    <p>The launcher created the <code>Order</code> and <code>Item</code> objects, used by the <code>OrdersController</code> and <code>ItemsController</code> classes, to represent customer orders. <code>Order</code> is in the <em>orders/src/main/java/com/example/models/Order.java</em> file:</p>
+
+    <pre><code class="language-java"> package com.example.models;
+
+ import com.fasterxml.jackson.annotation.JsonProperty;
+ import io.micronaut.core.annotation.Nullable;
+ import io.micronaut.serde.annotation.Serdeable;
+ import jakarta.validation.constraints.Max;
+ import jakarta.validation.constraints.NotBlank;
+
+ import java.math.BigDecimal;
+ import java.util.List;
+
+ @Serdeable // &lt;1&gt;
+ public record Order(
+         @Max(10000) @Nullable Integer id, // &lt;2&gt;
+         @NotBlank @JsonProperty("user_id") Integer userId,
+         @Nullable List&lt;Item&gt; items, // &lt;3&gt;
+         @NotBlank @JsonProperty("item_ids") @Nullable List&lt;Integer&gt; itemIds, // &lt;4&gt;
+         @Nullable BigDecimal total
+ ) {
+ }
+</code></pre>
+
+    <p><strong>1</strong> Declare the <code>@Serdeable</code> annotation at the type level in your source code to allow the type to be serialized or deserialized.</p>
+
+    <p><strong>2</strong> The ID will be generated by application.</p>
+
+    <p><strong>3</strong> The <code>List</code> of <code>Item</code> class will be populated by the server and will be only visible in sever responses.</p>
+
+    <p><strong>4</strong> List of <code>itemIds</code> will be provided by client requests.</p>
+  </li>
+  <li>
+    <p>The <code>Item</code> record is in the <em>orders/src/main/java/com/example/models/Item.java</em> file:</p>
+
+    <pre><code class="language-java"> package com.example.models;
+
+ import io.micronaut.serde.annotation.Serdeable;
+
+ import java.math.BigDecimal;
+ import java.util.List;
+
+ @Serdeable // &lt;1&gt;
+ public record Item(
+         Integer id,
+         String name,
+         BigDecimal price
+ ) {
+     public static List&lt;Item&gt; items = List.of(
+             new Item(1, "Banana", new BigDecimal("1.5")),
+             new Item(2, "Kiwi", new BigDecimal("2.5")),
+             new Item(3, "Grape", new BigDecimal("1.25"))
+         );
+ }
+</code></pre>
+
+    <p><strong>1</strong> Declare the <code>@Serdeable</code> annotation at the type level in your source code to allow the type to be serialized or deserialized.</p>
+  </li>
+  <li>
+    <p>The launcher created the <code>Credentials</code> class to load and store credentials (username and password) from configuration files in a file named <em>orders/src/main/java/com/example/auth/Credentials.java</em> with the following content:</p>
+
+    <pre><code class="language-java"> package com.example.auth;
+
+ import io.micronaut.context.annotation.ConfigurationProperties;
+
+ @ConfigurationProperties("authentication-credentials") // &lt;1&gt;
+ public record Credentials (String username, String password) {}
+</code></pre>
+
+    <p><strong>1</strong> The <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/context/annotation/ConfigurationProperties.html"><code>@ConfigurationProperties</code></a> annotation takes the configuration prefix.</p>
+  </li>
+  <li>
+    <p>The launcher created a <code>CredentialsChecker</code> class in a file named <em>orders/src/main/java/com/example/auth/CredentialsChecker.java</em>, which, as the name suggests, will check if the provided credentials inside the HTTP request’s <code>Authorization</code> header are the same as those that are stored inside the <code>Credentials</code> class created above:</p>
+
+    <pre><code class="language-java"> package com.example.auth;
+
+ import io.micronaut.core.annotation.Nullable;
+ import io.micronaut.http.HttpRequest;
+ import io.micronaut.security.authentication.AuthenticationProvider;
+ import io.micronaut.security.authentication.AuthenticationRequest;
+ import io.micronaut.security.authentication.AuthenticationResponse;
+ import jakarta.inject.Singleton;
+ import org.reactivestreams.Publisher;
+ import reactor.core.publisher.Mono;
+
+ @Singleton // &lt;1&gt;
+ class CredentialsChecker implements AuthenticationProvider&lt;HttpRequest&lt;?&gt;&gt; {
+
+     private final Credentials credentials;
+
+     CredentialsChecker(Credentials credentials) {
+         this.credentials = credentials;
+     }
+
+     @Override
+     public Publisher&lt;AuthenticationResponse&gt; authenticate(@Nullable HttpRequest&lt;?&gt; httpRequest,
+                                                           AuthenticationRequest&lt;?, ?&gt; authenticationRequest) {
+         return Mono.&lt;AuthenticationResponse&gt;create(emitter -&gt; {
+             if ( authenticationRequest.getIdentity().equals(credentials.username()) &amp;&amp;
+                     authenticationRequest.getSecret().equals(credentials.password()) ) {
+                 emitter.success(AuthenticationResponse.success((String) authenticationRequest.getIdentity()));
+             } else {
+                 emitter.error(AuthenticationResponse.exception());
+             }
+         });
+     }
+ }
+</code></pre>
+
+    <p><strong>1</strong> Use <code>jakarta.inject.Singleton</code> to designate a class as a singleton.</p>
+  </li>
+</ol>
+    
+      <h3 id="22-tests-to-verify-application-logic">
+        
+        
+          2.2. Tests to Verify Application Logic <a href="#22-tests-to-verify-application-logic" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<ol>
+  <li>
+    <p>The launcher created an <code>OrderItemClient</code> Micronaut HTTP inline client for testing in a file named <em>orders/src/test/java/com/example/OrderItemClient.java</em>, as follows:</p>
+
+    <pre><code class="language-java"> package com.example;
+
+ import com.example.models.Item;
+ import com.example.models.Order;
+ import io.micronaut.http.annotation.Body;
+ import io.micronaut.http.annotation.Get;
+ import io.micronaut.http.annotation.Header;
+ import io.micronaut.http.annotation.Post;
+ import io.micronaut.http.client.annotation.Client;
+
+ import java.util.List;
+
+ @Client("/") // &lt;1&gt;
+ interface OrderItemClient {
+
+     @Get("/orders/{id}")
+     Order getOrderById(@Header String authorization, int id);
+
+     @Post("/orders")
+     Order createOrder(@Header String authorization, @Body Order order);
+
+     @Get("/orders")
+     List&lt;Order&gt; getOrders(@Header String authorization);
+
+     @Get("/items")
+     List&lt;Item&gt; getItems(@Header String authorization);
+
+     @Get("/items/{id}")
+     Item getItemsById(@Header String authorization, int id);
+ }
+</code></pre>
+
+    <p><strong>1</strong> Use <code>@Client</code> to use <a href="https://docs.micronaut.io/4.0.3/guide/#clientAnnotation">declarative HTTP Clients</a>. You can annotate interfaces or abstract classes. You can use the <code>id</code> member to provide a service identifier or specify the URL directly as the annotation’s value.</p>
+  </li>
+  <li>
+    <p>The launcher created a <code>HealthTest</code> class, in a file named <em>orders/src/test/java/com/example/HealthTest.java</em>, that checks if there is <code>/health</code> endpoint (required for service discovery), with the following content:</p>
+
+    <pre><code class="language-java"> package com.example;
+
+ import io.micronaut.http.HttpRequest;
+ import io.micronaut.http.HttpStatus;
+ import io.micronaut.http.client.HttpClient;
+ import io.micronaut.http.client.annotation.Client;
+ import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
+ import org.junit.jupiter.api.Test;
+
+ import jakarta.inject.Inject;
+
+ import static org.junit.jupiter.api.Assertions.assertEquals;
+
+ @MicronautTest // &lt;1&gt;
+ class HealthTest {
+
+     @Inject
+     @Client("/")
+     HttpClient client; // &lt;2&gt;
+
+     @Test
+     public void healthEndpointExposed() {
+         HttpStatus status = client.toBlocking().retrieve(HttpRequest.GET("/health"), HttpStatus.class);
+         assertEquals(HttpStatus.OK, status);
+     }
+ }
+</code></pre>
+
+    <p><strong>1</strong> Annotate the class with <code>@MicronautTest</code> so the Micronaut framework will initialize the application context and the embedded server. (For more information , see <a href="https://micronaut-projects.github.io/micronaut-test/latest/guide/">Micronaut Test</a>.)</p>
+
+    <p><strong>2</strong> Inject the <code>HttpClient</code> bean and point it to the embedded server.</p>
+  </li>
+  <li>
+    <p>The launcher created a <code>ItemsControllerTest</code> class, in the file named <em>orders/src/test/java/com/example/ItemsControllerTest.java</em>, to test endpoints inside the <code>ItemController</code>,  with the following content:</p>
+
+    <pre><code class="language-java"> package com.example;
+
+ import com.example.auth.Credentials;
+ import com.example.models.Item;
+ import io.micronaut.http.client.exceptions.HttpClientException;
+ import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
+ import jakarta.inject.Inject;
+ import org.junit.jupiter.api.Test;
+
+ import java.math.BigDecimal;
+ import java.util.Base64;
+ import java.util.List;
+
+ import static org.junit.jupiter.api.Assertions.assertEquals;
+ import static org.junit.jupiter.api.Assertions.assertNotNull;
+ import static org.junit.jupiter.api.Assertions.assertThrows;
+ import static org.junit.jupiter.api.Assertions.assertTrue;
+
+ @MicronautTest // &lt;1&gt;
+ class ItemsControllerTest {
+
+     @Inject
+     OrderItemClient orderItemClient;
+
+     @Inject
+     Credentials credentials;
+
+     @Test
+     void testUnauthorized() {
+         HttpClientException exception = assertThrows(HttpClientException.class, () -&gt; orderItemClient.getItems(""));
+         assertTrue(exception.getMessage().contains("Unauthorized"));
+     }
+
+     @Test
+     void getItem() {
+
+         int itemId = 1;
+
+         String authHeader = "Basic " + Base64.getEncoder().encodeToString((credentials.username() + ":" + credentials.password()).getBytes());
+
+         Item item = orderItemClient.getItemsById(authHeader, itemId);
+
+         assertEquals(itemId, item.id());
+         assertEquals("Banana", item.name());
+         assertEquals(new BigDecimal("1.5"), item.price());
+
+     }
+
+     @Test
+     void getItems() {
+         String authHeader = "Basic " + Base64.getEncoder().encodeToString((credentials.username() + ":" + credentials.password()).getBytes());
+
+         List&lt;Item&gt; items = orderItemClient.getItems(authHeader);
+
+         assertNotNull(items);
+         List&lt;String&gt; existingItemNames = List.of("Kiwi", "Banana", "Grape");
+         assertEquals(3, items.size());
+         assertTrue(items.stream()
+                 .map(Item::name)
+                 .allMatch(name -&gt; existingItemNames.stream().anyMatch(x -&gt; x.equals(name))));
+     }
+
+ }
+</code></pre>
+
+    <p><strong>1</strong> Annotate the class with <code>@MicronautTest</code> so the Micronaut framework will initialize the application context and the embedded server. (For more information, see <a href="https://micronaut-projects.github.io/micronaut-test/latest/guide/">Micronaut Test</a>.)</p>
+  </li>
+  <li>
+    <p>The launcher created an <code>OrdersControllerTest</code> class to test endpoints inside the <code>OrdersController</code> in a file named <em>orders/src/test/java/com/example/OrdersControllerTest.java</em></p>
+
+    <pre><code class="language-java"> package com.example;
+
+ import com.example.auth.Credentials;
+ import com.example.models.Order;
+ import io.micronaut.http.HttpStatus;
+ import io.micronaut.http.client.exceptions.HttpClientException;
+ import io.micronaut.http.client.exceptions.HttpClientResponseException;
+ import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
+ import jakarta.inject.Inject;
+ import org.junit.jupiter.api.Test;
+
+ import java.math.BigDecimal;
+ import java.util.Base64;
+ import java.util.List;
+
+ import static org.junit.jupiter.api.Assertions.assertEquals;
+ import static org.junit.jupiter.api.Assertions.assertNotNull;
+ import static org.junit.jupiter.api.Assertions.assertThrows;
+ import static org.junit.jupiter.api.Assertions.assertTrue;
+
+ @MicronautTest // &lt;1&gt;
+ class OrdersControllerTest {
+
+     @Inject
+     OrderItemClient orderItemClient;
+
+     @Inject
+     Credentials credentials;
+
+     @Test
+     void testUnauthorized() {
+         HttpClientException exception = assertThrows(HttpClientException.class, () -&gt; orderItemClient.getOrders(""));
+         assertTrue(exception.getMessage().contains("Unauthorized"));
+     }
+
+     @Test
+     void multipleOrderInteraction() {
+         String authHeader = "Basic " + Base64.getEncoder().encodeToString((credentials.username() + ":" + credentials.password()).getBytes());
+
+         int userId = 1;
+         List&lt;Integer&gt; itemIds = List.of(1, 1, 2, 3);
+
+         Order order = new Order(0, userId, null, itemIds, null);
+
+         Order createdOrder = orderItemClient.createOrder(authHeader, order);
+
+         assertNotNull(createdOrder.items());
+
+         assertEquals(4, createdOrder.items().size());
+         assertEquals(new BigDecimal("6.75"), createdOrder.total());
+         assertEquals(userId, createdOrder.userId());
+
+         Order retrievedOrder = orderItemClient.getOrderById(authHeader, createdOrder.id());
+
+         assertNotNull(retrievedOrder.items());
+
+         assertEquals(4, retrievedOrder.items().size());
+         assertEquals(new BigDecimal("6.75"), retrievedOrder.total());
+         assertEquals(userId, retrievedOrder.userId());
+
+         List&lt;Order&gt; orders = orderItemClient.getOrders(authHeader);
+
+         assertNotNull(orders);
+         assertTrue(orders.stream()
+                 .map(Order::userId)
+                 .anyMatch(id -&gt; id.equals(userId)));
+
+     }
+
+     @Test
+     void itemDoesntExists() {
+         String authHeader = "Basic " + Base64.getEncoder().encodeToString((credentials.username() + ":" + credentials.password()).getBytes());
+
+         int userId = 1;
+         List&lt;Integer&gt; itemIds = List.of(5);
+
+         Order order = new Order(0, userId, null, itemIds, null);
+
+         HttpClientResponseException exception = assertThrows(HttpClientResponseException.class, () -&gt; orderItemClient.createOrder(authHeader, order));
+
+         assertEquals(HttpStatus.BAD_REQUEST, exception.getStatus());
+         assertTrue(exception.getResponse().getBody(String.class).orElse("").contains("Item with id 5 doesn't exist"));
+     }
+
+     @Test
+     void orderEmptyItems() {
+         String authHeader = "Basic " + Base64.getEncoder().encodeToString((credentials.username() + ":" + credentials.password()).getBytes());
+
+         int userId = 1;
+         Order order = new Order(0, userId, null, null, null);
+         HttpClientResponseException exception = assertThrows(HttpClientResponseException.class, () -&gt; orderItemClient.createOrder(authHeader, order));
+
+         assertEquals(HttpStatus.BAD_REQUEST, exception.getStatus());
+         assertTrue(exception.getResponse().getBody(String.class).orElse("").contains("Items must be supplied"));
+     }
+
+ }
+</code></pre>
+
+    <p><strong>1</strong> Annotate the class with <code>@MicronautTest</code> so the Micronaut framework will initialize the application context and the embedded server. (For more information, see <a href="https://micronaut-projects.github.io/micronaut-test/latest/guide/">Micronaut Test</a>.)</p>
+  </li>
+  <li>
+    <p>Edit the <em>orders/src/main/resources/application-k8s.properties</em> file as follows:</p>
+
+    <pre><code> # &lt;1&gt;
+ authentication-credentials.username=${username}
+ # &lt;2&gt;
+ authentication-credentials.password=${password}
+</code></pre>
+
+    <p><strong>1</strong> Placeholder for a username that will be populated by Kubernetes.</p>
+
+    <p><strong>2</strong> Placeholder for a password that will be populated by Kubernetes.</p>
+  </li>
+  <li>
+    <p>Edit the <em>orders/src/main/resources/bootstrap-k8s.properties</em> file to <a href="https://docs.micronaut.io/4.0.3/guide/#bootstrap">enable distributed configuration</a>. Modify the content so that it matches the following:</p>
+
+    <pre><code> micronaut.application.name=orders
+ # &lt;1&gt;
+ micronaut.config-client.enabled=true
+ # &lt;2&gt;
+ kubernetes.client.secrets.enabled=true
+ # &lt;3&gt;
+ kubernetes.client.secrets.use-api=true
+</code></pre>
+
+    <p><strong>1</strong> Set <code>micronaut.config-client.enabled: true</code> to read and resolve configuration from distributed sources.</p>
+
+    <p><strong>2</strong> Set <code>kubernetes.client.secrets.enabled: true</code> to enable Kubernetes secrets as distributed source.</p>
+
+    <p><strong>3</strong> Set <code>kubernetes.client.secrets.use-api: true</code> to use Kubernetes API to fetch configuration.</p>
+  </li>
+  <li>
+    <p>Edit the <em>orders/src/main/resources/application-dev.properties</em> file, which is applied only for the <code>dev</code> environment, as follows:</p>
+
+    <pre><code> # &lt;1&gt;
+ micronaut.server.port=8082
+ # &lt;2&gt;
+ authentication-credentials.username=gcndemo
+ # &lt;3&gt;
+ authentication-credentials.password=example-password
+</code></pre>
+
+    <p><strong>1</strong> Configure the application to listen on port 8082.</p>
+
+    <p><strong>2</strong> Hardcoded username for development environment.</p>
+
+    <p><strong>3</strong> Hardcoded password for development environment.</p>
+  </li>
+  <li>
+    <p>The launcher created a file named <em>orders/src/main/resources/bootstrap-dev.properties</em> to disable distributed configuration in the <code>dev</code> environment:</p>
+
+    <pre><code> # &lt;1&gt;
+ kubernetes.client.secrets.enabled=false
+</code></pre>
+
+    <p><strong>1</strong> Disable the Kubernetes secrets client.</p>
+  </li>
+  <li>
+    <p>The launcher created a file named <em>orders/src/test/resources/application-test.properties</em> (to be used in the test environment) with the following content:</p>
+
+    <pre><code> micronaut.application.name=orders
+ # &lt;1&gt;
+ authentication-credentials.username=gcndemo
+ # &lt;2&gt;
+ authentication-credentials.password=example-password
+</code></pre>
+
+    <p><strong>1</strong> Hardcoded username for development environment.</p>
+
+    <p><strong>2</strong> Hardcoded password for development environment.</p>
+  </li>
+  <li>
+    <p>Run the unit test, as follows:</p>
+
+    <div id="tabs-doc6">
+     <ul>
+         <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
+         <li class="tabs-maven"><a href="#maven">Maven</a></li>
+     </ul>
+     <div id="gradle">
+         <pre><code class="language-bash">./gradlew test</code></pre>
+     </div>
+     <div id="maven">
+         <pre><code class="language-bash">./mvnw test</code></pre>
+     </div>
+ </div>
+  </li>
+</ol>
+    
+      <h3 id="23-run-the-orders-microservice">
+        
+        
+          2.3. Run the <em>Orders</em> Microservice <a href="#23-run-the-orders-microservice" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>Run the <em>orders</em> microservice as follows:</p>
+
+<div id="tabs-doc7">
+    <ul>
+        <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <pre><code class="language-bash">MICRONAUT_ENVIRONMENTS=dev ./gradlew run</code></pre>
+         Or if you use Windows: 
+        <pre><code class="language-bash">cmd /C "set MICRONAUT_ENVIRONMENTS=dev &amp;&amp; gradlew run"</code></pre>
+    </div>
+    <div id="maven">
+        <pre><code class="language-bash">MICRONAUT_ENVIRONMENTS=dev ./mvnw mn:run</code></pre>
+         Or if you use Windows: 
+        <pre><code class="language-bash">cmd /C "set MICRONAUT_ENVIRONMENTS=dev &amp;&amp; mvnw mn:run""</code></pre>
+    </div>
+</div>
+    
+      <h2 id="3-create-the-api-gateway-microservice">
+        
+        
+          3. Create the <em>API</em> (Gateway) Microservice <a href="#3-create-the-api-gateway-microservice" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>Create the <em>api</em> microservice using the GCN Launcher.</p>
+
+<ol>
+  <li>
+    <p>Open the <a href="/gcn/launcher/?advanced=true">GCN Launcher in advanced mode</a>.</p>
+  </li>
+  <li>Create a new project using the following selections.
+    <ul>
+      <li><strong>Project Type</strong>: <em>Application</em> (Default)</li>
+      <li><strong>Project name</strong>: <em>api</em></li>
+      <li><strong>Base Package</strong>: <em>com.example</em> (Default)</li>
+      <li><strong>Clouds</strong>: uncheck the selection</li>
+      <li><strong>Language</strong>: <em>Java</em> (Default)</li>
+      <li><strong>Build Tool</strong>: <em>Gradle (Groovy)</em> or <em>Maven</em></li>
+      <li><strong>Test Framework</strong>: <em>JUnit</em> (Default)</li>
+      <li><strong>Java Version</strong>: <em>17</em> (Default)</li>
+      <li><strong>Micronaut Version</strong>: (Default)</li>
+      <li><strong>Cloud Services</strong>: <em>Kubernetes</em></li>
+      <li><strong>Features</strong>: <em>GraalVM Native Image</em>, <em>Kubernetes Service Discovery</em>, <em>Kubernetes Support</em>, <em>Micronaut Management</em>, <em>Micronaut Serialization Jackson Core</em>, and <em>Mockito Framework</em></li>
+      <li><strong>Sample Code</strong>: <em>No</em></li>
+    </ul>
+  </li>
+  <li>Click <strong>Generate Project</strong>. GCN Launcher creates a directory named <em>api</em> containing a Micronaut application with a package named <code>com.example</code>. The application ZIP file will be downloaded in your default downloads directory. Unzip it, open in your code editor, and proceed to the next steps.</li>
+</ol>
+
+<p>Alternatively, use the <a href="/gcn/get-started/using-gcn-cli/">GCN CLI</a> as follows:</p>
+
+<div id="tabs-doc8">
+  <ul>
+    <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
+    <li class="tabs-maven"><a href="#maven">Maven</a></li>
+  </ul>
+  <div id="gradle">
+    <pre><code class="language-bash">gcn create-app com.example.api \
+    --services=k8s \
+    --features=discovery-kubernetes,management,kubernetes,serialization-jackson,mockito,graalvm \
+    --build=gradle \
+    --lang=java</code></pre>
+  </div>
+  <div id="maven">
+    <pre><code class="language-bash">gcn create-app com.example.api \
+    --services=k8s \
+    --features=discovery-kubernetes,management,kubernetes,serialization-jackson,mockito,graalvm \
+    --build=maven \
+    --lang=java</code></pre>
+  </div>
+</div>
+    
+      <h3 id="31-controllers-in-the-api-gateway-microservice">
+        
+        
+          3.1. Controllers in the <em>API</em> (Gateway) Microservice <a href="#31-controllers-in-the-api-gateway-microservice" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<ol>
+  <li>
+    <p>The launcher created a <code>GatewayController</code> class to handle incoming HTTP requests to the <em>api</em> microservice in a file named <em>api/src/main/java/com/example/controllers/GatewayController.java</em> as follows:</p>
+
+    <pre><code class="language-java"> package com.example.controllers;
+
+ import com.example.clients.OrdersClient;
+ import com.example.clients.UsersClient;
+ import com.example.models.Item;
+ import com.example.models.Order;
+ import com.example.models.User;
+ import io.micronaut.core.annotation.NonNull;
+ import io.micronaut.http.HttpStatus;
+ import io.micronaut.http.annotation.Body;
+ import io.micronaut.http.annotation.Controller;
+ import io.micronaut.http.annotation.Get;
+ import io.micronaut.http.annotation.Post;
+ import io.micronaut.http.exceptions.HttpStatusException;
+ import io.micronaut.scheduling.TaskExecutors;
+ import io.micronaut.scheduling.annotation.ExecuteOn;
+ import io.micronaut.validation.Validated;
+ import jakarta.validation.Valid;
+
+ import java.util.ArrayList;
+ import java.util.List;
+
+ @Controller("/api") // &lt;1&gt;
+ @Validated
+ @ExecuteOn(TaskExecutors.IO) // &lt;2&gt;
+ class GatewayController {
+
+     private final OrdersClient orderClient;
+     private final UsersClient userClient;
+
+     GatewayController(OrdersClient orderClient, UsersClient userClient) {
+         this.orderClient = orderClient;
+         this.userClient = userClient;
+     }
+
+     @Get("/users/{id}") // &lt;3&gt;
+     User getUserById(int id) {
+         return userClient.getById(id);
+     }
+
+     @Get("/orders/{id}") // &lt;4&gt;
+     Order getOrdersById(int id) {
+         Order order = orderClient.getOrderById(id);
+         return new Order(order.id(), null, getUserById(order.userId()), order.items(), order.itemIds(), order.total());
+     }
+
+     @Get("/items/{id}") // &lt;5&gt;
+     Item getItemsById(int id) {
+         return orderClient.getItemsById(id);
+     }
+
+     @Get("/users") // &lt;6&gt;
+     List&lt;User&gt; getUsers() {
+         return userClient.getUsers();
+     }
+
+     @Get("/items") // &lt;7&gt;
+     List&lt;Item&gt; getItems() {
+         return orderClient.getItems();
+     }
+
+     @Get("/orders") // &lt;8&gt;
+     List&lt;Order&gt; getOrders() {
+         List&lt;Order&gt; orders = new ArrayList&lt;&gt;();
+         orderClient.getOrders().forEach(x-&gt; orders.add(new Order(x.id(), null, getUserById(x.userId()), x.items(), x.itemIds(), x.total())));
+         return orders;
+     }
+
+     @Post("/orders") // &lt;9&gt;
+     Order createOrder(@Body @Valid Order order) {
+         User user = getUserById(order.userId());
+         if (user == null) {
+             throw new HttpStatusException(HttpStatus.BAD_REQUEST, String.format("User with id %s doesn't exist", order.userId()));
+         }
+         Order createdOrder = orderClient.createOrder(order);
+         return new Order(createdOrder.id(), null, user, createdOrder.items(), createdOrder.itemIds(), createdOrder.total());
+     }
+
+     @Post("/users")  // &lt;10&gt;
+     User createUser(@Body @NonNull User user) {
+         return userClient.createUser(user);
+     }
+
+ }
+</code></pre>
+
+    <p><strong>1</strong> The class is defined as a controller with the <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Controller.html"><code>@Controller</code></a> annotation mapped to the path <code>/api</code>.</p>
+
+    <p><strong>2</strong> It is critical that any blocking I/O operations (such as fetching the data from the database) are offloaded to a separate thread pool that does not block the Event loop.</p>
+
+    <p><strong>3</strong> The <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Get.html"><code>@Get</code></a> annotation maps the <code>getUserById</code> method to an HTTP GET request on <code>/users/{id}</code>.</p>
+
+    <p><strong>4</strong> The <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Get.html"><code>@Get</code></a> annotation maps the <code>getOrdersById</code> method to an HTTP GET request on <code>/orders/{id}</code>.</p>
+
+    <p><strong>5</strong> The <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Get.html"><code>@Get</code></a> annotation maps the <code>getItemsById</code> method to an HTTP GET request on <code>/items/{id}</code>.</p>
+
+    <p><strong>6</strong> The <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Get.html"><code>@Get</code></a> annotation maps the <code>getUsers</code> method to an HTTP GET request on <code>/users</code>.</p>
+
+    <p><strong>7</strong> The <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Get.html"><code>@Get</code></a> annotation maps the <code>getItems</code> method to an HTTP GET request on <code>/items</code>.</p>
+
+    <p><strong>8</strong> The <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Get.html"><code>@Get</code></a> annotation maps the <code>getOrders</code> method to an HTTP GET request on <code>/orders</code>.</p>
+
+    <p><strong>9</strong> The <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Post.html"><code>@Post</code></a> annotation maps the <code>createUser</code> method to an HTTP POST request on <code>/users</code>.</p>
+
+    <p><strong>10</strong> The <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Post.html"><code>@Post</code></a> annotation maps the <code>createOrder</code> method to an HTTP POST request on <code>/orders</code>.</p>
+  </li>
+  <li>
+    <p>The launcher created the <code>User</code>, <code>Order</code>, and <code>Item</code> objects to represent customers, orders, and items. The <code>User</code> record is in a file named <em>api/src/main/java/com/example/models/User.java</em>, as follows:</p>
+
+    <pre><code class="language-java"> package com.example.models;
+
+ import com.fasterxml.jackson.annotation.JsonProperty;
+ import io.micronaut.core.annotation.Nullable;
+ import io.micronaut.serde.annotation.Serdeable;
+ import jakarta.validation.constraints.Max;
+ import jakarta.validation.constraints.NotBlank;
+
+ @Serdeable // &lt;1&gt;
+ public record User(
+         @Nullable @Max(10000) Integer id,
+         @NotBlank @JsonProperty("first_name") String firstName,
+         @NotBlank @JsonProperty("last_name") String lastName,
+         String username
+ ) {
+ }
+</code></pre>
+
+    <p><strong>1</strong> Declare the <code>@Serdeable</code> annotation at the type level in your source code to allow the type to be serialized or deserialized.</p>
+  </li>
+  <li>
+    <p>The <code>Order</code> record is in a file named <em>api/src/main/java/com/example/models/Order.java</em>, as follows:</p>
+
+    <pre><code class="language-java"> package com.example.models;
+
+ import com.fasterxml.jackson.annotation.JsonProperty;
+ import io.micronaut.core.annotation.Nullable;
+ import io.micronaut.serde.annotation.Serdeable;
+ import jakarta.validation.constraints.Max;
+ import jakarta.validation.constraints.NotBlank;
+
+ import java.math.BigDecimal;
+ import java.util.List;
+
+ @Serdeable // &lt;1&gt;
+ public record Order(
+         @Nullable @Max(10000) Integer id,
+         @NotBlank @Nullable @JsonProperty("user_id") Integer userId,
+         @Nullable User user,
+         @Nullable List&lt;Item&gt; items,
+         @NotBlank @Nullable @JsonProperty("item_ids") List&lt;Integer&gt; itemIds,
+         @Nullable BigDecimal total
+ ) {
+ }
+</code></pre>
+
+    <p><strong>1</strong> Declare the <code>@Serdeable</code> annotation at the type level in your source code to allow the type to be serialized or deserialized.</p>
+  </li>
+  <li>
+    <p>The <code>Item</code> record is in a file named <em>orders/src/main/java/com/example/models/Item.java</em>, as follows:</p>
+
+    <pre><code class="language-java"> package com.example.models;
+
+ import io.micronaut.serde.annotation.Serdeable;
+
+ import java.math.BigDecimal;
+
+ @Serdeable // &lt;1&gt;
+ public record Item(
+         Integer id,
+         String name,
+         BigDecimal price
+ ) {
+ }
+</code></pre>
+
+    <p><strong>1</strong> Declare the <code>@Serdeable</code> annotation at the type level in your source code to allow the type to be serialized or deserialized.</p>
+  </li>
+  <li>
+    <p>The launcher created a <code>UserClient</code> for the <em>users</em> microservice in a file named <em>api/src/main/java/com/example/clients/UsersClient.java</em>, as follows:</p>
+
+    <pre><code class="language-java"> package com.example.clients;
+
+ import com.example.models.User;
+ import io.micronaut.http.annotation.Body;
+ import io.micronaut.http.annotation.Get;
+ import io.micronaut.http.annotation.Post;
+ import io.micronaut.http.client.annotation.Client;
+
+ import java.util.List;
+
+ @Client("users") // &lt;1&gt;
+ public interface UsersClient {
+     @Get("/users/{id}")
+     User getById(int id);
+
+     @Post("/users")
+     User createUser(@Body User user);
+
+     @Get("/users")
+     List&lt;User&gt; getUsers();
+ }
+</code></pre>
+
+    <p><strong>1</strong> Use <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/client/annotation/Client.html"><code>@Client</code></a> to use <a href="https://docs.micronaut.io/4.0.3/guide/#clientAnnotation">declarative HTTP Clients</a>. You can annotate interfaces or abstract classes. You can use the <code>id</code> member to provide a service identifier or specify the URL directly as the annotation’s value.</p>
+  </li>
+  <li>
+    <p>The launcher created an <code>OrdersClient</code> for the <em>orders</em> microservice in a file named <em>api/src/main/java/com/example/clients/OrdersClient.java</em>, as follows:</p>
+
+    <pre><code class="language-java"> package com.example.clients;
+
+ import com.example.models.Item;
+ import com.example.models.Order;
+ import io.micronaut.http.annotation.Body;
+ import io.micronaut.http.annotation.Get;
+ import io.micronaut.http.annotation.Post;
+ import io.micronaut.http.client.annotation.Client;
+
+ import java.util.List;
+
+ @Client("orders") // &lt;1&gt;
+ public interface OrdersClient {
+     @Get("/orders/{id}")
+     Order getOrderById(int id);
+
+     @Post("/orders")
+     Order createOrder(@Body Order order);
+
+     @Get("/orders")
+     List&lt;Order&gt; getOrders();
+
+     @Get("/items")
+     List&lt;Item&gt; getItems();
+
+     @Get("/items/{id}")
+     Item getItemsById(int id);
+ }
+</code></pre>
+
+    <p><strong>1</strong> Use <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/client/annotation/Client.html"><code>@Client</code></a> to use <a href="https://docs.micronaut.io/4.0.3/guide/#clientAnnotation">declarative HTTP Clients</a>. You can annotate interfaces or abstract classes. You can use the <code>id</code> member to provide a service identifier or specify the URL directly as the annotation’s value.</p>
+  </li>
+  <li>
+    <p>The launcher created a <code>Credentials</code> class, will load the username and password from configuration that will be needed for comparison when checking HTTP basic authentication credentials, in a file named <em>api/src/main/java/com/example/auth/Credentials.java</em> with the following content:</p>
+
+    <pre><code class="language-java"> package com.example.auth;
+
+ import io.micronaut.context.annotation.ConfigurationProperties;
+
+ @ConfigurationProperties("authentication-credentials") // &lt;1&gt;
+ public record Credentials (String username, String password) {}
+</code></pre>
+
+    <p><strong>1</strong> The <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/context/annotation/ConfigurationProperties.html"><code>@ConfigurationProperties</code></a> annotation takes the configuration prefix.</p>
+  </li>
+  <li>
+    <p>The launcher created an <code>AuthClientFilter</code> class that acts as a client filter applied to every client. It adds a HTTP basic authentication header with credentials that are stored in the <code>Credentials</code> class, in a file named <em>api/src/main/java/com/example/auth/AuthClientFilter.java</em> with the following content:</p>
+
+    <pre><code class="language-java"> package com.example.auth;
+
+ import io.micronaut.http.HttpResponse;
+ import io.micronaut.http.MutableHttpRequest;
+ import io.micronaut.http.annotation.Filter;
+ import io.micronaut.http.filter.ClientFilterChain;
+ import io.micronaut.http.filter.HttpClientFilter;
+ import org.reactivestreams.Publisher;
+
+ @Filter(Filter.MATCH_ALL_PATTERN)
+ class AuthClientFilter implements HttpClientFilter {
+
+     private final Credentials credentials;
+
+     AuthClientFilter(Credentials credentials) {
+         this.credentials = credentials;
+     }
+
+     @Override
+     public Publisher&lt;? extends HttpResponse&lt;?&gt;&gt; doFilter(MutableHttpRequest&lt;?&gt; request, ClientFilterChain chain) {
+         return chain.proceed(request.basicAuth(credentials.username(), credentials.password()));
+     }
+ }
+</code></pre>
+  </li>
+  <li>
+    <p>The launcher created an <code>ErrorExceptionHandler</code> class that will propagate errors from the <em>orders</em> and <em>users</em> microservices in a file named <em>api/src/main/java/com/example/ErrorExceptionHandler.java</em> with the following content:</p>
+
+    <pre><code class="language-java"> package com.example;
+
+ import io.micronaut.http.HttpRequest;
+ import io.micronaut.http.HttpResponse;
+ import io.micronaut.http.client.exceptions.HttpClientResponseException;
+ import io.micronaut.http.server.exceptions.ExceptionHandler;
+ import jakarta.inject.Singleton;
+
+ @Singleton // &lt;1&gt;
+ public class ErrorExceptionHandler implements ExceptionHandler&lt;HttpClientResponseException, HttpResponse&lt;?&gt;&gt; {
+
+     @Override
+     public HttpResponse&lt;?&gt; handle(HttpRequest request, HttpClientResponseException exception) {
+         return HttpResponse
+                 .status(exception.getResponse().status())
+                 .body(exception.getResponse().getBody(String.class).orElse(null));
+     }
+ }
+</code></pre>
+
+    <p><strong>1</strong> Use <code>jakarta.inject.Singleton</code> to designate a class as a singleton.</p>
+  </li>
+</ol>
+    
+      <h3 id="32-write-tests-to-verify-application-logic">
+        
+        
+          3.2. Write Tests to Verify Application Logic <a href="#32-write-tests-to-verify-application-logic" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<ol>
+  <li>
+    <p>The launcher created a <code>GatewayClient</code> Micronaut HTTP inline client for testing in a file named <em>api/src/test/java/com/example/GatewayClient.java</em></p>
+
+    <pre><code class="language-java"> package com.example;
+
+ import com.example.models.Item;
+ import com.example.models.Order;
+ import com.example.models.User;
+ import io.micronaut.http.annotation.Body;
+ import io.micronaut.http.annotation.Get;
+ import io.micronaut.http.annotation.Post;
+ import io.micronaut.http.client.annotation.Client;
+
+ import java.util.List;
+
+ @Client("/") // &lt;1&gt;
+ public interface GatewayClient {
+
+     @Get("/api/items/{id}")
+     Item getItemById(int id);
+
+     @Get("/api/orders/{id}")
+     Order getOrderById(int id);
+
+     @Get("/api/users/{id}")
+     User getUsersById(int id);
+
+     @Get("/api/users")
+     List&lt;User&gt; getUsers();
+
+     @Get("/api/items")
+     List&lt;Item&gt; getItems();
+
+     @Get("/api/orders")
+     List&lt;Order&gt; getOrders();
+
+     @Post("/api/orders")
+     Order createOrder(@Body Order order);
+
+     @Post("/api/users")
+     User createUser(@Body User user);
+ }
+</code></pre>
+
+    <p><strong>1</strong> Use <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/client/annotation/Client.html"><code>@Client</code></a> to use <a href="https://docs.micronaut.io/4.0.3/guide/#clientAnnotation">declarative HTTP Clients</a>. You can annotate interfaces or abstract classes. You can use the <code>id</code> member to provide a service identifier or specify the URL directly as the annotation’s value.</p>
+  </li>
+  <li>
+    <p>The launcher created a <code>HealthTest</code> class to check that there is <code>/health</code> endpoint (required for service discovery) in a file named <em>api/src/test/java/com/example/HealthTest.java</em> with the following content:</p>
+
+    <pre><code class="language-java"> package com.example;
+
+ import io.micronaut.http.HttpRequest;
+ import io.micronaut.http.HttpStatus;
+ import io.micronaut.http.client.HttpClient;
+ import io.micronaut.http.client.annotation.Client;
+ import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
+ import org.junit.jupiter.api.Test;
+
+ import jakarta.inject.Inject;
+
+ import static org.junit.jupiter.api.Assertions.assertEquals;
+
+ @MicronautTest // &lt;1&gt;
+ class HealthTest {
+
+     @Inject
+     @Client("/")
+     HttpClient client; // &lt;2&gt;
+
+     @Test
+     public void healthEndpointExposed() {
+         HttpStatus status = client.toBlocking().retrieve(HttpRequest.GET("/health"), HttpStatus.class);
+         assertEquals(HttpStatus.OK, status);
+     }
+ }
+</code></pre>
+
+    <p><strong>1</strong> Annotate the class with <code>@MicronautTest</code> so the Micronaut framework will initialize the application context and the embedded server. (For more information , see <a href="https://micronaut-projects.github.io/micronaut-test/latest/guide/">Micronaut Test</a>.)</p>
+
+    <p><strong>2</strong> Inject the <code>HttpClient</code> bean and point it to the embedded server.</p>
+  </li>
+  <li>
+    <p>The launcher created a <code>GatewayControllerTest</code> class to test endpoints inside the <code>GatewayController</code> in a file named <em>api/src/test/java/com/example/GatewayControllerTest.java</em> with the following content:</p>
+
+    <pre><code class="language-java"> package com.example;
+
+ import com.example.clients.OrdersClient;
+ import com.example.clients.UsersClient;
+ import com.example.models.Item;
+ import com.example.models.Order;
+ import com.example.models.User;
+ import io.micronaut.http.HttpResponse;
+ import io.micronaut.http.HttpStatus;
+ import io.micronaut.http.client.exceptions.HttpClientResponseException;
+ import io.micronaut.test.annotation.MockBean;
+ import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
+ import jakarta.inject.Inject;
+ import org.junit.jupiter.api.Test;
+
+ import java.math.BigDecimal;
+ import java.util.ArrayList;
+ import java.util.List;
+
+ import static org.junit.jupiter.api.Assertions.assertEquals;
+ import static org.junit.jupiter.api.Assertions.assertNotNull;
+ import static org.junit.jupiter.api.Assertions.assertNull;
+ import static org.junit.jupiter.api.Assertions.assertThrows;
+ import static org.junit.jupiter.api.Assertions.assertTrue;
+ import static org.mockito.ArgumentMatchers.any;
+ import static org.mockito.Mockito.mock;
+ import static org.mockito.Mockito.when;
+
+
+ @MicronautTest // &lt;1&gt;
+ class GatewayControllerTest {
+
+     @Inject
+     OrdersClient ordersClient;
+
+     @Inject
+     UsersClient usersClient;
+
+     @Inject
+     GatewayClient gatewayClient;
+
+     @MockBean(OrdersClient.class)
+     OrdersClient ordersClient() {
+         return mock(OrdersClient.class);
+     }
+
+     @MockBean(UsersClient.class)
+     UsersClient usersClient() {
+         return mock(UsersClient.class);
+     }
+
+
+     @Test
+     void getItemById() {
+         int itemId = 1;
+         Item item = new Item(itemId, "test", BigDecimal.ONE);
+
+         when(ordersClient.getItemsById(1)).thenReturn(item);
+
+         Item retrievedItem = gatewayClient.getItemById(item.id());
+
+         assertEquals(item.id(), retrievedItem.id());
+         assertEquals(item.name(), retrievedItem. name());
+         assertEquals(item.price(), retrievedItem.price());
+
+     }
+
+     @Test
+     void getOrderById() {
+
+         Order order = new Order(1, 2, null, null, new ArrayList&lt;&gt;(), null);
+         User user = new User(order.userId(), "firstName", "lastName", "test");
+
+         when(ordersClient.getOrderById(1)).thenReturn(order);
+         when(usersClient.getById(user.id())).thenReturn(user);
+
+         Order retrievedOrder = gatewayClient.getOrderById(order.id());
+
+         assertEquals(order.id(), retrievedOrder.id());
+         assertEquals(order.userId(), retrievedOrder.user().id());
+         assertNull(retrievedOrder.userId());
+         assertEquals(user.username(), retrievedOrder.user().username());
+     }
+
+     @Test
+     void getUserById() {
+         User user = new User(1, "firstName", "lastName", "test");
+
+         when(usersClient.getById(1)).thenReturn(user);
+
+         User retrievedUser = gatewayClient.getUsersById(user.id());
+
+         assertEquals(user.id(), retrievedUser.id());
+         assertEquals(user.username(), retrievedUser.username());
+     }
+
+     @Test
+     void getUsers() {
+         User user = new User(1, "firstName", "lastName", "test");
+
+         when(usersClient.getUsers()).thenReturn(List.of(user));
+
+         List&lt;User&gt; users = gatewayClient.getUsers();
+
+         assertNotNull(users);
+         assertEquals(1, users.size());
+         assertEquals(user.id(), users.get(0).id());
+         assertEquals(user.username(), users.get(0).username());
+     }
+
+     @Test
+     void getItems() {
+
+         Item item = new Item(1, "test", BigDecimal.ONE);
+
+         when(ordersClient.getItems()).thenReturn(List.of(item));
+
+         List&lt;Item&gt; items = gatewayClient.getItems();
+
+         assertNotNull(items);
+         assertEquals(1, items.size());
+         assertEquals(item.name(), items.get(0).name());
+         assertEquals(item.price(), items.get(0).price());
+     }
+
+     @Test
+     void getOrders() {
+         Order order = new Order(1, 2, null, null, new ArrayList&lt;&gt;(), null);
+         User user = new User(order.userId(), "firstName", "lastName", "test");
+
+         when(ordersClient.getOrders()).thenReturn(List.of(order));
+         when(usersClient.getById(order.userId())).thenReturn(user);
+
+         List&lt;Order&gt; orders = gatewayClient.getOrders();
+
+         assertNotNull(orders);
+         assertEquals(1, orders.size());
+         assertNull(orders.get(0).userId());
+         assertEquals(user.id(), orders.get(0).user().id());
+
+         assertEquals(order.id(), orders.get(0).id());
+         assertEquals(user.username(), orders.get(0).user().username());
+     }
+
+     @Test
+     void createUser() {
+         String firstName = "firstName";
+         String lastName = "lastName";
+         String username = "username";
+
+         User user = new User(0, firstName, lastName, username);
+
+         when(usersClient.createUser(any())).thenReturn(user);
+
+         User createdUser = gatewayClient.createUser(user);
+
+         assertEquals(firstName, createdUser.firstName());
+         assertEquals(lastName, createdUser.lastName());
+         assertEquals(username, createdUser.username());
+     }
+
+     @Test
+     void createOrder() {
+         Order order = new Order(1, 2, null, null, new ArrayList&lt;&gt;(), null);
+         User user = new User(order.userId(), "firstName", "lastName", "test");
+
+         when(usersClient.getById(user.id())).thenReturn(user);
+
+         when(ordersClient.createOrder(any())).thenReturn(order);
+
+         Order createdOrder = gatewayClient.createOrder(order);
+
+         assertEquals(order.id(), createdOrder.id());
+         assertNull(createdOrder.userId());
+         assertEquals(order.userId(), createdOrder.user().id());
+         assertEquals(user.username(), createdOrder.user().username());
+     }
+
+     @Test
+     void createOrderUserDoesntExists() {
+         Order order = new Order(1, 2, null, null, new ArrayList&lt;&gt;(), new BigDecimal(0));;
+
+         when(ordersClient.createOrder(any())).thenReturn(order);
+
+         when(usersClient.getById(order.userId())).thenReturn(null);
+
+         HttpClientResponseException exception = assertThrows(HttpClientResponseException.class, () -&gt; gatewayClient.createOrder(order));
+
+         assertEquals(HttpStatus.BAD_REQUEST, exception.getStatus());
+
+         assertTrue(exception.getResponse().getBody(String.class).orElse("").contains("User with id 2 doesn't exist"));
+     }
+
+     @Test
+     void exceptionHandler() {
+         User user = new User(1, "firstname", "lastname", "username");
+
+         String message = "Test error message";
+
+         when(usersClient.createUser(any())).thenThrow(new HttpClientResponseException("Test", HttpResponse.badRequest(message)));
+
+         HttpClientResponseException exception = assertThrows(HttpClientResponseException.class, () -&gt; gatewayClient.createUser(user));
+
+         assertEquals(HttpStatus.BAD_REQUEST, exception.getStatus());
+
+         assertTrue(exception.getResponse().getBody(String.class).orElse("").contains("Test error message"));
+     }
+
+ }
+</code></pre>
+
+    <p><strong>1</strong> Annotate the class with <code>@MicronautTest</code> so the Micronaut framework will initialize the application context and the embedded server. (For more information, see <a href="https://micronaut-projects.github.io/micronaut-test/latest/guide/">Micronaut Test</a>.)</p>
+  </li>
+  <li>
+    <p>Edit the <em>api/src/main/resources/application-k8s.properties</em> file as follows:</p>
+
+    <pre><code> # &lt;1&gt;
+ authentication-credentials.username=${username}
+ # &lt;2&gt;
+ authentication-credentials.password=${password}
+</code></pre>
+
+    <p><strong>1</strong> Placeholder for a username that will be populated by Kubernetes.</p>
+
+    <p><strong>2</strong> Placeholder for a password that will be populated by Kubernetes.</p>
+  </li>
+  <li>
+    <p>Edit the <em>api/src/main/resources/bootstrap-k8s.properties</em> file to <a href="https://docs.micronaut.io/4.0.3/guide/#bootstrap">enable distributed configuration</a>. Modify the content so that it matches the following:</p>
+
+    <pre><code> micronaut.application.name=api
+ # &lt;1&gt;
+ micronaut.config-client.enabled=true
+ # &lt;2&gt;
+ kubernetes.client.secrets.enabled=true
+ # &lt;3&gt;
+ kubernetes.client.secrets.use-api=true
+</code></pre>
+
+    <p><strong>1</strong> Set <code>micronaut.config-client.enabled: true</code> to read and resolve configuration from distributed sources.</p>
+
+    <p><strong>2</strong> Set <code>kubernetes.client.secrets.enabled: true</code> to enable Kubernetes secrets as a distributed source.</p>
+
+    <p><strong>3</strong> Set <code>kubernetes.client.secrets.use-api: true</code> to use the Kubernetes API to fetch configuration.</p>
+  </li>
+  <li>
+    <p>The launcher created a file named <em>api/src/main/resources/application-dev.properties</em>. This configuration file is applied only for the <code>dev</code> environment.</p>
+
+    <pre><code> # &lt;1&gt;
+ authentication-credentials.username=gcndemo
+ # &lt;2&gt;
+ authentication-credentials.password=example-password
+</code></pre>
+
+    <p><strong>1</strong> Hardcoded username for development environment.</p>
+
+    <p><strong>2</strong> Hardcoded password for development environment.</p>
+  </li>
+  <li>
+    <p>The launcher created a file named <em>api/src/main/resources/bootstrap-dev.properties</em> to disable distributed configuration in the <code>dev</code> environment:</p>
+
+    <pre><code> # &lt;1&gt;
+ micronaut.http.services.users.urls=http://localhost:8081
+ # &lt;2&gt;
+ micronaut.http.services.orders.urls=http://localhost:8082
+ # &lt;3&gt;
+ kubernetes.client.secrets.enabled=false
+</code></pre>
+
+    <p><strong>1</strong> URL of the <em>users</em> microservice.</p>
+
+    <p><strong>2</strong> URL of the <em>orders</em> microservice.</p>
+
+    <p><strong>3</strong> Disable the Kubernetes secrets client.</p>
+  </li>
+  <li>
+    <p>The launcher created a file named <em>api/src/test/resources/application-test.properties</em> (to be used in the test environment) with the following content:</p>
+
+    <pre><code> # &lt;1&gt;
+ authentication-credentials.username=gcndemo
+ # &lt;2&gt;
+ authentication-credentials.password=example-password
+</code></pre>
+
+    <p><strong>1</strong> Hardcoded username for development environment.</p>
+
+    <p><strong>2</strong> Hardcoded password for development environment.</p>
+  </li>
+  <li>
+    <p>Run the unit test, as follows:</p>
+
+    <div id="tabs-doc9">
+     <ul>
+         <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
+         <li class="tabs-maven"><a href="#maven">Maven</a></li>
+     </ul>
+     <div id="gradle">
+         <pre><code class="language-bash">./gradlew test</code></pre>
+     </div>
+     <div id="maven">
+         <pre><code class="language-bash">./mvnw test</code></pre>
+     </div>
+ </div>
+  </li>
+</ol>
+    
+      <h3 id="33-run-the-api-microservice">
+        
+        
+          3.3. Run the <em>api</em> Microservice <a href="#33-run-the-api-microservice" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>Run the <em>api</em> microservice as follows:</p>
+
+<div id="tabs-doc10">
+    <ul>
+        <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <pre><code class="language-bash">MICRONAUT_ENVIRONMENTS=dev ./gradlew run</code></pre>
+         Or if you use Windows: 
+        <pre><code class="language-bash">cmd /C "set MICRONAUT_ENVIRONMENTS=dev &amp;&amp; gradlew run"</code></pre>
+    </div>
+    <div id="maven">
+        <pre><code class="language-bash">MICRONAUT_ENVIRONMENTS=dev ./mvnw mn:run</code></pre>
+         Or if you use Windows: 
+        <pre><code class="language-bash">cmd /C "set MICRONAUT_ENVIRONMENTS=dev &amp;&amp; mvnw mn:run""</code></pre>
+    </div>
+</div>
+    
+      <h2 id="4-test-integration-between-microservices">
+        
+        
+          4. Test Integration Between Microservices <a href="#4-test-integration-between-microservices" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<ol>
+  <li>
+    <p>Run a <code>curl</code> command to create a new user via the <em>api</em> microservice:</p>
+
+    <pre><code class="language-bash"> curl -X "POST" localhost:8080/api/users \
+      -H 'Content-Type: application/json; charset=utf-8' \
+      -d '{ "first_name": "Nemanja", "last_name": "Mikic", "username": "nmikic" }'
+</code></pre>
+
+    <p>Your output should look like:</p>
+
+    <pre><code class="language-json"> {
+   "id":1,
+   "username":"nmikic",
+   "first_name":"Nemanja",
+   "last_name":"Mikic"
+ }
+</code></pre>
+  </li>
+  <li>
+    <p>Run a <code>curl</code> command to create a new order via the <em>api</em> microservice:</p>
+
+    <pre><code class="language-bash"> curl -X "POST" localhost:8080/api/orders \
+      -H 'Content-Type: application/json; charset=utf-8' \
+      -d '{ "user_id": 1, "item_ids": [1,2] }'
+</code></pre>
+
+    <p>Your output should include details of the order, as follows:</p>
+
+    <pre><code class="language-json"> {
+   "id": 1,
+   "user": {
+     "first_name": "Nemanja",
+     "last_name": "Mikic",
+     "id": 1,
+     "username": "nmikic"
+   },
+   "items": [
+     {
+       "id": 1,
+       "name": "Banana",
+       "price": 1.5
+     },
+     {
+       "id": 2,
+       "name": "Kiwi",
+       "price": 2.5
+     }
+   ],
+   "total": 4.0
+ }
+</code></pre>
+  </li>
+  <li>
+    <p>Run a <code>curl</code> command to list the orders:</p>
+
+    <pre><code class="language-bash"> curl localhost:8080/api/orders \
+      -H 'Content-Type: application/json; charset=utf-8'
+</code></pre>
+
+    <p>You should see output that is similar to the following:</p>
+
+    <pre><code class="language-json"> [
+   {
+     "id": 1,
+     "user": {
+       "first_name": "Nemanja",
+       "last_name": "Mikic",
+       "id": 1,
+       "username": "nmikic"
+     },
+     "items": [
+       {
+         "id": 1,
+         "name": "Banana",
+         "price": 1.5
+       },
+       {
+         "id": 2,
+         "name": "Kiwi",
+         "price": 2.5
+       }
+     ],
+     "total": 4.0
+   }
+ ]
+</code></pre>
+  </li>
+  <li>
+    <p>Try to place an order for a user who doesn’t exist (with <code>id</code> 100). Run the following <code>curl</code> command:</p>
+
+    <pre><code class="language-bash"> curl -X "POST" localhost:8080/api/orders \
+      -H 'Content-Type: application/json; charset=utf-8' \
+      -d '{ "user_id": 100, "item_ids": [1,2] }'
+</code></pre>
+
+    <p>You should see the following error message:</p>
+
+    <pre><code class="language-json"> {
+   "message": "Bad Request",
+   "_links": {
+     "self": [
+       {
+         "href": "/api/orders",
+         "templated": false
+       }
+     ]
+   },
+   "_embedded": {
+     "errors": [
+       {
+         "message": "User with id 100 doesn't exist"
+       }
+     ]
+   }
+ }
+</code></pre>
+  </li>
+</ol>
+    
+      <h2 id="5-deploy-microservices-to-a-local-kubernetes-cluster">
+        
+        
+          5. Deploy Microservices to a Local Kubernetes Cluster <a href="#5-deploy-microservices-to-a-local-kubernetes-cluster" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>This section describes how to create the necessary Kubernetes resources for your microservices. It shows how to build container images and deploy each of the microservices on the local Kubernetes cluster.</p>
+
+<p>If you are using Docker make sure that <a href="https://docs.docker.com/desktop/kubernetes/">Kubernetes is enabled</a>.</p>
+
+<p>If you are using Rancher Desktop make sure that <a href="https://docs.rancherdesktop.io/ui/preferences/kubernetes">Kubernetes is enabled</a> and that the <a href="https://docs.rancherdesktop.io/ui/preferences/virtual-machine">virtual machines have 5GB of memory</a>.</p>
+
+<blockquote>
+Note: If you are using Gradle to build your application on AArch64, add the following to your <i>settings.gradle</i> file:
+        <pre><code>buildscript {
+    dependencies {
+        classpath("com.github.docker-java:docker-java:3.3.1")
+        classpath("com.github.docker-java:docker-java-transport-httpclient5:3.3.1")
+    }
+    repositories {
+        mavenCentral()
+    }
+}</code></pre>
+</blockquote>
+    
+      <h3 id="51-configure-service-roles-and-secrets">
+        
+        
+          5.1. Configure Service Roles and Secrets <a href="#51-configure-service-roles-and-secrets" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<ol>
+  <li>
+    <p>The launcher created a filed named <em>auth.yml</em> that specifies a service role for microservices that have secret configurations.</p>
+
+    <pre><code class="language-yml"> apiVersion: v1
+ kind: Namespace # &lt;1&gt;
+ metadata:
+   name: gcn-k8s
+ ---
+ apiVersion: v1
+ kind: ServiceAccount # &lt;2&gt;
+ metadata:
+   namespace: gcn-k8s
+   name: gcn-service
+ ---
+ kind: Role # &lt;3&gt;
+ apiVersion: rbac.authorization.k8s.io/v1
+ metadata:
+   namespace: gcn-k8s
+   name: gcn_service_role
+ rules:
+   - apiGroups: [""]
+     resources: ["services", "endpoints", "configmaps", "secrets", "pods"]
+     verbs: ["get", "watch", "list"]
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: RoleBinding # &lt;4&gt;
+ metadata:
+   namespace: gcn-k8s
+   name: gcn_service_role_bind
+ subjects:
+   - kind: ServiceAccount
+     name: gcn-service
+ roleRef:
+   kind: Role
+   name: gcn_service_role
+   apiGroup: rbac.authorization.k8s.io
+ ---
+ apiVersion: v1
+ kind: Secret # &lt;5&gt;
+ metadata:
+   namespace: gcn-k8s
+   name: mysecret
+ type: Opaque
+ data:
+   username: Z2NuZGVtbw== # &lt;6&gt;
+   password: ZXhhbXBsZS1wYXNzd29yZA== # &lt;7&gt;
+</code></pre>
+
+    <p><strong>1</strong> Create a namespace named <code>gcn-k8s</code>.</p>
+
+    <p><strong>2</strong> Create a service account named <code>gcn-service</code>.</p>
+
+    <p><strong>3</strong> Create a role named <code>gcn_service_role</code>.</p>
+
+    <p><strong>4</strong> Bind the <code>gcn_service_role</code> role to the <code>gcn-service</code> service account.</p>
+
+    <p><strong>5</strong> Create a secret named <code>mysecret</code>.</p>
+
+    <p><strong>6</strong> The base64 value of the username secret that will be used by the microservices.</p>
+
+    <p><strong>7</strong> The base64 value of the password secret that will be used by the microservices.</p>
+  </li>
+  <li>
+    <p>Run the next command to create the resources described above:</p>
+
+    <pre><code class="language-bash"> kubectl apply -f auth.yml
+</code></pre>
+  </li>
+</ol>
+    
+      <h3 id="52-deploy-the-users-microservice">
+        
+        
+          5.2. Deploy the <em>Users</em> Microservice <a href="#52-deploy-the-users-microservice" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>Build a container image of the <em>users</em> microservice named “users”.</p>
+
+<p>From inside the <em>users</em> directory.</p>
+
+<div id="tabs-doc11">
+    <ul>
+        <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <pre><code class="language-bash">./gradlew dockerBuildNative</code></pre>
+    </div>
+    <div id="maven">
+        <pre><code class="language-bash">./mvnw package -Dpackaging=docker-native -Pgraalvm</code></pre>
+    </div>
+</div>
+
+<blockquote>
+  <p>Note: If you are having issues building a container image try:</p>
+  <ul>
+    <li>Gradle, from inside the <em>users/build/docker/native-main</em> directory run <code>docker build . -t users -f DockerfileNative</code>.</li>
+    <li>Maven, from inside the <em>user/target</em> directory run <code>docker build . -t users -f Dockerfile</code>.</li>
+  </ul>
+</blockquote>
+
+<p>Next, edit the file named <em>k8s.yml</em> as follows:</p>
+
+<pre><code class="language-yml">apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: gcn-k8s
+  name: "users"
+spec:
+  selector:
+    matchLabels:
+      app: "users"
+  template:
+    metadata:
+      labels:
+        app: "users"
+    spec:
+      serviceAccountName: gcn-service # &lt;1&gt;
+      containers:
+        - name: "users"
+          image: users # &lt;2&gt;
+          imagePullPolicy: Never # &lt;3&gt;
+          ports:
+            - name: http
+              containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /health/readiness
+              port: 8080
+            initialDelaySeconds: 5
+            timeoutSeconds: 3
+          livenessProbe:
+            httpGet:
+              path: /health/liveness
+              port: 8080
+            initialDelaySeconds: 5
+            timeoutSeconds: 3
+            failureThreshold: 10
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: gcn-k8s
+  name: "users" # &lt;4&gt;
+spec:
+  selector:
+    app: "users"
+  type: NodePort
+  ports:
+    - protocol: "TCP"
+      port: 8080 # &lt;5&gt;
+</code></pre>
+
+<p><strong>1</strong> The service name that you created in the <em>auth.yaml</em> file.</p>
+
+<p><strong>2</strong> The name of the container image for deployment.</p>
+
+<p><strong>3</strong> The <code>imagePullPolicy</code> is set to <code>Never</code>. You will always use the local one that you built in previous step.</p>
+
+<p><strong>4</strong> The name of the microservice, required for service discovery.</p>
+
+<p><strong>5</strong> Micronaut’s default port on which the application is running.</p>
+
+<p><br />
+Then run the next command to create the resources described above:</p>
+
+<pre><code class="language-bash">kubectl apply -f k8s.yml
+</code></pre>
+    
+      <h3 id="53-deploy-the-orders-microservice">
+        
+        
+          5.3. Deploy the <em>Orders</em> Microservice <a href="#53-deploy-the-orders-microservice" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>Build a container image of the <em>orders</em> microservice named “orders”.</p>
+
+<p>From inside the <em>orders</em> directory.</p>
+
+<div id="tabs-doc12">
+    <ul>
+        <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <pre><code class="language-bash">./gradlew dockerBuildNative</code></pre>
+    </div>
+    <div id="maven">
+        <pre><code class="language-bash">./mvnw package -Dpackaging=docker-native -Pgraalvm</code></pre>
+    </div>
+</div>
+
+<blockquote>
+  <p>Note: If you are having issues building a container image try:</p>
+  <ul>
+    <li>Gradle, from inside the <em>orders/build/docker/native-main</em> directory run <code>docker build . -t orders -f DockerfileNative</code>.</li>
+    <li>Maven, from inside the <em>orders/target</em> directory run <code>docker build . -t orders -f Dockerfile</code>.</li>
+  </ul>
+</blockquote>
+
+<p>Next, edit the file named <em>k8s.yml</em> as follows:</p>
+
+<pre><code class="language-yml">apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: gcn-k8s
+  name: "orders"
+spec:
+  selector:
+    matchLabels:
+      app: "orders"
+  template:
+    metadata:
+      labels:
+        app: "orders"
+    spec:
+      serviceAccountName: gcn-service # &lt;1&gt;
+      containers:
+        - name: "orders"
+          image: orders # &lt;2&gt;
+          imagePullPolicy: Never # &lt;3&gt;
+          ports:
+            - name: http
+              containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /health/readiness
+              port: 8080
+            initialDelaySeconds: 5
+            timeoutSeconds: 3
+          livenessProbe:
+            httpGet:
+              path: /health/liveness
+              port: 8080
+            initialDelaySeconds: 5
+            timeoutSeconds: 3
+            failureThreshold: 10
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: gcn-k8s
+  name: "orders" # &lt;4&gt;
+spec:
+  selector:
+    app: "orders"
+  type: NodePort
+  ports:
+    - protocol: "TCP"
+      port: 8080 # &lt;5&gt;
+</code></pre>
+
+<p><strong>1</strong> The service name that you created in the <em>auth.yaml</em> file.</p>
+
+<p><strong>2</strong> The name of the container image for deployment.</p>
+
+<p><strong>3</strong> The <code>imagePullPolicy</code> is set to <code>Never</code>. You will always use local one that you built in previous step.</p>
+
+<p><strong>4</strong> The name of the microservice, required for service discovery.</p>
+
+<p><strong>5</strong> Micronaut’s default port on which application is running.</p>
+
+<p><br />
+Then run the next command to create the resources described above:</p>
+
+<pre><code class="language-bash">kubectl apply -f k8s.yml
+</code></pre>
+    
+      <h3 id="54-deploy-the-api-gateway-microservice">
+        
+        
+          5.4. Deploy the <em>API</em> (Gateway) Microservice <a href="#54-deploy-the-api-gateway-microservice" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>Build a container image of the <em>api</em> microservice named “api”.</p>
+
+<p>From inside the <em>api</em> directory.</p>
+
+<div id="tabs-doc13">
+    <ul>
+        <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <pre><code class="language-bash">./gradlew dockerBuildNative</code></pre>
+    </div>
+    <div id="maven">
+        <pre><code class="language-bash">./mvnw package -Dpackaging=docker-native -Pgraalvm</code></pre>
+    </div>
+</div>
+
+<blockquote>
+  <p>Note: If you are having issues building a container image try:</p>
+  <ul>
+    <li>Gradle, from inside the <em>api/build/docker/native-main</em> directory run <code>docker build . -t api -f DockerfileNative</code>.</li>
+    <li>Maven, from inside the <em>api/target</em> directory run <code>docker build . -t api -f Dockerfile</code>.</li>
+  </ul>
+</blockquote>
+
+<p>Next, edit the file named <em>k8s.yml</em> as follows:</p>
+
+<pre><code class="language-yml">apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: gcn-k8s
+  name: "api"
+spec:
+  selector:
+    matchLabels:
+      app: "api"
+  template:
+    metadata:
+      labels:
+        app: "api"
+    spec:
+      serviceAccountName: gcn-service # &lt;1&gt;
+      containers:
+        - name: "api"
+          image: api # &lt;2&gt;
+          imagePullPolicy: Never # &lt;3&gt;
+          ports:
+            - name: http
+              containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /health/readiness
+              port: 8080
+            initialDelaySeconds: 5
+            timeoutSeconds: 3
+          livenessProbe:
+            httpGet:
+              path: /health/liveness
+              port: 8080
+            initialDelaySeconds: 5
+            timeoutSeconds: 3
+            failureThreshold: 10
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: gcn-k8s
+  name: "api" # &lt;4&gt;
+spec:
+  selector:
+    app: "api"
+  type: NodePort
+  ports:
+    - protocol: "TCP"
+      port: 8080 # &lt;5&gt;
+</code></pre>
+
+<p><strong>1</strong> The service name that you created in the <em>auth.yaml</em> file.</p>
+
+<p><strong>2</strong> The name of the container image for deployment.</p>
+
+<p><strong>3</strong> The <code>imagePullPolicy</code> is set to <code>Never</code>. You will always use local one that you built in previous step.</p>
+
+<p><strong>4</strong> The name of the microservice, required for service discovery.</p>
+
+<p><strong>5</strong> Micronaut’s default port on which application is running.</p>
+
+<p><br />
+Then run the next command to create the resources described above:</p>
+
+<pre><code class="language-bash">kubectl apply -f k8s.yml
+</code></pre>
+    
+      <h2 id="6-test-integration-between-microservices-deployed-to-kubernetes">
+        
+        
+          6. Test Integration Between Microservices Deployed to Kubernetes <a href="#6-test-integration-between-microservices-deployed-to-kubernetes" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<ol>
+  <li>
+    <p>Run the next command to check status of the pods and make sure that all of them have the status “Running”:</p>
+
+    <pre><code class="language-bash"> kubectl get pods -n=gcn-k8s
+</code></pre>
+
+    <pre>
+ NAME                      READY   STATUS    RESTARTS   AGE
+ api-774fd667b9-dmws4      1/1     Running   0          24s
+ orders-74ff4fcbc4-dnfbw   1/1     Running   0          19s
+ users-9f46dd7c6-vs8z7     1/1     Running   0          13s
+ </pre>
+  </li>
+  <li>
+    <p>Run the next command to check the status of the microservices:</p>
+
+    <pre><code class="language-bash"> kubectl get services -n=gcn-k8s
+</code></pre>
+
+    <pre>
+ NAME     TYPE           CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
+ api      LoadBalancer   10.110.42.201    192.168.0.106 8080:32601/TCP   18s
+ orders   NodePort       10.105.43.19     &lt;none&gt;        8080:31033/TCP   21s
+ users    NodePort       10.104.130.114   &lt;none&gt;        8080:31482/TCP   26s
+ </pre>
+  </li>
+  <li>
+    <p>Run a <code>curl</code> command to create a new user via the <em>api</em> microservice:</p>
+
+    <pre><code class="language-bash"> curl -X "POST" localhost:8080/api/users \
+      -H 'Content-Type: application/json; charset=utf-8' \
+      -d '{ "first_name": "Nemanja", "last_name": "Mikic", "username": "nmikic" }'
+</code></pre>
+
+    <p>Your output should look like:</p>
+
+    <p>```json
+ {
+   “id”:1,
+   “username”:”nmikic”,
+   “first_name”:”Nemanja”,
+   “last_name”:”Mikic”
+ }</p>
+  </li>
+  <li>
+    <p>Run a <code>curl</code> command to create a new order via the <em>api</em> microservice:</p>
+
+    <pre><code class="language-bash"> curl -X "POST" localhost:8080/api/orders \
+      -H 'Content-Type: application/json; charset=utf-8' \
+      -d '{ "user_id": 1, "item_ids": [1,2] }'
+</code></pre>
+
+    <p>Your output should include details of the order, as follows:</p>
+
+    <pre><code class="language-json"> {
+   "id": 1,
+   "user": {
+     "first_name": "Nemanja",
+     "last_name": "Mikic",
+     "id": 1,
+     "username": "nmikic"
+   },
+   "items": [
+     {
+       "id": 1,
+       "name": "Banana",
+       "price": 1.5
+     },
+     {
+       "id": 2,
+       "name": "Kiwi",
+       "price": 2.5
+     }
+   ],
+   "total": 4.0
+ }
+</code></pre>
+  </li>
+  <li>
+    <p>Run a <code>curl</code> command to list the orders:</p>
+
+    <pre><code class="language-bash"> curl localhost:8080/api/orders \
+      -H 'Content-Type: application/json; charset=utf-8'
+</code></pre>
+
+    <p>You should see output that is similar to the following:</p>
+
+    <pre><code class="language-json"> [
+   {
+     "id": 1,
+     "user": {
+       "first_name": "Nemanja",
+       "last_name": "Mikic",
+       "id": 1,
+       "username": "nmikic"
+     },
+     "items": [
+       {
+         "id": 1,
+         "name": "Banana",
+         "price": 1.5
+       },
+       {
+         "id": 2,
+         "name": "Kiwi",
+         "price": 2.5
+       }
+     ],
+     "total": 4.0
+   }
+ ]
+</code></pre>
+  </li>
+  <li>
+    <p>Try to place an order for a user who doesn’t exist (with <code>id</code> 100). Run a <code>curl</code> command:</p>
+
+    <pre><code class="language-bash"> curl -X "POST" localhost:8080/api/orders \
+      -H 'Content-Type: application/json; charset=utf-8' \
+      -d '{ "user_id": 100, "item_ids": [1,2] }'
+</code></pre>
+
+    <p>You should see the following error message:</p>
+
+    <pre><code class="language-json"> {
+   "message": "Bad Request",
+   "_links": {
+     "self": [
+       {
+         "href": "/api/orders",
+         "templated": false
+       }
+     ]
+   },
+   "_embedded": {
+     "errors": [
+       {
+         "message": "User with id 100 doesn't exist"
+       }
+     ]
+   }
+ }
+</code></pre>
+  </li>
+</ol>
+    
+      <h2 id="7-clean-up-resources">
+        
+        
+          7. Clean Up Resources <a href="#7-clean-up-resources" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>To delete all resources that you created in this guide run the next command:</p>
+
+<pre><code class="language-bash">kubectl delete namespaces gcn-k8s
+</code></pre>
+
+<p>To delete the Minikube local Kubernetes cluster run:</p>
+
+<pre><code class="language-bash">minikube delete
+</code></pre>
+    
+      <h3 id="summary">
+        
+        
+          Summary <a href="#summary" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>This guide demonstrated how to create a microservices application, build a containerized version of the microservices, and deploy each to a local Kubernetes cluster. Thanks to the <a href="https://micronaut-projects.github.io/micronaut-kubernetes/snapshot/guide/">Micronaut Kubernetes module</a>, you can connect the microservices using Kubernetes Service Discovery and Distributed Configuration.</p>
+    
+      <h3 id="related-documentation">
+        
+        
+          Related Documentation <a href="#related-documentation" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<ul>
+  <li><a href="https://micronaut-projects.github.io/micronaut-kubernetes/snapshot/guide/">Micronaut Kubernetes module</a></li>
+  <li><a href="https://kubernetes.io/docs/home/">Kubernetes</a></li>
+</ul>
+
+      </div>
+
+      <div role="button" class="menu-btn menu-btn--sidebar js-show-sidebar" title="sweet hamburger">
+        <div class="hamburger">
+          <div class="inner"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+</div>
+
+      </main>
+
+      
+<footer class="footer footer__mobile">
+
+  <div class="container-fluid container-fluid--custom-sm">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row footer-content">
+          <div class="col-md-3 col-sm-4">
+            <h6 class="title-footer" onclick="fadeInAndOut(this)">Learn</h6>
+            <div class="grow">
+              <ul class="footer-list">
+                <li class="footer-list__item"><a href="/gcn/get-started/">Get Started</a></li>
+                <li class="footer-list__item"><a href="/gcn/guides/">Guides</a></li>
+                <li class="footer-list__item"><a href="/gcn/hands-on-labs/">Labs</a></li>
+                <li class="footer-list__github">
+                  <img class="footer__icon" src="/gcn/resources/img/footer/logo-github.svg" alt="Github icon">
+                  <a href="https://github.com/oracle/gcn">Github</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-4">
+            <h6 class="title-footer" onclick="fadeInAndOut(this)">About</h6>
+            <div class="grow">
+              <ul class="footer-list">
+                <li class="footer-list__item"><a href="/gcn/about/#gcn-support" target="blank">Commercial Support</a></li>
+                <li class="footer-list__item"><a href="https://www.graalvm.org/" target="blank">GraalVM Native Image</a></li>
+                <li class="footer-list__item"><a href="https://micronaut.io/" target="_blank">Micronaut</a></li>
+                <li class="footer-list__item"><a href="https://www.oracle.com/cloud/multicloud/what-is-multicloud/" target="_blank">Multicloud</a></li>
+                <li class="footer-list__item"><a href="https://www.oracle.com/cloud/" target="blank">Oracle Cloud Infrastructure</a></li>
+                <li class="footer-list__item"><a href="https://marketplace.visualstudio.com/items?itemName=oracle-labs-graalvm.graal-cloud-native-pack" target="blank">VS Code Tools</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-12 aligning_1024">
+            <div class="card--footer card--hovered box">
+              <div>
+                <div class="rubber-footer footer__oci-section">
+                  <p class="title-footer quickstart">Build, test, and deploy applications on Oracle Cloud Infrastructure for free</p>
+                  <a href="https://www.oracle.com/cloud/free/" target="_blank"
+                    class="btn btn-primary">Try Oracle Cloud Infrastructure Free Tier</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+          <div class="row">
+            <div class="col-sm-12">
+              <p class="copyright">
+                Copyright © 2023, Oracle and/or its affiliates. All rights reserved. Oracle and Java are
+                registered trademarks. Other names may be trademarks of their respective owners.
+              </p>
+              <div id="teconsent"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+<script>
+  function fadeInAndOut(thz) {
+    var elmt = thz.nextElementSibling;//Get the element that is below the button that
+    //was just clicked
+    if (elmt.clientHeight) {
+      elmt.style.height = 0;
+    } else {
+      var wrapper = elmt.querySelector('ul');
+      elmt.style.height = wrapper.clientHeight + "px";
+    }
+    /*
+        elmt.classList.toggle("acordianPanelHidden");//Toggle the class which changes
+        //attributes which triggers the transition CSS
+        */
+  }
+
+  // Check TRUSTe Consent for Functional or Implied Approval
+  // The if test verifies if the user has given the consent
+  if ( (oracle.truste.api.getGdprConsentDecision().consentDecision) &&
+      (oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(0) != -1 ||
+        oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(2) != -1) ) {
+
+      //The following is a sample of a Maxymiser Tag being written to the DOM
+      //If the user did not give consent, then the tag is not included and not invoked in the Browser
+      document.write('<script type="text/javascript" src="//service.maxymiser.net/cdn/oracle/js/mmcore.js"><\/script>');
+  }
+
+  // Check TRUSTe Consent for Advertising or Implied Approval
+  // The if test verifies if the user has given the consent
+  if ( (oracle.truste.api.getGdprConsentDecision().consentDecision) &&
+      (oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(0) != -1 ||
+        oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(3) != -1) ) {
+
+      //The following is a sample of a BlueKai Core Tag being written to the DOM
+      //If the user did not give consent, then the tag is not included and not invoked in the Browser
+      document.write('<script type="text/javascript">' +
+      'window.bk_async = function() { ' +
+      'BKTAG.doTag(62581, 1); }; ' +
+      '(function() { ' +
+      'var scripts = document.getElementsByTagName(\'script\')[0]; ' +
+      'var s = document.createElement(\'script\'); ' +
+      's.async = true; ' +
+      's.src = "https://tags.bkrtx.com/js/bk-coretag.js"; ' +
+      'scripts.parentNode.insertBefore(s, scripts); ' +
+      '}()); ' +
+      '<\/script>');
+  }
+</script>
+
+    </div>
+    <div class="overlay"></div>
+
+    <!-- Start SiteCatalyst code -->
+    <script language="JavaScript" src="https://www.oracle.com/us/assets/metrics/ora_otn.js"></script>
+    <!-- End SiteCatalyst code -->
+
+    <script src='/gcn/resources/lib/slick-slider/slick.min.js'></script>
+    <script src='/gcn/resources/js/main.js'></script>
+    <script src='/gcn/resources/js/ui.js'></script>
+    <script src='/gcn/resources/js/filters.js'></script>
+    <script src='/gcn/resources/js/sidebar.js'></script>
+  </body>
+</html>

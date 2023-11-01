@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:image" content="/gcn/resources/img/graalvm.png" />
+  <meta name="twitter:widgets:border-color" content="#55acee">
+
+  <title>
+    
+      Proxy Setup for Graal Cloud Native Tools in VS Code
+    
+  </title>
+  <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
+  <meta name="last_modified" content="2023-09-20 14:45:50 +0000"/>
+  <link rel="stylesheet" href="/gcn/assets/main.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/gcn/resources/img/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/resources/img/favicon/site.webmanifest">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="google-site-verification" content="-vRqwa9WYn6AaQGnl88xvrLw6ac4xoKVkZkhanmlRhU" />
+  <link rel="canonical" href="https://www.graal.cloud/gcn/vscode-guides/use-gcn-tools-on-vpn/">
+
+  <!-- jQuery UI Tabs -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/gcn/resources/lib/jquery/jquery-ui.css">
+</head>
+
+      <script src="/gcn/resources/lib/jquery/jquery-3.6.1.min.js"></script>
+    <script src="/gcn/resources/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src='/gcn/resources/lib/sticky-sidebar/resizeSensor.js'></script>
+    <script src='/gcn/resources/lib/sticky-sidebar/sticky-sidebar.min.js'></script>
+    <script src="/gcn/resources/lib/highlight/highlight.min.js"></script>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- Add TRUSTe Consent Script and Analytics -->
+    <script async="async" type="text/javascript" src='//consent.trustarc.com/notice?domain=oracle.com&c=teconsent&js=bb&noticeType=bb&text=true&cdn=1&pcookie&gtm=1' crossorigin></script>
+    <script src="https://www.oracle.com/assets/truste-oraclelib.js"></script>
+    <!-- jQuery UI Tabs -->
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+
+  <body class="preload">
+
+    <div  class="wrapper wrapper--nofooter" >
+
+      <header  class="header header--content" 
+  role="banner">
+
+  
+
+  
+
+    <nav class="menu">
+      <div class="menu__row">
+        <div>
+          <a href="/gcn/">
+            <img class="logo-mobile" src="/gcn/resources/img/gcn-logo-01.svg" alt="Graal Cloud Native logo">
+          </a>
+        </div>
+        <div class="menu__container">
+          <ul class="menu__list">
+            <li class="menu__item">
+              <a href="/gcn/about/" class="menu__link">About</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gcn/get-started/" class="menu__link">Get Started</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gcn/modules/" class="menu__link">Modules</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gcn/guides/" class="menu__link">Guides</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gcn/hands-on-labs/" class="menu__link">Hands-On Labs</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gcn/vscode-tools/" class="menu__link">Tools</a>
+            </li>
+            <li class="menu__launch__mobile">
+              <a href="/gcn/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
+            </li>
+          </ul>
+        </div>
+        <div class="menu__launch">
+          <a href="/gcn/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
+        </div>
+      </div>
+
+      <div role="button" class="menu-btn menu-btn--menu js-show-menu" tabindex="-1" title="sweet hamburger">
+        <div class="hamburger">
+          <div class="inner"></div>
+        </div>
+      </div>
+      <button aria-label="hamburger mobile menu" class="btn btn-mobile-menu js-show-menu">
+        <div class="inner"></div>
+      </button>
+    </nav>
+
+  
+</header>
+
+<!-- <header  class="header header--content" >
+
+  
+
+  
+
+    <nav class="menu">
+      <div class="menu__row">
+        <div>
+          <a href="/gcn/graal">
+            <img class="logo-mobile" src="/gcn/resources/img/gcn-logo-01.svg" alt="Graal Cloud Native logo">
+          </a>
+        </div>
+        <div class="menu__container">
+          <ul class="menu__list">
+            <li class="menu__item">
+              <a href="/gcn/graal/#whatisgraal" class="menu__link">About</a>
+            </li>
+            <li class="menu__item">
+              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
+            </li>
+            <li class="menu__item">
+              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
+            </li>
+            <li class="menu__item">
+              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div role="button" class="menu-btn menu-btn--menu js-show-menu" tabindex="-1" title="sweet hamburger">
+        <div class="hamburger">
+          <div class="inner"></div>
+        </div>
+      </div>
+      <button aria-label="hamburger mobile menu" class="btn btn-mobile-menu js-show-menu">
+        <div class="inner"></div>
+      </button>
+    </nav>
+
+  
+</header> -->
+
+      <main  class="content"   aria-label="Content">
+        <div class="wrapper wrapper-content">
+  <article>
+  <div class="row d-flex flex-wrap">
+    <div class="col-sm-3 docsimpro col-bg">
+      <div class="sidebar-wrap">
+        <div class="sidebar">
+          <div class="menuabout">
+            <img id="sidebarClose" src="/gcn/resources/img/arrow_sidebar(close).svg" alt="Expand or collapse sidebar"
+              class="btn-color no-display">
+            <img id="sidebarOpen" src="/gcn/resources/img/arrow_sidebar.svg" alt="Expand or collapse sidebar">
+          </div>
+          
+<div class="toc-floating">
+
+
+<div class="toc-bullets">
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+
+    
+      
+        
+          <li class="toc-bullets-main">
+        
+          
+          <a href="/gcn/vscode-tools/installing-gcn-tools/" class="_icon-book">
+            Installing Graal Cloud Native Tools
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+      
+    
+      
+        
+          <li class="toc-bullets-main">
+        
+          
+          <a href="/gcn/vscode-tools/graal-cloud-native-extension-pack/" class="_icon-book">
+            Graal Cloud Native Extensions Pack
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+      
+    
+      
+        
+          <li class="toc-bullets-main">
+        
+          
+          <a href="/gcn/vscode-guides/" class="_icon-book">
+            VS Code Guides
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+          
+          <li class="toc-bullets-sub">
+          
+            
+            <a href="/gcn/vscode-guides/setting-oci-devops-pipeline-in-vscode/">
+              Setting OCI DevOps Build and Development Pipelines in VS Code
+            </a>
+          </li>
+
+          
+        
+          
+          <li class="toc-bullets-sub">
+          
+            
+            <a href="/gcn/vscode-guides/creating-gcn-db-application-with-atp-connection/">
+              Creating a Database Application and Connecting to an Oracle Autonomous Database
+            </a>
+          </li>
+
+          
+        
+          
+          <li class="toc-bullets-sub">
+          
+            
+            <a href="/gcn/vscode-guides/deploy-to-aws-apprunner-in-vscode/">
+              Deploying a Java Application to AWS App Runner in VS Code
+            </a>
+          </li>
+
+          
+        
+          
+          <li class="toc-bullets-sub">
+          
+            
+            <a href="/gcn/vscode-guides/deploy-to-aws-eks-in-vscode/">
+              Deploying a Java Application to Amazon Elastic Kubernetes Cluster in VS Code
+            </a>
+          </li>
+
+          
+        
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<!-- <li class="search additional-search">
+  <form class="form-inline sidebar" action="/docs/search" autocomplete="on" method="get">
+    <input class="input-search sidebar" type="text" id="search-box" name="query" placeholder="Search">
+    <button type="submit sidebar" class="search-button"></button>
+  </form>
+</li> -->
+
+</div>
+  <!-- Search form -->
+  <!-- <form class="search-container" action="/docs/search" autocomplete="on" method="get">
+   <label for="search-box">Search</label>
+    <input type="text" id="search-box" name="query">
+    <button type="submit" class="searchbttn"></button>
+  </form> -->
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-9 docsmod">
+      <div id="content-wrapper" class="docs-content docs-content--with-sidebar">
+        <h1 id="proxy-setup-for-graal-cloud-native-tools-in-vs-code">
+        
+        
+          Proxy Setup for Graal Cloud Native Tools in VS Code
+        
+        
+      </h1>
+
+<p>This guide suggests how to configure proxy settings for Maven, Gradle, and Kubernetes which are the prerequisites to successfully use the Graal Cloud Native and OCI DevOps Tools in VS Code.</p>
+
+<p>VS Code reads the operating system proxy settings on Windows and macOS, unlike Linux. Often, extensions do not go as deep as OS integration and rely on the environment variables. VS Code allows for an explicit proxy URL in the global configuration, but that must be read explicitly by the extension(s). If the configuration is not done, the build system launched to prime the project, download artifacts, or serve information to the extension may produce no or damaged data on a VPN. Note the extensions are independent of each other.</p>
+
+<p><br />
+It is not recommended to change your network during a VS Code session. If you do, observe the following recommendations:</p>
+
+<ol>
+  <li>Stop a VS Code session.</li>
+  <li>Kill all Gradle/Maven Daemon processes that may still be running.</li>
+  <li>Configure a proxy in the Gradle settings if you use Gradle for your project (see <a href="#configure-proxy-support-for-gradle">Configure Proxy Support for Gradle</a>).</li>
+  <li>Configure a proxy in the Maven settings if you use Maven for your project (see <a href="#configure-proxy-support-for-maven">Configure Proxy Support for Maven</a>).</li>
+  <li>Start VS Code again.</li>
+</ol>
+
+<blockquote>
+  <p>Note: When you switch to an open (non-proxy) network, you must reconfigure the settings before running VS Code.</p>
+</blockquote>
+
+<p>The user experience may vary depending on the operating system, the state of the project (if a user executed a build and the Gradle wrapper downloaded the Gradle distribution), and the order of extensions activation. For example, <a href="https://marketplace.visualstudio.com/items?itemName=ms-kubernetes-tools.vscode-kubernetes-tools">Apache NetBeans Language Server</a> may be able to fetch the Gradle distribution before <a href="https://code.visualstudio.com/docs/java/extensions">Microsoft Java</a> attempts to use it.</p>
+    
+      <h2 id="configure-proxy-support-for-gradle">
+        
+        
+          Configure Proxy Support for Gradle <a href="#configure-proxy-support-for-gradle" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>Gradle requires a proxy to be configured in the machine-wire <em>~/.gradle/gradle.properties</em> file or the project root’s <em>gradle.properties</em> (not recommended, as the file is shared).</p>
+
+<ol>
+  <li>
+    <p>Open the Gradle global settings, _%USERPROFILE%/.gradle/gradle.properties__, and add the proxy configuration:</p>
+
+    <pre><code class="language-xml"> systemProp.http.proxyHost=your.proxy.address
+ systemProp.http.proxyPort=80
+</code></pre>
+  </li>
+  <li>
+    <p>Set <code>http.proxy</code> (or <code>https.proxy</code> if required) in the VS Code global settings:</p>
+
+    <ul>
+      <li>In VS Code, click the gear icon in the bottom left corner, and go to <strong>Settings</strong>. Or go to <strong>Code</strong>, then <strong>Preferences</strong>, and click <strong>Settings</strong>.</li>
+      <li>
+        <p>Open Settings JSON file by clicking an arrow-paper icon in the top right:</p>
+
+        <p><img src="/gcn/docs/vscode-tools/images/vs-code/open-settings-json.png" alt="Open VS Code Settings JSON" /></p>
+      </li>
+      <li>Add the following code:
+        <pre><code>{
+"http.proxy": "http://user:pass@your.proxy.address:8080",
+"http.proxyStrictSSL": false,
+}
+</code></pre>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Restart VS Code.</p>
+  </li>
+</ol>
+
+<p>Alternatively, you can edit VS Code <em>settings.json</em> outside the UI. The location of the file differs per OS:</p>
+<ul>
+  <li>Windows: <em>%APPDATA%\Code\User\settings.json</em></li>
+  <li>macOS: <em>$HOME/Library/Application Support/Code/User/settings.json</em></li>
+  <li>Linux: <em>$HOME/.config/Code/User/settings.json</em></li>
+</ul>
+    
+      <h2 id="configure-proxy-support-for-maven">
+        
+        
+          Configure Proxy Support for Maven <a href="#configure-proxy-support-for-maven" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>If you use Maven for your project, you need to configure proxy support for Maven. Maven also requires a proxy to be configured in the machine-wire <em>~/.m2/settings.xml</em> file. The Maven launcher is simpler than Gradle (Maven daemon comes in later versions).</p>
+
+<ol>
+  <li>Open the Maven global settings, <em>%USERPROFILE%/.m2/settings.xml</em>, and add the proxy configuration into the <code>&lt;settings&gt;</code> block:
+    <pre><code class="language-xml"> &lt;settings&gt;
+   &lt;proxies&gt;
+     &lt;proxy&gt;
+       &lt;id&gt;your.proxy.id&lt;/id&gt;
+       &lt;active&gt;true&lt;/active&gt;
+       &lt;protocol&gt;https&lt;/protocol&gt;
+       &lt;host&gt;your.proxy.address&lt;/host&gt;
+       &lt;port&gt;80&lt;/port&gt;
+     &lt;/proxy&gt;
+   &lt;/proxies&gt;
+ &lt;/settings&gt;
+</code></pre>
+    <p>Where <code>%USERPROFILE%</code> is your user directory.</p>
+  </li>
+  <li>Set <code>http.proxy</code> (or HTTPS if required) in the VS Code global settings:
+    <ul>
+      <li>In VS Code, click the gear icon in the bottom left corner, and go to <strong>Settings</strong>. Or go to <strong>Code</strong>, then <strong>Preferences</strong>, and click <strong>Settings</strong>.</li>
+      <li>
+        <p>Open Settings JSON file by clicking an arrow-paper icon in the top right:</p>
+
+        <p><img src="/gcn/docs/vscode-tools/images/vs-code/open-settings-json.png" alt="Open VS Code Settings JSON" /></p>
+      </li>
+      <li>Add the following code:
+        <pre><code>{
+"http.proxy": "http://user:pass@your.proxy.address:8080",
+"http.proxyStrictSSL": false,
+}
+</code></pre>
+      </li>
+    </ul>
+  </li>
+  <li>Restart VS Code.</li>
+</ol>
+    
+      <h2 id="configure-proxy-support-for-kubernetes">
+        
+        
+          Configure Proxy Support for Kubernetes <a href="#configure-proxy-support-for-kubernetes" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>On Windows, <code>kubectl</code> is typically installed within the Kubernetes extension and is not added to the system path. Windows users should configure a proxy in the configuration file, <em>.kube/config</em>. Add a <code>proxy-url</code> property under <code>cluster</code>:</p>
+
+<pre><code class="language-yml">clusters:
+- name: "dev"
+  cluster:
+    proxy-url: http://user:password@proxy:port
+    ...
+</code></pre>
+    
+      <h3 id="related-documentation">
+        
+        
+          Related Documentation <a href="#related-documentation" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<ul>
+  <li><a href="https://code.visualstudio.com/docs/setup/setup-overview#_proxy-server-support">Proxy server support</a></li>
+</ul>
+
+      </div>
+
+      <div role="button" class="menu-btn menu-btn--sidebar js-show-sidebar" title="sweet hamburger">
+        <div class="hamburger">
+          <div class="inner"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+</div>
+
+      </main>
+
+      
+<footer class="footer footer__mobile">
+
+  <div class="container-fluid container-fluid--custom-sm">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row footer-content">
+          <div class="col-md-3 col-sm-4">
+            <h6 class="title-footer" onclick="fadeInAndOut(this)">Learn</h6>
+            <div class="grow">
+              <ul class="footer-list">
+                <li class="footer-list__item"><a href="/gcn/get-started/">Get Started</a></li>
+                <li class="footer-list__item"><a href="/gcn/guides/">Guides</a></li>
+                <li class="footer-list__item"><a href="/gcn/hands-on-labs/">Labs</a></li>
+                <li class="footer-list__github">
+                  <img class="footer__icon" src="/gcn/resources/img/footer/logo-github.svg" alt="Github icon">
+                  <a href="https://github.com/oracle/gcn">Github</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-4">
+            <h6 class="title-footer" onclick="fadeInAndOut(this)">About</h6>
+            <div class="grow">
+              <ul class="footer-list">
+                <li class="footer-list__item"><a href="/gcn/about/#gcn-support" target="blank">Commercial Support</a></li>
+                <li class="footer-list__item"><a href="https://www.graalvm.org/" target="blank">GraalVM Native Image</a></li>
+                <li class="footer-list__item"><a href="https://micronaut.io/" target="_blank">Micronaut</a></li>
+                <li class="footer-list__item"><a href="https://www.oracle.com/cloud/multicloud/what-is-multicloud/" target="_blank">Multicloud</a></li>
+                <li class="footer-list__item"><a href="https://www.oracle.com/cloud/" target="blank">Oracle Cloud Infrastructure</a></li>
+                <li class="footer-list__item"><a href="https://marketplace.visualstudio.com/items?itemName=oracle-labs-graalvm.graal-cloud-native-pack" target="blank">VS Code Tools</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-12 aligning_1024">
+            <div class="card--footer card--hovered box">
+              <div>
+                <div class="rubber-footer footer__oci-section">
+                  <p class="title-footer quickstart">Build, test, and deploy applications on Oracle Cloud Infrastructure for free</p>
+                  <a href="https://www.oracle.com/cloud/free/" target="_blank"
+                    class="btn btn-primary">Try Oracle Cloud Infrastructure Free Tier</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+          <div class="row">
+            <div class="col-sm-12">
+              <p class="copyright">
+                Copyright © 2023, Oracle and/or its affiliates. All rights reserved. Oracle and Java are
+                registered trademarks. Other names may be trademarks of their respective owners.
+              </p>
+              <div id="teconsent"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+<script>
+  function fadeInAndOut(thz) {
+    var elmt = thz.nextElementSibling;//Get the element that is below the button that
+    //was just clicked
+    if (elmt.clientHeight) {
+      elmt.style.height = 0;
+    } else {
+      var wrapper = elmt.querySelector('ul');
+      elmt.style.height = wrapper.clientHeight + "px";
+    }
+    /*
+        elmt.classList.toggle("acordianPanelHidden");//Toggle the class which changes
+        //attributes which triggers the transition CSS
+        */
+  }
+
+  // Check TRUSTe Consent for Functional or Implied Approval
+  // The if test verifies if the user has given the consent
+  if ( (oracle.truste.api.getGdprConsentDecision().consentDecision) &&
+      (oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(0) != -1 ||
+        oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(2) != -1) ) {
+
+      //The following is a sample of a Maxymiser Tag being written to the DOM
+      //If the user did not give consent, then the tag is not included and not invoked in the Browser
+      document.write('<script type="text/javascript" src="//service.maxymiser.net/cdn/oracle/js/mmcore.js"><\/script>');
+  }
+
+  // Check TRUSTe Consent for Advertising or Implied Approval
+  // The if test verifies if the user has given the consent
+  if ( (oracle.truste.api.getGdprConsentDecision().consentDecision) &&
+      (oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(0) != -1 ||
+        oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(3) != -1) ) {
+
+      //The following is a sample of a BlueKai Core Tag being written to the DOM
+      //If the user did not give consent, then the tag is not included and not invoked in the Browser
+      document.write('<script type="text/javascript">' +
+      'window.bk_async = function() { ' +
+      'BKTAG.doTag(62581, 1); }; ' +
+      '(function() { ' +
+      'var scripts = document.getElementsByTagName(\'script\')[0]; ' +
+      'var s = document.createElement(\'script\'); ' +
+      's.async = true; ' +
+      's.src = "https://tags.bkrtx.com/js/bk-coretag.js"; ' +
+      'scripts.parentNode.insertBefore(s, scripts); ' +
+      '}()); ' +
+      '<\/script>');
+  }
+</script>
+
+    </div>
+    <div class="overlay"></div>
+
+    <!-- Start SiteCatalyst code -->
+    <script language="JavaScript" src="https://www.oracle.com/us/assets/metrics/ora_otn.js"></script>
+    <!-- End SiteCatalyst code -->
+
+    <script src='/gcn/resources/lib/slick-slider/slick.min.js'></script>
+    <script src='/gcn/resources/js/main.js'></script>
+    <script src='/gcn/resources/js/ui.js'></script>
+    <script src='/gcn/resources/js/filters.js'></script>
+    <script src='/gcn/resources/js/sidebar.js'></script>
+  </body>
+</html>

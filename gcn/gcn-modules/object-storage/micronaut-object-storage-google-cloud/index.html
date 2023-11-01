@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:image" content="/gcn/resources/img/graalvm.png" />
+  <meta name="twitter:widgets:border-color" content="#55acee">
+
+  <title>
+    
+      Create and Connect a Micronaut Application to Google Cloud Storage
+    
+  </title>
+  <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
+  <meta name="last_modified" content="2023-10-12 09:43:06 +0000"/>
+  <link rel="stylesheet" href="/gcn/assets/main.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/gcn/resources/img/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/resources/img/favicon/site.webmanifest">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="google-site-verification" content="-vRqwa9WYn6AaQGnl88xvrLw6ac4xoKVkZkhanmlRhU" />
+  <link rel="canonical" href="https://www.graal.cloud/gcn/gcn-modules/object-storage/micronaut-object-storage-google-cloud/">
+
+  <!-- jQuery UI Tabs -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/gcn/resources/lib/jquery/jquery-ui.css">
+</head>
+
+      <script src="/gcn/resources/lib/jquery/jquery-3.6.1.min.js"></script>
+    <script src="/gcn/resources/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src='/gcn/resources/lib/sticky-sidebar/resizeSensor.js'></script>
+    <script src='/gcn/resources/lib/sticky-sidebar/sticky-sidebar.min.js'></script>
+    <script src="/gcn/resources/lib/highlight/highlight.min.js"></script>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- Add TRUSTe Consent Script and Analytics -->
+    <script async="async" type="text/javascript" src='//consent.trustarc.com/notice?domain=oracle.com&c=teconsent&js=bb&noticeType=bb&text=true&cdn=1&pcookie&gtm=1' crossorigin></script>
+    <script src="https://www.oracle.com/assets/truste-oraclelib.js"></script>
+    <!-- jQuery UI Tabs -->
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+
+  <body class="preload">
+
+    <div  class="wrapper wrapper--nofooter" >
+
+      <header  class="header header--content" 
+  role="banner">
+
+  
+
+  
+
+    <nav class="menu">
+      <div class="menu__row">
+        <div>
+          <a href="/gcn/">
+            <img class="logo-mobile" src="/gcn/resources/img/gcn-logo-01.svg" alt="Graal Cloud Native logo">
+          </a>
+        </div>
+        <div class="menu__container">
+          <ul class="menu__list">
+            <li class="menu__item">
+              <a href="/gcn/about/" class="menu__link">About</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gcn/get-started/" class="menu__link">Get Started</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gcn/modules/" class="menu__link">Modules</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gcn/guides/" class="menu__link">Guides</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gcn/hands-on-labs/" class="menu__link">Hands-On Labs</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gcn/vscode-tools/" class="menu__link">Tools</a>
+            </li>
+            <li class="menu__launch__mobile">
+              <a href="/gcn/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
+            </li>
+          </ul>
+        </div>
+        <div class="menu__launch">
+          <a href="/gcn/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
+        </div>
+      </div>
+
+      <div role="button" class="menu-btn menu-btn--menu js-show-menu" tabindex="-1" title="sweet hamburger">
+        <div class="hamburger">
+          <div class="inner"></div>
+        </div>
+      </div>
+      <button aria-label="hamburger mobile menu" class="btn btn-mobile-menu js-show-menu">
+        <div class="inner"></div>
+      </button>
+    </nav>
+
+  
+</header>
+
+<!-- <header  class="header header--content" >
+
+  
+
+  
+
+    <nav class="menu">
+      <div class="menu__row">
+        <div>
+          <a href="/gcn/graal">
+            <img class="logo-mobile" src="/gcn/resources/img/gcn-logo-01.svg" alt="Graal Cloud Native logo">
+          </a>
+        </div>
+        <div class="menu__container">
+          <ul class="menu__list">
+            <li class="menu__item">
+              <a href="/gcn/graal/#whatisgraal" class="menu__link">About</a>
+            </li>
+            <li class="menu__item">
+              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
+            </li>
+            <li class="menu__item">
+              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
+            </li>
+            <li class="menu__item">
+              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div role="button" class="menu-btn menu-btn--menu js-show-menu" tabindex="-1" title="sweet hamburger">
+        <div class="hamburger">
+          <div class="inner"></div>
+        </div>
+      </div>
+      <button aria-label="hamburger mobile menu" class="btn btn-mobile-menu js-show-menu">
+        <div class="inner"></div>
+      </button>
+    </nav>
+
+  
+</header> -->
+
+      <main  class="content"   aria-label="Content">
+        <div class="wrapper wrapper-content">
+  <article>
+  <div class="row d-flex flex-wrap">
+    <div class="col-sm-3 docsimpro col-bg">
+      <div class="sidebar-wrap">
+        <div class="sidebar">
+          <div class="menuabout">
+            <img id="sidebarClose" src="/gcn/resources/img/arrow_sidebar(close).svg" alt="Expand or collapse sidebar"
+              class="btn-color no-display">
+            <img id="sidebarOpen" src="/gcn/resources/img/arrow_sidebar.svg" alt="Expand or collapse sidebar">
+          </div>
+          
+<div class="toc-floating">
+
+
+<div class="toc-bullets">
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+
+    
+      
+        
+          <li class="toc-bullets-main">
+        
+          
+          <a href="/gcn/docs/gcn-modules/object-storage/" class="_icon-book">
+            Object Storage
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+          
+          <li class="toc-bullets-sub toc-bullets-highlight">
+          
+            
+            <a href="/gcn/gcn-modules/object-storage/micronaut-object-storage-google-cloud/">
+              Create and Connect a Micronaut Application to Google Cloud Storage
+            </a>
+          </li>
+
+          
+            <div>
+  <script>
+    var scriptElement = document.currentScript;
+    var div = $(scriptElement.parentElement);
+    $(window).on("load", function () {
+      $("#content-wrapper h2").each(function () {
+        var li = $("<li></li>", { class: "toc-bullets-sub toc-bullets-sub-3" });
+        var a = $("<a></a>", { href: "#" + $(this).attr("id") });
+        a.text($(this).text().replace('#', ''));
+        li.append(a);
+        li.click(function (e) {
+          e.preventDefault();
+          var target = $(a.attr('href'));
+          var scrollTo = target.offset().top - 80; // 80 - indent
+          $('html, body').animate({ scrollTop: scrollTo }, 1000);
+        });
+        div.append(li);
+      });
+    });
+  </script>
+</div>
+          
+        
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<!-- <li class="search additional-search">
+  <form class="form-inline sidebar" action="/docs/search" autocomplete="on" method="get">
+    <input class="input-search sidebar" type="text" id="search-box" name="query" placeholder="Search">
+    <button type="submit sidebar" class="search-button"></button>
+  </form>
+</li> -->
+
+</div>
+  <!-- Search form -->
+  <!-- <form class="search-container" action="/docs/search" autocomplete="on" method="get">
+   <label for="search-box">Search</label>
+    <input type="text" id="search-box" name="query">
+    <button type="submit" class="searchbttn"></button>
+  </form> -->
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-9 docsmod">
+      <div id="content-wrapper" class="docs-content docs-content--with-sidebar">
+        <h1 id="create-and-connect-a-micronaut-application-to-google-cloud-storage">
+        
+        
+          Create and Connect a Micronaut Application to Google Cloud Storage
+        
+        
+      </h1>
+
+<p>This guide describes how to create a <a href="https://micronaut.io/">Micronaut</a> application that demonstrates how to store, retrieve, and delete user profile pictures in Google Cloud Storage using the Micronaut Object Storage API.</p>
+
+<p>The Micronaut Object Storage API provides a uniform API to create, read and delete objects in the major cloud providers​:</p>
+<ul>
+  <li>Amazon S3</li>
+  <li>Google Cloud Storage</li>
+  <li>Oracle Cloud Infrastructure (OCI) Object Storage</li>
+</ul>
+
+<p>Using this API enables the creation of truly multicloud, portable applications.</p>
+    
+      <h3 id="prerequisites">
+        
+        
+          Prerequisites <a href="#prerequisites" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<ul>
+  <li>JDK 17 or higher. See <a href="/getting-started/setting-up-desktop/">Setting up Your Desktop</a>.</li>
+  <li>A Google Cloud Platform (GCP) account. See <a href="/getting-started/setting-up-cloud-accounts/">Setting up Your Cloud Accounts</a>.</li>
+  <li>The Google Cloud CLI. (The CLI is part of the Google Cloud SDK; for more information, see <a href="https://cloud.google.com/sdk">Cloud SDK</a>.)</li>
+  <li>The GCN CLI. See <a href="/getting-started/setting-up-desktop/">Setting up Your Desktop</a>. (Optional.)</li>
+</ul>
+
+<p>Follow the steps below to create the application from scratch. However, you can also download the completed example in Java:</p>
+
+<div id="tabs-doc1">
+    <ul>
+        <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <p><a href="/docs/gcn-modules/object-storage/archives/gcp-storage-demo-java-gradle.zip">Gradle GCP Object Storage Example <img class="download-img-guides" src="/resources/img/gcn_modules/download-archive.png" alt="Download completed example" />
+        </a>
+        </p>
+    </div>
+    <div id="maven">
+        <p><a href="/docs/gcn-modules/object-storage/archives/gcp-storage-demo-java-maven.zip">Maven GCP Object Storage Example <img class="download-img-guides" src="/resources/img/gcn_modules/download-archive.png" alt="Download completed example" /></a>
+        </p>
+    </div>
+</div>
+    
+      <h4 id="a-note-regarding-your-development-environment">
+        
+        
+          A note regarding your development environment
+        
+        
+      </h4>
+
+<p>Consider using Visual Studio Code that provides native support for developing applications with the <a href="/gcn/vscode-tools/using-gcn-vscode-tools/">Graal Cloud Native Tools extension</a>.</p>
+
+<blockquote>
+  <p>Note: If you use IntelliJ IDEA, <a href="/gcn/resources/img/annotationprocessorsintellij.png">enable annotation processing</a>.</p>
+</blockquote>
+    
+      <h2 id="1-create-the-application">
+        
+        
+          1. Create the Application <a href="#1-create-the-application" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>Create an application using the GCN Launcher.</p>
+
+<ol>
+  <li>
+    <p>Open the <a href="/gcn/launcher/?advanced=true">GCN Launcher in advanced mode</a>.</p>
+  </li>
+  <li>Create a new project using the following selections.
+(Alternatively, use these shortcuts for <a href="/gcn/launcher/?advanced=true&amp;type=APPLICATION&amp;name=gcp-storage-demo&amp;package=com.example&amp;clouds=GCP&amp;language=JAVA&amp;buildTool=MAVEN&amp;test=JUNIT&amp;java-version=JDK_17&amp;sample-code=true&amp;services=OBJECTSTORE">Maven</a> or <a href="/gcn/launcher/?advanced=true&amp;type=APPLICATION&amp;name=gcp-storage-demo&amp;package=com.example&amp;clouds=GCP&amp;language=JAVA&amp;buildTool=GRADLE&amp;test=JUNIT&amp;java-version=JDK_17&amp;sample-code=true&amp;services=OBJECTSTORE">Gradle</a>.)
+    <ul>
+      <li><strong>Project Type</strong>: <em>Application</em> (Default)</li>
+      <li><strong>Project Name</strong>: <em>gcp-storage-demo</em></li>
+      <li><strong>Base Package</strong>: <em>com.example</em> (Default)</li>
+      <li><strong>Clouds</strong>: <em>GCP</em></li>
+      <li><strong>Language</strong>: <em>Java</em> (Default)</li>
+      <li><strong>Build Tool</strong>: <em>Gradle (Groovy)</em> or <em>Maven</em></li>
+      <li><strong>Test Framework</strong>: <em>JUnit</em> (Default)</li>
+      <li><strong>Java Version</strong>: <em>17</em> (Default)</li>
+      <li><strong>Micronaut Version</strong>: (Default)</li>
+      <li><strong>Cloud Services</strong>: <em>Object Storage</em></li>
+      <li><strong>Features</strong>: <em>GraalVM Native Image</em> (Default)</li>
+      <li><strong>Sample Code</strong>: <em>Yes</em> (Default)</li>
+    </ul>
+  </li>
+  <li>Click <strong>Generate Project</strong>. The GCN Launcher creates an application with the default package <code>com.example</code> in a directory named <em>gcp-storage-demo</em>. The application ZIP file will be downloaded in your default downloads directory. Unzip it, open in your code editor, and proceed to the next steps.</li>
+</ol>
+
+<p>Alternatively, use the GCN CLI as follows:</p>
+
+<div id="tabs-doc2">
+    <ul>
+        <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <pre><code class="language-bash">gcn create-app com.example.gcp-storage-demo \
+    --clouds=gcp \
+    --services=objectstore \
+    --features=graalvm \
+    --build=gradle \
+    --lang=java</code></pre>
+    </div>
+    <div id="maven">
+        <pre><code class="language-bash">gcn create-app com.example.gcp-storage-demo \
+    --clouds=gcp \
+    --services=objectstore \
+    --features=graalvm \
+    --build=maven \
+    --lang=java</code></pre>
+    </div>
+</div>
+
+<p>For more information, see <a href="/gcn/get-started/using-gcn-cli/">Using the GCN CLI</a>.</p>
+    
+      <h2 id="2-profilepicturescontroller">
+        
+        
+          2. ProfilePicturesController <a href="#2-profilepicturescontroller" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>The launcher created an interface with the endpoints of the “profile pictures” microservice in a file named <em>lib/src/main/java/com/example/ProfilePicturesApi.java</em>:</p>
+
+<pre><code class="language-java">package com.example;
+
+import io.micronaut.http.HttpRequest;
+import io.micronaut.http.HttpResponse;
+import io.micronaut.http.annotation.Delete;
+import io.micronaut.http.annotation.Get;
+import io.micronaut.http.annotation.Post;
+import io.micronaut.http.annotation.Status;
+import io.micronaut.http.multipart.CompletedFileUpload;
+import io.micronaut.http.server.types.files.StreamedFile;
+
+import java.util.Optional;
+
+import static io.micronaut.http.HttpStatus.NO_CONTENT;
+import static io.micronaut.http.MediaType.MULTIPART_FORM_DATA;
+
+public interface ProfilePicturesApi {
+
+    @Post(uri = "/{userId}", consumes = MULTIPART_FORM_DATA) // &lt;1&gt;
+    HttpResponse&lt;?&gt; upload(CompletedFileUpload fileUpload, String userId, HttpRequest&lt;?&gt; request);
+
+    @Get("/{userId}") // &lt;2&gt;
+    Optional&lt;HttpResponse&lt;StreamedFile&gt;&gt; download(String userId);
+
+    @Status(NO_CONTENT) // &lt;3&gt;
+    @Delete("/{userId}") // &lt;4&gt;
+    void delete(String userId);
+}
+</code></pre>
+<p><strong>1</strong> The <a href="https://docs.micronaut.io/latest/api/io/micronaut/http/annotation/Post.html"><code>@Post</code></a> annotation maps the method to an HTTP POST request.</p>
+
+<p><strong>2</strong> The <a href="https://docs.micronaut.io/latest/api/io/micronaut/http/annotation/Get.html"><code>@Get</code></a> annotation maps the method to an HTTP GET request.</p>
+
+<p><strong>3</strong> You can return <code>void</code> in your controller’s method and specify the HTTP status code via the <a href="https://docs.micronaut.io/latest/api/io/micronaut/http/annotation/Status.html"><code>@Status</code></a> annotation.</p>
+
+<p><strong>4</strong> The <a href="https://docs.micronaut.io/latest/api/io/micronaut/http/annotation/Delete.html"><code>@Delete</code></a> annotation maps the <code>delete</code> method to an HTTP Delete request on <code>/{userId}</code>.</p>
+
+<p>The launcher also created the <code>ProfilePicturesController</code> class that implements the <code>ProfilePicturesApi</code> interface in a file named <em>lib/src/main/java/com/example/ProfilePicturesController.java</em>. It contains the class definition and constructor:</p>
+
+<pre><code class="language-java">package com.example;
+
+import io.micronaut.http.HttpRequest;
+import io.micronaut.http.HttpResponse;
+import io.micronaut.http.MutableHttpResponse;
+import io.micronaut.http.annotation.Controller;
+import io.micronaut.http.multipart.CompletedFileUpload;
+import io.micronaut.http.server.types.files.StreamedFile;
+import io.micronaut.http.server.util.HttpHostResolver;
+import io.micronaut.http.uri.UriBuilder;
+import io.micronaut.objectstorage.ObjectStorageEntry;
+import io.micronaut.objectstorage.ObjectStorageOperations;
+import io.micronaut.objectstorage.request.UploadRequest;
+import io.micronaut.objectstorage.response.UploadResponse;
+import io.micronaut.scheduling.TaskExecutors;
+import io.micronaut.scheduling.annotation.ExecuteOn;
+
+import java.net.URI;
+import java.util.Optional;
+
+import static io.micronaut.http.HttpHeaders.ETAG;
+import static io.micronaut.http.MediaType.IMAGE_JPEG_TYPE;
+
+@Controller(ProfilePicturesController.PREFIX) // &lt;1&gt;
+@ExecuteOn(TaskExecutors.IO) // &lt;2&gt;
+class ProfilePicturesController implements ProfilePicturesApi {
+
+    static final String PREFIX = "/pictures";
+
+    private final ObjectStorageOperations&lt;?, ?, ?&gt; objectStorage; // &lt;3&gt;
+    private final HttpHostResolver httpHostResolver; // &lt;4&gt;
+
+    ProfilePicturesController(ObjectStorageOperations&lt;?, ?, ?&gt; objectStorage,
+                              HttpHostResolver httpHostResolver) {
+        this.objectStorage = objectStorage;
+        this.httpHostResolver = httpHostResolver;
+    }
+}
+</code></pre>
+<p><strong>1</strong> The class is defined as a controller with the <a href="https://docs.micronaut.io/latest/api/io/micronaut/http/annotation/Controller.html"><code>@Controller</code></a> annotation mapped to the path <code>/pictures</code>.</p>
+
+<p><strong>2</strong> It is critical that any blocking I/O operations (such as fetching the data from the database) are offloaded to a separate thread pool that does not block the Event loop.</p>
+
+<p><strong>3</strong> <a href="https://micronaut-projects.github.io/micronaut-object-storage/latest/guide/"><code>ObjectStorageOperations</code></a> provides a uniform API to create, read and delete objects in the major cloud providers.</p>
+
+<p><strong>4</strong> <a href="https://docs.micronaut.io/latest/api/io/micronaut/http/server/util/HttpHostResolver.html"><code>HttpHostResolver</code></a> enables you to resolve the host for an HTTP request.</p>
+    
+      <h3 id="21-upload-endpoint">
+        
+        
+          2.1. Upload Endpoint <a href="#21-upload-endpoint" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>The launcher also generated the <code>/upload</code> endpoint which receives the file from the HTTP client via <code>CompletedFileUpload</code>, and the <code>userId</code> path parameter. It uploads the file to Google Cloud Storage using <a href="https://micronaut-projects.github.io/micronaut-object-storage/latest/guide/">ObjectStorageOperations</a>, and then returns its <code>ETag</code> in an HTTP response header to the client:</p>
+
+<pre><code class="language-java">@Override
+public HttpResponse&lt;?&gt; upload(CompletedFileUpload fileUpload,
+                              String userId,
+                              HttpRequest&lt;?&gt; request) {
+    String key = buildKey(userId); // &lt;1&gt;
+    UploadRequest objectStorageUpload = UploadRequest.fromCompletedFileUpload(fileUpload, key); // &lt;2&gt;
+    UploadResponse&lt;?&gt; response = objectStorage.upload(objectStorageUpload); // &lt;3&gt;
+
+    return HttpResponse
+            .created(location(request, userId)) // &lt;4&gt;
+            .header(ETAG, response.getETag()); // &lt;5&gt;
+}
+
+private static String buildKey(String userId) {
+    return userId + ".jpg";
+}
+
+private URI location(HttpRequest&lt;?&gt; request, String userId) {
+    return UriBuilder.of(httpHostResolver.resolve(request))
+            .path(PREFIX)
+            .path(userId)
+            .build();
+}
+</code></pre>
+
+<p><strong>1</strong> The key represents the path under which the file will be stored.</p>
+
+<p><strong>2</strong> You can use any of the <a href="https://micronaut-projects.github.io/micronaut-object-storage/latest/api/io/micronaut/objectstorage/request/UploadRequest.html"><code>UploadRequest</code></a> static methods to build an upload request.</p>
+
+<p><strong>3</strong> The upload operation returns an <a href="https://micronaut-projects.github.io/micronaut-object-storage/latest/api/io/micronaut/objectstorage/response/UploadResponse.html"><code>UploadResponse</code></a>, which wraps the cloud-specific SDK response.</p>
+
+<p><strong>4</strong> Return the absolute URL of the resource in the <code>location</code> header.</p>
+
+<p><strong>5</strong> The response object contains some common properties for all cloud vendors, such as the <code>ETag</code>, that is sent in a header to the client.</p>
+    
+      <h3 id="22-download-endpoint">
+        
+        
+          2.2. Download Endpoint <a href="#22-download-endpoint" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>The generated <code>/download</code> endpoint simply retrieves the entry from the expected key, and transforms it into a <code>StreamedFile</code>:</p>
+
+<pre><code class="language-java">@Override
+public Optional&lt;HttpResponse&lt;StreamedFile&gt;&gt; download(String userId) {
+    String key = buildKey(userId);
+    return objectStorage.retrieve(key) // &lt;1&gt;
+            .map(ProfilePicturesController::buildStreamedFile); // &lt;2&gt;
+}
+
+private static HttpResponse&lt;StreamedFile&gt; buildStreamedFile(ObjectStorageEntry&lt;?&gt; entry) {
+    StreamedFile file = new StreamedFile(entry.getInputStream(), IMAGE_JPEG_TYPE).attach(entry.getKey());
+    MutableHttpResponse&lt;Object&gt; httpResponse = HttpResponse.ok();
+    file.process(httpResponse);
+    return httpResponse.body(file);
+}
+</code></pre>
+<p><strong>1</strong> The retrieve operation returns a cloud-independent <a href="https://micronaut-projects.github.io/micronaut-object-storage/latest/guide/"><code>ObjectStorageEntry</code></a>.</p>
+
+<p><strong>2</strong> Transform the cloud-specific storage entry into an <code>HttpResponse&lt;StreamedFile&gt;</code>.</p>
+
+<p>The HTTP client could have used the <code>ETag</code> from the upload operation and sent it in a <code>If-None-Match</code> header in the download request <a href="https://developer.mozilla.org/docs/Web/HTTP/Headers/ETag#caching_of_unchanged_resources">to implement caching</a>, which then would have been to be implemented in the download endpoint. But this is beyond the scope of this guide.</p>
+    
+      <h3 id="23-delete-endpoint">
+        
+        
+          2.3. Delete Endpoint <a href="#23-delete-endpoint" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>For the <code>/delete</code> endpoint, all you have to do is invoke the <code>delete</code> method with the expected key:</p>
+
+<pre><code class="language-java">@Override
+public void delete(String userId) {
+    String key = buildKey(userId);
+    objectStorage.delete(key);
+}
+</code></pre>
+    
+      <h2 id="3-set-up-google-cloud-resources">
+        
+        
+          3. Set up Google Cloud Resources <a href="#3-set-up-google-cloud-resources" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>Start by creating a new GCP project, then create a bucket.</p>
+    
+      <h3 id="31-create-a-gcp-project">
+        
+        
+          3.1. Create a GCP Project <a href="#31-create-a-gcp-project" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>Create a new GCP project named “gcn-guides” (follow the instructions contained in <a href="https://cloud.google.com/resource-manager/docs/creating-managing-projects">Creating and managing projects</a>).</p>
+
+<p>Log in to your Google Cloud Platform:</p>
+<pre><code class="language-bash">gcloud auth login
+</code></pre>
+
+<p>Change your project:</p>
+<pre><code class="language-bash">gcloud config set project gcn-guides
+</code></pre>
+
+<blockquote>
+  <p>Note: use <code>gcloud projects create [PROJECT_ID]</code> to set up a new project or <code>gcloud projects list</code> to find the id of an existing one.</p>
+</blockquote>
+    
+      <h3 id="32-create-a-bucket">
+        
+        
+          3.2. Create a Bucket <a href="#32-create-a-bucket" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>Assign the bucket name to an environment variable and use the Google Cloud CLI to create a bucket with the name:</p>
+<div class="tabs-doc" data-name="system">
+    <div data-value="linux" data-label="Linux &amp; Mac">
+      <pre><code class="language-bash">export OBJECT_STORAGE_BUCKET=gcn-guide-object-storage
+gcloud storage buckets create gs://$OBJECT_STORAGE_BUCKET</code></pre>
+   </div>
+   <div data-value="windows" data-label="Windows">
+      <pre><code class="language-bash">set OBJECT_STORAGE_BUCKET=gcn-guide-object-storage
+gcloud storage buckets create gs://%OBJECT_STORAGE_BUCKET%</code></pre>
+   </div>
+   <div data-value="windows-powershell" data-label="Windows PowerShell">
+      <pre><code class="language-bash">$OBJECT_STORAGE_BUCKET = "gcn-guide-object-storage"
+gcloud storage buckets create gs://$OBJECT_STORAGE_BUCKET</code></pre>
+   </div>
+</div>
+
+<blockquote>
+  <p>Note: Bucket names must be unique across all GCP accounts, so you might need to change the bucket name and retry the command with a different name.</p>
+</blockquote>
+
+<p>Then, configure the bucket name in <em>gcp/src/main/resources/application-gcp.properties</em>:</p>
+
+<pre><code>micronaut.object-storage.gcp.default.bucket=${OBJECT_STORAGE_BUCKET}
+</code></pre>
+    
+      <h3 id="33-configure-the-upload-parameters">
+        
+        
+          3.3 Configure the Upload Parameters <a href="#33-configure-the-upload-parameters" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>To upload a file larger than 1MB, configure the file <em>gcp/src/main/resources/application-gcp.properties</em> as follows:</p>
+
+<pre><code># 20MB = 20 * 1024 * 1024b = 20971520b
+micronaut.server.multipart.max-file-size=20971520
+</code></pre>
+    
+      <h2 id="4-run-the-application">
+        
+        
+          4. Run the Application <a href="#4-run-the-application" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>To run the application, use the following command, which starts the application on port 8080.</p>
+
+<blockquote>
+  <p>Note: You might see this error message when running your application: “Message: The Application Default Credentials are not available. They are available if running in Google Compute Engine. Otherwise, the environment variable GOOGLE_APPLICATION_CREDENTIALS must be defined pointing to a file defining the credentials. See <a href="https://developers.google.com/accounts/docs/application-default-credentials">Google Cloud ADC FAQ</a> for more information.”</p>
+</blockquote>
+
+<blockquote>
+  <p>If you are developing locally you can run the following command:</p>
+  <pre><code class="language-bash">gcloud auth application-default login
+</code></pre>
+  <p>However, it is strongly recommended that you set up a service account. Follow the instructions in the link above and <a href="https://micronaut-projects.github.io/micronaut-gcp/latest/guide/#setup">Micronaut GCP setup instructions</a> to create and configure a service account.</p>
+</blockquote>
+
+<div id="tabs-doc3">
+    <ul>
+        <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <pre><code class="language-bash">./gradlew :gcp:run</code></pre>
+    </div>
+    <div id="maven">
+        <pre><code class="language-bash">./mvnw install -pl lib -am
+./mvnw mn:run -pl gcp</code></pre>
+    </div>
+</div>
+    
+      <h2 id="5-test-the-application">
+        
+        
+          5. Test the Application <a href="#5-test-the-application" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>Test the application by uploading, downloading, and deleting a user profile picture.</p>
+    
+      <h3 id="51-upload-a-profile-picture">
+        
+        
+          5.1. Upload a Profile Picture <a href="#51-upload-a-profile-picture" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>Assuming you have a profile picture in a local file named <em>profile.jpg</em>, you can upload it to your application using the following command:</p>
+
+<pre><code class="language-bash">curl -i -F "fileUpload=@profile.jpg" http://localhost:8080/pictures/user_name
+</code></pre>
+
+<pre><code class="language-bash">HTTP/1.1 201 Created
+location: http://localhost:8080/pictures/user_name
+ETag: "617cb82e296e153c29b34cccf7af0908"
+date: Wed, 14 Sep 2022 12:50:30 GMT
+connection: keep-alive
+transfer-encoding: chunked
+</code></pre>
+
+<p>Note the <code>location</code> and <code>ETag</code> headers.</p>
+
+<p>Use the <code>gcloud</code> CLI to verify that the file has been uploaded to an Google Cloud bucket:</p>
+
+<div class="tabs-doc" data-name="system">
+    <div data-value="linux" data-label="Linux &amp; Mac">
+      <pre><code class="language-bash">gcloud storage ls --recursive gs://$OBJECT_STORAGE_BUCKET</code></pre>
+   </div>
+   <div data-value="windows" data-label="Windows">
+      <pre><code class="language-bash">gcloud storage ls --recursive gs://%OBJECT_STORAGE_BUCKET%</code></pre>
+   </div>
+   <div data-value="windows-powershell" data-label="Windows PowerShell">
+      <pre><code class="language-bash">gcloud storage ls --recursive gs://$OBJECT_STORAGE_BUCKET</code></pre>
+   </div>
+</div>
+
+<blockquote>
+  <p>Note: You may need to export the <code>OBJECT_STORAGE_BUCKET</code> environment variable again as you did in Section <strong>3.2.</strong> for the command above to work.</p>
+</blockquote>
+    
+      <h3 id="52-download-a-profile-picture">
+        
+        
+          5.2. Download a Profile Picture <a href="#52-download-a-profile-picture" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>Use the following command to download a picture:</p>
+
+<pre><code class="language-bash">curl http://localhost:8080/pictures/user_name -O -J
+</code></pre>
+
+<p>The file will be saved as <em>user_name.jpg</em> because the download endpoint includes a <code>Content-Disposition: attachment</code> header. Open it to check that it is the same image as <em>profile.jpg</em>.</p>
+    
+      <h3 id="53-delete-a-profile-picture">
+        
+        
+          5.3. Delete a Profile Picture <a href="#53-delete-a-profile-picture" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>Use the following command to delete a picture:</p>
+
+<pre><code class="language-bash">curl -X DELETE http://localhost:8080/pictures/user_name
+</code></pre>
+
+<p>Then, check that the file has actually been deleted using the following command:</p>
+
+<div class="tabs-doc" data-name="system">
+    <div data-value="linux" data-label="Linux &amp; Mac">
+      <pre><code class="language-bash">gcloud storage ls --recursive gs://$OBJECT_STORAGE_BUCKET</code></pre>
+   </div>
+   <div data-value="windows" data-label="Windows">
+      <pre><code class="language-bash">gcloud storage ls --recursive gs://%OBJECT_STORAGE_BUCKET%</code></pre>
+   </div>
+   <div data-value="windows-powershell" data-label="Windows PowerShell">
+      <pre><code class="language-bash">gcloud storage ls --recursive gs://$OBJECT_STORAGE_BUCKET</code></pre>
+   </div>
+</div>
+    
+      <h2 id="6-generate-a-native-executable-using-graalvm">
+        
+        
+          6. Generate a Native Executable Using GraalVM <a href="#6-generate-a-native-executable-using-graalvm" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>GCN supports compiling a Java application ahead-of-time into a native executable using <a href="https://www.graalvm.org/native-image/">GraalVM Native Image</a>.
+You can use the <em><a href="https://graalvm.github.io/native-build-tools/latest/gradle-plugin.html">Gradle plugin for GraalVM Native Image building</a>/<a href="https://graalvm.github.io/native-build-tools/latest/maven-plugin.html">Maven plugin for GraalVM Native Image building</a></em>.
+Packaged as a native executable, it significantly reduces application startup time and memory footprint.</p>
+
+<p>To generate a native executable, run the following command:</p>
+
+<div id="tabs-doc4">
+  <ul>
+    <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
+    <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
+  </ul>
+  <div id="gradle">
+    <pre><code class="language-bash">./gradlew :gcp:nativeCompile</code></pre>
+    <p>The native executable is created in the <em>gcp/build/native/nativeCompile</em> directory and can be run with the following command:</p>
+    <pre><code class="language-bash">gcp/build/native/nativeCompile/gcp</code></pre>
+  </div>
+  <div id="maven">
+    <pre><code class="language-bash">./mvnw install -pl lib -am
+./mvnw package -pl gcp -Dpackaging=native-image</code></pre>
+    <p>The native executable is created in the <em>gcp/target/</em> directory and can be run with the following command:</p>
+    <pre><code class="language-bash">gcp/target/gcp</code></pre>
+  </div>
+</div>
+    
+      <h2 id="7-run-and-test-the-native-executable">
+        
+        
+          7. Run and Test the Native Executable <a href="#7-run-and-test-the-native-executable" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>Run the native executable, and then perform the same tests as in step <strong>5</strong>.</p>
+    
+      <h2 id="8-clean-up">
+        
+        
+          8. Clean up <a href="#8-clean-up" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>When you have completed the guide, you can clean up the resources you created on Google Cloud Platform so you will not be billed for them in the future.</p>
+    
+      <h3 id="81-delete-the-project">
+        
+        
+          8.1. Delete the Project <a href="#81-delete-the-project" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>The easiest way to eliminate billing is to delete the project you created.</p>
+
+<p>Deleting a project has the following consequences:</p>
+
+<ul>
+  <li>
+    <p>If you used an existing project, you will also delete any other work you have done in the project.</p>
+  </li>
+  <li>
+    <p>You cannot reuse the project ID of a deleted project. If you created a custom project ID that you plan to use in the future, you should delete the resources inside the project instead. This ensures that URLs that use the project ID, such as an <em>appspot.com</em> URL, remain available.</p>
+  </li>
+  <li>
+    <p>If you are exploring multiple guides, reusing projects instead of deleting them prevents you from exceeding project quota limits.</p>
+  </li>
+</ul>
+    
+      <h4 id="811-via-the-cli">
+        
+        
+          8.1.1. Via the CLI
+        
+        
+      </h4>
+<p>To delete the project using the Google Cloud CLI, run the following command:</p>
+
+<pre><code class="language-bash">gcloud projects delete gcn-guides
+</code></pre>
+    
+      <h4 id="812-via-the-cloud-platform-console">
+        
+        
+          8.1.2. Via the Cloud Platform Console
+        
+        
+      </h4>
+
+<ol>
+  <li>
+    <p>In the Cloud Platform Console, go to the <a href="https://console.cloud.google.com/iam-admin/projects">Projects page</a>.</p>
+  </li>
+  <li>
+    <p>In the project list, select the project you want to delete and click <strong>Delete project</strong>. Select the check box next to the project name and click <strong>Delete project</strong>.</p>
+  </li>
+  <li>
+    <p>In the dialog box, enter the project ID, and then click <strong>Shut down</strong> to delete the project.</p>
+  </li>
+</ol>
+    
+      <h3 id="summary">
+        
+        
+          Summary <a href="#summary" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>This guide demonstrated how to create a Java application to store, retrieve, and delete user profile pictures in Google Cloud Storage.</p>
+    
+      <h3 id="related-documentation">
+        
+        
+          Related Documentation <a href="#related-documentation" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<ul>
+  <li><a href="https://micronaut-projects.github.io/micronaut-object-storage/latest/guide/">Micronaut Object Storage</a></li>
+  <li><a href="https://cloud.google.com/storage">Google Cloud Storage</a></li>
+  <li><a href="https://www.graalvm.org/native-image/">GraalVM Native Image</a></li>
+</ul>
+
+      </div>
+
+      <div role="button" class="menu-btn menu-btn--sidebar js-show-sidebar" title="sweet hamburger">
+        <div class="hamburger">
+          <div class="inner"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+</div>
+
+      </main>
+
+      
+<footer class="footer footer__mobile">
+
+  <div class="container-fluid container-fluid--custom-sm">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row footer-content">
+          <div class="col-md-3 col-sm-4">
+            <h6 class="title-footer" onclick="fadeInAndOut(this)">Learn</h6>
+            <div class="grow">
+              <ul class="footer-list">
+                <li class="footer-list__item"><a href="/gcn/get-started/">Get Started</a></li>
+                <li class="footer-list__item"><a href="/gcn/guides/">Guides</a></li>
+                <li class="footer-list__item"><a href="/gcn/hands-on-labs/">Labs</a></li>
+                <li class="footer-list__github">
+                  <img class="footer__icon" src="/gcn/resources/img/footer/logo-github.svg" alt="Github icon">
+                  <a href="https://github.com/oracle/gcn">Github</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-4">
+            <h6 class="title-footer" onclick="fadeInAndOut(this)">About</h6>
+            <div class="grow">
+              <ul class="footer-list">
+                <li class="footer-list__item"><a href="/gcn/about/#gcn-support" target="blank">Commercial Support</a></li>
+                <li class="footer-list__item"><a href="https://www.graalvm.org/" target="blank">GraalVM Native Image</a></li>
+                <li class="footer-list__item"><a href="https://micronaut.io/" target="_blank">Micronaut</a></li>
+                <li class="footer-list__item"><a href="https://www.oracle.com/cloud/multicloud/what-is-multicloud/" target="_blank">Multicloud</a></li>
+                <li class="footer-list__item"><a href="https://www.oracle.com/cloud/" target="blank">Oracle Cloud Infrastructure</a></li>
+                <li class="footer-list__item"><a href="https://marketplace.visualstudio.com/items?itemName=oracle-labs-graalvm.graal-cloud-native-pack" target="blank">VS Code Tools</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-12 aligning_1024">
+            <div class="card--footer card--hovered box">
+              <div>
+                <div class="rubber-footer footer__oci-section">
+                  <p class="title-footer quickstart">Build, test, and deploy applications on Oracle Cloud Infrastructure for free</p>
+                  <a href="https://www.oracle.com/cloud/free/" target="_blank"
+                    class="btn btn-primary">Try Oracle Cloud Infrastructure Free Tier</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+          <div class="row">
+            <div class="col-sm-12">
+              <p class="copyright">
+                Copyright © 2023, Oracle and/or its affiliates. All rights reserved. Oracle and Java are
+                registered trademarks. Other names may be trademarks of their respective owners.
+              </p>
+              <div id="teconsent"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+<script>
+  function fadeInAndOut(thz) {
+    var elmt = thz.nextElementSibling;//Get the element that is below the button that
+    //was just clicked
+    if (elmt.clientHeight) {
+      elmt.style.height = 0;
+    } else {
+      var wrapper = elmt.querySelector('ul');
+      elmt.style.height = wrapper.clientHeight + "px";
+    }
+    /*
+        elmt.classList.toggle("acordianPanelHidden");//Toggle the class which changes
+        //attributes which triggers the transition CSS
+        */
+  }
+
+  // Check TRUSTe Consent for Functional or Implied Approval
+  // The if test verifies if the user has given the consent
+  if ( (oracle.truste.api.getGdprConsentDecision().consentDecision) &&
+      (oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(0) != -1 ||
+        oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(2) != -1) ) {
+
+      //The following is a sample of a Maxymiser Tag being written to the DOM
+      //If the user did not give consent, then the tag is not included and not invoked in the Browser
+      document.write('<script type="text/javascript" src="//service.maxymiser.net/cdn/oracle/js/mmcore.js"><\/script>');
+  }
+
+  // Check TRUSTe Consent for Advertising or Implied Approval
+  // The if test verifies if the user has given the consent
+  if ( (oracle.truste.api.getGdprConsentDecision().consentDecision) &&
+      (oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(0) != -1 ||
+        oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(3) != -1) ) {
+
+      //The following is a sample of a BlueKai Core Tag being written to the DOM
+      //If the user did not give consent, then the tag is not included and not invoked in the Browser
+      document.write('<script type="text/javascript">' +
+      'window.bk_async = function() { ' +
+      'BKTAG.doTag(62581, 1); }; ' +
+      '(function() { ' +
+      'var scripts = document.getElementsByTagName(\'script\')[0]; ' +
+      'var s = document.createElement(\'script\'); ' +
+      's.async = true; ' +
+      's.src = "https://tags.bkrtx.com/js/bk-coretag.js"; ' +
+      'scripts.parentNode.insertBefore(s, scripts); ' +
+      '}()); ' +
+      '<\/script>');
+  }
+</script>
+
+    </div>
+    <div class="overlay"></div>
+
+    <!-- Start SiteCatalyst code -->
+    <script language="JavaScript" src="https://www.oracle.com/us/assets/metrics/ora_otn.js"></script>
+    <!-- End SiteCatalyst code -->
+
+    <script src='/gcn/resources/lib/slick-slider/slick.min.js'></script>
+    <script src='/gcn/resources/js/main.js'></script>
+    <script src='/gcn/resources/js/ui.js'></script>
+    <script src='/gcn/resources/js/filters.js'></script>
+    <script src='/gcn/resources/js/sidebar.js'></script>
+  </body>
+</html>

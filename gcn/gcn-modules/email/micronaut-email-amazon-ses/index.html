@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:image" content="/gcn/resources/img/graalvm.png" />
+  <meta name="twitter:widgets:border-color" content="#55acee">
+
+  <title>
+    
+      Create an Application to Send Email with the Amazon Simple Email Service
+    
+  </title>
+  <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
+  <meta name="last_modified" content="2023-10-04 14:52:29 +0000"/>
+  <link rel="stylesheet" href="/gcn/assets/main.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/gcn/resources/img/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/resources/img/favicon/site.webmanifest">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="google-site-verification" content="-vRqwa9WYn6AaQGnl88xvrLw6ac4xoKVkZkhanmlRhU" />
+  <link rel="canonical" href="https://www.graal.cloud/gcn/gcn-modules/email/micronaut-email-amazon-ses/">
+
+  <!-- jQuery UI Tabs -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/gcn/resources/lib/jquery/jquery-ui.css">
+</head>
+
+      <script src="/gcn/resources/lib/jquery/jquery-3.6.1.min.js"></script>
+    <script src="/gcn/resources/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src='/gcn/resources/lib/sticky-sidebar/resizeSensor.js'></script>
+    <script src='/gcn/resources/lib/sticky-sidebar/sticky-sidebar.min.js'></script>
+    <script src="/gcn/resources/lib/highlight/highlight.min.js"></script>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- Add TRUSTe Consent Script and Analytics -->
+    <script async="async" type="text/javascript" src='//consent.trustarc.com/notice?domain=oracle.com&c=teconsent&js=bb&noticeType=bb&text=true&cdn=1&pcookie&gtm=1' crossorigin></script>
+    <script src="https://www.oracle.com/assets/truste-oraclelib.js"></script>
+    <!-- jQuery UI Tabs -->
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+
+  <body class="preload">
+
+    <div  class="wrapper wrapper--nofooter" >
+
+      <header  class="header header--content" 
+  role="banner">
+
+  
+
+  
+
+    <nav class="menu">
+      <div class="menu__row">
+        <div>
+          <a href="/gcn/">
+            <img class="logo-mobile" src="/gcn/resources/img/gcn-logo-01.svg" alt="Graal Cloud Native logo">
+          </a>
+        </div>
+        <div class="menu__container">
+          <ul class="menu__list">
+            <li class="menu__item">
+              <a href="/gcn/about/" class="menu__link">About</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gcn/get-started/" class="menu__link">Get Started</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gcn/modules/" class="menu__link">Modules</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gcn/guides/" class="menu__link">Guides</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gcn/hands-on-labs/" class="menu__link">Hands-On Labs</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gcn/vscode-tools/" class="menu__link">Tools</a>
+            </li>
+            <li class="menu__launch__mobile">
+              <a href="/gcn/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
+            </li>
+          </ul>
+        </div>
+        <div class="menu__launch">
+          <a href="/gcn/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
+        </div>
+      </div>
+
+      <div role="button" class="menu-btn menu-btn--menu js-show-menu" tabindex="-1" title="sweet hamburger">
+        <div class="hamburger">
+          <div class="inner"></div>
+        </div>
+      </div>
+      <button aria-label="hamburger mobile menu" class="btn btn-mobile-menu js-show-menu">
+        <div class="inner"></div>
+      </button>
+    </nav>
+
+  
+</header>
+
+<!-- <header  class="header header--content" >
+
+  
+
+  
+
+    <nav class="menu">
+      <div class="menu__row">
+        <div>
+          <a href="/gcn/graal">
+            <img class="logo-mobile" src="/gcn/resources/img/gcn-logo-01.svg" alt="Graal Cloud Native logo">
+          </a>
+        </div>
+        <div class="menu__container">
+          <ul class="menu__list">
+            <li class="menu__item">
+              <a href="/gcn/graal/#whatisgraal" class="menu__link">About</a>
+            </li>
+            <li class="menu__item">
+              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
+            </li>
+            <li class="menu__item">
+              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
+            </li>
+            <li class="menu__item">
+              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div role="button" class="menu-btn menu-btn--menu js-show-menu" tabindex="-1" title="sweet hamburger">
+        <div class="hamburger">
+          <div class="inner"></div>
+        </div>
+      </div>
+      <button aria-label="hamburger mobile menu" class="btn btn-mobile-menu js-show-menu">
+        <div class="inner"></div>
+      </button>
+    </nav>
+
+  
+</header> -->
+
+      <main  class="content"   aria-label="Content">
+        <div class="wrapper wrapper-content">
+  <article>
+  <div class="row d-flex flex-wrap">
+    <div class="col-sm-3 docsimpro col-bg">
+      <div class="sidebar-wrap">
+        <div class="sidebar">
+          <div class="menuabout">
+            <img id="sidebarClose" src="/gcn/resources/img/arrow_sidebar(close).svg" alt="Expand or collapse sidebar"
+              class="btn-color no-display">
+            <img id="sidebarOpen" src="/gcn/resources/img/arrow_sidebar.svg" alt="Expand or collapse sidebar">
+          </div>
+          
+<div class="toc-floating">
+
+
+<div class="toc-bullets">
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+
+    
+      
+        
+          <li class="toc-bullets-main">
+        
+          
+          <a href="/gcn/docs/gcn-modules/email/" class="_icon-book">
+            Email
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+          
+          <li class="toc-bullets-sub toc-bullets-highlight">
+          
+            
+            <a href="/gcn/gcn-modules/email/micronaut-email-amazon-ses/">
+              Create an Application to Send Email with the Amazon Simple Email Service
+            </a>
+          </li>
+
+          
+            <div>
+  <script>
+    var scriptElement = document.currentScript;
+    var div = $(scriptElement.parentElement);
+    $(window).on("load", function () {
+      $("#content-wrapper h2").each(function () {
+        var li = $("<li></li>", { class: "toc-bullets-sub toc-bullets-sub-3" });
+        var a = $("<a></a>", { href: "#" + $(this).attr("id") });
+        a.text($(this).text().replace('#', ''));
+        li.append(a);
+        li.click(function (e) {
+          e.preventDefault();
+          var target = $(a.attr('href'));
+          var scrollTo = target.offset().top - 80; // 80 - indent
+          $('html, body').animate({ scrollTop: scrollTo }, 1000);
+        });
+        div.append(li);
+      });
+    });
+  </script>
+</div>
+          
+        
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<!-- <li class="search additional-search">
+  <form class="form-inline sidebar" action="/docs/search" autocomplete="on" method="get">
+    <input class="input-search sidebar" type="text" id="search-box" name="query" placeholder="Search">
+    <button type="submit sidebar" class="search-button"></button>
+  </form>
+</li> -->
+
+</div>
+  <!-- Search form -->
+  <!-- <form class="search-container" action="/docs/search" autocomplete="on" method="get">
+   <label for="search-box">Search</label>
+    <input type="text" id="search-box" name="query">
+    <button type="submit" class="searchbttn"></button>
+  </form> -->
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-9 docsmod">
+      <div id="content-wrapper" class="docs-content docs-content--with-sidebar">
+        <h1 id="create-an-application-to-send-email-with-the-amazon-simple-email-service">
+        
+        
+          Create an Application to Send Email with the Amazon Simple Email Service
+        
+        
+      </h1>
+
+<p>This guide describes how to use GCN to create a Java application that sends email using the <a href="https://aws.amazon.com/ses/">Amazon Simple Email Service (SES)</a>.</p>
+
+<p><a href="https://aws.amazon.com/ses/">Amazon SES</a> is a pay-per-use email platform that enables you to build in email functionality into an application that you are running on AWS. You can configure Amazon SES quickly to support several email use cases, including transactional, marketing, or mass email communications.</p>
+    
+      <h3 id="prerequisites">
+        
+        
+          Prerequisites <a href="#prerequisites" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<ul>
+  <li>JDK 17 or higher. See <a href="/gcn/get-started/setting-up-desktop/">Setting up Your Desktop</a>.</li>
+  <li>An Amazon Web Services (AWS) account. See <a href="/gcn/get-started/setting-up-cloud-accounts/">Setting up Your Cloud Accounts</a>.</li>
+  <li>An AWS user with enough permissions to create and manage AWS S3 buckets.</li>
+  <li>An Amazon SES sender identity. Create an identity at <a href="https://console.aws.amazon.com/ses/home">SES Console</a>.</li>
+  <li>The GCN CLI. See <a href="/gcn/get-started/setting-up-desktop/">Setting up Your Desktop</a>. (Optional.)</li>
+</ul>
+
+<p>Follow the steps below to create the application from scratch. However, you can also download the completed example in Java:</p>
+
+<div id="tabs-doc1">
+    <ul>
+        <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <p><a href="/gcn/docs/gcn-modules/email/archives/aws-email-demo-java-gradle.zip">Gradle AWS Email Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" />
+        </a>
+        </p>
+    </div>
+    <div id="maven">
+        <p><a href="/gcn/docs/gcn-modules/email/archives/aws-email-demo-java-maven.zip">Maven AWS Email Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" /></a>
+        </p>
+    </div>
+</div>
+    
+      <h4 id="a-note-regarding-your-development-environment">
+        
+        
+          A note regarding your development environment
+        
+        
+      </h4>
+
+<p>Consider using Visual Studio Code that provides native support for developing applications with the <a href="/gcn/vscode-tools/using-gcn-vscode-tools/">Graal Cloud Native Tools extension</a>.</p>
+
+<blockquote>
+  <p>Note: If you use IntelliJ IDEA, <a href="/gcn/resources/img/annotationprocessorsintellij.png">enable annotation processing</a>.</p>
+</blockquote>
+    
+      <h2 id="1-create-the-application">
+        
+        
+          1. Create the Application <a href="#1-create-the-application" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>Create an application using the GCN Launcher.</p>
+
+<ol>
+  <li>
+    <p>Open the <a href="/gcn/launcher/?advanced=true">GCN Launcher in advanced mode</a>.</p>
+  </li>
+  <li>Create a new project using the following selections.
+    <ul>
+      <li><strong>Project Type</strong>: <em>Application</em> (Default)</li>
+      <li><strong>Project Name</strong>: <em>aws-email-demo</em></li>
+      <li><strong>Base Package</strong>: <em>com.example</em> (Default)</li>
+      <li><strong>Clouds</strong>: <em>AWS</em></li>
+      <li><strong>Language</strong>: <em>Java</em> (Default)</li>
+      <li><strong>Build Tool</strong>: <em>Gradle (Groovy)</em> or <em>Maven</em></li>
+      <li><strong>Test Framework</strong>: <em>JUnit</em> (Default)</li>
+      <li><strong>Java Version</strong>: <em>17</em> (Default)</li>
+      <li><strong>Micronaut Version</strong>: (Default)</li>
+      <li><strong>Cloud Services</strong>: <em>Email</em></li>
+      <li><strong>Features</strong>: <em>GraalVM Native Image</em> (Default)</li>
+      <li><strong>Sample Code</strong>: <em>Yes</em> (Default)</li>
+    </ul>
+  </li>
+  <li>Click <strong>Generate Project</strong>. The GCN Launcher creates an application with the default package <code>com.example</code> in a directory named <em>aws-email-demo</em>. The application ZIP file will be downloaded in your default downloads directory. Unzip it, open in your code editor, and proceed to the next steps.</li>
+</ol>
+
+<p>Alternatively, use the GCN CLI as follows:</p>
+
+<div id="tabs-doc2">
+    <ul>
+        <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <pre><code class="language-bash">gcn create-app com.example.aws-email-demo \
+    --clouds=aws \
+    --services=email \
+    --features=graalvm \
+    --build=gradle \
+    --lang=java</code></pre>
+    </div>
+    <div id="maven">
+        <pre><code class="language-bash">gcn create-app com.example.aws-email-demo \
+    --clouds=aws \
+    --services=email \
+    --features=graalvm \
+    --build=maven \
+    --lang=java</code></pre>
+    </div>
+</div>
+
+<p>For more information, see <a href="/gcn/get-started/using-gcn-cli/">Using the GCN CLI</a>.</p>
+    
+      <h3 id="11-review-dependencies">
+        
+        
+          1.1. Review Dependencies <a href="#11-review-dependencies" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>You do not have to add any dependencies manually because GCN added the <strong>AWS SDK 2.x</strong> and <strong>SES Email</strong> features when you created the application with the GCN Launcher. The build file includes the following:</p>
+
+<div id="tabs-doc3">
+  <ul>
+    <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
+    <li class="tabs-maven"><a href="#maven">Maven</a></li>
+  </ul>
+  <div id="gradle">
+    <p><em>aws/build.gradle</em></p>
+    <pre><code class="language-java">implementation("io.micronaut.email:micronaut-email-amazon-ses")
+implementation("io.micronaut.aws:micronaut-aws-sdk-v2")</code></pre>
+  </div>
+  <div id="maven">
+    <p><em>aws/pom.xml</em></p>
+    <pre><code class="language-xml">&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.email&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-email-amazon-ses&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.aws&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-aws-sdk-v2&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;</code></pre>
+  </div>
+</div>
+
+<p>For more information, see:</p>
+
+<ul>
+  <li><a href="https://micronaut-projects.github.io/micronaut-aws/latest/guide/#awsCredentials">Supplying AWS Credentials</a></li>
+  <li><a href="https://micronaut-projects.github.io/micronaut-aws/latest/guide/#awsRegionSelection">Selecting AWS Region Selection</a></li>
+  <li><a href="https://micronaut-projects.github.io/micronaut-aws/latest/guide/#ses">SES Beans</a></li>
+</ul>
+    
+      <h3 id="12-mailcontroller">
+        
+        
+          1.2. MailController <a href="#12-mailcontroller" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>The launcher created a <code>MailController</code> class which uses a collaborator, <code>emailSender</code>, to send an email, in a file named <em>aws/src/main/java/com/example/MailController.java</em>.</p>
+
+<p>You can send email asynchronously using the <a href="https://micronaut-projects.github.io/micronaut-email/latest/api/io/micronaut/email/AsyncEmailSender.html">AsyncEmailSender API</a> or synchronously using the <a href="https://micronaut-projects.github.io/micronaut-email/latest/api/io/micronaut/email/EmailSender.html">EmailSender</a> API.</p>
+
+<pre><code class="language-java">package com.example;
+
+import io.micronaut.email.AsyncEmailSender;
+import io.micronaut.email.Email;
+import io.micronaut.email.EmailException;
+import io.micronaut.http.HttpResponse;
+import io.micronaut.http.annotation.Body;
+import io.micronaut.http.annotation.Controller;
+import io.micronaut.http.annotation.Post;
+import io.micronaut.http.exceptions.HttpStatusException;
+import org.reactivestreams.Publisher;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import reactor.core.publisher.Mono;
+import software.amazon.awssdk.services.ses.model.SendEmailResponse;
+import software.amazon.awssdk.services.ses.model.SesRequest;
+import software.amazon.awssdk.services.ses.model.SesResponse;
+
+import static io.micronaut.email.BodyType.HTML;
+import static io.micronaut.http.HttpStatus.UNPROCESSABLE_ENTITY;
+
+@Controller("/mail") // &lt;1&gt;
+class MailController {
+
+    private static final Logger LOG = LoggerFactory.getLogger(MailController.class);
+
+    private final AsyncEmailSender&lt;SesRequest, SesResponse&gt; emailSender;
+
+    MailController(AsyncEmailSender&lt;SesRequest, SesResponse&gt; emailSender) { // &lt;2&gt;
+        this.emailSender = emailSender;
+    }
+
+    @Post("/send") // &lt;3&gt;
+    public Publisher&lt;HttpResponse&lt;?&gt;&gt; send(@Body("to") String to) { // &lt;4&gt;
+        return Mono.from(emailSender.sendAsync(Email.builder()
+                        .to(to)
+                        .subject("Sending email with Amazon SES is Fun")
+                        .body("and &lt;em&gt;easy&lt;/em&gt; to do anywhere with &lt;strong&gt;Micronaut Email&lt;/strong&gt;", HTML)))
+                .doOnNext(rsp -&gt; {
+                    if (rsp instanceof SendEmailResponse) {
+                        LOG.info("message id: {}", ((SendEmailResponse) rsp).messageId());
+                    }
+                }).onErrorMap(EmailException.class, t -&gt; new HttpStatusException(UNPROCESSABLE_ENTITY, "Email could not be sent"))
+                .map(rsp -&gt; HttpResponse.accepted()); // &lt;5&gt;
+    }
+}
+</code></pre>
+
+<p><strong>1</strong> The class is defined as a controller with the <a href="https://docs.micronaut.io/latest/api/io/micronaut/http/annotation/Controller.html"><code>@Controller</code></a> annotation mapped to the path <code>/mail/send</code>.</p>
+
+<p><strong>2</strong> Use constructor injection to inject a bean of type <code>AsyncEmailSender</code>.</p>
+
+<p><strong>3</strong> The <a href="https://docs.micronaut.io/latest/api/io/micronaut/http/annotation/Post.html"><code>@Post</code></a> annotation maps the <code>send</code> method to an HTTP POST request on <code>/mail/send</code>.</p>
+
+<p><strong>4</strong> You can use a qualifier within the HTTP request body. For example, you can use a reference to a nested JSON attribute.</p>
+
+<p><strong>5</strong> Return 202 ACCEPTED as the result if the email delivery succeeds.</p>
+    
+      <h3 id="13-awsmailcontrollertest">
+        
+        
+          1.3. AwsMailControllerTest <a href="#13-awsmailcontrollertest" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<ol>
+  <li>
+    <p>The launcher created a test bean in a file named <em>aws/src/test/java/com/example/EmailSenderReplacement.java</em> that <a href="https://docs.micronaut.io/latest/guide/#replaces">replaces</a> the bean of type <a href="https://micronaut-projects.github.io/micronaut-email/latest/api/io/micronaut/email/AsyncTransactionalEmailSender.html">AsyncTransactionalEmailSender</a>.</p>
+
+    <pre><code class="language-java"> package com.example;
+
+ import io.micronaut.context.annotation.Replaces;
+ import io.micronaut.context.annotation.Requires;
+ import io.micronaut.email.AsyncTransactionalEmailSender;
+ import io.micronaut.email.Email;
+ import io.micronaut.email.EmailException;
+ import io.micronaut.email.ses.AsyncSesEmailSender;
+ import jakarta.inject.Named;
+ import jakarta.inject.Singleton;
+ import org.reactivestreams.Publisher;
+ import reactor.core.publisher.Mono;
+ import software.amazon.awssdk.services.ses.model.SendEmailResponse;
+ import software.amazon.awssdk.services.ses.model.SesRequest;
+ import software.amazon.awssdk.services.ses.model.SesResponse;
+
+ import jakarta.validation.Valid;
+ import jakarta.validation.constraints.NotNull;
+ import java.util.ArrayList;
+ import java.util.List;
+ import java.util.function.Consumer;
+
+ @Requires(property = "spec.name", value = "MailControllerTest") // &lt;1&gt;
+ @Singleton
+ @Replaces(AsyncSesEmailSender.class)
+ @Named(AsyncSesEmailSender.NAME)
+ class EmailSenderReplacement implements AsyncTransactionalEmailSender&lt;SesRequest, SesResponse&gt; {
+
+     private final List&lt;Email&gt; emails = new ArrayList&lt;&gt;();
+
+     @Override
+     public String getName() {
+         return AsyncSesEmailSender.NAME;
+     }
+
+     @Override
+     public Publisher&lt;SesResponse&gt; sendAsync(@NotNull @Valid Email email,
+                                             @NotNull Consumer&lt;SesRequest&gt; emailRequest) throws EmailException {
+         emails.add(email);
+         return Mono.just(SendEmailResponse.builder().messageId("xxx-yyy-zzz").build());
+     }
+
+     public List&lt;Email&gt; getEmails() {
+         return emails;
+     }
+ }
+</code></pre>
+
+    <p><strong>1</strong> Combine <a href="https://docs.micronaut.io/latest/api/io/micronaut/context/annotation/Requires.html"><code>@Requires</code></a> and <a href="https://docs.micronaut.io/latest/api/io/micronaut/context/annotation/Property.html"><code>@Property</code></a> to avoid bean pollution.</p>
+  </li>
+  <li>
+    <p>The launcher created a test that uses <code>EmailSenderReplacement</code> to verify that the contents of the email match expectations in a file named <em>aws/src/test/java/com/example/AwsMailControllerTest.java</em> with the following content:</p>
+
+    <pre><code class="language-java"> package com.example;
+
+ import io.micronaut.context.BeanContext;
+ import io.micronaut.context.annotation.Property;
+ import io.micronaut.core.util.CollectionUtils;
+ import io.micronaut.email.AsyncTransactionalEmailSender;
+ import io.micronaut.email.Email;
+ import io.micronaut.http.HttpRequest;
+ import io.micronaut.http.HttpResponse;
+ import io.micronaut.http.client.HttpClient;
+ import io.micronaut.http.client.annotation.Client;
+ import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
+ import jakarta.inject.Inject;
+ import org.junit.jupiter.api.Test;
+
+ import java.util.Map;
+
+ import static io.micronaut.email.BodyType.HTML;
+ import static io.micronaut.http.HttpStatus.ACCEPTED;
+ import static org.junit.jupiter.api.Assertions.assertEquals;
+ import static org.junit.jupiter.api.Assertions.assertNotNull;
+ import static org.junit.jupiter.api.Assertions.assertTrue;
+
+ @Property(name = "spec.name", value = "MailControllerTest") // &lt;1&gt;
+ @Property(name = "micronaut.email.from.email", value = "mo@gcn.example")
+ @MicronautTest // &lt;2&gt;
+ class MailControllerTest {
+
+     @Inject
+     @Client("/")
+     HttpClient httpClient; // &lt;3&gt;
+
+     @Inject
+     BeanContext beanContext;
+
+     @Test
+     void getMailSendEndpointSendsAnEmail() {
+
+         HttpResponse&lt;?&gt; response = httpClient.toBlocking().exchange(
+                 HttpRequest.POST("/mail/send", Map.of("to", "jo@gcn.example")));
+         assertEquals(ACCEPTED, response.status());
+
+         AsyncTransactionalEmailSender&lt;?, ?&gt; sender = beanContext.getBean(AsyncTransactionalEmailSender.class);
+         assertTrue(sender instanceof EmailSenderReplacement);
+
+         EmailSenderReplacement sendgridSender = (EmailSenderReplacement) sender;
+         assertTrue(CollectionUtils.isNotEmpty(sendgridSender.getEmails()));
+         assertEquals(1, sendgridSender.getEmails().size());
+
+         Email email = sendgridSender.getEmails().get(0);
+         assertEquals("mo@gcn.example", email.getFrom().getEmail());
+         assertNotNull(email.getTo());
+         assertTrue(email.getTo().stream().findFirst().isPresent());
+         assertEquals("jo@gcn.example", email.getTo().stream().findFirst().get().getEmail());
+         assertEquals("Sending email with Amazon SES is Fun", email.getSubject());
+         assertNotNull(email.getBody());
+         assertTrue(email.getBody().get(HTML).isPresent());
+         assertEquals("and &lt;em&gt;easy&lt;/em&gt; to do anywhere with &lt;strong&gt;Micronaut Email&lt;/strong&gt;", email.getBody().get(HTML).get());
+     }
+ }
+</code></pre>
+
+    <p><strong>1</strong> Combine <a href="https://docs.micronaut.io/latest/api/io/micronaut/context/annotation/Requires.html"><code>@Requires</code></a> and <a href="https://docs.micronaut.io/latest/api/io/micronaut/context/annotation/Property.html"><code>@Property</code></a> to avoid bean pollution.</p>
+
+    <p><strong>2</strong> Annotate the class with <code>@MicronautTest</code> so Micronaut will initialize the application context and the embedded server.</p>
+
+    <p><strong>3</strong> Inject the <code>HttpClient</code> bean and point it to the embedded server.</p>
+  </li>
+</ol>
+    
+      <h2 id="2-run-the-test">
+        
+        
+          2. Run the Test <a href="#2-run-the-test" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>Use the following command to run the test.</p>
+
+<div id="tabs-doc4">
+    <ul>
+        <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <pre><code class="language-bash">./gradlew :aws:test</code></pre>
+        <p>Then open the file <em>build/reports/tests/test/index.html</em> in a browser to view the results.</p>
+    </div>
+    <div id="maven">
+        <pre><code class="language-bash">./mvnw install -pl lib -am &amp;&amp; ./mvnw test -pl aws</code></pre>
+    </div>
+</div>
+    
+      <h2 id="3-set-up-aws-email-delivery">
+        
+        
+          3. Set up AWS Email Delivery <a href="#3-set-up-aws-email-delivery" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>To configure the email delivery via Amazon SES, you need to add a “Verified Sender”, supply AWS credentials.</p>
+    
+      <h3 id="31-configure-from-address">
+        
+        
+          3.1. Configure “From” Address <a href="#31-configure-from-address" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>Add the following configuration snippet to <em>aws/src/main/resources/application-ec2.properties</em>. Change the property <code>micronaut.email.from.email</code> to match your Amazon SES verified sender.</p>
+
+<pre><code>micronaut.email.from.email=mo@gcn.example
+</code></pre>
+
+<p>This is possible thanks to <a href="https://micronaut-projects.github.io/micronaut-email/latest/guide/index.html#decorators">Email Decorators</a>.</p>
+    
+      <h3 id="32-supply-aws-credentials">
+        
+        
+          3.2 Supply AWS Credentials <a href="#32-supply-aws-credentials" class="anchor_heading">#</a>
+        
+        
+      </h3>
+<p>An easy way to <a href="https://micronaut-projects.github.io/micronaut-aws/latest/guide/#awsCredentials">supply AWS Credentials</a> is to define the following environment variables, as follows:</p>
+
+<pre><code class="language-bash">export AWS_ACCESS_KEY_ID=xxx
+export AWS_SECRET_ACCESS_KEY=xxx
+</code></pre>
+    
+      <h2 id="4-run-the-application">
+        
+        
+          4. Run the Application <a href="#4-run-the-application" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>To run the application, use the following command, which starts the application on port 8080.</p>
+
+<div id="tabs-doc5">
+    <ul>
+        <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <pre><code class="language-bash">./gradlew :aws:run</code></pre>
+    </div>
+    <div id="maven">
+        <pre><code class="language-bash">./mvnw install -pl lib -am &amp;&amp; ./mvnw mn:run -pl aws</code></pre>
+    </div>
+</div>
+    
+      <h2 id="5-test-the-application">
+        
+        
+          5. Test the Application <a href="#5-test-the-application" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>Test the application by accessing the REST endpoints of the application.</p>
+
+<pre><code class="language-bash">curl -d '{"to":"jo@gcn.example"}' \
+     -H "Content-Type: application/json" \
+     -X POST http://localhost:8080/mail/send
+</code></pre>
+    
+      <h2 id="6-generate-a-native-executable-using-graalvm">
+        
+        
+          6. Generate a Native Executable Using GraalVM <a href="#6-generate-a-native-executable-using-graalvm" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>GCN supports compiling a Java application ahead-of-time into a native executable using <a href="https://www.graalvm.org/native-image/">GraalVM Native Image</a>. You can use the <em><a href="https://graalvm.github.io/native-build-tools/latest/gradle-plugin.html">Gradle plugin for GraalVM Native Image building</a>/<a href="https://graalvm.github.io/native-build-tools/latest/maven-plugin.html">Maven  plugin for GraalVM Native Image building</a></em>. Packaged as a native executable, it significantly reduces application startup time and memory footprint.</p>
+
+<p>To generate a native executable, run the following command:</p>
+
+<div id="tabs-doc6">
+  <ul>
+    <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
+    <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
+  </ul>
+  <div id="gradle">
+    <pre><code class="language-bash">./gradlew :aws:nativeCompile</code></pre>
+    <p>The native executable is created in the <em>aws/build/native/nativeCompile</em> directory and can be run with the following command:</p>
+    <pre><code class="language-bash">aws/build/native/nativeCompile/aws</code></pre>
+  </div>
+  <div id="maven">
+    <pre><code class="language-bash">./mvnw install -pl lib -am &amp;&amp; ./mvnw package -pl aws -Dpackaging=native-image</code></pre>
+    <p>The native executable is created in the <em>aws/target</em> directory and can be run with the following command:</p>
+    <pre><code class="language-bash">aws/target/aws</code></pre>
+  </div>
+</div>
+    
+      <h2 id="7-run-and-test-the-native-executable">
+        
+        
+          7. Run and Test the Native Executable <a href="#7-run-and-test-the-native-executable" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>Run the native executable, and then perform the same tests as in step <strong>5</strong>.</p>
+    
+      <h3 id="summary">
+        
+        
+          Summary <a href="#summary" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>This guide demonstrated how to use GCN to create an application that sends email via the <a href="https://aws.amazon.com/ses/">Amazon Simple Email Service (SES)</a> and the Micronaut Email module. Then you saw how to generate a native executable with GraalVM Native Image for faster startup and lower memory footprint.</p>
+    
+      <h3 id="related-documentation">
+        
+        
+          Related Documentation <a href="#related-documentation" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<ul>
+  <li><a href="https://micronaut-projects.github.io/micronaut-email/latest/guide/">Micronaut Email integration</a></li>
+  <li><a href="https://aws.amazon.com/ses/">Amazon Simple Email Service (SES)</a></li>
+  <li><a href="https://www.graalvm.org/native-image/">GraalVM Native Image</a></li>
+</ul>
+
+      </div>
+
+      <div role="button" class="menu-btn menu-btn--sidebar js-show-sidebar" title="sweet hamburger">
+        <div class="hamburger">
+          <div class="inner"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+</div>
+
+      </main>
+
+      
+<footer class="footer footer__mobile">
+
+  <div class="container-fluid container-fluid--custom-sm">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row footer-content">
+          <div class="col-md-3 col-sm-4">
+            <h6 class="title-footer" onclick="fadeInAndOut(this)">Learn</h6>
+            <div class="grow">
+              <ul class="footer-list">
+                <li class="footer-list__item"><a href="/gcn/get-started/">Get Started</a></li>
+                <li class="footer-list__item"><a href="/gcn/guides/">Guides</a></li>
+                <li class="footer-list__item"><a href="/gcn/hands-on-labs/">Labs</a></li>
+                <li class="footer-list__github">
+                  <img class="footer__icon" src="/gcn/resources/img/footer/logo-github.svg" alt="Github icon">
+                  <a href="https://github.com/oracle/gcn">Github</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-4">
+            <h6 class="title-footer" onclick="fadeInAndOut(this)">About</h6>
+            <div class="grow">
+              <ul class="footer-list">
+                <li class="footer-list__item"><a href="/gcn/about/#gcn-support" target="blank">Commercial Support</a></li>
+                <li class="footer-list__item"><a href="https://www.graalvm.org/" target="blank">GraalVM Native Image</a></li>
+                <li class="footer-list__item"><a href="https://micronaut.io/" target="_blank">Micronaut</a></li>
+                <li class="footer-list__item"><a href="https://www.oracle.com/cloud/multicloud/what-is-multicloud/" target="_blank">Multicloud</a></li>
+                <li class="footer-list__item"><a href="https://www.oracle.com/cloud/" target="blank">Oracle Cloud Infrastructure</a></li>
+                <li class="footer-list__item"><a href="https://marketplace.visualstudio.com/items?itemName=oracle-labs-graalvm.graal-cloud-native-pack" target="blank">VS Code Tools</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-12 aligning_1024">
+            <div class="card--footer card--hovered box">
+              <div>
+                <div class="rubber-footer footer__oci-section">
+                  <p class="title-footer quickstart">Build, test, and deploy applications on Oracle Cloud Infrastructure for free</p>
+                  <a href="https://www.oracle.com/cloud/free/" target="_blank"
+                    class="btn btn-primary">Try Oracle Cloud Infrastructure Free Tier</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+          <div class="row">
+            <div class="col-sm-12">
+              <p class="copyright">
+                Copyright © 2023, Oracle and/or its affiliates. All rights reserved. Oracle and Java are
+                registered trademarks. Other names may be trademarks of their respective owners.
+              </p>
+              <div id="teconsent"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+<script>
+  function fadeInAndOut(thz) {
+    var elmt = thz.nextElementSibling;//Get the element that is below the button that
+    //was just clicked
+    if (elmt.clientHeight) {
+      elmt.style.height = 0;
+    } else {
+      var wrapper = elmt.querySelector('ul');
+      elmt.style.height = wrapper.clientHeight + "px";
+    }
+    /*
+        elmt.classList.toggle("acordianPanelHidden");//Toggle the class which changes
+        //attributes which triggers the transition CSS
+        */
+  }
+
+  // Check TRUSTe Consent for Functional or Implied Approval
+  // The if test verifies if the user has given the consent
+  if ( (oracle.truste.api.getGdprConsentDecision().consentDecision) &&
+      (oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(0) != -1 ||
+        oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(2) != -1) ) {
+
+      //The following is a sample of a Maxymiser Tag being written to the DOM
+      //If the user did not give consent, then the tag is not included and not invoked in the Browser
+      document.write('<script type="text/javascript" src="//service.maxymiser.net/cdn/oracle/js/mmcore.js"><\/script>');
+  }
+
+  // Check TRUSTe Consent for Advertising or Implied Approval
+  // The if test verifies if the user has given the consent
+  if ( (oracle.truste.api.getGdprConsentDecision().consentDecision) &&
+      (oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(0) != -1 ||
+        oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(3) != -1) ) {
+
+      //The following is a sample of a BlueKai Core Tag being written to the DOM
+      //If the user did not give consent, then the tag is not included and not invoked in the Browser
+      document.write('<script type="text/javascript">' +
+      'window.bk_async = function() { ' +
+      'BKTAG.doTag(62581, 1); }; ' +
+      '(function() { ' +
+      'var scripts = document.getElementsByTagName(\'script\')[0]; ' +
+      'var s = document.createElement(\'script\'); ' +
+      's.async = true; ' +
+      's.src = "https://tags.bkrtx.com/js/bk-coretag.js"; ' +
+      'scripts.parentNode.insertBefore(s, scripts); ' +
+      '}()); ' +
+      '<\/script>');
+  }
+</script>
+
+    </div>
+    <div class="overlay"></div>
+
+    <!-- Start SiteCatalyst code -->
+    <script language="JavaScript" src="https://www.oracle.com/us/assets/metrics/ora_otn.js"></script>
+    <!-- End SiteCatalyst code -->
+
+    <script src='/gcn/resources/lib/slick-slider/slick.min.js'></script>
+    <script src='/gcn/resources/js/main.js'></script>
+    <script src='/gcn/resources/js/ui.js'></script>
+    <script src='/gcn/resources/js/filters.js'></script>
+    <script src='/gcn/resources/js/sidebar.js'></script>
+  </body>
+</html>
