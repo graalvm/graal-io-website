@@ -142,7 +142,7 @@
 </url>
 <url>
 <loc>https://www.graal.cloud/gcn/gcn-modules/security/micronaut-cloud-oidc-oracle/</loc>
-<lastmod>2023-10-12T08:03:05+00:00</lastmod>
+<lastmod>2023-11-01T11:04:11+00:00</lastmod>
 </url>
 <url>
 <loc>https://www.graal.cloud/gcn/gcn-modules/secret-management/micronaut-cloud-secret-manager-google/</loc>
@@ -162,7 +162,7 @@
 </url>
 <url>
 <loc>https://www.graal.cloud/gcn/gcn-modules/email/micronaut-email-oracle/</loc>
-<lastmod>2023-09-20T14:46:17+00:00</lastmod>
+<lastmod>2023-11-01T11:04:11+00:00</lastmod>
 </url>
 <url>
 <loc>https://www.graal.cloud/gcn/gcn-modules/serverless/micronaut-function-aws/</loc>
@@ -190,7 +190,7 @@
 </url>
 <url>
 <loc>https://www.graal.cloud/gcn/gcn-modules/kubernetes/micronaut-k8s-oci/</loc>
-<lastmod>2023-10-16T16:37:57+00:00</lastmod>
+<lastmod>2023-11-01T11:04:11+00:00</lastmod>
 </url>
 <url>
 <loc>https://www.graal.cloud/gcn/gcn-modules/kubernetes/micronaut-k8s/</loc>
@@ -226,7 +226,7 @@
 </url>
 <url>
 <loc>https://www.graal.cloud/gcn/gcn-modules/database/micronaut-mysql-database-oci/</loc>
-<lastmod>2023-09-28T16:00:54+00:00</lastmod>
+<lastmod>2023-11-01T11:08:31+00:00</lastmod>
 </url>
 <url>
 <loc>https://www.graal.cloud/gcn/gcn-modules/security/micronaut-oauth2-cognito/</loc>
@@ -250,7 +250,7 @@
 </url>
 <url>
 <loc>https://www.graal.cloud/gcn/gcn-modules/logging/micronaut-oci-logging/</loc>
-<lastmod>2023-10-12T08:03:05+00:00</lastmod>
+<lastmod>2023-11-01T11:04:11+00:00</lastmod>
 </url>
 <url>
 <loc>https://www.graal.cloud/gcn/gcn-modules/secret-management/micronaut-secrets-oracle-cloud/</loc>
@@ -350,14 +350,14 @@
 </url>
 <url>
 <loc>https://www.graal.cloud/gcn/google3b083ffafa1dd4b4.html</loc>
-<lastmod>2023-11-02T08:07:22+00:00</lastmod>
+<lastmod>2023-11-03T18:28:49+00:00</lastmod>
 </url>
 <url>
 <loc>https://www.graal.cloud/gcn/resources/lib/fiddle/data/SYSTEM_MODULES-java.desktop-javax.swing.text.html</loc>
-<lastmod>2023-11-02T08:07:22+00:00</lastmod>
+<lastmod>2023-11-03T18:28:49+00:00</lastmod>
 </url>
 <url>
 <loc>https://www.graal.cloud/gcn/resources/lib/fiddle/data/SYSTEM_MODULES-jdk.xml.dom-org.w3c.dom.html</loc>
-<lastmod>2023-11-02T08:07:22+00:00</lastmod>
+<lastmod>2023-11-03T18:28:49+00:00</lastmod>
 </url>
 </urlset>
