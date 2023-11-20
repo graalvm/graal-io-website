@@ -14,7 +14,7 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2023-09-27 09:18:49 +0000"/>
+  <meta name="last_modified" content="2023-11-17 17:18:39 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -267,6 +267,8 @@
         
       
     
+  
+
   
 
   
@@ -683,7 +685,7 @@ public interface BookRepository extends CrudRepository&lt;Book, Long&gt; { // &l
         
       </h3>
 
-<p>The launcher created a controller to access <code>Book</code> instances (and to trigger the JDBC metric data) in a file named <em>lib/src/main/java/com/example/BookController.java</em> with the following content:</p>
+<p>The launcher created a controller to access <code>Book</code> instances (and to trigger the JDBC metric data) in a file named <em>lib/src/main/java/com/example/BookController.java</em> with the following contents:</p>
 
 <pre><code class="language-java">package com.example;
 
@@ -742,7 +744,7 @@ class BookController {
 
 <ol>
   <li>
-    <p>For tests to run correctly, the launcher created a test configuration file named <em>oci/src/test/resources/application-test.properties</em> with the following content:</p>
+    <p>For tests to run correctly, the launcher created a test configuration file named <em>oci/src/test/resources/application-test.properties</em> with the following contents:</p>
 
     <pre><code> customMetrics.initialDelay=10h
  datasources.default.db-type=mysql
@@ -759,7 +761,7 @@ class BookController {
  The configuration also enables Flyway to create the <code>books</code> tables the same way as in a production environment.</p>
   </li>
   <li>
-    <p>The launcher created a test class, named <code>BookControllerMetricsTest</code>, to verify metrics functionality in a file named <em>oci/src/test/java/com/example/BookControllerMetricsTest.java</em> with the following content:</p>
+    <p>The launcher created a test class, named <code>BookControllerMetricsTest</code>, to verify metrics functionality in a file named <em>oci/src/test/java/com/example/BookControllerMetricsTest.java</em> with the following contents:</p>
 
     <pre><code class="language-java"> package com.example;
 
@@ -929,7 +931,7 @@ class BookController {
 
 <ol>
   <li>
-    <p>The launcher created a service that retrieves information from the database and publishes custom metrics based on it. The custom metrics provide the number of books about microservices. The service is in a file named <em>lib/src/main/java/com/example/MicroserviceBooksNumberService.java</em> with the following content:</p>
+    <p>The launcher created a service that retrieves information from the database and publishes custom metrics based on it. The custom metrics provide the number of books about microservices. The service is in a file named <em>lib/src/main/java/com/example/MicroserviceBooksNumberService.java</em> with the following contents:</p>
 
     <pre><code class="language-java"> package com.example;
 
@@ -989,7 +991,7 @@ class BookController {
     <p><strong>2</strong> The metric update is scheduled. The <code>customMetrics.updateFrequency</code> parameter corresponds to the update rate and has the default value of one hour. The <code>customMetrics.initialDelay</code> parameter corresponds to a delay after application startup before metrics calculation and has a default value of zero seconds.</p>
   </li>
   <li>
-    <p>Create a test for the custom metrics in a class named <code>MicroserviceBooksNumberTest</code>. Create a new file named <em>oci/src/test/java/com/example/MicroserviceBooksNumberTest.java</em> with the following content:</p>
+    <p>Create a test for the custom metrics in a class named <code>MicroserviceBooksNumberTest</code>. Create a new file named <em>oci/src/test/java/com/example/MicroserviceBooksNumberTest.java</em> with the following contents:</p>
 
     <pre><code class="language-java"> package com.example;
 

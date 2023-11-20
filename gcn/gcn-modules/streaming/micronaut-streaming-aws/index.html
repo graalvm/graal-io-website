@@ -14,7 +14,7 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2023-10-12 08:03:05 +0000"/>
+  <meta name="last_modified" content="2023-11-17 17:18:39 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -166,6 +166,8 @@
 
 <div class="toc-bullets">
 
+
+  
 
   
 
@@ -544,7 +546,7 @@ public class Book {
         
       </h4>
 
-<p>To keep this guide simple there is no database persistence: the <em>Books</em> microservice keeps the list of books in memory. The launcher created a class named <code>BookService</code> in <em>lib/src/main/java/com/example/publisher/BookService.java</em> with the following content:</p>
+<p>To keep this guide simple there is no database persistence: the <em>Books</em> microservice keeps the list of books in memory. The launcher created a class named <code>BookService</code> in <em>lib/src/main/java/com/example/publisher/BookService.java</em> with the following contents:</p>
 
 <pre><code class="language-java">package com.example.publisher;
 
@@ -586,7 +588,7 @@ public class BookService {
         
       </h4>
 
-<p>The launcher created a controller to access <code>Book</code> instances in a file named <em>lib/src/main/java/com/example/publisher/BookController.java</em> with the following content:</p>
+<p>The launcher created a controller to access <code>Book</code> instances in a file named <em>lib/src/main/java/com/example/publisher/BookController.java</em> with the following contents:</p>
 
 <pre><code class="language-java">package com.example.publisher;
 
@@ -633,7 +635,7 @@ class BookController {
         
       </h4>
 
-<p>The launcher created a test for <code>BookController</code> to verify the interaction with the <em>Analytics</em> microservice in a file named <em>aws/src/test/java/com/example/publisher/BookControllerTest.java</em> with the following content:</p>
+<p>The launcher created a test for <code>BookController</code> to verify the interaction with the <em>Analytics</em> microservice in a file named <em>aws/src/test/java/com/example/publisher/BookControllerTest.java</em> with the following contents:</p>
 
 <pre><code class="language-java">package com.example.publisher;
 
@@ -745,7 +747,7 @@ class BookControllerTest {
         
       </h4>
 
-<p>The launcher created a client interface to send messages to the streaming service in a file named <em>lib/src/main/java/com/example/publisher/AnalyticsClient.java</em> with the content shown below. (Micronaut generates an implementation for the client interface at compilation time.)</p>
+<p>The launcher created a client interface to send messages to the streaming service in a file named <em>lib/src/main/java/com/example/publisher/AnalyticsClient.java</em> with the contents shown below. (Micronaut generates an implementation for the client interface at compilation time.)</p>
 
 <pre><code class="language-java">package com.example.publisher;
 
@@ -1006,7 +1008,7 @@ public class BookAnalytics {
         
       </h4>
 
-<p>To keep this guide simple there is no database persistence: the <em>Analytics</em> microservice keeps book analytics in memory. The launcher created a class named <code>AnalyticsService</code> in <em>lib/src/main/java/com/example/consumer/AnalyticsService.java</em> with the following content:</p>
+<p>To keep this guide simple there is no database persistence: the <em>Analytics</em> microservice keeps book analytics in memory. The launcher created a class named <code>AnalyticsService</code> in <em>lib/src/main/java/com/example/consumer/AnalyticsService.java</em> with the following contents:</p>
 
 <pre><code class="language-java">package com.example.consumer;
 
@@ -1211,7 +1213,7 @@ class AnalyticsListener {
         
       </h4>
 
-<p>The <em>Books</em> and <em>Analytics</em> microservices are both run on the same AWS EC2 instance, so they must run on different ports. Change the port that <em>Analytics</em> runs on by editing the <em>aws/src/main/resources/application-ec2.properties</em> file so that it has the following content:</p>
+<p>The <em>Books</em> and <em>Analytics</em> microservices are both run on the same AWS EC2 instance, so they must run on different ports. Change the port that <em>Analytics</em> runs on by editing the <em>aws/src/main/resources/application-ec2.properties</em> file so that it has the following contents:</p>
 
 <pre><code>micronaut.application.name=aws
 micronaut.server.port=8080
@@ -1562,7 +1564,7 @@ aws iam create-access-key --user-name Administrator
 
 <ol>
   <li>
-    <p>Create a new file named <em>aws_msk_cluster_broker_info.json</em> with the following content. Replace the <code>ClientSubnets</code> values with the IDs of your subnets.</p>
+    <p>Create a new file named <em>aws_msk_cluster_broker_info.json</em> with the following contents. Replace the <code>ClientSubnets</code> values with the IDs of your subnets.</p>
 
     <pre><code class="language-json"> {
    "InstanceType": "kafka.m5.xlarge",
@@ -1576,7 +1578,7 @@ aws iam create-access-key --user-name Administrator
 </code></pre>
   </li>
   <li>
-    <p>Create a new file named <em>aws_msk_cluster_auth_info.json</em> with the following content:</p>
+    <p>Create a new file named <em>aws_msk_cluster_auth_info.json</em> with the following contents:</p>
 
     <pre><code class="language-json"> {
    "Sasl": {
@@ -1785,7 +1787,7 @@ aws iam create-access-key --user-name Administrator
 
 <ol>
   <li>
-    <p>Create a file named <em>msk-gcn-guide-policy.json</em> with the following content:</p>
+    <p>Create a file named <em>msk-gcn-guide-policy.json</em> with the following contents:</p>
 
     <pre><code class="language-json"> {
    "Version": "2012-10-17",
@@ -1829,7 +1831,7 @@ aws iam create-access-key --user-name Administrator
     <p>Replace <code>&lt;region&gt;</code> with the code of the Amazon Web Services Region where you created your cluster. Replace <code>&lt;Account-ID&gt;</code> with your account ID.</p>
   </li>
   <li>
-    <p>Create a new file named <em>msk-gcn-guide-role-trust-policy.json</em> with the following content:</p>
+    <p>Create a new file named <em>msk-gcn-guide-role-trust-policy.json</em> with the following contents:</p>
 
     <pre><code class="language-json"> {
    "Version": "2012-10-17",
@@ -1937,7 +1939,7 @@ aws iam create-access-key --user-name Administrator
 </code></pre>
   </li>
   <li>
-    <p>Enable the IAM SASL mechanism to be able to connect to MSK from the client EC2 instance by creating a file named <em>client.properties</em> with the following content:</p>
+    <p>Enable the IAM SASL mechanism to be able to connect to MSK from the client EC2 instance by creating a file named <em>client.properties</em> with the following contents:</p>
 
     <pre><code> security.protocol=SASL_SSL
  sasl.mechanism=AWS_MSK_IAM
@@ -2009,7 +2011,7 @@ aws iam create-access-key --user-name Administrator
 
 <ol>
   <li>
-    <p>Edit the file named <em>aws/src/main/resources/application-ec2.properties</em> for the <em>Books</em> microservice so that it matches the following content. (The Micronaut framework applies this configuration file only for the <code>ec2</code> environment.)</p>
+    <p>Edit the file named <em>aws/src/main/resources/application-ec2.properties</em> for the <em>Books</em> microservice so that it matches the following contents. (The Micronaut framework applies this configuration file only for the <code>ec2</code> environment.)</p>
 
     <pre><code>micronaut.application.name=aws
 micronaut.server.port=8080
@@ -2025,7 +2027,7 @@ kafka.security.protocol=SASL_SSL
 </code></pre>
   </li>
   <li>
-    <p>Edit the file named <em>aws/src/main/resources/application-ec2.properties</em> for the <em>Analytics</em> microservice so that it matches the following content. (The Micronaut framework applies this configuration file only for the <code>ec2</code> environment.)</p>
+    <p>Edit the file named <em>aws/src/main/resources/application-ec2.properties</em> for the <em>Analytics</em> microservice so that it matches the following contents. (The Micronaut framework applies this configuration file only for the <code>ec2</code> environment.)</p>
 
     <pre><code>micronaut.application.name=aws
 micronaut.server.port=8081

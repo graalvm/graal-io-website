@@ -14,7 +14,7 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2023-10-12 08:02:37 +0000"/>
+  <meta name="last_modified" content="2023-11-17 16:50:37 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -166,6 +166,8 @@
 
 <div class="toc-bullets">
 
+
+  
 
   
 
@@ -1056,7 +1058,7 @@ This enables you to run the application locally and view the traces in the Oracl
     <p>You should see a new row in the Trace Explorer that represents the POST request.</p>
 
     <blockquote>
-      <p>Note: If you click on a span, you should see its details. However, for auto-activation of custom span attributes, Oracle Cloud Infrastructure APM requires the attributes to be seen at least five times. Spans created prior to auto-activation will not display these attributes. This means that the custom span attributes (<code>count</code> and <code>order.item</code>) you added to the source code will not be displayed in the Span Details. To work around this constraint, run the command above a further ten times.</p>
+      <p>Note: If you click a span, you should see its details. However, for auto-activation of custom span attributes, Oracle Cloud Infrastructure APM requires the attributes to be seen at least five times. Spans created prior to auto-activation will not display these attributes. This means that the custom span attributes (<code>count</code> and <code>order.item</code>) you added to the source code will not be displayed in the Span Details. To work around this constraint, run the command above a further ten times.</p>
     </blockquote>
 
     <p>You should see ten new rows in the list of Traces.</p>

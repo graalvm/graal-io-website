@@ -14,7 +14,7 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2023-10-05 10:01:40 +0000"/>
+  <meta name="last_modified" content="2023-11-17 17:18:39 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -319,6 +319,8 @@
 
   
 
+  
+
 <!-- <li class="search additional-search">
   <form class="form-inline sidebar" action="/docs/search" autocomplete="on" method="get">
     <input class="input-search sidebar" type="text" id="search-box" name="query" placeholder="Search">
@@ -469,7 +471,7 @@
         
       </h3>
 
-<p>The launcher created a <code>StoreItem</code> model to represent an item in the store in the file <em>lib/src/main/java/com/example/StoreItem.java</em> with the following content:</p>
+<p>The launcher created a <code>StoreItem</code> model to represent an item in the store in the file <em>lib/src/main/java/com/example/StoreItem.java</em> with the following contents:</p>
 
 <pre><code class="language-java">package com.example;
 
@@ -920,7 +922,7 @@ class StoreControllerTest {
     <div id="gradle">
 
 <p>
-Modify the <em>oci/build.gradle</em> file. Make sure it contains the following content and that nothing overrides the set properties:
+Modify the <em>oci/build.gradle</em> file. Make sure it contains the following contents and that nothing overrides the set properties:
 <pre><code class="language-java">
 tasks {
     dockerfileNative {
@@ -1179,7 +1181,7 @@ Modify the <em>oci/pom.xml</em> file. Add the following properties:
   <li>
     <p>Select the compartment and click <strong>Create Policy</strong>.</p>
   </li>
-  <li>Provide a name for the policy, select your compartment, and select <strong>Show manual editor</strong>. Paste the following content in the policy (filling in your compartment OCID):
+  <li>Provide a name for the policy, select your compartment, and select <strong>Show manual editor</strong>. Paste the following contents in the policy (filling in your compartment OCID):
     <pre><code class="language-text">Allow any-user to use functions-family in compartment id [YOUR COMPARTMENT OCID] where ALL {request.principal.type= 'ApiGateway', request.resource.compartment.id = '[YOUR COMPARTMENT OCID]'}
 </code></pre>
   </li>
@@ -1279,7 +1281,7 @@ Modify the <em>oci/pom.xml</em> file. Add the following properties:
       <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
   </ul>
   <div id="gradle">
-    <p>Modify the <em>oci/build.gradle</em> file. Make sure it contains the following content and that nothing overrides the set properties:
+    <p>Modify the <em>oci/build.gradle</em> file. Make sure it contains the following contents and that nothing overrides the set properties:
       <pre><code class="language-java">var regionIdentifier = "[REGION IDENTIFIER]"
 var objectStorageNamespace = "[OBJECT STORAGE NAMESPACE]"
 tasks {

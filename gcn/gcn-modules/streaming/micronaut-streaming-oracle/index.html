@@ -14,7 +14,7 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2023-09-27 08:43:35 +0000"/>
+  <meta name="last_modified" content="2023-11-17 17:18:39 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -166,6 +166,8 @@
 
 <div class="toc-bullets">
 
+
+  
 
   
 
@@ -545,7 +547,7 @@ public class Book {
         
       </h4>
 
-<p>To keep this guide simple there is no database persistence: the <em>Books</em> microservice keeps the list of books in memory. The launcher created a class named <code>BookService</code> in <em>lib/src/main/java/com/example/publisher/BookService.java</em> with the following content:</p>
+<p>To keep this guide simple there is no database persistence: the <em>Books</em> microservice keeps the list of books in memory. The launcher created a class named <code>BookService</code> in <em>lib/src/main/java/com/example/publisher/BookService.java</em> with the following contents:</p>
 
 <pre><code class="language-java">package com.example.publisher;
 
@@ -587,7 +589,7 @@ public class BookService {
         
       </h4>
 
-<p>The launcher created a controller to access <code>Book</code> instances in a file named <em>lib/src/main/java/com/example/publisher/BookController.java</em> with the following content:</p>
+<p>The launcher created a controller to access <code>Book</code> instances in a file named <em>lib/src/main/java/com/example/publisher/BookController.java</em> with the following contents:</p>
 
 <pre><code class="language-java">package com.example.publisher;
 
@@ -634,7 +636,7 @@ class BookController {
         
       </h4>
 
-<p>The launcher created a test for <code>BookController</code> to verify the interaction with the <em>Analytics</em> microservice in a file named <em>oci/src/test/java/com/example/publisher/BookControllerTest.java</em> with the following content:</p>
+<p>The launcher created a test for <code>BookController</code> to verify the interaction with the <em>Analytics</em> microservice in a file named <em>oci/src/test/java/com/example/publisher/BookControllerTest.java</em> with the following contents:</p>
 
 <pre><code class="language-java">package com.example.publisher;
 
@@ -746,7 +748,7 @@ class BookControllerTest {
         
       </h4>
 
-<p>The launcher created a client interface to send messages to the streaming service in a file named <em>lib/src/main/java/com/example/publisher/AnalyticsClient.java</em> with the content shown below. (Micronaut generates an implementation for the client interface at compilation time.)</p>
+<p>The launcher created a client interface to send messages to the streaming service in a file named <em>lib/src/main/java/com/example/publisher/AnalyticsClient.java</em> with the contents shown below. (Micronaut generates an implementation for the client interface at compilation time.)</p>
 
 <pre><code class="language-java">package com.example.publisher;
 
@@ -1007,7 +1009,7 @@ public class BookAnalytics {
         
       </h4>
 
-<p>To keep this guide simple there is no database persistence: the <em>Analytics</em> microservice keeps book analytics in memory. The launcher created a class named <code>AnalyticsService</code> in <em>lib/src/main/java/com/example/consumer/AnalyticsService.java</em> with the following content:</p>
+<p>To keep this guide simple there is no database persistence: the <em>Analytics</em> microservice keeps book analytics in memory. The launcher created a class named <code>AnalyticsService</code> in <em>lib/src/main/java/com/example/consumer/AnalyticsService.java</em> with the following contents:</p>
 
 <pre><code class="language-java">package com.example.consumer;
 
@@ -1212,7 +1214,7 @@ class AnalyticsListener {
         
       </h4>
 
-<p>The <em>Books</em> and <em>Analytics</em> microservices are both run on the same Oracle Cloud Infrastructure Compute instance, so they must run on different ports. Change the port that <em>Analytics</em> runs on by editing the <em>oci/src/main/resources/application-oraclecloud.properties</em> file so that it has the following content:</p>
+<p>The <em>Books</em> and <em>Analytics</em> microservices are both run on the same Oracle Cloud Infrastructure Compute instance, so they must run on different ports. Change the port that <em>Analytics</em> runs on by editing the <em>oci/src/main/resources/application-oraclecloud.properties</em> file so that it has the following contents:</p>
 
 <pre><code>micronaut.application.name=oci
 micronaut.server.port=8080
