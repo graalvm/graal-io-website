@@ -11280,7 +11280,7 @@ h3 {
 
 h4 {
   font-style: normal;
-  color: #2F3747; }
+  color: #171923; }
 
 blockquote {
   border-left: 6px solid #176AFF;
@@ -11912,62 +11912,113 @@ a.enterprise {
     animation-duration: .3s;
     animation-fill-mode: both; } }
 
-/*@keyframes fadeInDown {
-  0% {
-    opacity: 0;
-    transform: translate3d(0, -100%, 0)
-  }
-  to {
-    opacity: 1;
-    transform: none
-  }
-}
+a.stack__header {
+  background: url("/gcn/resources/img/header-navigation/arrow-down.svg") 99% 50% no-repeat;
+  padding: 5px 24px 5px 0px; }
 
-@keyframes fadeOutUp {
-  0% {
-    opacity: 1
-  }
-  to {
-    opacity: 0;
-    transform: translate3d(0, -100%, 0)
-  }
-}
+.stack-container {
+  position: relative;
+  z-index: 1; }
+  @media only screen and (min-width: 320px) and (max-width: 767px) {
+    .stack-container {
+      margin: 10px 0px;
+      z-index: auto; } }
 
-@keyframes fadeIn {
-  0% {
-    opacity: 0
-  }
-  to {
-    opacity: 1
-  }
-}
+.stack-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; }
 
-//.fadeIn {
-//  animation-name: fadeIn
-//}
+.stack-menu {
+  position: absolute;
+  top: 90%;
+  left: -85px;
+  display: none;
+  width: 210px;
+  padding: 12px;
+  background-color: #282b39;
+  opacity: 95%;
+  border: 0.5px solid #5c607c;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 999; }
+  @media only screen and (min-width: 320px) and (max-width: 767px) {
+    .stack-menu {
+      top: 90%;
+      left: 80px;
+      width: 230px;
+      padding: 30px;
+      background-color: #171923; } }
 
-@keyframes fadeOut {
-  0% {
-    opacity: 1
-  }
-  to {
-    opacity: 0
-  }
-}
+.stack-menu-learn {
+  position: absolute;
+  top: 90%;
+  left: -145px;
+  display: none;
+  width: 210px;
+  padding: 12px;
+  background-color: #282b39;
+  opacity: 95%;
+  border: 0.5px solid #5c607c;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 999; }
+  @media only screen and (min-width: 320px) and (max-width: 767px) {
+    .stack-menu-learn {
+      top: 20%;
+      left: 90px;
+      width: 230px;
+      padding: 30px;
+      background-color: #171923; } }
 
-.fadeOut {
-  animation-name: fadeOut
-}
+.stack-column {
+  display: flex;
+  flex-direction: column; }
 
-.fadeOutUp {
-  animation-name: fadeOutUp
-}
+.stack-menu a {
+  display: block;
+  color: #ffffff;
+  text-decoration: none;
+  transition: background-color 0.3s; }
 
-.fadeInDown {
-  animation-name: fadeInDown
-}
+.stack-menu a:hover {
+  color: #007bff; }
 
-*/
+.stack-container:hover .stack-menu {
+  display: block; }
+
+.stack-menu-learn a {
+  display: block;
+  color: #ffffff;
+  text-decoration: none;
+  transition: background-color 0.3s; }
+
+.stack-menu-learn a:hover {
+  color: #007bff; }
+
+.stack-container:hover .stack-menu-learn {
+  display: block; }
+
+.stack__menu-title {
+  font-size: 13px;
+  line-height: 24px;
+  color: #ffffff;
+  margin: 0px;
+  padding: 0 0 15px 6px; }
+
+.stack__item {
+  padding: 6px;
+  display: flex; }
+  .stack__item img {
+    padding-right: 10px; }
+  @media only screen and (min-width: 320px) and (max-width: 767px) {
+    .stack__item {
+      padding: 15px 6px; } }
+
+.item-line {
+  font-size: 16px;
+  line-height: 24px; }
+
 .footer {
   background: #171923;
   opacity: 1;
@@ -15217,7 +15268,7 @@ p.graalos__about-text {
       display: none; }
     @media (min-width: 768px) {
       .menu__item {
-        margin: 0px 20px 0 20px; } }
+        margin: 0px 28px 0 28px; } }
     @media only screen and (min-width: 768px) and (max-width: 864px) {
       .menu__item {
         margin: 0px 10px 0 10px; } }
@@ -15424,7 +15475,8 @@ ul.menu__list.open .icons {
   @media only screen and (min-device-width: 320px) and (max-device-width: 767px) {
     .menu__link {
       font-size: 20px;
-      font-weight: 600; } }
+      font-weight: 600;
+      padding: 10px 0px; } }
 
 .menu__container {
   display: contents; }

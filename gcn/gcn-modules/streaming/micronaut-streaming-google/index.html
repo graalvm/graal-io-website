@@ -14,7 +14,7 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2023-11-17 17:18:39 +0000"/>
+  <meta name="last_modified" content="2023-11-23 12:38:06 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -69,7 +69,7 @@
             <li class="menu__item">
               <a href="/gcn/get-started/" class="menu__link">Get Started</a>
             </li>
-            <li class="menu__item">
+            <!-- <li class="menu__item">
               <a href="/gcn/modules/" class="menu__link">Modules</a>
             </li>
             <li class="menu__item">
@@ -80,6 +80,59 @@
             </li>
             <li class="menu__item">
               <a href="/gcn/vscode-tools/" class="menu__link">Tools</a>
+            </li> -->
+            <!-- <li class="menu__launch__mobile">
+              <a href="/gcn/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
+            </li> -->
+            <li class="menu__item">
+              <div class="stack-container">
+                <a href="#" class="menu__link stack__header">Docs</a>
+                <div class="stack-menu-learn">
+                  <div class="stack-row">
+                    <div class="stack-column">
+                      <div class="stack__item">
+                        <img src='/gcn/resources/img/header-navigation/modules.svg'>
+                        <a href="/gcn/modules/" class="item-line">Modules</a>
+                      </div>
+                      <div class="stack__item">
+                        <img src='/gcn/resources/img/header-navigation/guides.svg'>
+                        <a href="/gcn/guides/" class="item-line">Guides</a>
+                      </div>
+                      <div class="stack__item">
+                        <img src='/gcn/resources/img/header-navigation/labs.svg'>
+                        <a href="/gcn/hands-on-labs/" class="item-line">Hands-On Labs</a>
+                      </div>
+                      <div class="stack__item">
+                        <img src='/gcn/resources/img/header-navigation/tools.svg'>
+                        <a href="/gcn/vscode-tools/" class="item-line">Tools</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="menu__item">
+              <div class="stack-container">
+                <a href="#" class="menu__link stack__header">Graal Projects</a>
+                <div class="stack-menu">
+                  <div class="stack-row">
+                    <div class="stack-column">
+                      <div class="stack__item">
+                        <img src='/gcn/resources/img/header-navigation/graalstack.svg'>
+                        <a href="https://graal.cloud/" class="item-line">Graal</a>
+                      </div>
+                      <div class="stack__item">
+                        <img src='/gcn/resources/img/header-navigation/graalvm.svg'>
+                        <a href="https://graalvm.org/" class="item-line">GraalVM</a>
+                      </div>
+                      <div class="stack__item">
+                        <img src='/gcn/resources/img/header-navigation/graalos.svg'>
+                        <a href="https://graal.cloud/graalos/" class="item-line">GraalOS</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </li>
             <li class="menu__launch__mobile">
               <a href="/gcn/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
@@ -351,7 +404,7 @@
         
       </h1>
 
-<p>This guide describes how to create a streaming application that demonstrates how to use the Micronaut Streaming API. The application consists of two Micronaut microservices that use Google Cloud Platform Apache Kafka to communicate with each other in an asynchronous and decoupled way.</p>
+<p>This guide describes how to create a streaming application that demonstrates how to use the Micronaut Streaming API. The application consists of two Micronaut microservices that use <a href="https://cloud.google.com/learn/what-is-apache-kafka">Google Cloud Platform Apache Kafka</a> to communicate with each other in an asynchronous and decoupled way.</p>
     
       <h3 id="prerequisites">
         
@@ -366,6 +419,7 @@
   <li>A Google Cloud Platform (GCP) account. See <a href="/gcn/get-started/setting-up-cloud-accounts/">Setting up Your Cloud Accounts</a>.</li>
   <li>The Google Cloud CLI. (The CLI is part of the Google Cloud SDK; for more information, see <a href="https://cloud.google.com/sdk">Cloud SDK</a>.)</li>
   <li>A Docker-API compatible container runtime such as <a href="https://docs.rancherdesktop.io/getting-started/installation/">Rancher Desktop</a> or <a href="https://www.docker.io/gettingstarted/">Docker</a> installed.</li>
+  <li>A Kafka environment for local testing. See <a href="https://kafka.apache.org/quickstart">Kafka Quickstart</a>. (Optional.)</li>
   <li>The GCN CLI. See <a href="/gcn/get-started/setting-up-desktop/">Setting up Your Desktop</a>. (Optional.)</li>
 </ul>
 
@@ -778,7 +832,7 @@ public interface AnalyticsClient {
 
 <p>Sending a message to the streaming service is as simple as injecting <code>AnalyticsClient</code> and calling its <code>updateAnalytics</code> method. 
 The goal is to send a message every time the details of a book are returned from the <em>Books</em> microservice or, in other words, every time there is a call to <code>http://localhost:8080/books/{isbn}</code>.
-To achieve this, the launcher created an <a href="https://docs.micronaut.io/4.0.3/guide/#filters">Http Server Filter</a> in a file named <em>lib/src/main/java/com/example/publisher/AnalyticsFilter.java</em> as follows:</p>
+To achieve this, the launcher created an <a href="https://docs.micronaut.io/4.0.3/guide/#filters">HTTP Server Filter</a> in a file named <em>lib/src/main/java/com/example/publisher/AnalyticsFilter.java</em> as follows:</p>
 
 <pre><code class="language-java">package com.example.publisher;
 
@@ -1209,7 +1263,7 @@ class AnalyticsListener {
       <h4 id="127-change-the-port-of-the-analytics-microservice">
         
         
-          1.2.7. Change the port of the <em>Analytics</em> Microservice
+          1.2.7. Change the Port of the <em>Analytics</em> Microservice
         
         
       </h4>
@@ -1365,7 +1419,7 @@ micronaut.server.port=8080
  kafka.bootstrap.servers=localhost:9092
 </code></pre>
 
-    <p>Alternatively you can <a href="https://kafka.apache.org/quickstart">install and run a local Kafka instance</a>.</p>
+    <p>Alternatively, you can <a href="https://kafka.apache.org/quickstart">install and run a local Kafka instance</a>.</p>
   </li>
   <li>
     <p>To generate a native executable, run the following command for each microservice:</p>
@@ -1377,7 +1431,7 @@ micronaut.server.port=8080
    </ul>
    <div id="gradle">
      <pre><code class="language-bash">./gradlew :gcp:nativeCompile</code></pre>
-     <p>The native executable is created in the <em>gcp/build/native/nativeCompile</em> directory and can be run with the following command.</p>
+     <p>The native executable is created in the <em>gcp/build/native/nativeCompile/</em> directory and can be run with the following command.</p>
      <pre><code class="language-bash">gcp/build/native/nativeCompile/gcp</code></pre>
    </div>
    <div id="maven">
@@ -1484,7 +1538,7 @@ On your local computer run the following command:</p>
 </code></pre>
 
     <blockquote>
-      <p>Note: Look for the INTERNAL_IP column (for example, 10.142.0.10) and save it for later use.</p>
+      <p>Note: Look for the <strong>INTERNAL_IP</strong> column (for example, <em>10.142.0.10</em>) and save it for later use.</p>
     </blockquote>
   </li>
 </ol>
@@ -1627,10 +1681,10 @@ kafka.retries=3
          <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
      </ul>
      <div id="gradle">
-         <pre><code class="language-bash">gcloud compute scp gcp/build/libs/gcp-1.0-SNAPSHOT-all.jar streaming-instance:~/books_application.jar</code></pre>
+         <pre><code class="language-bash">gcloud compute scp gcp/build/libs/gcp-1.0-SNAPSHOT.jar streaming-instance:~/books_application.jar</code></pre>
      </div>
      <div id="maven">
-         <pre><code class="language-bash">gcloud compute scp gcp/target/gcp-1.0-SNAPSHOT-all.jar streaming-instance:~/books_application.jar</code></pre>
+         <pre><code class="language-bash">gcloud compute scp gcp/target/gcp-1.0-SNAPSHOT.jar streaming-instance:~/books_application.jar</code></pre>
      </div>
  </div>
   </li>
@@ -1641,7 +1695,7 @@ kafka.retries=3
 </code></pre>
   </li>
   <li>
-    <p>Once connected, install GraalVM Native Image and JDK for Java 17. See <a href="https://www.graalvm.org/downloads/">Install GraalVM JDK with Native Image</a>.</p>
+    <p>Once connected, install GraalVM JDK with Native Image for Java 17. See <a href="https://www.graalvm.org/downloads/">Install GraalVM JDK with Native Image</a>.</p>
   </li>
   <li>
     <p>Start the <em>Books</em> microservice, as follows:</p>
@@ -1703,10 +1757,10 @@ kafka.retries=3
          <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
      </ul>
      <div id="gradle">
-         <pre><code class="language-bash">gcloud compute scp gcp/build/libs/gcp-1.0-SNAPSHOT-all.jar streaming-instance:~/analytics_application.jar</code></pre>
+         <pre><code class="language-bash">gcloud compute scp gcp/build/libs/gcp-1.0-SNAPSHOT.jar streaming-instance:~/analytics_application.jar</code></pre>
      </div>
      <div id="maven">
-         <pre><code class="language-bash">gcloud compute scp gcp/target/gcp-1.0-SNAPSHOT-all.jar streaming-instance:~/analytics_application.jar</code></pre>
+         <pre><code class="language-bash">gcloud compute scp gcp/target/gcp-1.0-SNAPSHOT.jar streaming-instance:~/analytics_application.jar</code></pre>
      </div>
  </div>
   </li>
@@ -1717,7 +1771,7 @@ kafka.retries=3
 </code></pre>
   </li>
   <li>
-    <p>Once connected, install GraalVM Native Image and JDK for Java 17. See <a href="https://www.graalvm.org/downloads/">Install GraalVM JDK with Native Image</a>.</p>
+    <p>Once connected, install GraalVM JDK with Native Image for Java 17. See <a href="https://www.graalvm.org/downloads/">Install GraalVM JDK with Native Image</a>.</p>
   </li>
   <li>
     <p>Start the <em>Analytics</em> microservice, as follows:</p>
@@ -1747,7 +1801,7 @@ kafka.retries=3
         
       </h2>
 
-<p>If you build a native executable locally, it will only run on your OS, and isn’t suitable for deployment to a Compute instance. To create a deployable native executable, use a different packaging command that builds the executable inside a container, which you’ll extract from the container to deploy to the cloud.</p>
+<p>If you build a native executable locally, it will only run on your OS, and is not suitable for deployment to a GCP Compute instance. To create a deployable native executable, use a different packaging command that builds the executable inside a container, which you will extract from the container to deploy to the cloud.</p>
     
       <h3 id="81-run-native-executables-on-the-gcp-instance">
         
@@ -1797,12 +1851,12 @@ sudo yum -y install zlib*
    </ul>
    <div id="gradle">
      <pre><code class="language-bash">./gradlew :gcp:nativeCompile</code></pre>
-     <p>The native executable is created in the <em>gcp/build/native/nativeCompile</em> directory and can be run with the following command.</p>
+     <p>The native executable is created in the <em>gcp/build/native/nativeCompile/</em> directory and can be run with the following command.</p>
      <pre><code class="language-bash">gcp/build/native/nativeCompile/gcp</code></pre>
    </div>
    <div id="maven">
      <pre><code class="language-bash">./mvnw install -pl lib -am &amp;&amp; ./mvnw package -pl gcp -Dpackaging=native-image</code></pre>
-     <p>The native executable is created in the <em>gcp/target</em> directory and can be run with the following command:</p>
+     <p>The native executable is created in the <em>gcp/target/</em> directory and can be run with the following command:</p>
      <pre><code class="language-bash">gcp/target/gcp</code></pre>
    </div>
  </div>

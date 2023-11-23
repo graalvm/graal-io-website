@@ -14,7 +14,7 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2023-11-17 17:18:39 +0000"/>
+  <meta name="last_modified" content="2023-11-23 12:36:14 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -69,7 +69,7 @@
             <li class="menu__item">
               <a href="/gcn/get-started/" class="menu__link">Get Started</a>
             </li>
-            <li class="menu__item">
+            <!-- <li class="menu__item">
               <a href="/gcn/modules/" class="menu__link">Modules</a>
             </li>
             <li class="menu__item">
@@ -80,6 +80,59 @@
             </li>
             <li class="menu__item">
               <a href="/gcn/vscode-tools/" class="menu__link">Tools</a>
+            </li> -->
+            <!-- <li class="menu__launch__mobile">
+              <a href="/gcn/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
+            </li> -->
+            <li class="menu__item">
+              <div class="stack-container">
+                <a href="#" class="menu__link stack__header">Docs</a>
+                <div class="stack-menu-learn">
+                  <div class="stack-row">
+                    <div class="stack-column">
+                      <div class="stack__item">
+                        <img src='/gcn/resources/img/header-navigation/modules.svg'>
+                        <a href="/gcn/modules/" class="item-line">Modules</a>
+                      </div>
+                      <div class="stack__item">
+                        <img src='/gcn/resources/img/header-navigation/guides.svg'>
+                        <a href="/gcn/guides/" class="item-line">Guides</a>
+                      </div>
+                      <div class="stack__item">
+                        <img src='/gcn/resources/img/header-navigation/labs.svg'>
+                        <a href="/gcn/hands-on-labs/" class="item-line">Hands-On Labs</a>
+                      </div>
+                      <div class="stack__item">
+                        <img src='/gcn/resources/img/header-navigation/tools.svg'>
+                        <a href="/gcn/vscode-tools/" class="item-line">Tools</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="menu__item">
+              <div class="stack-container">
+                <a href="#" class="menu__link stack__header">Graal Projects</a>
+                <div class="stack-menu">
+                  <div class="stack-row">
+                    <div class="stack-column">
+                      <div class="stack__item">
+                        <img src='/gcn/resources/img/header-navigation/graalstack.svg'>
+                        <a href="https://graal.cloud/" class="item-line">Graal</a>
+                      </div>
+                      <div class="stack__item">
+                        <img src='/gcn/resources/img/header-navigation/graalvm.svg'>
+                        <a href="https://graalvm.org/" class="item-line">GraalVM</a>
+                      </div>
+                      <div class="stack__item">
+                        <img src='/gcn/resources/img/header-navigation/graalos.svg'>
+                        <a href="https://graal.cloud/graalos/" class="item-line">GraalOS</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </li>
             <li class="menu__launch__mobile">
               <a href="/gcn/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
@@ -823,7 +876,7 @@ class PictureControllerTest {
 }
 
 </code></pre>
-<p><strong>1</strong> If you are not using the downloaded example, add an image file named <em>my_picture.png</em> to the <em>src/main/resources</em> directory.</p>
+<p><strong>1</strong> If you are not using the downloaded example, add an image file named <em>my_picture.png</em> to the <em>src/main/resources/</em> directory.</p>
     
       <h2 id="2-set-up-aws-resources">
         
@@ -905,7 +958,7 @@ micronaut.server.multipart.max-file-size: 20971520
         
       </h2>
 
-<p>If you are not using the downloaded example, add an image file named <em>my_picture.png</em> to the <em>src/main/resources</em> directory.</p>
+<p>If you are not using the downloaded example, add an image file named <em>my_picture.png</em> to the <em>src/main/resources/</em> directory.</p>
 
 <p>Use the following command to run the test.</p>
 
@@ -964,7 +1017,7 @@ micronaut.server.multipart.max-file-size: 20971520
         
       </h3>
 
-<p>If using the complete solution, navigate into the <em>src/main/resources</em> directory before running the following command. Otherwise, update the <em>my_picture.png</em> file with an image you want to upload.</p>
+<p>If using the complete solution, navigate into the <em>src/main/resources/</em> directory before running the following command. Otherwise, update the <em>my_picture.png</em> file with an image you want to upload.</p>
 
 <pre><code class="language-bash">curl -i -F "file=@my_picture.png" http://localhost:8080/upload
 </code></pre>

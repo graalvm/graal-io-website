@@ -1,6 +1,6 @@
 ### 1.2. Thymeleaf View
 
-The launcher created a Thymeleaf view in a file named _auth.html_ (in the _{{ include.cloud }}/src/main/resources/views_ directory) to render the UI for the controller. It has the following contents:
+The launcher created a Thymeleaf view in a file named _auth.html_ (in the _{{ include.cloud }}/src/main/resources/views/_ directory) to render the UI for the controller. It has the following contents:
 
 ```html
 <!DOCTYPE html>

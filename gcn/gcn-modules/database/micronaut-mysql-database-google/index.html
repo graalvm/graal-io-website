@@ -14,7 +14,7 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2023-10-12 09:43:06 +0000"/>
+  <meta name="last_modified" content="2023-11-23 12:08:16 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -69,7 +69,7 @@
             <li class="menu__item">
               <a href="/gcn/get-started/" class="menu__link">Get Started</a>
             </li>
-            <li class="menu__item">
+            <!-- <li class="menu__item">
               <a href="/gcn/modules/" class="menu__link">Modules</a>
             </li>
             <li class="menu__item">
@@ -80,6 +80,59 @@
             </li>
             <li class="menu__item">
               <a href="/gcn/vscode-tools/" class="menu__link">Tools</a>
+            </li> -->
+            <!-- <li class="menu__launch__mobile">
+              <a href="/gcn/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
+            </li> -->
+            <li class="menu__item">
+              <div class="stack-container">
+                <a href="#" class="menu__link stack__header">Docs</a>
+                <div class="stack-menu-learn">
+                  <div class="stack-row">
+                    <div class="stack-column">
+                      <div class="stack__item">
+                        <img src='/gcn/resources/img/header-navigation/modules.svg'>
+                        <a href="/gcn/modules/" class="item-line">Modules</a>
+                      </div>
+                      <div class="stack__item">
+                        <img src='/gcn/resources/img/header-navigation/guides.svg'>
+                        <a href="/gcn/guides/" class="item-line">Guides</a>
+                      </div>
+                      <div class="stack__item">
+                        <img src='/gcn/resources/img/header-navigation/labs.svg'>
+                        <a href="/gcn/hands-on-labs/" class="item-line">Hands-On Labs</a>
+                      </div>
+                      <div class="stack__item">
+                        <img src='/gcn/resources/img/header-navigation/tools.svg'>
+                        <a href="/gcn/vscode-tools/" class="item-line">Tools</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="menu__item">
+              <div class="stack-container">
+                <a href="#" class="menu__link stack__header">Graal Projects</a>
+                <div class="stack-menu">
+                  <div class="stack-row">
+                    <div class="stack-column">
+                      <div class="stack__item">
+                        <img src='/gcn/resources/img/header-navigation/graalstack.svg'>
+                        <a href="https://graal.cloud/" class="item-line">Graal</a>
+                      </div>
+                      <div class="stack__item">
+                        <img src='/gcn/resources/img/header-navigation/graalvm.svg'>
+                        <a href="https://graalvm.org/" class="item-line">GraalVM</a>
+                      </div>
+                      <div class="stack__item">
+                        <img src='/gcn/resources/img/header-navigation/graalos.svg'>
+                        <a href="https://graal.cloud/graalos/" class="item-line">GraalOS</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </li>
             <li class="menu__launch__mobile">
               <a href="/gcn/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
@@ -654,27 +707,25 @@ gcn-guides-mysql  MYSQL_8_0         us-east1-c  db-f1-micro  34.xxx.xxx.65    - 
 With almost everything in place, you can start the application and try it out.</p>
   </li>
   <li>Define the database driver URL, username, and password to configure the application <strong>datasources</strong>. It should look like this:
-    <pre><code class="language-yml"> datasources:
-   default:
-     driver-class-name: com.mysql.cj.jdbc.Driver
-     db-type: mysql
-     schema-generate: CREATE_DROP
-     dialect: MYSQL
-     url: jdbc:mysql://&lt;MySQL IP address&gt;:3306/micronaut-guides-mysql
-     username: guide_user@&lt;private IP address&gt;
-     password: &lt;user password&gt;
+    <pre><code> datasources.default.driver-class-name=com.mysql.cj.jdbc.Driver
+ datasources.default.db-type=mysql
+ datasources.default.schema-generate=CREATE_DROP
+ datasources.default.dialect=MYSQL
+ datasources.default.url=jdbc:mysql://&lt;MySQL IP address&gt;:3306/demo
+ datasources.default.username=guide_user
+ datasources.default.password=&lt;user password&gt;
 </code></pre>
 
-    <p>Where <code>&lt;MySQL_IP_Address&gt;</code> is the <strong>private IP address</strong> of your MySQL database instance.</p>
+    <p>Where <code>&lt;MySQL_IP_Address&gt;</code> is the <strong>public IP address</strong> of your MySQL database instance.</p>
 
     <p>Alternatively, you can export those via environment variables. From the console, connected to the virtual machine, run:</p>
-    <pre><code class="language-shell"> export DATASOURCES_DEFAULT_URL=jdbc:mysql://&lt;MySQL IP address&gt;:3306/gcn-guides-mysql
- export DATASOURCES_DEFAULT_USERNAME=guide_user@&lt;private IP address&gt;
+    <pre><code class="language-shell"> export DATASOURCES_DEFAULT_URL=jdbc:mysql://&lt;MySQL IP address&gt;:3306/demo
+ export DATASOURCES_DEFAULT_USERNAME=guide_user
  export DATASOURCES_DEFAULT_PASSWORD=&lt;user password&gt;
 </code></pre>
 
     <blockquote>
-      <p>Note: If you use Windows Command Prompt, replace <code>export</code> with <code>set</code>, for example, <code>set DATASOURCES_DEFAULT_USERNAME=guide_user@&lt;private IP address&gt;</code>. If you use Windows PowerShell, replace <code>export</code> with <code>$</code> and surround the value with double quote marks, for example, <code>$DATASOURCES_DEFAULT_USERNAME="guide_user@&lt;private IP address&gt;"</code>.</p>
+      <p>Note: If you use Windows Command Prompt, replace <code>export</code> with <code>set</code>, for example, <code>set DATASOURCES_DEFAULT_USERNAME=guide_user</code>. If you use Windows PowerShell, replace <code>export</code> with <code>$</code> and surround the value with double quote marks, for example, <code>$DATASOURCES_DEFAULT_USERNAME="guide_user"</code>.</p>
     </blockquote>
   </li>
   <li>
@@ -736,11 +787,11 @@ With almost everything in place, you can start the application and try it out.</
  </ul>
  <div id="gradle">
      <pre><code class="language-bash">./gradlew :gcp:nativeCompile</code></pre>
-     <p>The native executable will be created in <code>gcp/build/native/nativeCompile</code> directory.</p>
+     <p>The native executable will be created in the <code>gcp/build/native/nativeCompile/</code> directory.</p>
  </div>
  <div id="maven">
      <pre><code class="language-bash">./mvnw install -pl lib -am &amp;&amp; ./mvnw package -pl gcp -Dpackaging=native-image</code></pre>
-     <p>The native executable will be created in <code>gcp/target/gcp</code> directory.</p>
+     <p>The native executable will be created in the <code>gcp/target/</code> directory.</p>
  </div>
  </div>
 

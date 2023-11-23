@@ -14,7 +14,7 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2023-10-12 08:03:05 +0000"/>
+  <meta name="last_modified" content="2023-11-23 12:00:51 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -69,7 +69,7 @@
             <li class="menu__item">
               <a href="/gcn/get-started/" class="menu__link">Get Started</a>
             </li>
-            <li class="menu__item">
+            <!-- <li class="menu__item">
               <a href="/gcn/modules/" class="menu__link">Modules</a>
             </li>
             <li class="menu__item">
@@ -80,6 +80,59 @@
             </li>
             <li class="menu__item">
               <a href="/gcn/vscode-tools/" class="menu__link">Tools</a>
+            </li> -->
+            <!-- <li class="menu__launch__mobile">
+              <a href="/gcn/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
+            </li> -->
+            <li class="menu__item">
+              <div class="stack-container">
+                <a href="#" class="menu__link stack__header">Docs</a>
+                <div class="stack-menu-learn">
+                  <div class="stack-row">
+                    <div class="stack-column">
+                      <div class="stack__item">
+                        <img src='/gcn/resources/img/header-navigation/modules.svg'>
+                        <a href="/gcn/modules/" class="item-line">Modules</a>
+                      </div>
+                      <div class="stack__item">
+                        <img src='/gcn/resources/img/header-navigation/guides.svg'>
+                        <a href="/gcn/guides/" class="item-line">Guides</a>
+                      </div>
+                      <div class="stack__item">
+                        <img src='/gcn/resources/img/header-navigation/labs.svg'>
+                        <a href="/gcn/hands-on-labs/" class="item-line">Hands-On Labs</a>
+                      </div>
+                      <div class="stack__item">
+                        <img src='/gcn/resources/img/header-navigation/tools.svg'>
+                        <a href="/gcn/vscode-tools/" class="item-line">Tools</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="menu__item">
+              <div class="stack-container">
+                <a href="#" class="menu__link stack__header">Graal Projects</a>
+                <div class="stack-menu">
+                  <div class="stack-row">
+                    <div class="stack-column">
+                      <div class="stack__item">
+                        <img src='/gcn/resources/img/header-navigation/graalstack.svg'>
+                        <a href="https://graal.cloud/" class="item-line">Graal</a>
+                      </div>
+                      <div class="stack__item">
+                        <img src='/gcn/resources/img/header-navigation/graalvm.svg'>
+                        <a href="https://graalvm.org/" class="item-line">GraalVM</a>
+                      </div>
+                      <div class="stack__item">
+                        <img src='/gcn/resources/img/header-navigation/graalos.svg'>
+                        <a href="https://graal.cloud/graalos/" class="item-line">GraalOS</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </li>
             <li class="menu__launch__mobile">
               <a href="/gcn/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
@@ -873,7 +926,7 @@ Packaged as a native executable, it significantly reduces application startup ti
   </ul>
   <div id="gradle">
     <pre><code class="language-bash">./gradlew :aws:nativeCompile</code></pre>
-    <p>The native executable is created in the <em>aws/build/native/nativeCompile</em> directory and can be run with the following command:</p>
+    <p>The native executable is created in the <em>aws/build/native/nativeCompile/</em> directory and can be run with the following command:</p>
     <pre><code class="language-bash">aws/build/native/nativeCompile/aws</code></pre>
   </div>
   <div id="maven">

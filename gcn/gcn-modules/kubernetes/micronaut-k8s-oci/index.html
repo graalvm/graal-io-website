@@ -14,7 +14,7 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2023-11-01 11:04:11 +0000"/>
+  <meta name="last_modified" content="2023-11-23 12:36:14 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -69,7 +69,7 @@
             <li class="menu__item">
               <a href="/gcn/get-started/" class="menu__link">Get Started</a>
             </li>
-            <li class="menu__item">
+            <!-- <li class="menu__item">
               <a href="/gcn/modules/" class="menu__link">Modules</a>
             </li>
             <li class="menu__item">
@@ -80,6 +80,59 @@
             </li>
             <li class="menu__item">
               <a href="/gcn/vscode-tools/" class="menu__link">Tools</a>
+            </li> -->
+            <!-- <li class="menu__launch__mobile">
+              <a href="/gcn/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
+            </li> -->
+            <li class="menu__item">
+              <div class="stack-container">
+                <a href="#" class="menu__link stack__header">Docs</a>
+                <div class="stack-menu-learn">
+                  <div class="stack-row">
+                    <div class="stack-column">
+                      <div class="stack__item">
+                        <img src='/gcn/resources/img/header-navigation/modules.svg'>
+                        <a href="/gcn/modules/" class="item-line">Modules</a>
+                      </div>
+                      <div class="stack__item">
+                        <img src='/gcn/resources/img/header-navigation/guides.svg'>
+                        <a href="/gcn/guides/" class="item-line">Guides</a>
+                      </div>
+                      <div class="stack__item">
+                        <img src='/gcn/resources/img/header-navigation/labs.svg'>
+                        <a href="/gcn/hands-on-labs/" class="item-line">Hands-On Labs</a>
+                      </div>
+                      <div class="stack__item">
+                        <img src='/gcn/resources/img/header-navigation/tools.svg'>
+                        <a href="/gcn/vscode-tools/" class="item-line">Tools</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="menu__item">
+              <div class="stack-container">
+                <a href="#" class="menu__link stack__header">Graal Projects</a>
+                <div class="stack-menu">
+                  <div class="stack-row">
+                    <div class="stack-column">
+                      <div class="stack__item">
+                        <img src='/gcn/resources/img/header-navigation/graalstack.svg'>
+                        <a href="https://graal.cloud/" class="item-line">Graal</a>
+                      </div>
+                      <div class="stack__item">
+                        <img src='/gcn/resources/img/header-navigation/graalvm.svg'>
+                        <a href="https://graalvm.org/" class="item-line">GraalVM</a>
+                      </div>
+                      <div class="stack__item">
+                        <img src='/gcn/resources/img/header-navigation/graalos.svg'>
+                        <a href="https://graal.cloud/graalos/" class="item-line">GraalOS</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </li>
             <li class="menu__launch__mobile">
               <a href="/gcn/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
@@ -530,7 +583,7 @@ export OCI_COMPARTMENT_ID="ocid1.compartment.oc1..aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
         
       </h3>
 
-<p>To build a container image of the native <em>users</em> microservice named “users”, run the following command from the <em>users</em> directory:</p>
+<p>To build a container image of the native <em>users</em> microservice named “users”, run the following command from the <em>users/</em> directory:</p>
 
 <div id="tabs-doc11">
     <ul>
@@ -548,8 +601,8 @@ export OCI_COMPARTMENT_ID="ocid1.compartment.oc1..aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 <blockquote>
   <p>Note: If you encounter problems building a container image, try the following:</p>
   <ul>
-    <li>Gradle: from the <em>users/build/docker/native-main</em> directory, run <code>docker build . -t users-oci -f DockerfileNative</code>.</li>
-    <li>Maven: from the <em>users/target</em> directory, run <code>docker build . -t users-oci -f Dockerfile</code>.</li>
+    <li>Gradle: from the <em>users/build/docker/native-main/</em> directory, run <code>docker build . -t users-oci -f DockerfileNative</code>.</li>
+    <li>Maven: from the <em>users/target/</em> directory, run <code>docker build . -t users-oci -f Dockerfile</code>.</li>
   </ul>
 </blockquote>
 
@@ -664,7 +717,7 @@ spec:
         
       </h3>
 
-<p>To build a container image of the native <em>orders</em> microservice named “orders”, run the following command from the <em>orders</em> directory:</p>
+<p>To build a container image of the native <em>orders</em> microservice named “orders”, run the following command from the <em>orders/</em> directory:</p>
 
 <div id="tabs-doc12">
     <ul>
@@ -682,8 +735,8 @@ spec:
 <blockquote>
   <p>Note: If you encounter problems building a container image, try the following:</p>
   <ul>
-    <li>Gradle: from the <em>orders/build/docker/native-main</em> directory, run <code>docker build . -t orders-oci -f DockerfileNative</code>.</li>
-    <li>Maven: from the <em>orders/target</em> directory, run <code>docker build . -t orders-oci -f Dockerfile</code>.</li>
+    <li>Gradle: from the <em>orders/build/docker/native-main/</em> directory, run <code>docker build . -t orders-oci -f DockerfileNative</code>.</li>
+    <li>Maven: from the <em>orders/target/</em> directory, run <code>docker build . -t orders-oci -f Dockerfile</code>.</li>
   </ul>
 </blockquote>
 
@@ -796,7 +849,7 @@ spec:
         
       </h3>
 
-<p>To build a container image of the native <em>api</em> microservice named “api”, run the following command from the <em>api</em> directory:</p>
+<p>To build a container image of the native <em>api</em> microservice named “api”, run the following command from the <em>api/</em> directory:</p>
 
 <div id="tabs-doc13">
     <ul>
@@ -814,8 +867,8 @@ spec:
 <blockquote>
   <p>Note: If you encounter problems building a container image, try the following:</p>
   <ul>
-    <li>Gradle: from the <em>api/build/docker/native-main</em> directory, run <code>docker build . -t api-oci -f DockerfileNative</code>.</li>
-    <li>Maven: from the <em>api/target</em> directory, run <code>docker build . -t api-oci -f Dockerfile</code>.</li>
+    <li>Gradle: from the <em>api/build/docker/native-main/</em> directory, run <code>docker build . -t api-oci -f DockerfileNative</code>.</li>
+    <li>Maven: from the <em>api/target/</em> directory, run <code>docker build . -t api-oci -f Dockerfile</code>.</li>
   </ul>
 </blockquote>
 
