@@ -14,7 +14,7 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2023-11-23 12:00:51 +0000"/>
+  <meta name="last_modified" content="2023-11-24 15:24:50 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -404,9 +404,9 @@
         
       </h1>
 
-<p>This guide describes how to create an application that emits and pushes logs to <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/WhatIsCloudWatchLogs.html">Amazon Cloudwatch Logs</a> using <a href="https://micronaut-projects.github.io/micronaut-aws/snapshot/guide/index.html#cloudWatchLogging">Micronaut AWS integration</a>. Typically, application logs are written to <code>stdout</code> and to files, but the Micronaut Logging module supports multiple logging frameworks such as <a href="https://logback.qos.ch/">Logback</a>, and logging to various other appenders, to email, a database, or other destinations.</p>
+<p>This guide describes how to create an application that publishes logs to <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/WhatIsCloudWatchLogs.html" target="_blank">Amazon Cloudwatch Logs</a> using <a href="https://micronaut-projects.github.io/micronaut-aws/snapshot/guide/index.html#cloudWatchLogging" target="_blank">Micronaut AWS integration</a>. Typically, application logs are written to <code>stdout</code> and to files, but the Micronaut Logging module supports multiple logging frameworks such as <a href="https://logback.qos.ch/" target="_blank">Logback</a>, and logging to various other appenders, to email, a database, or other destinations.</p>
 
-<p><a href="https://micronaut-projects.github.io/micronaut-aws/snapshot/guide/index.html#cloudWatchLogging">Micronaut AWS</a> provides integration between Micronaut and Amazon Web Services (AWS), including CloudWatch Logs.</p>
+<p><a href="https://micronaut-projects.github.io/micronaut-aws/snapshot/guide/index.html#cloudWatchLogging" target="_blank">Micronaut AWS</a> provides integration between Micronaut and Amazon Web Services (AWS), including CloudWatch Logs.</p>
 
 <p><a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/WhatIsCloudWatchLogs.html">CloudWatch Logs</a> is a logging service from Amazon to monitor, store, and access your log files from Amazon Elastic Compute Cloud (Amazon EC2) instances, AWS CloudTrail, Route 53, and other sources.</p>
     
@@ -514,47 +514,19 @@
 
 <p>The GCN Launcher creates a multi-module project with two subprojects: <strong>aws</strong> for Amazon Web Services, and <strong>lib</strong>.
 You develop the application logic in the <strong>aws</strong> subproject. If your application is to be deployed to multiple cloud providers, use the <strong>lib</strong> subproject to create classes that can be shared between the providers. This enables you to separate the code that is different between cloud providers, while keeping most of the implementation in the common <strong>lib</strong> subproject.</p>
+
+<p>The Logging service that you selected at the project generation step bundles Logback, Jackson Databind, Oracle Cloud Infrastructure Logging, and other necessary dependencies.
+The <a href="https://logback.qos.ch/">Logback</a> appender publishes logs to Amazon CloudWatch Logs.</p>
     
-      <h3 id="11-logback-dependency">
+      <h3 id="11-controller-class">
         
         
-          1.1. Logback Dependency <a href="#11-logback-dependency" class="anchor_heading">#</a>
+          1.1. Controller Class <a href="#11-controller-class" class="anchor_heading">#</a>
         
         
       </h3>
 
-<p>The GCN Logging service that you selected at the project generation step bundles Logback, Jackson Databind, and other necessary dependencies. If you open the <em>micronaut-cli.yml</em> file, you can see all the added features.</p>
-
-<p>The <a href="https://logback.qos.ch/">Logback</a> appender pushes logs to Amazon CloudWatch Logs. In the project configuration file, you can find the <a href="https://micronaut-projects.github.io/micronaut-aws/snapshot/guide/index.html#cloudWatchLogging">Micronaut CloudWatch Logging</a> dependency.</p>
-
-<div id="tabs-doc3">
-  <ul>
-    <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
-    <li class="tabs-maven"><a href="#maven">Maven</a></li>
-  </ul>
-  <div id="gradle">
-    <p><em>aws/build.gradle</em></p>
-    <pre><code class="language-java">implementation("io.micronaut.aws:micronaut-aws-cloudwatch-logging")</code></pre>
-  </div>
-  <div id="maven">
-    <p><em>aws/pom.xml</em></p>
-    <pre><code class="language-xml">&lt;dependency&gt;
-   &lt;groupId&gt;io.micronaut.aws&lt;/groupId&gt;
-   &lt;artifactId&gt;micronaut-aws-cloudwatch-logging&lt;/artifactId&gt;
-   &lt;scope&gt;compile&lt;/scope&gt;
-&lt;/dependency&gt;</code></pre>
-  </div>
-</div>
-    
-      <h3 id="12-controller-class">
-        
-        
-          1.2. Controller Class <a href="#12-controller-class" class="anchor_heading">#</a>
-        
-        
-      </h3>
-
-<p>The generated example code includes a controller in a file named <em>aws/src/main/java/com/example/LogController.java</em>, which enables you to send <code>POST</code> requests to log a message:</p>
+<p>The example code includes a controller in a file named <em>aws/src/main/java/com/example/LogController.java</em>, which enables you to send <code>POST</code> requests to publish a message to a log:</p>
 
 <pre><code class="language-java">package com.example;
 
@@ -586,7 +558,7 @@ class LogController {
 
 <p>To use CloudWatch Logs, you need to authenticate to AWS, and then create a <strong>Log group</strong> and a <strong>Log stream</strong>.</p>
 
-<p>To authenticate to AWS, use any of <a href="https://micronaut-projects.github.io/micronaut-aws/snapshot/guide/index.html#awsCredentials">these methods</a>.</p>
+<p>To authenticate to AWS, use any of <a href="https://micronaut-projects.github.io/micronaut-aws/snapshot/guide/index.html#awsCredentials" target="_blank">these methods</a>.</p>
     
       <h3 id="21-create-a-log-group-and-a-log-stream">
         
@@ -596,7 +568,7 @@ class LogController {
         
       </h3>
 
-<p>You can create a <strong>Log group</strong> and a <strong>Log stream</strong> using either <a href="https://docs.aws.amazon.com/sdk-for-java/latest/developer-guide/home.html">AWS SDK v2</a>, or the AWS console. Use the console to complete this guide.</p>
+<p>You can create a <strong>Log group</strong> and a <strong>Log stream</strong> using either the <a href="https://docs.aws.amazon.com/sdk-for-java/latest/developer-guide/home.html" target="_blank">AWS SDK v2</a>, or the AWS console. Use the console to complete this guide.</p>
 
 <ol>
   <li>
@@ -616,28 +588,23 @@ class LogController {
     <p>Once your log group is created, open it and click <strong>Create log stream</strong>. Enter a custom name. Click <strong>Create</strong> to confirm the action.</p>
 
     <p><img src="/gcn/docs/gcn-modules/logging/img/aws-create-log-stream.png" alt="AWS CloudWatch Create log stream" /></p>
-
-    <blockquote>
-      <p>Note: This step is optional because you can also create a log stream automatically from the <em>logback.xml</em> file when you build the application. See below.</p>
-    </blockquote>
   </li>
 </ol>
     
-      <h2 id="3-configure-a-logback-appender">
+      <h2 id="3-configure-appender">
         
         
-          3. Configure a Logback Appender <a href="#3-configure-a-logback-appender" class="anchor_heading">#</a>
+          3. Configure Appender <a href="#3-configure-appender" class="anchor_heading">#</a>
         
         
       </h2>
 
-<p>The <em>aws/src/main/resources/logback.xml</em> file provides the configuration for a Logback appender that sends log statements to <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/WhatIsCloudWatchLogs.html">CloudWatch Logs</a>.</p>
+<p>The GCN launcher provided a file named <em>aws/src/main/resources/logback.xml</em> containing the configuration for an appender that publishes log statements to <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/WhatIsCloudWatchLogs.html" target="_blank">CloudWatch Logs</a>.</p>
 
 <ol>
-  <li>Open the <em>aws/src/main/resources/logback.xml</em> file, and add these lines within the CloudWatch <code>&lt;appender&gt;</code> element:
+  <li>Open the <em>aws/src/main/resources/logback.xml</em> file, and add these lines within the <code>&lt;appender&gt;</code> element named ‘CloudWatch’:
     <pre><code class="language-xml"> &lt;groupName&gt;LogGroupName&lt;/groupName&gt;
  &lt;streamName&gt;LogStreamName&lt;/streamName&gt;
- &lt;!-- &lt;createGroupAndStream&gt;true&lt;/createGroupAndStream&gt;  --&gt;
 </code></pre>
 
     <p>Your <em>logback.xml</em> file should look like this:</p>
@@ -666,7 +633,6 @@ class LogController {
          &lt;/encoder&gt;
          &lt;groupName&gt;LogGroupName&lt;/groupName&gt;
          &lt;streamName&gt;LogStreamName&lt;/streamName&gt;
-         &lt;!-- &lt;createGroupAndStream&gt;true&lt;/createGroupAndStream&gt;  --&gt;
      &lt;/appender&gt;
 
      &lt;root level='INFO'&gt;
@@ -677,25 +643,21 @@ class LogController {
 </code></pre>
   </li>
   <li>
-    <p>Pass the name of a <strong>Log group</strong> inside the <code>&lt;groupName&gt;</code> element.</p>
+    <p>Replace <code>LogGroupName</code> with the name of the Log group inside the <code>&lt;groupName&gt;</code> element.</p>
   </li>
-  <li>Pass the name of a <strong>Log stream</strong> inside the <code>&lt;streamName&gt;</code> element.</li>
+  <li>Replace <code>LogStreamName</code> with the name of the Log stream inside the <code>&lt;streamName&gt;</code> element.</li>
 </ol>
 
-<p>Notice the <code>createGroupAndStream</code> element is commented out. If you uncomment it and set <code>createGroupAndStream</code> to <code>true</code>, the application will automatically create a <strong>Log stream</strong>. But you have done this using the AWS CloudWatch console already at step <strong>3.1</strong>.</p>
+<blockquote>
+  <p>Note: You can un-comment the STDOUT appender as the ‘emergency’ appender. See the file for details.</p>
+</blockquote>
 
-<p>You can uncomment the <code>STDOUT</code> appender and <code>&lt;appender-ref ref='STDOUT'/&gt;</code> to log to <code>STDOUT</code> as the “emergency” appender.</p>
-
-<p>You can also customize the <code>JsonLayout</code> with additional parameters that you can find in the <a href="https://javadoc.io/static/ch.qos.logback.contrib/logback-json-classic/0.1.5/ch/qos/logback/contrib/json/classic/JsonLayout.html">Logback’s JsonLayout documentation</a>.</p>
-
-<p>The <code>CloudWatchLoggingAppender</code> supports blacklisting the loggers by specifying the logger name. That might come handy if you want to use <code>level=DEBUG</code> or <code>level=TRACE</code> for the root logger level.</p>
-
-<p>Having configured the appender, you can proceed to run the application, collecting the logs.</p>
+<p>Having configured the appender, you can proceed to run the application, publishing the logs.</p>
     
-      <h2 id="4-run-the-application-collect-and-view-logs">
+      <h2 id="4-run-the-application-publish-and-view-logs">
         
         
-          4. Run the Application, Collect and View Logs <a href="#4-run-the-application-collect-and-view-logs" class="anchor_heading">#</a>
+          4. Run the Application, Publish and View Logs <a href="#4-run-the-application-publish-and-view-logs" class="anchor_heading">#</a>
         
         
       </h2>
@@ -704,7 +666,7 @@ class LogController {
   <li>
     <p>Run the application using the following command (it will start the application on port 8080):</p>
 
-    <div id="tabs-doc4">
+    <div id="tabs-doc3">
  <ul>
      <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
      <li class="tabs-maven"><a href="#maven">Maven</a></li>
@@ -723,7 +685,7 @@ class LogController {
    -X POST http://localhost:8080/log
 </code></pre>
   </li>
-  <li>From the AWS CloudWatch console, navigate to <strong>Logs</strong>, open your <strong>Log group</strong> and a <strong>Log group stream</strong> to view the logs emitted by your application.</li>
+  <li>From the AWS CloudWatch console, navigate to <strong>Logs</strong>, open your <strong>Log group</strong> and a <strong>Log group stream</strong> to view the logs published by your application.</li>
 </ol>
     
       <h2 id="5-generate-a-native-executable-using-graalvm">
@@ -738,7 +700,7 @@ class LogController {
 
 <p>To generate a native executable, run the following command:</p>
 
-<div id="tabs-doc5">
+<div id="tabs-doc4">
   <ul>
       <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
       <li class="tabs-maven"><a href="#maven">Maven</a></li>
@@ -763,7 +725,7 @@ class LogController {
         
       </h2>
 
-<p>Run the native executable, and then perform the same tests as in step <strong>4</strong>.</p>
+<p>Run the native executable, and then perform the same request as in step <strong>4</strong>.</p>
     
       <h3 id="summary">
         
@@ -773,9 +735,9 @@ class LogController {
         
       </h3>
 
-<p>This guide demonstrated how to use GCN to create an application that writes and sends logs to CloudWatch Logs. 
+<p>This guide demonstrated how to use GCN to create an application that writes and publishes logs to CloudWatch Logs. 
 Then, using the AWS console, you viewed the logs produced by the application. 
-Finally, you saw how to build a native executable for this application with GraalVM Native Image, and ran it to test emitting logs to AWS CloudWatch Logs.</p>
+Finally, you saw how to build a native executable for this application with GraalVM Native Image, and ran it to test publishing logs to AWS CloudWatch Logs.</p>
     
       <h3 id="related-documentation">
         
@@ -786,9 +748,9 @@ Finally, you saw how to build a native executable for this application with Graa
       </h3>
 
 <ul>
-  <li><a href="https://micronaut-projects.github.io/micronaut-aws/latest/guide/index.html#cloudWatchLogging">Micronaut CloudWatch Logging</a></li>
-  <li><a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/WhatIsCloudWatchLogs.html">CloudWatch Logs</a></li>
-  <li><a href="https://www.graalvm.org/native-image/">GraalVM Native Image</a></li>
+  <li><a href="https://micronaut-projects.github.io/micronaut-aws/latest/guide/index.html#cloudWatchLogging" target="_blank">Micronaut CloudWatch Logging</a></li>
+  <li><a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/WhatIsCloudWatchLogs.html" target="_blank">CloudWatch Logs</a></li>
+  <li><a href="https://www.graalvm.org/native-image/" target="_blank">GraalVM Native Image</a></li>
 </ul>
 
       </div>

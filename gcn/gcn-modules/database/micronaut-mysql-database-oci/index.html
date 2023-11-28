@@ -14,7 +14,7 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2023-11-01 11:08:31 +0000"/>
+  <meta name="last_modified" content="2023-11-23 14:04:03 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -1082,7 +1082,7 @@ Flyway will create the database tables the first time the application starts, bu
       </h3>
 
 <ol>
-  <li>Install the MySQL client. From the console window connected to your Compute instance, run:
+  <li>Install the MySQL client. From the terminal connected to your Compute instance, run:
     <pre><code class="language-bash"> sudo yum install mysql
 </code></pre>
   </li>
@@ -1148,7 +1148,7 @@ Flyway will create the database tables the first time the application starts, bu
  </div>
   </li>
   <li>
-    <p>From the local console window, copy the JAR file from your computer to the Compute instance using <code>scp</code>:</p>
+    <p>From the local terminal, copy the JAR file from your computer to the Compute instance using <code>scp</code>:</p>
 
     <div id="tabs-doc4">
    <ul>
@@ -1184,7 +1184,7 @@ Flyway will create the database tables the first time the application starts, bu
     <pre><code class="language-bash"> java -jar application.jar
 </code></pre>
   </li>
-  <li>From the local console window, run this command to test creating and storing a new <code>Genre</code> in the database:
+  <li>From the local terminal, run this command to test creating and storing a new <code>Genre</code> in the database:
     <pre><code class="language-bash"> curl -X "POST" "http://[COMPUTE_INSTANCE_PUBLIC_IP]:8080/genres" \
       -H 'Content-Type: application/json; charset=utf-8' \
       -d $'{ "name": "music" }'
@@ -1216,7 +1216,7 @@ Next, you can package this application as a native executable. Deploying as a na
 
 <ol>
   <li>
-    <p>From the local console window, generate a native executable by running the following command:</p>
+    <p>From the local terminal, generate a native executable by running the following command:</p>
 
     <div id="tabs-doc5">
    <ul>
@@ -1265,7 +1265,7 @@ Next, you can package this application as a native executable. Deploying as a na
 
 <ol>
   <li>
-    <p>From the local console window, copy the native executable from your computer to the Compute instance using <code>scp</code>:</p>
+    <p>From the terminal, copy the native executable from your computer to the Compute instance using <code>scp</code>:</p>
 
     <pre><code class="language-bash"> scp -i /path/to/ssh-key-*.key application opc@COMPUTE_INSTANCE_PUBLIC_IP:~/
 </code></pre>
@@ -1281,7 +1281,7 @@ Next, you can package this application as a native executable. Deploying as a na
     <pre><code class="language-bash"> ./application
 </code></pre>
   </li>
-  <li>From the local console window, run this command to test creating and storing a new <code>Genre</code> in the database:
+  <li>From the local terminal, run this command to test creating and storing a new <code>Genre</code> in the database:
     <pre><code class="language-bash"> curl -X "POST" "http://[COMPUTE_INSTANCE_PUBLIC_IP]:8080/genres" \
       -H 'Content-Type: application/json; charset=utf-8' \
       -d $'{ "name": "music" }'

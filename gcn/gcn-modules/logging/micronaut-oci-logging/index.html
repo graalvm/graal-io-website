@@ -10,11 +10,11 @@
 
   <title>
     
-      Publish Application Logs to Oracle Cloud Infrastructure Logging
+      Publish Application Logs to the Oracle Cloud Infrastructure Logging Service
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2023-11-23 12:08:16 +0000"/>
+  <meta name="last_modified" content="2023-11-24 15:24:26 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -280,7 +280,7 @@
           
             
             <a href="/gcn/gcn-modules/logging/micronaut-oci-logging/">
-              Publish Application Logs to Oracle Cloud Infrastructure Logging
+              Publish Application Logs to the Oracle Cloud Infrastructure Logging Service
             </a>
           </li>
 
@@ -396,15 +396,19 @@
 
     <div class="col-sm-9 docsmod">
       <div id="content-wrapper" class="docs-content docs-content--with-sidebar">
-        <h1 id="publish-application-logs-to-oracle-cloud-infrastructure-logging">
+        <h1 id="publish-application-logs-to-the-oracle-cloud-infrastructure-logging-service">
         
         
-          Publish Application Logs to Oracle Cloud Infrastructure Logging
+          Publish Application Logs to the Oracle Cloud Infrastructure Logging Service
         
         
       </h1>
 
-<p>This guide describes how to create an application that emits and pushes logs to Oracle Cloud Infrastructure Logging. Typically, application logs are written to <code>stdout</code> and to files, but the Micronaut Logging module supports multiple logging frameworks such as <a href="https://logback.qos.ch/">Logback</a>, and logging to various other appenders, to email, a database, or other destinations.</p>
+<p>This guide describes how to create an application that publishes logs to the <a href="https://docs.oracle.com/iaas/Content/Logging/home.htm" target="_blank">Oracle Cloud Infrastructure Logging service</a>. Typically, application logs are written to <code>stdout</code> and to files, but the Micronaut Logging module supports multiple logging frameworks such as <a href="https://logback.qos.ch/" target="_blank">Logback</a>, and logging to various other appenders, to email, a database, or other destinations.</p>
+
+<blockquote>
+  <p>The Oracle Cloud Infrastructure Logging service is a highly scalable and fully managed single pane of glass for all the logs in your tenancy. Logging provides access to logs from Oracle Cloud Infrastructure resources. These logs include critical diagnostic information that describes how resources are performing and being accessed.</p>
+</blockquote>
     
       <h3 id="prerequisites">
         
@@ -512,54 +516,19 @@
 
 <p>The GCN Launcher creates a multi-module project with two subprojects: <strong>oci</strong> for Oracle Cloud Infrastructure, and <strong>lib</strong>.
 You develop the application logic in the <strong>oci</strong> subproject. If your application is to be deployed to multiple cloud providers, use the <strong>lib</strong> subproject to create classes that can be shared between the providers. This enables you to separate the code that is different between cloud providers, while keeping most of the implementation in the common <strong>lib</strong> subproject.</p>
+
+<p>The Micronaut Logging service that you selected at the project generation step bundles Logback, Jackson Databind, Oracle Cloud Infrastructure Logging, and other necessary dependencies.
+The <a href="https://logback.qos.ch/">Logback</a> appender publishes logs to Oracle Cloud Infrastructure.</p>
     
-      <h3 id="11-logback-dependency">
+      <h3 id="11-controller-class">
         
         
-          1.1 Logback Dependency <a href="#11-logback-dependency" class="anchor_heading">#</a>
+          1.1. Controller Class <a href="#11-controller-class" class="anchor_heading">#</a>
         
         
       </h3>
 
-<p>The GCN Logging service that you selected at the project generation step bundles Logback, Jackson Databind, Oracle Cloud Infrastructure Logging, and other necessary dependencies. If you open the <em>micronaut-cli.yml</em> file, you can see all the added features.</p>
-
-<p>The <a href="https://logback.qos.ch/">Logback</a> appender pushes logs to Oracle Cloud Infrastructure. In the project configuration file, you can find the <a href="https://micronaut-projects.github.io/micronaut-oracle-cloud/snapshot/guide/#logging">Micronaut Oracle Cloud Infrastructure Logging</a> dependency.</p>
-
-<div id="tabs-doc3">
-  <ul>
-    <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
-    <li class="tabs-maven"><a href="#maven">Maven</a></li>
-  </ul>
-  <div id="gradle">
-    <p><em>oci/build.gradle</em></p>
-    <pre><code class="language-java">implementation("ch.qos.logback.contrib:logback-jackson:0.1.5")
-implementation("ch.qos.logback.contrib:logback-json-classic:0.1.5")
-implementation("io.micronaut.oraclecloud:micronaut-oraclecloud-logging")</code></pre>
-  </div>
-  <div id="maven">
-    <p><em>oci/pom.xml</em></p>
-    <pre><code class="language-xml">&lt;dependency&gt;
-   &lt;groupId&gt;io.micronaut.oraclecloud&lt;/groupId&gt;
-   &lt;artifactId&gt;micronaut-oraclecloud-logging&lt;/artifactId&gt;
-   &lt;scope&gt;compile&lt;/scope&gt;
-&lt;/dependency&gt;
-&lt;dependency&gt;
-   &lt;groupId&gt;ch.qos.logback&lt;/groupId&gt;
-   &lt;artifactId&gt;logback-classic&lt;/artifactId&gt;
-   &lt;scope&gt;runtime&lt;/scope&gt;
-&lt;/dependency&gt;</code></pre>
-  </div>
-</div>
-    
-      <h3 id="12-controller-class">
-        
-        
-          1.2. Controller Class <a href="#12-controller-class" class="anchor_heading">#</a>
-        
-        
-      </h3>
-
-<p>The generated example code includes a controller in a file named <em>oci/src/main/java/com/example/LogController.java</em>, which enables you to send <code>POST</code> requests to log a message:</p>
+<p>The example code includes a controller in a file named <em>oci/src/main/java/com/example/LogController.java</em>, which enables you to send <code>POST</code> requests to publish a message to a log:</p>
 
 <pre><code class="language-java">package com.example;
 
@@ -581,223 +550,57 @@ class LogController {
 }
 </code></pre>
     
-      <h2 id="2-get-started-with-oracle-cloud-infrastructure-logging">
+      <h2 id="2-get-started-with-the-oracle-cloud-infrastructure-logging-service">
         
         
-          2. Get Started with Oracle Cloud Infrastructure Logging <a href="#2-get-started-with-oracle-cloud-infrastructure-logging" class="anchor_heading">#</a>
-        
-        
-      </h2>
-
-<p>To use Oracle Cloud Infrastructure Logging, you need to create a <strong>Log Group</strong> and a <strong>Custom Log</strong>.</p>
-    
-      <h3 id="21-create-a-log-group">
-        
-        
-          2.1. Create a Log Group <a href="#21-create-a-log-group" class="anchor_heading">#</a>
-        
-        
-      </h3>
-
-<p>To create a <strong>Log Group</strong>, you need the ID of the compartment where your log group will be created. It is expected that you have already created a compartment in Oracle Cloud Infrastructure (see the <a href="#prerequisites">Prerequisites</a>).</p>
-
-<ol>
-  <li>
-    <p>Find the <a href="https://docs.oracle.com/iaas/tools/oci-cli/latest/oci_cli_docs/cmdref/iam/compartment/list.html">OCID of the compartment</a> where the IAM policy will be created. Run this command to list the compartments in your root compartment:</p>
-
-    <pre><code class="language-bash">oci iam compartment list
-</code></pre>
-  </li>
-  <li>
-    <p>Find the compartment by the name or description in the JSON output. It should look like this:</p>
-
-    <pre><code class="language-json">{
-    "compartment-id": "ocid1.tenancy.oc1..aaaaaaaaud4g4e5ovjaw...",
-    "description": "...",
-    "id": "ocid1.compartment.oc1..aaaaaaaarkh3s2wcxbbm...",
-    "lifecycle-state": "ACTIVE",
-    "name": "...",
-    ...
-}
-</code></pre>
-
-    <p>The OCID is the value of the <code>id</code> property; the <code>compartment-id</code> property is the parent compartment.</p>
-  </li>
-  <li>
-    <p>Save the compartment ID as an environment variable:</p>
-
-    <pre><code class="language-bash">export C=ocid1.compartment.oc1..aaaaaaaarkh3s2wcxbbm...
-</code></pre>
-
-    <details>
-     <summary>The <code>export</code> command syntax varies per platform. Expand to learn more.</summary>
-     <p>If you use Linux/macOS, the <code>export</code> command is:</p>
-         <pre><code class="language-bash">export VARNAME=&lt;VALUE&gt;</code></pre>
-     <p>If you use Windows, change <code>export</code> to <code>set</code> if using the <code>cmd</code> prompt:</p>
-         <pre><code class="language-bash">set VARNAME=&lt;VALUE&gt;</code></pre>
-
-     <p>If you use PowerShell, change <code>export</code> to <code>$</code> and use quotes around the value, for example:</p>
-     <pre><code class="language-bash">$VARNAME="&lt;VALUE&gt;"</code></pre>
-
-     <p>To dereference a value in Linux/macOS or Powershell, use <code>$</code>, for example:
-     <code>/some/command -option=$VARNAME</code>
-     </p>
-     <p>If you use <code>cmd</code>, use <code>%</code> before and after the name, for example: <code>/some/command -option=%VARNAME%</code>
-     </p>
- </details>
-  </li>
-</ol>
-
-<p>Now proceed and create a <strong>Log Group</strong>:</p>
-
-<ol>
-  <li>
-    <p><a href="https://docs.oracle.com/iaas/tools/oci-cli/latest/oci_cli_docs/cmdref/logging/log-group/create.html">Create a log group</a> by running the following command:</p>
-
-    <pre><code class="language-bash">oci logging log-group create \
-    --compartment-id $C \
-    --display-name GCNLogGroup \
-    --wait-for-state SUCCEEDED
-</code></pre>
-
-    <p>The response should look like this:</p>
-
-    <pre><code class="language-json">{
-   "data": {
-       "compartment-id": "ocid1.compartment.oc1..aaa...",
-       "id": "ocid1.logworkrequest.oc1.iad.aaa...",
-       "operation-type": "CREATE_LOG_GROUP",
-       "percent-complete": 100.0,
-       "resources": [
-       {
-           "action-type": "CREATED",
-           "entity-type": "loggroup",
-           "entity-uri": "/logGroups/ocid1.loggroup.oc1.iad.ama...",
-           "identifier": "ocid1.loggroup.oc1.iad.ama..."
-       }
-       ],
-       "status": "SUCCEEDED",
-       "time-accepted": "2022-09-08T14:13:16.034000+00:00",
-       "time-finished": "2022-09-08T14:13:16.034000+00:00",
-       "time-started": "2022-09-08T14:13:16.034000+00:00"
-   }
-}
-</code></pre>
-  </li>
-  <li>
-    <p>Save the group <code>id</code> from the <code>identifier</code> property as an environment variable:</p>
-
-    <pre><code class="language-bash">export LOG_GROUP_ID=ocid1.loggroup.oc1.iad.ama...
-</code></pre>
-  </li>
-</ol>
-    
-      <h3 id="22-create-a-custom-log">
-        
-        
-          2.2. Create a Custom Log <a href="#22-create-a-custom-log" class="anchor_heading">#</a>
-        
-        
-      </h3>
-
-<ol>
-  <li>
-    <p><a href="https://docs.oracle.com/iaas/tools/oci-cli/latest/oci_cli_docs/cmdref/logging/log/create.html">Create a Custom Log</a> by running the following command:</p>
-
-    <pre><code class="language-bash">oci logging log create \
-    --display-name GCNCustomLog \
-    --log-group-id $LOG_GROUP_ID \
-    --log-type CUSTOM \
-    --wait-for-state SUCCEEDED
-</code></pre>
-
-    <p>The response should look like this:</p>
-
-    <pre><code class="language-json">{
-   "data": {
-      "compartment-id": "ocid1.compartment.oc1..aaa...",
-      "id": "ocid1.logworkrequest.oc1.iad.aaa...",
-      "operation-type": "CREATE_LOG",
-      "percent-complete": 100.0,
-      "resources": [
-         {
-             "action-type": "CREATED",
-             "entity-type": "log",
-             "entity-uri": "/logs/ocid1.log.oc1.iad.ama...",
-             "identifier": "ocid1.log.oc1.iad.ama..."
-         }
-      ],
-      "status": "SUCCEEDED",
-      "time-accepted": "2022-09-08T17:12:51.501000+00:00",
-      "time-finished": "2022-09-08T17:12:51.501000+00:00",
-      "time-started": "2022-09-08T17:12:51.501000+00:00"
-   }
-}
-</code></pre>
-  </li>
-  <li>
-    <p>Save the OCID of the log (<code>ocid1.log.oc1.iad.ama…​</code> from the <code>identifier</code> property). You will need it in the application configuration.</p>
-  </li>
-</ol>
-    
-      <h2 id="3-configure-a-logback-appender">
-        
-        
-          3. Configure a Logback Appender <a href="#3-configure-a-logback-appender" class="anchor_heading">#</a>
+          2. Get Started with the Oracle Cloud Infrastructure Logging Service <a href="#2-get-started-with-the-oracle-cloud-infrastructure-logging-service" class="anchor_heading">#</a>
         
         
       </h2>
 
-<p>The <em>oci/src/main/resources/logback.xml</em> file provides the configuration for a Logback appender that sends log statements to Oracle Cloud Logging. Uncomment the <code>STDOUT</code> appender and <code>&lt;appender-ref ref='STDOUT'/&gt;</code> in <code>OracleCloudAppender</code>.</p>
+<p>To use the Oracle Cloud Infrastructure Logging service, first create a <strong>Log Group</strong> and then a <strong>Custom Log</strong>.</p>
 
-<pre><code class="language-xml">&lt;configuration debug='false'&gt;
+<ol>
+  <li>
+    <p>Follow the steps described in <a href="https://docs.oracle.com/iaas/Content/Logging/Task/create-logging-log-group.htm" target="_blank">Creating a Log Group</a> to create a Log Group. Use “GCN_Log_Group” as its name and description.</p>
+  </li>
+  <li>
+    <p>Follow the steps described in <a href="https://docs.oracle.com/iaas/Content/Logging/Task/create-logging-log.htm" target="_blank">Creating a Log</a> to create a <em>Custom Log</em> in the Log group you created in step 1.. Use “GCN_Custom_Log” as the name of the Log. When prompted to create agent configuration, select <strong>Add configuration later</strong> then click <strong>Create agent config</strong>.</p>
+  </li>
+  <li>
+    <p>Click the name of the new custom log to view its details, and from the <strong>Log Information</strong> tab, copy its OCID (click <strong>Copy</strong>).</p>
+  </li>
+</ol>
+    
+      <h2 id="3-configure-appender">
+        
+        
+          3. Configure Appender <a href="#3-configure-appender" class="anchor_heading">#</a>
+        
+        
+      </h2>
 
-   &lt;!--
-   You can un-comment the STDOUT appender and &lt;appender-ref ref='STDOUT'/&gt; in
-   the cloud appender to log to STDOUT as the 'emergency' appender.
-   --&gt;
-
-   &lt;!--
-   &lt;appender name='STDOUT' class='ch.qos.logback.core.ConsoleAppender'&gt;
-       &lt;encoder&gt;
-           &lt;pattern&gt;%cyan(%d{HH:mm:ss.SSS}) %gray([%thread]) %highlight(%-5level) %magenta(%logger{36}) - %msg%n&lt;/pattern&gt;
-       &lt;/encoder&gt;
-   &lt;/appender&gt;
-   --&gt;
-
-   &lt;appender name='ORACLE' class='io.micronaut.oraclecloud.logging.OracleCloudAppender'&gt;
-      &lt;!-- &lt;appender-ref ref='STDOUT'/&gt; --&gt;
-      &lt;logId&gt;&lt;!-- TODO set the value of the Oracle Cloud log OCID here --&gt;&lt;/logId&gt;
-      &lt;encoder class='ch.qos.logback.core.encoder.LayoutWrappingEncoder'&gt;
-         &lt;layout class='ch.qos.logback.contrib.json.classic.JsonLayout'&gt;
-            &lt;jsonFormatter class='ch.qos.logback.contrib.jackson.JacksonJsonFormatter'/&gt;
-         &lt;/layout&gt;
-      &lt;/encoder&gt;
-   &lt;/appender&gt;
-
-   &lt;root level='INFO'&gt;
-      &lt;appender-ref ref='ORACLE'/&gt;
-   &lt;/root&gt;
-
-&lt;/configuration&gt;
-</code></pre>
-
-<p>Update <em>logback.xml</em> to include the custom log OCID you saved earlier. Replace this line:</p>
+<p>The GCN launcher provided a file named <em>oci/src/main/resources/logback.xml</em> containing the configuration for an appender that publishes log statements to the Oracle Cloud Logging service. 
+Update the file to include the OCI of the custom Log you copied earlier. Replace this line:</p>
 
 <pre><code class="language-xml">&lt;logId&gt;&lt;!-- TODO set the value of the Oracle Cloud Infrastructure log OCID here --&gt;&lt;/logId&gt;
 </code></pre>
 
-<p>with this (using your OCID):</p>
+<p>with this (the OCID of the Log):</p>
 
 <pre><code class="language-xml">&lt;logId&gt;ocid1.log.oc1.iad.ama...&lt;/logId&gt;
 </code></pre>
 
-<p>Having configured the appender, you can proceed and run the application, collecting the logs.</p>
+<blockquote>
+  <p>Note: You can un-comment the STDOUT appender as the ‘emergency’ appender. See the file for details.</p>
+</blockquote>
+
+<p>Having configured the appender, you can proceed to run the application, publishing the logs.</p>
     
-      <h2 id="4-run-the-application-collect-and-view-logs">
+      <h2 id="4-run-the-application-publish-and-view-logs">
         
         
-          4. Run the Application, Collect and View Logs <a href="#4-run-the-application-collect-and-view-logs" class="anchor_heading">#</a>
+          4. Run the Application, Publish and View Logs <a href="#4-run-the-application-publish-and-view-logs" class="anchor_heading">#</a>
         
         
       </h2>
@@ -806,7 +609,7 @@ class LogController {
   <li>
     <p>Run the application using the following command (it will start the application on port 8080):</p>
 
-    <div id="tabs-doc4">
+    <div id="tabs-doc3">
  <ul>
      <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
      <li class="tabs-maven"><a href="#maven">Maven</a></li>
@@ -825,7 +628,7 @@ class LogController {
    -X POST http://localhost:8080/log
 </code></pre>
   </li>
-  <li>In the Oracle Cloud console, open the navigation menu, go to <strong>Observability &amp; Management</strong>. Under <strong>Logging</strong>, go to <strong>Logs</strong> to view the logs emitted by your application.</li>
+  <li>In the Oracle Cloud console, open the navigation menu, go to <strong>Observability &amp; Management</strong>. Under <strong>Logging</strong>, click <strong>Logs</strong>, then click the name of the new custom log to view the logs published by your application.</li>
 </ol>
     
       <h2 id="5-generate-a-native-executable-using-graalvm">
@@ -840,19 +643,19 @@ class LogController {
 
 <p>To generate a native executable, run the following command:</p>
 
-<div id="tabs-doc5">
+<div id="tabs-doc4">
   <ul>
       <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
       <li class="tabs-maven"><a href="#maven">Maven</a></li>
   </ul>
   <div id="gradle">
       <pre><code class="language-bash">./gradlew :oci:nativeCompile</code></pre>
-      <p>The native executable will be created in the <em>oci/build/native/nativeCompile/</em> directory and can be run with the following command:</p>
+      <p>The native executable is created in the <em>oci/build/native/nativeCompile/</em> directory and can be run with the following command:</p>
     <pre><code class="language-bash">oci/build/native/nativeCompile/oci</code></pre>
   </div>
   <div id="maven">
       <pre><code class="language-bash">./mvnw install -pl lib -am &amp;&amp; ./mvnw package -pl oci -Dpackaging=native-image</code></pre>
-      <p>The native executable will be created in the <em>oci/target/</em> directory and can be run with the following command:</p>
+      <p>The native executable is created in the <em>oci/target/</em> directory and can be run with the following command:</p>
     <pre><code class="language-bash">oci/target/oci</code></pre>
   </div>
 </div>
@@ -865,7 +668,7 @@ class LogController {
         
       </h2>
 
-<p>Run the native executable, and then perform the same tests as in step <strong>4</strong>.</p>
+<p>Run the native executable, and then perform the same request as in step <strong>4</strong>.</p>
     
       <h3 id="summary">
         
@@ -875,9 +678,9 @@ class LogController {
         
       </h3>
 
-<p>This guide demonstrated how to use GCN to create an application that writes and sends logs to Oracle Cloud Infrastructure. 
-Then, using Oracle Cloud Infrastructure Logging, you viewed the logs produced by the application. 
-Finally, you saw how to build a native executable for this application with GraalVM Native Image.</p>
+<p>This guide demonstrated how to use GCN to create an application that publishes logs to the Oracle Cloud Infrastructure Logging service. 
+Then, using the Oracle Cloud Infrastructure Logging service, you viewed the logs produced by the application. 
+Finally, you saw how to build a native executable for this application with GraalVM Native Image, and ran it to test publishing logs to Oracle Cloud Infrastructure Logging.</p>
     
       <h3 id="related-documentation">
         
@@ -888,9 +691,9 @@ Finally, you saw how to build a native executable for this application with Graa
       </h3>
 
 <ul>
-  <li><a href="https://micronaut-projects.github.io/micronaut-oracle-cloud/latest/guide/#logging">Micronaut Oracle Cloud Infrastructure Logging</a></li>
-  <li><a href="https://docs.oracle.com/iaas/Content/Logging/Concepts/loggingoverview.htm">Oracle Cloud Infrastructure Logging Service</a></li>
-  <li><a href="https://www.graalvm.org/native-image/">GraalVM Native Image</a></li>
+  <li><a href="https://micronaut-projects.github.io/micronaut-oracle-cloud/latest/guide/#logging" target="_blank">Micronaut Oracle Cloud Infrastructure Logging</a></li>
+  <li><a href="https://docs.oracle.com/iaas/Content/Logging/Concepts/loggingoverview.htm" target="_blank">Oracle Cloud Infrastructure Logging Service</a></li>
+  <li><a href="https://www.graalvm.org/native-image/" target="_blank">GraalVM Native Image</a></li>
 </ul>
 
       </div>

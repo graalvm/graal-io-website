@@ -521,7 +521,7 @@ Google provides OAuth 2.0 APIs for both authentication and authorization, which 
         
       </h3>
 
-<p>The launcher created a class named <code>AuthController</code> to handle requests to <code>/</code>. It will display the email of an authenticated person, if any. The controller endpoint is annotated with  the <a href="https://micronaut-projects.github.io/micronaut-views/latest/api/io/micronaut/views/View.html"><code>@View</code></a> annotation that uses a Thymeleaf template. The file named <em>gcp/src/main/java/com/example/AuthController.java</em> has the following contents:</p>
+<p>The GCN launcher created a class named <code>AuthController</code> to handle requests to <code>/</code>. It displays the email of an authenticated person, if any. The controller endpoint is annotated with  a <a href="https://micronaut-projects.github.io/micronaut-views/latest/api/io/micronaut/views/View.html" target="_blank"><code>@View</code></a> annotation that uses a Thymeleaf template. The file named <em>gcp/src/main/java/com/example/AuthController.java</em> has the following contents:</p>
 
 <pre><code class="language-java">package com.example;
 
@@ -563,21 +563,21 @@ class AuthController {
 }
 </code></pre>
 
-<p><strong>1</strong> The class is defined as a controller with the <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Controller.html"><code>@Controller</code></a> annotation mapped to the path <code>/</code>.</p>
+<p><strong>1</strong> The class is defined as a controller with the <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Controller.html" target="_blank"><code>@Controller</code></a> annotation mapped to the path <code>/</code>.</p>
 
-<p><strong>2</strong> Annotate with <code>@Secured</code> to configure secured access. The <code>SecurityRule.IS_ANONYMOUS</code> expression allows access without authentication.</p>
+<p><strong>2</strong> Annotate with <a href="https://micronaut-projects.github.io/micronaut-security/1.3.1/api/io/micronaut/security/annotation/Secured.html" target="_blank"><code>@Secured</code></a> to configure secured access. The <code>SecurityRule.IS_ANONYMOUS</code> expression allows access without authentication.</p>
 
-<p><strong>3</strong> Use the <a href="https://micronaut-projects.github.io/micronaut-views/latest/api/io/micronaut/views/View.html"><code>@View</code></a> annotation to specify which template to use to render the response.</p>
+<p><strong>3</strong> Use the <a href="https://micronaut-projects.github.io/micronaut-views/latest/api/io/micronaut/views/View.html" target="_blank"><code>@View</code></a> annotation to specify which template to use to render the response.</p>
 
-<p><strong>4</strong> The <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Get.html"><code>@Get</code></a> annotation maps the <code>index</code> method to an HTTP GET request on <code>/</code>.</p>
+<p><strong>4</strong> The <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Get.html" target="_blank"><code>@Get</code></a> annotation maps the <code>index</code> method to an HTTP GET request on <code>/</code>.</p>
 
-<p><strong>5</strong> Micronaut Security will inject the <code>Authentication</code> instance as a method parameter; by annotating with <code>@Nullable</code>, you can determine whether the user is authenticated or not, and populate the model map accordingly.</p>
+<p><strong>5</strong> Micronaut Security will inject the <code>Authentication</code> instance as a method parameter; by annotating with <a href="https://docs.micronaut.io/latest/api/io/micronaut/core/annotation/Nullable.html" target="_blank"><code>@Nullable</code></a>, you can determine whether the user is authenticated or not, and populate the model map accordingly.</p>
 
 <p><strong>6</strong> Annotate with <code>@Secured</code> to configure secured access. The <code>SecurityRule.IS_AUTHENTICATED</code> expression allows access only to authenticated users.</p>
 
 <p><strong>7</strong> The <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Get.html"><code>@Get</code></a> annotation maps the <code>secured</code> method to an HTTP GET request on <code>/secure</code>.</p>
 
-<p><strong>8</strong> This method simply returns a model map that will be rendered as JSON since there is no <code>@View</code> annotation.</p>
+<p><strong>8</strong> This method simply returns a model map that will be rendered as JSON (because there is no <a href="https://micronaut-projects.github.io/micronaut-views/latest/api/io/micronaut/views/View.html" target="_blank"><code>@View</code></a> annotation).</p>
     
       <h3 id="12-thymeleaf-view">
         
@@ -587,7 +587,7 @@ class AuthController {
         
       </h3>
 
-<p>The launcher created a Thymeleaf view in a file named <em>auth.html</em> (in the <em>gcp/src/main/resources/views/</em> directory) to render the UI for the controller. It has the following contents:</p>
+<p>The GCN launcher created a Thymeleaf view in a file named <em>gcp/src/main/resources/views/auth.html</em> to render the UI for the controller. It has the following contents:</p>
 
 <pre><code class="language-html">&lt;!DOCTYPE html&gt;
 &lt;html xmlns:th="http://www.thymeleaf.org" lang="en"&gt;

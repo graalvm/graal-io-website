@@ -10,11 +10,11 @@
 
   <title>
     
-      Secure an Application with Oracle IDCS and OpenID Connect
+      Secure an Application with Oracle Identity Cloud Service and OpenID Connect
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2023-11-23 12:00:51 +0000"/>
+  <meta name="last_modified" content="2023-11-23 14:19:22 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -310,7 +310,7 @@
           
             
             <a href="/gcn/gcn-modules/security/micronaut-cloud-oidc-oracle/">
-              Secure an Application with Oracle IDCS and OpenID Connect
+              Secure an Application with Oracle Identity Cloud Service and OpenID Connect
             </a>
           </li>
 
@@ -396,17 +396,17 @@
 
     <div class="col-sm-9 docsmod">
       <div id="content-wrapper" class="docs-content docs-content--with-sidebar">
-        <h1 id="secure-an-application-with-oracle-idcs-and-openid-connect">
+        <h1 id="secure-an-application-with-oracle-identity-cloud-service-and-openid-connect">
         
         
-          Secure an Application with Oracle IDCS and OpenID Connect
+          Secure an Application with Oracle Identity Cloud Service and OpenID Connect
         
         
       </h1>
 
-<p>In this guide, you will create an application that authenticates users with Oracle IDCS and OpenID Connect.
-OpenID Connect (OIDC) is an identity layer on top of the OAuth 2.0 protocol that verifies the end user’s identity and obtains basic profile information.
-The OIDC APIs are easier to work with than with the open-standard authorization protocol (OAuth) because they use JSON instead of XML.</p>
+<p>In this guide, you will create an application that authenticates users with Oracle Identity Cloud Service and OpenID Connect.
+OpenID Connect (OIDC) is an identity layer on top of the open-standard  OAuth 2.0 protocol that verifies an end user’s identity and obtains basic profile information.
+The OIDC APIs are easier to work with than OAuth because they use JSON instead of XML.</p>
     
       <h3 id="prerequisites">
         
@@ -524,7 +524,7 @@ The OIDC APIs are easier to work with than with the open-standard authorization 
         
       </h3>
 
-<p>The launcher created a class named <code>AuthController</code> to handle requests to <code>/</code>. It will display the email of an authenticated person, if any. The controller endpoint is annotated with  the <a href="https://micronaut-projects.github.io/micronaut-views/latest/api/io/micronaut/views/View.html"><code>@View</code></a> annotation that uses a Thymeleaf template. The file named <em>oci/src/main/java/com/example/AuthController.java</em> has the following contents:</p>
+<p>The GCN launcher created a class named <code>AuthController</code> to handle requests to <code>/</code>. It displays the email of an authenticated person, if any. The controller endpoint is annotated with  a <a href="https://micronaut-projects.github.io/micronaut-views/latest/api/io/micronaut/views/View.html" target="_blank"><code>@View</code></a> annotation that uses a Thymeleaf template. The file named <em>oci/src/main/java/com/example/AuthController.java</em> has the following contents:</p>
 
 <pre><code class="language-java">package com.example;
 
@@ -566,21 +566,21 @@ class AuthController {
 }
 </code></pre>
 
-<p><strong>1</strong> The class is defined as a controller with the <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Controller.html"><code>@Controller</code></a> annotation mapped to the path <code>/</code>.</p>
+<p><strong>1</strong> The class is defined as a controller with the <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Controller.html" target="_blank"><code>@Controller</code></a> annotation mapped to the path <code>/</code>.</p>
 
-<p><strong>2</strong> Annotate with <code>@Secured</code> to configure secured access. The <code>SecurityRule.IS_ANONYMOUS</code> expression allows access without authentication.</p>
+<p><strong>2</strong> Annotate with <a href="https://micronaut-projects.github.io/micronaut-security/1.3.1/api/io/micronaut/security/annotation/Secured.html" target="_blank"><code>@Secured</code></a> to configure secured access. The <code>SecurityRule.IS_ANONYMOUS</code> expression allows access without authentication.</p>
 
-<p><strong>3</strong> Use the <a href="https://micronaut-projects.github.io/micronaut-views/latest/api/io/micronaut/views/View.html"><code>@View</code></a> annotation to specify which template to use to render the response.</p>
+<p><strong>3</strong> Use the <a href="https://micronaut-projects.github.io/micronaut-views/latest/api/io/micronaut/views/View.html" target="_blank"><code>@View</code></a> annotation to specify which template to use to render the response.</p>
 
-<p><strong>4</strong> The <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Get.html"><code>@Get</code></a> annotation maps the <code>index</code> method to an HTTP GET request on <code>/</code>.</p>
+<p><strong>4</strong> The <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Get.html" target="_blank"><code>@Get</code></a> annotation maps the <code>index</code> method to an HTTP GET request on <code>/</code>.</p>
 
-<p><strong>5</strong> Micronaut Security will inject the <code>Authentication</code> instance as a method parameter; by annotating with <code>@Nullable</code>, you can determine whether the user is authenticated or not, and populate the model map accordingly.</p>
+<p><strong>5</strong> Micronaut Security will inject the <code>Authentication</code> instance as a method parameter; by annotating with <a href="https://docs.micronaut.io/latest/api/io/micronaut/core/annotation/Nullable.html" target="_blank"><code>@Nullable</code></a>, you can determine whether the user is authenticated or not, and populate the model map accordingly.</p>
 
 <p><strong>6</strong> Annotate with <code>@Secured</code> to configure secured access. The <code>SecurityRule.IS_AUTHENTICATED</code> expression allows access only to authenticated users.</p>
 
 <p><strong>7</strong> The <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Get.html"><code>@Get</code></a> annotation maps the <code>secured</code> method to an HTTP GET request on <code>/secure</code>.</p>
 
-<p><strong>8</strong> This method simply returns a model map that will be rendered as JSON since there is no <code>@View</code> annotation.</p>
+<p><strong>8</strong> This method simply returns a model map that will be rendered as JSON (because there is no <a href="https://micronaut-projects.github.io/micronaut-views/latest/api/io/micronaut/views/View.html" target="_blank"><code>@View</code></a> annotation).</p>
     
       <h3 id="12-thymeleaf-view">
         
@@ -590,7 +590,7 @@ class AuthController {
         
       </h3>
 
-<p>The launcher created a Thymeleaf view in a file named <em>auth.html</em> (in the <em>oci/src/main/resources/views/</em> directory) to render the UI for the controller. It has the following contents:</p>
+<p>The GCN launcher created a Thymeleaf view in a file named <em>oci/src/main/resources/views/auth.html</em> to render the UI for the controller. It has the following contents:</p>
 
 <pre><code class="language-html">&lt;!DOCTYPE html&gt;
 &lt;html xmlns:th="http://www.thymeleaf.org" lang="en"&gt;
@@ -632,7 +632,7 @@ class AuthController {
 
 <ol>
   <li>
-    <p><a href="https://cloud.oracle.com/">Log in to your Oracle Cloud Infrastructure tenancy</a> as an admin (or a user with sufficient permissions to create users and applications).</p>
+    <p><a href="https://cloud.oracle.com/" target="_blank">Log in to your Oracle Cloud Infrastructure tenancy</a> as an admin (or as a user with sufficient permissions to create users and applications).</p>
   </li>
   <li>
     <p>In the Oracle Cloud Console, open the navigation menu, click <strong>Identity &amp; Security</strong>. Under <strong>Identity</strong>, click <strong>Federation</strong>.</p>
@@ -661,10 +661,10 @@ class AuthController {
 
 <ol>
   <li>
-    <p>Navigate again to the <strong>OracleIdentityCloudService</strong> federation and copy the link to the <strong>Oracle Identity Cloud Service Console</strong> (it will look like <code>https://idcs-7084de14ec…….identity.oraclecloud.com/ui/v1/adminconsole</code>). Save this for later when you create the application: you will need this value to set the <code>OAUTH_ISSUER</code>.</p>
+    <p>Navigate again to the <strong>OracleIdentityCloudService</strong> federation and copy the link to the <strong>Oracle Identity Cloud Service Console</strong> (it will resemble <code>https://idcs-7084de14ec…….identity.oraclecloud.com/ui/v1/adminconsole</code>). Save this for later when you create the application: you will need this value to set the <code>OAUTH_ISSUER</code>.</p>
   </li>
   <li>
-    <p>Click the <strong>Oracle Identity Cloud Service Console</strong> link to open the console.</p>
+    <p>Click <strong>Oracle Identity Cloud Service Console</strong> to open the console.</p>
   </li>
   <li>
     <p>Click the button in the top right of the <strong>Applications and Services</strong> section to add a new application.</p>
@@ -686,7 +686,7 @@ class AuthController {
       <li><strong>Post Logout Redirect URL</strong>: <em>http://localhost:8080</em></li>
     </ul>
 
-    <p>6.1. Scroll down and in the <strong>Grant the client access to Identity Cloud Service Admin APIs</strong> section click <strong>Add</strong>.</p>
+    <p>6.1. Scroll down and in the section titled <strong>Grant the client access to Identity Cloud Service Admin APIs</strong>, click <strong>Add</strong>.</p>
 
     <p>6.2. Select <strong>Me</strong>.</p>
   </li>
@@ -702,7 +702,7 @@ class AuthController {
 </ol>
 
 <blockquote>
-  <p>Note: Check <strong>Allow non-HTTPS URLs</strong> for now to make testing easier and avoid having to use HTTPS locally. Be sure to unselect this in production applications, which should always use HTTPS.</p>
+  <p>Note: Check <strong>Allow non-HTTPS URLs</strong> to make testing easier and avoid having to use HTTPS locally. Be sure to unselect this in production applications, which should always use HTTPS.</p>
 </blockquote>
     
       <h3 id="23-enable-signing-certificate-access">
@@ -713,14 +713,14 @@ class AuthController {
         
       </h3>
 
-<p>You need to make the signing certificate available to your application for <a href="https://jwt.io/">JSON Web Tokens</a> (JWT) validation without being authenticated.</p>
+<p>Make the signing certificate available to your application for <a href="https://jwt.io/" target="_blank">JSON Web Tokens</a> (JWT) validation without being authenticated.</p>
 
 <ol>
   <li>
-    <p>In the Identity Cloud Service console, expand the <strong>Navigation Drawer</strong>, click <strong>Settings</strong>, and then click <strong>Default Settings</strong>.</p>
+    <p>In the Oracle Identity Cloud Service console, expand the <strong>Navigation Drawer</strong>, click <strong>Settings</strong>, and then click <strong>Default Settings</strong>.</p>
   </li>
   <li>
-    <p>Turn on the switch under Access Signing Certificate to enable clients to access the tenant signing certificate without logging in to Oracle Identity Cloud Service.</p>
+    <p>Turn on the switch under <strong>Access Signing Certificate</strong> to enable clients to access the tenant signing certificate without logging in to Oracle Identity Cloud Service.</p>
   </li>
   <li>
     <p>Click <strong>Save</strong> to save the default settings.</p>
@@ -742,14 +742,14 @@ Server returned HTTP response code: 401
         
       </h3>
 
-<p>You need to configure the “issuer” URL for JWT validation to succeed.</p>
+<p>Configure the “issuer” URL for JWT validation to succeed.</p>
 
 <ol>
   <li>
     <p>Return to the menu on the left and click <strong>Security</strong> and <strong>OAuth</strong>.</p>
   </li>
   <li>
-    <p>Enter the issuer URL you saved (the Oracle Identity Cloud Service (OICS) console URL without the <code>/ui/v1/adminconsole</code> path) in the “Issuer” field, for example, <code>https://idcs-7084de14ec…….identity.oraclecloud.com</code>.</p>
+    <p>Enter the issuer URL you saved (the Oracle Identity Cloud Service console URL without the <code>/ui/v1/adminconsole</code> path) in the “Issuer” field, for example, <code>https://idcs-7084de14ec…….identity.oraclecloud.com</code>.</p>
   </li>
 </ol>
     
@@ -761,7 +761,7 @@ Server returned HTTP response code: 401
         
       </h3>
 
-<p>The launcher generated an initial security configuration in <em>oci/src/main/resources/application-oraclecloud.properties</em>, as follows:</p>
+<p>The GCN launcher generated an initial security configuration in <em>oci/src/main/resources/application-oraclecloud.properties</em>, as follows:</p>
 
 <pre><code>micronaut.application.name=oci
 # &lt;1&gt;
@@ -794,11 +794,11 @@ micronaut.security.token.jwt.signatures.secret.generator.secret=${JWT_GENERATOR_
         
       </h2>
 
-<p>The generated <code>application-oraclecloud.properties</code> contains placeholders  for the <code>client-id</code>, <code>client-secret</code>, and the <code>issuer</code> URL properties. Create environment variables for those before starting the application.</p>
+<p>The generated <em>application-oraclecloud.properties</em> file contains placeholders  for the <code>client-id</code>, <code>client-secret</code>, and the <code>issuer</code> URL properties. Create environment variables for those before starting the application.</p>
 
 <ol>
   <li>
-    <p>Create <code>OAUTH_CLIENT_ID</code>, <code>OAUTH_CLIENT_SECRET</code>, and <code>OAUTH_ISSUER</code> environment variables. Use the client ID and the client secret you saved when you created the Oracle Cloud Infrastructure application, and the issuer URL you saved (the Oracle Identity Cloud Service (OICS) console URL without the <code>/ui/v1/adminconsole</code> path):</p>
+    <p>Create <code>OAUTH_CLIENT_ID</code>, <code>OAUTH_CLIENT_SECRET</code>, and <code>OAUTH_ISSUER</code> environment variables. Use the client ID and the client secret you saved when you created the Oracle Cloud Infrastructure application, and the issuer URL you saved (the Oracle Identity Cloud Service console URL without the <code>/ui/v1/adminconsole</code> path):</p>
 
     <pre><code class="language-bash">export OAUTH_CLIENT_ID=XXXXXXXXXX
 export OAUTH_CLIENT_SECRET=YYYYYYYYYY
@@ -806,10 +806,7 @@ export OAUTH_ISSUER=https://idcs-7084de14ec…….identity.oraclecloud.com
 </code></pre>
 
     <details>
-     <summary>The <code>export</code> command syntax varies per platform. Expand to learn more.</summary>
-     <p>If you use Linux/macOS, the <code>export</code> command is:</p>
-         <pre><code>export VARNAME=&lt;VALUE&gt;</code></pre>
-
+     <summary>The <code>export</code> command syntax varies per platform. Expand for more details.</summary>
      <p>If you use Windows, change <code>export</code> to <code>set</code> if using the <code>cmd</code> prompt:</p>
          <pre><code>set VARNAME=&lt;VALUE&gt;</code></pre>
 
@@ -824,7 +821,7 @@ export OAUTH_ISSUER=https://idcs-7084de14ec…….identity.oraclecloud.com
  </details>
   </li>
   <li>
-    <p>To run the application, use the following command, which starts the application on port 8080.</p>
+    <p>Run the application, using the following command, which starts the application on port 8080.</p>
 
     <div id="tabs-doc3">
      <ul>
@@ -840,7 +837,7 @@ export OAUTH_ISSUER=https://idcs-7084de14ec…….identity.oraclecloud.com
  </div>
   </li>
   <li>
-    <p>Open <a href="http://localhost:8080/secure">http://localhost:8080/secure</a> in a browser, and you will be redirected to the home page because the controller method is annotated with <code>@Secured(IS_AUTHENTICATED)</code>, and you are not yet authenticated:</p>
+    <p>Open <a href="http://localhost:8080/secure">http://localhost:8080/secure</a> in a browser, and you will be redirected to the home page (because the controller method is annotated with <code>@Secured(IS_AUTHENTICATED)</code>, and you are not yet authenticated):</p>
 
     <p><img src="/gcn/docs/gcn-modules/security/images/run1.png" alt="run1" /></p>
   </li>
@@ -851,7 +848,7 @@ export OAUTH_ISSUER=https://idcs-7084de14ec…….identity.oraclecloud.com
     <p>Click <strong>Allow</strong> on the next screen.</p>
   </li>
   <li>
-    <p>When redirected to the home page, you will see that you are authenticated and now have a <strong>Logout</strong> link, and several authentication details are displayed.</p>
+    <p>When redirected to the home page, you will see that you are authenticated and now have a <strong>Logout</strong> link. Several authentication details are also displayed.</p>
   </li>
   <li>
     <p>Navigate again to <a href="http://localhost:8080/secure">http://localhost:8080/secure</a> in a browser, and you will see a simple JSON response:</p>

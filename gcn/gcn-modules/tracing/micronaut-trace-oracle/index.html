@@ -14,7 +14,7 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2023-11-17 16:50:37 +0000"/>
+  <meta name="last_modified" content="2023-11-23 14:35:30 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -404,7 +404,7 @@
         
       </h1>
 
-<p>This guide describes how to to create and trace a Micronaut application using <a href="https://docs.oracle.com/iaas/application-performance-monitoring/index.html">Oracle Cloud Infrastructure Application Performance Monitoring (APM)</a>.</p>
+<p>This guide describes how to to create and trace a Micronaut application using <a href="https://docs.oracle.com/iaas/application-performance-monitoring/index.html" target="_blank">Oracle Cloud Infrastructure Application Performance Monitoring</a> (APM).</p>
 
 <blockquote>
   <p>Oracle Cloud Infrastructure Application Performance Monitoring provides a comprehensive set of features to monitor applications and diagnose performance issues.</p>
@@ -424,7 +424,6 @@ Tracing gives you observability into what is causing bottlenecks and failures.</
 <ul>
   <li>JDK 17 or higher. See <a href="/gcn/get-started/setting-up-desktop/">Setting up Your Desktop</a>.</li>
   <li>An Oracle Cloud Infrastructure account. See <a href="/gcn/get-started/setting-up-cloud-accounts/">Setting up Your Cloud Accounts</a>.</li>
-  <li>The Oracle Cloud Infrastructure <a href="https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/cliinstall.htm">CLI</a> installed with <a href="https://docs.oracle.com/iaas/Content/API/SDKDocs/cliinstall.htm#configfile">local access configured</a>.</li>
   <li>The GCN CLI. See <a href="/gcn/get-started/setting-up-desktop/">Setting up Your Desktop</a>. (Optional.)</li>
 </ul>
 
@@ -832,68 +831,52 @@ class WarehouseController {
 
 <p>To run tracing on Oracle Cloud Infrastructure, create an Application Performance Monitoring domain and configure the application’s tracer.</p>
     
-      <h3 id="21-create-application-performance-monitoring-domain">
+      <h3 id="21-create-an-application-performance-monitoring-domain">
         
         
-          2.1. Create Application Performance Monitoring Domain <a href="#21-create-application-performance-monitoring-domain" class="anchor_heading">#</a>
+          2.1. Create an Application Performance Monitoring Domain <a href="#21-create-an-application-performance-monitoring-domain" class="anchor_heading">#</a>
         
         
       </h3>
 
 <ol>
   <li>
-    <p>In the Oracle Cloud Console, open the navigation menu, click <strong>Observability &amp; Management</strong>. Under <strong>Application Performance</strong>, click <strong>Administration</strong>.</p>
-  </li>
-  <li>
-    <p>Click <strong>Create APM Domain</strong>. You are prompted to enter information to describe a new domain. Enter the following information:</p>
+    <p>Follow the steps in <a href="https://docs.oracle.com/iaas/application-performance-monitoring/doc/create-apm-domain.html" target="_blank">Create an APM Domain</a>, using the following properties:</p>
 
     <ul>
-      <li>
-        <p><strong>Name</strong>: Enter a name, for example,  “gcn-apm-demo1”.</p>
-      </li>
-      <li>
-        <p><strong>Create in compartment</strong>: Select the compartment from the compartment drop-down list, or use the default.</p>
-      </li>
-      <li>
-        <p><strong>Description</strong>: Enter a description for the domain, such as “A domain to demo APM with GCN”.</p>
-      </li>
+      <li><strong>Name</strong>: Enter a name, for example,  “gcn-apm-demo1”.</li>
+      <li><strong>Create in compartment</strong>: Select the compartment from the compartment drop-down list, or use the default.</li>
+      <li><strong>Description</strong>: Enter a description, such as “A domain to demo APM with GCN”.</li>
     </ul>
   </li>
   <li>
-    <p>Click <strong>Create</strong>.</p>
-  </li>
-  <li>
-    <p>When the APM domain is created, click the name of the domain to view its details.</p>
+    <p>When the APM domain is created, click its name to view its details.</p>
 
     <ul>
       <li>
-        <p>Take note of the Data Upload Endpoint (click <strong>Copy</strong>). (The guide refers to this variable as <em>&lt;DataUploadEndpoint&gt;</em>, it should resemble <code>aaaaaaaaannaaannaa.apm-agt.us-phoenix-1.oci.oraclecloud.com</code>.)</p>
+        <p>Take note of the Data Upload Endpoint (click <strong>Copy</strong>). 
+ (This guide refers to it as <em>&lt;DataUploadEndpoint&gt;</em>, it should resemble <code>aaaaaaaaannaaannaa.apm-agt.us-phoenix-1.oci.oraclecloud.com</code>.)</p>
       </li>
       <li>
-        <p>Click <strong>Data Keys</strong> in the list of resources and then take note of the public key (click <strong>Copy</strong>). (The guide refers to this variable as <em>[public key]</em>, it should resemble <code>AAANAANAANNNAAAAANNN</code>.)</p>
+        <p>Click <strong>Data Keys</strong> in the list of resources and then take note of the public key (click <strong>Copy</strong>).
+ (This guide refers to it as <em>[public key]</em>, it should resemble <code>AAANAANAANNNAAAAANNN</code>.)</p>
       </li>
     </ul>
   </li>
 </ol>
     
-      <h3 id="22-configure-tracer">
+      <h3 id="22-configure-the-tracer">
         
         
-          2.2. Configure Tracer <a href="#22-configure-tracer" class="anchor_heading">#</a>
+          2.2. Configure the Tracer <a href="#22-configure-the-tracer" class="anchor_heading">#</a>
         
         
       </h3>
 
 <p>APM requires you to construct a URL by using the data upload endpoint as your base URL, and generating the path based on some choices, including values from your private or public key.</p>
 
-<p>When you created your application, GCN automatically added the necessary configuration to a file named <em>oci/src/main/resources/application-oraclecloud.properties</em>.</p>
-
-<p>In the <em>oci/src/main/resources/application-oraclecloud.properties</em> file, replace <em>&lt;DataUploadEndpoint&gt;</em> and <em>[public key]</em> with the values from the previous step:</p>
-
-<pre><code>otel.exporter.zipkin.url=https\://&lt;DataUploadEndpoint&gt;
-micronaut.application.name=oci
-otel.exporter.zipkin.path=/20200101/observations/public-span?dataFormat\=zipkin&amp;dataFormatVersion\=2&amp;dataKey\=[public key]
-</code></pre>
+<p>When you created your application, the GCN launcher automatically added a default configuration to the file named <em>oci/src/main/resources/application-oraclecloud.properties</em>. 
+Replace <em>&lt;DataUploadEndpoint&gt;</em> and <em>[public key]</em> with the values from the previous step.</p>
 
 <p>GCN will use these values to construct the APM Collector URL which should resemble <code>https://aaaaaaaaannaaannaa.apm-agt.us-phoenix-1.oci.oraclecloud.com/20200101/observations/public-span?dataFormat=zipkin&amp;dataFormatVersion=2&amp;dataKey=AAANAANAANNNAAAAANNN</code>.</p>
 
@@ -907,8 +890,8 @@ otel.exporter.zipkin.path=/20200101/observations/public-span?dataFormat\=zipkin&
         
       </h2>
 
-<p>Application traces can be sent to Oracle Cloud Infrastructure APM from outside Oracle Cloud Infrastructure.
-This enables you to run the application locally and view the traces in the Oracle Cloud Infrastructure APM Trace Explorer.</p>
+<p>An application can send traces to APM from outside Oracle Cloud Infrastructure.
+This enables you to run the application locally and then view the traces in the APM Trace Explorer.</p>
 
 <p>To run the application locally, use the following command, which starts the application on port 8080:</p>
 
@@ -933,16 +916,16 @@ This enables you to run the application locally and view the traces in the Oracl
         
       </h2>
 
-<p>Test the application by accessing REST endpoints. Then review the trace output.</p>
+<p>Test the application by accessing its REST endpoints, then review the trace output.</p>
 
 <p>Open the <a href="https://cloud.oracle.com/apm/apm-traces">Oracle Cloud Infrastructure APM Trace Explorer</a>. Select the appropriate compartment and the APM domain that you created, then click <strong>Run</strong> to run the query.</p>
 
-<p>It may take a few seconds for the traces to show up in the explorer. If no spans show up, run the query again by clicking <strong>Run</strong>, or refresh the page.</p>
+<p>It may take a few seconds for the traces to appear in the explorer. If necessary, run the query again by clicking <strong>Run</strong>, or by refreshing the page.</p>
     
-      <h3 id="41-get-item-counts">
+      <h3 id="41-get-item-count">
         
         
-          4.1. Get Item Counts <a href="#41-get-item-counts" class="anchor_heading">#</a>
+          4.1. Get Item Count <a href="#41-get-item-count" class="anchor_heading">#</a>
         
         
       </h3>
@@ -964,10 +947,10 @@ This enables you to run the application locally and view the traces in the Oracl
   </li>
 </ol>
     
-      <h3 id="42-order-items">
+      <h3 id="42-order-an-item">
         
         
-          4.2. Order Items <a href="#42-order-items" class="anchor_heading">#</a>
+          4.2. Order an Item <a href="#42-order-an-item" class="anchor_heading">#</a>
         
         
       </h3>
@@ -1004,7 +987,8 @@ This enables you to run the application locally and view the traces in the Oracl
 </code></pre>
   </li>
   <li>
-    <p>Review the output again in the Trace Explorer: you should see a new row that represents the trace of the request to retrieve the inventory. Click the trace name to view its details. You should see something similar to the following screenshot.</p>
+    <p>Review the output again in the Trace Explorer: you should see a new row that represents the trace of the request to retrieve the inventory.
+Click the trace name to view its details. You should see something similar to the following screenshot.</p>
 
     <p><img src="/gcn/docs/gcn-modules/tracing/images/oci-inventory-all.jpg" alt="inventory all" /></p>
 
@@ -1062,27 +1046,24 @@ This enables you to run the application locally and view the traces in the Oracl
 
 <p>The native executable starts instantaneously.</p>
     
-      <h3 id="61-get-item-counts">
+      <h3 id="61-get-item-count">
         
         
-          6.1. Get Item Counts <a href="#61-get-item-counts" class="anchor_heading">#</a>
+          6.1. Get Item Count <a href="#61-get-item-count" class="anchor_heading">#</a>
         
         
       </h3>
 
 <ol>
   <li>
-    <p>Repeat the test from step <strong>4.1</strong> by sending an HTTP GET request to the <code>/store/inventory/{item}</code> endpoint to get the count of an item:</p>
-
-    <pre><code class="language-bash"> curl http://localhost:8080/store/inventory/laptop
-</code></pre>
+    <p>Repeat the test from step <strong>4.1</strong> by sending an HTTP GET request to the <code>/store/inventory/{item}</code> endpoint to get the count of an item.</p>
   </li>
   <li>
     <p>Review the trace output in Trace Explorer: you should see a new row in the list of Traces that represents the request from the native executable:</p>
 
     <p><img src="/gcn/docs/gcn-modules/tracing/images/oci-inventory-item-native.jpg" alt="Trace Explorer Get Count Natively" /></p>
 
-    <p>Notice that the native executable requests are processed a lot faster than its original.</p>
+    <p>Notice that the native executable requests are processed much faster than the Java application.</p>
   </li>
   <li>
     <p>Click the trace name to view its details. Each span is represented by a blue bar.</p>
@@ -1091,27 +1072,22 @@ This enables you to run the application locally and view the traces in the Oracl
   </li>
 </ol>
     
-      <h3 id="62-order-items">
+      <h3 id="62-order-an-item">
         
         
-          6.2. Order Items <a href="#62-order-items" class="anchor_heading">#</a>
+          6.2. Order an Item <a href="#62-order-an-item" class="anchor_heading">#</a>
         
         
       </h3>
 
 <ol>
   <li>
-    <p>Repeat the test from step <strong>4.2</strong> by sending an HTTP POST request to the <code>/store/order</code> endpoint to order an item:</p>
-
-    <pre><code class="language-bash"> curl -X "POST" "http://localhost:8080/store/order" \
-      -H 'Content-Type: application/json; charset=utf-8' \
-      -d $'{"item":"laptop", "count":5}'
-</code></pre>
+    <p>Repeat the test from step <strong>4.2</strong> by sending an HTTP POST request to the <code>/store/order</code> endpoint to order an item.</p>
 
     <p>You should see a new row in the Trace Explorer that represents the POST request.</p>
 
     <blockquote>
-      <p>Note: If you click a span, you should see its details. However, for auto-activation of custom span attributes, Oracle Cloud Infrastructure APM requires the attributes to be seen at least five times. Spans created prior to auto-activation will not display these attributes. This means that the custom span attributes (<code>count</code> and <code>order.item</code>) you added to the source code will not be displayed in the Span Details. To work around this constraint, run the command above a further ten times.</p>
+      <p>Note: If you click a span, you should see its details. However, for auto-activation of custom span attributes, APM requires the attributes to be seen at least five times. Spans created prior to auto-activation will not display these attributes. This means that the custom span attributes (<code>count</code> and <code>order.item</code>) you added to the source code will not be displayed in the Span Details. To work around this constraint, run the command above a further ten times.</p>
     </blockquote>
 
     <p>You should see ten new rows in the list of Traces.</p>
@@ -1126,7 +1102,7 @@ This enables you to run the application locally and view the traces in the Oracl
   <li>
     <p>Click the span named <code>oci-native: storecontroller.order#store.order</code> to view its details showing the custom span attributes - <code>count</code> and <code>order.item</code>.</p>
 
-    <p><img src="/gcn/docs/gcn-modules/tracing/images/oci-native-span-tags.jpg" alt="Span Details 1" /></p>
+    <p><img src="/gcn/docs/gcn-modules/tracing/images/oci-native-span-tags.jpg" alt="Span Details" /></p>
   </li>
 </ol>
     

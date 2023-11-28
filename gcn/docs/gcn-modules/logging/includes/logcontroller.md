@@ -1,6 +1,6 @@
-### 1.2. Controller Class
+### 1.1. Controller Class
 
-The generated example code includes a controller in a file named _{{ include.cloud }}/src/main/java/com/example/LogController.java_, which enables you to send `POST` requests to log a message:
+The example code includes a controller in a file named _{{ include.cloud }}/src/main/java/com/example/LogController.java_, which enables you to send `POST` requests to publish a message to a log:
 
 ```java
 package com.example;
