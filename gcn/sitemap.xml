@@ -130,7 +130,7 @@
 </url>
 <url>
 <loc>https://www.graal.cloud/gcn/gcn-modules/database/micronaut-autonomous-database-oci/</loc>
-<lastmod>2023-11-23T12:00:51+00:00</lastmod>
+<lastmod>2023-11-29T17:10:59+00:00</lastmod>
 </url>
 <url>
 <loc>https://www.graal.cloud/gcn/gcn-modules/logging/micronaut-aws-logging/</loc>
@@ -150,7 +150,7 @@
 </url>
 <url>
 <loc>https://www.graal.cloud/gcn/gcn-modules/database/micronaut-data-jdbc-repository/</loc>
-<lastmod>2023-11-23T12:08:16+00:00</lastmod>
+<lastmod>2023-11-29T17:10:59+00:00</lastmod>
 </url>
 <url>
 <loc>https://www.graal.cloud/gcn/gcn-modules/email/micronaut-email-amazon-ses/</loc>
@@ -158,11 +158,11 @@
 </url>
 <url>
 <loc>https://www.graal.cloud/gcn/gcn-modules/email/micronaut-email-javamail/</loc>
-<lastmod>2023-11-23T12:00:51+00:00</lastmod>
+<lastmod>2023-11-29T17:10:59+00:00</lastmod>
 </url>
 <url>
 <loc>https://www.graal.cloud/gcn/gcn-modules/email/micronaut-email-oracle/</loc>
-<lastmod>2023-11-23T12:00:51+00:00</lastmod>
+<lastmod>2023-11-29T17:10:59+00:00</lastmod>
 </url>
 <url>
 <loc>https://www.graal.cloud/gcn/gcn-modules/serverless/micronaut-function-aws/</loc>
@@ -194,7 +194,7 @@
 </url>
 <url>
 <loc>https://www.graal.cloud/gcn/gcn-modules/kubernetes/micronaut-k8s/</loc>
-<lastmod>2023-11-23T12:36:14+00:00</lastmod>
+<lastmod>2023-11-29T17:10:59+00:00</lastmod>
 </url>
 <url>
 <loc>https://www.graal.cloud/gcn/vscode-tools/micronaut-launch/</loc>
@@ -278,7 +278,7 @@
 </url>
 <url>
 <loc>https://www.graal.cloud/gcn/gcn-modules/tracing/micronaut-trace-aws/</loc>
-<lastmod>2023-11-23T14:04:03+00:00</lastmod>
+<lastmod>2023-11-30T15:15:11+00:00</lastmod>
 </url>
 <url>
 <loc>https://www.graal.cloud/gcn/gcn-modules/tracing/micronaut-trace-google/</loc>
@@ -350,14 +350,14 @@
 </url>
 <url>
 <loc>https://www.graal.cloud/gcn/google3b083ffafa1dd4b4.html</loc>
-<lastmod>2023-11-29T09:17:06+00:00</lastmod>
+<lastmod>2023-12-04T07:59:57+00:00</lastmod>
 </url>
 <url>
 <loc>https://www.graal.cloud/gcn/resources/lib/fiddle/data/SYSTEM_MODULES-java.desktop-javax.swing.text.html</loc>
-<lastmod>2023-11-29T09:17:06+00:00</lastmod>
+<lastmod>2023-12-04T07:59:58+00:00</lastmod>
 </url>
 <url>
 <loc>https://www.graal.cloud/gcn/resources/lib/fiddle/data/SYSTEM_MODULES-jdk.xml.dom-org.w3c.dom.html</loc>
-<lastmod>2023-11-29T09:17:06+00:00</lastmod>
+<lastmod>2023-12-04T07:59:58+00:00</lastmod>
 </url>
 </urlset>

@@ -14,7 +14,7 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2023-11-23 14:04:03 +0000"/>
+  <meta name="last_modified" content="2023-11-30 15:15:11 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -815,7 +815,7 @@ class WarehouseController {
     }
 }
 </code></pre>
-<p><strong>1</strong> It is critical that any blocking I/O operations (such as fetching the data from the database) are offloaded to a separate thread pool that does not block the Event loop.</p>
+<p><strong>1</strong> It is critical that any blocking I/O operations (such as fetching the data from the database) are offloaded to a separate thread pool that does not block the event loop.</p>
 
 <p><strong>2</strong> The class is defined as a controller with the <a href="https://docs.micronaut.io/latest/api/io/micronaut/http/annotation/Controller.html"><code>@Controller</code></a> annotation mapped to the path <code>/warehouse</code>.</p>
 
@@ -879,7 +879,7 @@ aws iam create-access-key --user-name Administrator
 
     <pre><code class="language-bash">docker run --name awscollector --rm -p 4317:4317 -p 55680:55680 -p 8889:8888 \
     -e AWS_REGION=us-east-1 -e AWS_PROFILE=default \
-    -v ~/.aws:/root/.aws -v "$(pwd)/otel-local-config.yaml:/otel-local-config.yaml" \
+    -v ~/.aws:/home/aoc/.aws -v "$(pwd)/otel-local-config.yaml:/otel-local-config.yaml" \
     public.ecr.aws/aws-observability/aws-otel-collector:latest \
     --config otel-local-config.yaml
 </code></pre>
@@ -890,7 +890,7 @@ aws iam create-access-key --user-name Administrator
   <p>Note: For Windows, <a href="https://learn.microsoft.com/windows/wsl/tutorials/wsl-containers#install-docker-desktop">install Docker Desktop with WSL backend and setup WSL integration</a>. Start the WSL terminal, and use the following command (replace <code>&lt;Username&gt;</code> with your Windows user name):</p>
   <pre><code class="language-bash">docker run --name awscollector --rm -p 4317:4317 -p 55680:55680 -p 8889:8888 \
       -e AWS_REGION=us-east-2 -e AWS_PROFILE=default \
-      -v "/mnt/c/Users/&lt;Username&gt;/.aws:/root/.aws" -v "$(pwd)/otel-local-config.yaml:/otel-local-config.yaml" \
+      -v "/mnt/c/Users/&lt;Username&gt;/.aws:/home/aoc/.aws" -v "$(pwd)/otel-local-config.yaml:/otel-local-config.yaml" \
       public.ecr.aws/aws-observability/aws-otel-collector:latest \
       --config otel-local-config.yaml
 </code></pre>

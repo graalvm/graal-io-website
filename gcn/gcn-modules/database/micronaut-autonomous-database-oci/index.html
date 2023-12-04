@@ -14,7 +14,7 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2023-11-23 12:00:51 +0000"/>
+  <meta name="last_modified" content="2023-11-29 17:10:59 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -709,7 +709,7 @@ class GenreController {
 }
 </code></pre>
 
-<p><strong>1</strong> It is critical that any blocking I/O operations (such as fetching the data from the database) are offloaded to a separate thread pool that does not block the Event loop.</p>
+<p><strong>1</strong> It is critical that any blocking I/O operations (such as fetching the data from the database) are offloaded to a separate thread pool that does not block the event loop.</p>
 
 <p><strong>2</strong> The class is defined as a controller with the <a href="https://docs.micronaut.io/latest/api/io/micronaut/http/annotation/Controller.html"><code>@Controller</code></a> annotation mapped to the path <code>/genres</code>.</p>
 

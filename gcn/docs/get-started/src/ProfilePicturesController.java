@@ -22,7 +22,7 @@ import static io.micronaut.http.HttpHeaders.ETAG;
 import static io.micronaut.http.MediaType.IMAGE_JPEG_TYPE;
 
 @Controller(ProfilePicturesController.PREFIX) // The class is defined as a controller with the @Controller annotation mapped to the path `/pictures`.
-@ExecuteOn(TaskExecutors.IO) // Any blocking I/O operations are offloaded to a separate thread pool that does not block the Event loop.
+@ExecuteOn(TaskExecutors.IO) // Any blocking I/O operations are offloaded to a separate thread pool that does not block the event loop.
 class ProfilePicturesController implements ProfilePicturesApi {
 
     static final String PREFIX = "/pictures";

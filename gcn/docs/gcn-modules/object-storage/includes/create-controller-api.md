@@ -82,7 +82,7 @@ class ProfilePicturesController implements ProfilePicturesApi {
 ```
 **1** The class is defined as a controller with the [`@Controller`](https://docs.micronaut.io/latest/api/io/micronaut/http/annotation/Controller.html) annotation mapped to the path `/pictures`.
 
-**2** It is critical that any blocking I/O operations (such as fetching the data from the database) are offloaded to a separate thread pool that does not block the Event loop.
+**2** It is critical that any blocking I/O operations (such as fetching the data from the database) are offloaded to a separate thread pool that does not block the event loop.
 
 **3** [`ObjectStorageOperations`](https://micronaut-projects.github.io/micronaut-object-storage/latest/guide/) provides a uniform API to create, read and delete objects in the major cloud providers.
 
