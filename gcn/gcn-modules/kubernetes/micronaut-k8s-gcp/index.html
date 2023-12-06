@@ -14,7 +14,7 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2023-11-23 12:36:14 +0000"/>
+  <meta name="last_modified" content="2023-12-06 12:53:34 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -219,6 +219,8 @@
 
 <div class="toc-bullets">
 
+
+  
 
   
 
@@ -664,7 +666,10 @@ export GKE_CLUSTER_NAME="gcn-k8s"
 
 <ol>
   <li>
-    <p>Export the <em>users</em> microservice image repository to the <code>USERS_REPOSITORY</code> environment variable.</p>
+    <p>Export the <em>users</em> microservice container image repository to the <code>USERS_REPOSITORY</code> environment variable:</p>
+
+    <pre><code class="language-bash"> export USERS_REPOSITORY="gcr.io/$GCP_PROJECT_ID/users"
+</code></pre>
   </li>
   <li>
     <p>Edit the file named <em>users/k8s.yml</em> as follows:</p>
@@ -725,12 +730,12 @@ export GKE_CLUSTER_NAME="gcn-k8s"
 
     <p><strong>2</strong> Change <code>imagePullPolicy</code> to <code>Always</code>.</p>
 
-    <p><strong>3</strong> A secret required to pull images from Google Container Registry.</p>
+    <p><strong>3</strong> A secret required to pull container images from Google Container Registry.</p>
   </li>
   <li>
     <p>Tag an existing <em>users</em> microservice container image:</p>
 
-    <pre><code class="language-bash"> docker tag users:latest ${USERS_REPOSITORY}:latest
+    <pre><code class="language-bash"> docker tag users-gcp:latest ${USERS_REPOSITORY}:latest
 </code></pre>
   </li>
   <li>
@@ -786,7 +791,7 @@ export GKE_CLUSTER_NAME="gcn-k8s"
 
 <ol>
   <li>
-    <p>Export the <em>orders</em> microservice image repository to the <code>ORDERS_REPOSITORY</code> environment variable:</p>
+    <p>Export the <em>orders</em> microservice container image repository to the <code>ORDERS_REPOSITORY</code> environment variable:</p>
 
     <pre><code class="language-bash"> export ORDERS_REPOSITORY="gcr.io/$GCP_PROJECT_ID/orders"
 </code></pre>
@@ -850,12 +855,12 @@ export GKE_CLUSTER_NAME="gcn-k8s"
 
     <p><strong>2</strong> Change <code>imagePullPolicy</code> to <code>Always</code>.</p>
 
-    <p><strong>3</strong> A secret required to pull images from Google Container Registry.</p>
+    <p><strong>3</strong> A secret required to pull container images from Google Container Registry.</p>
   </li>
   <li>
     <p>Tag an existing <em>orders</em> microservice container image:</p>
 
-    <pre><code class="language-bash"> docker tag orders:latest ${ORDERS_REPOSITORY}:latest
+    <pre><code class="language-bash"> docker tag orders-gcp:latest ${ORDERS_REPOSITORY}:latest
 </code></pre>
   </li>
   <li>
@@ -911,7 +916,7 @@ export GKE_CLUSTER_NAME="gcn-k8s"
 
 <ol>
   <li>
-    <p>Export the <em>api</em> microservice image repository to the <code>API_REPOSITORY</code> environment variable:</p>
+    <p>Export the <em>api</em> microservice container image repository to the <code>API_REPOSITORY</code> environment variable:</p>
 
     <pre><code class="language-bash"> export API_REPOSITORY="gcr.io/$GCP_PROJECT_ID/api"
 </code></pre>
@@ -975,12 +980,12 @@ export GKE_CLUSTER_NAME="gcn-k8s"
 
     <p><strong>2</strong> Change <code>imagePullPolicy</code> to <code>Always</code>.</p>
 
-    <p><strong>3</strong> A secret required to pull images from Google Container Registry.</p>
+    <p><strong>3</strong> A secret required to pull container images from Google Container Registry.</p>
   </li>
   <li>
     <p>Tag an existing <em>api</em> microservice container image:</p>
 
-    <pre><code class="language-bash"> docker tag api:latest ${API_REPOSITORY}:latest
+    <pre><code class="language-bash"> docker tag api-gcp:latest ${API_REPOSITORY}:latest
 </code></pre>
   </li>
   <li>
@@ -1098,7 +1103,7 @@ export GKE_CLUSTER_NAME="gcn-k8s"
   <li>
     <p>Retrieve the URL of the <em>api</em> microservice and set it as the value of the $API_URL environment variable:</p>
 
-    <pre><code class="language-bash"> export API_URL=http://$(kubectl get svc api -n=gcn-k8s -o json | jq -r '.status.loadBalancer.ingress[0].hostname'):8080
+    <pre><code class="language-bash"> export API_URL=http://$(kubectl get svc api -n=gcn-k8s -o json | jq -r '.status.loadBalancer.ingress[0].ip'):8080
 </code></pre>
   </li>
   <li>

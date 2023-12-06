@@ -14,7 +14,7 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2023-11-23 12:36:14 +0000"/>
+  <meta name="last_modified" content="2023-12-01 15:49:04 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -219,6 +219,8 @@
 
 <div class="toc-bullets">
 
+
+  
 
   
 
@@ -1269,7 +1271,7 @@ class AnalyticsListener {
 <p>The <em>Books</em> and <em>Analytics</em> microservices are both run on the same AWS EC2 instance, so they must run on different ports. Change the port that <em>Analytics</em> runs on by editing the <em>aws/src/main/resources/application-ec2.properties</em> file so that it has the following contents:</p>
 
 <pre><code>micronaut.application.name=aws
-micronaut.server.port=8080
+micronaut.server.port=8081
 </code></pre>
     
       <h2 id="2-run-the-microservices">
@@ -1280,7 +1282,7 @@ micronaut.server.port=8080
         
       </h2>
 
-<p>To run the microservices locally, starting from <code>bootstrap</code>, comment out the Kafka section of each microservice’s <em>application-ec2.properties</em> file by inserting “#” at the beginning of each line, as shown below:</p>
+<p>To run the microservices locally, starting from <code>kafka.bootstrap.servers</code>, comment out the Kafka section of each microservice’s <em>application-ec2.properties</em> file by inserting “#” at the beginning of each line, as shown below:</p>
 
 <pre><code># kafka.bootstrap.servers=${KAFKA_BOOTSTRAP_SERVERS}
 # kafka.max.partition.fetch.bytes=1048576

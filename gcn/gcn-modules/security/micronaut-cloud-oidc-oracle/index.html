@@ -14,7 +14,7 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2023-11-23 14:19:22 +0000"/>
+  <meta name="last_modified" content="2023-12-06 13:02:09 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -374,6 +374,8 @@
 
   
 
+  
+
 <!-- <li class="search additional-search">
   <form class="form-inline sidebar" action="/docs/search" autocomplete="on" method="get">
     <input class="input-search sidebar" type="text" id="search-box" name="query" placeholder="Search">
@@ -524,7 +526,7 @@ The OIDC APIs are easier to work with than OAuth because they use JSON instead o
         
       </h3>
 
-<p>The GCN launcher created a class named <code>AuthController</code> to handle requests to <code>/</code>. It displays the email of an authenticated person, if any. The controller endpoint is annotated with  a <a href="https://micronaut-projects.github.io/micronaut-views/latest/api/io/micronaut/views/View.html" target="_blank"><code>@View</code></a> annotation that uses a Thymeleaf template. The file named <em>oci/src/main/java/com/example/AuthController.java</em> has the following contents:</p>
+<p>The GCN launcher created a class named <code>AuthController</code> to handle requests to <code>/</code>. It displays the email of an authenticated person, if any. The controller endpoint is annotated with  a <a href="https://micronaut-projects.github.io/micronaut-views/latest/api/io/micronaut/views/View.html" target="_blank"><code>@View</code></a> annotation that uses a <a href="https://micronaut-projects.github.io/micronaut-views/latest/guide/#jte" target="_blank">JTE template</a>. The file named <em>oci/src/main/java/com/example/AuthController.java</em> has the following contents:</p>
 
 <pre><code class="language-java">package com.example;
 
@@ -582,30 +584,36 @@ class AuthController {
 
 <p><strong>8</strong> This method simply returns a model map that will be rendered as JSON (because there is no <a href="https://micronaut-projects.github.io/micronaut-views/latest/api/io/micronaut/views/View.html" target="_blank"><code>@View</code></a> annotation).</p>
     
-      <h3 id="12-thymeleaf-view">
+      <h3 id="12-jte-template">
         
         
-          1.2. Thymeleaf View <a href="#12-thymeleaf-view" class="anchor_heading">#</a>
+          1.2. JTE Template <a href="#12-jte-template" class="anchor_heading">#</a>
         
         
       </h3>
 
-<p>The GCN launcher created a Thymeleaf view in a file named <em>oci/src/main/resources/views/auth.html</em> to render the UI for the controller. It has the following contents:</p>
+<p>The GCN launcher created a <a href="https://micronaut-projects.github.io/micronaut-views/latest/guide/#jte" target="_blank">JTE template</a> in a file named <em>oci/src/main/jte/auth.jte</em> to render the UI for the controller. It has the following contents:</p>
 
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html xmlns:th="http://www.thymeleaf.org" lang="en"&gt;
+<pre><code class="language-html">@param String username
+@param java.util.Map&lt;?, ?&gt; security
+
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
 &lt;head&gt;
     &lt;title&gt;GCN - Oracle OpenID Connect&lt;/title&gt;
 &lt;/head&gt;
 &lt;body&gt;
 &lt;h1&gt;GCN - Oracle OpenID Connect&lt;/h1&gt;
 
-&lt;h2&gt;username: &lt;span th:text="${username}"&gt;&lt;/span&gt;&lt;/h2&gt;
+&lt;h2&gt;username: &lt;span&gt;${username}&lt;/span&gt;&lt;/h2&gt;
 
 &lt;nav&gt;
     &lt;ul&gt;
-        &lt;li th:unless="${security}"&gt;&lt;a href="/oauth/login/gcn"&gt;Enter&lt;/a&gt;&lt;/li&gt;
-        &lt;li th:if="${security}"&gt;&lt;a href="/logout"&gt;Logout&lt;/a&gt;&lt;/li&gt;
+    @if(security == null)
+        &lt;li&gt;&lt;a href="/oauth/login/gcn"&gt;Enter&lt;/a&gt;&lt;/li&gt;
+    @else
+        &lt;li&gt;&lt;a href="/logout"&gt;Logout&lt;/a&gt;&lt;/li&gt;
+    @endif
     &lt;/ul&gt;
 &lt;/nav&gt;
 &lt;/body&gt;

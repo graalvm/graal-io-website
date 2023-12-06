@@ -14,7 +14,7 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2023-11-17 17:18:39 +0000"/>
+  <meta name="last_modified" content="2023-12-06 01:47:37 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -374,6 +374,8 @@
 
   
 
+  
+
 <!-- <li class="search additional-search">
   <form class="form-inline sidebar" action="/docs/search" autocomplete="on" method="get">
     <input class="input-search sidebar" type="text" id="search-box" name="query" placeholder="Search">
@@ -511,7 +513,7 @@ metrics for the whole application and measures total computation time for a part
     <li class="tabs-maven"><a href="#maven">Maven</a></li>
   </ul>
   <div id="gradle">
-    <pre><code class="language-bash">gcn create-app com.example.gcp-metrics-demo
+    <pre><code class="language-bash">gcn create-app com.example.gcp-metrics-demo \
     --clouds=gcp \
     --services=database,metrics \
     --features=graalvm,flyway,micrometer-annotation \
@@ -519,7 +521,7 @@ metrics for the whole application and measures total computation time for a part
     --lang=java</code></pre>
   </div>
   <div id="maven">
-    <pre><code class="language-bash">gcn create-app com.example.gcp-metrics-demo
+    <pre><code class="language-bash">gcn create-app com.example.gcp-metrics-demo \
     --clouds=gcp \
     --services=database,metrics \
     --features=graalvm,flyway,micrometer-annotation \
@@ -547,7 +549,7 @@ When creating the application with GCN, the necessary features such as <a href="
   <p><a href="https://micrometer.io/">Micrometer</a> provides a simple facade over the instrumentation clients for a number of popular monitoring systems.</p>
 </blockquote>
 
-<p>To configure Micrometer, the following properties were added to the configuration file, <em>aws/src/main/resources/application-ec2.properties</em>, as follows:</p>
+<p>To configure Micrometer, the following properties were added to the configuration file, <em>gcp/src/main/resources/application-gcp.properties</em>, as follows:</p>
 
 <pre><code>micronaut.metrics.enabled=true
 micronaut.metrics.binders.files.enabled=true
@@ -622,12 +624,10 @@ micronaut.metrics.export.stackdriver.enabled=true
 </code></pre>
   </li>
   <li>
-    <p>Configure the project in <em>gcp/src/main/resources/application-gcp.yml</em>:</p>
+    <p>Configure the project in <em>gcp/src/main/resources/application-gcp.properties</em>:</p>
 
-    <pre><code class="language-yml"> export:
-   stackdriver:
-     enabled: true
-     projectId: gcn-guides
+    <pre><code> export.stackdriver.enabled=true
+ export.stackdriver.projectId=gcn-guides
 </code></pre>
   </li>
 </ol>

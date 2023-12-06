@@ -14,7 +14,7 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2023-11-29 17:10:59 +0000"/>
+  <meta name="last_modified" content="2023-12-06 13:02:09 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -304,6 +304,8 @@
         
       
     
+  
+
   
 
   
@@ -677,14 +679,16 @@ class OciEmailController {
         
       </h3>
 
-<p>The GCN launcher created a Thymeleaf template in <em>oci/src/main/resources/views/email.html</em> containing the following:</p>
+<p>The GCN launcher created a <a href="https://micronaut-projects.github.io/micronaut-views/latest/guide/#jte" target="_blank">JTE template</a> in <em>oci/src/main/jte/email.jte</em> containing the following:</p>
 
-<pre><code class="language-xml">&lt;!DOCTYPE html&gt;
-&lt;html lang="en" xmlns:th="http://www.thymeleaf.org"&gt;
+<pre><code class="language-xml">@param String name
+
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
 &lt;body&gt;
-    &lt;p&gt;
-        Hello, &lt;span th:text="${name}"&gt;&lt;/span&gt;!
-    &lt;/p&gt;
+&lt;p&gt;
+    Hello, &lt;span&gt;${name}&lt;/span&gt;!
+&lt;/p&gt;
 &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
