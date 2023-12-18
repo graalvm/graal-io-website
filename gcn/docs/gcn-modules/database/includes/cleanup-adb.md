@@ -1,0 +1,1 @@
+When you finish using the database, you can terminate it from the Oracle Cloud Console. For more information, see [Terminate an Autonomous Database Instance](https://docs.oracle.com/iaas/autonomous-database-shared/doc/autonomous-terminate.html){:target="_blank"}.

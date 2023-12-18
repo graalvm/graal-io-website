@@ -14,7 +14,7 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2023-10-10 10:12:43 +0000"/>
+  <meta name="last_modified" content="2023-12-12 15:13:17 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -376,6 +376,10 @@
 
   
 
+  
+
+  
+
 <!-- <li class="search additional-search">
   <form class="form-inline sidebar" action="/docs/search" autocomplete="on" method="get">
     <input class="input-search sidebar" type="text" id="search-box" name="query" placeholder="Search">
@@ -408,9 +412,11 @@
 
 <p>This guide describes how to create a <a href="https://github.com/spring-projects/spring-boot">Spring Boot 3</a> application using GCN. The application presents REST endpoints and stores data in an Oracle Cloud Infrastructure Autonomous Database using Micronaut Data.</p>
 
-<p><a href="https://docs.oracle.com/iaas/Content/Database/Concepts/adboverview.htm">Oracle Cloud Infrastructure Autonomous Database</a> is a fully automated database service that makes it easy for all organizations to develop and deploy application workloads regardless of complexity, scale, or criticality.</p>
+<blockquote>
+  <p><a href="https://docs.oracle.com/iaas/Content/Database/Concepts/adboverview.htm" target="_blank">Oracle Cloud Infrastructure Autonomous Database</a> is a fully automated database service that makes it easy for all organizations to develop and deploy application workloads regardless of complexity, scale, or criticality. All Oracle Cloud Infrastructure accounts (whether free or paid) get two Always Free Oracle Autonomous Databases. You can use these databases for transaction processing, data warehousing, Oracle APEX application development, or JSON-based application development. For current regional availability, see the <strong>Always Free Cloud Services</strong> table in <a href="https://www.oracle.com/cloud/data-regions.html" target="_blank">Cloud Regions—Infrastructure and Platform Services</a>.</p>
+</blockquote>
 
-<p><a href="https://micronaut-projects.github.io/micronaut-data/latest/guide/">Micronaut Data</a> is a database access toolkit that uses ahead-of-time (AoT) compilation to pre-compute queries for repository interfaces that are then executed by a thin, lightweight runtime layer. Micronaut Data supports the following backends: JPA (Hibernate) and Hibernate Reactive; SQL (JDBC, R2DBC), and MongoDB.</p>
+<p><a href="https://micronaut-projects.github.io/micronaut-data/latest/guide/" target="_blank">Micronaut Data</a> is a database access toolkit that uses ahead-of-time (AoT) compilation to pre-compute queries for repository interfaces that are then executed by a thin, lightweight runtime layer. Micronaut Data supports the following backends: JPA (Hibernate) and Hibernate Reactive; SQL (JDBC, R2DBC), and MongoDB.</p>
     
       <h3 id="prerequisites">
         
@@ -511,7 +517,7 @@ implementation("io.micronaut.spring:micronaut-spring-boot-starter")
     </div>
     <div id="maven">
         <p><em>pom.xml</em></p>
-        <p>Add the Micronaut versions to the <code>properties</code> element:</p>
+        <p>Add the Micronaut version to the <code>properties</code> element:</p>
          <pre><code class="language-xml">&lt;micronaut.version&gt;4.0.6-oracle-00001&lt;/micronaut.version&gt;
 &lt;micronaut.platform.version&gt;4.0.7-oracle-00001&lt;/micronaut.platform.version&gt;
 &lt;micronaut.data.version&gt;4.0.4-oracle-00001&lt;/micronaut.data.version&gt;</code></pre>
@@ -653,7 +659,7 @@ testImplementation("org.testcontainers:oracle-xe")</code></pre>
         
       </h3>
 
-<p>Add the <code>@EnableMicronaut</code> annotation for Spring Boot to start the Micronaut context. Edit the file named <em>src/main/java/com/example/Application.java</em> as follows:</p>
+<p>Add the <a href="https://micronaut-projects.github.io/micronaut-spring/4.3.1/api/io/micronaut/spring/boot/starter/EnableMicronaut.html"><code>@EnableMicronaut</code></a> annotation for Spring Boot to start the Micronaut context. Edit the file named <em>src/main/java/com/example/Application.java</em> as follows:</p>
 
 <pre><code class="language-java">package com.example;
 
@@ -754,7 +760,7 @@ public interface GenreRepository extends CrudRepository&lt;Genre, Long&gt; { // 
 }
 </code></pre>
 
-<p><strong>1</strong> <code>@JdbcRepository</code> with a specific dialect.</p>
+<p><strong>1</strong> <a href="https://micronaut-projects.github.io/micronaut-data/3.0.1/api/io/micronaut/data/jdbc/annotation/JdbcRepository.html"><code>@JdbcRepository</code></a> with a specific dialect.</p>
 
 <p><strong>2</strong> <code>Genre</code>, the entity to treat as the root entity for the purposes of querying, is established either from the method signature or from the generic type parameter specified to the <code>GenericRepository</code> interface.</p>
 
@@ -1013,22 +1019,22 @@ public class GenreControllerTest {
 
 <ol>
   <li>
-    <p>In the Oracle Cloud Console, open the navigation menu, and click <strong>Oracle Database</strong>. Under <strong>Autonomous Database</strong>, click <strong>Autonomous Transaction Processing</strong>.</p>
+    <p>In the Oracle Cloud Console, open the navigation menu, click <strong>Oracle Database</strong>. Under <strong>Autonomous Database</strong>, click <strong>Autonomous Transaction Processing</strong>.</p>
   </li>
   <li>
-    <p>Enter “GCNDemo” as the display name and the database name.</p>
+    <p>Click <strong>Create Autonomous Database</strong> and accept the default name for the database.</p>
   </li>
   <li>
-    <p>Select <strong>Transaction Processing</strong> and <strong>Shared Infrastructure</strong>. If you are using a trial account, make sure you select <strong>Always Free</strong>.</p>
+    <p>Select <strong>Transaction Processing</strong> and <strong>Serverless</strong>. If you are using a trial account, make sure you select <strong>Always Free</strong>.</p>
   </li>
   <li>
     <p>Create an admin password (must be at least 12 characters and contain a number and an uppercase letter) and select <strong>Secure access from everywhere</strong> as the network access type.</p>
   </li>
   <li>
-    <p>Select <strong>License Included</strong> and click <strong>Create Autonomous Database</strong> to create your database.</p>
+    <p>Click <strong>Create Autonomous Database</strong> to create your database.</p>
   </li>
   <li>
-    <p>On the <strong>Autonomous Database Details</strong> screen click <strong>Copy</strong> to copy the OCID of the database. (This is a unique identifier for your database instance which you will need later.)</p>
+    <p>On the <strong>Autonomous Database Details</strong> screen click <strong>Copy</strong> to copy the OCID of the database. (This is a unique identifier which you will need later.)</p>
   </li>
 </ol>
     
@@ -1042,17 +1048,17 @@ public class GenreControllerTest {
 
 <ol>
   <li>
-    <p>On the <strong>Autonomous Database Details</strong> screen click <strong>Database Actions</strong>. Login with username “ADMIN” and the admin password you created earlier.</p>
+    <p>When the database has been provisioned, on the <strong>Autonomous Database Details</strong> page, click <strong>Database Actions</strong>. (If necessary, log in with username “ADMIN” and the admin password you created earlier.)</p>
   </li>
   <li>
-    <p>Under <strong>Development</strong> click <strong>SQL</strong> to open the SQL console.</p>
+    <p>Click <strong>SQL</strong> to open the SQL console.</p>
   </li>
   <li>
     <p>Copy and paste the following SQL commands into the worksheet:</p>
 
-    <pre><code class="language-sql"> CREATE USER gcndemo IDENTIFIED BY "XXXXXXXXX";
- GRANT CONNECT, RESOURCE TO gcndemo;
- GRANT UNLIMITED TABLESPACE TO gcndemo;
+    <pre><code class="language-sql"> CREATE USER gcn_user IDENTIFIED BY "XXXXXXXXX";
+ GRANT CONNECT, RESOURCE TO gcn_user;
+ GRANT UNLIMITED TABLESPACE TO gcn_user;
 </code></pre>
 
     <p>Create a schema user password (must be at least 12 characters and contain a number and an uppercase letter) and replace the text “XXXXXXXXX” with that password.</p>
@@ -1070,66 +1076,67 @@ public class GenreControllerTest {
         
       </h2>
 
-<p>Before you can test or run your application, provide configuration for Flyway and the datasources.</p>
+<p>Before you can test or run your application, provide configuration for <a href="http://www.flywaydb.org" target="_blank">Flyway</a> and the application’s datasources.</p>
     
-      <h3 id="31-configure-data-sources">
+      <h3 id="31-configure-flyway">
         
         
-          3.1. Configure Data Sources <a href="#31-configure-data-sources" class="anchor_heading">#</a>
+          3.1. Configure Flyway <a href="#31-configure-flyway" class="anchor_heading">#</a>
         
         
       </h3>
 
-<p>Oracle Cloud Infrastructure Database connection information and credentials are stored in the <a href="https://docs.oracle.com/iaas/Content/Database/Tasks/adbconnecting.htm">Oracle Wallet</a>. See <a href="https://micronaut-projects.github.io/micronaut-oracle-cloud/latest/guide/">Micronaut Oracle Cloud integration</a> for more details and options for working with Oracle Cloud Infrastructure.</p>
+<p>To create the database schema, use Flyway. Micronaut <a href="https://micronaut-projects.github.io/micronaut-flyway/latest/guide/">integrates with Flyway</a> to automate schema changes, significantly simplify schema management tasks, such as migrating, rolling back, and reproducing in multiple environments.</p>
 
-<p>Create a properties file named <em>src/main/resources/application.properties</em>.</p>
-
-<p>And add the following configurations:</p>
-
-<pre><code class="language-xml">datasources.default.ocid=ocid1.autonomousdatabase.oc1.phx.aaaa..... # 1
-datasources.default.walletPassword= # 2
-datasources.default.username=gcndemo
-datasources.default.password= # 3
-
-oci.config.profile=DEFAULT # 4
-</code></pre>
-<p><strong>1</strong> Set the value of the <code>ocid</code> property with the database OCID unique identifier you saved when creating the database.</p>
-
-<p><strong>2</strong> Set the value of the <code>walletPassword</code> property with a password to encrypt the wallet keys (must be at least eight characters and include at least one letter and either one numeric or special character).</p>
-
-<p><strong>3</strong> Set the value of the <code>password</code> property with the <code>gcndemo</code> schema user password you created.</p>
-
-<p><strong>4</strong> Change the profile name if you’re not using the default, and optionally add a value for the path to the config file if necessary as described in the <a href="https://micronaut-projects.github.io/micronaut-oracle-cloud/latest/guide/#config-auth">Authentication section</a> of the Micronaut Oracle Cloud documentation.</p>
-    
-      <h3 id="32-configure-flyway">
-        
-        
-          3.2. Configure Flyway <a href="#32-configure-flyway" class="anchor_heading">#</a>
-        
-        
-      </h3>
-
-<p>To create the database schema, use <a href="http://www.flywaydb.org">Flyway</a>. Micronaut <a href="https://micronaut-projects.github.io/micronaut-flyway/latest/guide/">integrates with Flyway</a> to automate schema changes, significantly simplify schema management tasks, such as migrating, rolling back, and reproducing in multiple environments.</p>
-
-<p>Configure Flyway to perform migrations on the default data sources. 
+<p>Configure Flyway to perform migrations on the default datasources. 
 Add the following to the <em>src/main/resources/application.properties</em> file:</p>
 
 <pre><code class="language-xml">flyway.datasources.default.enabled=true
 </code></pre>
 
-<p>Configuring multiple datasources is as simple as enabling Flyway for each one. You can also specify directories that will be used for migrating each data source. For more information, see <a href="https://micronaut-projects.github.io/micronaut-flyway/latest/guide/">Micronaut integration with Flyway</a>.</p>
-
-<p>Flyway migration is automatically triggered before your application starts. Flyway reads migration file(s) in the <em>resources/db/migration/</em> directory, runs them if necessary, and verifies that the configured data source is consistent with them.</p>
+<p>Flyway migration is automatically triggered before your application starts.
+Flyway reads migration file(s) in the <em>resources/db/migration/</em> directory, runs them if necessary, and verifies that the configured datasource is consistent with them.</p>
 
 <p>Create a new Flyway migration SQL script in <em>src/main/resources/db/migration/V1__create-schema.sql</em> with the following contents</p>
 
 <pre><code class="language-sql">CREATE TABLE "GENRE" (
   "ID" NUMBER(19) PRIMARY KEY NOT NULL,
-  "NAME" VARCHAR(255) NOT NULL);
+  "NAME" VARCHAR(255) NOT NULL
+);
 CREATE SEQUENCE "GENRE_SEQ" MINVALUE 1 START WITH 1 NOCACHE NOCYCLE;
 </code></pre>
 
 <p>During application startup, Flyway runs the commands in the SQL file and creates the schema needed for the application.</p>
+    
+      <h3 id="32-configure-datasources">
+        
+        
+          3.2. Configure Datasources <a href="#32-configure-datasources" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>The connection information and credentials for an Oracle Cloud Infrastructure Autonomous Database are stored in an <a href="https://docs.oracle.com/iaas/Content/Database/Tasks/adbconnecting.htm" target="_blank">Oracle Wallet</a>. See <a href="https://micronaut-projects.github.io/micronaut-oracle-cloud/latest/guide/#autonomousDatabase" target="_blank">Micronaut Oracle Cloud integration</a> for more details and options for working with Oracle Cloud Infrastructure.</p>
+
+<p>Create a properties file named <em>src/main/resources/application.properties</em>.</p>
+
+<p>And add the following configurations:</p>
+
+<pre><code>datasources.default.ocid=&lt;ocid&gt; # 1
+datasources.default.walletPassword=&lt;wallet_password&gt; # 2
+datasources.default.username=&lt;username&gt; #3
+datasources.default.password=&lt;password&gt; # 4
+oci.config.profile=DEFAULT # 5
+</code></pre>
+<p><strong>1</strong> Replace <code>&lt;ocid&gt;</code> with the OCID of the database you copied when creating the database.</p>
+
+<p><strong>2</strong> Replace <code>&lt;wallet_password&gt;</code> with a password to encrypt the wallet keys (must be at least eight characters and include at least one letter and either one numeric or special character).</p>
+
+<p><strong>3</strong> Replace the <code>&lt;username&gt;</code> with “gcn_user” (the name of the user you created).</p>
+
+<p><strong>4</strong> Replace the <code>&lt;password&gt;</code> with the “gcn_user” password you created.</p>
+
+<p><strong>5</strong> Change the profile name if you’re not using the default, and optionally add a value for the path to the config file if necessary as described in the <a href="https://micronaut-projects.github.io/micronaut-oracle-cloud/latest/guide/#config-auth">Authentication section</a> of the Micronaut Oracle Cloud documentation.</p>
     
       <h2 id="4-run-the-tests-optional">
         
@@ -1139,13 +1146,17 @@ CREATE SEQUENCE "GENRE_SEQ" MINVALUE 1 START WITH 1 NOCACHE NOCYCLE;
         
       </h2>
 
-<p>Before running the test, add a configuration for running against a temporary database.</p>
+<blockquote>
+  <p>Note: The <code>docker</code> daemon must be running before running the tests.</p>
+</blockquote>
+
+<p>Before running the test, add a configuration to run against a temporary database.</p>
 
 <ol>
   <li>
-    <p>Create a test properties file, <em>src/test/resources/application.properties</em>, and add the following configurations:</p>
+    <p>Create a test properties file, <em>src/test/resources/application.properties</em>, and add the following contents:</p>
 
-    <pre><code class="language-xml"> datasources.default.url=jdbc:tc:oracle:thin:@/xe
+    <pre><code> datasources.default.url=jdbc:tc:oracle:thin:@/xe
  datasources.default.driverClassName=org.testcontainers.jdbc.ContainerDatabaseDriver
  datasources.default.username=system
  datasources.default.password=oracle
@@ -1153,8 +1164,15 @@ CREATE SEQUENCE "GENRE_SEQ" MINVALUE 1 START WITH 1 NOCACHE NOCYCLE;
  flyway.datasources.default.enabled=true
 </code></pre>
   </li>
+</ol>
+
+<blockquote>
+  <p>Note: Currently, there is no Oracle Database port for AArch64, hence Oracle XE container images cannot run. For more information, see <a href="https://github.com/gvenzl/oci-oracle-xe#oracle-xe-on-apple-m-chips">Oracle XE on Apple M chips</a>.</p>
+</blockquote>
+
+<ol>
   <li>
-    <p>Run the tests.</p>
+    <p>Run the tests as follows:</p>
 
     <div id="tabs-doc5">
      <ul>
@@ -1249,12 +1267,12 @@ curl -i http://localhost:8080/genres/list
       <h2 id="7-clean-up-cloud-resources">
         
         
-          7. Clean up Cloud Resources <a href="#7-clean-up-cloud-resources" class="anchor_heading">#</a>
+          7. Clean Up Cloud Resources <a href="#7-clean-up-cloud-resources" class="anchor_heading">#</a>
         
         
       </h2>
 
-<p>When you finish using the database, you can terminate it from the Oracle Cloud Console. For more information, see <a href="https://docs.oracle.com/iaas/autonomous-database-shared/doc/autonomous-terminate.html">Terminate an Autonomous Database Instance</a>.</p>
+<p>When you finish using the database, you can terminate it from the Oracle Cloud Console. For more information, see <a href="https://docs.oracle.com/iaas/autonomous-database-shared/doc/autonomous-terminate.html" target="_blank">Terminate an Autonomous Database Instance</a>.</p>
     
       <h3 id="summary">
         

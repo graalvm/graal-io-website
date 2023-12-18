@@ -10,11 +10,11 @@
 
   <title>
     
-      Securely Store Application Secrets in Oracle Cloud Infrastructure Vault
+      Securely Store Database Connection Details in an Oracle Cloud Infrastructure Vault
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2023-11-23 14:04:03 +0000"/>
+  <meta name="last_modified" content="2023-12-12 15:00:12 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -23,7 +23,7 @@
   <meta name="msapplication-TileColor" content="#da532c">
   <meta name="theme-color" content="#ffffff">
   <meta name="google-site-verification" content="-vRqwa9WYn6AaQGnl88xvrLw6ac4xoKVkZkhanmlRhU" />
-  <link rel="canonical" href="https://www.graal.cloud/gcn/gcn-modules/secret-management/micronaut-secrets-oracle-cloud/">
+  <link rel="canonical" href="https://www.graal.cloud/gcn/gcn-modules/secret-management/micronaut-secrets-oci-mysql/">
 
   <!-- jQuery UI Tabs -->
   <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
@@ -285,6 +285,10 @@
   
 
   
+
+  
+
+  
     
 
     
@@ -307,8 +311,8 @@
           <li class="toc-bullets-sub toc-bullets-highlight">
           
             
-            <a href="/gcn/gcn-modules/secret-management/micronaut-secrets-oracle-cloud/">
-              Securely Store Application Secrets in Oracle Cloud Infrastructure Vault
+            <a href="/gcn/gcn-modules/secret-management/micronaut-secrets-oci-mysql/">
+              Securely Store Database Connection Details in an Oracle Cloud Infrastructure Vault
             </a>
           </li>
 
@@ -398,19 +402,24 @@
 
     <div class="col-sm-9 docsmod">
       <div id="content-wrapper" class="docs-content docs-content--with-sidebar">
-        <h1 id="securely-store-application-secrets-in-oracle-cloud-infrastructure-vault">
+        <h1 id="securely-store-database-connection-details-in-an-oracle-cloud-infrastructure-vault">
         
         
-          Securely Store Application Secrets in Oracle Cloud Infrastructure Vault
+          Securely Store Database Connection Details in an Oracle Cloud Infrastructure Vault
         
         
       </h1>
 
-<p>This guide describes how to create a Java application that accesses secrets in Oracle Cloud Infrastructure Vault.</p>
+<p>This guide describes how to create a Java application that stores MySQL database connection details as <strong>secrets</strong> in an Oracle Cloud Infrastructure <strong>vault</strong>.</p>
 
-<p>Instead of storing a database URL, username, and password in plain text or environment variables, a secret manager provides a convenient way to store API keys, passwords, certificates, and other sensitive data while improving security.</p>
+<p>Instead of storing a database URL, username, or password in plain text or via environment variables, a <strong>secret manager</strong> such as <a href="https://docs.oracle.com/iaas/Content/KeyManagement/Concepts/keyoverview.htm" target="_blank">Oracle Cloud Infrastructure Vault</a> provides a convenient way to securely store and retrieve sensitive data.</p>
 
-<p><a href="https://docs.oracle.com/iaas/Content/KeyManagement/Concepts/keyoverview.htm">Oracle Cloud Infrastructure Vault</a> lets you securely store and retrieve secrets such as passwords or other information that shouldn’t be accessible in cleartext. This guide describes how to use Vault to store database connection information for a Micronaut application that uses MySQL, and uses the Micronaut support for Oracle Cloud Infrastructure to make the process seamless.</p>
+<p>This guide describes how to use a Vault to store and retrieve details for a MySQL database connection, and demonstrates how to use <a href="https://micronaut-projects.github.io/micronaut-oracle-cloud/latest/guide/#vault" target="_blank">Micronaut integration with the Oracle Cloud Infrastructure Vault</a>.</p>
+
+<blockquote>
+  <p>Note: If this is your first experience of using an Oracle Cloud Infrastructure Vault with Micronaut, please review the <a href="/gcn/gcn-modules/secret-management/micronaut-secrets-oci/">Securely Store Application Secrets in an Oracle Cloud Infrastructure Vault</a> first. 
+Unlike that guide, this guide describes how to use the Oracle Cloud Infrastructure <a href="https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/cliinstall.htm">Command Line Interface</a> (CLI) to set up your tenancy.</p>
+</blockquote>
     
       <h3 id="prerequisites">
         
@@ -424,14 +433,15 @@
   <li>JDK 17 or higher. See <a href="/gcn/get-started/setting-up-desktop/">Setting up Your Desktop</a>.</li>
   <li>An Oracle Cloud Infrastructure account. See <a href="/gcn/get-started/setting-up-cloud-accounts/">Setting up Your Cloud Accounts</a>.</li>
   <li>The Oracle Cloud Infrastructure <a href="https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/cliinstall.htm">CLI</a> installed with <a href="https://docs.oracle.com/iaas/Content/API/SDKDocs/cliinstall.htm#configfile">local access configured</a>.</li>
-  <li>An Oracle Cloud Infrastructure <a href="https://docs.oracle.com/en/cloud/paas/integration-cloud/oracle-integration-oci/creating-oci-compartment.html">compartment</a> with appropriate permission granted to your Oracle Cloud Infrastructure user account to manage the Vault family in the compartment.</li>
-  <li>An Oracle Cloud Infrastructure compartment with appropriate permission granted to your Oracle Cloud Infrastructure user to deploy and manage a database.</li>
+  <li>An Oracle Cloud Infrastructure <a href="https://docs.oracle.com/iaas/Content/GSG/Concepts/concepts-account.htm#conceptcompartment">compartment</a> with appropriate permission granted to your Oracle Cloud Infrastructure user account to manage <code>secret-family</code>, <code>key-family</code>, and to deploy and manage a database in the compartment.</li>
+  <li>A Virtual Cloud Network (VCN) in Oracle Cloud Infrastructure  with a single regional public subnet, which will be used by both Compute and MySQL Database instances.</li>
   <li><a href="https://stedolan.github.io/jq/"><code>jq</code></a>: a lightweight and flexible command-line JSON processor.</li>
   <li>A Docker-API compatible container runtime such as <a href="https://docs.rancherdesktop.io/getting-started/installation/">Rancher Desktop</a> or <a href="https://www.docker.io/gettingstarted/">Docker</a> installed to build a deployable GraalVM Native Executable.</li>
   <li>The GCN CLI. See <a href="/gcn/get-started/setting-up-desktop/">Setting up Your Desktop</a>. (Optional.)</li>
 </ul>
 
-<p>Follow the steps below to create the application from scratch. However, you can also download the completed example in Java.</p>
+<p>Follow the steps below to create the application from scratch.
+However, you can also download the completed example.</p>
 
 <div id="tabs-doc1">
     <ul>
@@ -493,7 +503,9 @@
       <li><strong>Sample Code</strong>: <em>Yes</em> (Default)</li>
     </ul>
   </li>
-  <li>Click <strong>Generate Project</strong>. The GCN Launcher creates an application with the default package <code>com.example</code> in a directory named <em>oci-secrets-demo</em>. The application ZIP file will be downloaded in your default downloads directory. Unzip it, open in your code editor, and proceed to the next steps.</li>
+  <li>Click <strong>Generate Project</strong>. The GCN Launcher creates an application with the default package <code>com.example</code> in a directory named <em>oci-secrets-demo</em>.
+The application ZIP file will be downloaded in your default downloads directory.
+Unzip it, open in your code editor, and proceed to the next steps.</li>
 </ol>
 
 <p>Alternatively, use the GCN CLI as follows:</p>
@@ -523,49 +535,71 @@
 
 <p>For more information, see <a href="/gcn/get-started/using-gcn-cli/">Using the GCN CLI</a>.</p>
     
-      <h3 id="11-configure-the-database-application">
+      <h2 id="2-create-an-oracle-mysql-database-instance">
         
         
-          1.1. Configure the Database Application <a href="#11-configure-the-database-application" class="anchor_heading">#</a>
-        
-        
-      </h3>
-
-<p>Use the <a href="/gcn/gcn-modules/database/micronaut-mysql-database-oci/">Create and Connect a Micronaut Application to an Oracle Cloud Infrastructure MySQL Database</a> guide to create a MySQL database. Follow steps 1.1 (<em>Datasources Configuration</em>) and 2 (<em>Create an Oracle MySQL Database Instance</em>).</p>
-    
-      <h2 id="2-create-an-oracle-cloud-infrastructure-vault">
-        
-        
-          2. Create an Oracle Cloud Infrastructure Vault <a href="#2-create-an-oracle-cloud-infrastructure-vault" class="anchor_heading">#</a>
+          2. Create an Oracle MySQL Database Instance <a href="#2-create-an-oracle-mysql-database-instance" class="anchor_heading">#</a>
         
         
       </h2>
 
-<p>Create the Vault using the Oracle Cloud Infrastructure CLI. See the <a href="https://docs.oracle.com/iaas/tools/oci-cli/latest/oci_cli_docs/cmdref/kms.html">Vault CLI command reference</a> for more information.</p>
-
-<p>There are three required parameters for the <code>create</code> command: compartment OCID, display name, and Vault type.</p>
+<p>Create a MySQL database using the <a href="/gcn/gcn-modules/database/micronaut-mysql-database-oci/" target="_blank">Create and Connect a Micronaut Application to an Oracle Cloud Infrastructure MySQL Database</a> guide.
+Follow the steps in <strong>2</strong> (<em>Create an Oracle MySQL Database Instance</em>).</p>
     
-      <h3 id="21-compartment-ocid">
+      <h2 id="3-create-a-compute-instance-and-configure-the-database">
         
         
-          2.1. Compartment OCID <a href="#21-compartment-ocid" class="anchor_heading">#</a>
+          3. Create a Compute Instance and Configure the Database <a href="#3-create-a-compute-instance-and-configure-the-database" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>There is no direct way to externally <a href="https://docs.oracle.com/iaas/mysql-database/doc/connecting-db-system.html">connect to a MySQL database</a> in Oracle Cloud Infrastructure, so you need to create a Compute instance (virtual machine) in Oracle Cloud Infrastructure.</p>
+
+<p>Create a Compute instance using the <a href="/gcn/gcn-modules/database/micronaut-mysql-database-oci/" target="_blank">Create and Connect a Micronaut Application to an Oracle Cloud Infrastructure MySQL Database</a> guide.
+Follow the steps in section <strong>3</strong> (<em>Create a Compute Instance</em>).</p>
+<blockquote>
+  <p>Note: Use the same subnet as the one containing the MySQL database (otherwise the application will not be able to access the database).</p>
+</blockquote>
+
+<p>Configure your database by following the steps in section <strong>4</strong> (<em>Configure a MySQL Database</em>).</p>
+    
+      <h2 id="4-create-an-oracle-cloud-infrastructure-vault-master-encryption-key-and-secrets">
+        
+        
+          4. Create an Oracle Cloud Infrastructure Vault, Master Encryption Key, and Secrets <a href="#4-create-an-oracle-cloud-infrastructure-vault-master-encryption-key-and-secrets" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>Before you can create a secret, you require a Vault (to hold the secret) and a master encryption key (to secure the secret).</p>
+
+<blockquote>
+  <p>Note: In this guide, you create all the Oracle Cloud Infrastructure resources in the same compartment. However, the best practice is to have a one Vault in a compartment (managed by an administrator)—application owners manage their application secrets in their individual compartments.</p>
+</blockquote>
+    
+      <h3 id="41-create-a-vault">
+        
+        
+          4.1. Create a Vault <a href="#41-create-a-vault" class="anchor_heading">#</a>
         
         
       </h3>
 
-<p>Use the same compartment as the one you used for your database, above. You should have saved the compartment OCID as an environment variable, named <code>$C</code>. (See step 2 “Create an Oracle MySQL Database Instance” of <a href="/gcn/gcn-modules/database/micronaut-mysql-database-oci/">Create and Connect a Micronaut Application to an Oracle Cloud Infrastructure MySQL Database</a>.)</p>
-    
-      <h3 id="22-create-the-vault">
-        
-        
-          2.2. Create the Vault <a href="#22-create-the-vault" class="anchor_heading">#</a>
-        
-        
-      </h3>
+<p>Create a Vault using the Oracle Cloud Infrastructure CLI.</p>
 
-<p>Choose a display name (1-100 characters) and a Vault type, either <code>DEFAULT</code> or <code>VIRTUAL_PRIVATE</code>. Choose <code>DEFAULT</code> to avoid the cost of a virtual private Vault.</p>
+<p>The <code>create</code> command requires three parameters: compartment OCID, display name, and Vault type.
+(See <a href="https://docs.oracle.com/iaas/tools/oci-cli/latest/oci_cli_docs/cmdref/kms.html" target="_blank">Key Management</a> for more information.)</p>
 
-<p>Run the <a href="https://docs.oracle.com/iaas/tools/oci-cli/latest/oci_cli_docs/cmdref/kms/management/vault/create.html">create command</a> with the compartment OCID, display name, and Vault type substituted:</p>
+<p>Use the same compartment as the one you used for your database, above. 
+You should have saved the compartment OCID as the value of the environment variable <code>$C</code>.</p>
+
+<p>Choose a display name (1-100 characters) and a Vault type, either <code>DEFAULT</code> or <code>VIRTUAL_PRIVATE</code>.</p>
+<blockquote>
+  <p>Note: Choose <code>DEFAULT</code> to avoid the cost of a virtual private Vault.</p>
+</blockquote>
+
+<p>Run the <code>create</code> command, substituting the display name and Vault type, as follows:</p>
 
 <pre><code class="language-bash">oci kms management vault create -c $C \
     --display-name gcn_guide_vault \
@@ -573,32 +607,27 @@
     | jq -r '.data.id'
 </code></pre>
 
-<p>The <code>jq</code> utility will extract the Vault OCID from the <code>id</code> property in the response; this is the unique identifier for your Vault which you’ll need later. Store the value as the <code>VAULT_ID</code> environment variable:</p>
+<p>The <code>jq</code> utility extracts the OCID of the Vault from the <code>id</code> property in the response; this is the unique identifier for your Vault which you will need later. 
+Store the OCID as the value of the <code>VAULT_ID</code> environment variable:</p>
 
 <pre><code class="language-bash">export VAULT_ID=ocid1.vault.oc1.iad.b5re3....abuwcljryp5dmxbu3si7...
 </code></pre>
-
-<p>If you use Linux or Mac, you can combine both commands into one, creating the Vault and setting the environment variable at the same time:</p>
-<pre><code class="language-bash">export VAULT_ID=$(oci kms management vault create -c $C \
-    --display-name gcn_guide_vault \
-    --vault-type DEFAULT \
-    | jq -r '.data.id')
-</code></pre>
     
-      <h3 id="23-create-a-master-encryption-key">
+      <h3 id="42-create-a-master-encryption-key">
         
         
-          2.3. Create a Master Encryption Key <a href="#23-create-a-master-encryption-key" class="anchor_heading">#</a>
+          4.2. Create a Master Encryption Key <a href="#42-create-a-master-encryption-key" class="anchor_heading">#</a>
         
         
       </h3>
 
-<p>To <a href="https://docs.oracle.com/iaas/Content/KeyManagement/Tasks/managingkeys.htm">create a Master Encryption Key</a>, you need the management endpoint URL. It wasn’t available in the response from the Vault <code>create</code> command, so run the <a href="https://docs.oracle.com/iaas/tools/oci-cli/latest/oci_cli_docs/cmdref/kms/management/vault/get.html">get command</a>:</p>
+<p>To <a href="https://docs.oracle.com/iaas/Content/KeyManagement/Tasks/managingkeys.htm" target="_blank">create a Master Encryption Key</a>, you need the Vault’s management endpoint URL. 
+It is not in the response from the Vault <code>create</code> command, so run the <a href="https://docs.oracle.com/iaas/tools/oci-cli/latest/oci_cli_docs/cmdref/kms/management/vault/get.html" target="_blank">get command</a>, as follows:</p>
 
 <pre><code class="language-bash">oci kms management vault get --vault-id $VAULT_ID
 </code></pre>
 
-<p>The response should look like this:</p>
+<p>The response to the command should look like:</p>
 <pre><code class="language-json">{
   "data": {
     "compartment-id": "ocid1.tenancy.oc1..aaaaaaaaixksuiqo3rx6...",
@@ -614,15 +643,22 @@
 }
 </code></pre>
 
-<p>Wait a few minutes for the Vault to finish provisioning. Re-run the <code>get</code> command until the value of <code>lifecycle-state</code> is <code>ACTIVE</code>. The URL is the value of the <code>management-endpoint</code> property.</p>
+<p>Wait a few minutes for the Vault to be provisioned. Re-run the command until the value of <code>lifecycle-state</code> is <code>ACTIVE</code>.
+The value of the <code>management-endpoint</code> property provides the URL.</p>
 
-<p>Store the URL as the <code>VAULT_ENDPOINT</code> environment variable:</p>
+<p>Store the URL as the value of the <code>VAULT_ENDPOINT</code> environment variable:</p>
+
 <pre><code class="language-bash">export VAULT_ENDPOINT=https://b5re3...-management.kms.us-ashburn-1.oraclecloud.com
 </code></pre>
 
-<p>Choose a name for the key, such as “gcn-guide-encryption-key”, and a “Protection Mode”, either <code>SOFTWARE</code> or <code>HSM</code>. Choose <code>SOFTWARE</code> to avoid the cost of using a hardware security module (HSM). Use the  <code>AES</code>  key shape algorithm and a key length of 32 (256 bits).</p>
+<p>Choose a name for the key, such as “gcn-guide-encryption-key”, and a “Protection Mode”, either <code>SOFTWARE</code> or <code>HSM</code>.</p>
+<blockquote>
+  <p>Note: Choose <code>SOFTWARE</code> to avoid the cost of using a hardware security module (HSM).</p>
+</blockquote>
 
-<p>Run the <a href="https://docs.oracle.com/iaas/tools/oci-cli/latest/oci_cli_docs/cmdref/kms/management/key/create.html">create command</a> with the compartment OCID, display name, protection mode, key shape, and management endpoint substituted:</p>
+<p>Use the  <code>AES</code> key shape algorithm and a key length of 32 (256 bits).</p>
+
+<p>Run the <a href="https://docs.oracle.com/iaas/tools/oci-cli/latest/oci_cli_docs/cmdref/kms/management/key/create.html" target="_blank"><code>create</code></a> command, substituting the display name, protection mode, key shape, and management endpoint, as shown below. (Use the same compartment OCID as before.)</p>
 
 <pre><code class="language-bash">oci kms management key create -c $C \
     --display-name gcn-guide-encryption-key \
@@ -634,135 +670,41 @@
 
 <p>If you use Windows, escape the inner double quotes in the value for <code>key-shape</code>: <code>'{\"algorithm\":\"AES\",\"length\":\"32\"}</code></p>
 
-<p>The <code>jq</code> utility will extract the <code>id</code> value from the response:</p>
+<p>The <code>jq</code> utility extracts the <code>id</code> value from the response:</p>
 
 <pre><code>ocid1.key.oc1.iad.b5re3.....abuwcljrcuie7t6gctc6...
 </code></pre>
 
-<p>Store the key ID as the <code>VAULT_KEY_ID</code> environment variable:</p>
+<p>Store the OCID as the value of the <code>VAULT_KEY_ID</code> environment variable:</p>
 
 <pre><code class="language-bash">export VAULT_KEY_ID=ocid1.key.oc1.iad.b5re3.....abuwcljrcuie7t6gctc6...
 </code></pre>
     
-      <h2 id="3-use-vault-with-micronaut">
+      <h3 id="43-create-secrets">
         
         
-          3. Use Vault with Micronaut <a href="#3-use-vault-with-micronaut" class="anchor_heading">#</a>
-        
-        
-      </h2>
-
-<p>The <a href="https://micronaut-projects.github.io/micronaut-oracle-cloud/latest/guide/#vault">micronaut-oracle-cloud</a> subproject provides integration between Micronaut applications and Oracle Cloud Infrastructure, including using Vault as a distributed configuration source. You do not have to add any dependencies manually because you selected the <strong>Database</strong> and <strong>Secret Management</strong> services when you created the application with GCN Launcher. The build file includes the following:</p>
-
-<div id="tabs-doc3">
-  <ul>
-    <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
-    <li class="tabs-maven"><a href="#maven">Maven</a></li>
-  </ul>
-  <div id="gradle">
-    <p><em>oci/build.gradle</em></p>
-    <pre><code class="language-java">implementation("io.micronaut.oraclecloud:micronaut-oraclecloud-vault")</code></pre>
-  </div>
-  <div id="maven">
-    <p><em>oci/pom.xml</em></p>
-    <pre><code class="language-xml">&lt;dependency&gt;
-    &lt;groupId&gt;io.micronaut.oraclecloud&lt;/groupId&gt;
-    &lt;artifactId&gt;micronaut-oraclecloud-vault&lt;/artifactId&gt;
-    &lt;scope&gt;compile&lt;/scope&gt;
-&lt;/dependency&gt;</code></pre>
-  </div>
-</div>
-    
-      <h2 id="4-configuration-changes">
-        
-        
-          4. Configuration Changes <a href="#4-configuration-changes" class="anchor_heading">#</a>
-        
-        
-      </h2>
-
-<p>Modify the file named <em>oci/src/main/resources/bootstrap-oraclecloud.properties</em> so that its contents matches the following:</p>
-
-<pre><code>micronaut.application.name=oci
-micronaut.config-client.enabled=true
-# &lt;1&gt;
-oci.config.instance-principal.enabled=true
-oci.vault.config.enabled=true
-# &lt;2&gt;
-oci.vault.vaults[0].compartment-ocid=${C}
-# &lt;3&gt;
-oci.vault.vaults[0].ocid=${VAULT_ID}
-</code></pre>
-
-<p><strong>1</strong> Use <a href="https://micronaut-projects.github.io/micronaut-oracle-cloud/latest/guide/#instance-principals">Instance Principal authentication</a> to enable the Micronaut application to access the Vault.</p>
-
-<p><strong>2</strong> Set the value of the <code>compartment-ocid</code> property with the OCID unique identifier of the compartment where you created the Vault and secrets.</p>
-
-<p><strong>3</strong> Set the value of the <code>ocid</code> property with the Vault OCID unique identifier you saved when creating the Vault.</p>
-
-<p>Modify the file named <em>oci/src/main/resources/application-oraclecloud.properties</em> so that its contents matches the following:</p>
-
-<pre><code>datasources.default.db-type=mysql
-datasources.default.dialect=MYSQL
-datasources.default.driver-class-name=com.mysql.cj.jdbc.Driver
-flyway.datasources.default.enabled=true
-oci.config.profile=DEFAULT
-</code></pre>
-    
-      <h2 id="5-deploy-the-application">
-        
-        
-          5. Deploy the Application <a href="#5-deploy-the-application" class="anchor_heading">#</a>
-        
-        
-      </h2>
-
-<p>Use the <a href="/gcn/gcn-modules/database/micronaut-mysql-database-oci/">Create and Connect a Micronaut Application to an Oracle Cloud Infrastructure MySQL Database</a> guide to create a compute instance and deploy the application to it; follow the steps in the “Create a Compute Instance” and “Deploy from a Native Executable” sections up to the step where you start the application. You need to connect the application to the MySQL database before starting it up.</p>
-
-<p>When creating the Oracle Cloud Infrastructure Compute instance, use the same subnet as the one where you created the Oracle Cloud Infrastructure MySQL database, otherwise the application will not be able to access the database.</p>
-    
-      <h2 id="6-configure-mysql-access">
-        
-        
-          6. Configure MySQL Access <a href="#6-configure-mysql-access" class="anchor_heading">#</a>
-        
-        
-      </h2>
-
-<p>Use the <a href="/gcn/gcn-modules/database/micronaut-mysql-database-oci">Create and Connect a Micronaut Application to an Oracle Cloud Infrastructure MySQL Database</a> guide to configure access to the MySQL database; follow the steps in the “Configure a MySQL Database” section. You will need the private IP address of the VM, the MySQL private IP address, and the admin username and password you chose when creating the database.</p>
-    
-      <h2 id="7-create-secrets">
-        
-        
-          7. Create Secrets <a href="#7-create-secrets" class="anchor_heading">#</a>
-        
-        
-      </h2>
-
-<p>Database connectivity settings are specified in the application configuration, from values in configuration files, and, as in this guide, from values in a distributed property source such as Vault.</p>
-
-<p>The initial configuration created by the launcher in <em>oci/src/main/resources/application-oraclecloud.properties</em> includes these values:</p>
-
-<pre><code>datasources.default.db-type=mysql
-datasources.default.dialect=MYSQL
-datasources.default.driver-class-name=com.mysql.cj.jdbc.Driver
-</code></pre>
-
-<p>In this guide you store values for the username, password, and URL in your Vault by creating Vault secrets for <code>datasources.default.username</code>, <code>datasources.default.password</code>, and <code>datasources.default.url</code>.</p>
-    
-      <h3 id="71-datasourcesdefaultusername">
-        
-        
-          7.1. datasources.default.username <a href="#71-datasourcesdefaultusername" class="anchor_heading">#</a>
+          4.3. Create Secrets <a href="#43-create-secrets" class="anchor_heading">#</a>
         
         
       </h3>
 
-<p>The first secret is for the database username, so the secret name is <code>datasources.default.username</code>.</p>
+<p>In this guide you store values for the database username, password, and URL in a Vault by creating secrets for the properties named “datasources.default.username”, “datasources.default.password”, and “datasources.default.url”. You create the secrets in the same compartment as your other Oracle Cloud Infrastructure resources.</p>
+    
+      <h4 id="431-create-a-secret-named-datasourcesdefaultusername">
+        
+        
+          4.3.1. Create a Secret named “datasources.default.username”
+        
+        
+      </h4>
 
-<p>Secret values must be Base64-encoded. You can encode the value programmatically, for example <code>Base64.getEncoder().encodeToString("the value".getBytes())</code>, or use an online tool such as <a href="https://www.base64encode.org/">https://www.base64encode.org/</a>.</p>
+<p>The first secret is for the database username, named “datasources.default.username”.</p>
 
-<p>Run the <a href="https://docs.oracle.com/iaas/tools/oci-cli/latest/oci_cli_docs/cmdref/vault/secret/create-base64.html">create-base64 command</a> with the compartment OCID, encryption key OCID, Vault OCID, secret name, and Base64-encoded secret value substituted. If you use <code>guide_user</code> as the username, the Base64-encoded value will be <code>Z3VpZGVfdXNlcg==</code>.</p>
+<p>You must Base64-encode the contents of a secret.
+You can encode the contents programmatically, for example via the Java statement <code>Base64.getEncoder().encodeToString("the value".getBytes())</code>, or use an online tool such as <a href="https://www.base64encode.org/" target="_blank">https://www.base64encode.org/</a>.</p>
+
+<p>Run the <a href="https://docs.oracle.com/iaas/tools/oci-cli/latest/oci_cli_docs/cmdref/vault/secret/create-base64.html" target="_blank"><code>create-base64</code></a> command substituting the secret name and Base64-encoded secret.
+(If you use “guide_user” as the database username, the Base64-encoded version is “Z3VpZGVfdXNlcg==”.)</p>
 
 <pre><code class="language-bash">oci vault secret create-base64 -c $C \
     --key-id $VAULT_KEY_ID \
@@ -771,26 +713,7 @@ datasources.default.driver-class-name=com.mysql.cj.jdbc.Driver
     --secret-content-content Z3VpZGVfdXNlcg==
 </code></pre>
 
-<blockquote>
-  <p>Note: the command leaves the Base64-encoded value in your shell history. To avoid this, create a JSON file containing the parameters and pass that as an argument to the command.</p>
-</blockquote>
-
-<p>To use this approach, create a file named <em>key.json</em> with values substituted:</p>
-
-<pre><code class="language-json">{
-   "compartmentId": "ocid1.compartment.oc1..aaaaaaaarkh3s2wcxbbm...",
-   "keyId": "ocid1.key.oc1.iad.b5re3.....abuwcljrcuie7t6gctc6...",
-   "vaultId": "ocid1.vault.oc1.iad.b5re3....abuwcljryp5dmxbu3si7...",
-   "secretName": "datasources.default.username",
-   "secretContentContent": "Z3VpZGVfdXNlcg=="
-}
-</code></pre>
-
-<p>and run this <code>create-base64</code> command instead:</p>
-<pre><code class="language-bash">oci vault secret create-base64 --from-json file://key.json
-</code></pre>
-
-<p>With either approach the response should look like this:</p>
+<p>The response should look like this:</p>
 <pre><code class="language-json">{
   "data": {
     "compartment-id": "ocid1.compartment.oc1..aaaaaaaarkh3s2wcxbbm...",
@@ -805,84 +728,150 @@ datasources.default.driver-class-name=com.mysql.cj.jdbc.Driver
 }
 </code></pre>
     
-      <h3 id="72-datasourcesdefaultpassword">
+      <h4 id="432-create-secret-named-datasourcesdefaultpassword">
         
         
-          7.2. datasources.default.password <a href="#72-datasourcesdefaultpassword" class="anchor_heading">#</a>
+          4.3.2. Create Secret named: “datasources.default.password”
         
         
-      </h3>
+      </h4>
 
-<p>Create a second secret with the name <code>datasources.default.password</code>. The value is the Base64-encoded database user password you chose earlier.</p>
+<p>Create a second secret with the name “datasources.default.password”.
+Set the contents of the section as the Base64-encoded version of the database user password you chose earlier.</p>
     
-      <h3 id="73-datasourcesdefaulturl">
+      <h4 id="433-create-secret-named-datasourcesdefaulturl">
         
         
-          7.3. datasources.default.url <a href="#73-datasourcesdefaulturl" class="anchor_heading">#</a>
+          4.3.3. Create Secret named: “datasources.default.url”
         
         
-      </h3>
+      </h4>
 
-<p>Create a third secret with the name <code>datasources.default.url</code>. The URL is <code>jdbc:mysql://&lt;MySQL IP address&gt;:3306/&lt;MySQL Database Name&gt;</code> with the private IP address of your MySQL database and name of the database you created (e.g., “gcnDB”) substituted. Set the value of the secret as the Base64-encoded URL value.</p>
+<p>Create a third secret with the name “datasources.default.url”. 
+The URL is “jdbc:mysql://&lt;MySQL IP address&gt;:3306/&lt;MySQL Database Name&gt;” substituting the private IP address and name of your MySQL database.
+Set the contents of the secret as the Base64-encoded version of the URL.</p>
     
-      <h2 id="8-instance-principal-authentication">
+      <h2 id="5-use-a-vault-with-micronaut">
         
         
-          8. Instance Principal authentication <a href="#8-instance-principal-authentication" class="anchor_heading">#</a>
+          5. Use a Vault with Micronaut <a href="#5-use-a-vault-with-micronaut" class="anchor_heading">#</a>
         
         
       </h2>
 
-<p><a href="https://micronaut-projects.github.io/micronaut-oracle-cloud/latest/guide/#instance-principals">Instance Principal authentication</a> enables the Micronaut application to retrieve secrets from Vault. To use this, create a dynamic group and add a policy statement granting permission.</p>
+<p><a href="https://micronaut-projects.github.io/micronaut-oracle-cloud/latest/guide/" target="_blank">Micronaut Oracle Cloud</a> provides integration between Micronaut applications and Oracle Cloud Infrastructure services, including using <a href="https://micronaut-projects.github.io/micronaut-oracle-cloud/latest/guide/#vault" target="_blank">Vault</a> as a distributed configuration source.
+GCN added the appropriate dependencies to your build file when you selected the <strong>Database</strong> and <strong>Secret Management</strong> services in the GCN launcher.</p>
     
-      <h3 id="81-dynamic-group">
+      <h3 id="51-modify-the-micronaut-configuration">
         
         
-          8.1. Dynamic Group <a href="#81-dynamic-group" class="anchor_heading">#</a>
+          5.1. Modify the Micronaut Configuration <a href="#51-modify-the-micronaut-configuration" class="anchor_heading">#</a>
         
         
       </h3>
 
-<p>Choose a group name, such as “gcn-guide-dg”, and a matching rule (the logic that will be used to determine group membership). For this guide, use a rule that includes all instances in your compartment: <code>instance.compartment.id = 'ocid1.compartment.oc1..aaaaaaaarkh3s2wcxbbm…'</code> (replacing <code>ocid1.compartment.oc1..aaaaaaaarkh3s2wcxbbm…</code> with your compartment OCID).</p>
+<ol>
+  <li>
+    <p>The Micronaut <strong>bootstrap</strong> configuration file contains the properties to authenticate your application against Oracle Cloud Infrastructure, as well as the compartment OCIDs of the Vault and secrets.</p>
 
-<p>Run the <a href="https://docs.oracle.com/iaas/tools/oci-cli/latest/oci_cli_docs/cmdref/iam/dynamic-group/create.html">create command</a> with the compartment OCID substituted:</p>
+    <p>Modify the file named <em>oci/src/main/resources/bootstrap-oraclecloud.properties</em> so that its contents matches the following:</p>
 
-<pre><code class="language-bash">oci iam dynamic-group create \
-   --name gcn-guide-dg \
-   --description gcn-guide-dg \
-   --matching-rule "instance.compartment.id = 'ocid1.compartment.oc1..aaaaaaaarkh3s2wcxbbm...'"
+    <pre><code> micronaut.application.name=oci
+ micronaut.config-client.enabled=true
+ # &lt;1&gt;
+ oci.config.instance-principal.enabled=true
+ oci.vault.config.enabled=true
+ # &lt;2&gt;
+ oci.vault.vaults[0].compartment-ocid=${C}
+ # &lt;3&gt;
+ oci.vault.vaults[0].ocid=${VAULT_ID}
 </code></pre>
 
-<p>For more information, see <a href="https://docs.oracle.com/iaas/Content/Identity/Tasks/managingdynamicgroups.htm">Dynamic Groups</a>.</p>
+    <p><strong>1</strong> Use <a href="https://micronaut-projects.github.io/micronaut-oracle-cloud/latest/guide/#instance-principals" target="_blank">Instance Principal authentication</a> to enable the Micronaut application to access secrets in the Vault.</p>
+
+    <p><strong>2</strong> Set the value of the <code>oci.vault.vaults[0].compartment-ocid</code> property with the OCID of the compartment where you created the secrets.</p>
+
+    <p><strong>3</strong> Set the value of the <code>oci.vault.vaults[0].ocid</code> property with the OCID you saved when creating the Vault.</p>
+  </li>
+  <li>
+    <p>The Micronaut <strong>application</strong> configuration file contains the properties for your database connection.
+ Modify the file named <em>oci/src/main/resources/application-oraclecloud.properties</em> so that its contents matches the following:</p>
+
+    <pre><code> datasources.default.db-type=mysql
+ datasources.default.dialect=MYSQL
+ datasources.default.driver-class-name=com.mysql.cj.jdbc.Driver
+ flyway.datasources.default.enabled=true
+ oci.config.profile=DEFAULT
+</code></pre>
+  </li>
+</ol>
     
-      <h3 id="82-dynamic-group-policy-statements">
+      <h2 id="6-set-up-oracle-cloud-authentication">
         
         
-          8.2. Dynamic Group Policy Statements <a href="#82-dynamic-group-policy-statements" class="anchor_heading">#</a>
+          6. Set Up Oracle Cloud Authentication <a href="#6-set-up-oracle-cloud-authentication" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>In step <a href="#51-modify-the-micronaut-configuration"><strong>5.1</strong></a> above, you modified the Micronaut <strong>bootstrap</strong> configuration file to use <a href="https://micronaut-projects.github.io/micronaut-oracle-cloud/latest/guide/#instance-principals" target="_blank">Instance Principal authentication</a> so that the application can retrieve secrets.
+To use this from your compute instance, create a dynamic group and add a policy statement granting permission.</p>
+    
+      <h3 id="61-create-a-dynamic-group">
+        
+        
+          6.1. Create a Dynamic Group <a href="#61-create-a-dynamic-group" class="anchor_heading">#</a>
         
         
       </h3>
 
-<p>Create the policy that grants read access to Vault secrets in your compartment.</p>
+<p>Choose a group name, such as “gcn-guide-dg”, and a matching rule (the logic that will be used to determine group membership).
+For this guide, use a broad rule that includes all compute instances in your compartment: <code>ALL {instance.compartment.id = 'ocid1.compartment.oc1..aaaaaaaarkh3s2wcxbbm…​'}</code> replacing <code>ocid1.compartment.oc1..aaaaaaaarkh3s2wcxbbm…​</code>` with the compartment OCID.</p>
 
-<p>Run the <a href="https://docs.oracle.com/iaas/tools/oci-cli/latest/oci_cli_docs/cmdref/iam/policy/create.html">create command</a> with your compartment OCID substituted:</p>
+<p>Run the <a href="https://docs.oracle.com/iaas/tools/oci-cli/latest/oci_cli_docs/cmdref/iam/dynamic-group/create.html"><code>create</code></a> command:</p>
 
-<pre><code class="language-bash">oci iam policy create -c $C \
+<pre><code class="language-bash">oci iam dynamic-group create \
+   --name mn-guide-dg \
+   --description mn-guide-dg \
+   --matching-rule "ALL {instance.compartment.id = 'ocid1.compartment.oc1..aaaaaaaarkh3s2wcxbbm...'}" \
+   | jq -r '.data."compartment-id"'
+</code></pre>
+
+<p>The <code>jq</code> utility extracts the <code>compartment-id</code> value from the response. Store it (the tenancy OCID) as the value of the <code>T</code> environment variable:</p>
+
+<pre><code class="language-bash">export T=ocid1.tenancy.oc1..aaaaaaaaud4g4e5ovjaw...
+</code></pre>
+
+<p>For more information, see <a href="https://docs.oracle.com/iaas/Content/Identity/Tasks/managingdynamicgroups.htm" target="_blank">Dynamic Groups</a>.</p>
+    
+      <h3 id="62-add-dynamic-group-policy-statements">
+        
+        
+          6.2. Add Dynamic Group Policy Statements <a href="#62-add-dynamic-group-policy-statements" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>Create a policy to grant read access to Vault secrets in your compartment. Create the policy in the root compartment (the tenancy), use the tenancy OCID saved from the dynamic group creation response.</p>
+
+<p>Run the <a href="https://docs.oracle.com/iaas/tools/oci-cli/latest/oci_cli_docs/cmdref/iam/policy/create.html" target="_blank"><code>create</code></a> command:</p>
+
+<pre><code class="language-bash">oci iam policy create -c $T \
     --name gcn-guide-policy \
     --description gcn-guide-policy \
-    --statements '["allow dynamic-group gcn-guide-dg to read secret-family in compartment id ocid1.compartment.oc1..aaaaaaaarkh3s2wcxbbm..."]' \
+    --statements '["allow dynamic-group gcn-guide-dg to read secret-family in tenancy"]' \
     | jq -r '.data.id'
 </code></pre>
 
-<p>The <code>jq</code> utility will extract the policy OCID from the <code>id</code> property in the response. Store the value as the <code>POLICY_ID</code> environment variable:</p>
+<p>The <code>jq</code> utility extracts the policy OCID from the <code>id</code> property in the response. Store it as the value of the <code>POLICY_ID</code> environment variable:</p>
 
 <pre><code class="language-bash">export POLICY_ID=ocid1.policy.oc1..aaaaaaaau7uhwxr3ynlr...
 </code></pre>
     
-      <h2 id="9-start-the-application">
+      <h2 id="7-start-the-application">
         
         
-          9. Start the application <a href="#9-start-the-application" class="anchor_heading">#</a>
+          7. Start the Application <a href="#7-start-the-application" class="anchor_heading">#</a>
         
         
       </h2>
@@ -905,7 +894,7 @@ datasources.default.driver-class-name=com.mysql.cj.jdbc.Driver
  </div>
   </li>
   <li>
-    <p>From the local terminal, copy the JAR file from your computer to the compute instance using <code>scp</code>:</p>
+    <p>From a local console, copy the JAR file from your computer to the compute instance using <code>scp</code>:</p>
 
     <div id="tabs-doc5">
    <ul>
@@ -930,11 +919,12 @@ datasources.default.driver-class-name=com.mysql.cj.jdbc.Driver
     <pre><code class="language-bash"> java -jar application.jar
 </code></pre>
   </li>
-  <li>From the local terminal, run this command to test creating and storing a new <code>Genre</code> in the database:
+  <li>From a local console, run this command to test that you can create and store a new <code>Genre</code> in the database:
     <pre><code class="language-bash"> curl -X "POST" "http://[COMPUTE_INSTANCE_PUBLIC_IP]:8080/genres" \
        -H 'Content-Type: application/json; charset=utf-8' \
        -d $'{ "name": "music" }'
 </code></pre>
+
     <p>Then list the genres:</p>
     <pre><code class="language-bash"> curl [COMPUTE_INSTANCE_PUBLIC_IP]:8080/genres/list
 </code></pre>
@@ -945,25 +935,24 @@ datasources.default.driver-class-name=com.mysql.cj.jdbc.Driver
   </li>
 </ol>
     
-      <h2 id="10-package-with-graalvm-native-image">
+      <h2 id="8-package-with-graalvm-native-image">
         
         
-          10. Package with GraalVM Native Image <a href="#10-package-with-graalvm-native-image" class="anchor_heading">#</a>
+          8. Package with GraalVM Native Image <a href="#8-package-with-graalvm-native-image" class="anchor_heading">#</a>
         
         
       </h2>
 
-<p>GCN supports compiling Java applications ahead-of-time into native executables using <a href="https://www.graalvm.org/native-image/">GraalVM Native Image</a> and <a href="https://graalvm.github.io/native-build-tools/latest/index.html">Native Build Tools</a>. Packaged as a native executable, it significantly reduces the application startup time and memory footprint.</p>
+<p>GCN supports compiling a Java application ahead-of-time into a native executable using <a href="https://www.graalvm.org/native-image/" target="_blank">GraalVM Native Image</a>. 
+You can use the <em><a href="https://graalvm.github.io/native-build-tools/latest/gradle-plugin.html" target="_blank">Gradle plugin for GraalVM Native Image building</a></em>/<em><a href="https://graalvm.github.io/native-build-tools/latest/maven-plugin.html" target="_blank">Maven plugin for GraalVM Native Image building</a></em>.
+Packaged as a native executable, it significantly reduces application startup time and memory footprint.</p>
 
-<blockquote>
-  <p><strong>Prerequisites</strong>: GraalVM Native Image is required to build native executables. <a href="https://github.com/graalvm/get.graalvm.org/">Install GraalVM JDK with Native Image</a> if you have not done that yet.</p>
-</blockquote>
-
-<p>If you build a native executable locally, it will only run on your OS, and isn’t suitable for deployment to a Compute instance. To create a deployable native executable, use a different packaging command that builds the executable inside a container, which you’ll extract from the container to deploy to the cloud.</p>
+<p>If you build a native executable locally, it will only run on your OS, and isn’t suitable for deployment to a compute instance.
+To create a deployable native executable, use a different packaging command that builds the executable inside a container, which you can extract to deploy to the cloud.</p>
 
 <ol>
   <li>
-    <p>From the local terminal, generate a native executable by running the following command:</p>
+    <p>From a local console, generate a container image containing the native executable by running the following command:</p>
 
     <div id="tabs-doc6">
    <ul>
@@ -977,23 +966,21 @@ datasources.default.driver-class-name=com.mysql.cj.jdbc.Driver
        <pre><code class="language-bash">./mvnw install -pl lib -am &amp;&amp; ./mvnw package -pl oci -Dpackaging=docker-native</code></pre>
    </div>
  </div>
-
-    <p>You can customize the name of the resulting binary by <a href="https://graalvm.github.io/native-build-tools/latest/">updating the Maven/Gradle plugin for GraalVM Native Image configuration</a>.</p>
   </li>
   <li>
-    <p>Find the container image ID that you’ll use to extract the native executable from the container image you built by running:</p>
+    <p>Find the ID of the container image you built by running the following command:</p>
 
     <pre><code class="language-bash"> docker image ls
 </code></pre>
 
-    <p>The images are listed chronologically with the most recent at the top, so your output will look like this:</p>
+    <p>The container images are listed chronologically with the most recent at the top, so your output will look like this:</p>
 
     <pre><code class="language-bash"> REPOSITORY   TAG      IMAGE ID       CREATED          SIZE
  oci          latest   41c8a902b2e7   32 seconds ago   100MB
 </code></pre>
   </li>
   <li>
-    <p>Extract the native executable by running these commands, replacing <code>&lt;image_id&gt;</code> with the ID of the container image ID, for example, <code>41c8a902b2e7</code>:</p>
+    <p>Extract the native executable from the container image by running these commands, replacing <code>&lt;image_id&gt;</code> with the ID of the container image, for example, <code>41c8a902b2e7</code>:</p>
 
     <pre><code class="language-bash"> docker create --name container_temp &lt;image_id&gt;
  docker cp container_temp:/app/application .
@@ -1002,17 +989,17 @@ datasources.default.driver-class-name=com.mysql.cj.jdbc.Driver
   </li>
 </ol>
     
-      <h2 id="11-deploy-from-a-native-executable">
+      <h2 id="9-deploy-from-a-native-executable">
         
         
-          11. Deploy from a Native Executable <a href="#11-deploy-from-a-native-executable" class="anchor_heading">#</a>
+          9. Deploy from a Native Executable <a href="#9-deploy-from-a-native-executable" class="anchor_heading">#</a>
         
         
       </h2>
 
 <ol>
   <li>
-    <p>From the local terminal, copy the native executable from your computer to the Compute instance using <code>scp</code>:</p>
+    <p>From a local console, copy the native executable from your computer to the compute instance using <code>scp</code>:</p>
 
     <pre><code class="language-bash"> scp -i /path/to/ssh-key-*.key application opc@[COMPUTE_INSTANCE_PUBLIC_IP]:~/
 </code></pre>
@@ -1024,60 +1011,58 @@ datasources.default.driver-class-name=com.mysql.cj.jdbc.Driver
   <li>
     <p>Stop the application running from the JAR file if it’s still running.</p>
   </li>
-  <li>Run the application from the native executable:
+  <li>Run the native executable:
     <pre><code class="language-bash"> ./application
 </code></pre>
   </li>
-  <li>From the local terminal, run this command to test creating and storing a new <code>Genre</code> in the database:
-    <pre><code class="language-bash"> curl -X "POST" "http://[COMPUTE_INSTANCE_PUBLIC_IP]:8080/genres" \
-       -H 'Content-Type: application/json; charset=utf-8' \
-       -d $'{ "name": "music" }'
-</code></pre>
-    <p>Then list all genres:</p>
-    <pre><code class="language-bash"> curl [COMPUTE_INSTANCE_PUBLIC_IP]:8080/genres/list
-</code></pre>
-
-    <p>You do not need to install a Java VM to run the application from a native executable. The native executable is a self-contained binary. Deploying from a native executable significantly reduces application startup time and memory footprint.</p>
-  </li>
+  <li>From the local console, repeat the tests from step <strong>7</strong> above.</li>
 </ol>
     
-      <h2 id="12-clean-up-cloud-resources">
+      <h2 id="10-clean-up-cloud-resources">
         
         
-          12. Clean up Cloud Resources <a href="#12-clean-up-cloud-resources" class="anchor_heading">#</a>
+          10. Clean up Cloud Resources <a href="#10-clean-up-cloud-resources" class="anchor_heading">#</a>
         
         
       </h2>
 
 <p>After you’ve completed this guide, you can clean up the resources you created.</p>
+<ol>
+  <li>
+    <p><a href="https://docs.oracle.com/iaas/tools/oci-cli/latest/oci_cli_docs/cmdref/iam/policy/delete.html" target="_blank">Delete the policy</a> by running the following command:</p>
 
-<p><a href="https://docs.oracle.com/iaas/tools/oci-cli/latest/oci_cli_docs/cmdref/iam/policy/delete.html">Delete the policy</a> by running the following command:</p>
+    <pre><code class="language-bash"> oci iam policy delete --policy-id $POLICY_ID
+</code></pre>
+  </li>
+  <li>
+    <p>To delete the dynamic group, find its OCID by running the <a href="https://docs.oracle.com/iaas/tools/oci-cli/latest/oci_cli_docs/cmdref/iam/dynamic-group/list.html" target="_blank"><code>list</code></a> command:</p>
 
-<pre><code class="language-bash">oci iam policy delete --policy-id $POLICY_ID
+    <pre><code class="language-bash"> oci iam dynamic-group list | jq -r '.data[] | select(.name=="gcn-guide-dg") | .id'
 </code></pre>
 
-<p>To delete the dynamic group, find its OCID by running the <a href="https://docs.oracle.com/iaas/tools/oci-cli/latest/oci_cli_docs/cmdref/iam/dynamic-group/list.html">list command</a>:</p>
+    <p>and run the <a href="https://docs.oracle.com/iaas/tools/oci-cli/latest/oci_cli_docs/cmdref/iam/dynamic-group/delete.html" target="_blank"><code>delete</code></a> command, substituting the group OCID:</p>
 
-<pre><code class="language-bash">oci iam dynamic-group list | jq -r '.data[] | select(.name=="gcn-guide-dg") | .id'
+    <pre><code class="language-bash"> oci iam dynamic-group delete --dynamic-group-id ocid1.dynamicgroup.oc1..aaaaaaaaipoabhhaqnj77urm...
 </code></pre>
+  </li>
+  <li>
+    <p>Delete the Vault.
+You cannot delete it directly; instead <a href="https://docs.oracle.com/iaas/tools/oci-cli/latest/oci_cli_docs/cmdref/kms/management/vault/schedule-deletion.html" target="_blank">request deletion</a> at a date at least seven days in the future.
+Run this, replacing the date:</p>
 
-<p>and run the <a href="https://docs.oracle.com/iaas/tools/oci-cli/latest/oci_cli_docs/cmdref/iam/dynamic-group/delete.html">delete command</a>, substituting the group OCID:</p>
-
-<pre><code class="language-bash">oci iam dynamic-group delete --dynamic-group-id ocid1.dynamicgroup.oc1..aaaaaaaaipoabhhaqnj77urm...
+    <pre><code class="language-bash"> oci kms management vault schedule-deletion \
+     --vault-id $VAULT_ID \
+     --time-of-deletion 2023-12-12
 </code></pre>
+  </li>
+  <li>
+    <p>Finally, delete the database it <a href="https://docs.oracle.com/iaas/tools/oci-cli/latest/oci_cli_docs/cmdref/mysql/db-system/delete.html" target="_blank">using the CLI</a>. Run the following command:</p>
 
-<p>Delete the Vault. You cannot delete it directly; instead <a href="https://docs.oracle.com/iaas/tools/oci-cli/latest/oci_cli_docs/cmdref/kms/management/vault/schedule-deletion.html">request deletion</a> at a date at least seven days in the future. Run this, replacing the date:</p>
-
-<pre><code class="language-bash">oci kms management vault schedule-deletion \
-    --vault-id $VAULT_ID \
-    --time-of-deletion 2023-04-12
+    <pre><code class="language-bash"> oci mysql db-system delete \
+     --db-system-id ocid1.mysqldbsystem.oc1.iad.aaaaaaaa2pq3a37hftut...
 </code></pre>
-
-<p>Finally, delete the database it <a href="https://docs.oracle.com/iaas/tools/oci-cli/latest/oci_cli_docs/cmdref/mysql/db-system/delete.html">using the CLI</a>. Run the following command:</p>
-
-<pre><code class="language-bash">oci mysql db-system delete \
-    --db-system-id ocid1.mysqldbsystem.oc1.iad.aaaaaaaa2pq3a37hftut...
-</code></pre>
+  </li>
+</ol>
     
       <h3 id="summary">
         
@@ -1087,7 +1072,20 @@ datasources.default.driver-class-name=com.mysql.cj.jdbc.Driver
         
       </h3>
 
-<p>This guide demonstrated how to create a Java application that accesses secrets in Oracle Cloud Infrastructure Vault. You also saw how to package this application into a native executable and deploy it from a Compute instance.</p>
+<p>This guide demonstrated how to create a Java application that stores MySQL database connection details as <strong>secrets</strong> in an Oracle Cloud Infrastructure <strong>vault</strong>.
+You also saw how to package this application into a native executable and deploy it to a Compute instance.</p>
+    
+      <h3 id="related-labs">
+        
+        
+          Related Labs <a href="#related-labs" class="anchor_heading">#</a>
+        
+        
+      </h3>
+<ul>
+  <li><a href="https://luna.oracle.com/lab/296b5fb9-32bc-4260-b83f-072d4dd2d3c4" target="_blank">Oracle Cloud Infrastructure Autonomous DB, Vault, Micronaut, Graal Cloud Native</a></li>
+  <li><a href="https://luna.oracle.com/lab/c28c56d0-3bfa-4905-9fcd-6ba6e8a3ea42" target="_blank">Oracle Cloud Infrastructure MySQL, Vault, Micronaut, Graal Cloud Native</a></li>
+</ul>
     
       <h3 id="related-documentation">
         

@@ -14,7 +14,7 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2023-11-29 17:10:59 +0000"/>
+  <meta name="last_modified" content="2023-12-12 15:13:17 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -376,6 +376,10 @@
 
   
 
+  
+
+  
+
 <!-- <li class="search additional-search">
   <form class="form-inline sidebar" action="/docs/search" autocomplete="on" method="get">
     <input class="input-search sidebar" type="text" id="search-box" name="query" placeholder="Search">
@@ -406,7 +410,7 @@
         
       </h1>
 
-<p>This guide describes how to use GCN to create a Micronaut database application. The application stores data in a MySQL database using Micronaut Data JDBC.</p>
+<p>This guide describes how to use GCN to create a Micronaut database application. The application stores data in a MySQL database using Micronaut Data.</p>
 
 <p><a href="https://micronaut-projects.github.io/micronaut-data/latest/guide/">Micronaut Data</a> is a database access toolkit that uses ahead-of-time (AoT) compilation to pre-compute queries for repository interfaces that are then executed by a thin, lightweight runtime layer. Micronaut Data supports the following backends: JPA (Hibernate) and Hibernate Reactive; SQL (JDBC, R2DBC), and MongoDB.</p>
     
@@ -561,7 +565,7 @@ The GCN Launcher enables Flyway in the <em>src/main/resources/application.proper
   <p>Note: Flyway migrations are not compatible with the default automatic schema generation that is configured in <em>src/main/resources/application.properties</em>. If <code>schema-generate</code> is active, it will conflict with Flyway. So edit <em>src/main/resources/application.properties</em> and either delete the <code>datasources.default.schema-generate=CREATE_DROP</code> line or change that line to <code>datasources.default.schema-generate=NONE</code> to ensure that only Flyway manages your schema.</p>
 </blockquote>
 
-<p>Configuring multiple datasources is as simple as enabling Flyway for each one. You can also specify directories that will be used for migrating each data source. For more information, see <a href="https://micronaut-projects.github.io/micronaut-flyway/latest/guide/">Micronaut integration with Flyway</a>.</p>
+<p>Configuring multiple datasources is as simple as enabling Flyway for each one. You can also specify directories that will be used for migrating each datasource. For more information, see <a href="https://micronaut-projects.github.io/micronaut-flyway/latest/guide/">Micronaut integration with Flyway</a>.</p>
 
 <p>Flyway migration is automatically triggered before your application starts. Flyway reads migration file(s) in the <em>src/main/resources/db/migration/</em> directory. The migration file with the database schema, <em>src/main/resources/db/migration/V1__schema.sql</em>, was also created for you by the GCN Launcher.</p>
 
@@ -638,7 +642,7 @@ public class Genre {
         
       </h3>
 
-<p>A repository interface defines the operations to access the database. Micronaut Data will implement the interface at compilation time. A sample repository interface, named <em>src/main/java/com/example/repository/GenreRepository.java</em>, was created for you:</p>
+<p>A repository interface defines the operations to access the database. Micronaut Data implements the interface at compilation time. A sample repository interface, named <em>src/main/java/com/example/repository/GenreRepository.java</em>, was created for you:</p>
 
 <pre><code class="language-java">package com.example.repository;
 
@@ -700,7 +704,7 @@ public interface GenreRepository extends PageableRepository&lt;Genre, Long&gt; {
 
 <p>Hibernate Validator is a reference implementation of the Validation API. Micronaut <a href="https://docs.micronaut.io/latest/guide/#beanValidation">has built-in support for validation of beans</a> that use <code>jakarta.validation</code> annotations. The necessary dependencies are included by default when creating a project.</p>
 
-<p>GCN created the main controller, <em>src/main/java/com/example/controller/GenreController.java</em>, that exposes a resource with the common CRUD operations:</p>
+<p>The GCN launcher created the main controller, <em>src/main/java/com/example/controller/GenreController.java</em>, that exposes a resource with the common CRUD operations:</p>
 
 <pre><code class="language-java">package com.example.controller;
 
@@ -798,7 +802,7 @@ class GenreController {
 
 <p>A service contains business logic and facilitates communication between the controller and the repository. The domain is used to communicate between the controller and service layers.</p>
 
-<p>GCN created a sample service class, <em>src/main/java/com/example/service/GenreService.java</em>, for you:</p>
+<p>The GCN launcher created a sample service class, <em>src/main/java/com/example/service/GenreService.java</em>, for you:</p>
 
 <pre><code class="language-java">package com.example.service;
 
@@ -853,7 +857,7 @@ public class GenreService {
         
       </h3>
 
-<p>The GCN Launcher wrote tests for you, in <em>src/test/java/com/example/GenreControllerTest.java</em> to verify the CRUD operations:</p>
+<p>The GCN launcher wrote tests for you, in <em>src/test/java/com/example/GenreControllerTest.java</em> to verify the CRUD operations:</p>
 
 <pre><code class="language-java">package com.example;
 
@@ -1001,7 +1005,7 @@ class GenreControllerTest {
         
       </h2>
 
-<p>GCN supports compiling Java applications ahead-of-time into native executables using <a href="https://www.graalvm.org/native-image/">GraalVM Native Image</a> and <a href="https://graalvm.github.io/native-build-tools/latest/index.html">Native Build Tools</a>. Packaged as a native executable, it significantly reduces the application startup time and memory footprint.</p>
+<p>GCN supports compiling Java applications ahead-of-time into native executables using <a href="https://www.graalvm.org/">GraalVM Native Image</a> and <a href="https://graalvm.github.io/native-build-tools/latest/index.html">Native Build Tools</a>. Packaged as a native executable, it significantly reduces the application startup time and memory footprint.</p>
 
 <blockquote>
   <p><strong>Prerequisites</strong>: GraalVM Native Image is required to build native executables. <a href="https://github.com/graalvm/get.graalvm.org/">Install GraalVM JDK with Native Image</a> if you have not yet done that.</p>
@@ -1115,7 +1119,7 @@ export DATASOURCES_DEFAULT_PASSWORD=elementary
 <ul>
   <li><a href="https://micronaut-projects.github.io/micronaut-data/latest/guide/">Micronaut Data</a></li>
   <li><a href="https://graalvm.github.io/native-build-tools/latest/index.html">Native Build Tools</a></li>
-  <li><a href="https://www.graalvm.org/native-image/">GraalVM Native Image</a></li>
+  <li><a href="https://www.graalvm.org/">GraalVM Native Image</a></li>
 </ul>
 
       </div>

@@ -14,7 +14,7 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2023-11-29 17:10:59 +0000"/>
+  <meta name="last_modified" content="2023-12-12 15:13:17 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -376,6 +376,10 @@
 
   
 
+  
+
+  
+
 <!-- <li class="search additional-search">
   <form class="form-inline sidebar" action="/docs/search" autocomplete="on" method="get">
     <input class="input-search sidebar" type="text" id="search-box" name="query" placeholder="Search">
@@ -406,11 +410,13 @@
         
       </h1>
 
-<p>This guide describes how to create a Micronaut application using GCN. The application presents REST endpoints and stores data in an Oracle Cloud Infrastructure Autonomous Database using Micronaut Data.</p>
+<p>This guide describes how to create a Micronaut database application using GCN. The application presents REST endpoints and stores data in an Oracle Cloud Infrastructure Autonomous Database using Micronaut Data.</p>
 
-<p><a href="https://docs.oracle.com/iaas/Content/Database/Concepts/adboverview.htm">Oracle Cloud Infrastructure Autonomous Database</a> is a fully automated database service that makes it easy for all organizations to develop and deploy application workloads regardless of complexity, scale, or criticality.</p>
+<blockquote>
+  <p><a href="https://docs.oracle.com/iaas/Content/Database/Concepts/adboverview.htm" target="_blank">Oracle Cloud Infrastructure Autonomous Database</a> is a fully automated database service that makes it easy for all organizations to develop and deploy application workloads regardless of complexity, scale, or criticality. All Oracle Cloud Infrastructure accounts (whether free or paid) get two Always Free Oracle Autonomous Databases. You can use these databases for transaction processing, data warehousing, Oracle APEX application development, or JSON-based application development. For current regional availability, see the <strong>Always Free Cloud Services</strong> table in <a href="https://www.oracle.com/cloud/data-regions.html" target="_blank">Cloud Regions—Infrastructure and Platform Services</a>.</p>
+</blockquote>
 
-<p><a href="https://micronaut-projects.github.io/micronaut-data/latest/guide/">Micronaut Data</a> is a database access toolkit that uses ahead-of-time (AoT) compilation to pre-compute queries for repository interfaces that are then executed by a thin, lightweight runtime layer. Micronaut Data supports the following backends: JPA (Hibernate) and Hibernate Reactive; SQL (JDBC, R2DBC), and MongoDB.</p>
+<p><a href="https://micronaut-projects.github.io/micronaut-data/latest/guide/" target="_blank">Micronaut Data</a> is a database access toolkit that uses ahead-of-time (AoT) compilation to pre-compute queries for repository interfaces that are then executed by a thin, lightweight runtime layer. Micronaut Data supports the following backends: JPA (Hibernate) and Hibernate Reactive; SQL (JDBC, R2DBC), and MongoDB.</p>
     
       <h3 id="prerequisites">
         
@@ -524,7 +530,7 @@
         
       </h3>
 
-<p>The GCN Launcher created the sample domain entity in the <em>lib/src/main/java/com/example/domain/Genre.java</em> file.</p>
+<p>The GCN launcher created the sample domain entity in the <em>lib/src/main/java/com/example/domain/Genre.java</em> file:</p>
 
 <pre><code class="language-java">package com.example.domain;
 
@@ -577,7 +583,7 @@ public class Genre {
         
       </h3>
 
-<p>A repository interface defines the operations to access the database. Micronaut Data will implement the interface at compilation time. A sample repository interface was created for you in <em>lib/src/main/java/com/example/repository/GenreRepository.java</em>:</p>
+<p>A repository interface defines the operations to access the database. Micronaut Data implements the interface at compilation time. A sample repository interface was created for you in <em>lib/src/main/java/com/example/repository/GenreRepository.java</em>:</p>
 
 <pre><code class="language-java">package com.example.repository;
 
@@ -600,7 +606,7 @@ public interface GenreRepository extends PageableRepository&lt;Genre, Long&gt; {
 }
 </code></pre>
 
-<p><strong>1</strong> <code>@JdbcRepository</code> with a specific dialect.</p>
+<p><strong>1</strong> <a href="https://micronaut-projects.github.io/micronaut-data/3.0.1/api/io/micronaut/data/jdbc/annotation/JdbcRepository.html" target="_blank"><code>@JdbcRepository</code></a> with a specific dialect.</p>
 
 <p><strong>2</strong> <code>Genre</code>, the entity to treat as the root entity for the purposes of querying, is established either from the method signature or from the generic type parameter specified to the <code>GenericRepository</code> interface.</p>
 
@@ -637,9 +643,9 @@ public interface GenreRepository extends PageableRepository&lt;Genre, Long&gt; {
         
       </h3>
 
-<p>Hibernate Validator is a reference implementation of the Validation API. Micronaut <a href="https://docs.micronaut.io/latest/guide/#beanValidation">has built-in support for validation of beans</a> that use <code>jakarta.validation</code> annotations. The necessary dependencies are included by default when creating a project.</p>
+<p>Hibernate Validator is a reference implementation of the Validation API. Micronaut <a href="https://docs.micronaut.io/latest/guide/#beanValidation" target="_blank">has built-in support for validation of beans</a> that use <code>jakarta.validation</code> annotations. The necessary dependencies are included by default when creating a project.</p>
 
-<p>The GCN Launcher created the main controller that exposes a resource with the common CRUD operations for you in <em>lib/src/main/java/com/example/controller/GenreController.java</em>:</p>
+<p>The GCN launcher created the main controller that exposes a resource with the common CRUD operations for you in <em>lib/src/main/java/com/example/controller/GenreController.java</em>:</p>
 
 <pre><code class="language-java">package com.example.controller;
 
@@ -713,7 +719,7 @@ class GenreController {
 
 <p><strong>1</strong> It is critical that any blocking I/O operations (such as fetching the data from the database) are offloaded to a separate thread pool that does not block the event loop.</p>
 
-<p><strong>2</strong> The class is defined as a controller with the <a href="https://docs.micronaut.io/latest/api/io/micronaut/http/annotation/Controller.html"><code>@Controller</code></a> annotation mapped to the path <code>/genres</code>.</p>
+<p><strong>2</strong> The class is defined as a controller with the <a href="https://docs.micronaut.io/latest/api/io/micronaut/http/annotation/Controller.html" target="_blank"><code>@Controller</code></a> annotation mapped to the path <code>/genres</code>.</p>
 
 <p><strong>3</strong> Uses constructor injection to inject a bean of type <code>GenreRepository</code>.</p>
 
@@ -737,7 +743,7 @@ class GenreController {
 
 <p>A service contains business logic and facilitates communication between the controller and the repository. The domain is used to communicate between the controller and service layers.</p>
 
-<p>GCN created a sample service class, <em>lib/src/main/java/com/example/service/GenreService.java</em>, for you:</p>
+<p>The GCN launcher created a sample service class, <em>lib/src/main/java/com/example/service/GenreService.java</em>, for you:</p>
 
 <pre><code class="language-java">package com.example.service;
 
@@ -792,7 +798,7 @@ public class GenreService {
         
       </h3>
 
-<p>The GCN Launcher wrote tests for you, in <em>oci/src/test/java/com/example/GenreControllerTest.java</em>, to verify the CRUD operations:</p>
+<p>The GCN launcher wrote tests for you, in <em>oci/src/test/java/com/example/GenreControllerTest.java</em>, to verify the CRUD operations:</p>
 
 <pre><code class="language-java">package com.example;
 
@@ -906,10 +912,10 @@ class GenreControllerTest {
 }
 </code></pre>
     
-      <h2 id="2-provision-an-oracle-autonomous-database">
+      <h2 id="2-create-an-oracle-autonomous-database">
         
         
-          2. Provision an Oracle Autonomous Database <a href="#2-provision-an-oracle-autonomous-database" class="anchor_heading">#</a>
+          2. Create an Oracle Autonomous Database <a href="#2-create-an-oracle-autonomous-database" class="anchor_heading">#</a>
         
         
       </h2>
@@ -919,19 +925,19 @@ class GenreControllerTest {
     <p>In the Oracle Cloud Console, open the navigation menu, click <strong>Oracle Database</strong>. Under <strong>Autonomous Database</strong>, click <strong>Autonomous Transaction Processing</strong>.</p>
   </li>
   <li>
-    <p>Enter “GCNDemo” as the display name and the database name.</p>
+    <p>Click <strong>Create Autonomous Database</strong> and accept the default name for the database.</p>
   </li>
   <li>
-    <p>Select <strong>Transaction Processing</strong> and <strong>Shared Infrastructure</strong>. If you are using a trial account, make sure you select <strong>Always Free</strong>.</p>
+    <p>Select <strong>Transaction Processing</strong> and <strong>Serverless</strong>. If you are using a trial account, make sure you select <strong>Always Free</strong>.</p>
   </li>
   <li>
     <p>Create an admin password (must be at least 12 characters and contain a number and an uppercase letter) and select <strong>Secure access from everywhere</strong> as the network access type.</p>
   </li>
   <li>
-    <p>Select <strong>License Included</strong> and click <strong>Create Autonomous Database</strong> to create your database.</p>
+    <p>Click <strong>Create Autonomous Database</strong> to create your database.</p>
   </li>
   <li>
-    <p>On the <strong>Autonomous Database Details</strong> screen click <strong>Copy</strong> to copy the OCID of the database. (This is a unique identifier for your database instance which you will need later.)</p>
+    <p>On the <strong>Autonomous Database Details</strong> screen click <strong>Copy</strong> to copy the OCID of the database. (This is a unique identifier which you will need later.)</p>
   </li>
 </ol>
     
@@ -945,17 +951,17 @@ class GenreControllerTest {
 
 <ol>
   <li>
-    <p>On the <strong>Autonomous Database Details</strong> screen click <strong>Database Actions</strong>. Login with username “ADMIN” and the admin password you created earlier.</p>
+    <p>When the database has been provisioned, on the <strong>Autonomous Database Details</strong> page, click <strong>Database Actions</strong>. (If necessary, log in with username “ADMIN” and the admin password you created earlier.)</p>
   </li>
   <li>
-    <p>Under <strong>Development</strong> click <strong>SQL</strong> to open the SQL console.</p>
+    <p>Click <strong>SQL</strong> to open the SQL console.</p>
   </li>
   <li>
     <p>Copy and paste the following SQL commands into the worksheet:</p>
 
-    <pre><code class="language-sql"> CREATE USER gcndemo IDENTIFIED BY "XXXXXXXXX";
- GRANT CONNECT, RESOURCE TO gcndemo;
- GRANT UNLIMITED TABLESPACE TO gcndemo;
+    <pre><code class="language-sql"> CREATE USER gcn_user IDENTIFIED BY "XXXXXXXXX";
+ GRANT CONNECT, RESOURCE TO gcn_user;
+ GRANT UNLIMITED TABLESPACE TO gcn_user;
 </code></pre>
 
     <p>Create a schema user password (must be at least 12 characters and contain a number and an uppercase letter) and replace the text “XXXXXXXXX” with that password.</p>
@@ -973,7 +979,7 @@ class GenreControllerTest {
         
       </h2>
 
-<p>Before you can test or run your application, provide configuration for Flyway, the datasources, and optionally the IO Pool Size and logging.</p>
+<p>Before you can test or run your application, provide configuration for <a href="http://www.flywaydb.org" target="_blank">Flyway</a> and the application’s datasources.</p>
     
       <h3 id="31-configure-flyway">
         
@@ -983,36 +989,31 @@ class GenreControllerTest {
         
       </h3>
 
-<p>The GCN Launcher included <a href="http://www.flywaydb.org">Flyway</a> for database migrations. It uses the <a href="https://micronaut-projects.github.io/micronaut-flyway/latest/guide/">Micronaut integration with Flyway</a> that automates schema changes, significantly simplifies schema management tasks, such as migrating, rolling back, and reproducing in multiple environments.
-The GCN Launcher enables Flyway in the <em>oci/src/main/resources/application-oraclecloud.properties</em> file and configures it to perform migrations on the default datasources.</p>
-<pre><code>flyway.datasources.default.enabled=true
-</code></pre>
+<p>The GCN launcher included Flyway for database migrations. It uses the <a href="https://micronaut-projects.github.io/micronaut-flyway/latest/guide/" target="_blank">Micronaut integration with Flyway</a> project that automates schema changes, significantly simplifies schema management tasks, such as migrating, rolling back, and reproducing in multiple environments.</p>
 
-<blockquote>
-  <p>Note: Flyway migrations are not compatible with the default automatic schema generation that is configured in <em>oci/src/main/resources/application-oraclecloud.properties</em>. If <code>schema-generate</code> is active, it will conflict with Flyway. So edit <em>src/main/resources/application.properties</em> and either delete the <code>datasources.default.schema-generate=CREATE_DROP</code> line or change that line to <code>datasources.default.schema-generate=NONE</code> to ensure that only Flyway manages your schema.</p>
-</blockquote>
+<p>Flyway migration is automatically triggered before your application starts.
+Flyway reads migration file(s) in the <em>lib/src/main/resources/db/migration/</em> directory, runs them if necessary, and verifies that the configured datasource is consistent with them.</p>
 
-<p>Configuring multiple datasources is as simple as enabling Flyway for each one. You can also specify directories that will be used for migrating each data source. For more information, see <a href="https://micronaut-projects.github.io/micronaut-flyway/latest/guide/">Micronaut integration with Flyway</a>.</p>
-
-<p>Flyway migration is automatically triggered before your application starts. Flyway reads migration file(s) in the <em>lib/src/main/resources/db/migration/</em> directory. The migration file with the database schema, <em>lib/src/main/resources/db/migration/V1__schema.sql</em>, was also created for you by the GCN Launcher.</p>
+<p>The migration file with the database schema, <em>lib/src/main/resources/db/migration/V1__schema.sql</em>, was also created for you by the GCN launcher.</p>
 
 <pre><code class="language-sql">CREATE TABLE "GENRE" (
    "ID"    NUMBER(19) PRIMARY KEY NOT NULL,
    "NAME"  VARCHAR(255) NOT NULL
+);
 CREATE SEQUENCE "GENRE_SEQ" MINVALUE 1 START WITH 1 NOCACHE NOCYCLE;
 </code></pre>
 
 <p>During application startup, Flyway runs the commands in the SQL file and creates the schema needed for the application.</p>
     
-      <h3 id="32-configure-data-sources">
+      <h3 id="32-configure-datasources">
         
         
-          3.2. Configure Data Sources <a href="#32-configure-data-sources" class="anchor_heading">#</a>
+          3.2. Configure Datasources <a href="#32-configure-datasources" class="anchor_heading">#</a>
         
         
       </h3>
 
-<p>Oracle Cloud Autonomous Database connection information and credentials are stored in the <a href="https://docs.oracle.com/iaas/Content/Database/Tasks/adbconnecting.htm">Oracle Wallet</a>. See the <a href="https://micronaut-projects.github.io/micronaut-oracle-cloud/latest/guide/">Micronaut Oracle Cloud integration documentation</a> for more details and options for working with Oracle Cloud.</p>
+<p>The connection information and credentials for an Oracle Cloud Infrastructure Autonomous Database are stored in an <a href="https://docs.oracle.com/iaas/Content/Database/Tasks/adbconnecting.htm" target="_blank">Oracle Wallet</a>. See <a href="https://micronaut-projects.github.io/micronaut-oracle-cloud/latest/guide/#autonomousDatabase" target="_blank">Micronaut Oracle Cloud integration</a> for more details and options for working with Oracle Cloud Infrastructure.</p>
 
 <p>Set values for the missing <code>datasources.default.ocid</code>, <code>datasources.default.walletPassword</code>, <code>datasources.default.username</code>, and <code>datasources.default.password</code> properties by exporting them as environment variables as follows:</p>
 
@@ -1023,90 +1024,25 @@ export DATASOURCES_DEFAULT_PASSWORD=&lt;password&gt;  # 4
 </code></pre>
 
 <blockquote>
-  <p>Note: If you use Windows Command Prompt, replace <code>export</code> with <code>set</code>, for example,  <code>set DATASOURCES_DEFAULT_USERNAME=awsdb_user</code>. If you use Windows PowerShell, replace <code>export</code> with <code>$</code> and surround the value with double quote marks, for example, <code>$DATASOURCES_DEFAULT_USERNAME="awsdb_user"</code>.</p>
+  <p>Note: If you use Windows Command Prompt, replace <code>export</code> with <code>set</code>, for example,  <code>set DATASOURCES_DEFAULT_USERNAME=gcn_user</code>. If you use Windows PowerShell, replace <code>export</code> with <code>$</code> and surround the value with double quote marks, for example, <code>$DATASOURCES_DEFAULT_USERNAME="gcn_user"</code>.</p>
 </blockquote>
 
-<p><strong>1</strong> Replace the <code>&lt;ocid&gt;</code> with the database OCID unique identifier you saved when creating the database.</p>
+<p><strong>1</strong> Replace <code>&lt;ocid&gt;</code> with the OCID of the database you copied when creating the database.</p>
 
-<p><strong>2</strong> Replace the <code>&lt;wallet_password&gt;</code> with a password to encrypt the wallet keys (must be at least eight characters and include at least one letter and either one numeric or special character).</p>
+<p><strong>2</strong> Replace <code>&lt;wallet_password&gt;</code> with a password to encrypt the wallet keys (must be at least eight characters and include at least one letter and either one numeric or special character).</p>
 
-<p><strong>3</strong> Replace the <code>&lt;username&gt;</code> with the <code>gcndemo</code> schema user username you created.</p>
+<p><strong>3</strong> Replace the <code>&lt;username&gt;</code> with “gcn_user” (the name of the user you created).</p>
 
-<p><strong>4</strong> Replace the <code>&lt;password&gt;</code> with the <code>gcndemo</code> schema user password you created.</p>
-    
-      <h3 id="33-configure-io-pool-size-optional">
-        
-        
-          3.3. Configure IO Pool Size (Optional) <a href="#33-configure-io-pool-size-optional" class="anchor_heading">#</a>
-        
-        
-      </h3>
-
-<p>It is a good idea to configure the IO pool size when using <code>@ExecuteOn(TaskExecutors.IO)</code> in controllers. Change this part of <em>oci/src/main/resources/application-oraclecloud.properties</em></p>
-
-<pre><code>micronaut.application.name=oci
-</code></pre>
-
-<p>to</p>
-
-<pre><code>micronaut.application.name=oci
-micronaut.executors.type=fixed
-micronaut.executors.n-threads=75
-</code></pre>
-    
-      <h3 id="34-configure-logging-optional">
-        
-        
-          3.4. Configure Logging (Optional) <a href="#34-configure-logging-optional" class="anchor_heading">#</a>
-        
-        
-      </h3>
-
-<p>Edit <em>oci/src/main/resources/logback.xml</em> and add the following (anywhere within the <code>&lt;configuration&gt;</code> element) to monitor the SQL queries that Micronaut Data performs:</p>
-
-<pre><code class="language-xml">&lt;logger name='io.micronaut.data.query' level='debug' /&gt;
-</code></pre>
-    
-      <h2 id="4-run-the-tests-optional">
-        
-        
-          4. Run the Tests (Optional) <a href="#4-run-the-tests-optional" class="anchor_heading">#</a>
-        
-        
-      </h2>
-
-<p>There are two options for running the tests: running against a live database, and running locally with an Oracle Database in a Docker container using Testcontainers.</p>
+<p><strong>4</strong> Replace the <code>&lt;password&gt;</code> with the “gcn_user” password you created.</p>
 
 <blockquote>
-  <p>Note: If your CPU architecture is AArch64, running the tests requires a production-like environment (a live database).</p>
+  <p>Note: This guide assumes that you are using the <code>DEFAULT</code> profile to authenticate with Oracle Cloud Infrastructure. If you are using a different profile, specify its name in the <em>oci/src/main/resources/application-oraclecloud.properties</em> file, and optionally add a value for the path to the config file if necessary as described in the <a href="https://micronaut-projects.github.io/micronaut-oracle-cloud/latest/guide/#config-auth" target="_blank">Authentication section</a> of the Micronaut Oracle Cloud documentation.</p>
 </blockquote>
-
-<p>The GCN Launcher configured Flyway for the test environment in <em>oci/test/resources/application-test.properties</em>:</p>
-
-<pre><code>flyway.datasources.default.enabled=true
-</code></pre>
-
-<p>Use the following command to run the tests:</p>
-
-<div id="tabs-doc3">
-    <ul>
-        <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
-        <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
-    </ul>
-    <div id="gradle">
-        <pre><code class="language-bash">./gradlew :oci:test</code></pre>
-    </div>
-    <div id="maven">
-        <pre><code class="language-bash">./mvnw install -pl lib -am &amp;&amp; ./mvnw test -pl oci</code></pre>
-    </div>
-</div>
-
-<p>Then open the file <em>build/reports/tests/test/index.html</em> in a browser to view the results.</p>
     
-      <h2 id="5-run-the-application">
+      <h2 id="4-run-the-application">
         
         
-          5. Run the Application <a href="#5-run-the-application" class="anchor_heading">#</a>
+          4. Run the Application <a href="#4-run-the-application" class="anchor_heading">#</a>
         
         
       </h2>
@@ -1114,22 +1050,23 @@ micronaut.executors.n-threads=75
 <p>To run the application, use the following command, which starts the application on port 8080.</p>
 
 <div id="tabs-doc4">
-    <ul>
-        <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
-        <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
-    </ul>
-    <div id="gradle">
-        <pre><code class="language-bash">./gradlew :oci:run</code></pre>
-    </div>
-    <div id="maven">
-        <pre><code class="language-bash">./mvnw install -pl lib -am &amp;&amp; ./mvnw mn:run -pl oci</code></pre>
-    </div>
+  <ul>
+    <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
+    <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
+  </ul>
+  <div id="gradle">
+    <pre><code class="language-bash">./gradlew :oci:run</code></pre>
+  </div>
+  <div id="maven">
+    <pre><code class="language-bash">./mvnw install -pl lib -am
+./mvnw mn:run -pl oci</code></pre>
+  </div>
 </div>
     
-      <h2 id="6-test-the-application">
+      <h2 id="5-test-the-application">
         
         
-          6. Test the Application <a href="#6-test-the-application" class="anchor_heading">#</a>
+          5. Test the Application <a href="#5-test-the-application" class="anchor_heading">#</a>
         
         
       </h2>
@@ -1139,37 +1076,46 @@ micronaut.executors.n-threads=75
 <p>Run this command to test creating and storing a new <code>Genre</code> in the database:</p>
 
 <pre><code class="language-bash">curl -X "POST" "http://localhost:8080/genres" \
-        -H 'Content-Type: application/json; charset=utf-8' \
-        -d $'{ "name": "music" }'
+    -H 'Content-Type: application/json; charset=utf-8' \
+    -d $'{ "name": "music" }'
 </code></pre>
 
-<p>You should see output in the log and a response similar to:</p>
-<pre><code>{"id":3,"name":"music"}
+<p>You should see a response similar to:</p>
+<pre><code>{"id":1,"name":"music"}
 </code></pre>
 
 <p>Confirm that the new <code>Genre</code> is saved in the database by listing its contents:</p>
 <pre><code class="language-bash">curl localhost:8080/genres/list
 </code></pre>
 
-<p>You should see output in the log and a response similar to:</p>
-<pre><code>[{"id":3,"name":"music"}]
+<p>You should see a response similar to:</p>
+<pre><code>[{"id":1,"name":"music"}]
+</code></pre>
+
+<p>Retrieve a single <code>Genre</code> from the database as follows:</p>
+
+<pre><code class="language-bash">curl -i http://localhost:8080/genres/1
+</code></pre>
+
+<p>You should see a response similar to:</p>
+<pre><code>{"id":1,"name":"music"}
 </code></pre>
 
 <p>Delete the <code>Genre</code> you added and then list the contents of the database to confirm that it has been deleted:</p>
 
-<pre><code class="language-bash">curl -X "DELETE" "http://localhost:8080/genres/3"
+<pre><code class="language-bash">curl -X "DELETE" "http://localhost:8080/genres/1"
 curl localhost:8080/genres/list
 </code></pre>
     
-      <h2 id="7-generate-a-native-executable-using-graalvm">
+      <h2 id="6-generate-a-native-executable-using-graalvm">
         
         
-          7. Generate a Native Executable Using GraalVM <a href="#7-generate-a-native-executable-using-graalvm" class="anchor_heading">#</a>
+          6. Generate a Native Executable Using GraalVM <a href="#6-generate-a-native-executable-using-graalvm" class="anchor_heading">#</a>
         
         
       </h2>
 
-<p>GCN supports compiling a Java application ahead-of-time into a native executable using <a href="https://www.graalvm.org/native-image/">GraalVM Native Image</a>. You can use the <em><a href="https://graalvm.github.io/native-build-tools/latest/gradle-plugin.html">Gradle plugin for GraalVM Native Image building</a>/<a href="https://graalvm.github.io/native-build-tools/latest/maven-plugin.html">Maven</a> plugin for GraalVM Native Image building</em>. Packaged as a native executable, it significantly reduces application startup time and memory footprint.</p>
+<p>GCN supports compiling a Java application ahead-of-time into a native executable using <a href="https://www.graalvm.org/" target="_blank">GraalVM Native Image</a>. You can use the <em><a href="https://graalvm.github.io/native-build-tools/latest/gradle-plugin.html">Gradle plugin for GraalVM Native Image building</a>/<a href="https://graalvm.github.io/native-build-tools/latest/maven-plugin.html">Maven</a> plugin for GraalVM Native Image building</em>. Packaged as a native executable, it significantly reduces application startup time and memory footprint.</p>
 
 <p>To generate a native executable, run the following command:</p>
 
@@ -1184,31 +1130,32 @@ curl localhost:8080/genres/list
     <pre><code class="language-bash">oci/build/native/nativeCompile/oci</code></pre>
   </div>
   <div id="maven">
-    <pre><code class="language-bash">./mvnw install -pl lib -am &amp;&amp; ./mvnw package -pl oci -Dpackaging=native-image</code></pre>
+    <pre><code class="language-bash">./mvnw install -pl lib -am
+./mvnw package -pl oci -Dpackaging=native-image</code></pre>
     <p>The native executable is created in the <em>oci/target/</em> directory and can be run with the following command:</p>
-    <pre><code class="language-bash">oci/target/oci</code>.</pre>
+    <pre><code class="language-bash">oci/target/oci</code></pre>
   </div>
 </div>
     
-      <h2 id="8-run-and-test-the-native-executable">
+      <h2 id="7-run-and-test-the-native-executable">
         
         
-          8. Run and Test the Native Executable <a href="#8-run-and-test-the-native-executable" class="anchor_heading">#</a>
+          7. Run and Test the Native Executable <a href="#7-run-and-test-the-native-executable" class="anchor_heading">#</a>
         
         
       </h2>
 
-<p>Run the native executable, and then perform the same tests as in step 6.</p>
+<p>Run the native executable, and then perform the same tests as in step <strong>5</strong>.</p>
     
-      <h2 id="9-clean-up-cloud-resources">
+      <h2 id="8-clean-up-cloud-resources">
         
         
-          9. Clean up Cloud Resources <a href="#9-clean-up-cloud-resources" class="anchor_heading">#</a>
+          8. Clean Up Cloud Resources <a href="#8-clean-up-cloud-resources" class="anchor_heading">#</a>
         
         
       </h2>
 
-<p>When you finish using the database, you can terminate it from the Oracle Cloud Console. For more information, see <a href="https://docs.oracle.com/iaas/autonomous-database-shared/doc/autonomous-terminate.html">Terminate an Autonomous Database Instance</a>.</p>
+<p>When you finish using the database, you can terminate it from the Oracle Cloud Console. For more information, see <a href="https://docs.oracle.com/iaas/autonomous-database-shared/doc/autonomous-terminate.html" target="_blank">Terminate an Autonomous Database Instance</a>.</p>
     
       <h3 id="summary">
         
@@ -1229,10 +1176,10 @@ curl localhost:8080/genres/list
       </h3>
 
 <ul>
-  <li><a href="https://micronaut-projects.github.io/micronaut-data/latest/guide/">Micronaut Data</a></li>
-  <li><a href="https://docs.oracle.com/iaas/Content/Database/Concepts/adboverview.htm">Oracle Cloud Infrastructure Autonomous Database</a></li>
-  <li><a href="https://graalvm.github.io/native-build-tools/latest/index.html">Native Build Tools</a></li>
-  <li><a href="https://www.graalvm.org/native-image/">GraalVM Native Image</a></li>
+  <li><a href="https://micronaut-projects.github.io/micronaut-data/latest/guide/" target="_blank">Micronaut Data</a></li>
+  <li><a href="https://docs.oracle.com/iaas/Content/Database/Concepts/adboverview.htm" target="_blank">Oracle Cloud Infrastructure Autonomous Database</a></li>
+  <li><a href="https://graalvm.github.io/native-build-tools/latest/index.html" target="_blank">Native Build Tools</a></li>
+  <li><a href="https://www.graalvm.org/" target="_blank">GraalVM Native Image</a></li>
 </ul>
 
       </div>
