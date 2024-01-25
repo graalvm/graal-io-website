@@ -11211,7 +11211,7 @@ figcaption {
 img.download-img-guides {
   width: 28px;
   height: 28px;
-  margin: 0px 0px 4px 8px; }
+  margin: 0px 0px 12px 2px; }
 
 img.create-app-guides {
   width: 24px;
@@ -11362,7 +11362,8 @@ ul li {
 
 li > ul,
 li > ol {
-  margin-bottom: 0; }
+  margin-bottom: 0;
+  margin-top: 4px; }
 .docs-content li {
   font-size: 16px;
   margin-bottom: 7px;

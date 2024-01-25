@@ -14,7 +14,7 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2023-12-06 15:44:15 +0000"/>
+  <meta name="last_modified" content="2023-12-19 13:08:19 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -311,6 +311,10 @@
   
 
   
+
+  
+
+  
     
 
     
@@ -410,7 +414,8 @@
         
       </h1>
 
-<p>This guide describes how to create a streaming application that demonstrates how to use the Micronaut Streaming API. The application consists of two Micronaut microservices that use <a href="https://cloud.google.com/learn/what-is-apache-kafka">Google Cloud Platform Apache Kafka</a> to communicate with each other in an asynchronous and decoupled way.</p>
+<p>This guide describes how to create a streaming application that uses <a href="https://micronaut-projects.github.io/micronaut-kafka/latest/guide/">Micronaut Streaming</a>and <a href="https://cloud.google.com/learn/what-is-apache-kafka">Google Cloud Platform Apache Kafka</a>.
+The application consists of two Micronaut microservices that use Google Cloud Platform Apache Kafka to communicate with each other in an asynchronous and decoupled way.</p>
     
       <h3 id="prerequisites">
         
@@ -433,7 +438,7 @@
   <p>Note: This guide uses paid services; you may need to <a href="https://cloud.google.com/billing/docs/how-to/modify-project">enable billing</a> in Google Cloud to complete some steps in this guide.</p>
 </blockquote>
 
-<p>Follow the steps below to create the application from scratch. However, you can also download the completed example in Java:</p>
+<p>Follow the steps below to create the application from scratch. However, you can also download the completed example:</p>
 
 <div id="tabs-doc1">
     <ul>
@@ -459,11 +464,9 @@
         
       </h4>
 
-<p>Consider using Visual Studio Code that provides native support for developing applications with the <a href="/gcn/vscode-tools/using-gcn-vscode-tools/">Graal Cloud Native Tools extension</a>.</p>
+<p>Consider using Visual Studio Code that provides native support for developing applications with the <a href="/gcn/vscode-tools/using-gcn-vscode-tools/">Graal Cloud Native extension</a>.</p>
 
-<blockquote>
-  <p>Note: If you use IntelliJ IDEA, <a href="/gcn/resources/img/annotationprocessorsintellij.png">enable annotation processing</a>.</p>
-</blockquote>
+<p>If you use IntelliJ IDEA, <a href="/gcn/resources/img/annotationprocessorsintellij.png">enable annotation processing</a>.</p>
     
       <h2 id="1-create-the-microservices">
         
@@ -495,7 +498,7 @@
   <li>Create a new project using the following selections.
     <ul>
       <li><strong>Project Type</strong>: <em>Application</em> (Default)</li>
-      <li><strong>Project Name</strong>: <em>books</em></li>
+      <li><strong>Project name</strong>: <em>books</em></li>
       <li><strong>Base Package</strong>: <em>com.example.publisher</em></li>
       <li><strong>Clouds</strong>: <em>GCP</em></li>
       <li><strong>Language</strong>: <em>Java</em> (Default)</li>
@@ -503,8 +506,12 @@
       <li><strong>Test Framework</strong>: <em>JUnit</em> (Default)</li>
       <li><strong>Java Version</strong>: <em>17</em> (Default)</li>
       <li><strong>Micronaut Version</strong>: (Default)</li>
-      <li><strong>Cloud Services</strong>: <em>Streaming</em></li>
-      <li><strong>Features</strong>: <em>Awaitility Framework</em>, <em>GraalVM Native Image</em>, <em>Micronaut Serialization Jackson Core</em>, and <em>Reactor</em></li>
+      <li>
+        <p><strong>Cloud Services</strong>: <em>Streaming</em></p>
+      </li>
+      <li>
+        <p><strong>Features</strong>: <em>Awaitility Framework</em>, <em>GraalVM Native Image</em>, <em>Micronaut Serialization Jackson Core</em>, and <em>Reactor</em></p>
+      </li>
       <li><strong>Sample Code</strong>: <em>No</em></li>
     </ul>
   </li>
@@ -514,28 +521,28 @@
 <p>Alternatively, use the <a href="/gcn/get-started/using-gcn-cli/">GCN CLI</a> as follows:</p>
 
 <div id="tabs-doc2">
-    <ul>
-        <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
-        <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
-    </ul>
-    <div id="gradle">
-        <pre><code class="language-bash">gcn create-app com.example.publisher.books \
+  <ul>
+    <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
+    <li class="tabs-maven"><a href="#maven">Maven</a></li>
+  </ul>
+  <div id="gradle">
+    <pre><code class="language-bash">gcn create-app com.example.publisher.books \
     --clouds=gcp \
     --services=streaming \
     --features=awaitility,graalvm,reactor,serialization-jackson \
     --build=gradle \
     --lang=java \
     --example-code=false</code></pre>
-    </div>
-    <div id="maven">
-        <pre><code class="language-bash">gcn create-app com.example.publisher.books \
+  </div>
+  <div id="maven">
+    <pre><code class="language-bash">gcn create-app com.example.publisher.books \
     --clouds=gcp \
     --services=streaming \
     --features=awaitility,graalvm,reactor,serialization-jackson \
     --build=maven \
     --lang=java \
     --example-code=false</code></pre>
-    </div>
+  </div>
 </div>
     
       <h4 id="111-book-domain-class">
@@ -546,7 +553,7 @@
         
       </h4>
 
-<p>The launcher created a <code>Book</code> domain class in a file named <em>lib/src/main/java/com/example/publisher/Book.java</em>, as follows:</p>
+<p>The GCN launcher created a <code>Book</code> domain class in a file named <em>lib/src/main/java/com/example/publisher/Book.java</em>, as follows:</p>
 
 <pre><code class="language-java">package com.example.publisher;
 
@@ -607,7 +614,7 @@ public class Book {
         
       </h4>
 
-<p>To keep this guide simple there is no database persistence: the <em>Books</em> microservice keeps the list of books in memory. The launcher created a class named <code>BookService</code> in <em>lib/src/main/java/com/example/publisher/BookService.java</em> with the following contents:</p>
+<p>To keep this guide simple there is no database persistence: the <em>Books</em> microservice keeps the list of books in memory. The GCN launcher created a class named <code>BookService</code> in <em>lib/src/main/java/com/example/publisher/BookService.java</em> with the following contents:</p>
 
 <pre><code class="language-java">package com.example.publisher;
 
@@ -649,7 +656,7 @@ public class BookService {
         
       </h4>
 
-<p>The launcher created a controller to access <code>Book</code> instances in a file named <em>lib/src/main/java/com/example/publisher/BookController.java</em> with the following contents:</p>
+<p>The GCN launcher created a controller to access <code>Book</code> instances in a file named <em>lib/src/main/java/com/example/publisher/BookController.java</em> with the following contents:</p>
 
 <pre><code class="language-java">package com.example.publisher;
 
@@ -696,7 +703,7 @@ class BookController {
         
       </h4>
 
-<p>The launcher created a test for <code>BookController</code> to verify the interaction with the <em>Analytics</em> microservice in a file named <em>gcp/src/test/java/com/example/publisher/BookControllerTest.java</em> with the following contents:</p>
+<p>The GCN launcher created a test for <code>BookController</code> to verify the interaction with the <em>Analytics</em> microservice in a file named <em>gcp/src/test/java/com/example/publisher/BookControllerTest.java</em> with the following contents:</p>
 
 <pre><code class="language-java">package com.example.publisher;
 
@@ -808,7 +815,7 @@ class BookControllerTest {
         
       </h4>
 
-<p>The launcher created a client interface to send messages to the streaming service in a file named <em>lib/src/main/java/com/example/publisher/AnalyticsClient.java</em> with the contents shown below. (Micronaut generates an implementation for the client interface at compilation time.)</p>
+<p>The GCN launcher created a client interface to send messages to the streaming service in a file named <em>lib/src/main/java/com/example/publisher/AnalyticsClient.java</em> with the contents shown below. (Micronaut generates an implementation for the client interface at compilation time.)</p>
 
 <pre><code class="language-java">package com.example.publisher;
 
@@ -824,7 +831,10 @@ public interface AnalyticsClient {
 }
 </code></pre>
 
-<p><strong>1</strong> Set the name of the topic.</p>
+<p><strong>1</strong> Set the name of the topic. This matches the name of the topic used by <code>AnalyticsListener</code> in the <em>Analytics</em> microservice.</p>
+<blockquote>
+  <p>Note: This <strong>must</strong> match the name of the stream that you will create later in Oracle Cloud Infrastructure.</p>
+</blockquote>
 
 <p><strong>2</strong> Send the <code>Book</code> POJO. Micronaut will automatically convert it to JSON before sending it.</p>
     
@@ -838,7 +848,7 @@ public interface AnalyticsClient {
 
 <p>Sending a message to the streaming service is as simple as injecting <code>AnalyticsClient</code> and calling its <code>updateAnalytics</code> method. 
 The goal is to send a message every time the details of a book are returned from the <em>Books</em> microservice or, in other words, every time there is a call to <code>http://localhost:8080/books/{isbn}</code>.
-To achieve this, the launcher created an <a href="https://docs.micronaut.io/4.0.3/guide/#filters">HTTP Server Filter</a> in a file named <em>lib/src/main/java/com/example/publisher/AnalyticsFilter.java</em> as follows:</p>
+To achieve this, the GCN launcher created an <a href="https://docs.micronaut.io/4.0.3/guide/#filters">Http Server Filter</a> in a file named <em>lib/src/main/java/com/example/publisher/AnalyticsFilter.java</em> as follows:</p>
 
 <pre><code class="language-java">package com.example.publisher;
 
@@ -928,7 +938,7 @@ class AnalyticsFilter implements HttpServerFilter { // &lt;2&gt;
   <li>Create a new project using the following selections.
     <ul>
       <li><strong>Project Type</strong>: <em>Application</em> (Default)</li>
-      <li><strong>Project Name</strong>: <em>analytics</em></li>
+      <li><strong>Project name</strong>: <em>analytics</em></li>
       <li><strong>Base Package</strong>: <em>com.example.consumer</em></li>
       <li><strong>Clouds</strong>: <em>GCP</em></li>
       <li><strong>Language</strong>: <em>Java</em> (Default)</li>
@@ -936,8 +946,12 @@ class AnalyticsFilter implements HttpServerFilter { // &lt;2&gt;
       <li><strong>Test Framework</strong>: <em>JUnit</em> (Default)</li>
       <li><strong>Java Version</strong>: <em>17</em> (Default)</li>
       <li><strong>Micronaut Version</strong>: (Default)</li>
-      <li><strong>Cloud Services</strong>: <em>Streaming</em></li>
-      <li><strong>Features</strong>: <em>Awaitility Framework</em>, <em>GraalVM Native Image</em> and <em>Micronaut Serialization Jackson Core</em></li>
+      <li>
+        <p><strong>Cloud Services</strong>: <em>Streaming</em></p>
+      </li>
+      <li>
+        <p><strong>Features</strong>: <em>Awaitility Framework</em>, <em>GraalVM Native Image</em> and <em>Micronaut Serialization Jackson Core</em></p>
+      </li>
       <li><strong>Sample Code</strong>: <em>No</em></li>
     </ul>
   </li>
@@ -946,29 +960,29 @@ class AnalyticsFilter implements HttpServerFilter { // &lt;2&gt;
 
 <p>Alternatively, use the <a href="/gcn/get-started/using-gcn-cli/">GCN CLI</a> as follows:</p>
 
-<div id="tabs-doc5">
-    <ul>
-        <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
-        <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
-    </ul>
-    <div id="gradle">
-        <pre><code class="language-bash">gcn create-app com.example.consumer.analytics \
+<div id="tabs-doc2">
+  <ul>
+    <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
+    <li class="tabs-maven"><a href="#maven">Maven</a></li>
+  </ul>
+  <div id="gradle">
+    <pre><code class="language-bash">gcn create-app com.example.consumer.analytics \
     --clouds=gcp \
     --services=streaming \
     --features=awaitility,graalvm,serialization-jackson \
     --build=gradle \
     --lang=java \
     --example-code=false</code></pre>
-    </div>
-    <div id="maven">
-        <pre><code class="language-bash">gcn create-app com.example.consumer.analytics \
+  </div>
+  <div id="maven">
+    <pre><code class="language-bash">gcn create-app com.example.consumer.analytics \
     --clouds=gcp \
     --services=streaming \
     --features=awaitility,graalvm,serialization-jackson \
     --build=maven \
     --lang=java \
     --example-code=false</code></pre>
-    </div>
+  </div>
 </div>
     
       <h4 id="121-domain-classes">
@@ -979,7 +993,7 @@ class AnalyticsFilter implements HttpServerFilter { // &lt;2&gt;
         
       </h4>
 
-<p>The launcher created a <code>Book</code> domain class in a file named <em>lib/src/main/java/com/example/consumer/Book.java</em>, as shown below. (This <code>Book</code> POJO is the same as the one in the <em>Books</em> microservice. In a real application this would be in a shared library but to keep things simple, just duplicate it.)</p>
+<p>The lGCN auncher created a <code>Book</code> domain class in a file named <em>lib/src/main/java/com/example/consumer/Book.java</em>, as shown below. (This <code>Book</code> POJO is the same as the one in the <em>Books</em> microservice. In a real application this would be in a shared library.)</p>
 
 <pre><code class="language-java">package com.example.consumer;
 
@@ -1032,7 +1046,7 @@ public class Book {
 }
 </code></pre>
 
-<p>The launcher also created a <code>BookAnalytics</code> domain class in a file named <em>lib/src/main/java/com/example/consumer/BookAnalytics.java</em>, as follows:</p>
+<p>The GCN launcher also created a <code>BookAnalytics</code> domain class in a file named <em>lib/src/main/java/com/example/consumer/BookAnalytics.java</em>, as follows:</p>
 
 <pre><code class="language-java">package com.example.consumer;
 
@@ -1069,7 +1083,7 @@ public class BookAnalytics {
         
       </h4>
 
-<p>To keep this guide simple there is no database persistence: the <em>Analytics</em> microservice keeps book analytics in memory. The launcher created a class named <code>AnalyticsService</code> in <em>lib/src/main/java/com/example/consumer/AnalyticsService.java</em> with the following contents:</p>
+<p>To keep this guide simple there is no database persistence: the <em>Analytics</em> microservice keeps book analytics in memory. The GCN launcher created a class named <code>AnalyticsService</code> in <em>lib/src/main/java/com/example/consumer/AnalyticsService.java</em> with the following contents:</p>
 
 <pre><code class="language-java">package com.example.consumer;
 
@@ -1114,7 +1128,7 @@ public class AnalyticsService {
         
       </h4>
 
-<p>The launcher created a test for the <code>AnalyticsService</code> class, in a file named <em>gcp/src/test/java/com/example/consumer/AnalyticsServiceTest.java</em>, as follows:</p>
+<p>The GCN launcher created a test for the <code>AnalyticsService</code> class, in a file named <em>gcp/src/test/java/com/example/consumer/AnalyticsServiceTest.java</em>, as follows:</p>
 
 <pre><code class="language-java">package com.example.consumer;
 
@@ -1167,7 +1181,7 @@ class AnalyticsServiceTest {
         
       </h4>
 
-<p>The launcher created a Controller to create an endpoint for the <em>Analytics</em> microservice in a file named <em>lib/src/main/java/com/example/consumer/AnalyticsController.java</em>, as follows:</p>
+<p>The GCN launcher created a Controller to create an endpoint for the <em>Analytics</em> microservice in a file named <em>lib/src/main/java/com/example/consumer/AnalyticsController.java</em>, as follows:</p>
 
 <pre><code class="language-java">package com.example.consumer;
 
@@ -1206,7 +1220,7 @@ class AnalyticsController {
         
       </h4>
 
-<p>The launcher created a class to act as a consumer of the messages sent to the streaming service by the <em>Books</em> microservice. The Micronaut framework implements logic to invoke the consumer at compile time. The <code>AnalyticsListener</code> class is in a file named <em>lib/src/main/java/com/example/consumer/AnalyticsListener.java</em>, as follows:</p>
+<p>The GCN launcher created a class to act as a consumer of the messages sent to the streaming service by the <em>Books</em> microservice. The Micronaut framework implements logic to invoke the consumer at compile time. The <code>AnalyticsListener</code> class is in a file named <em>lib/src/main/java/com/example/consumer/AnalyticsListener.java</em>, as follows:</p>
 
 <pre><code class="language-java">package com.example.consumer;
 
@@ -1238,7 +1252,10 @@ class AnalyticsListener {
 
 <p><strong>3</strong> Constructor injection for <code>AnalyticsService</code>.</p>
 
-<p><strong>4</strong> Annotate the method with <code>@Topic</code> and specify the topic name.</p>
+<p><strong>4</strong> Annotate the method with <code>@Topic</code> and specify the topic name. This matches the name of the topic used by <code>AnalyticsClient</code> in the <em>Books</em> microservice.</p>
+<blockquote>
+  <p>Note: This <strong>must</strong> match the name of the stream that you will create later in Oracle Cloud Infrastructure. (See section <strong>2.4</strong>.)</p>
+</blockquote>
 
 <p><strong>5</strong> Call <code>AnalyticsService</code> to update the analytics for the book.</p>
     
@@ -1274,10 +1291,10 @@ class AnalyticsListener {
         
       </h4>
 
-<p>The <em>Books</em> and <em>Analytics</em> microservices are both run on the same GCP Compute Engine instance, so they must run on different ports. Change the port that <em>Analytics</em> runs on by editing the <em>gcp/src/main/resources/application-gcp.properties</em> file so that it has the following contents:</p>
+<p>The <em>Books</em> and <em>Analytics</em> microservices are both run on the same GCP Compute Engine instance, so they must run on different ports. Change the port that <em>Analytics</em> runs on by editing its <em>gcp/src/main/resources/application-gcp.properties</em> file so that it has the following contents:</p>
 
 <pre><code>micronaut.application.name=gcp
-micronaut.server.port=8080
+micronaut.server.port=8081
 </code></pre>
     
       <h2 id="2-run-the-microservices">
@@ -1288,7 +1305,7 @@ micronaut.server.port=8080
         
       </h2>
 
-<p>To run the microservices locally, starting from <code>bootstrap</code>, comment out the Kafka section of each service’s <em>application-gcp.properties</em> file by inserting “#” at the beginning of each line, as shown below:</p>
+<p>To run the microservices locally, starting from <code>kafka.bootstrap.servers</code>, comment out the Kafka section of each microservice’s <em>application-gcp.properties</em> file by inserting “#” at the beginning of each line, as shown below:</p>
 
 <pre><code># kafka.bootstrap.servers=${KAFKA_BOOTSTRAP_SERVERS}
 # kafka.max.partition.fetch.bytes=1048576
@@ -1701,7 +1718,7 @@ kafka.retries=3
 </code></pre>
   </li>
   <li>
-    <p>Once connected, install GraalVM JDK with Native Image for Java 17. See <a href="https://www.graalvm.org/downloads/">Install GraalVM JDK with Native Image</a>.</p>
+    <p>Once connected, install GraalVM JDK for Java 17. See <a href="https://www.graalvm.org/downloads/">Download Oracle GraalVM</a>.</p>
   </li>
   <li>
     <p>Start the <em>Books</em> microservice, as follows:</p>
@@ -1819,9 +1836,9 @@ kafka.retries=3
 
 <ol>
   <li>
-    <p>Copy the compressed sample file to the GCP instance:</p>
+    <p>Download the <a href="#prerequisites">example ZIP file</a> and copy it to the GCP instance:</p>
 
-    <pre><code class="language-bash">gcloud compute scp /path/to/downloaded/sample/zip streaming-instance:~/streaming_sample.zip
+    <pre><code class="language-bash">gcloud compute scp /path/to/downloaded/streaming_sample.zip streaming-instance:~/streaming_sample.zip
 </code></pre>
   </li>
   <li>
@@ -1845,7 +1862,7 @@ sudo yum -y install zlib*
 </code></pre>
   </li>
   <li>
-    <p>You must apply the settings from sections <strong>5</strong> (Configure Microservices) and <strong>8.1</strong> (Configure Native Image).</p>
+    <p>You must apply the settings from section <strong>5</strong> (Configure Microservices).</p>
   </li>
   <li>
     <p>To generate a native executable, run the following command for each microservice:</p>

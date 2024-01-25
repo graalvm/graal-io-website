@@ -1,0 +1,1 @@
+**This guide currently requires an x64-based machine**.

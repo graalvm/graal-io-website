@@ -28,7 +28,7 @@ resource "null_resource" "remote-exec" {
       "echo 'export DOCKER_HOST='unix:///run/user/$UID/podman/podman.sock'' >> $HOME/.bashrc",
       "curl -s https://get.sdkman.io | bash",
       "source $HOME/.sdkman/bin/sdkman-init.sh",
-      "sdk install java 21-graal",
+      "sdk install java 17.0.9-graal",
       "sdk install gcn",
     ]
   }

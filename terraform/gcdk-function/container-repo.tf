@@ -1,4 +1,4 @@
-resource "oci_artifacts_container_repository" "gcdk_guide_repo" {
+resource "oci_artifacts_container_repository" "gcn-function-demo" {
   compartment_id = var.compartment_ocid
-  display_name = "gcdk_guide_repo"
+  display_name = "gcn-function-demo"
 }

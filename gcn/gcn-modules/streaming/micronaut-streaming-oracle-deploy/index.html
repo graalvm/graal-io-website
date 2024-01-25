@@ -14,7 +14,7 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2023-12-06 15:44:15 +0000"/>
+  <meta name="last_modified" content="2023-12-19 14:55:48 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -219,6 +219,10 @@
 
 <div class="toc-bullets">
 
+
+  
+
+  
 
   
 
@@ -1444,7 +1448,7 @@ micronaut.server.port=8081
  micronaut.server.port=8081
 </code></pre>
 
-    <p>Alternatively you can <a href="https://kafka.apache.org/quickstart">install and run a local Kafka instance</a>.</p>
+    <p>Alternatively, you can <a href="https://kafka.apache.org/quickstart">install and run a local Kafka instance</a>.</p>
   </li>
   <li>
     <p>To generate a native executable, run the following command for each microservice:</p>
@@ -1835,9 +1839,9 @@ micronaut.server.port=8081
 
 <ol>
   <li>
-    <p>Copy the compressed sample file to the Compute instance:</p>
+    <p>Download the <a href="#prerequisites">example ZIP file</a> and copy it to the Compute instance:</p>
 
-    <pre><code class="language-bash">scp -i /path/to/ssh-key-*.key /path/to/downloaded/sample/zip opc@[COMPUTE_INSTANCE_PUBLIC_IP]:~/streaming_sample.zip
+    <pre><code class="language-bash">scp -i /path/to/ssh-key-*.key /path/to/downloaded/streaming_sample.zip opc@[COMPUTE_INSTANCE_PUBLIC_IP]:~/streaming_sample.zip
 </code></pre>
   </li>
   <li>

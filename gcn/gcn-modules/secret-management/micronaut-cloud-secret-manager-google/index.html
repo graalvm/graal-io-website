@@ -14,7 +14,7 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2023-12-06 15:44:15 +0000"/>
+  <meta name="last_modified" content="2023-12-13 11:18:15 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -285,6 +285,8 @@
   
 
   
+
+  
     
 
     
@@ -338,6 +340,8 @@
         
       
     
+  
+
   
 
   
@@ -565,15 +569,13 @@
 
 <ol>
   <li>
-    <p>Create a file named <em>datasource-info.yml</em> to contain the JDBC connection information.</p>
+    <p>Create a file named <em>datasource-info.properties</em> to contain the JDBC connection information.</p>
 
     <p>Add the following:</p>
 
-    <pre><code class="language-yml"> datasources:
-   default:
-     url: jdbc:mysql://&lt;MYSQL_IP&gt;:3306/demo # &lt;1&gt;
-     username: &lt;USER_NAME&gt; # &lt;2&gt;
-     password: &lt;USER_PASSWORD&gt;
+    <pre><code> datasources.default.url: jdbc:mysql://&lt;MYSQL_IP&gt;:3306/demo # &lt;1&gt;
+ datasources.default.username: &lt;USER_NAME&gt; # &lt;2&gt;
+ datasources.default.password: &lt;USER_PASSWORD&gt;
 </code></pre>
 
     <p><strong>1</strong> Replace <code>&lt;MYSQL_IP&gt;</code> with the value from the <code>PRIMARY_ADDRESS</code> column in the output from the command you used to create the MySQL database.</p>
@@ -582,11 +584,9 @@
 
     <p>Example MySQL configuration example for <a href="/gcn/gcn-modules/database/micronaut-data-jdbc-repository/">Create and Connect an Application to a MySQL Database</a>:</p>
 
-    <pre><code class="language-yml"> datasources:
-   default:
-     url: jdbc:mysql://localhost:3306/db
-     username: root
-     password: ''
+    <pre><code> datasources.default.url: jdbc:mysql://localhost:3306/db
+ datasources.default.username: root
+ datasources.default.password: ''
 </code></pre>
 
     <blockquote>
@@ -594,9 +594,9 @@
     </blockquote>
   </li>
   <li>
-    <p>Create secrets from the data in <em>datasource-info.yml</em> using the following command:</p>
+    <p>Create secrets from the data in <em>datasource-info.properties</em> using the following command:</p>
 
-    <pre><code class="language-bash"> gcloud secrets create application --data-file=path/to/datasource-info.yml
+    <pre><code class="language-bash"> gcloud secrets create application --data-file=path/to/datasource-info.properties
 </code></pre>
 
     <blockquote>

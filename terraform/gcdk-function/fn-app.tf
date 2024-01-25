@@ -1,5 +1,5 @@
-resource "oci_functions_application" "gcdk_guide_application" {
+resource "oci_functions_application" "gcn-serverless-application" {
   compartment_id = var.compartment_ocid
-  display_name = "gcdk_guide_application"
+  display_name = "gcn-serverless-application"
   subnet_ids = [oci_core_subnet.public_subnet.id]
 }

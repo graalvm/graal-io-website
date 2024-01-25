@@ -58,7 +58,7 @@ resource "oci_core_instance" "guide_vm" {
 	shape_config {
 		baseline_ocpu_utilization = "BASELINE_1_1"
 		memory_in_gbs = "32"
-		ocpus = "2"
+		ocpus = "4"
 	}
 	source_details {
 		source_id = "ocid1.image.oc1.phx.aaaaaaaavitkmkuakgkiv5jbu365dd6hqr6do6lrqshhvgut5564ndcoeyaa"

@@ -1,0 +1,1 @@
+[MySQL HeatWave](https://docs.oracle.com/iaas/mysql-database/index.html){:target="_blank"} is a fully-managed Oracle Cloud Infrastructure database service developed and supported by the MySQL team in Oracle.

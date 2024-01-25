@@ -14,7 +14,7 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2023-12-06 15:44:15 +0000"/>
+  <meta name="last_modified" content="2023-12-19 15:46:18 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -297,6 +297,8 @@
   
 
   
+
+  
     
 
     
@@ -380,6 +382,8 @@
 
   
 
+  
+
 <!-- <li class="search additional-search">
   <form class="form-inline sidebar" action="/docs/search" autocomplete="on" method="get">
     <input class="input-search sidebar" type="text" id="search-box" name="query" placeholder="Search">
@@ -413,6 +417,10 @@
 <p>This guide describes how to create a Micronaut Gateway function, deploy it using <a href="https://aws.amazon.com/lambda/">Amazon Lambda</a>, and access it via <a href="https://aws.amazon.com/api-gateway/">Amazon API Gateway</a>. The application is compiled into a native executable using GraalVM Native Image and then built into a container image.</p>
 
 <blockquote>
+  <p>A Micronaut Gateway Function acts a a serverless cloud (HTTP) API gateway function.</p>
+</blockquote>
+
+<blockquote>
   <p>Amazon Lambda is a serverless, event-driven compute service that lets you run code for virtually any type of application or backend service without provisioning or managing servers. You can deploy code to AWS Lambda function by uploading a ZIP file, or by creating and uploading a container image. AWS provides several open source base images that you can use to build the container image for your function code.</p>
 </blockquote>
     
@@ -427,10 +435,11 @@
 <ul>
   <li>JDK 17 or higher. See <a href="/gcn/get-started/setting-up-desktop/">Setting up Your Desktop</a>.</li>
   <li>An Amazon Web Services (AWS) account. See <a href="/gcn/get-started/setting-up-cloud-accounts/">Setting up Your Cloud Accounts</a>.</li>
+  <li>A Docker-API compatible container runtime such as <a href="https://docs.rancherdesktop.io/getting-started/installation/">Rancher Desktop</a> or <a href="https://www.docker.io/gettingstarted/">Docker</a> installed and running.</li>
   <li>The GCN CLI. See <a href="/gcn/get-started/setting-up-desktop/">Setting up Your Desktop</a>. (Optional.)</li>
 </ul>
 
-<p>Follow the steps below to create the application from scratch. However, you can also download the completed example in Java:</p>
+<p>Follow the steps below to create a Micronaut gateway function from scratch. However, you can also download the completed example:</p>
 
 <div id="tabs-doc1">
     <ul>
@@ -458,21 +467,19 @@
 
 <p>Consider using Visual Studio Code that provides native support for developing applications with the <a href="/gcn/vscode-tools/using-gcn-vscode-tools/">Graal Cloud Native extension</a>.</p>
 
-<blockquote>
-  <p>Note: If you use IntelliJ IDEA, <a href="/gcn/resources/img/annotationprocessorsintellij.png">enable annotation processing</a>.</p>
-</blockquote>
+<p>If you use IntelliJ IDEA, <a href="/gcn/resources/img/annotationprocessorsintellij.png">enable annotation processing</a>.</p>
     
-      <h2 id="1-create-the-application">
+      <h2 id="1-create-the-gateway-function">
         
         
-          1. Create the Application <a href="#1-create-the-application" class="anchor_heading">#</a>
+          1. Create the Gateway Function <a href="#1-create-the-gateway-function" class="anchor_heading">#</a>
         
         
       </h2>
 
-<p>This section describes how to create an application for a simple online store. The store will provide information about available items and enable the user to order items. An HTTP controller is responsible for the API implementation and a service stores the availability of items.</p>
+<p>This section describes how to create a Micronaut gateway function for a simple online store. The store provides information about available items and enables the user to order items. An HTTP controller is responsible for the API implementation and a service stores the availability of items.</p>
 
-<p>Create an application using the GCN Launcher.</p>
+<p>Create a Micronaut gateway function using the GCN Launcher.</p>
 
 <ol>
   <li>
@@ -481,7 +488,7 @@
   <li>Create a new project using the following selections.
     <ul>
       <li><strong>Project Type</strong>: <em>Gateway Function</em></li>
-      <li><strong>Project Name</strong>: <em>aws-serverless-demo</em></li>
+      <li><strong>Project name</strong>: <em>aws-serverless-demo</em></li>
       <li><strong>Base Package</strong>: <em>com.example</em> (Default)</li>
       <li><strong>Clouds</strong>: <em>AWS</em></li>
       <li><strong>Language</strong>: <em>Java</em> (Default)</li>
@@ -490,37 +497,40 @@
       <li><strong>Java Version</strong>: <em>17</em> (Default)</li>
       <li><strong>Micronaut Version</strong>: (Default)</li>
       <li><strong>Cloud Services</strong>: <em>None</em></li>
-      <li><strong>Features</strong>: <em>GraalVM Native Image</em>, <em>Micronaut Validation</em></li>
-      <li><strong>Sample Code</strong>: <em>No</em></li>
+      <li><strong>Features</strong>: <em>GraalVM Native Image</em>, and <em>Micronaut Validation</em></li>
+      <li><strong>Sample Code</strong>: <em>Yes</em> (Default)</li>
     </ul>
   </li>
-  <li>Click <strong>Generate Project</strong>. The GCN Launcher creates an application with the default package <code>com.example</code> in a directory named <em>aws-serverless-demo</em>. The application ZIP file will be downloaded in your default downloads directory. Unzip it, open in your code editor, and proceed to the next steps.</li>
+  <li>Click <strong>Generate Project</strong>. The GCN Launcher creates a Micronaut gateway function with the default package <code>com.example</code> in a directory named <em>aws-serverless-demo</em>. The application ZIP file will be downloaded in your default downloads directory. Unzip it, open in your code editor, and proceed to the next steps.</li>
 </ol>
 
 <p>Alternatively, use the GCN CLI as follows:</p>
 
 <div id="tabs-doc2">
-    <ul>
-        <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
-        <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
-    </ul>
-    <div id="gradle">
-        <pre><code class="language-bash">gcn create-gateway-function com.example.aws-serverless-demo \
+  <ul>
+    <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
+    <li class="tabs-maven"><a href="#maven">Maven</a></li>
+  </ul>
+  <div id="gradle">
+    <pre><code class="language-bash">gcn create-gateway-function com.example.aws-serverless-demo \
     --clouds=aws \
     --features=graalvm,validation \
     --build=gradle \
     --lang=java</code></pre>
-    </div>
-    <div id="maven">
-        <pre><code class="language-bash">gcn create-gateway-function com.example.aws-serverless-demo \
+  </div>
+  <div id="maven">
+    <pre><code class="language-bash">gcn create-gateway-function com.example.aws-serverless-demo \
     --clouds=aws \
     --features=graalvm,validation \
     --build=maven \
     --lang=java</code></pre>
-    </div>
+  </div>
 </div>
 
 <p>For more information, see <a href="/gcn/get-started/using-gcn-cli/">Using the GCN CLI</a>.</p>
+
+<p>The GCN launcher creates a multi-module project with two subprojects: <strong>aws</strong> for Amazon Web Services, and <strong>lib</strong>.
+You develop the gateway function logic in the <strong>aws</strong> subproject. If your gateway function is to be deployed to multiple cloud providers, use the <strong>lib</strong> subproject to create classes that can be shared between the providers. This enables you to separate the code that is different between cloud providers, while keeping most of the implementation in the common <strong>lib</strong> subproject.</p>
     
       <h3 id="11-storeitem">
         
@@ -530,7 +540,7 @@
         
       </h3>
 
-<p>The launcher created a <code>StoreItem</code> model to represent an item in the store in the file <em>lib/src/main/java/com/example/StoreItem.java</em> with the following contents:</p>
+<p>Create a <code>StoreItem</code> model to represent an item in the store in the file <em>lib/src/main/java/com/example/StoreItem.java</em> with the following contents:</p>
 
 <pre><code class="language-java">package com.example;
 
@@ -590,7 +600,7 @@ public class StoreItem {
         
       </h3>
 
-<p>The launcher generated an HTTP controller in the file <em>lib/src/main/java/com/example/StoreController.java</em>, as follows:</p>
+<p>Create an HTTP controller in the file <em>lib/src/main/java/com/example/StoreController.java</em>, as follows:</p>
 
 <pre><code class="language-java">package com.example;
 
@@ -666,7 +676,7 @@ class StoreController {
 
 <ol>
   <li>
-    <p>The launcher created an interface for a service that represents the store’s inventory in <em>lib/src/main/java/com/example/StorageService.java</em>:</p>
+    <p>Create an interface for a service that represents the store’s inventory in <em>lib/src/main/java/com/example/StorageService.java</em>:</p>
 
     <pre><code class="language-java"> package com.example;
 
@@ -690,12 +700,12 @@ class StoreController {
  }
 </code></pre>
 
-    <p><strong>1</strong> The storage service provides information about all the items, finds an item by its name, and can place an order for an item.</p>
+    <p><strong>1</strong> The storage service provides information about all the items, finds an items by its name, and can place an order for an item.</p>
 
     <p><strong>2</strong> The class includes a custom exception that thrown in case of invalid requests to storage.</p>
   </li>
   <li>
-    <p>The launcher generated an implementation of the service interface in <em>lib/src/main/java/com/example/DefaultStorageService.java</em>:</p>
+    <p>Create an implementation of the service interface in <em>lib/src/main/java/com/example/DefaultStorageService.java</em>:</p>
 
     <pre><code class="language-java"> package com.example;
 
@@ -752,15 +762,15 @@ class StoreController {
 
 <p>If you wish to implement a more advanced <code>StorageService</code> to be used instead of this one, annotate your implementation with <code>@Singleton</code> as shown above. Use the <code>@Requires(env = "ec2")</code> annotation to make it specific to AWS . Visit the <a href="/gcn/modules/#database">Database Module</a> for details about how to store and manipulate data in a database.</p>
     
-      <h3 id="14-tests-to-verify-application-logic">
+      <h3 id="14-tests-to-verify-gateway-function-logic">
         
         
-          1.4. Tests to Verify Application Logic <a href="#14-tests-to-verify-application-logic" class="anchor_heading">#</a>
+          1.4. Tests to Verify Gateway Function Logic <a href="#14-tests-to-verify-gateway-function-logic" class="anchor_heading">#</a>
         
         
       </h3>
 
-<p>The launcher created a test class for the controller in <em>aws/src/test/java/com/example/StoreControllerTest.java</em>, as follows:</p>
+<p>The GCN launcher created a test class for the controller in <em>aws/src/test/java/com/example/StoreControllerTest.java</em>, as follows:</p>
 
 <pre><code class="language-java">package com.example;
 
@@ -884,14 +894,14 @@ class StoreControllerTest {
     </ul>
     <div id="gradle">
         <pre><code class="language-bash">./gradlew test</code></pre>
-        <p>Then open the file <em>aws/build/reports/tests/test/index.html</em> in a browser to view the results.</p>
+        <p>Then open the file <em>ec2/build/reports/tests/test/index.html</em> in a browser to view the results.</p>
     </div>
     <div id="maven">
         <pre><code class="language-bash">./mvnw test</code></pre>
     </div>
 </div>
 
-<p>Although you created this application to run on the Amazon Lambda Function runtime, the tests should run successfully on your local machine.</p>
+<p>Although you created this gateway function to run on the Amazon Lambda Function runtime, the tests should run successfully on your local machine.</p>
 
 <p>Furthermore, Micronaut has a test implementation that simulates the Lambda environment. Since sequential requests to a function may be processed by different instances, Micronaut creates a separate environment for each request in test.</p>
     
@@ -1098,10 +1108,28 @@ Enter a name for the new test and paste the following event in JSON:
 
     <pre><code class="language-bash"> curl https://$GATEWAY_HOSTNAME/store/all
 </code></pre>
-    <pre><code class="language-json"> [{"name": "chair", "description": "A black chair with 4 legs", "numberInStorage": 10},
- {"name": "table", "description": "A quality dining table", "numberInStorage": 6},
- {"name": "sofa", "description": "A grey sofa", "numberInStorage": 2},
- {"name": "bookshelf", "description": "A futuristic-looking bookshelf", "numberInStorage": 0}]
+    <pre><code class="language-json"> [
+   {
+     "name": "chair",
+     "description": "A black chair with 4 legs",
+     "numberInStorage": 10
+   },
+   {
+     "name": "table",
+     "description": "A quality dining table",
+     "numberInStorage": 6
+   },
+   {
+     "name": "sofa",
+     "description": "A grey sofa",
+     "numberInStorage": 2
+   },
+   {
+     "name": "bookshelf",
+     "description": "A futuristic-looking bookshelf",
+     "numberInStorage": 0
+   }
+ ]
 </code></pre>
   </li>
   <li>
@@ -1123,11 +1151,12 @@ Enter a name for the new test and paste the following event in JSON:
 
     <pre><code class="language-bash"> curl -X POST -w "\nStatus code: %{http_code}" https://$GATEWAY_HOSTNAME/store/order/table/6
 </code></pre>
-    <pre><code class="language-json"> {"message": "Bad Request",
-   "_embedded": {"errors": [{"message": "Could not order item 'table'. Insufficient amount in storage"}]},
- ...
+    <pre><code class="language-json"> {
+   "name":"table",
+   "description":"A quality dining table",
+   "numberInStorage":0
  }
- Status code: 400
+ Status code: 200
 </code></pre>
   </li>
   <li>
@@ -1135,8 +1164,18 @@ Enter a name for the new test and paste the following event in JSON:
 
     <pre><code class="language-bash"> curl https://$GATEWAY_HOSTNAME/store/available
 </code></pre>
-    <pre><code class="language-json"> [{"name": "chair", "description": "A black chair with 4 legs", "numberInStorage": 10},
- {"name": "sofa", "description": "A grey sofa", "numberInStorage": 2}]
+    <pre><code class="language-json"> [
+   {
+     "name": "chair",
+     "description": "A black chair with 4 legs",
+     "numberInStorage": 10
+   },
+   {
+     "name": "sofa",
+     "description": "A grey sofa",
+     "numberInStorage": 2
+   }
+ ]
 </code></pre>
   </li>
 </ol>
