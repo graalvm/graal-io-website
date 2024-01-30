@@ -22,4 +22,6 @@ Consider using Visual Studio Code that provides native support for developing ap
 
 If you use IntelliJ IDEA, [enable annotation processing](/gcn/resources/img/annotationprocessorsintellij.png).
 
-{% include windows-gradle.html %}
+<blockquote>
+  <p>Windows platform: The GCN guides are compatible with Gradle only. Maven support is coming soon.</p>
+</blockquote>
