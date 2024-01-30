@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2024-01-29 23:10:18 +0000"/>
-  <meta name="last_built" content="2024-01-30 10:52:44 +0000"/>
+  <meta name="last_modified" content="2024-01-30 14:40:59 +0000"/>
+  <meta name="last_built" content="2024-01-30 15:18:20 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -517,10 +517,20 @@ This enables you to deploy the same application to different containers that wil
     <p>The project creation wizard creates a sample application with all necessary files for you: a domain entity, a repository interface, a controller, a service class, and even tests. 
  It is sufficient to follow this guide.</p>
   </li>
-  <li>Open the <em>dbsample/oci/src/main/resources/application-oraclecloud.properties</em> file and remove the following two lines:
-    <pre><code> datasources.default.ocid=
- datasources.default.walletPassword=
+  <li>
+    <p>Open the <em>dbsample/oci/src/main/resources/application-oraclecloud.properties</em> file and:</p>
+
+    <ul>
+      <li>Remove the following two lines:
+        <pre><code>  datasources.default.ocid=
+  datasources.default.walletPassword=
 </code></pre>
+      </li>
+      <li>Add this line:
+        <pre><code>  flyway.datasources.default.baseline-on-migrate=true
+</code></pre>
+      </li>
+    </ul>
   </li>
   <li>Add the dependency to integrate Micronaut with Oracle Cloud Infrastructure Vault:</li>
 </ol>
@@ -666,20 +676,38 @@ CREATE SEQUENCE "GENRE_SEQ" MINVALUE 1 START WITH 1 NOCACHE NOCYCLE;
         
       </h2>
 
-<p>Run your application using CodeLens in the <em>Application.java</em> file  (<strong>Run main</strong>, <strong>Debug main</strong>, <strong>Run with Continuous Mode</strong>):</p>
+<p>Now run your application, connected to the Oracle Autonomous Database, and send an  HTTP GET request to test it.</p>
 
-<p><img src="/gcn/docs/vscode-tools/images/db-features/run-db-app-from-codelens.png" alt="Running the application from CodeLens" /></p>
+<ol>
+  <li>
+    <p>Navigate to the <strong>Micronaut Tools</strong> view and open your application.</p>
+  </li>
+  <li>
+    <p>Click the <strong>Run Application Without Debugging</strong> icon: 
+ <img src="/gcn/docs/vscode-tools/images/run-application-from-micronaut-tools.png" alt="Run the application from Micronaut Tools" /></p>
 
-<p>When the application is running, send an HTTP GET request. 
-Open a new Terminal window and run this command to test creating and storing a new <code>Genre</code> in the database:</p>
+    <p>The progress will be indicated in the Output view.</p>
+  </li>
+  <li>
+    <p>When the application is running, send an HTTP GET request. Open a new Terminal window and run this command to test creating and storing a new <code>Genre</code> in the database:</p>
 
-<pre><code class="language-bash">curl -X "POST" "http://localhost:8080/genres" \
-    -H 'Content-Type: application/json; charset=utf-8' \
-    -d $'{ "name": "music" }'
+    <pre><code class="language-bash"> curl -X "POST" "http://localhost:8080/genres" \
+     -H 'Content-Type: application/json; charset=utf-8' \
+     -d $'{ "name": "music" }'
 </code></pre>
+    <p>You should see a response similar to:</p>
+    <pre><code> {"id":1,"name":"music"}
+</code></pre>
+  </li>
+  <li>
+    <p>Confirm that the new <code>Genre</code> is saved in the database by listing its contents:</p>
+    <pre><code class="language-bash"> curl localhost:8080/genres/list
+</code></pre>
+  </li>
+</ol>
 
 <p>The application runs seamlessly against a database configured for your project.
-Learn more about database management in VS Code in the <a href="/gcn/vscode-tools/database-features/">Database Features extension documentation</a>.</p>
+Learn more about database management in VS Code from the <a href="/gcn/vscode-tools/database-features/">Database Features extension documentation</a>.</p>
     
       <h2 id="5-create-an-oracle-cloud-infrastructure-vault-and-master-encryption-key">
         
@@ -737,11 +765,7 @@ For that you need to create a Kubernetes cluster (if you do not already have one
     <ul>
       <li>Open your newly created OKE cluster (<strong>Developer Services</strong> &gt; <strong>Kubernetes Clusters (OKE)</strong>).</li>
       <li>Click <strong>Access Cluster</strong>.</li>
-      <li>
-        <p>In the <strong>Access Your Cluster</strong> window, select <strong>Local Access</strong>, and run the commands tied to your user ID from your VS Code terminal window (<strong>View</strong> &gt; <strong>Terminal</strong>). Make sure you access your cluster via the <strong>VCN-Native public endpoint</strong>:</p>
-
-        <p><img src="../images/set_oke_access.png" alt="local-access-oke.png" /></p>
-      </li>
+      <li>In the <strong>Access Your Cluster</strong> window, select <strong>Local Access</strong>, and run the commands tied to your user ID from your VS Code terminal window (<strong>View</strong> &gt; <strong>Terminal</strong>). Make sure you access your cluster via the <strong>VCN-Native public endpoint</strong>.</li>
     </ul>
 
     <p>Alternatively, see the <a href="https://docs.oracle.com/iaas/Content/ContEng/Tasks/contengdownloadkubeconfigfile.htm#localdownload">Setting Up Local Access to Clusters</a> OCI guide for more information.</p>
@@ -824,6 +848,10 @@ This also involves creating a <code>ConfigMap</code> artifact, which will later 
     <p>Select <strong>Add to OCI Vault</strong> from the context menu and follow the instructions. Follow the prompts: select your compartment, select your Vault, enter a Datasource name.</p>
 
     <p><img src="/gcn/docs/vscode-tools/images/db-features/add-to-oci-vault.png" alt="Add to OCI Vault.png" /></p>
+
+    <p>Shortly, you see a confirmation pop-up window in the bottom right corner that secrets were created or updated:</p>
+
+    <p><img src="/gcn/docs/vscode-tools/images/secrets-were-created.png" alt="Secrets were created or updated" /></p>
   </li>
 </ol>
 
