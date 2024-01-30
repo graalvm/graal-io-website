@@ -1,4 +1,4 @@
-To keep this guide simple there is no database persistence: the _Books_ microservice keeps the list of books in memory. The GCN launcher created a class named `BookService` in _lib/src/main/java/com/example/publisher/BookService.java_ with the following contents:
+To keep this guide simple there is no database persistence: the _Books_ microservice keeps the list of books in memory. The GCN Launcher created a class named `BookService` in _lib/src/main/java/com/example/publisher/BookService.java_ with the following contents:
 
 ```java
 package com.example.publisher;

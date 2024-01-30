@@ -1,4 +1,4 @@
-The GCN launcher created a client interface to send messages to the streaming service in a file named _lib/src/main/java/com/example/publisher/AnalyticsClient.java_ with the contents shown below. (Micronaut generates an implementation for the client interface at compilation time.)
+The GCN Launcher created a client interface to send messages to the streaming service in a file named _lib/src/main/java/com/example/publisher/AnalyticsClient.java_ with the contents shown below. (Micronaut generates an implementation for the client interface at compilation time.)
 
 
 ```java

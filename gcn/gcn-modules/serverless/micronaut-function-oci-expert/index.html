@@ -14,7 +14,8 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2023-12-19 15:46:18 +0000"/>
+  <meta name="last_modified" content="2024-01-15 15:13:56 +0000"/>
+  <meta name="last_built" content="2024-01-30 10:05:12 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -69,21 +70,6 @@
             <li class="menu__item">
               <a href="/gcn/get-started/" class="menu__link">Get Started</a>
             </li>
-            <!-- <li class="menu__item">
-              <a href="/gcn/modules/" class="menu__link">Modules</a>
-            </li>
-            <li class="menu__item">
-              <a href="/gcn/guides/" class="menu__link">Guides</a>
-            </li>
-            <li class="menu__item">
-              <a href="/gcn/hands-on-labs/" class="menu__link">Hands-On Labs</a>
-            </li>
-            <li class="menu__item">
-              <a href="/gcn/vscode-tools/" class="menu__link">Tools</a>
-            </li> -->
-            <!-- <li class="menu__launch__mobile">
-              <a href="/gcn/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
-            </li> -->
             <li class="menu__item">
               <div class="stack-container">
                 <a href="#" class="menu__link stack__header">Docs</a>
@@ -157,49 +143,6 @@
   
 </header>
 
-<!-- <header  class="header header--content" >
-
-  
-
-  
-
-    <nav class="menu">
-      <div class="menu__row">
-        <div>
-          <a href="/gcn/graal">
-            <img class="logo-mobile" src="/gcn/resources/img/gcn-logo-01.svg" alt="Graal Cloud Native logo">
-          </a>
-        </div>
-        <div class="menu__container">
-          <ul class="menu__list">
-            <li class="menu__item">
-              <a href="/gcn/graal/#whatisgraal" class="menu__link">About</a>
-            </li>
-            <li class="menu__item">
-              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
-            </li>
-            <li class="menu__item">
-              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
-            </li>
-            <li class="menu__item">
-              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <div role="button" class="menu-btn menu-btn--menu js-show-menu" tabindex="-1" title="sweet hamburger">
-        <div class="hamburger">
-          <div class="inner"></div>
-        </div>
-      </div>
-      <button aria-label="hamburger mobile menu" class="btn btn-mobile-menu js-show-menu">
-        <div class="inner"></div>
-      </button>
-    </nav>
-
-  
-</header> -->
 
       <main  class="content"   aria-label="Content">
         <div class="wrapper wrapper-content">
@@ -406,6 +349,9 @@
 
     <div class="col-sm-9 docsmod">
       <div id="content-wrapper" class="docs-content docs-content--with-sidebar">
+        <!--
+          Include file to warn of Windows/Gradle restriction
+        -->
         <h1 id="experts-guide-to-create-and-deploy-a-micronaut-gateway-function-to-oracle-cloud-infrastructure">
         
         
@@ -443,6 +389,7 @@
         
         
       </h3>
+
 <ul>
   <li><strong>This guide currently requires an x64-based machine</strong>.</li>
   <li>JDK 17 or higher. See <a href="/gcn/get-started/setting-up-desktop/">Setting up Your Desktop</a>.</li>
@@ -480,6 +427,14 @@
 <p>Consider using Visual Studio Code that provides native support for developing applications with the <a href="/gcn/vscode-tools/using-gcn-vscode-tools/">Graal Cloud Native extension</a>.</p>
 
 <p>If you use IntelliJ IDEA, <a href="/gcn/resources/img/annotationprocessorsintellij.png">enable annotation processing</a>.</p>
+
+<!--
+  An include file with a snippet of html to warn about the Windows/Gradle restriction
+-->
+<blockquote>
+  <!-- <img class="" src="/gcn/resources/img/warn-icon-fill.svg/" alt="warning icon"> -->
+  <p>Windows platform: The GCN guides are compatible with Gradle only. Maven support is coming soon.</p>
+</blockquote>
     
       <h2 id="1-create-the-gateway-function">
         
@@ -509,11 +464,11 @@
       <li><strong>Java Version</strong>: <em>17</em> (Default)</li>
       <li><strong>Micronaut Version</strong>: (Default)</li>
       <li><strong>Cloud Services</strong>: <em>None</em></li>
-      <li><strong>Features</strong>: <em>GraalVM Native Image</em>, and <em>Micronaut Validation</em></li>
-      <li><strong>Sample Code</strong>: <em>Yes</em> (Default)</li>
+      <li><strong>Features</strong>: <em>GraalVM Native Image</em> and <em>Micronaut Validation</em></li>
+      <li><strong>Sample Code</strong>: <em>No</em></li>
     </ul>
   </li>
-  <li>Click <strong>Generate Project</strong>. The GCN Launcher creates a Micronaut gateway function with the default package <code>com.example</code> in a directory named <em>oci-serverless-demo</em>. The application ZIP file will be downloaded in your default downloads directory. Unzip it, open in your code editor, and proceed to the next steps.</li>
+  <li>Click <strong>Generate Project</strong>, then click <strong>Download Zip</strong>. The GCN Launcher creates a Micronaut gateway function with the default package <code>com.example</code> in a directory named <em>oci-serverless-demo</em>. The application ZIP file will be downloaded in your default downloads directory. Unzip it, open in your code editor, and proceed to the next steps.</li>
 </ol>
 
 <p>Alternatively, use the GCN CLI as follows:</p>
@@ -527,6 +482,7 @@
     <pre><code class="language-bash">gcn create-gateway-function com.example.oci-serverless-demo \
     --clouds=oci \
     --features=graalvm,validation \
+    --example-code=false \
     --build=gradle \
     --lang=java</code></pre>
   </div>
@@ -534,6 +490,7 @@
     <pre><code class="language-bash">gcn create-gateway-function com.example.oci-serverless-demo \
     --clouds=oci \
     --features=graalvm,validation \
+    --example-code=false \
     --build=maven \
     --lang=java</code></pre>
   </div>
@@ -541,7 +498,7 @@
 
 <p>For more information, see <a href="/gcn/get-started/using-gcn-cli/">Using the GCN CLI</a>.</p>
 
-<p>The GCN launcher creates a multi-module project with two subprojects: <strong>oci</strong> for Oracle Cloud Infrastructure, and <strong>lib</strong>.
+<p>The GCN Launcher creates a multi-module project with two subprojects: <strong>oci</strong> for Oracle Cloud Infrastructure, and <strong>lib</strong>.
 You develop the gateway function logic in the <strong>oci</strong> subproject. If your gateway function is to be deployed to multiple cloud providers, use the <strong>lib</strong> subproject to create classes that can be shared between the providers. This enables you to separate the code that is different between cloud providers, while keeping most of the implementation in the common <strong>lib</strong> subproject.</p>
     
       <h3 id="11-storeitem">
@@ -922,6 +879,21 @@ class StoreControllerTest {
         
         
       </h2>
+
+<p>This guide requires the following Oracle Cloud Infrastructure resources:</p>
+
+<ul>
+  <li>A <a href="https://docs.oracle.com/iaas/Content/Registry/Concepts/registryoverview.htm" target="_blank">Container Repository in Oracle Cloud Infrastructure Registry</a> named “gcn-function-demo”</li>
+  <li>An Oracle <a href="https://docs.oracle.com/en-us/iaas/Content/Functions/Concepts/functionsoverview.htm" target="_blank">Application</a> to deploy your Oracle Function</li>
+  <li>An <a href="https://docs.oracle.com/iaas/Content/APIGateway/Concepts/apigatewayoverview.htm" target="_blank">API Gateway</a> to provide access to your Oracle Function</li>
+  <li>A <a href="https://docs.oracle.com/iaas/Content/GSG/Tasks/creatingnetwork.htm" target="_blank">Virtual Cloud Network</a>
+    <ul>
+      <li>A public subnet open to the internet</li>
+      <li>A private subnet to the API Gateway</li>
+    </ul>
+  </li>
+  <li>An <a href="https://docs.oracle.com/iaas/Content/Identity/Concepts/overview.htm" target="_blank">Identity and Access Management (IAM) Policy</a> to give the API Gateway permission to call your Oracle Function.</li>
+</ul>
 
 <p>This section describes how to create a container image from the function and publish it to Oracle Cloud Infrastructure Registry (also known as Container Registry).</p>
     
@@ -1544,7 +1516,11 @@ tasks {
                 <li class="footer-list__item"><a href="/gcn/hands-on-labs/">Labs</a></li>
                 <li class="footer-list__github">
                   <img class="footer__icon" src="/gcn/resources/img/footer/logo-github.svg" alt="Github icon">
-                  <a href="https://github.com/oracle/gcn">Github</a>
+                  <a href="https://github.com/oracle/gcn" target="blank">Github</a>
+                </li>
+                <li class="footer-list__github">
+                  <img class="footer__icon" src="/gcn/resources/img/footer/slack-icon.svg" alt="Github icon">
+                  <a href="https://bit.ly/odevrel_slack" target="blank">Join us at: #graal-cloud-native</a>
                 </li>
               </ul>
             </div>
@@ -1553,7 +1529,7 @@ tasks {
             <h6 class="title-footer" onclick="fadeInAndOut(this)">About</h6>
             <div class="grow">
               <ul class="footer-list">
-                <li class="footer-list__item"><a href="/gcn/about/#gcn-support" target="blank">Commercial Support</a></li>
+                <li class="footer-list__item"><a href="/gcn/about/#support" target="blank">Commercial Support</a></li>
                 <li class="footer-list__item"><a href="https://www.graalvm.org/" target="blank">GraalVM Native Image</a></li>
                 <li class="footer-list__item"><a href="https://micronaut.io/" target="_blank">Micronaut</a></li>
                 <li class="footer-list__item"><a href="https://www.oracle.com/cloud/multicloud/what-is-multicloud/" target="_blank">Multicloud</a></li>
@@ -1654,5 +1630,7 @@ tasks {
     <script src='/gcn/resources/js/ui.js'></script>
     <script src='/gcn/resources/js/filters.js'></script>
     <script src='/gcn/resources/js/sidebar.js'></script>
+    <script src='/gcn/resources/lib/highlight/highlight.min.js'></script> 
+    <script>hljs.highlightAll();</script>
   </body>
 </html>

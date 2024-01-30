@@ -14,7 +14,8 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2023-12-12 15:13:17 +0000"/>
+  <meta name="last_modified" content="2024-01-29 19:11:54 +0000"/>
+  <meta name="last_built" content="2024-01-30 10:05:12 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -69,21 +70,6 @@
             <li class="menu__item">
               <a href="/gcn/get-started/" class="menu__link">Get Started</a>
             </li>
-            <!-- <li class="menu__item">
-              <a href="/gcn/modules/" class="menu__link">Modules</a>
-            </li>
-            <li class="menu__item">
-              <a href="/gcn/guides/" class="menu__link">Guides</a>
-            </li>
-            <li class="menu__item">
-              <a href="/gcn/hands-on-labs/" class="menu__link">Hands-On Labs</a>
-            </li>
-            <li class="menu__item">
-              <a href="/gcn/vscode-tools/" class="menu__link">Tools</a>
-            </li> -->
-            <!-- <li class="menu__launch__mobile">
-              <a href="/gcn/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
-            </li> -->
             <li class="menu__item">
               <div class="stack-container">
                 <a href="#" class="menu__link stack__header">Docs</a>
@@ -157,49 +143,6 @@
   
 </header>
 
-<!-- <header  class="header header--content" >
-
-  
-
-  
-
-    <nav class="menu">
-      <div class="menu__row">
-        <div>
-          <a href="/gcn/graal">
-            <img class="logo-mobile" src="/gcn/resources/img/gcn-logo-01.svg" alt="Graal Cloud Native logo">
-          </a>
-        </div>
-        <div class="menu__container">
-          <ul class="menu__list">
-            <li class="menu__item">
-              <a href="/gcn/graal/#whatisgraal" class="menu__link">About</a>
-            </li>
-            <li class="menu__item">
-              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
-            </li>
-            <li class="menu__item">
-              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
-            </li>
-            <li class="menu__item">
-              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <div role="button" class="menu-btn menu-btn--menu js-show-menu" tabindex="-1" title="sweet hamburger">
-        <div class="hamburger">
-          <div class="inner"></div>
-        </div>
-      </div>
-      <button aria-label="hamburger mobile menu" class="btn btn-mobile-menu js-show-menu">
-        <div class="inner"></div>
-      </button>
-    </nav>
-
-  
-</header> -->
 
       <main  class="content"   aria-label="Content">
         <div class="wrapper wrapper-content">
@@ -406,6 +349,9 @@
 
     <div class="col-sm-9 docsmod">
       <div id="content-wrapper" class="docs-content docs-content--with-sidebar">
+        <!--
+          Include file to warn of Windows/Gradle restriction
+        -->
         <h1 id="create-and-connect-a-micronaut-application-to-an-oracle-cloud-infrastructure-autonomous-database">
         
         
@@ -467,6 +413,14 @@
 <blockquote>
   <p>Note: If you use IntelliJ IDEA, <a href="/gcn/resources/img/annotationprocessorsintellij.png">enable annotation processing</a>.</p>
 </blockquote>
+
+<!--
+  An include file with a snippet of html to warn about the Windows/Gradle restriction
+-->
+<blockquote>
+  <!-- <img class="" src="/gcn/resources/img/warn-icon-fill.svg/" alt="warning icon"> -->
+  <p>Windows platform: The GCN guides are compatible with Gradle only. Maven support is coming soon.</p>
+</blockquote>
     
       <h2 id="1-create-the-application">
         
@@ -498,7 +452,7 @@
       <li><strong>Sample Code</strong>: <em>Yes</em> (Default)</li>
     </ul>
   </li>
-  <li>Click <strong>Generate Project</strong>. The GCN Launcher creates an application with the default package <code>com.example</code> in a directory named <em>oci-adb-demo</em>. The application ZIP file will be downloaded in your default downloads directory. Unzip it, open in your code editor, and proceed to the next steps.</li>
+  <li>Click <strong>Generate Project</strong>, then click <strong>Download Zip</strong>. The GCN Launcher creates an application with the default package <code>com.example</code> in a directory named <em>oci-adb-demo</em>. The application ZIP file will be downloaded in your default downloads directory. Unzip it, open in your code editor, and proceed to the next steps.</li>
 </ol>
 
 <p>Alternatively, use the <a href="/gcn/get-started/using-gcn-cli/">GCN CLI</a> as follows:</p>
@@ -534,7 +488,7 @@
         
       </h3>
 
-<p>The GCN launcher created the sample domain entity in the <em>lib/src/main/java/com/example/domain/Genre.java</em> file:</p>
+<p>The GCN Launcher created the sample domain entity in the <em>lib/src/main/java/com/example/domain/Genre.java</em> file:</p>
 
 <pre><code class="language-java">package com.example.domain;
 
@@ -649,7 +603,7 @@ public interface GenreRepository extends PageableRepository&lt;Genre, Long&gt; {
 
 <p>Hibernate Validator is a reference implementation of the Validation API. Micronaut <a href="https://docs.micronaut.io/latest/guide/#beanValidation" target="_blank">has built-in support for validation of beans</a> that use <code>jakarta.validation</code> annotations. The necessary dependencies are included by default when creating a project.</p>
 
-<p>The GCN launcher created the main controller that exposes a resource with the common CRUD operations for you in <em>lib/src/main/java/com/example/controller/GenreController.java</em>:</p>
+<p>The GCN Launcher created the main controller that exposes a resource with the common CRUD operations for you in <em>lib/src/main/java/com/example/controller/GenreController.java</em>:</p>
 
 <pre><code class="language-java">package com.example.controller;
 
@@ -747,7 +701,7 @@ class GenreController {
 
 <p>A service contains business logic and facilitates communication between the controller and the repository. The domain is used to communicate between the controller and service layers.</p>
 
-<p>The GCN launcher created a sample service class, <em>lib/src/main/java/com/example/service/GenreService.java</em>, for you:</p>
+<p>The GCN Launcher created a sample service class, <em>lib/src/main/java/com/example/service/GenreService.java</em>, for you:</p>
 
 <pre><code class="language-java">package com.example.service;
 
@@ -802,7 +756,7 @@ public class GenreService {
         
       </h3>
 
-<p>The GCN launcher wrote tests for you, in <em>oci/src/test/java/com/example/GenreControllerTest.java</em>, to verify the CRUD operations:</p>
+<p>The GCN Launcher wrote tests for you, in <em>oci/src/test/java/com/example/GenreControllerTest.java</em>, to verify the CRUD operations:</p>
 
 <pre><code class="language-java">package com.example;
 
@@ -831,7 +785,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-@MicronautTest(environments = Environment.ORACLE_CLOUD)
+@MicronautTest
 class GenreControllerTest {
 
     @Inject
@@ -993,12 +947,12 @@ class GenreControllerTest {
         
       </h3>
 
-<p>The GCN launcher included Flyway for database migrations. It uses the <a href="https://micronaut-projects.github.io/micronaut-flyway/latest/guide/" target="_blank">Micronaut integration with Flyway</a> project that automates schema changes, significantly simplifies schema management tasks, such as migrating, rolling back, and reproducing in multiple environments.</p>
+<p>The GCN Launcher included Flyway for database migrations. It uses the <a href="https://micronaut-projects.github.io/micronaut-flyway/latest/guide/" target="_blank">Micronaut integration with Flyway</a> project that automates schema changes, significantly simplifies schema management tasks, such as migrating, rolling back, and reproducing in multiple environments.</p>
 
 <p>Flyway migration is automatically triggered before your application starts.
 Flyway reads migration file(s) in the <em>lib/src/main/resources/db/migration/</em> directory, runs them if necessary, and verifies that the configured datasource is consistent with them.</p>
 
-<p>The migration file with the database schema, <em>lib/src/main/resources/db/migration/V1__schema.sql</em>, was also created for you by the GCN launcher.</p>
+<p>The migration file with the database schema, <em>lib/src/main/resources/db/migration/V1__schema.sql</em>, was also created for you by the GCN Launcher.</p>
 
 <pre><code class="language-sql">CREATE TABLE "GENRE" (
    "ID"    NUMBER(19) PRIMARY KEY NOT NULL,
@@ -1219,7 +1173,11 @@ curl localhost:8080/genres/list
                 <li class="footer-list__item"><a href="/gcn/hands-on-labs/">Labs</a></li>
                 <li class="footer-list__github">
                   <img class="footer__icon" src="/gcn/resources/img/footer/logo-github.svg" alt="Github icon">
-                  <a href="https://github.com/oracle/gcn">Github</a>
+                  <a href="https://github.com/oracle/gcn" target="blank">Github</a>
+                </li>
+                <li class="footer-list__github">
+                  <img class="footer__icon" src="/gcn/resources/img/footer/slack-icon.svg" alt="Github icon">
+                  <a href="https://bit.ly/odevrel_slack" target="blank">Join us at: #graal-cloud-native</a>
                 </li>
               </ul>
             </div>
@@ -1228,7 +1186,7 @@ curl localhost:8080/genres/list
             <h6 class="title-footer" onclick="fadeInAndOut(this)">About</h6>
             <div class="grow">
               <ul class="footer-list">
-                <li class="footer-list__item"><a href="/gcn/about/#gcn-support" target="blank">Commercial Support</a></li>
+                <li class="footer-list__item"><a href="/gcn/about/#support" target="blank">Commercial Support</a></li>
                 <li class="footer-list__item"><a href="https://www.graalvm.org/" target="blank">GraalVM Native Image</a></li>
                 <li class="footer-list__item"><a href="https://micronaut.io/" target="_blank">Micronaut</a></li>
                 <li class="footer-list__item"><a href="https://www.oracle.com/cloud/multicloud/what-is-multicloud/" target="_blank">Multicloud</a></li>
@@ -1329,5 +1287,7 @@ curl localhost:8080/genres/list
     <script src='/gcn/resources/js/ui.js'></script>
     <script src='/gcn/resources/js/filters.js'></script>
     <script src='/gcn/resources/js/sidebar.js'></script>
+    <script src='/gcn/resources/lib/highlight/highlight.min.js'></script> 
+    <script>hljs.highlightAll();</script>
   </body>
 </html>

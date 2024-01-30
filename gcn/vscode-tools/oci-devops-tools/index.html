@@ -14,7 +14,8 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2023-09-26 09:12:07 +0000"/>
+  <meta name="last_modified" content="2024-01-05 17:00:32 +0000"/>
+  <meta name="last_built" content="2024-01-30 10:05:12 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -69,21 +70,6 @@
             <li class="menu__item">
               <a href="/gcn/get-started/" class="menu__link">Get Started</a>
             </li>
-            <!-- <li class="menu__item">
-              <a href="/gcn/modules/" class="menu__link">Modules</a>
-            </li>
-            <li class="menu__item">
-              <a href="/gcn/guides/" class="menu__link">Guides</a>
-            </li>
-            <li class="menu__item">
-              <a href="/gcn/hands-on-labs/" class="menu__link">Hands-On Labs</a>
-            </li>
-            <li class="menu__item">
-              <a href="/gcn/vscode-tools/" class="menu__link">Tools</a>
-            </li> -->
-            <!-- <li class="menu__launch__mobile">
-              <a href="/gcn/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
-            </li> -->
             <li class="menu__item">
               <div class="stack-container">
                 <a href="#" class="menu__link stack__header">Docs</a>
@@ -157,49 +143,6 @@
   
 </header>
 
-<!-- <header  class="header header--content" >
-
-  
-
-  
-
-    <nav class="menu">
-      <div class="menu__row">
-        <div>
-          <a href="/gcn/graal">
-            <img class="logo-mobile" src="/gcn/resources/img/gcn-logo-01.svg" alt="Graal Cloud Native logo">
-          </a>
-        </div>
-        <div class="menu__container">
-          <ul class="menu__list">
-            <li class="menu__item">
-              <a href="/gcn/graal/#whatisgraal" class="menu__link">About</a>
-            </li>
-            <li class="menu__item">
-              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
-            </li>
-            <li class="menu__item">
-              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
-            </li>
-            <li class="menu__item">
-              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <div role="button" class="menu-btn menu-btn--menu js-show-menu" tabindex="-1" title="sweet hamburger">
-        <div class="hamburger">
-          <div class="inner"></div>
-        </div>
-      </div>
-      <button aria-label="hamburger mobile menu" class="btn btn-mobile-menu js-show-menu">
-        <div class="inner"></div>
-      </button>
-    </nav>
-
-  
-</header> -->
 
       <main  class="content"   aria-label="Content">
         <div class="wrapper wrapper-content">
@@ -616,6 +559,16 @@ The extension also creates deployment pipelines that deploy these containers to 
 
 <p><img src="/gcn/docs/vscode-tools/images/devops-ci-jobs.png" alt="devops-ci-jobs.png" /></p>
     
+      <h2 id="configmap">
+        
+        
+          ConfigMap <a href="#configmap" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>The OCI DevOps Tools extension efficiently manages application configurations by creating a ConfigMap artifact within an OCI DevOps project. This artifact is essential for storing key configuration details and is automatically converted into a Kubernetes ConfigMap resource during the deployment pipeline execution. This process ensures that all necessary configuration data, including information about the OCI Vault and datasource, is seamlessly integrated and made available in the Kubernetes environment. For more insights into the OCI Vault and datasource configuration, refer to the <a href="/gcn/vscode-guides/creating-gcn-db-application-with-atp-connection/">following guide</a>.</p>
+    
       <h2 id="build-and-deploy-project-artifacts">
         
         
@@ -857,6 +810,7 @@ Learn more <a href="/gcn/vscode-guides/use-gcn-tools-on-vpn/">here</a>.</p>
   <li><a href="/gcn/vscode-guides/setting-oci-devops-pipeline-in-vscode/">Setting OCI DevOps Build and Development Pipeline in VS Code​</a></li>
   <li><a href="https://www.oracle.com/devops/devops-service/">OCI DevOps service</a></li>
   <li><a href="https://www.oracle.com/cloud/cloud-native/container-engine-kubernetes/">Oracle Container Engine for Kubernetes (OKE)</a></li>
+  <li><a href="creating-gcn-db-application-with-atp-connection">Creating a Database Application and Connecting to an Oracle Autonomous Database</a></li>
 </ul>
 
       </div>
@@ -890,7 +844,11 @@ Learn more <a href="/gcn/vscode-guides/use-gcn-tools-on-vpn/">here</a>.</p>
                 <li class="footer-list__item"><a href="/gcn/hands-on-labs/">Labs</a></li>
                 <li class="footer-list__github">
                   <img class="footer__icon" src="/gcn/resources/img/footer/logo-github.svg" alt="Github icon">
-                  <a href="https://github.com/oracle/gcn">Github</a>
+                  <a href="https://github.com/oracle/gcn" target="blank">Github</a>
+                </li>
+                <li class="footer-list__github">
+                  <img class="footer__icon" src="/gcn/resources/img/footer/slack-icon.svg" alt="Github icon">
+                  <a href="https://bit.ly/odevrel_slack" target="blank">Join us at: #graal-cloud-native</a>
                 </li>
               </ul>
             </div>
@@ -899,7 +857,7 @@ Learn more <a href="/gcn/vscode-guides/use-gcn-tools-on-vpn/">here</a>.</p>
             <h6 class="title-footer" onclick="fadeInAndOut(this)">About</h6>
             <div class="grow">
               <ul class="footer-list">
-                <li class="footer-list__item"><a href="/gcn/about/#gcn-support" target="blank">Commercial Support</a></li>
+                <li class="footer-list__item"><a href="/gcn/about/#support" target="blank">Commercial Support</a></li>
                 <li class="footer-list__item"><a href="https://www.graalvm.org/" target="blank">GraalVM Native Image</a></li>
                 <li class="footer-list__item"><a href="https://micronaut.io/" target="_blank">Micronaut</a></li>
                 <li class="footer-list__item"><a href="https://www.oracle.com/cloud/multicloud/what-is-multicloud/" target="_blank">Multicloud</a></li>
@@ -1000,5 +958,7 @@ Learn more <a href="/gcn/vscode-guides/use-gcn-tools-on-vpn/">here</a>.</p>
     <script src='/gcn/resources/js/ui.js'></script>
     <script src='/gcn/resources/js/filters.js'></script>
     <script src='/gcn/resources/js/sidebar.js'></script>
+    <script src='/gcn/resources/lib/highlight/highlight.min.js'></script> 
+    <script>hljs.highlightAll();</script>
   </body>
 </html>

@@ -1,4 +1,4 @@
-The GCN launcher created a controller to access `Book` instances in a file named _lib/src/main/java/com/example/publisher/BookController.java_ with the following contents:
+The GCN Launcher created a controller to access `Book` instances in a file named _lib/src/main/java/com/example/publisher/BookController.java_ with the following contents:
 
 ```java
 package com.example.publisher;

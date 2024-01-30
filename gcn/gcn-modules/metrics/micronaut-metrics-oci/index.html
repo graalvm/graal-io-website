@@ -14,7 +14,8 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2023-12-12 16:24:53 +0000"/>
+  <meta name="last_modified" content="2024-01-29 19:11:54 +0000"/>
+  <meta name="last_built" content="2024-01-30 10:05:12 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -69,21 +70,6 @@
             <li class="menu__item">
               <a href="/gcn/get-started/" class="menu__link">Get Started</a>
             </li>
-            <!-- <li class="menu__item">
-              <a href="/gcn/modules/" class="menu__link">Modules</a>
-            </li>
-            <li class="menu__item">
-              <a href="/gcn/guides/" class="menu__link">Guides</a>
-            </li>
-            <li class="menu__item">
-              <a href="/gcn/hands-on-labs/" class="menu__link">Hands-On Labs</a>
-            </li>
-            <li class="menu__item">
-              <a href="/gcn/vscode-tools/" class="menu__link">Tools</a>
-            </li> -->
-            <!-- <li class="menu__launch__mobile">
-              <a href="/gcn/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
-            </li> -->
             <li class="menu__item">
               <div class="stack-container">
                 <a href="#" class="menu__link stack__header">Docs</a>
@@ -157,49 +143,6 @@
   
 </header>
 
-<!-- <header  class="header header--content" >
-
-  
-
-  
-
-    <nav class="menu">
-      <div class="menu__row">
-        <div>
-          <a href="/gcn/graal">
-            <img class="logo-mobile" src="/gcn/resources/img/gcn-logo-01.svg" alt="Graal Cloud Native logo">
-          </a>
-        </div>
-        <div class="menu__container">
-          <ul class="menu__list">
-            <li class="menu__item">
-              <a href="/gcn/graal/#whatisgraal" class="menu__link">About</a>
-            </li>
-            <li class="menu__item">
-              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
-            </li>
-            <li class="menu__item">
-              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
-            </li>
-            <li class="menu__item">
-              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <div role="button" class="menu-btn menu-btn--menu js-show-menu" tabindex="-1" title="sweet hamburger">
-        <div class="hamburger">
-          <div class="inner"></div>
-        </div>
-      </div>
-      <button aria-label="hamburger mobile menu" class="btn btn-mobile-menu js-show-menu">
-        <div class="inner"></div>
-      </button>
-    </nav>
-
-  
-</header> -->
 
       <main  class="content"   aria-label="Content">
         <div class="wrapper wrapper-content">
@@ -406,6 +349,9 @@
 
     <div class="col-sm-9 docsmod">
       <div id="content-wrapper" class="docs-content docs-content--with-sidebar">
+        <!--
+          Include file to warn of Windows/Gradle restriction
+        -->
         <h1 id="create-a-micronaut-application-to-collect-metrics-and-monitor-them-on-oracle-cloud-infrastructure">
         
         
@@ -455,6 +401,14 @@ The application uses <a href="https://micronaut-projects.github.io/micronaut-mic
 <blockquote>
   <p>Note: If you use IntelliJ IDEA, <a href="/gcn/resources/img/annotationprocessorsintellij.png">enable annotation processing</a>.</p>
 </blockquote>
+
+<!--
+  An include file with a snippet of html to warn about the Windows/Gradle restriction
+-->
+<blockquote>
+  <!-- <img class="" src="/gcn/resources/img/warn-icon-fill.svg/" alt="warning icon"> -->
+  <p>Windows platform: The GCN guides are compatible with Gradle only. Maven support is coming soon.</p>
+</blockquote>
     
       <h2 id="1-create-the-application">
         
@@ -485,7 +439,7 @@ The application uses <a href="https://micronaut-projects.github.io/micronaut-mic
       <li><strong>Sample Code</strong>: <em>No</em></li>
     </ul>
   </li>
-  <li>Click <strong>Generate Project</strong>. The GCN Launcher creates a Java project with the default package <code>com.example</code> in a directory named <em>oci-metrics-demo</em>. The application ZIP file will be downloaded in your default downloads directory. Unzip it, open in your code editor, and proceed to the next steps.</li>
+  <li>Click <strong>Generate Project</strong>, then click <strong>Download Zip</strong>. The GCN Launcher creates a Java project with the default package <code>com.example</code> in a directory named <em>oci-metrics-demo</em>. The application ZIP file will be downloaded in your default downloads directory. Unzip it, open in your code editor, and proceed to the next steps.</li>
 </ol>
 
 <p>Alternatively, use the GCN CLI as follows:</p>
@@ -496,7 +450,7 @@ The application uses <a href="https://micronaut-projects.github.io/micronaut-mic
     <li class="tabs-maven"><a href="#maven">Maven</a></li>
   </ul>
   <div id="gradle">
-    <pre><code class="language-bash">gcn create-app com.example.oci-metrics-demo
+    <pre><code class="language-bash">gcn create-app com.example.oci-metrics-demo \
     --clouds=oci \
     --services=metrics \
     --features=graalvm,micrometer-annotation \
@@ -505,7 +459,7 @@ The application uses <a href="https://micronaut-projects.github.io/micronaut-mic
     --example-code=false</code></pre>
   </div>
   <div id="maven">
-    <pre><code class="language-bash">gcn create-app com.example.oci-metrics-demo
+    <pre><code class="language-bash">gcn create-app com.example.oci-metrics-demo \
     --clouds=oci \
     --services=metrics \
     --features=graalvm,micrometer-annotation \
@@ -1306,7 +1260,11 @@ micronaut.metrics.export.oraclecloud.namespace=ocimetricsdemo
                 <li class="footer-list__item"><a href="/gcn/hands-on-labs/">Labs</a></li>
                 <li class="footer-list__github">
                   <img class="footer__icon" src="/gcn/resources/img/footer/logo-github.svg" alt="Github icon">
-                  <a href="https://github.com/oracle/gcn">Github</a>
+                  <a href="https://github.com/oracle/gcn" target="blank">Github</a>
+                </li>
+                <li class="footer-list__github">
+                  <img class="footer__icon" src="/gcn/resources/img/footer/slack-icon.svg" alt="Github icon">
+                  <a href="https://bit.ly/odevrel_slack" target="blank">Join us at: #graal-cloud-native</a>
                 </li>
               </ul>
             </div>
@@ -1315,7 +1273,7 @@ micronaut.metrics.export.oraclecloud.namespace=ocimetricsdemo
             <h6 class="title-footer" onclick="fadeInAndOut(this)">About</h6>
             <div class="grow">
               <ul class="footer-list">
-                <li class="footer-list__item"><a href="/gcn/about/#gcn-support" target="blank">Commercial Support</a></li>
+                <li class="footer-list__item"><a href="/gcn/about/#support" target="blank">Commercial Support</a></li>
                 <li class="footer-list__item"><a href="https://www.graalvm.org/" target="blank">GraalVM Native Image</a></li>
                 <li class="footer-list__item"><a href="https://micronaut.io/" target="_blank">Micronaut</a></li>
                 <li class="footer-list__item"><a href="https://www.oracle.com/cloud/multicloud/what-is-multicloud/" target="_blank">Multicloud</a></li>
@@ -1416,5 +1374,7 @@ micronaut.metrics.export.oraclecloud.namespace=ocimetricsdemo
     <script src='/gcn/resources/js/ui.js'></script>
     <script src='/gcn/resources/js/filters.js'></script>
     <script src='/gcn/resources/js/sidebar.js'></script>
+    <script src='/gcn/resources/lib/highlight/highlight.min.js'></script> 
+    <script>hljs.highlightAll();</script>
   </body>
 </html>

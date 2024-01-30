@@ -1,4 +1,4 @@
-The launcher created an interface with the endpoints of the "profile pictures" microservice in a file named _lib/src/main/java/com/example/ProfilePicturesApi.java_:
+The GCN Launcher created an interface with the endpoints of the "profile pictures" microservice in a file named _lib/src/main/java/com/example/ProfilePicturesApi.java_:
 
 ```java
 package com.example;
@@ -38,7 +38,7 @@ public interface ProfilePicturesApi {
 
 **4** The [`@Delete`](https://docs.micronaut.io/latest/api/io/micronaut/http/annotation/Delete.html) annotation maps the `delete` method to an HTTP Delete request on `/{userId}`.
 
-The launcher also created the `ProfilePicturesController` class that implements the `ProfilePicturesApi` interface in a file named _lib/src/main/java/com/example/ProfilePicturesController.java_. It contains the class definition and constructor:
+The GCN Launcher also created the `ProfilePicturesController` class that implements the `ProfilePicturesApi` interface in a file named _lib/src/main/java/com/example/ProfilePicturesController.java_. It contains the class definition and constructor:
 
 ```java
 package com.example;

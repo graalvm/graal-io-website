@@ -11288,6 +11288,8 @@ blockquote {
   padding: 4px 0px 4px 25px;
   background-color: #E0EAFF;
   margin: 16px 15px 24px 0px; }
+  blockquote p {
+    margin: 0px; }
   blockquote > :before {
     content: none !important; }
 
@@ -11393,7 +11395,7 @@ p {
   display: block !important; }
 
 strong {
-  font-weight: 500;
+  font-weight: 600;
   color: #121e34; }
 
 .link-main {
@@ -12045,7 +12047,7 @@ a.stack__header {
   list-style: none;
   margin-bottom: 30px;
   padding-left: 0px;
-  margin-right: 40px; }
+  margin-right: 6px; }
   @media only screen and (min-device-width: 320px) and (max-device-width: 479px) {
     .footer-list {
       padding-left: 12px; } }
@@ -12355,12 +12357,13 @@ p.copyright {
   max-width: 24px; }
 
 .footer-list__github {
-  margin-top: 40px;
+  margin-top: 20px;
   display: flex;
   align-items: center; }
   .footer-list__github a {
     color: rgba(196, 209, 238, 0.96);
-    padding-left: 6px; }
+    padding-left: 6px;
+    font-size: 14px; }
     .footer-list__github a:hover {
       color: #176AFF; }
 
@@ -13176,6 +13179,33 @@ p.guide-text {
 
 .guides-container {
   padding: 40px 24px 40px 48px; }
+
+.note-back {
+  background-color: #171923;
+  padding: 4px; }
+
+.note-container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding-left: 15px; }
+
+.warn-note {
+  display: flex;
+  flex-direction: row;
+  border-left: none;
+  border-radius: 8px;
+  background: #e0eaff;
+  padding: 4px 0px; }
+  .warn-note p {
+    color: #171923;
+    margin: 0px;
+    font-weight: 500; }
+  .warn-note strong {
+    font-size: 18px;
+    color: #2F3747;
+    margin: 0px; }
+  .warn-note img {
+    padding: 0 16px; }
 
 .guides-banner-gcn {
   max-height: fit-content;

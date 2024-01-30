@@ -14,7 +14,8 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2023-12-19 13:08:19 +0000"/>
+  <meta name="last_modified" content="2024-01-26 21:15:31 +0000"/>
+  <meta name="last_built" content="2024-01-30 10:05:12 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -69,21 +70,6 @@
             <li class="menu__item">
               <a href="/gcn/get-started/" class="menu__link">Get Started</a>
             </li>
-            <!-- <li class="menu__item">
-              <a href="/gcn/modules/" class="menu__link">Modules</a>
-            </li>
-            <li class="menu__item">
-              <a href="/gcn/guides/" class="menu__link">Guides</a>
-            </li>
-            <li class="menu__item">
-              <a href="/gcn/hands-on-labs/" class="menu__link">Hands-On Labs</a>
-            </li>
-            <li class="menu__item">
-              <a href="/gcn/vscode-tools/" class="menu__link">Tools</a>
-            </li> -->
-            <!-- <li class="menu__launch__mobile">
-              <a href="/gcn/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
-            </li> -->
             <li class="menu__item">
               <div class="stack-container">
                 <a href="#" class="menu__link stack__header">Docs</a>
@@ -157,49 +143,6 @@
   
 </header>
 
-<!-- <header  class="header header--content" >
-
-  
-
-  
-
-    <nav class="menu">
-      <div class="menu__row">
-        <div>
-          <a href="/gcn/graal">
-            <img class="logo-mobile" src="/gcn/resources/img/gcn-logo-01.svg" alt="Graal Cloud Native logo">
-          </a>
-        </div>
-        <div class="menu__container">
-          <ul class="menu__list">
-            <li class="menu__item">
-              <a href="/gcn/graal/#whatisgraal" class="menu__link">About</a>
-            </li>
-            <li class="menu__item">
-              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
-            </li>
-            <li class="menu__item">
-              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
-            </li>
-            <li class="menu__item">
-              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <div role="button" class="menu-btn menu-btn--menu js-show-menu" tabindex="-1" title="sweet hamburger">
-        <div class="hamburger">
-          <div class="inner"></div>
-        </div>
-      </div>
-      <button aria-label="hamburger mobile menu" class="btn btn-mobile-menu js-show-menu">
-        <div class="inner"></div>
-      </button>
-    </nav>
-
-  
-</header> -->
 
       <main  class="content"   aria-label="Content">
         <div class="wrapper wrapper-content">
@@ -406,6 +349,9 @@
 
     <div class="col-sm-9 docsmod">
       <div id="content-wrapper" class="docs-content docs-content--with-sidebar">
+        <!--
+          Include file to warn of Windows/Gradle restriction
+        -->
         <h1 id="create-and-deploy-a-streaming-application-with-amazon-managed-streaming-for-apache-kafka-msk">
         
         
@@ -510,7 +456,7 @@
       <li><strong>Sample Code</strong>: <em>No</em></li>
     </ul>
   </li>
-  <li>Click <strong>Generate Project</strong>. The GCN Launcher creates an application with the default package <code>com.example.publisher</code> in a directory named <em>books</em>. The application ZIP file will be downloaded in your default downloads directory. Unzip it, open in your code editor, and proceed to the next steps.</li>
+  <li>Click <strong>Generate Project</strong>, then click <strong>Download Zip</strong>. The GCN Launcher creates an application with the default package <code>com.example.publisher</code> in a directory named <em>books</em>. The application ZIP file will be downloaded in your default downloads directory. Unzip it, open in your code editor, and proceed to the next steps.</li>
 </ol>
 
 <p>Alternatively, use the <a href="/gcn/get-started/using-gcn-cli/">GCN CLI</a> as follows:</p>
@@ -548,7 +494,7 @@
         
       </h4>
 
-<p>The launcher created a <code>Book</code> domain class in a file named <em>lib/src/main/java/com/example/publisher/Book.java</em>, as follows:</p>
+<p>The GCN Launcher created a <code>Book</code> domain class in a file named <em>lib/src/main/java/com/example/publisher/Book.java</em>, as follows:</p>
 
 <pre><code class="language-java">package com.example.publisher;
 
@@ -609,7 +555,7 @@ public class Book {
         
       </h4>
 
-<p>To keep this guide simple there is no database persistence: the <em>Books</em> microservice keeps the list of books in memory. The launcher created a class named <code>BookService</code> in <em>lib/src/main/java/com/example/publisher/BookService.java</em> with the following contents:</p>
+<p>To keep this guide simple there is no database persistence: the <em>Books</em> microservice keeps the list of books in memory. The GCN Launcher created a class named <code>BookService</code> in <em>lib/src/main/java/com/example/publisher/BookService.java</em> with the following contents:</p>
 
 <pre><code class="language-java">package com.example.publisher;
 
@@ -651,7 +597,7 @@ public class BookService {
         
       </h4>
 
-<p>The launcher created a controller to access <code>Book</code> instances in a file named <em>lib/src/main/java/com/example/publisher/BookController.java</em> with the following contents:</p>
+<p>The GCN Launcher created a controller to access <code>Book</code> instances in a file named <em>lib/src/main/java/com/example/publisher/BookController.java</em> with the following contents:</p>
 
 <pre><code class="language-java">package com.example.publisher;
 
@@ -698,7 +644,7 @@ class BookController {
         
       </h4>
 
-<p>The launcher created a test for <code>BookController</code> to verify the interaction with the <em>Analytics</em> microservice in a file named <em>aws/src/test/java/com/example/publisher/BookControllerTest.java</em> with the following contents:</p>
+<p>The GCN Launcher created a test for <code>BookController</code> to verify the interaction with the <em>Analytics</em> microservice in a file named <em>aws/src/test/java/com/example/publisher/BookControllerTest.java</em> with the following contents:</p>
 
 <pre><code class="language-java">package com.example.publisher;
 
@@ -810,7 +756,7 @@ class BookControllerTest {
         
       </h4>
 
-<p>The launcher created a client interface to send messages to the streaming service in a file named <em>lib/src/main/java/com/example/publisher/AnalyticsClient.java</em> with the contents shown below. (Micronaut generates an implementation for the client interface at compilation time.)</p>
+<p>The GCN Launcher created a client interface to send messages to the streaming service in a file named <em>lib/src/main/java/com/example/publisher/AnalyticsClient.java</em> with the contents shown below. (Micronaut generates an implementation for the client interface at compilation time.)</p>
 
 <pre><code class="language-java">package com.example.publisher;
 
@@ -840,7 +786,7 @@ public interface AnalyticsClient {
 
 <p>Sending a message to the streaming service is as simple as injecting <code>AnalyticsClient</code> and calling its <code>updateAnalytics</code> method. 
 The goal is to send a message every time the details of a book are returned from the <em>Books</em> microservice or, in other words, every time there is a call to <code>http://localhost:8080/books/{isbn}</code>.
-To achieve this, the launcher created an <a href="https://docs.micronaut.io/4.0.3/guide/#filters">Http Server Filter</a> in a file named <em>lib/src/main/java/com/example/publisher/AnalyticsFilter.java</em> as follows:</p>
+To achieve this, the GCN Launcher created an <a href="https://docs.micronaut.io/4.0.3/guide/#filters">Http Server Filter</a> in a file named <em>lib/src/main/java/com/example/publisher/AnalyticsFilter.java</em> as follows:</p>
 
 <pre><code class="language-java">package com.example.publisher;
 
@@ -943,7 +889,7 @@ class AnalyticsFilter implements HttpServerFilter { // &lt;2&gt;
       <li><strong>Sample Code</strong>: <em>No</em></li>
     </ul>
   </li>
-  <li>Click <strong>Generate Project</strong>. The GCN Launcher creates an application with the default package <code>com.example.consumer</code> in a directory named <em>analytics</em>. The application ZIP file will be downloaded in your default downloads directory. Unzip it, open in your code editor, and proceed to the next steps.</li>
+  <li>Click <strong>Generate Project</strong>, then click <strong>Download Zip</strong>. The GCN Launcher creates an application with the default package <code>com.example.consumer</code> in a directory named <em>analytics</em>. The application ZIP file will be downloaded in your default downloads directory. Unzip it, open in your code editor, and proceed to the next steps.</li>
 </ol>
 
 <p>Alternatively, use the <a href="/gcn/get-started/using-gcn-cli/">GCN CLI</a> as follows:</p>
@@ -981,7 +927,7 @@ class AnalyticsFilter implements HttpServerFilter { // &lt;2&gt;
         
       </h4>
 
-<p>The launcher created a <code>Book</code> domain class in a file named <em>lib/src/main/java/com/example/consumer/Book.java</em>, as shown below. (This <code>Book</code> POJO is the same as the one in the <em>Books</em> microservice. In a real application this would be in a shared library but to keep things simple, just duplicate it.)</p>
+<p>The GCN Launcher created a <code>Book</code> domain class in a file named <em>lib/src/main/java/com/example/consumer/Book.java</em>, as shown below. (This <code>Book</code> POJO is the same as the one in the <em>Books</em> microservice. In a real application this would be in a shared library but to keep things simple, just duplicate it.)</p>
 
 <pre><code class="language-java">package com.example.consumer;
 
@@ -1034,7 +980,7 @@ public class Book {
 }
 </code></pre>
 
-<p>The launcher also created a <code>BookAnalytics</code> domain class in a file named <em>lib/src/main/java/com/example/consumer/BookAnalytics.java</em>, as follows:</p>
+<p>The GCN Launcher also created a <code>BookAnalytics</code> domain class in a file named <em>lib/src/main/java/com/example/consumer/BookAnalytics.java</em>, as follows:</p>
 
 <pre><code class="language-java">package com.example.consumer;
 
@@ -1071,7 +1017,7 @@ public class BookAnalytics {
         
       </h4>
 
-<p>To keep this guide simple there is no database persistence: the <em>Analytics</em> microservice keeps book analytics in memory. The launcher created a class named <code>AnalyticsService</code> in <em>lib/src/main/java/com/example/consumer/AnalyticsService.java</em> with the following contents:</p>
+<p>To keep this guide simple there is no database persistence: the <em>Analytics</em> microservice keeps book analytics in memory. The GCN Launcher created a class named <code>AnalyticsService</code> in <em>lib/src/main/java/com/example/consumer/AnalyticsService.java</em> with the following contents:</p>
 
 <pre><code class="language-java">package com.example.consumer;
 
@@ -1116,7 +1062,7 @@ public class AnalyticsService {
         
       </h4>
 
-<p>The launcher created a test for the <code>AnalyticsService</code> class, in a file named <em>aws/src/test/java/com/example/consumer/AnalyticsServiceTest.java</em>, as follows:</p>
+<p>The GCN Launcher created a test for the <code>AnalyticsService</code> class, in a file named <em>aws/src/test/java/com/example/consumer/AnalyticsServiceTest.java</em>, as follows:</p>
 
 <pre><code class="language-java">package com.example.consumer;
 
@@ -1169,7 +1115,7 @@ class AnalyticsServiceTest {
         
       </h4>
 
-<p>The launcher created a Controller to create an endpoint for the <em>Analytics</em> microservice in a file named <em>lib/src/main/java/com/example/consumer/AnalyticsController.java</em>, as follows:</p>
+<p>The GCN Launcher created a Controller to create an endpoint for the <em>Analytics</em> microservice in a file named <em>lib/src/main/java/com/example/consumer/AnalyticsController.java</em>, as follows:</p>
 
 <pre><code class="language-java">package com.example.consumer;
 
@@ -1208,7 +1154,7 @@ class AnalyticsController {
         
       </h4>
 
-<p>The launcher created a class to act as a consumer of the messages sent to the streaming service by the <em>Books</em> microservice. The Micronaut framework implements logic to invoke the consumer at compile time. The <code>AnalyticsListener</code> class is in a file named <em>lib/src/main/java/com/example/consumer/AnalyticsListener.java</em>, as follows:</p>
+<p>The GCN Launcher created a class to act as a consumer of the messages sent to the streaming service by the <em>Books</em> microservice. The Micronaut framework implements logic to invoke the consumer at compile time. The <code>AnalyticsListener</code> class is in a file named <em>lib/src/main/java/com/example/consumer/AnalyticsListener.java</em>, as follows:</p>
 
 <pre><code class="language-java">package com.example.consumer;
 
@@ -1481,22 +1427,7 @@ micronaut.server.port=8081
         
       </h3>
 
-<p>Instead of using your AWS root account, use an administrator account. If you do not have one already, follow the steps below to create one:</p>
-
-<pre><code class="language-bash">aws iam create-group --group-name Administrators
-aws iam create-user --user-name Administrator
-aws iam add-user-to-group \
-    --user-name Administrator \
-    --group-name Administrators
-aws iam attach-group-policy \
-    --group-name Administrators \
-    --policy-arn $(aws iam list-policies \
-    --query "Policies[?PolicyName==`AdministratorAccess`].{ARN:Arn}" \
-    --output text)
-aws iam create-access-key --user-name Administrator
-</code></pre>
-
-<p>Then run <code>aws configure</code> to configure your AWS CLI to use the Administrator IAM user that you just created. (This must include your default region.)</p>
+<p>Instead of using your AWS root account, use an administrator account. If you do not have one already, see <a href="/gcn/get-started/setting-up-cloud-accounts/">Setting up Your Cloud Accounts</a>.</p>
     
       <h3 id="42-create-a-virtual-private-cloud-an-internet-gateway-and-a-route-table">
         
@@ -1655,22 +1586,22 @@ aws iam create-access-key --user-name Administrator
   <li>
     <p>Create a Kafka cluster using the following command:</p>
 
-    <pre><code class="language-bash"> aws kafka create-cluster \
+    <pre><code class="language-bash"> export CLUSTER_ARN=$(aws kafka create-cluster \
      --cluster-name "AWSKafkaGCNGuide" \
      --broker-node-group-info file://aws_msk_cluster_broker_info.json \
      --client-authentication  file://aws_msk_cluster_auth_info.json \
      --kafka-version "2.8.1" \
-     --number-of-broker-nodes 3
+     --number-of-broker-nodes 3 | jq -r '.ClusterArn')
 </code></pre>
 
     <blockquote>
-      <p>Note: You may have to wait up to 30 minutes before the cluster is in the ACTIVE state.</p>
+      <p>Note: You may have to wait up to 40 minutes before the cluster is in the ACTIVE state.</p>
     </blockquote>
   </li>
   <li>
     <p>Get and copy the <code>BootstrapBrokerStringSaslIam</code>, which you are going to use later.</p>
 
-    <pre><code class="language-bash"> aws kafka get-bootstrap-brokers --cluster-arn &lt;replace_with_the_ClusterArn&gt;
+    <pre><code class="language-bash"> export KAFKA_BOOTSTRAP_SERVERS=$(aws kafka get-bootstrap-brokers --cluster-arn $CLUSTER_ARN | jq -r '.BootstrapBrokerStringSaslIam')
 </code></pre>
 
     <blockquote>
@@ -1829,7 +1760,7 @@ aws iam create-access-key --user-name Administrator
 
     <pre><code class="language-bash"> aws ec2 modify-instance-attribute \
      --instance-id $INST_ID \
-     --groups &lt;replace_with_your_set&gt;
+     --groups "$SG_ID" "$CURRENT_SG_IDS" 
 </code></pre>
   </li>
 </ol>
@@ -2019,13 +1950,13 @@ aws iam create-access-key --user-name Administrator
   <li>
     <p>Download the <code>aws-msk-iam-auth</code> library:</p>
 
-    <pre><code class="language-bash"> wget https://github.com/aws/aws-msk-iam-auth/releases/download/v1.1.5/aws-msk-iam-auth-1.1.5-all.jar
+    <pre><code class="language-bash"> wget https://github.com/aws/aws-msk-iam-auth/releases/download/v1.1.9/aws-msk-iam-auth-1.1.9-all.jar
 </code></pre>
   </li>
   <li>
     <p>Add the <code>aws-msk-iam-auth</code> library to the Kafka client classpath:</p>
 
-    <pre><code class="language-bash">cp aws-msk-iam-auth-1.1.5-all.jar kafka_2.12-$MSK_VERSION/libs
+    <pre><code class="language-bash">cp aws-msk-iam-auth-1.1.9-all.jar kafka_2.12-$MSK_VERSION/libs
 </code></pre>
   </li>
 </ol>
@@ -2121,14 +2052,14 @@ kafka.security.protocol=SASL_SSL
      </ul>
      <div id="gradle">
          <p><em>build.gradle</em></p>
-         <pre><code class="language-java">runtimeOnly("software.amazon.msk:aws-msk-iam-auth:1.1.5")</code></pre>
+         <pre><code class="language-java">runtimeOnly("software.amazon.msk:aws-msk-iam-auth:1.1.9")</code></pre>
      </div>
      <div id="maven">
          <p><em>pom.xml</em></p>
          <pre><code class="language-xml">&lt;dependency&gt;
      &lt;groupId&gt;software.amazon.msk&lt;/groupId&gt;
      &lt;artifactId&gt;aws-msk-iam-auth&lt;/artifactId&gt;
-     &lt;version&gt;1.1.5&lt;/version&gt;
+     &lt;version&gt;1.1.9&lt;/version&gt;
      &lt;scope&gt;runtime&lt;/scope&gt;
  &lt;/dependency&gt;</code></pre>
      </div>
@@ -2179,7 +2110,7 @@ kafka.security.protocol=SASL_SSL
          <pre><code class="language-bash">scp -i /path/to/AWS_Keypair.pem aws/build/libs/aws-1.0-SNAPSHOT-all.jar ec2-user@$PIPA:/home/ec2-user/books_application.jar</code></pre>
      </div>
      <div id="maven">
-         <pre><code class="language-bash">scp -i /path/to/AWS_Keypair.pem aws/target/aws-1.0-SNAPSHOT-all.jar ec2-user@$PIPA:/home/ec2-user/books_application.jar</code></pre>
+         <pre><code class="language-bash">scp -i /path/to/AWS_Keypair.pem aws/target/aws-1.0-SNAPSHOT.jar ec2-user@$PIPA:/home/ec2-user/books_application.jar</code></pre>
      </div>
  </div>
   </li>
@@ -2246,7 +2177,7 @@ kafka.security.protocol=SASL_SSL
          <pre><code class="language-bash">scp -i /path/to/AWS_Keypair.pem aws/build/libs/aws-1.0-SNAPSHOT-all.jar ec2-user@$PIPA:/home/ec2-user/analytics_application.jar</code></pre>
      </div>
      <div id="maven">
-         <pre><code class="language-bash">scp -i /path/to/AWS_Keypair.pem aws/target/aws-1.0-SNAPSHOT-all.jar ec2-user@$PIPA:/home/ec2-user/analytics_application.jar</code></pre>
+         <pre><code class="language-bash">scp -i /path/to/AWS_Keypair.pem aws/target/aws-1.0-SNAPSHOT.jar ec2-user@$PIPA:/home/ec2-user/analytics_application.jar</code></pre>
      </div>
  </div>
   </li>
@@ -2672,7 +2603,11 @@ sudo yum -y install zlib*
                 <li class="footer-list__item"><a href="/gcn/hands-on-labs/">Labs</a></li>
                 <li class="footer-list__github">
                   <img class="footer__icon" src="/gcn/resources/img/footer/logo-github.svg" alt="Github icon">
-                  <a href="https://github.com/oracle/gcn">Github</a>
+                  <a href="https://github.com/oracle/gcn" target="blank">Github</a>
+                </li>
+                <li class="footer-list__github">
+                  <img class="footer__icon" src="/gcn/resources/img/footer/slack-icon.svg" alt="Github icon">
+                  <a href="https://bit.ly/odevrel_slack" target="blank">Join us at: #graal-cloud-native</a>
                 </li>
               </ul>
             </div>
@@ -2681,7 +2616,7 @@ sudo yum -y install zlib*
             <h6 class="title-footer" onclick="fadeInAndOut(this)">About</h6>
             <div class="grow">
               <ul class="footer-list">
-                <li class="footer-list__item"><a href="/gcn/about/#gcn-support" target="blank">Commercial Support</a></li>
+                <li class="footer-list__item"><a href="/gcn/about/#support" target="blank">Commercial Support</a></li>
                 <li class="footer-list__item"><a href="https://www.graalvm.org/" target="blank">GraalVM Native Image</a></li>
                 <li class="footer-list__item"><a href="https://micronaut.io/" target="_blank">Micronaut</a></li>
                 <li class="footer-list__item"><a href="https://www.oracle.com/cloud/multicloud/what-is-multicloud/" target="_blank">Multicloud</a></li>
@@ -2782,5 +2717,7 @@ sudo yum -y install zlib*
     <script src='/gcn/resources/js/ui.js'></script>
     <script src='/gcn/resources/js/filters.js'></script>
     <script src='/gcn/resources/js/sidebar.js'></script>
+    <script src='/gcn/resources/lib/highlight/highlight.min.js'></script> 
+    <script>hljs.highlightAll();</script>
   </body>
 </html>

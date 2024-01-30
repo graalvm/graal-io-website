@@ -1,4 +1,4 @@
-To keep this guide simple there is no database persistence: the _Analytics_ microservice keeps book analytics in memory. The GCN launcher created a class named `AnalyticsService` in _lib/src/main/java/com/example/consumer/AnalyticsService.java_ with the following contents:
+To keep this guide simple there is no database persistence: the _Analytics_ microservice keeps book analytics in memory. The GCN Launcher created a class named `AnalyticsService` in _lib/src/main/java/com/example/consumer/AnalyticsService.java_ with the following contents:
 
 ```java
 package com.example.consumer;

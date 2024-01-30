@@ -1,4 +1,4 @@
-The GCN launcher created a class to act as a consumer of the messages sent to the streaming service by the _Books_ microservice. The Micronaut framework implements logic to invoke the consumer at compile time. The `AnalyticsListener` class is in a file named _lib/src/main/java/com/example/consumer/AnalyticsListener.java_, as follows:
+The GCN Launcher created a class to act as a consumer of the messages sent to the streaming service by the _Books_ microservice. The Micronaut framework implements logic to invoke the consumer at compile time. The `AnalyticsListener` class is in a file named _lib/src/main/java/com/example/consumer/AnalyticsListener.java_, as follows:
 
 ```java
 package com.example.consumer;

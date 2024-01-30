@@ -14,7 +14,8 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2023-12-19 14:55:48 +0000"/>
+  <meta name="last_modified" content="2024-01-16 12:43:07 +0000"/>
+  <meta name="last_built" content="2024-01-30 10:05:12 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -69,21 +70,6 @@
             <li class="menu__item">
               <a href="/gcn/get-started/" class="menu__link">Get Started</a>
             </li>
-            <!-- <li class="menu__item">
-              <a href="/gcn/modules/" class="menu__link">Modules</a>
-            </li>
-            <li class="menu__item">
-              <a href="/gcn/guides/" class="menu__link">Guides</a>
-            </li>
-            <li class="menu__item">
-              <a href="/gcn/hands-on-labs/" class="menu__link">Hands-On Labs</a>
-            </li>
-            <li class="menu__item">
-              <a href="/gcn/vscode-tools/" class="menu__link">Tools</a>
-            </li> -->
-            <!-- <li class="menu__launch__mobile">
-              <a href="/gcn/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
-            </li> -->
             <li class="menu__item">
               <div class="stack-container">
                 <a href="#" class="menu__link stack__header">Docs</a>
@@ -157,49 +143,6 @@
   
 </header>
 
-<!-- <header  class="header header--content" >
-
-  
-
-  
-
-    <nav class="menu">
-      <div class="menu__row">
-        <div>
-          <a href="/gcn/graal">
-            <img class="logo-mobile" src="/gcn/resources/img/gcn-logo-01.svg" alt="Graal Cloud Native logo">
-          </a>
-        </div>
-        <div class="menu__container">
-          <ul class="menu__list">
-            <li class="menu__item">
-              <a href="/gcn/graal/#whatisgraal" class="menu__link">About</a>
-            </li>
-            <li class="menu__item">
-              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
-            </li>
-            <li class="menu__item">
-              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
-            </li>
-            <li class="menu__item">
-              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <div role="button" class="menu-btn menu-btn--menu js-show-menu" tabindex="-1" title="sweet hamburger">
-        <div class="hamburger">
-          <div class="inner"></div>
-        </div>
-      </div>
-      <button aria-label="hamburger mobile menu" class="btn btn-mobile-menu js-show-menu">
-        <div class="inner"></div>
-      </button>
-    </nav>
-
-  
-</header> -->
 
       <main  class="content"   aria-label="Content">
         <div class="wrapper wrapper-content">
@@ -406,6 +349,9 @@
 
     <div class="col-sm-9 docsmod">
       <div id="content-wrapper" class="docs-content docs-content--with-sidebar">
+        <!--
+          Include file to warn of Windows/Gradle restriction
+        -->
         <h1 id="create-and-deploy-a-streaming-application-with-the-oracle-cloud-infrastructure-streaming-service">
         
         
@@ -469,6 +415,14 @@
 <p>Consider using Visual Studio Code that provides native support for developing applications with the <a href="/gcn/vscode-tools/using-gcn-vscode-tools/">Graal Cloud Native extension</a>.</p>
 
 <p>If you use IntelliJ IDEA, <a href="/gcn/resources/img/annotationprocessorsintellij.png">enable annotation processing</a>.</p>
+
+<!--
+  An include file with a snippet of html to warn about the Windows/Gradle restriction
+-->
+<blockquote>
+  <!-- <img class="" src="/gcn/resources/img/warn-icon-fill.svg/" alt="warning icon"> -->
+  <p>Windows platform: The GCN guides are compatible with Gradle only. Maven support is coming soon.</p>
+</blockquote>
     
       <h2 id="1-create-the-microservices">
         
@@ -517,7 +471,7 @@
       <li><strong>Sample Code</strong>: <em>No</em></li>
     </ul>
   </li>
-  <li>Click <strong>Generate Project</strong>. The GCN Launcher creates an application with the default package <code>com.example.publisher</code> in a directory named <em>books</em>. The application ZIP file will be downloaded in your default downloads directory. Unzip it, open in your code editor, and proceed to the next steps.</li>
+  <li>Click <strong>Generate Project</strong>, then click <strong>Download Zip</strong>. The GCN Launcher creates an application with the default package <code>com.example.publisher</code> in a directory named <em>books</em>. The application ZIP file will be downloaded in your default downloads directory. Unzip it, open in your code editor, and proceed to the next steps.</li>
 </ol>
 
 <p>Alternatively, use the <a href="/gcn/get-started/using-gcn-cli/">GCN CLI</a> as follows:</p>
@@ -555,7 +509,7 @@
         
       </h4>
 
-<p>The GCN launcher created a <code>Book</code> domain class in a file named <em>lib/src/main/java/com/example/publisher/Book.java</em>, as follows:</p>
+<p>The GCN Launcher created a <code>Book</code> domain class in a file named <em>lib/src/main/java/com/example/publisher/Book.java</em>, as follows:</p>
 
 <pre><code class="language-java">package com.example.publisher;
 
@@ -616,7 +570,7 @@ public class Book {
         
       </h4>
 
-<p>To keep this guide simple there is no database persistence: the <em>Books</em> microservice keeps the list of books in memory. The GCN launcher created a class named <code>BookService</code> in <em>lib/src/main/java/com/example/publisher/BookService.java</em> with the following contents:</p>
+<p>To keep this guide simple there is no database persistence: the <em>Books</em> microservice keeps the list of books in memory. The GCN Launcher created a class named <code>BookService</code> in <em>lib/src/main/java/com/example/publisher/BookService.java</em> with the following contents:</p>
 
 <pre><code class="language-java">package com.example.publisher;
 
@@ -658,7 +612,7 @@ public class BookService {
         
       </h4>
 
-<p>The GCN launcher created a controller to access <code>Book</code> instances in a file named <em>lib/src/main/java/com/example/publisher/BookController.java</em> with the following contents:</p>
+<p>The GCN Launcher created a controller to access <code>Book</code> instances in a file named <em>lib/src/main/java/com/example/publisher/BookController.java</em> with the following contents:</p>
 
 <pre><code class="language-java">package com.example.publisher;
 
@@ -705,7 +659,7 @@ class BookController {
         
       </h4>
 
-<p>The GCN launcher created a test for <code>BookController</code> to verify the interaction with the <em>Analytics</em> microservice in a file named <em>oci/src/test/java/com/example/publisher/BookControllerTest.java</em> with the following contents:</p>
+<p>The GCN Launcher created a test for <code>BookController</code> to verify the interaction with the <em>Analytics</em> microservice in a file named <em>oci/src/test/java/com/example/publisher/BookControllerTest.java</em> with the following contents:</p>
 
 <pre><code class="language-java">package com.example.publisher;
 
@@ -817,7 +771,7 @@ class BookControllerTest {
         
       </h4>
 
-<p>The GCN launcher created a client interface to send messages to the streaming service in a file named <em>lib/src/main/java/com/example/publisher/AnalyticsClient.java</em> with the contents shown below. (Micronaut generates an implementation for the client interface at compilation time.)</p>
+<p>The GCN Launcher created a client interface to send messages to the streaming service in a file named <em>lib/src/main/java/com/example/publisher/AnalyticsClient.java</em> with the contents shown below. (Micronaut generates an implementation for the client interface at compilation time.)</p>
 
 <pre><code class="language-java">package com.example.publisher;
 
@@ -850,7 +804,7 @@ public interface AnalyticsClient {
 
 <p>Sending a message to the streaming service is as simple as injecting <code>AnalyticsClient</code> and calling its <code>updateAnalytics</code> method. 
 The goal is to send a message every time the details of a book are returned from the <em>Books</em> microservice or, in other words, every time there is a call to <code>http://localhost:8080/books/{isbn}</code>.
-To achieve this, the GCN launcher created an <a href="https://docs.micronaut.io/4.0.3/guide/#filters">Http Server Filter</a> in a file named <em>lib/src/main/java/com/example/publisher/AnalyticsFilter.java</em> as follows:</p>
+To achieve this, the GCN Launcher created an <a href="https://docs.micronaut.io/4.0.3/guide/#filters">Http Server Filter</a> in a file named <em>lib/src/main/java/com/example/publisher/AnalyticsFilter.java</em> as follows:</p>
 
 <pre><code class="language-java">package com.example.publisher;
 
@@ -957,7 +911,7 @@ class AnalyticsFilter implements HttpServerFilter { // &lt;2&gt;
       <li><strong>Sample Code</strong>: <em>No</em></li>
     </ul>
   </li>
-  <li>Click <strong>Generate Project</strong>. The GCN Launcher creates an application with the default package <code>com.example.consumer</code> in a directory named <em>analytics</em>. The application ZIP file will be downloaded in your default downloads directory. Unzip it, open in your code editor, and proceed to the next steps.</li>
+  <li>Click <strong>Generate Project</strong>, then click <strong>Download Zip</strong>. The GCN Launcher creates an application with the default package <code>com.example.consumer</code> in a directory named <em>analytics</em>. The application ZIP file will be downloaded in your default downloads directory. Unzip it, open in your code editor, and proceed to the next steps.</li>
 </ol>
 
 <p>Alternatively, use the <a href="/gcn/get-started/using-gcn-cli/">GCN CLI</a> as follows:</p>
@@ -995,7 +949,7 @@ class AnalyticsFilter implements HttpServerFilter { // &lt;2&gt;
         
       </h4>
 
-<p>The GCN launcher created a <code>Book</code> domain class in a file named <em>lib/src/main/java/com/example/consumer/Book.java</em>, as shown below. (This <code>Book</code> POJO is the same as the one in the <em>Books</em> microservice. In a real application this would be in a shared library.)</p>
+<p>The GCN Launcher created a <code>Book</code> domain class in a file named <em>lib/src/main/java/com/example/consumer/Book.java</em>, as shown below. (This <code>Book</code> POJO is the same as the one in the <em>Books</em> microservice. In a real application this would be in a shared library.)</p>
 
 <pre><code class="language-java">package com.example.consumer;
 
@@ -1048,7 +1002,7 @@ public class Book {
 }
 </code></pre>
 
-<p>The GCN launcher also created a <code>BookAnalytics</code> domain class in a file named <em>lib/src/main/java/com/example/consumer/BookAnalytics.java</em>, as follows:</p>
+<p>The GCN Launcher also created a <code>BookAnalytics</code> domain class in a file named <em>lib/src/main/java/com/example/consumer/BookAnalytics.java</em>, as follows:</p>
 
 <pre><code class="language-java">package com.example.consumer;
 
@@ -1085,7 +1039,7 @@ public class BookAnalytics {
         
       </h4>
 
-<p>To keep this guide simple there is no database persistence: the <em>Analytics</em> microservice keeps book analytics in memory. The GCN launcher created a class named <code>AnalyticsService</code> in <em>lib/src/main/java/com/example/consumer/AnalyticsService.java</em> with the following contents:</p>
+<p>To keep this guide simple there is no database persistence: the <em>Analytics</em> microservice keeps book analytics in memory. The GCN Launcher created a class named <code>AnalyticsService</code> in <em>lib/src/main/java/com/example/consumer/AnalyticsService.java</em> with the following contents:</p>
 
 <pre><code class="language-java">package com.example.consumer;
 
@@ -1130,7 +1084,7 @@ public class AnalyticsService {
         
       </h4>
 
-<p>The GCN launcher created a test for the <code>AnalyticsService</code> class, in a file named <em>oci/src/test/java/com/example/consumer/AnalyticsServiceTest.java</em>, as follows:</p>
+<p>The GCN Launcher created a test for the <code>AnalyticsService</code> class, in a file named <em>oci/src/test/java/com/example/consumer/AnalyticsServiceTest.java</em>, as follows:</p>
 
 <pre><code class="language-java">package com.example.consumer;
 
@@ -1183,7 +1137,7 @@ class AnalyticsServiceTest {
         
       </h4>
 
-<p>The GCN launcher created a Controller to create an endpoint for the <em>Analytics</em> microservice in a file named <em>lib/src/main/java/com/example/consumer/AnalyticsController.java</em>, as follows:</p>
+<p>The GCN Launcher created a Controller to create an endpoint for the <em>Analytics</em> microservice in a file named <em>lib/src/main/java/com/example/consumer/AnalyticsController.java</em>, as follows:</p>
 
 <pre><code class="language-java">package com.example.consumer;
 
@@ -1222,7 +1176,7 @@ class AnalyticsController {
         
       </h4>
 
-<p>The GCN launcher created a class to act as a consumer of the messages sent to the streaming service by the <em>Books</em> microservice. The Micronaut framework implements logic to invoke the consumer at compile time. The <code>AnalyticsListener</code> class is in a file named <em>lib/src/main/java/com/example/consumer/AnalyticsListener.java</em>, as follows:</p>
+<p>The GCN Launcher created a class to act as a consumer of the messages sent to the streaming service by the <em>Books</em> microservice. The Micronaut framework implements logic to invoke the consumer at compile time. The <code>AnalyticsListener</code> class is in a file named <em>lib/src/main/java/com/example/consumer/AnalyticsListener.java</em>, as follows:</p>
 
 <pre><code class="language-java">package com.example.consumer;
 
@@ -1580,7 +1534,7 @@ micronaut.server.port=8081
         
       </h3>
 
-<p><a href="https://micronaut-projects.github.io/micronaut-oracle-cloud/latest/guide/#instance-principals" target="_blank">Instance Principal authentication</a> enables Oracle Cloud Infrastructure applications to retrieve secrets from Oracle Cloud Infrastructure Vault. (For more information about using Oracle Cloud Infrastructure Vault, see <a href="/gcn/gcn-modules/secret-management/micronaut-secrets-oracle-cloud/">Securely Store Application Secrets in Oracle Cloud Infrastructure Vault</a>.) To use this, create a dynamic group and add a policy statement granting permission.</p>
+<p><a href="https://micronaut-projects.github.io/micronaut-oracle-cloud/latest/guide/#instance-principals" target="_blank">Instance Principal authentication</a> enables Oracle Cloud Infrastructure applications to retrieve secrets from Oracle Cloud Infrastructure Vault. (For more information about using Oracle Cloud Infrastructure Vault, see <a href="/gcn/gcn-modules/secret-management/micronaut-secrets-oci/">Securely Store Application Secrets in Oracle Cloud Infrastructure Vault</a>.) To use this, create a dynamic group and add a policy statement granting permission.</p>
 
 <p>Choose a group name, such as “gcn-guide-dg”, and a matching rule (to determine group membership). For this guide, use a fairly broad rule:</p>
 
@@ -1919,7 +1873,7 @@ sudo ln -s /usr/lib64/libstdc++.so.6 /usr/lib/libstdc++.so
 
 <ul>
   <li><a href="https://docs.oracle.com/iaas/Content/Streaming/Concepts/streamingoverview.htm" target="_blank">Oracle Cloud Infrastructure Streaming service</a></li>
-  <li><a href="/gcn/gcn-modules/secret-management/micronaut-secrets-oracle-cloud/" target="_blank">Securely Store Application Secrets in Oracle Cloud Infrastructure Vault</a></li>
+  <li><a href="/gcn/gcn-modules/secret-management/micronaut-secrets-oci/" target="_blank">Securely Store Application Secrets in Oracle Cloud Infrastructure Vault</a></li>
   <li><a href="https://micronaut-projects.github.io/micronaut-kafka/latest/guide/" target="_blank">Kafka support in Micronaut</a></li>
   <li><a href="https://developer.oracle.com/languages/graalvm/graal-cloud-native.html" target="_blank">Graal Cloud Native</a></li>
   <li><a href="https://luna.oracle.com/lab/47dafec8-4095-4fba-8313-dad43a64dee4" target="_blank">GraalVM Native Image Quick Start</a></li>
@@ -1958,7 +1912,11 @@ sudo ln -s /usr/lib64/libstdc++.so.6 /usr/lib/libstdc++.so
                 <li class="footer-list__item"><a href="/gcn/hands-on-labs/">Labs</a></li>
                 <li class="footer-list__github">
                   <img class="footer__icon" src="/gcn/resources/img/footer/logo-github.svg" alt="Github icon">
-                  <a href="https://github.com/oracle/gcn">Github</a>
+                  <a href="https://github.com/oracle/gcn" target="blank">Github</a>
+                </li>
+                <li class="footer-list__github">
+                  <img class="footer__icon" src="/gcn/resources/img/footer/slack-icon.svg" alt="Github icon">
+                  <a href="https://bit.ly/odevrel_slack" target="blank">Join us at: #graal-cloud-native</a>
                 </li>
               </ul>
             </div>
@@ -1967,7 +1925,7 @@ sudo ln -s /usr/lib64/libstdc++.so.6 /usr/lib/libstdc++.so
             <h6 class="title-footer" onclick="fadeInAndOut(this)">About</h6>
             <div class="grow">
               <ul class="footer-list">
-                <li class="footer-list__item"><a href="/gcn/about/#gcn-support" target="blank">Commercial Support</a></li>
+                <li class="footer-list__item"><a href="/gcn/about/#support" target="blank">Commercial Support</a></li>
                 <li class="footer-list__item"><a href="https://www.graalvm.org/" target="blank">GraalVM Native Image</a></li>
                 <li class="footer-list__item"><a href="https://micronaut.io/" target="_blank">Micronaut</a></li>
                 <li class="footer-list__item"><a href="https://www.oracle.com/cloud/multicloud/what-is-multicloud/" target="_blank">Multicloud</a></li>
@@ -2068,5 +2026,7 @@ sudo ln -s /usr/lib64/libstdc++.so.6 /usr/lib/libstdc++.so
     <script src='/gcn/resources/js/ui.js'></script>
     <script src='/gcn/resources/js/filters.js'></script>
     <script src='/gcn/resources/js/sidebar.js'></script>
+    <script src='/gcn/resources/lib/highlight/highlight.min.js'></script> 
+    <script>hljs.highlightAll();</script>
   </body>
 </html>

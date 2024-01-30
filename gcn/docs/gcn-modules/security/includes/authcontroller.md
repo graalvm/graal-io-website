@@ -1,6 +1,6 @@
 ### 1.1. AuthController
 
-The GCN launcher created a class named `AuthController` to handle requests to `/`. It displays the email of an authenticated person, if any. The controller endpoint is annotated with  a [`@View`](https://micronaut-projects.github.io/micronaut-views/latest/api/io/micronaut/views/View.html){:target="_blank"} annotation that uses a [JTE template](https://micronaut-projects.github.io/micronaut-views/latest/guide/#jte){:target="_blank"}. The file named _{{ include.cloud }}/src/main/java/com/example/AuthController.java_ has the following contents:
+The GCN Launcher created a class named `AuthController` to handle requests to `/`. It displays the email of an authenticated person, if any. The controller endpoint is annotated with  a [`@View`](https://micronaut-projects.github.io/micronaut-views/latest/api/io/micronaut/views/View.html){:target="_blank"} annotation that uses a [JTE template](https://micronaut-projects.github.io/micronaut-views/latest/guide/#jte){:target="_blank"}. The file named _{{ include.cloud }}/src/main/java/com/example/AuthController.java_ has the following contents:
 
 ```java
 package com.example;

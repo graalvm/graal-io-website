@@ -14,7 +14,8 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2023-09-20 15:01:31 +0000"/>
+  <meta name="last_modified" content="2024-01-10 23:54:49 +0000"/>
+  <meta name="last_built" content="2024-01-30 10:05:12 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -69,21 +70,6 @@
             <li class="menu__item">
               <a href="/gcn/get-started/" class="menu__link">Get Started</a>
             </li>
-            <!-- <li class="menu__item">
-              <a href="/gcn/modules/" class="menu__link">Modules</a>
-            </li>
-            <li class="menu__item">
-              <a href="/gcn/guides/" class="menu__link">Guides</a>
-            </li>
-            <li class="menu__item">
-              <a href="/gcn/hands-on-labs/" class="menu__link">Hands-On Labs</a>
-            </li>
-            <li class="menu__item">
-              <a href="/gcn/vscode-tools/" class="menu__link">Tools</a>
-            </li> -->
-            <!-- <li class="menu__launch__mobile">
-              <a href="/gcn/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
-            </li> -->
             <li class="menu__item">
               <div class="stack-container">
                 <a href="#" class="menu__link stack__header">Docs</a>
@@ -157,49 +143,6 @@
   
 </header>
 
-<!-- <header  class="header header--content" >
-
-  
-
-  
-
-    <nav class="menu">
-      <div class="menu__row">
-        <div>
-          <a href="/gcn/graal">
-            <img class="logo-mobile" src="/gcn/resources/img/gcn-logo-01.svg" alt="Graal Cloud Native logo">
-          </a>
-        </div>
-        <div class="menu__container">
-          <ul class="menu__list">
-            <li class="menu__item">
-              <a href="/gcn/graal/#whatisgraal" class="menu__link">About</a>
-            </li>
-            <li class="menu__item">
-              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
-            </li>
-            <li class="menu__item">
-              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
-            </li>
-            <li class="menu__item">
-              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <div role="button" class="menu-btn menu-btn--menu js-show-menu" tabindex="-1" title="sweet hamburger">
-        <div class="hamburger">
-          <div class="inner"></div>
-        </div>
-      </div>
-      <button aria-label="hamburger mobile menu" class="btn btn-mobile-menu js-show-menu">
-        <div class="inner"></div>
-      </button>
-    </nav>
-
-  
-</header> -->
 
       <main  class="content"   aria-label="Content">
         <div class="wrapper wrapper-content">
@@ -293,17 +236,6 @@
           <li class="toc-bullets-sub">
           
             
-            <a href="/gcn/vscode-guides/setting-oci-devops-pipeline-in-vscode/">
-              Setting OCI DevOps Build and Development Pipelines in VS Code
-            </a>
-          </li>
-
-          
-        
-          
-          <li class="toc-bullets-sub">
-          
-            
             <a href="/gcn/vscode-guides/creating-gcn-db-application-with-atp-connection/">
               Creating a Database Application and Connecting to an Oracle Autonomous Database
             </a>
@@ -328,6 +260,72 @@
             
             <a href="/gcn/vscode-guides/deploy-to-aws-eks-in-vscode/">
               Deploying a Java Application to Amazon Elastic Kubernetes Cluster in VS Code
+            </a>
+          </li>
+
+          
+        
+          
+          <li class="toc-bullets-sub">
+          
+            
+            <a href="/gcn/vscode-guides/deploy-to-google-cloud-run-in-vscode/">
+              Deploying a Java Application to Google Cloud Run in VS Code
+            </a>
+          </li>
+
+          
+        
+          
+          <li class="toc-bullets-sub toc-bullets-highlight">
+          
+            
+            <a href="/gcn/vscode-guides/deploy-to-google-k8s-engine-in-vscode/">
+              Deploying a Java Application to Google Kubernetes Engine in VS Code
+            </a>
+          </li>
+
+          
+            <div>
+  <script>
+    var scriptElement = document.currentScript;
+    var div = $(scriptElement.parentElement);
+    $(window).on("load", function () {
+      $("#content-wrapper h2").each(function () {
+        var li = $("<li></li>", { class: "toc-bullets-sub toc-bullets-sub-3" });
+        var a = $("<a></a>", { href: "#" + $(this).attr("id") });
+        a.text($(this).text().replace('#', ''));
+        li.append(a);
+        li.click(function (e) {
+          e.preventDefault();
+          var target = $(a.attr('href'));
+          var scrollTo = target.offset().top - 80; // 80 - indent
+          $('html, body').animate({ scrollTop: scrollTo }, 1000);
+        });
+        div.append(li);
+      });
+    });
+  </script>
+</div>
+          
+        
+          
+          <li class="toc-bullets-sub">
+          
+            
+            <a href="/gcn/vscode-guides/running-db-application-and-storing-properties-in-oci-vault/">
+              Running a Database Application in Oracle Cloud and Storing Properties in OCI Vault from VS Code
+            </a>
+          </li>
+
+          
+        
+          
+          <li class="toc-bullets-sub">
+          
+            
+            <a href="/gcn/vscode-guides/setting-oci-devops-pipeline-in-vscode/">
+              Setting OCI DevOps Build and Development Pipelines in VS Code
             </a>
           </li>
 
@@ -475,11 +473,10 @@ The <a href="https://micronaut-projects.github.io/micronaut-kubernetes/snapshot/
       </h3>
 
 <ul>
-  <li>JDK 17 or higher. See <a href="/gcn/get-started/setting-up-desktop/">Setting up Your Desktop</a>.</li>
   <li>A Google Cloud Platform (GCP) account. Create an account at <a href="https://cloud.google.com/gcp/">cloud.google.com/gcp</a>.</li>
-  <li>The Google Cloud CLI. (The CLI is part of the Google Cloud SDK; for more information, see <a href="https://cloud.google.com/sdk">Cloud SDK</a>.)</li>
-  <li>A Docker-API compatible container runtime such as <a href="https://docs.rancherdesktop.io/getting-started/installation/">Rancher Desktop</a> or <a href="https://www.docker.io/gettingstarted/">Docker</a>.</li>
-  <li><a href="https://kubernetes.io/docs/reference/kubectl/"><code>kubectl</code></a> to deploy the application to GKE.</li>
+  <li>The Google Cloud CLI to interact with Google Cloud services from the terminal. (The CLI is part of the Google Cloud SDK; for more information, see <a href="https://cloud.google.com/sdk">Cloud SDK</a>.)</li>
+  <li>A Docker-API compatible container runtime such as <a href="https://docs.rancherdesktop.io/getting-started/installation/">Rancher Desktop</a> or <a href="https://www.docker.io/gettingstarted/">Docker</a>.
+<!-- * [`kubectl`](https://kubernetes.io/docs/reference/kubectl/) to deploy the application to GKE. --></li>
 </ul>
 
 <blockquote>
@@ -504,11 +501,11 @@ The <a href="https://micronaut-projects.github.io/micronaut-kubernetes/snapshot/
         
       </h2>
 
-<p>Create a Java application to containerize and deploy to Google Kubernetes Engine (GKE) using GCN Tools.</p>
+<p>Create a Java application that you will containerize and deploy to Google Cloud Run. You can use the <a href="https://graal.cloud/gcn/launcher/">GCN Launcher</a>, or the built-in GCN project creation wizard in VS Code.</p>
 
 <ol>
   <li>
-    <p>Go to <strong>View</strong>, <strong>Command Palette</strong>, search for “gcn”, and invoke the <strong>OCI for GCN: Create GCN Project</strong> quick action:</p>
+    <p>Go to <strong>View</strong>, <strong>Command Palette</strong>, search for “gcn”, and invoke the <strong>GCN: Create GCN Project</strong> quick action:</p>
 
     <p><img src="/gcn/docs/vscode-tools/images/vs-code/oci/gcn-vscode-actions.png" alt="gcn-vscode-actions.png" /></p>
   </li>
@@ -520,36 +517,52 @@ The <a href="https://micronaut-projects.github.io/micronaut-kubernetes/snapshot/
       <li>Provide a project name: <em>gcp-k8s-demo</em></li>
       <li>Provide base package: <em>com.example</em></li>
       <li>Pick project services: <em>none</em>. Click <strong>OK</strong> to confirm</li>
-      <li>Pick build tool: <em>Gradle (Groovy)</em></li>
+      <li>Pick build tool: <em>Gradle (Groovy)</em> or <em>Maven</em></li>
       <li>Pick test framework: <em>JUnit</em></li>
-      <li>Pick cloud platform: <em>GCP</em>. Click <strong>OK</strong> to confirm</li>
+      <li>Pick cloud platform: <em>GCP</em>. Click <strong>OK</strong> to confirm
+ _ Select the destination directory on your local disk and whether to open the project in a new window or add it to the current workspace. The wizard creates a directory named <em>gcp-k8s-demo</em> containing an application in a package named <code>com.example</code>.</li>
     </ul>
   </li>
   <li>
-    <p>Select the destination directory on your local disk and whether to open the project in a new window or add it to the current workspace. The wizard creates a directory named <em>gcp-k8s-demo</em> containing an application in a package named <code>com.example</code>.</p>
-  </li>
-  <li>
-    <p>(Required only for macOS AArch64) At the beginning of the configuration file, <em>gcp/build.gradle</em>, add the following dependency to use the appropriate version of JNA:</p>
+    <p>(Required only for macOS AArch64.) Add the following <code>GCP</code> module configuration:</p>
 
-    <pre><code class="language-bash"> buildscript {
-     dependencies {
-         classpath("com.github.docker-java:docker-java-transport-httpclient5:3.2.13") {
-             because("macOS AArch64 needs a specific version of JNA")
-         }
-     }
- }
-</code></pre>
-  </li>
-  <li>
-    <p>(Required only for macOS AArch64) At the end of the configuration file, <em>gcp/build.gradle</em>, add the following code so that Gradle builds a container image using the <code>openjdk:17-slim</code> base image (it defaults to <code>openjdk:17-alpine</code> which is not multiplatform).</p>
+    <div id="tabs-doc1">
+ <ul>
+     <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
+     <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
+ </ul>
+ <div id="gradle">
+     <em>build.gradle</em>
+     <pre><code class="language-groovy">tasks.named("dockerfile") {
+         args("-Xmx128m")
+         instruction """FROM --platform=linux/amd64 eclipse-temurin:17-jre-focal
+             WORKDIR /home/app
+             COPY layers/libs /home/app/libs
+             COPY layers/classes /home/app/classes
+             COPY layers/resources /home/app/resources
+             COPY layers/application.jar /home/app/application.jar
+         """
+     }</code></pre>
+ </div>
+ <div id="maven">
+     <em>pom.xml</em>
+     <pre><code class="language-xml">&lt;from&gt;
+         &lt;image&gt;openjdk:17-oracle&lt;/image&gt;
+         &lt;platforms&gt;
+             &lt;platform&gt;
+                 &lt;architecture&gt;amd64&lt;/architecture&gt;
+                 &lt;os&gt;linux&lt;/os&gt;
+             &lt;/platform&gt;
+         &lt;/platforms&gt;
+     &lt;/from&gt;
+ </code></pre>
+ </div>
+ </div>
 
-    <pre><code class="language-bash"> tasks.withType(com.bmuschko.gradle.docker.tasks.image.Dockerfile) {
-     baseImage = 'openjdk:17-slim'
- }
-</code></pre>
+    <p>This configuration that Gradle/Maven tools build a container image using the <code>openjdk:17-slim</code> base image (it defaults to <code>openjdk:17-alpine</code> which is not multiplatform).</p>
   </li>
   <li>
-    <p>Open a new Terminal window in VS Code (<strong>Terminal</strong> &gt; <strong>New Terminal</strong>). Use the following command to build and run the application JAR file:</p>
+    <p>Open a new Terminal window in VS Code (<strong>Terminal</strong> &gt; <strong>New Terminal</strong>). Build the project and run the application from a JAR file:</p>
 
     <pre><code class="language-bash"> ./gradlew :gcp:run
 </code></pre>
@@ -640,29 +653,30 @@ The <a href="https://micronaut-projects.github.io/micronaut-kubernetes/snapshot/
 
 <p>Your container image is now stored in Google Cloud Artifact Registry, and you can deploy it to the Google Kubernetes Engine (GKE) cluster.</p>
     
-      <h2 id="5-deploy-a-java-application-to-gke-cluster">
+      <h2 id="5-deploy-a-java-application-to-a-gke-cluster">
         
         
-          5. Deploy a Java Application to GKE Cluster <a href="#5-deploy-a-java-application-to-gke-cluster" class="anchor_heading">#</a>
+          5. Deploy a Java Application to a GKE Cluster <a href="#5-deploy-a-java-application-to-a-gke-cluster" class="anchor_heading">#</a>
         
         
       </h2>
 
 <ol>
-  <li>
-    <p>Create a Kubernetes cluster that will manage your nodes/pods using the Google Cloud CLI:</p>
-
-    <pre><code class="language-bash"> gcloud config set compute/region &lt;regionName&gt;
+  <li>Set your compute region in Google Cloud CLI with:
+    <pre><code class="language-bash"> gcloud config set compute/region &lt;REGION&gt;`
 </code></pre>
+  </li>
+  <li>
+    <p>Create an auto-scaling Kubernetes cluster that will manage your nodes/pods using the Google Cloud CLI:</p>
 
     <pre><code class="language-bash"> gcloud container clusters create-auto &lt;clusterName&gt; --region=&lt;regionName&gt;
 </code></pre>
   </li>
   <li>
-    <p>If you are asked to install the <code>gcp-auth</code> plugin, follow these instructions <a href="https://cloud.google.com/blog/products/containers-kubernetes/kubectl-auth-changes-in-gke">gke-gcloud-auth-plugin</a>. This plugin automatically and dynamically configures pods to use your credentials, allowing the applications to access Google Cloud services as if they were running within Google Cloud.</p>
+    <p>Follow any additional instructions if prompted. For example, you might be asked to install the <code>gcp-auth</code> plugin, follow these instructions <a href="https://cloud.google.com/blog/products/containers-kubernetes/kubectl-auth-changes-in-gke">gke-gcloud-auth-plugin</a>. This plugin automatically and dynamically configures pods to use your credentials, allowing the applications to access Google Cloud services as if they were running within Google Cloud.</p>
   </li>
   <li>
-    <p>Check if you are connected to a GKE cluster:</p>
+    <p>Establish a connection to your GKE cluste:</p>
 
     <pre><code class="language-bash"> gcloud container clusters get-credentials &lt;ClusterName&gt; --region &lt;regionName&gt;
 </code></pre>
@@ -676,7 +690,7 @@ The <a href="https://micronaut-projects.github.io/micronaut-kubernetes/snapshot/
     <p><img src="/gcn/docs/vscode-tools/images/images_gke/create-deployment.png" alt="Create a Kubernetes Deployment" /></p>
   </li>
   <li>
-    <p>Set baseline number of deployment replicas to 3:</p>
+    <p>Set a baseline number of deployment replicas to 3 for autoscaling:</p>
 
     <pre><code class="language-bash"> kubectl scale deployment &lt;deploymentName&gt; --replicas=3
 </code></pre>
@@ -688,7 +702,7 @@ The <a href="https://micronaut-projects.github.io/micronaut-kubernetes/snapshot/
 </code></pre>
   </li>
   <li>
-    <p>Run the next command to check the status of the pods:</p>
+    <p>Run the next command to list the created pods:</p>
 
     <pre><code class="language-bash"> kubectl get pods
 </code></pre>
@@ -706,7 +720,7 @@ The <a href="https://micronaut-projects.github.io/micronaut-kubernetes/snapshot/
   <li>
     <p>List the services:</p>
 
-    <pre><code class="language-bash"> kubectl get services
+    <pre><code class="language-bash">kubectl get services
 </code></pre>
   </li>
   <li>
@@ -771,7 +785,11 @@ The <a href="https://micronaut-projects.github.io/micronaut-kubernetes/snapshot/
                 <li class="footer-list__item"><a href="/gcn/hands-on-labs/">Labs</a></li>
                 <li class="footer-list__github">
                   <img class="footer__icon" src="/gcn/resources/img/footer/logo-github.svg" alt="Github icon">
-                  <a href="https://github.com/oracle/gcn">Github</a>
+                  <a href="https://github.com/oracle/gcn" target="blank">Github</a>
+                </li>
+                <li class="footer-list__github">
+                  <img class="footer__icon" src="/gcn/resources/img/footer/slack-icon.svg" alt="Github icon">
+                  <a href="https://bit.ly/odevrel_slack" target="blank">Join us at: #graal-cloud-native</a>
                 </li>
               </ul>
             </div>
@@ -780,7 +798,7 @@ The <a href="https://micronaut-projects.github.io/micronaut-kubernetes/snapshot/
             <h6 class="title-footer" onclick="fadeInAndOut(this)">About</h6>
             <div class="grow">
               <ul class="footer-list">
-                <li class="footer-list__item"><a href="/gcn/about/#gcn-support" target="blank">Commercial Support</a></li>
+                <li class="footer-list__item"><a href="/gcn/about/#support" target="blank">Commercial Support</a></li>
                 <li class="footer-list__item"><a href="https://www.graalvm.org/" target="blank">GraalVM Native Image</a></li>
                 <li class="footer-list__item"><a href="https://micronaut.io/" target="_blank">Micronaut</a></li>
                 <li class="footer-list__item"><a href="https://www.oracle.com/cloud/multicloud/what-is-multicloud/" target="_blank">Multicloud</a></li>
@@ -881,5 +899,7 @@ The <a href="https://micronaut-projects.github.io/micronaut-kubernetes/snapshot/
     <script src='/gcn/resources/js/ui.js'></script>
     <script src='/gcn/resources/js/filters.js'></script>
     <script src='/gcn/resources/js/sidebar.js'></script>
+    <script src='/gcn/resources/lib/highlight/highlight.min.js'></script> 
+    <script>hljs.highlightAll();</script>
   </body>
 </html>

@@ -18,7 +18,7 @@ Create an application using the GCN Launcher.
     * **Features**: _GraalVM Native Image_ (Default)
     * **Sample Code**: _Yes_ (Default)
    
-3. Click **Generate Project**. The GCN Launcher creates an application with the default package `com.example` in a directory named _{{ include.cloud }}-logging-demo_. The application ZIP file will be downloaded in your default downloads directory. Unzip it, open in your code editor, and proceed to the next steps.
+3. Click **Generate Project**, then click **Download Zip**. The GCN Launcher creates an application with the default package `com.example` in a directory named _{{ include.cloud }}-logging-demo_. The application ZIP file will be downloaded in your default downloads directory. Unzip it, open in your code editor, and proceed to the next steps.
 
 Alternatively, use the [GCN CLI](/gcn/get-started/using-gcn-cli/) as follows:
 

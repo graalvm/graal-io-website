@@ -1,6 +1,6 @@
 ### 1.2. JTE Template
 
-The GCN launcher created a [JTE template](https://micronaut-projects.github.io/micronaut-views/latest/guide/#jte){:target="_blank"} in a file named _{{ include.cloud }}/src/main/jte/auth.jte_ to render the UI for the controller. It has the following contents:
+The GCN Launcher created a [JTE template](https://micronaut-projects.github.io/micronaut-views/latest/guide/#jte){:target="_blank"} in a file named _{{ include.cloud }}/src/main/jte/auth.jte_ to render the UI for the controller. It has the following contents:
 
 ```html
 @param String username

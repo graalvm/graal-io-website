@@ -1,4 +1,4 @@
-The GCN launcher created a Controller to create an endpoint for the _Analytics_ microservice in a file named _lib/src/main/java/com/example/consumer/AnalyticsController.java_, as follows:
+The GCN Launcher created a Controller to create an endpoint for the _Analytics_ microservice in a file named _lib/src/main/java/com/example/consumer/AnalyticsController.java_, as follows:
 
 ```java
 package com.example.consumer;

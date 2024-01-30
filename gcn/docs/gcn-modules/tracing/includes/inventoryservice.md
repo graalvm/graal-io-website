@@ -2,7 +2,7 @@
 
 >Note: The `InventoryService` class demonstrates how to create and use spans from `io.micronaut.tracing.annotation` and OpenTelemetry.
 
-The launcher created the `InventoryService` class in a file named _lib/src/main/java/com/example/InventoryService.java_, as follows:
+The GCN Launcher created the `InventoryService` class in a file named _lib/src/main/java/com/example/InventoryService.java_, as follows:
 
 ```java
 package com.example;

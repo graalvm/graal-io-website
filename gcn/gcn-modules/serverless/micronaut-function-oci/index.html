@@ -14,7 +14,8 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2023-12-19 15:46:18 +0000"/>
+  <meta name="last_modified" content="2024-01-23 14:43:32 +0000"/>
+  <meta name="last_built" content="2024-01-30 10:05:12 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -69,21 +70,6 @@
             <li class="menu__item">
               <a href="/gcn/get-started/" class="menu__link">Get Started</a>
             </li>
-            <!-- <li class="menu__item">
-              <a href="/gcn/modules/" class="menu__link">Modules</a>
-            </li>
-            <li class="menu__item">
-              <a href="/gcn/guides/" class="menu__link">Guides</a>
-            </li>
-            <li class="menu__item">
-              <a href="/gcn/hands-on-labs/" class="menu__link">Hands-On Labs</a>
-            </li>
-            <li class="menu__item">
-              <a href="/gcn/vscode-tools/" class="menu__link">Tools</a>
-            </li> -->
-            <!-- <li class="menu__launch__mobile">
-              <a href="/gcn/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
-            </li> -->
             <li class="menu__item">
               <div class="stack-container">
                 <a href="#" class="menu__link stack__header">Docs</a>
@@ -157,49 +143,6 @@
   
 </header>
 
-<!-- <header  class="header header--content" >
-
-  
-
-  
-
-    <nav class="menu">
-      <div class="menu__row">
-        <div>
-          <a href="/gcn/graal">
-            <img class="logo-mobile" src="/gcn/resources/img/gcn-logo-01.svg" alt="Graal Cloud Native logo">
-          </a>
-        </div>
-        <div class="menu__container">
-          <ul class="menu__list">
-            <li class="menu__item">
-              <a href="/gcn/graal/#whatisgraal" class="menu__link">About</a>
-            </li>
-            <li class="menu__item">
-              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
-            </li>
-            <li class="menu__item">
-              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
-            </li>
-            <li class="menu__item">
-              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <div role="button" class="menu-btn menu-btn--menu js-show-menu" tabindex="-1" title="sweet hamburger">
-        <div class="hamburger">
-          <div class="inner"></div>
-        </div>
-      </div>
-      <button aria-label="hamburger mobile menu" class="btn btn-mobile-menu js-show-menu">
-        <div class="inner"></div>
-      </button>
-    </nav>
-
-  
-</header> -->
 
       <main  class="content"   aria-label="Content">
         <div class="wrapper wrapper-content">
@@ -406,6 +349,9 @@
 
     <div class="col-sm-9 docsmod">
       <div id="content-wrapper" class="docs-content docs-content--with-sidebar">
+        <!--
+          Include file to warn of Windows/Gradle restriction
+        -->
         <h1 id="create-and-deploy-a-micronaut-gateway-function-to-oracle-cloud-infrastructure">
         
         
@@ -414,7 +360,7 @@
         
       </h1>
 
-<p>This guide describes how to create a Micronaut Gateway function, deploy it using Oracle Cloud Infrastructure <a href="https://docs.oracle.com/iaas/Content/Functions/home.htm" target="_blank">Functions</a>, and access it via Oracle Cloud Infrastructure <a href="https://docs.oracle.com/iaas/Content/APIGateway/home.htm" target="_blank">API Gateway</a>.</p>
+<p>This guide describes how to create a Micronaut Gateway Function, deploy it as a container image using Oracle Cloud Infrastructure <a href="https://docs.oracle.com/iaas/Content/Functions/home.htm" target="_blank">Functions</a>, and access it via Oracle Cloud Infrastructure <a href="https://docs.oracle.com/iaas/Content/APIGateway/home.htm" target="_blank">API Gateway</a>.</p>
 
 <blockquote>
   <p>A Micronaut Gateway Function acts a a serverless cloud (HTTP) API gateway function.</p>
@@ -447,6 +393,7 @@
   <li>JDK 17 or higher. See <a href="/gcn/get-started/setting-up-desktop/">Setting up Your Desktop</a>.</li>
   <li>An Oracle Cloud Infrastructure account. See <a href="/gcn/get-started/setting-up-cloud-accounts/">Setting up Your Cloud Accounts</a>.</li>
   <li>A Docker-API compatible container runtime such as <a href="https://docs.rancherdesktop.io/getting-started/installation/">Rancher Desktop</a> or <a href="https://www.docker.io/gettingstarted/">Docker</a> installed and running.</li>
+  <li>An SSH key. See <a href="https://docs.oracle.com/en/learn/generate_ssh_keys/index.html">Generate SSH keys</a>.</li>
   <li>The GCN CLI. See <a href="/gcn/get-started/setting-up-desktop/">Setting up Your Desktop</a>. (Optional.)</li>
 </ul>
 
@@ -479,6 +426,14 @@
 <p>Consider using Visual Studio Code that provides native support for developing applications with the <a href="/gcn/vscode-tools/using-gcn-vscode-tools/">Graal Cloud Native extension</a>.</p>
 
 <p>If you use IntelliJ IDEA, <a href="/gcn/resources/img/annotationprocessorsintellij.png">enable annotation processing</a>.</p>
+
+<!--
+  An include file with a snippet of html to warn about the Windows/Gradle restriction
+-->
+<blockquote>
+  <!-- <img class="" src="/gcn/resources/img/warn-icon-fill.svg/" alt="warning icon"> -->
+  <p>Windows platform: The GCN guides are compatible with Gradle only. Maven support is coming soon.</p>
+</blockquote>
     
       <h2 id="1-create-the-gateway-function">
         
@@ -508,11 +463,11 @@
       <li><strong>Java Version</strong>: <em>17</em> (Default)</li>
       <li><strong>Micronaut Version</strong>: (Default)</li>
       <li><strong>Cloud Services</strong>: <em>None</em></li>
-      <li><strong>Features</strong>: <em>GraalVM Native Image</em>, and <em>Micronaut Validation</em></li>
-      <li><strong>Sample Code</strong>: <em>Yes</em> (Default)</li>
+      <li><strong>Features</strong>: <em>GraalVM Native Image</em> and <em>Micronaut Validation</em></li>
+      <li><strong>Sample Code</strong>: <em>No</em></li>
     </ul>
   </li>
-  <li>Click <strong>Generate Project</strong>. The GCN Launcher creates a Micronaut gateway function with the default package <code>com.example</code> in a directory named <em>oci-serverless-demo</em>. The application ZIP file will be downloaded in your default downloads directory. Unzip it, open in your code editor, and proceed to the next steps.</li>
+  <li>Click <strong>Generate Project</strong>, then click <strong>Download Zip</strong>. The GCN Launcher creates a Micronaut gateway function with the default package <code>com.example</code> in a directory named <em>oci-serverless-demo</em>. The application ZIP file will be downloaded in your default downloads directory. Unzip it, open in your code editor, and proceed to the next steps.</li>
 </ol>
 
 <p>Alternatively, use the GCN CLI as follows:</p>
@@ -526,6 +481,7 @@
     <pre><code class="language-bash">gcn create-gateway-function com.example.oci-serverless-demo \
     --clouds=oci \
     --features=graalvm,validation \
+    --example-code=false \
     --build=gradle \
     --lang=java</code></pre>
   </div>
@@ -533,6 +489,7 @@
     <pre><code class="language-bash">gcn create-gateway-function com.example.oci-serverless-demo \
     --clouds=oci \
     --features=graalvm,validation \
+    --example-code=false \
     --build=maven \
     --lang=java</code></pre>
   </div>
@@ -540,7 +497,7 @@
 
 <p>For more information, see <a href="/gcn/get-started/using-gcn-cli/">Using the GCN CLI</a>.</p>
 
-<p>The GCN launcher creates a multi-module project with two subprojects: <strong>oci</strong> for Oracle Cloud Infrastructure, and <strong>lib</strong>.
+<p>The GCN Launcher creates a multi-module project with two subprojects: <strong>oci</strong> for Oracle Cloud Infrastructure, and <strong>lib</strong>.
 You develop the gateway function logic in the <strong>oci</strong> subproject. If your gateway function is to be deployed to multiple cloud providers, use the <strong>lib</strong> subproject to create classes that can be shared between the providers. This enables you to separate the code that is different between cloud providers, while keeping most of the implementation in the common <strong>lib</strong> subproject.</p>
     
       <h3 id="11-storeitem">
@@ -925,35 +882,35 @@ class StoreControllerTest {
 <p>This guide requires the following Oracle Cloud Infrastructure resources (known as a “stack”):</p>
 
 <ul>
-  <li>A <a href="https://docs.oracle.com/iaas/Content/Registry/Concepts/registryoverview.htm" target="_blank">Container Repository in Oracle Cloud Infrastructure Registry</a> named “gcn-function-demo”</li>
-  <li>An Oracle <a href="https://docs.oracle.com/en-us/iaas/Content/Functions/Concepts/functionsoverview.htm" target="_blank">Application</a> to deploy your Oracle Function</li>
-  <li>An <a href="https://docs.oracle.com/iaas/Content/APIGateway/Concepts/apigatewayoverview.htm" target="_blank">API Gateway</a> to provide access to your Oracle Function</li>
-  <li>A <a href="https://docs.oracle.com/iaas/Content/GSG/Tasks/creatingnetwork.htm" target="_blank">Virtual Cloud Network</a>
+  <li>A <a href="https://docs.oracle.com/iaas/Content/Registry/Concepts/registryoverview.htm" target="_blank">Container Repository in Oracle Cloud Infrastructure Registry</a> (named “gcn-function-demo”)</li>
+  <li>An Oracle <a href="https://docs.oracle.com/iaas/Content/Functions/Concepts/functionsconcepts.htm#applications" target="_blank">Application</a> (named “gcn-serverless-application”) to deploy your Oracle Function</li>
+  <li>An <a href="https://docs.oracle.com/iaas/Content/APIGateway/Concepts/apigatewayoverview.htm" target="_blank">API Gateway</a> (named “gcn-serverless-gateway”) to provide access to your Oracle Function</li>
+  <li>A <a href="https://docs.oracle.com/iaas/Content/GSG/Tasks/creatingnetwork.htm" target="_blank">Virtual Cloud Network</a> (named “GCN_serverless_guide_VCN”)
     <ul>
       <li>A public subnet open to the internet</li>
       <li>A private subnet to the API Gateway</li>
     </ul>
   </li>
-  <li>An <a href="https://docs.oracle.com/iaas/Content/Identity/Concepts/overview.htm" target="_blank">Identity and Access Management (IAM) Policy</a> to give the API Gateway permission to call your Oracle Function.</li>
+  <li>An <a href="https://docs.oracle.com/iaas/Content/Identity/Concepts/overview.htm" target="_blank">Identity and Access Management (IAM) Policy</a> (named “gcn-serverless-policy”) to give the API Gateway permission to call your Oracle Function.</li>
 </ul>
 
-<p>Instead of creating the stack manually, use the following steps to provision it using <a href="https://docs.oracle.com/iaas/Content/ResourceManager/Concepts/resourcemanager.htm" target="_blank">Oracle Cloud Infrastructure Resource Manager</a>:</p>
+<p>Instead of creating the stack manually, use the following steps to provision the resources using <a href="https://docs.oracle.com/iaas/Content/ResourceManager/Concepts/resourcemanager.htm" target="_blank">Oracle Cloud Infrastructure Resource Manager</a>:</p>
 
 <ol>
   <li>
-    <p>Download the Terraform configuration <a href="/gcn/docs/gcn-modules/serverless/archives/gcdk-function.zip">GCN Function <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download Terraform Configuration" /></a> to your default downloads directory.</p>
+    <p>Download the Terraform configuration <a href="/gcn/docs/gcn-modules/serverless/archives/gcdk-function.zip">GCN Function <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download Terraform Configuration" /></a> to your default downloads directory. (For a general introduction to Terraform and the “infrastructure-as-code” model, see <a href="https://www.terraform.io" target="_blank">https://www.terraform.io</a>.)</p>
   </li>
   <li>Follow the instructions in <a href="https://docs.oracle.com/iaas/Content/ResourceManager/Tasks/create-stack-local.htm" target="_blank">Creating a Stack from a Zip File</a>.
     <ul>
-      <li>In the “ssh_public_key” field of the <strong>Configure variables</strong> panel, paste the contents of your public key.</li>
+      <li>In the “ssh_public_key” field of the <strong>Configure variables</strong> panel, paste the contents of your public SSH key.</li>
       <li>In the <strong>Review</strong> panel, click <strong>Run apply</strong>.</li>
     </ul>
   </li>
   <li>
-    <p>Click <strong>Create</strong>.</p>
+    <p>Click <strong>Create</strong>. (It can take up to ten minutes to provision the stack. The <strong>Log</strong> provides details of progress.)</p>
 
     <blockquote>
-      <p>Note: It can take up to five minutes to provision the stack. The <strong>Log</strong> provides details of progress.</p>
+      <p>Note: These resources <strong>must not</strong> already exist in your Oracle Cloud Infrastructure tenancy, otherwise the Resource Manager will fail to provision the stack—in the Log you will see a message similar to <code>Error: 409-NAMESPACE_CONFLICT, Repository already exists.</code> Delete the conflicting resources before re-attempting to provision the stack.</p>
     </blockquote>
   </li>
   <li>When the job completes, click <strong>Outputs</strong> in the list of the job’s resources and make note of the the following values:
@@ -986,10 +943,10 @@ class StoreControllerTest {
 
     <ul>
       <li>
-        <p>Enter a description for the token and click <strong>Generate Token</strong></p>
+        <p>Enter a description for the token and click <strong>Generate Token</strong>.</p>
       </li>
       <li>
-        <p>Click <strong>Copy</strong> to copy the generated token</p>
+        <p>Click <strong>Copy</strong> to copy the generated token.</p>
       </li>
     </ul>
   </li>
@@ -1031,51 +988,52 @@ class StoreControllerTest {
         <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
     </ul>
     <div id="gradle">
-
-<p>
-Modify the <em>oci/build.gradle</em> file. Make sure it contains the following contents and that nothing overrides the set properties:
-<pre><code class="language-java">var regionIdentifier = "[REGION]"
-var objectStorageNamespace = "[NAMESPACE]"
+      <p>
+      Modify the <em>oci/build.gradle</em> file as follows (and as shown below):
+        <ul>
+          <li>
+            Insert variables for <code>regionIdentifier</code> and <code>objectStorageNamespace</code>.
+          </li>
+          <li>
+            Modify the <code>dockerBuild</code> task.
+          </li>
+          <li>
+            Replace <code>[REGION IDENTIFIER]</code> and <code>[FUNCTION NAMESPACE]</code> with their corresponding values from the Terraform job (<code>&lt;region&gt;</code> and <code>&lt;gcn-function-demo_namespace&gt;</code>, respectively).
+            <pre><code class="language-java">var regionIdentifier = "[REGION IDENTIFIER]"
+var objectStorageNamespace = "[FUNCTION NAMESPACE]"
 tasks {
     dockerBuild {
         images = ["${regionIdentifier}.ocir.io/${objectStorageNamespace}/gcn-function-demo"]
-    }
-}
-</code></pre>
-<ul>
-   <li>
-      Modify the <code>dockerBuild.images</code> property: enter your region identifier (<code>[REGION]</code>) and the namespace for the container repository (<code>[NAMESPACE]</code>). The value of the property should be similar to <code>ca-toronto-1.ocir.io/aaaaaaaaaaaa/gcn-function-demo</code>.
-      <blockquote><p>
-         Note: The name of the repository where the container image will be published is <code>gcn-function-demo</code>.
-         The repository was created for you by Oracle Resource Manager.
-      </p></blockquote>
-   </li>
-   <li>
-      Set the <code>dockerfile.baseImage</code> property to use the Java 17 runtime environment.
-   </li>
-   <li>
-      Additionally, note that the value of <code>micronaut.runtime</code> is <code>oracle_function</code>.
-   </li>
-</ul>
-</p>
-<p>
-Save the build file, then run the following command to create and publish a container image to Container Registry:
-<pre><code class="language-bash">./gradlew oci:dockerPush</code></pre>
-</p>
-
+  }
+}</code></pre>
+          </li>
+        </ul>
+        <blockquote>
+          <p>
+            Note: the <code>micronaut.runtime</code> property is already set to <code>oracle_function</code>.
+          </p>
+        </blockquote>
+      </p>
+      <p>
+        Save the build file, then run the following command to create and publish a container image to Container Registry:
+      </p>
+        <pre><code class="language-bash">./gradlew oci:dockerPush</code></pre>
     </div>
     <div id="maven">
       <p>Modify the <em>oci/pom.xml</em> file as follows (and as shown below):
         <ul>
-          <li>Insert the <code>&lt;regionIdentifier&gt;</code>, <code>&lt;objectStorageNamespace&gt;</code>, <code>&lt;jib.docker.image&gt;</code>, and <code>&lt;jib.docker.tag&gt;</code> elements to the <code>&lt;properties&gt;</code> element</li>
-          <li>Replace <code>[REGION IDENTIFIER]</code> and <code>[OBJECT STORAGE NAMESPACE]</code> with their corresponding values from the previous step
+          <li>
+            Insert the <code>&lt;regionIdentifier&gt;</code>, <code>&lt;objectStorageNamespace&gt;</code>, <code>&lt;jib.docker.image&gt;</code>, and <code>&lt;jib.docker.tag&gt;</code> elements to the <code>&lt;properties&gt;</code> element.
+          </li>
+          <li>
+            Replace <code>[REGION IDENTIFIER]</code> and <code>[FUNCTION NAMESPACE]</code> with their corresponding values from the Terraform job (<code>&lt;region&gt;</code> and <code>&lt;gcn-function-demo_namespace&gt;</code>, respectively).
             <pre><code class="language-xml">&lt;properties&gt;
     &lt;packaging&gt;jar&lt;/packaging&gt;
     ...
     &lt;micronaut.runtime&gt;oracle_function&lt;/micronaut.runtime&gt;
     ...
     &lt;regionIdentifier&gt;[REGION IDENTIFIER]&lt;/regionIdentifier&gt;
-    &lt;objectStorageNamespace&gt;[OBJECT STORAGE NAMESPACE]&lt;/objectStorageNamespace&gt;
+    &lt;objectStorageNamespace&gt;[FUNCTION NAMESPACE]&lt;/objectStorageNamespace&gt;
     &lt;jib.docker.image&gt;${regionIdentifier}.ocir.io/${objectStorageNamespace}/gcn-function-demo&lt;/jib.docker.image&gt;
     &lt;jib.docker.tag&gt;${project.version}&lt;/jib.docker.tag&gt;
     ...
@@ -1084,14 +1042,14 @@ Save the build file, then run the following command to create and publish a cont
         </ul>
         <blockquote>
           <p>
-            Note: <code>micronaut.runtime</code> property is already set to <code>oracle_function</code>.
+            Note: the <code>micronaut.runtime</code> property is already set to <code>oracle_function</code>.
           </p>
         </blockquote>
       </p>
       <p>
         Save the build file, then run the following commands to create and publish a container image to Container Registry:
       </p>
-      <pre><code class="language-bash">./mvnw clean
+        <pre><code class="language-bash">./mvnw clean
 ./mvnw install -pl lib -am
 ./mvnw deploy -Dpackaging=docker -pl oci</code></pre>
     </div>
@@ -1138,7 +1096,7 @@ For more information, see <a href="https://docs.oracle.com/iaas/Content/APIGatew
 
 <ol>
   <li>
-    <p>In the Oracle Cloud Console, open the navigation menu, click <strong>Developer Services</strong>. Under <strong>API Management</strong> click <strong>Gateways</strong>.</p>
+    <p>In the Oracle Cloud Console, open the navigation menu, click <strong>Developer Services</strong>. Under <strong>API Management</strong>, click <strong>Gateways</strong>.</p>
   </li>
   <li>
     <p>The table should contain a gateway named “gcn-serverless-gateway” (it was created for you by Oracle Resource Manager). Click its name.</p>
@@ -1146,9 +1104,9 @@ For more information, see <a href="https://docs.oracle.com/iaas/Content/APIGatew
   <li>
     <p>On the <strong>API Gateway Details</strong> page, click <strong>Deployments</strong> under <strong>Resources</strong>. 
 Click <strong>Create deployment</strong>.
-Use the following properties:</p>
+Create a new deployment with the following properties :</p>
     <ul>
-      <li><strong>Basic Information</strong>
+      <li><strong>Basic information</strong>
         <ul>
           <li><strong>Name</strong>: <em>gcn-serverless-deployment</em></li>
           <li><strong>Path prefix</strong>: <em>/store</em></li>
@@ -1282,33 +1240,36 @@ Use the following properties:</p>
       <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
   </ul>
   <div id="gradle">
-    <p>Modify the <em>oci/build.gradle</em> file. Make sure it contains the following contents and that nothing overrides the set properties:
-      <pre><code class="language-java">var regionIdentifier = "[REGION IDENTIFIER]"
-var objectStorageNamespace = "[NAMESPACE]"
-tasks {
+    <p>
+      Modify the <em>oci/build.gradle</em> file as follows (and as shown below):
+        <ul>
+          <li>
+            Modify the <code>dockerBuildNative</code> and <code>dockerfileNative</code> tasks.
+          </li>
+          <li>
+            Add a <code>dockerFile</code> task.
+            <pre><code class="language-java">tasks {
     dockerBuild {
         images = ["${regionIdentifier}.ocir.io/${objectStorageNamespace}/gcn-function-demo"]
     }
     dockerBuildNative {
         images = ["${regionIdentifier}.ocir.io/${objectStorageNamespace}/gcn-function-demo"]
     }
-    dockerfile {
-        baseImage('fnproject/fn-java-fdk:jre17-latest')
-    }
     dockerfileNative {
         args("-XX:MaximumHeapSizePercent=80")
         baseImage('gcr.io/distroless/cc-debian10')
     }
+    dockerfile {
+        baseImage('fnproject/fn-java-fdk:jre17-latest')
+    }  
 }</code></pre>
-      <ul>
-        <li> Set the container image name for the native docker build </li>
-        <li> Use a distroless base container image and limit the heap size to 80% for native executable </li>
+        </li>
       </ul>
     </p>
     <p>
-    Save the build file, then run the following command to create and publish a container image (of the native executable) to Container Registry:
-    <pre><code class="language-bash">./gradlew oci:dockerPushNative</code></pre>
+      Save the build file, then run the following command to create and publish a container image (of the native executable) to Container Registry:
     </p>
+    <pre><code class="language-bash">./gradlew oci:dockerPushNative</code></pre>
   </div>
   <div id="maven">
     <p>Modify the <em>oci/pom.xml</em> file. Add the following profile:
@@ -1351,8 +1312,12 @@ tasks {
   &lt;/profile&gt;
 &lt;/profiles&gt;</code></pre>
     <ul>
-      <li> Use <code>&lt;jib.docker.image&gt;</code> to set the name of the container image created by the <code>docker-native</code> build command.</li>
-      <li>Use <code>&lt;baseImageRun&gt;</code> to use a distroless base container image as the base runtime image.</li>
+      <li>
+        Use <code>&lt;jib.docker.image&gt;</code> to set the name of the container image created by the <code>docker-native</code> build command.
+      </li>
+      <li>
+        Use <code>&lt;baseImageRun&gt;</code> to use a distroless base container image as the base runtime image.
+      </li>
     </ul>
     </p>
     <p>
@@ -1390,11 +1355,51 @@ In the table of Functions, click the name of your Oracle Function “gcn-serverl
     <p>On the page that describes your Oracle Function, click <strong>Edit</strong>.</p>
   </li>
   <li>
-    <p>Replace the current image with your new image named “…gcn-function-demo:native”.</p>
+    <p>Replace the current image with your new image named “…gcn-function-demo:latest”.</p>
+  </li>
+  <li>
+    <p>Click <strong>Save changes</strong>.</p>
   </li>
 </ol>
 
 <p>Once the function reloads, use the same API Gateway to access it and test it as described in section <strong>7</strong>.</p>
+    
+      <h2 id="10-clean-up-cloud-resources">
+        
+        
+          10. Clean Up Cloud Resources <a href="#10-clean-up-cloud-resources" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>After you have finished this guide, clean up the resources you created:</p>
+
+<ol>
+  <li>
+    <p>In the Oracle Cloud Console, open the navigation menu, click <strong>Developer Services</strong>. Under <strong>API Management</strong> click <strong>Gateways</strong>.</p>
+
+    <p>1.1. The table contains a gateway named “gcn-serverless-gateway”. Click its name.</p>
+
+    <p>1.2. On the <strong>API Gateway Details</strong> page, click <strong>Deployments</strong> under <strong>Resources</strong>. The table contains your deployment named “gcn-serverless-deployment”. Click its name.</p>
+
+    <p>1.3. On the <strong>Deployment Details</strong> page, click <strong>Delete</strong> to delete the deployment.</p>
+  </li>
+  <li>
+    <p>In the Oracle Cloud Console, open the navigation menu, click <strong>Developer Services</strong>. Under <strong>Functions</strong>, click <strong>Applications</strong>.</p>
+
+    <p>2.1. The table contains your application named “gcn-serverless-application”. Click its name.</p>
+
+    <p>2.2. On the page that describes your application, if necessary click the <strong>Functions</strong> resource. In the table of Functions, click the name of your Oracle Function “gcn-serverless-fn”.</p>
+
+    <p>2.3. On the page that describes your Oracle Function, click <strong>Delete</strong>.</p>
+  </li>
+  <li>
+    <p>Destroy the remaining resources associated with the stack by following the steps in <a href="https://docs.oracle.com/iaas/Content/ResourceManager/Tasks/create-job-destroy.htm" target="_blank">Creating a Destroy Job</a>.</p>
+  </li>
+  <li>
+    <p>Follow the instructions in <a href="https://docs.oracle.com/iaas/Content/ResourceManager/Tasks/delete-stack.htm" target="_blank">Deleting a Stack</a> to delete the stack.</p>
+  </li>
+</ol>
     
       <h3 id="summary">
         
@@ -1404,7 +1409,7 @@ In the table of Functions, click the name of your Oracle Function “gcn-serverl
         
       </h3>
 
-<p>This guide demonstrated how to create a Micronaut Gateway Function application, run it on Oracle Functions, and set up an API Gateway to provide access to the function.</p>
+<p>This guide demonstrated how to create a Micronaut Gateway Function, run it on Oracle Functions, and set up an API Gateway to provide access to the function. The guide also demonstrated how to create a native executable from the Gateway Function and deploy it in place of the original Java-based version.</p>
     
       <h3 id="related-documentation">
         
@@ -1455,7 +1460,11 @@ In the table of Functions, click the name of your Oracle Function “gcn-serverl
                 <li class="footer-list__item"><a href="/gcn/hands-on-labs/">Labs</a></li>
                 <li class="footer-list__github">
                   <img class="footer__icon" src="/gcn/resources/img/footer/logo-github.svg" alt="Github icon">
-                  <a href="https://github.com/oracle/gcn">Github</a>
+                  <a href="https://github.com/oracle/gcn" target="blank">Github</a>
+                </li>
+                <li class="footer-list__github">
+                  <img class="footer__icon" src="/gcn/resources/img/footer/slack-icon.svg" alt="Github icon">
+                  <a href="https://bit.ly/odevrel_slack" target="blank">Join us at: #graal-cloud-native</a>
                 </li>
               </ul>
             </div>
@@ -1464,7 +1473,7 @@ In the table of Functions, click the name of your Oracle Function “gcn-serverl
             <h6 class="title-footer" onclick="fadeInAndOut(this)">About</h6>
             <div class="grow">
               <ul class="footer-list">
-                <li class="footer-list__item"><a href="/gcn/about/#gcn-support" target="blank">Commercial Support</a></li>
+                <li class="footer-list__item"><a href="/gcn/about/#support" target="blank">Commercial Support</a></li>
                 <li class="footer-list__item"><a href="https://www.graalvm.org/" target="blank">GraalVM Native Image</a></li>
                 <li class="footer-list__item"><a href="https://micronaut.io/" target="_blank">Micronaut</a></li>
                 <li class="footer-list__item"><a href="https://www.oracle.com/cloud/multicloud/what-is-multicloud/" target="_blank">Multicloud</a></li>
@@ -1565,5 +1574,7 @@ In the table of Functions, click the name of your Oracle Function “gcn-serverl
     <script src='/gcn/resources/js/ui.js'></script>
     <script src='/gcn/resources/js/filters.js'></script>
     <script src='/gcn/resources/js/sidebar.js'></script>
+    <script src='/gcn/resources/lib/highlight/highlight.min.js'></script> 
+    <script>hljs.highlightAll();</script>
   </body>
 </html>

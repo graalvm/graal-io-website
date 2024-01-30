@@ -14,7 +14,8 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2023-12-06 15:44:15 +0000"/>
+  <meta name="last_modified" content="2024-01-29 19:11:54 +0000"/>
+  <meta name="last_built" content="2024-01-30 10:05:12 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -69,21 +70,6 @@
             <li class="menu__item">
               <a href="/gcn/get-started/" class="menu__link">Get Started</a>
             </li>
-            <!-- <li class="menu__item">
-              <a href="/gcn/modules/" class="menu__link">Modules</a>
-            </li>
-            <li class="menu__item">
-              <a href="/gcn/guides/" class="menu__link">Guides</a>
-            </li>
-            <li class="menu__item">
-              <a href="/gcn/hands-on-labs/" class="menu__link">Hands-On Labs</a>
-            </li>
-            <li class="menu__item">
-              <a href="/gcn/vscode-tools/" class="menu__link">Tools</a>
-            </li> -->
-            <!-- <li class="menu__launch__mobile">
-              <a href="/gcn/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
-            </li> -->
             <li class="menu__item">
               <div class="stack-container">
                 <a href="#" class="menu__link stack__header">Docs</a>
@@ -157,49 +143,6 @@
   
 </header>
 
-<!-- <header  class="header header--content" >
-
-  
-
-  
-
-    <nav class="menu">
-      <div class="menu__row">
-        <div>
-          <a href="/gcn/graal">
-            <img class="logo-mobile" src="/gcn/resources/img/gcn-logo-01.svg" alt="Graal Cloud Native logo">
-          </a>
-        </div>
-        <div class="menu__container">
-          <ul class="menu__list">
-            <li class="menu__item">
-              <a href="/gcn/graal/#whatisgraal" class="menu__link">About</a>
-            </li>
-            <li class="menu__item">
-              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
-            </li>
-            <li class="menu__item">
-              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
-            </li>
-            <li class="menu__item">
-              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <div role="button" class="menu-btn menu-btn--menu js-show-menu" tabindex="-1" title="sweet hamburger">
-        <div class="hamburger">
-          <div class="inner"></div>
-        </div>
-      </div>
-      <button aria-label="hamburger mobile menu" class="btn btn-mobile-menu js-show-menu">
-        <div class="inner"></div>
-      </button>
-    </nav>
-
-  
-</header> -->
 
       <main  class="content"   aria-label="Content">
         <div class="wrapper wrapper-content">
@@ -406,6 +349,9 @@
 
     <div class="col-sm-9 docsmod">
       <div id="content-wrapper" class="docs-content docs-content--with-sidebar">
+        <!--
+          Include file to warn of Windows/Gradle restriction
+        -->
         <h1 id="create-a-micronaut-application-to-collect-metrics">
         
         
@@ -465,6 +411,14 @@ The application uses <a href="https://micronaut-projects.github.io/micronaut-mic
 <blockquote>
   <p>Note: If you use IntelliJ IDEA, <a href="/gcn/resources/img/annotationprocessorsintellij.png">enable annotation processing</a>.</p>
 </blockquote>
+
+<!--
+  An include file with a snippet of html to warn about the Windows/Gradle restriction
+-->
+<blockquote>
+  <!-- <img class="" src="/gcn/resources/img/warn-icon-fill.svg/" alt="warning icon"> -->
+  <p>Windows platform: The GCN guides are compatible with Gradle only. Maven support is coming soon.</p>
+</blockquote>
     
       <h2 id="1-create-the-application">
         
@@ -495,7 +449,7 @@ The application uses <a href="https://micronaut-projects.github.io/micronaut-mic
       <li><strong>Sample Code</strong>: <em>No</em></li>
     </ul>
   </li>
-  <li>Click <strong>Generate Project</strong>. The GCN Launcher creates a Java project with the default package <code>com.example</code> in a directory named <em>metrics-demo</em>. The application ZIP file will be downloaded in your default downloads directory. Unzip it, open in your code editor, and proceed to the next steps.</li>
+  <li>Click <strong>Generate Project</strong>, then click <strong>Download Zip</strong>. The GCN Launcher creates a Java project with the default package <code>com.example</code> in a directory named <em>metrics-demo</em>. The application ZIP file will be downloaded in your default downloads directory. Unzip it, open in your code editor, and proceed to the next steps.</li>
 </ol>
 
 <p>Alternatively, use the GCN CLI as follows:</p>
@@ -602,7 +556,7 @@ runtimeOnly("org.flywaydb:flyway-mysql")</code></pre>
     <p>Configuring multiple <code>datasources</code> is as simple. You can also specify directories that will be used for migrating each datasource. For more information, see <a href="https://micronaut-projects.github.io/micronaut-flyway/latest/guide/">Micronaut integration with Flyway</a>.</p>
   </li>
   <li>
-    <p>The launcher created a migration file in the <em>src/main/resources/db/migration</em> directory named <em>V1__schema.sql</em> to contain the database schema, as follows:</p>
+    <p>The GCN Launcher created a migration file in the <em>src/main/resources/db/migration</em> directory named <em>V1__schema.sql</em> to contain the database schema, as follows:</p>
     <pre><code class="language-sql">DROP TABLE IF EXISTS book;
 
 CREATE TABLE book (
@@ -632,7 +586,7 @@ VALUES ("9781491950357", "Building Microservices"),
         
       </h3>
 
-<p>The launcher created a <code>Book</code> domain class that uses <a href="https://micronaut-projects.github.io/micronaut-data/latest/guide/#sql">Micronaut Data JDBC</a> in a file named <em>src/main/java/com/example/Book.java</em>, as follows:</p>
+<p>The GCN Launcher created a <code>Book</code> domain class that uses <a href="https://micronaut-projects.github.io/micronaut-data/latest/guide/#sql">Micronaut Data JDBC</a> in a file named <em>src/main/java/com/example/Book.java</em>, as follows:</p>
 
 <pre><code class="language-java">package com.example;
 
@@ -700,7 +654,7 @@ public class Book {
       </h3>
 
 <p>A repository interface defines the operations to access the database. Micronaut Data implements the interface at compilation time.
-The launcher created a <code>BookRepository</code> interface in a file named <em>src/main/java/com/example/BookRepository.java</em>:</p>
+The GCN Launcher created a <code>BookRepository</code> interface in a file named <em>src/main/java/com/example/BookRepository.java</em>:</p>
 
 <pre><code class="language-java">package com.example;
 
@@ -733,7 +687,7 @@ public interface BookRepository extends CrudRepository&lt;Book, Long&gt; { // &l
         
       </h3>
 
-<p>The launcher created a controller to access <code>Book</code> instances (and to trigger the JDBC metric data) in a file named <em>src/main/java/com/example/BookController.java</em> with the following contents:</p>
+<p>The GCN Launcher created a controller to access <code>Book</code> instances (and to trigger the JDBC metric data) in a file named <em>src/main/java/com/example/BookController.java</em> with the following contents:</p>
 
 <pre><code class="language-java">package com.example;
 
@@ -792,7 +746,7 @@ class BookController {
 
 <ol>
   <li>
-    <p>For tests to run correctly, the launcher created a test configuration file named <em>src/test/resources/application-test.properties</em> with the following contents:</p>
+    <p>For tests to run correctly, the GCN Launcher created a test configuration file named <em>src/test/resources/application-test.properties</em> with the following contents:</p>
 
     <pre><code> customMetrics.initialDelay=10h
  datasources.default.db-type=mysql
@@ -809,7 +763,7 @@ class BookController {
  The configuration also enables Flyway to create the <code>books</code> tables the same way as in a production environment.</p>
   </li>
   <li>
-    <p>The launcher created a test class, named <code>BookControllerMetricsTest</code>, to verify metrics functionality in a file named <em>src/test/java/com/example/BookControllerMetricsTest.java</em> with the following contents:</p>
+    <p>The GCN Launcher created a test class, named <code>BookControllerMetricsTest</code>, to verify metrics functionality in a file named <em>src/test/java/com/example/BookControllerMetricsTest.java</em> with the following contents:</p>
 
     <pre><code class="language-java"> package com.example;
 
@@ -979,7 +933,7 @@ class BookController {
 
 <ol>
   <li>
-    <p>The launcher created a service that retrieves information from the database and publishes custom metrics based on it. The custom metrics provide the number of books about microservices. The service is in a file named <em>src/main/java/com/example/MicroserviceBooksNumberService.java</em> with the following contents:</p>
+    <p>The GCN Launcher created a service that retrieves information from the database and publishes custom metrics based on it. The custom metrics provide the number of books about microservices. The service is in a file named <em>src/main/java/com/example/MicroserviceBooksNumberService.java</em> with the following contents:</p>
 
     <pre><code class="language-java"> package com.example;
 
@@ -1039,7 +993,7 @@ class BookController {
     <p><strong>2</strong> The metric update is scheduled. The <code>customMetrics.updateFrequency</code> parameter corresponds to the update rate and has the default value of one hour. The <code>customMetrics.initialDelay</code> parameter corresponds to a delay after application startup before metrics calculation and has a default value of zero seconds.</p>
   </li>
   <li>
-    <p>The launcher created <code>MicroserviceBooksNumberTest</code> to test the custom metrics in a file named <em>src/test/java/com/example/MicroserviceBooksNumberTest.java</em> with the following contents:</p>
+    <p>The GCN Launcher created <code>MicroserviceBooksNumberTest</code> to test the custom metrics in a file named <em>src/test/java/com/example/MicroserviceBooksNumberTest.java</em> with the following contents:</p>
 
     <pre><code class="language-java"> package com.example;
 
@@ -1127,7 +1081,7 @@ class BookController {
         
       </h2>
 
-<p>The launcher configured an initial datasource in <em>src/main/resources/application.properties</em> with the following properties:</p>
+<p>The GCN Launcher configured an initial datasource in <em>src/main/resources/application.properties</em> with the following properties:</p>
 
 <pre><code>datasources.default.db-type=mysql
 datasources.default.dialect=MYSQL
@@ -1373,7 +1327,11 @@ export DATASOURCES_DEFAULT_PASSWORD=User123User!
                 <li class="footer-list__item"><a href="/gcn/hands-on-labs/">Labs</a></li>
                 <li class="footer-list__github">
                   <img class="footer__icon" src="/gcn/resources/img/footer/logo-github.svg" alt="Github icon">
-                  <a href="https://github.com/oracle/gcn">Github</a>
+                  <a href="https://github.com/oracle/gcn" target="blank">Github</a>
+                </li>
+                <li class="footer-list__github">
+                  <img class="footer__icon" src="/gcn/resources/img/footer/slack-icon.svg" alt="Github icon">
+                  <a href="https://bit.ly/odevrel_slack" target="blank">Join us at: #graal-cloud-native</a>
                 </li>
               </ul>
             </div>
@@ -1382,7 +1340,7 @@ export DATASOURCES_DEFAULT_PASSWORD=User123User!
             <h6 class="title-footer" onclick="fadeInAndOut(this)">About</h6>
             <div class="grow">
               <ul class="footer-list">
-                <li class="footer-list__item"><a href="/gcn/about/#gcn-support" target="blank">Commercial Support</a></li>
+                <li class="footer-list__item"><a href="/gcn/about/#support" target="blank">Commercial Support</a></li>
                 <li class="footer-list__item"><a href="https://www.graalvm.org/" target="blank">GraalVM Native Image</a></li>
                 <li class="footer-list__item"><a href="https://micronaut.io/" target="_blank">Micronaut</a></li>
                 <li class="footer-list__item"><a href="https://www.oracle.com/cloud/multicloud/what-is-multicloud/" target="_blank">Multicloud</a></li>
@@ -1483,5 +1441,7 @@ export DATASOURCES_DEFAULT_PASSWORD=User123User!
     <script src='/gcn/resources/js/ui.js'></script>
     <script src='/gcn/resources/js/filters.js'></script>
     <script src='/gcn/resources/js/sidebar.js'></script>
+    <script src='/gcn/resources/lib/highlight/highlight.min.js'></script> 
+    <script>hljs.highlightAll();</script>
   </body>
 </html>

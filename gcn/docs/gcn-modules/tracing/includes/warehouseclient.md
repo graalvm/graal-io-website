@@ -1,6 +1,6 @@
 ### 1.4. Warehouse Client
 
-The launcher created the `WarehouseClient` class in a file named _lib/src/main/java/com/example/WarehouseClient.java_, as follows:
+The GCN Launcher created the `WarehouseClient` class in a file named _lib/src/main/java/com/example/WarehouseClient.java_, as follows:
 
 ```java
 package com.example;

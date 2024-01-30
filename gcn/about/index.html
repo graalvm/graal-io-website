@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:image" content="/gcn/resources/img/graalvm.png" />
+  <meta name="twitter:widgets:border-color" content="#55acee">
+
+  <title>
+    
+      What is Graal Cloud Native?
+    
+  </title>
+  <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
+  <meta name="last_modified" content="2024-01-15 10:34:42 +0000"/>
+  <meta name="last_built" content="2024-01-30 10:05:12 +0000"/>
+  <link rel="stylesheet" href="/gcn/assets/main.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/gcn/resources/img/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/resources/img/favicon/site.webmanifest">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="google-site-verification" content="-vRqwa9WYn6AaQGnl88xvrLw6ac4xoKVkZkhanmlRhU" />
+  <link rel="canonical" href="https://www.graal.cloud/gcn/about/">
+
+  <!-- jQuery UI Tabs -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/gcn/resources/lib/jquery/jquery-ui.css">
+</head>
+
+      <script src="/gcn/resources/lib/jquery/jquery-3.6.1.min.js"></script>
+    <script src="/gcn/resources/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src='/gcn/resources/lib/sticky-sidebar/resizeSensor.js'></script>
+    <script src='/gcn/resources/lib/sticky-sidebar/sticky-sidebar.min.js'></script>
+    <script src="/gcn/resources/lib/highlight/highlight.min.js"></script>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- Add TRUSTe Consent Script and Analytics -->
+    <script async="async" type="text/javascript" src='//consent.trustarc.com/notice?domain=oracle.com&c=teconsent&js=bb&noticeType=bb&text=true&cdn=1&pcookie&gtm=1' crossorigin></script>
+    <script src="https://www.oracle.com/assets/truste-oraclelib.js"></script>
+    <!-- jQuery UI Tabs -->
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+
+  <body class="preload">
+
+    <div  class="wrapper wrapper--nofooter" >
+
+      <header  class="header header--content" 
+  role="banner">
+
+  
+
+  
+
+    <nav class="menu">
+      <div class="menu__row">
+        <div>
+          <a href="/gcn/">
+            <img class="logo-mobile" src="/gcn/resources/img/gcn-logo-01.svg" alt="Graal Cloud Native logo">
+          </a>
+        </div>
+        <div class="menu__container">
+          <ul class="menu__list">
+            <li class="menu__item">
+              <a href="/gcn/about/" class="menu__link">About</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gcn/get-started/" class="menu__link">Get Started</a>
+            </li>
+            <li class="menu__item">
+              <div class="stack-container">
+                <a href="#" class="menu__link stack__header">Docs</a>
+                <div class="stack-menu-learn">
+                  <div class="stack-row">
+                    <div class="stack-column">
+                      <div class="stack__item">
+                        <img src='/gcn/resources/img/header-navigation/modules.svg'>
+                        <a href="/gcn/modules/" class="item-line">Modules</a>
+                      </div>
+                      <div class="stack__item">
+                        <img src='/gcn/resources/img/header-navigation/guides.svg'>
+                        <a href="/gcn/guides/" class="item-line">Guides</a>
+                      </div>
+                      <div class="stack__item">
+                        <img src='/gcn/resources/img/header-navigation/labs.svg'>
+                        <a href="/gcn/hands-on-labs/" class="item-line">Hands-On Labs</a>
+                      </div>
+                      <div class="stack__item">
+                        <img src='/gcn/resources/img/header-navigation/tools.svg'>
+                        <a href="/gcn/vscode-tools/" class="item-line">Tools</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="menu__item">
+              <div class="stack-container">
+                <a href="#" class="menu__link stack__header">Graal Projects</a>
+                <div class="stack-menu">
+                  <div class="stack-row">
+                    <div class="stack-column">
+                      <div class="stack__item">
+                        <img src='/gcn/resources/img/header-navigation/graalstack.svg'>
+                        <a href="https://graal.cloud/" class="item-line">Graal</a>
+                      </div>
+                      <div class="stack__item">
+                        <img src='/gcn/resources/img/header-navigation/graalvm.svg'>
+                        <a href="https://graalvm.org/" class="item-line">GraalVM</a>
+                      </div>
+                      <div class="stack__item">
+                        <img src='/gcn/resources/img/header-navigation/graalos.svg'>
+                        <a href="https://graal.cloud/graalos/" class="item-line">GraalOS</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="menu__launch__mobile">
+              <a href="/gcn/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
+            </li>
+          </ul>
+        </div>
+        <div class="menu__launch">
+          <a href="/gcn/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
+        </div>
+      </div>
+
+      <div role="button" class="menu-btn menu-btn--menu js-show-menu" tabindex="-1" title="sweet hamburger">
+        <div class="hamburger">
+          <div class="inner"></div>
+        </div>
+      </div>
+      <button aria-label="hamburger mobile menu" class="btn btn-mobile-menu js-show-menu">
+        <div class="inner"></div>
+      </button>
+    </nav>
+
+  
+</header>
+
+
+      <main  class="content"   aria-label="Content">
+        <div class="wrapper wrapper-content">
+  <article>
+  <div class="row d-flex flex-wrap">
+    <div class="col-sm-3 docsimpro col-bg">
+      <div class="sidebar-wrap">
+        <div class="sidebar">
+          <div class="menuabout">
+            <img id="sidebarClose" src="/gcn/resources/img/arrow_sidebar(close).svg" alt="Expand or collapse sidebar"
+              class="btn-color no-display">
+            <img id="sidebarOpen" src="/gcn/resources/img/arrow_sidebar.svg" alt="Expand or collapse sidebar">
+          </div>
+          
+<div class="toc-floating">
+
+
+<div class="toc-bullets">
+
+
+  
+
+  
+
+  
+
+  
+    
+
+    
+      
+        
+          <li class="toc-bullets-main toc-bullets-highlight">
+        
+          
+          <a href="/gcn/about/" class="_icon-book">
+            What is Graal Cloud Native?
+          </a>
+        </li>
+
+        
+        
+          <div>
+  <script>
+    var scriptElement = document.currentScript;
+    var div = $(scriptElement.parentElement);
+    $(window).on("load", function() {
+      // $("#content-wrapper h1, #content-wrapper h2").each(function() {
+      $("#content-wrapper h2").each(function() {
+        var li = $("<li></li>", { class: "toc-bullets-sub" });
+        var a = $("<a></a>", { href: "#" + $(this).attr("id") });
+        a.text($(this).text().replace('#', ''));
+        li.append(a);
+        li.click(function (e) {
+        e.preventDefault();
+        var target = $(a.attr('href'));
+        var scrollTo = target.offset().top - 80; // 80 - indent
+        $('html, body').animate({ scrollTop: scrollTo }, 1000);
+        });
+        div.append(li);
+      });
+    });
+  </script>
+</div>
+
+        
+
+        
+        
+      
+    
+      
+        
+          <li class="toc-bullets-main">
+        
+          
+          <a href="/gcn/about/security-guide/" class="_icon-book">
+            Graal Cloud Native Product Security Guide
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+      
+    
+      
+        
+          <li class="toc-bullets-main">
+        
+          
+          <a href="/gcn/about/lium/" class="_icon-book">
+            Licensing Information User Manual
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<!-- <li class="search additional-search">
+  <form class="form-inline sidebar" action="/docs/search" autocomplete="on" method="get">
+    <input class="input-search sidebar" type="text" id="search-box" name="query" placeholder="Search">
+    <button type="submit sidebar" class="search-button"></button>
+  </form>
+</li> -->
+
+</div>
+  <!-- Search form -->
+  <!-- <form class="search-container" action="/docs/search" autocomplete="on" method="get">
+   <label for="search-box">Search</label>
+    <input type="text" id="search-box" name="query">
+    <button type="submit" class="searchbttn"></button>
+  </form> -->
+</div>
+
+        </div>
+      </div>
+    </div>
+      <div class="col-sm-9 aboutmod">
+        <div id="content-wrapper" class="">
+          
+
+            <div class="about-banner-gcn">
+              <div class="banner_home_about container-fluid container-fluid--custom-sm">
+                <div class="tagline_about_gcn">
+                  <p>What is Graal Cloud Native?
+                  </p>
+                </div>
+              </div>
+            </div>
+            <section class="content-section about-first container_about">
+              <div class="container-fluid container-fluid--custom-sm">
+                <div class="row">
+                  <div>
+                    <p class="text-about element-about-pad"><span class="orange-text">Graal Cloud Native (GCN)</span> is
+                      a build of a curated set of Micronaut<sup>&reg;</sup> framework modules and their required libraries for building
+                      portable cloud native microservices that take full advantage of powerful cloud platform services
+                      and that can be compiled ahead-of-time by GraalVM Native Image. GCN also provides project creation
+                      utilities and VS Code extensions for application development and deployment.</p>
+                    <p class="text-about element-about-pad">The modules are designed from the ground up to ensure they
+                      can be compiled with GraalVM Native Image to produce native executables that are ideal for
+                      microservices: they start instantly, provide peak performance with no warmup, and have a small
+                      memory footprint.</p>
+                    <p class="text-about element-about-pad">Each module is supported by extensive documentation and
+                      guides that provide instructions for use as well as how to incorporate the module into Maven or
+                      Gradle build tools.</p>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <section class="content-section aboutpage-section about-graphic-02 container_about">
+              <div class="container-fluid container-fluid--custom-sm">
+                <div class="row">
+                  <h2 id="what-is-cloud-native" class="aboutpage-title element-about-pad">What is &ldquo;Cloud Native&rdquo;?</h2>
+                </div>
+                <div class="row">
+                  <p class="text-about element-about-pad">The term &ldquo;cloud native&rdquo; refers to the concept of building and
+                    running applications to take advantage of the distributed computing services offered by cloud
+                    platforms. Cloud native applications are designed from their outset to exploit the scale,
+                    elasticity, resiliency, and flexibility that the cloud provides. As defined by the <a
+                      href="https://github.com/cncf/toc/blob/main/DEFINITION.md" class="about-link" target="blank">Cloud
+                      Native Computing Foundation</a>, &ldquo;Cloud native technologies empower organizations to build and run
+                    scalable applications in modern, dynamic environments such as public, private, and hybrid clouds.
+                    These features enable loosely coupled systems that are resilient, manageable, and observable.&rdquo;</p>
+                </div>
+              </div>
+            </section>
+            <section class="content-section aboutpage-section about-graphic-01 container_about">
+              <div class="container-fluid container-fluid--custom-sm">
+                <div class="row">
+                  <h2 id="portable-cloud-native-app-dev" class="aboutpage-title element-about-pad">Portable Cloud Native
+                    Application Development
+                  </h2>
+                </div>
+                <div class="row">
+                  <p class="text-about element-about-pad">Each of the leading cloud platforms provide a collection of
+                    services that can be used to quickly build, deploy, and monitor applications. However, the APIs for
+                    those services are typically proprietary: developers must invest time to understand the details of
+                    APIs and they end up with applications that are locked to a specific cloud platform. As a result,
+                    moving an application from one cloud platform to another requires significant development effort.
+                  </p>
+                </div>
+                <div class="row">
+                  <div class="col-sm-4">
+                    <img src="/gcn/resources/img/about_page/overview_diagram.svg" class="diagram-about" alt="GCN Overview">
+                  </div>
+                  <div class="col-sm-8 text-set-about">
+                    <p class="text-about element-about-pad">For example, an application to manage secrets could use Oracle Cloud
+                      Infrastructure&rsquo;s Vault service, Amazon Web Services&rsquo; Secrets Manager, or Google Cloud Platform&rsquo;s Secret
+                      Manager. 
+                      Each secret management services provides its own API which means the application is tightly coupled to one platform. 
+                      If a decision is made to change cloud providers, the application code must be changed.</p>
+                  </div>
+                </div>
+                <div class="row">
+                  <p class="text-about element-about-pad">Oracle believes that public clouds are now mature enough that
+                    service abstraction APIs can be constructed that are sufficient for most use cases. Many public
+                    cloud services such as messaging, logging, tracing, and identity management either support the same
+                    third-party libraries (such as Kafka, slf4j, and Micrometer) or provide a pluggable provider
+                    abstraction (for example, identity management) that enables your source code to stay isolated from
+                    vendor-specific implementations.</p>
+                  <p class="text-about element-about-pad">The modules provide platform independent support for a set
+                    of core cloud services including object storage, secret management, streaming, tracing, and more.
+                    With these modules it is easy to build portable cloud native Java-based Micronaut applications on
+                    top of managed services provided by leading public cloud platforms.</p>
+                </div>
+              </div>
+            </section>
+            <section class="content-section aboutpage-section container_about">
+              <div class="container-fluid container-fluid--custom-sm">
+                <div class="row">
+                  <h2 id="multicloud-app-creation" class="aboutpage-title element-about-pad">Multicloud Application
+                    Creation</h2>
+                </div>
+                <div class="row">
+                  <p class="text-about element-about-pad">To support multicloud Micronaut development, Oracle has
+                    developed multi-module Maven and Gradle project structures that separate application source code
+                    from cloud-specific configuration files. This structure enables you to develop and deploy
+                    Micronaut applications to multiple cloud platforms. To make it easy to get started with
+                    multicloud development, you can use the GCN Command Line tool and Launcher to generate
+                    application skeletons that include all the necessary dependencies, including each cloud
+                    platform&rsquo;s Java SDK.</p>
+                </div>
+              </div>
+            </section>
+            <section class="content-section aboutpage-section about-graphic-02 container_about">
+              <div class="container-fluid container-fluid--custom-sm">
+                <div class="row">
+                  <h2 id="vscode-extensions" class="aboutpage-title element-about-pad">VS Code Extensions</h2>
+                </div>
+                <div class="row">
+                  <p class="text-about element-about-pad">Oracle provides extensions to support the development of
+                    Micronaut microservices in VS Code.</p>
+                  <p class="text-about element-about-pad">The <a
+                      href="https://marketplace.visualstudio.com/items?itemName=oracle-labs-graalvm.micronaut"
+                      class="about-link" target="blank">GraalVM Tools for Micronaut</a> extension provides code
+                    assistance and validation for Micronaut configuration files. It also supports the generation of
+                    Micronaut Data-enabled persistent classes from database tables via integration with the <a
+                      href="https://marketplace.visualstudio.com/items?itemName=Oracle.oracledevtools"
+                      class="about-link" target="blank">Oracle Developer Tools for VS Code (SQL and PLSQL)</a>
+                    extension.</p>
+                  <p class="text-about element-about-pad">Oracle also provides a VS Code extension to support Oracle
+                    Cloud Infrastructure&rsquo;s DevOps service. It automatically generates build and deployment pipelines
+                    as well as source code management to make it easy to transition from local development to
+                    cloud-based development and deployment.</p>
+                </div>
+              </div>
+            </section>
+            <section class="content-section aboutpage-section about-graphic-01 container_about module-table">
+              <div class="container-fluid container-fluid--custom-sm">
+                <div class="row">
+                  <h2 id="gcn-certification-sup-sec" class="aboutpage-title element-about-pad">Graal Cloud Native
+                    Certification, Support and Security</h2>
+                </div>
+                <div class="row">
+                  <p class="text-about-bot element-about-pad">The curated modules provided by GCN include:</p>
+                  <div class="container-table element-about-pad">
+                    <table class="table-1 table-mobile">
+                      <thead>
+                        <tr>
+                          <th>Service</th>
+                          <th>Oracle Cloud Infrastructure</th>
+                          <th>Amazon Web Services</th>
+                          <th>Google Cloud Platform</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td class="bold-text">Database</td>
+                          <td>Oracle Autonomous Database, MySQL Database</td>
+                          <td>Aurora</td>
+                          <td>Cloud SQL</td>
+                        </tr>
+                        <tr>
+                          <td class="bold-text">Email</td>
+                          <td>Email Delivery</td>
+                          <td>Simple Email Service</td>
+                          <td>N/A (SendGrid)</td>
+                        </tr>
+                        <tr>
+                          <td class="bold-text">Kubernetes</td>
+                          <td>Container Engine for Kubernetes (OKE)</td>
+                          <td>Elastic Kubernetes Service</td>
+                          <td>Google Kubernetes Engine (GKE)</td>
+                        </tr>
+                        <tr>
+                          <td class="bold-text">Logging</td>
+                          <td>Logging</td>
+                          <td>CloudWatch</td>
+                          <td>Cloud Logging</td>
+                        </tr>
+                        <tr>
+                          <td class="bold-text">Metrics</td>
+                          <td>Monitoring</td>
+                          <td>CloudWatch</td>
+                          <td>Cloud Monitoring</td>
+                        </tr>
+                        <tr>
+                          <td class="bold-text">Object Storage</td>
+                          <td>Object Storage</td>
+                          <td>Simple Storage Service (S3)</td>
+                          <td>Cloud Storage</td>
+                        </tr>
+                        <tr>
+                          <td class="bold-text">Secret Management</td>
+                          <td>Vault</td>
+                          <td>Secrets Manager</td>
+                          <td>Secret Manager</td>
+                        </tr>
+                        <tr>
+                          <td class="bold-text">Security</td>
+                          <td>Oracle Identity Cloud Service(IDCS)</td>
+                          <td>Cognito</td>
+                          <td>Cloud Identity</td>
+                        </tr>
+                        <tr>
+                          <td class="bold-text">Serverless</td>
+                          <td>Functions</td>
+                          <td>Lambda</td>
+                          <td>Cloud Run</td>
+                        </tr>
+                        <tr>
+                          <td class="bold-text">Streaming (Kafka)</td>
+                          <td>Streaming</td>
+                          <td>Managed Streaming for Apache Kafka (MSK)</td>
+                          <td>Confluent Cloud</td>
+                        </tr>
+                        <tr>
+                          <td class="row-noborder bold-text add-radius">Tracing</td>
+                          <td class="row-noborder add-radius">Application Performance Monitoring</td>
+                          <td class="row-noborder">X-Ray</td>
+                          <td class="row-noborder add-radius">Cloud Trace</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <p class="text-about element-about-pad">Each module requires a particular set of platform and
+                    dependent libraries. For each release, Oracle tests all these libraries on each cloud provider
+                    and ensures they can be used in applications compiled ahead-of-time with GraalVM Native Image.
+                    Memory footprint and performance throughput are tracked to verify that each release demonstrates
+                    consistently good performance with no degradation from prior releases. This ensures that
+                    applications remain portable as cloud providers make changes in their SDKs, and as
+                    required third-party packages are updated.</p>
+                </div>
+              </div>
+            </section>
+            <section id="gcn-support" class="content-section aboutpage-section container_about">
+              <div class="container-fluid container-fluid--custom-sm">
+                <div class="row">
+                  <h2 id="gcn-support" class="aboutpage-title element-about-pad">Support</h2>
+                </div>
+                <div class="row">
+                  <p class="text-about element-about-pad">The GCN builds of Micronaut are fully supported by Oracle for applications deployed to Oracle Cloud Infrastructure under the <a
+                    href="https://www.oracle.com/support/policies.html" class="about-link" target="blank">same terms</a> as other Oracle Cloud Infrastructure libraries including the Oracle Cloud Infrastructure SDK. Support for GCN is also included with the Verrazzano Subscription for use on premises and other cloud platforms.</p>
+                  <p class="text-about element-about-pad">GCN support for builds of each major Micronaut version will continue for one year after the subsequent major version is released. GCN support encompasses both the Active Development and Active Maintenance periods.</p>
+                </div>
+              </div>
+            </section>
+            <section class="content-section aboutpage-section about-graphic-02 container_about">
+              <div class="container-fluid container-fluid--custom-sm">
+                <div class="row">
+                  <h2 id="reference-arch" class="aboutpage-title element-about-pad">Reference Architecture</h2>
+                </div>
+                <div class="row">
+                  <p class="text-about-bot2 element-about-pad">Service usage made possible by the modules included
+                    in the GCN builds of Micronaut align with the recommendations made by <a
+                      href="https://www.oracle.com/application-development/modern-app-development/" class="about-link"
+                      target="blank">Oracle&rsquo;s cloud reference architecture</a>, which in turn
+                    aligns with the goals of cloud native computing as defined by the Cloud Native Computing
+                    Foundation. Oracle customers will find that GCN makes it easier to build applications that
+                    implement the reference architecture principles.</p>
+                </div>
+              </div>
+            </section>
+          </div>
+          <div role="button" class="menu-btn menu-btn--sidebar js-show-sidebar" title="sweet hamburger">
+            <div class="hamburger">
+              <div class="inner"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</article>
+
+</div>
+
+      </main>
+
+      
+<footer class="footer footer__mobile">
+
+  <div class="container-fluid container-fluid--custom-sm">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row footer-content">
+          <div class="col-md-3 col-sm-4">
+            <h6 class="title-footer" onclick="fadeInAndOut(this)">Learn</h6>
+            <div class="grow">
+              <ul class="footer-list">
+                <li class="footer-list__item"><a href="/gcn/get-started/">Get Started</a></li>
+                <li class="footer-list__item"><a href="/gcn/guides/">Guides</a></li>
+                <li class="footer-list__item"><a href="/gcn/hands-on-labs/">Labs</a></li>
+                <li class="footer-list__github">
+                  <img class="footer__icon" src="/gcn/resources/img/footer/logo-github.svg" alt="Github icon">
+                  <a href="https://github.com/oracle/gcn" target="blank">Github</a>
+                </li>
+                <li class="footer-list__github">
+                  <img class="footer__icon" src="/gcn/resources/img/footer/slack-icon.svg" alt="Github icon">
+                  <a href="https://bit.ly/odevrel_slack" target="blank">Join us at: #graal-cloud-native</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-4">
+            <h6 class="title-footer" onclick="fadeInAndOut(this)">About</h6>
+            <div class="grow">
+              <ul class="footer-list">
+                <li class="footer-list__item"><a href="/gcn/about/#support" target="blank">Commercial Support</a></li>
+                <li class="footer-list__item"><a href="https://www.graalvm.org/" target="blank">GraalVM Native Image</a></li>
+                <li class="footer-list__item"><a href="https://micronaut.io/" target="_blank">Micronaut</a></li>
+                <li class="footer-list__item"><a href="https://www.oracle.com/cloud/multicloud/what-is-multicloud/" target="_blank">Multicloud</a></li>
+                <li class="footer-list__item"><a href="https://www.oracle.com/cloud/" target="blank">Oracle Cloud Infrastructure</a></li>
+                <li class="footer-list__item"><a href="https://marketplace.visualstudio.com/items?itemName=oracle-labs-graalvm.graal-cloud-native-pack" target="blank">VS Code Tools</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-12 aligning_1024">
+            <div class="card--footer card--hovered box">
+              <div>
+                <div class="rubber-footer footer__oci-section">
+                  <p class="title-footer quickstart">Build, test, and deploy applications on Oracle Cloud Infrastructure for free</p>
+                  <a href="https://www.oracle.com/cloud/free/" target="_blank"
+                    class="btn btn-primary">Try Oracle Cloud Infrastructure Free Tier</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+          <div class="row">
+            <div class="col-sm-12">
+              <p class="copyright">
+                Copyright © 2023, Oracle and/or its affiliates. All rights reserved. Oracle and Java are
+                registered trademarks. Other names may be trademarks of their respective owners.
+              </p>
+              <div id="teconsent"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+<script>
+  function fadeInAndOut(thz) {
+    var elmt = thz.nextElementSibling;//Get the element that is below the button that
+    //was just clicked
+    if (elmt.clientHeight) {
+      elmt.style.height = 0;
+    } else {
+      var wrapper = elmt.querySelector('ul');
+      elmt.style.height = wrapper.clientHeight + "px";
+    }
+    /*
+        elmt.classList.toggle("acordianPanelHidden");//Toggle the class which changes
+        //attributes which triggers the transition CSS
+        */
+  }
+
+  // Check TRUSTe Consent for Functional or Implied Approval
+  // The if test verifies if the user has given the consent
+  if ( (oracle.truste.api.getGdprConsentDecision().consentDecision) &&
+      (oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(0) != -1 ||
+        oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(2) != -1) ) {
+
+      //The following is a sample of a Maxymiser Tag being written to the DOM
+      //If the user did not give consent, then the tag is not included and not invoked in the Browser
+      document.write('<script type="text/javascript" src="//service.maxymiser.net/cdn/oracle/js/mmcore.js"><\/script>');
+  }
+
+  // Check TRUSTe Consent for Advertising or Implied Approval
+  // The if test verifies if the user has given the consent
+  if ( (oracle.truste.api.getGdprConsentDecision().consentDecision) &&
+      (oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(0) != -1 ||
+        oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(3) != -1) ) {
+
+      //The following is a sample of a BlueKai Core Tag being written to the DOM
+      //If the user did not give consent, then the tag is not included and not invoked in the Browser
+      document.write('<script type="text/javascript">' +
+      'window.bk_async = function() { ' +
+      'BKTAG.doTag(62581, 1); }; ' +
+      '(function() { ' +
+      'var scripts = document.getElementsByTagName(\'script\')[0]; ' +
+      'var s = document.createElement(\'script\'); ' +
+      's.async = true; ' +
+      's.src = "https://tags.bkrtx.com/js/bk-coretag.js"; ' +
+      'scripts.parentNode.insertBefore(s, scripts); ' +
+      '}()); ' +
+      '<\/script>');
+  }
+</script>
+
+    </div>
+    <div class="overlay"></div>
+
+    <!-- Start SiteCatalyst code -->
+    <script language="JavaScript" src="https://www.oracle.com/us/assets/metrics/ora_otn.js"></script>
+    <!-- End SiteCatalyst code -->
+
+    <script src='/gcn/resources/lib/slick-slider/slick.min.js'></script>
+    <script src='/gcn/resources/js/main.js'></script>
+    <script src='/gcn/resources/js/ui.js'></script>
+    <script src='/gcn/resources/js/filters.js'></script>
+    <script src='/gcn/resources/js/sidebar.js'></script>
+    <script src='/gcn/resources/lib/highlight/highlight.min.js'></script> 
+    <script>hljs.highlightAll();</script>
+  </body>
+</html>

@@ -14,7 +14,8 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2023-12-06 15:44:15 +0000"/>
+  <meta name="last_modified" content="2024-01-29 19:11:54 +0000"/>
+  <meta name="last_built" content="2024-01-30 10:05:12 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -69,21 +70,6 @@
             <li class="menu__item">
               <a href="/gcn/get-started/" class="menu__link">Get Started</a>
             </li>
-            <!-- <li class="menu__item">
-              <a href="/gcn/modules/" class="menu__link">Modules</a>
-            </li>
-            <li class="menu__item">
-              <a href="/gcn/guides/" class="menu__link">Guides</a>
-            </li>
-            <li class="menu__item">
-              <a href="/gcn/hands-on-labs/" class="menu__link">Hands-On Labs</a>
-            </li>
-            <li class="menu__item">
-              <a href="/gcn/vscode-tools/" class="menu__link">Tools</a>
-            </li> -->
-            <!-- <li class="menu__launch__mobile">
-              <a href="/gcn/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
-            </li> -->
             <li class="menu__item">
               <div class="stack-container">
                 <a href="#" class="menu__link stack__header">Docs</a>
@@ -157,49 +143,6 @@
   
 </header>
 
-<!-- <header  class="header header--content" >
-
-  
-
-  
-
-    <nav class="menu">
-      <div class="menu__row">
-        <div>
-          <a href="/gcn/graal">
-            <img class="logo-mobile" src="/gcn/resources/img/gcn-logo-01.svg" alt="Graal Cloud Native logo">
-          </a>
-        </div>
-        <div class="menu__container">
-          <ul class="menu__list">
-            <li class="menu__item">
-              <a href="/gcn/graal/#whatisgraal" class="menu__link">About</a>
-            </li>
-            <li class="menu__item">
-              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
-            </li>
-            <li class="menu__item">
-              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
-            </li>
-            <li class="menu__item">
-              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <div role="button" class="menu-btn menu-btn--menu js-show-menu" tabindex="-1" title="sweet hamburger">
-        <div class="hamburger">
-          <div class="inner"></div>
-        </div>
-      </div>
-      <button aria-label="hamburger mobile menu" class="btn btn-mobile-menu js-show-menu">
-        <div class="inner"></div>
-      </button>
-    </nav>
-
-  
-</header> -->
 
       <main  class="content"   aria-label="Content">
         <div class="wrapper wrapper-content">
@@ -406,6 +349,9 @@
 
     <div class="col-sm-9 docsmod">
       <div id="content-wrapper" class="docs-content docs-content--with-sidebar">
+        <!--
+          Include file to warn of Windows/Gradle restriction
+        -->
         <h1 id="create-and-connect-a-micronaut-application-to-google-cloud-storage">
         
         
@@ -434,10 +380,10 @@
       </h3>
 
 <ul>
-  <li>JDK 17 or higher. See <a href="/getting-started/setting-up-desktop/">Setting up Your Desktop</a>.</li>
-  <li>A Google Cloud Platform (GCP) account. See <a href="/getting-started/setting-up-cloud-accounts/">Setting up Your Cloud Accounts</a>.</li>
+  <li>JDK 17 or higher. See <a href="/gcn/get-started/setting-up-desktop/">Setting up Your Desktop</a>.</li>
+  <li>A Google Cloud Platform (GCP) account. See <a href="/gcn/get-started/setting-up-cloud-accounts/">Setting up Your Cloud Accounts</a>.</li>
   <li>The Google Cloud CLI. (The CLI is part of the Google Cloud SDK; for more information, see <a href="https://cloud.google.com/sdk">Cloud SDK</a>.)</li>
-  <li>The GCN CLI. See <a href="/getting-started/setting-up-desktop/">Setting up Your Desktop</a>. (Optional.)</li>
+  <li>The GCN CLI. See <a href="/gcn/get-started/setting-up-desktop/">Setting up Your Desktop</a>. (Optional.)</li>
 </ul>
 
 <p>Follow the steps below to create the application from scratch. However, you can also download the completed example in Java:</p>
@@ -471,6 +417,14 @@
 <blockquote>
   <p>Note: If you use IntelliJ IDEA, <a href="/gcn/resources/img/annotationprocessorsintellij.png">enable annotation processing</a>.</p>
 </blockquote>
+
+<!--
+  An include file with a snippet of html to warn about the Windows/Gradle restriction
+-->
+<blockquote>
+  <!-- <img class="" src="/gcn/resources/img/warn-icon-fill.svg/" alt="warning icon"> -->
+  <p>Windows platform: The GCN guides are compatible with Gradle only. Maven support is coming soon.</p>
+</blockquote>
     
       <h2 id="1-create-the-application">
         
@@ -503,7 +457,7 @@
       <li><strong>Sample Code</strong>: <em>Yes</em> (Default)</li>
     </ul>
   </li>
-  <li>Click <strong>Generate Project</strong>. The GCN Launcher creates an application with the default package <code>com.example</code> in a directory named <em>gcp-storage-demo</em>. The application ZIP file will be downloaded in your default downloads directory. Unzip it, open in your code editor, and proceed to the next steps.</li>
+  <li>Click <strong>Generate Project</strong>, then click <strong>Download Zip</strong>. The GCN Launcher creates an application with the default package <code>com.example</code> in a directory named <em>gcp-storage-demo</em>. The application ZIP file will be downloaded in your default downloads directory. Unzip it, open in your code editor, and proceed to the next steps.</li>
 </ol>
 
 <p>Alternatively, use the GCN CLI as follows:</p>
@@ -541,7 +495,7 @@
         
       </h2>
 
-<p>The launcher created an interface with the endpoints of the “profile pictures” microservice in a file named <em>lib/src/main/java/com/example/ProfilePicturesApi.java</em>:</p>
+<p>The GCN Launcher created an interface with the endpoints of the “profile pictures” microservice in a file named <em>lib/src/main/java/com/example/ProfilePicturesApi.java</em>:</p>
 
 <pre><code class="language-java">package com.example;
 
@@ -580,7 +534,7 @@ public interface ProfilePicturesApi {
 
 <p><strong>4</strong> The <a href="https://docs.micronaut.io/latest/api/io/micronaut/http/annotation/Delete.html"><code>@Delete</code></a> annotation maps the <code>delete</code> method to an HTTP Delete request on <code>/{userId}</code>.</p>
 
-<p>The launcher also created the <code>ProfilePicturesController</code> class that implements the <code>ProfilePicturesApi</code> interface in a file named <em>lib/src/main/java/com/example/ProfilePicturesController.java</em>. It contains the class definition and constructor:</p>
+<p>The GCN Launcher also created the <code>ProfilePicturesController</code> class that implements the <code>ProfilePicturesApi</code> interface in a file named <em>lib/src/main/java/com/example/ProfilePicturesController.java</em>. It contains the class definition and constructor:</p>
 
 <pre><code class="language-java">package com.example;
 
@@ -637,7 +591,7 @@ class ProfilePicturesController implements ProfilePicturesApi {
         
       </h3>
 
-<p>The launcher also generated the <code>/upload</code> endpoint which receives the file from the HTTP client via <code>CompletedFileUpload</code>, and the <code>userId</code> path parameter. It uploads the file to Google Cloud Storage using <a href="https://micronaut-projects.github.io/micronaut-object-storage/latest/guide/">ObjectStorageOperations</a>, and then returns its <code>ETag</code> in an HTTP response header to the client:</p>
+<p>The GCN Launcher also generated the <code>/upload</code> endpoint which receives the file from the HTTP client via <code>CompletedFileUpload</code>, and the <code>userId</code> path parameter. It uploads the file to Google Cloud Storage using <a href="https://micronaut-projects.github.io/micronaut-object-storage/latest/guide/">ObjectStorageOperations</a>, and then returns its <code>ETag</code> in an HTTP response header to the client:</p>
 
 <pre><code class="language-java">@Override
 public HttpResponse&lt;?&gt; upload(CompletedFileUpload fileUpload,
@@ -1093,7 +1047,11 @@ Packaged as a native executable, it significantly reduces application startup ti
                 <li class="footer-list__item"><a href="/gcn/hands-on-labs/">Labs</a></li>
                 <li class="footer-list__github">
                   <img class="footer__icon" src="/gcn/resources/img/footer/logo-github.svg" alt="Github icon">
-                  <a href="https://github.com/oracle/gcn">Github</a>
+                  <a href="https://github.com/oracle/gcn" target="blank">Github</a>
+                </li>
+                <li class="footer-list__github">
+                  <img class="footer__icon" src="/gcn/resources/img/footer/slack-icon.svg" alt="Github icon">
+                  <a href="https://bit.ly/odevrel_slack" target="blank">Join us at: #graal-cloud-native</a>
                 </li>
               </ul>
             </div>
@@ -1102,7 +1060,7 @@ Packaged as a native executable, it significantly reduces application startup ti
             <h6 class="title-footer" onclick="fadeInAndOut(this)">About</h6>
             <div class="grow">
               <ul class="footer-list">
-                <li class="footer-list__item"><a href="/gcn/about/#gcn-support" target="blank">Commercial Support</a></li>
+                <li class="footer-list__item"><a href="/gcn/about/#support" target="blank">Commercial Support</a></li>
                 <li class="footer-list__item"><a href="https://www.graalvm.org/" target="blank">GraalVM Native Image</a></li>
                 <li class="footer-list__item"><a href="https://micronaut.io/" target="_blank">Micronaut</a></li>
                 <li class="footer-list__item"><a href="https://www.oracle.com/cloud/multicloud/what-is-multicloud/" target="_blank">Multicloud</a></li>
@@ -1203,5 +1161,7 @@ Packaged as a native executable, it significantly reduces application startup ti
     <script src='/gcn/resources/js/ui.js'></script>
     <script src='/gcn/resources/js/filters.js'></script>
     <script src='/gcn/resources/js/sidebar.js'></script>
+    <script src='/gcn/resources/lib/highlight/highlight.min.js'></script> 
+    <script>hljs.highlightAll();</script>
   </body>
 </html>

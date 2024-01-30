@@ -14,7 +14,8 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2023-11-17 16:50:37 +0000"/>
+  <meta name="last_modified" content="2024-01-29 10:38:46 +0000"/>
+  <meta name="last_built" content="2024-01-30 10:05:12 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -69,21 +70,6 @@
             <li class="menu__item">
               <a href="/gcn/get-started/" class="menu__link">Get Started</a>
             </li>
-            <!-- <li class="menu__item">
-              <a href="/gcn/modules/" class="menu__link">Modules</a>
-            </li>
-            <li class="menu__item">
-              <a href="/gcn/guides/" class="menu__link">Guides</a>
-            </li>
-            <li class="menu__item">
-              <a href="/gcn/hands-on-labs/" class="menu__link">Hands-On Labs</a>
-            </li>
-            <li class="menu__item">
-              <a href="/gcn/vscode-tools/" class="menu__link">Tools</a>
-            </li> -->
-            <!-- <li class="menu__launch__mobile">
-              <a href="/gcn/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
-            </li> -->
             <li class="menu__item">
               <div class="stack-container">
                 <a href="#" class="menu__link stack__header">Docs</a>
@@ -157,49 +143,6 @@
   
 </header>
 
-<!-- <header  class="header header--content" >
-
-  
-
-  
-
-    <nav class="menu">
-      <div class="menu__row">
-        <div>
-          <a href="/gcn/graal">
-            <img class="logo-mobile" src="/gcn/resources/img/gcn-logo-01.svg" alt="Graal Cloud Native logo">
-          </a>
-        </div>
-        <div class="menu__container">
-          <ul class="menu__list">
-            <li class="menu__item">
-              <a href="/gcn/graal/#whatisgraal" class="menu__link">About</a>
-            </li>
-            <li class="menu__item">
-              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
-            </li>
-            <li class="menu__item">
-              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
-            </li>
-            <li class="menu__item">
-              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <div role="button" class="menu-btn menu-btn--menu js-show-menu" tabindex="-1" title="sweet hamburger">
-        <div class="hamburger">
-          <div class="inner"></div>
-        </div>
-      </div>
-      <button aria-label="hamburger mobile menu" class="btn btn-mobile-menu js-show-menu">
-        <div class="inner"></div>
-      </button>
-    </nav>
-
-  
-</header> -->
 
       <main  class="content"   aria-label="Content">
         <div class="wrapper wrapper-content">
@@ -290,17 +233,6 @@
         
         
           
-          <li class="toc-bullets-sub">
-          
-            
-            <a href="/gcn/vscode-guides/setting-oci-devops-pipeline-in-vscode/">
-              Setting OCI DevOps Build and Development Pipelines in VS Code
-            </a>
-          </li>
-
-          
-        
-          
           <li class="toc-bullets-sub toc-bullets-highlight">
           
             
@@ -350,6 +282,50 @@
             
             <a href="/gcn/vscode-guides/deploy-to-aws-eks-in-vscode/">
               Deploying a Java Application to Amazon Elastic Kubernetes Cluster in VS Code
+            </a>
+          </li>
+
+          
+        
+          
+          <li class="toc-bullets-sub">
+          
+            
+            <a href="/gcn/vscode-guides/deploy-to-google-cloud-run-in-vscode/">
+              Deploying a Java Application to Google Cloud Run in VS Code
+            </a>
+          </li>
+
+          
+        
+          
+          <li class="toc-bullets-sub">
+          
+            
+            <a href="/gcn/vscode-guides/deploy-to-google-k8s-engine-in-vscode/">
+              Deploying a Java Application to Google Kubernetes Engine in VS Code
+            </a>
+          </li>
+
+          
+        
+          
+          <li class="toc-bullets-sub">
+          
+            
+            <a href="/gcn/vscode-guides/running-db-application-and-storing-properties-in-oci-vault/">
+              Running a Database Application in Oracle Cloud and Storing Properties in OCI Vault from VS Code
+            </a>
+          </li>
+
+          
+        
+          
+          <li class="toc-bullets-sub">
+          
+            
+            <a href="/gcn/vscode-guides/setting-oci-devops-pipeline-in-vscode/">
+              Setting OCI DevOps Build and Development Pipelines in VS Code
             </a>
           </li>
 
@@ -494,12 +470,11 @@
       </h3>
 
 <ul>
-  <li>JDK 17 or higher. See <a href="https://www.graal.cloud/gcn/get-started/setting-up-desktop/">Setting up Your Desktop</a>. <a href="https://www.graalvm.org/downloads/">Oracle GraalVM</a> is a fast and efficient JDK from Oracle.</li>
+  <li>JDK 17 or higher. See <a href="/gcn/get-started/setting-up-desktop/">Setting up Your Desktop</a>. <a href="https://www.oracle.com/java/graalvm/">Oracle GraalVM</a> is a fast and efficient JDK from Oracle.</li>
   <li>An Oracle Cloud Infrastructure account. See <a href="/gcn/get-started/setting-up-cloud-accounts/">Setting up Your Cloud Accounts</a>.</li>
-  <li>An Oracle Cloud Infrastructure <a href="https://docs.oracle.com/en/cloud/paas/integration-cloud/oracle-integration-oci/creating-oci-compartment.html">compartment</a>.
-html#GUID-E41FF7DB-A848-4551-A7F1-61699DCB33AB).</li>
+  <li>An Oracle Cloud Infrastructure <a href="https://docs.oracle.com/en/cloud/paas/integration-cloud/oracle-integration-oci/creating-oci-compartment.html#GUID-E41FF7DB-A848-4551-A7F1-61699DCB33AB">compartment</a>.</li>
   <li>Graal Cloud Native Extension Pack. See <a href="/gcn/vscode-tools/installing-gcn-tools/">Installing Graal Cloud Native Extension Pack</a>.</li>
-  <li>Optional: The Oracle Developer VS Code extension. See [Installing Oracle Developer Tools for VS Code](https://docs.oracle.com/en/database/oracle/developer-tools-for-vscode/getting-started/install.</li>
+  <li>Optional: The Oracle Developer VS Code extension. See <a href="https://docs.oracle.com/en/database/oracle/developer-tools-for-vscode/getting-started/install">Installing Oracle Developer Tools for VS Code</a>.</li>
 </ul>
     
       <h2 id="1-provision-an-oracle-autonomous-database">
@@ -515,10 +490,10 @@ html#GUID-E41FF7DB-A848-4551-A7F1-61699DCB33AB).</li>
     <p>In the Oracle Cloud Console, open the navigation menu, click <strong>Oracle Database</strong>. Under <strong>Autonomous Database</strong>, click <strong>Autonomous Transaction Processing</strong>.</p>
   </li>
   <li>
-    <p>Enter “GCNDemo” as the display name and the database name.</p>
+    <p>Click <strong>Create Autonomous Database</strong> and accept the default name for the database.</p>
   </li>
   <li>
-    <p>Select <strong>Transaction Processing</strong> and <strong>Shared Infrastructure</strong>. If you are using a trial account, make sure you select <strong>Always Free</strong>.</p>
+    <p>Select <strong>Transaction Processing</strong> and <strong>Serverless</strong>. If you are using a trial account, make sure you select <strong>Always Free</strong>.</p>
   </li>
   <li>
     <p>Create an admin password (must be at least 12 characters and contain a number and an uppercase letter) and select <strong>Secure access from everywhere</strong> as the network access type.</p>
@@ -583,7 +558,7 @@ Follow these steps: <a href="https://docs.oracle.com/en/database/oracle/oracle-d
     <p>Step through the project creation wizard. The following list details how you should respond to each prompt:</p>
 
     <ul>
-      <li>Pick GCN Version: <em>4.0.7</em></li>
+      <li>Pick GCN Version: <em>4.2.1</em></li>
       <li>Pick an Application type: <em>Application</em></li>
       <li>Pick Project Java: Select your JDK installation</li>
       <li>Provide project name: <em>dbsample</em></li>
@@ -809,8 +784,16 @@ Learn more about database management in VS Code in the <a href="/gcn/vscode-tool
         
       </h3>
 
-<p>This guide demonstrated how to create a Java application from an existing Oracle Autonomous Database schema from within VS Code. 
-Have established a connection to an Oracle Autonomous Database, you can create Micronaut Data entity and repository classes from an existing database schema tables, with no coding, and quickly build a simple CRUD application that lets you interact with the data stored in the database.</p>
+<p>This guide provides a detailed walkthrough for creating a Java application in VS Code using Graal Cloud Native tools, based on an Oracle Autonomous Database schema. It begins with instructions on setting up and running the application locally, ensuring a foundational understanding of the development process. Key steps include:</p>
+
+<ul>
+  <li>Creating and connecting to an Oracle Autonomous Database.</li>
+  <li>Installing a sample schema and creating a Graal Cloud Native Project.</li>
+  <li>Generating Micronaut Data Entities and Repositories from database tables.</li>
+  <li>Developing a REST Controller and running the application locally for initial testing.</li>
+</ul>
+
+<p>By the end of this guide, you will be equipped with the knowledge to not only develop a Java application using an existing database schema but also to deploy and manage it both locally and in the Oracle Cloud environment.</p>
     
       <h3 id="related-documentation">
         
@@ -824,7 +807,8 @@ Have established a connection to an Oracle Autonomous Database, you can create M
   <li><a href="https://marketplace.visualstudio.com/items?itemName=oracle-labs-graalvm.micronaut">Micronaut Tools</a></li>
   <li><a href="https://marketplace.visualstudio.com/items?itemName=oracle-labs-graalvm.gcn-database-drivers">Database Features</a></li>
   <li><a href="https://micronaut-projects.github.io/micronaut-data/latest/guide/">Micronaut Data</a></li>
-  <li><a href="https://www.oracle.com/uk/autonomous-database/">Oracle Autonomous Database</a></li>
+  <li><a href="https://www.oracle.com/autonomous-database/">Oracle Autonomous Database</a></li>
+  <li><a href="/gcn/vscode-tools/oci-devops-tools/">OCI DevOps Tools</a></li>
 </ul>
 
       </div>
@@ -858,7 +842,11 @@ Have established a connection to an Oracle Autonomous Database, you can create M
                 <li class="footer-list__item"><a href="/gcn/hands-on-labs/">Labs</a></li>
                 <li class="footer-list__github">
                   <img class="footer__icon" src="/gcn/resources/img/footer/logo-github.svg" alt="Github icon">
-                  <a href="https://github.com/oracle/gcn">Github</a>
+                  <a href="https://github.com/oracle/gcn" target="blank">Github</a>
+                </li>
+                <li class="footer-list__github">
+                  <img class="footer__icon" src="/gcn/resources/img/footer/slack-icon.svg" alt="Github icon">
+                  <a href="https://bit.ly/odevrel_slack" target="blank">Join us at: #graal-cloud-native</a>
                 </li>
               </ul>
             </div>
@@ -867,7 +855,7 @@ Have established a connection to an Oracle Autonomous Database, you can create M
             <h6 class="title-footer" onclick="fadeInAndOut(this)">About</h6>
             <div class="grow">
               <ul class="footer-list">
-                <li class="footer-list__item"><a href="/gcn/about/#gcn-support" target="blank">Commercial Support</a></li>
+                <li class="footer-list__item"><a href="/gcn/about/#support" target="blank">Commercial Support</a></li>
                 <li class="footer-list__item"><a href="https://www.graalvm.org/" target="blank">GraalVM Native Image</a></li>
                 <li class="footer-list__item"><a href="https://micronaut.io/" target="_blank">Micronaut</a></li>
                 <li class="footer-list__item"><a href="https://www.oracle.com/cloud/multicloud/what-is-multicloud/" target="_blank">Multicloud</a></li>
@@ -968,5 +956,7 @@ Have established a connection to an Oracle Autonomous Database, you can create M
     <script src='/gcn/resources/js/ui.js'></script>
     <script src='/gcn/resources/js/filters.js'></script>
     <script src='/gcn/resources/js/sidebar.js'></script>
+    <script src='/gcn/resources/lib/highlight/highlight.min.js'></script> 
+    <script>hljs.highlightAll();</script>
   </body>
 </html>

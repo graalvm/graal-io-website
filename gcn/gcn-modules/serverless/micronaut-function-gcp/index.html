@@ -14,7 +14,8 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2023-12-19 15:46:18 +0000"/>
+  <meta name="last_modified" content="2024-01-25 13:56:51 +0000"/>
+  <meta name="last_built" content="2024-01-30 10:05:12 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -69,21 +70,6 @@
             <li class="menu__item">
               <a href="/gcn/get-started/" class="menu__link">Get Started</a>
             </li>
-            <!-- <li class="menu__item">
-              <a href="/gcn/modules/" class="menu__link">Modules</a>
-            </li>
-            <li class="menu__item">
-              <a href="/gcn/guides/" class="menu__link">Guides</a>
-            </li>
-            <li class="menu__item">
-              <a href="/gcn/hands-on-labs/" class="menu__link">Hands-On Labs</a>
-            </li>
-            <li class="menu__item">
-              <a href="/gcn/vscode-tools/" class="menu__link">Tools</a>
-            </li> -->
-            <!-- <li class="menu__launch__mobile">
-              <a href="/gcn/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
-            </li> -->
             <li class="menu__item">
               <div class="stack-container">
                 <a href="#" class="menu__link stack__header">Docs</a>
@@ -157,49 +143,6 @@
   
 </header>
 
-<!-- <header  class="header header--content" >
-
-  
-
-  
-
-    <nav class="menu">
-      <div class="menu__row">
-        <div>
-          <a href="/gcn/graal">
-            <img class="logo-mobile" src="/gcn/resources/img/gcn-logo-01.svg" alt="Graal Cloud Native logo">
-          </a>
-        </div>
-        <div class="menu__container">
-          <ul class="menu__list">
-            <li class="menu__item">
-              <a href="/gcn/graal/#whatisgraal" class="menu__link">About</a>
-            </li>
-            <li class="menu__item">
-              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
-            </li>
-            <li class="menu__item">
-              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
-            </li>
-            <li class="menu__item">
-              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <div role="button" class="menu-btn menu-btn--menu js-show-menu" tabindex="-1" title="sweet hamburger">
-        <div class="hamburger">
-          <div class="inner"></div>
-        </div>
-      </div>
-      <button aria-label="hamburger mobile menu" class="btn btn-mobile-menu js-show-menu">
-        <div class="inner"></div>
-      </button>
-    </nav>
-
-  
-</header> -->
 
       <main  class="content"   aria-label="Content">
         <div class="wrapper wrapper-content">
@@ -406,6 +349,9 @@
 
     <div class="col-sm-9 docsmod">
       <div id="content-wrapper" class="docs-content docs-content--with-sidebar">
+        <!--
+          Include file to warn of Windows/Gradle restriction
+        -->
         <h1 id="create-and-deploy-a-micronaut-gateway-function-as-a-google-cloud-function">
         
         
@@ -474,6 +420,14 @@ Similarly to Google Cloud Functions, the service provisions and manages servers 
 <p>Consider using Visual Studio Code that provides native support for developing applications with the <a href="/gcn/vscode-tools/using-gcn-vscode-tools/">Graal Cloud Native extension</a>.</p>
 
 <p>If you use IntelliJ IDEA, <a href="/gcn/resources/img/annotationprocessorsintellij.png">enable annotation processing</a>.</p>
+
+<!--
+  An include file with a snippet of html to warn about the Windows/Gradle restriction
+-->
+<blockquote>
+  <!-- <img class="" src="/gcn/resources/img/warn-icon-fill.svg/" alt="warning icon"> -->
+  <p>Windows platform: The GCN guides are compatible with Gradle only. Maven support is coming soon.</p>
+</blockquote>
     
       <h2 id="1-create-the-gateway-function">
         
@@ -503,11 +457,11 @@ Similarly to Google Cloud Functions, the service provisions and manages servers 
       <li><strong>Java Version</strong>: <em>17</em> (Default)</li>
       <li><strong>Micronaut Version</strong>: (Default)</li>
       <li><strong>Cloud Services</strong>: <em>None</em></li>
-      <li><strong>Features</strong>: <em>GraalVM Native Image</em>, and <em>Micronaut Validation</em></li>
-      <li><strong>Sample Code</strong>: <em>Yes</em> (Default)</li>
+      <li><strong>Features</strong>: <em>GraalVM Native Image</em> and <em>Micronaut Validation</em></li>
+      <li><strong>Sample Code</strong>: <em>No</em></li>
     </ul>
   </li>
-  <li>Click <strong>Generate Project</strong>. The GCN Launcher creates a Micronaut gateway function with the default package <code>com.example</code> in a directory named <em>gcp-serverless-demo</em>. The application ZIP file will be downloaded in your default downloads directory. Unzip it, open in your code editor, and proceed to the next steps.</li>
+  <li>Click <strong>Generate Project</strong>, then click <strong>Download Zip</strong>. The GCN Launcher creates a Micronaut gateway function with the default package <code>com.example</code> in a directory named <em>gcp-serverless-demo</em>. The application ZIP file will be downloaded in your default downloads directory. Unzip it, open in your code editor, and proceed to the next steps.</li>
 </ol>
 
 <p>Alternatively, use the GCN CLI as follows:</p>
@@ -521,6 +475,7 @@ Similarly to Google Cloud Functions, the service provisions and manages servers 
     <pre><code class="language-bash">gcn create-gateway-function com.example.gcp-serverless-demo \
     --clouds=gcp \
     --features=graalvm,validation \
+    --example-code=false \
     --build=gradle \
     --lang=java</code></pre>
   </div>
@@ -528,6 +483,7 @@ Similarly to Google Cloud Functions, the service provisions and manages servers 
     <pre><code class="language-bash">gcn create-gateway-function com.example.gcp-serverless-demo \
     --clouds=gcp \
     --features=graalvm,validation \
+    --example-code=false \
     --build=maven \
     --lang=java</code></pre>
   </div>
@@ -535,7 +491,7 @@ Similarly to Google Cloud Functions, the service provisions and manages servers 
 
 <p>For more information, see <a href="/gcn/get-started/using-gcn-cli/">Using the GCN CLI</a>.</p>
 
-<p>The GCN launcher creates a multi-module project with two subprojects: <strong>gcp</strong> for Google Cloud Platform, and <strong>lib</strong>.
+<p>The GCN Launcher creates a multi-module project with two subprojects: <strong>gcp</strong> for Google Cloud Platform, and <strong>lib</strong>.
 You develop the gateway function logic in the <strong>gcp</strong> subproject. If your gateway function is to be deployed to multiple cloud providers, use the <strong>lib</strong> subproject to create classes that can be shared between the providers. This enables you to separate the code that is different between cloud providers, while keeping most of the implementation in the common <strong>lib</strong> subproject.</p>
     
       <h3 id="11-storeitem">
@@ -776,7 +732,7 @@ class StoreController {
         
       </h3>
 
-<p>The GCN launcher created a test class for the controller in <em>gcp/src/test/java/com/example/StoreControllerTest.java</em>, as follows:</p>
+<p>The GCN Launcher created a test class for the controller in <em>gcp/src/test/java/com/example/StoreControllerTest.java</em>, as follows:</p>
 
 <pre><code class="language-java">package com.example;
 
@@ -967,13 +923,27 @@ gcloud services enable cloudfunctions.googleapis.com
             The JAR file is the only one in the directory, which is required for correct deployment.
         </p>
         <p>
-            Create a function from the JAR file with the name <code>gcn-function</code>: set the entry point, the Java runtime, the trigger, and the source.
+            Create a function from the JAR file with the name <code>gcn-function</code>: set the entry point, the Java runtime version (select <code>java17</code> or <code>java21</code>), the trigger, and the source.
         </p>
-        <pre><code class="language-bash">gcloud functions deploy gcn-function \
+        <ul>
+            <li>For JDK 17:
+              <pre><code class="language-bash">gcloud functions deploy gcn-function \
     --entry-point io.micronaut.gcp.function.http.HttpFunction \
     --runtime java17 \
     --trigger-http \
-    --source gcp/build/libs</code></pre>
+    --source gcp/build/libs \
+    --allow-unauthenticated</code></pre>
+            </li>
+            <li>For JDK 21:
+                <pre><code class="language-bash">gcloud functions deploy gcn-function \
+    --gen2 \
+    --entry-point io.micronaut.gcp.function.http.HttpFunction \
+    --runtime java21 \
+    --trigger-http \
+    --source gcp/build/libs \
+    --allow-unauthenticated</code></pre>
+            </li>
+        </ul>
     </div>
     <div id="maven">
         <pre><code class="language-bash">./mvnw package -pl gcp -am</code></pre>
@@ -981,18 +951,32 @@ gcloud services enable cloudfunctions.googleapis.com
             The command should create the file <em>gcp/target/gcp-1.0-SNAPSHOT.jar</em>.
         </p>
         <p>
-            To deploy, move the JAR file to an empty directory:
+            To deploy, rename and move the JAR file to an empty directory:
         </p>
         <pre><code class="language-bash">mkdir gcp/target/jar
 mv gcp/target/gcp-1.0-SNAPSHOT.jar gcp/target/jar/gcp.jar</code></pre>
         <p>
-            Create a function from the JAR file with the name <code>gcn-function</code>: set the entry point, the Java runtime, the trigger, and the source.
+            Create a function from the JAR file with the name <code>gcn-function</code>: set the entry point, the Java runtime version (select <code>java17</code> or <code>java21</code>), the trigger, and the source.
         </p>
-        <pre><code class="language-bash">gcloud functions deploy gcn-function \
+        <ul>
+            <li>For JDK 17
+              <pre><code class="language-bash">gcloud functions deploy gcn-function \
     --entry-point io.micronaut.gcp.function.http.HttpFunction \
     --runtime java17 \
     --trigger-http \
-    --source gcp/target/jar</code></pre>
+    --source gcp/target/jar \
+    --allow-unauthenticated</code></pre>
+          </li>
+          <li>For JDK 21
+            <pre><code class="language-bash">gcloud functions deploy gcn-function \
+    --gen2 \
+    --entry-point io.micronaut.gcp.function.http.HttpFunction \
+    --runtime java21 \
+    --trigger-http \
+    --source gcp/target/jar \
+    --allow-unauthenticated</code></pre>
+          </li>
+      </ul>
     </div>
 </div>
 
@@ -1017,20 +1001,20 @@ Visit <a href="https://console.cloud.google.com/functions">Cloud Functions Conso
 
 <ol>
   <li>
-    <p>Define an environment variable for your gateway hostname:</p>
+    <p>Define an environment variable for your gateway URL:</p>
 
-    <pre><code class="language-bash">export GATEWAY_HOSTNAME=$(gcloud functions describe gcn-function \
+    <pre><code class="language-bash">export GATEWAY_URL=$(gcloud functions describe gcn-function \
     --format='value(httpsTrigger.url)')
 </code></pre>
 
     <blockquote>
-      <p>Note: On Windows, use <code>set GATEWAY_HOSTNAME=&lt;hostname&gt;</code> to set it and <code>%GATEWAY_HOSTNAME%</code> to access it. Or you can skip this step and paste the hostname to each of the following commands manually.</p>
+      <p>Note: On Windows, use <code>set GATEWAY_URL=&lt;url&gt;</code> to set it and <code>%GATEWAY_URL%</code> to access it. Or you can skip this step and paste the URL to each of the following commands manually.</p>
     </blockquote>
   </li>
   <li>
     <p>Use <code>curl</code> to retrieve all the items:</p>
 
-    <pre><code class="language-bash"> curl https://$GATEWAY_HOSTNAME/store/all
+    <pre><code class="language-bash"> curl $GATEWAY_URL/store/all
 </code></pre>
     <pre><code class="language-json"> [
    {
@@ -1059,7 +1043,7 @@ Visit <a href="https://console.cloud.google.com/functions">Cloud Functions Conso
   <li>
     <p>Get an error when attempting to order too many items:</p>
 
-    <pre><code class="language-bash"> curl -X POST https://$GATEWAY_HOSTNAME/store/order/table/10
+    <pre><code class="language-bash"> curl -X POST $GATEWAY_URL/store/order/table/10
 </code></pre>
     <pre><code class="language-json"> {"message": "Bad Request",
    "_embedded": {
@@ -1073,7 +1057,7 @@ Visit <a href="https://console.cloud.google.com/functions">Cloud Functions Conso
   <li>
     <p>Order an item and print the response status code:</p>
 
-    <pre><code class="language-bash"> curl -X POST -w "\nStatus code: %{http_code}" https://$GATEWAY_HOSTNAME/store/order/table/6
+    <pre><code class="language-bash"> curl -X POST -w "\nStatus code: %{http_code}" $GATEWAY_URL/store/order/table/6
 </code></pre>
     <pre><code class="language-json"> {
    "name":"table",
@@ -1086,7 +1070,7 @@ Visit <a href="https://console.cloud.google.com/functions">Cloud Functions Conso
   <li>
     <p>Get the available items:</p>
 
-    <pre><code class="language-bash"> curl https://$GATEWAY_HOSTNAME/store/available
+    <pre><code class="language-bash"> curl $GATEWAY_URL/store/available
 </code></pre>
     <pre><code class="language-json"> [
    {
@@ -1155,6 +1139,14 @@ Visit <a href="https://console.cloud.google.com/functions">Cloud Functions Conso
   &lt;artifactId&gt;micronaut-http-server-netty&lt;/artifactId&gt;
   &lt;scope&gt;compile&lt;/scope&gt;
 &lt;/dependency&gt;</code></pre>
+         <p>
+            Remove the following dependency:
+         </p>
+         <pre><code class="language-xml">&lt;dependency&gt;
+  &lt;groupId&gt;io.micronaut.gcp&lt;/groupId&gt;
+  &lt;artifactId&gt;micronaut-gcp-function-http&lt;/artifactId&gt;
+  &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;</code></pre>
     </div>
 </div>
     
@@ -1196,7 +1188,7 @@ Visit <a href="https://console.cloud.google.com/functions">Cloud Functions Conso
 
 <blockquote>
   <p>NOTE: If the push fails you can retry it with the following command:</p>
-  <pre><code class="language-bash">docker push gcr.io/gcn-serverless-demo/gcn-function:latest
+  <pre><code class="language-bash">docker push gcr.io/$PROJECT_ID/gcn-function:latest
 </code></pre>
 </blockquote>
     
@@ -1221,7 +1213,7 @@ gcloud run deploy gcn-function \
 
 <p>Use the following command to retrieve the URL (replace <code>[REGION]</code> with your region, for example, <code>us-east1</code>):</p>
 
-<pre><code class="language-bash">export GATEWAY_HOSTNAME=$(gcloud run services describe gcn-function \
+<pre><code class="language-bash">export GATEWAY_URL=$(gcloud run services describe gcn-function \
     --region [REGION] --format 'value(status.url)')
 </code></pre>
 <p>Repeat steps from section <strong>4</strong> to test the application.</p>
@@ -1284,7 +1276,11 @@ gcloud run deploy gcn-function \
                 <li class="footer-list__item"><a href="/gcn/hands-on-labs/">Labs</a></li>
                 <li class="footer-list__github">
                   <img class="footer__icon" src="/gcn/resources/img/footer/logo-github.svg" alt="Github icon">
-                  <a href="https://github.com/oracle/gcn">Github</a>
+                  <a href="https://github.com/oracle/gcn" target="blank">Github</a>
+                </li>
+                <li class="footer-list__github">
+                  <img class="footer__icon" src="/gcn/resources/img/footer/slack-icon.svg" alt="Github icon">
+                  <a href="https://bit.ly/odevrel_slack" target="blank">Join us at: #graal-cloud-native</a>
                 </li>
               </ul>
             </div>
@@ -1293,7 +1289,7 @@ gcloud run deploy gcn-function \
             <h6 class="title-footer" onclick="fadeInAndOut(this)">About</h6>
             <div class="grow">
               <ul class="footer-list">
-                <li class="footer-list__item"><a href="/gcn/about/#gcn-support" target="blank">Commercial Support</a></li>
+                <li class="footer-list__item"><a href="/gcn/about/#support" target="blank">Commercial Support</a></li>
                 <li class="footer-list__item"><a href="https://www.graalvm.org/" target="blank">GraalVM Native Image</a></li>
                 <li class="footer-list__item"><a href="https://micronaut.io/" target="_blank">Micronaut</a></li>
                 <li class="footer-list__item"><a href="https://www.oracle.com/cloud/multicloud/what-is-multicloud/" target="_blank">Multicloud</a></li>
@@ -1394,5 +1390,7 @@ gcloud run deploy gcn-function \
     <script src='/gcn/resources/js/ui.js'></script>
     <script src='/gcn/resources/js/filters.js'></script>
     <script src='/gcn/resources/js/sidebar.js'></script>
+    <script src='/gcn/resources/lib/highlight/highlight.min.js'></script> 
+    <script>hljs.highlightAll();</script>
   </body>
 </html>

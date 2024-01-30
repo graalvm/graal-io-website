@@ -14,7 +14,8 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2023-12-06 15:44:15 +0000"/>
+  <meta name="last_modified" content="2024-01-29 19:11:54 +0000"/>
+  <meta name="last_built" content="2024-01-30 10:05:12 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -69,21 +70,6 @@
             <li class="menu__item">
               <a href="/gcn/get-started/" class="menu__link">Get Started</a>
             </li>
-            <!-- <li class="menu__item">
-              <a href="/gcn/modules/" class="menu__link">Modules</a>
-            </li>
-            <li class="menu__item">
-              <a href="/gcn/guides/" class="menu__link">Guides</a>
-            </li>
-            <li class="menu__item">
-              <a href="/gcn/hands-on-labs/" class="menu__link">Hands-On Labs</a>
-            </li>
-            <li class="menu__item">
-              <a href="/gcn/vscode-tools/" class="menu__link">Tools</a>
-            </li> -->
-            <!-- <li class="menu__launch__mobile">
-              <a href="/gcn/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
-            </li> -->
             <li class="menu__item">
               <div class="stack-container">
                 <a href="#" class="menu__link stack__header">Docs</a>
@@ -157,49 +143,6 @@
   
 </header>
 
-<!-- <header  class="header header--content" >
-
-  
-
-  
-
-    <nav class="menu">
-      <div class="menu__row">
-        <div>
-          <a href="/gcn/graal">
-            <img class="logo-mobile" src="/gcn/resources/img/gcn-logo-01.svg" alt="Graal Cloud Native logo">
-          </a>
-        </div>
-        <div class="menu__container">
-          <ul class="menu__list">
-            <li class="menu__item">
-              <a href="/gcn/graal/#whatisgraal" class="menu__link">About</a>
-            </li>
-            <li class="menu__item">
-              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
-            </li>
-            <li class="menu__item">
-              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
-            </li>
-            <li class="menu__item">
-              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <div role="button" class="menu-btn menu-btn--menu js-show-menu" tabindex="-1" title="sweet hamburger">
-        <div class="hamburger">
-          <div class="inner"></div>
-        </div>
-      </div>
-      <button aria-label="hamburger mobile menu" class="btn btn-mobile-menu js-show-menu">
-        <div class="inner"></div>
-      </button>
-    </nav>
-
-  
-</header> -->
 
       <main  class="content"   aria-label="Content">
         <div class="wrapper wrapper-content">
@@ -406,6 +349,9 @@
 
     <div class="col-sm-9 docsmod">
       <div id="content-wrapper" class="docs-content docs-content--with-sidebar">
+        <!--
+          Include file to warn of Windows/Gradle restriction
+        -->
         <h1 id="create-an-application-to-send-email-with-the-amazon-simple-email-service">
         
         
@@ -465,6 +411,14 @@
 <blockquote>
   <p>Note: If you use IntelliJ IDEA, <a href="/gcn/resources/img/annotationprocessorsintellij.png">enable annotation processing</a>.</p>
 </blockquote>
+
+<!--
+  An include file with a snippet of html to warn about the Windows/Gradle restriction
+-->
+<blockquote>
+  <!-- <img class="" src="/gcn/resources/img/warn-icon-fill.svg/" alt="warning icon"> -->
+  <p>Windows platform: The GCN guides are compatible with Gradle only. Maven support is coming soon.</p>
+</blockquote>
     
       <h2 id="1-create-the-application">
         
@@ -496,7 +450,7 @@
       <li><strong>Sample Code</strong>: <em>Yes</em> (Default)</li>
     </ul>
   </li>
-  <li>Click <strong>Generate Project</strong>. The GCN Launcher creates an application with the default package <code>com.example</code> in a directory named <em>aws-email-demo</em>. The application ZIP file will be downloaded in your default downloads directory. Unzip it, open in your code editor, and proceed to the next steps.</li>
+  <li>Click <strong>Generate Project</strong>, then click <strong>Download Zip</strong>. The GCN Launcher creates an application with the default package <code>com.example</code> in a directory named <em>aws-email-demo</em>. The application ZIP file will be downloaded in your default downloads directory. Unzip it, open in your code editor, and proceed to the next steps.</li>
 </ol>
 
 <p>Alternatively, use the GCN CLI as follows:</p>
@@ -577,7 +531,7 @@ implementation("io.micronaut.aws:micronaut-aws-sdk-v2")</code></pre>
         
       </h3>
 
-<p>The launcher created a <code>MailController</code> class which uses a collaborator, <code>emailSender</code>, to send an email, in a file named <em>aws/src/main/java/com/example/MailController.java</em>.</p>
+<p>The GCN Launcher created a <code>MailController</code> class which uses a collaborator, <code>emailSender</code>, to send an email, in a file named <em>aws/src/main/java/com/example/MailController.java</em>.</p>
 
 <p>You can send email asynchronously using the <a href="https://micronaut-projects.github.io/micronaut-email/latest/api/io/micronaut/email/AsyncEmailSender.html">AsyncEmailSender API</a> or synchronously using the <a href="https://micronaut-projects.github.io/micronaut-email/latest/api/io/micronaut/email/EmailSender.html">EmailSender</a> API.</p>
 
@@ -649,7 +603,7 @@ class MailController {
 
 <ol>
   <li>
-    <p>The launcher created a test bean in a file named <em>aws/src/test/java/com/example/EmailSenderReplacement.java</em> that <a href="https://docs.micronaut.io/latest/guide/#replaces">replaces</a> the bean of type <a href="https://micronaut-projects.github.io/micronaut-email/latest/api/io/micronaut/email/AsyncTransactionalEmailSender.html">AsyncTransactionalEmailSender</a>.</p>
+    <p>The GCN Launcher created a test bean in a file named <em>aws/src/test/java/com/example/EmailSenderReplacement.java</em> that <a href="https://docs.micronaut.io/latest/guide/#replaces">replaces</a> the bean of type <a href="https://micronaut-projects.github.io/micronaut-email/latest/api/io/micronaut/email/AsyncTransactionalEmailSender.html">AsyncTransactionalEmailSender</a>.</p>
 
     <pre><code class="language-java"> package com.example;
 
@@ -702,7 +656,7 @@ class MailController {
     <p><strong>1</strong> Combine <a href="https://docs.micronaut.io/latest/api/io/micronaut/context/annotation/Requires.html"><code>@Requires</code></a> and <a href="https://docs.micronaut.io/latest/api/io/micronaut/context/annotation/Property.html"><code>@Property</code></a> to avoid bean pollution.</p>
   </li>
   <li>
-    <p>The launcher created a test that uses <code>EmailSenderReplacement</code> to verify that the contents of the email match expectations in a file named <em>aws/src/test/java/com/example/AwsMailControllerTest.java</em> with the following content:</p>
+    <p>The GCN Launcher created a test that uses <code>EmailSenderReplacement</code> to verify that the contents of the email match expectations in a file named <em>aws/src/test/java/com/example/AwsMailControllerTest.java</em> with the following content:</p>
 
     <pre><code class="language-java"> package com.example;
 
@@ -970,7 +924,11 @@ export AWS_SECRET_ACCESS_KEY=xxx
                 <li class="footer-list__item"><a href="/gcn/hands-on-labs/">Labs</a></li>
                 <li class="footer-list__github">
                   <img class="footer__icon" src="/gcn/resources/img/footer/logo-github.svg" alt="Github icon">
-                  <a href="https://github.com/oracle/gcn">Github</a>
+                  <a href="https://github.com/oracle/gcn" target="blank">Github</a>
+                </li>
+                <li class="footer-list__github">
+                  <img class="footer__icon" src="/gcn/resources/img/footer/slack-icon.svg" alt="Github icon">
+                  <a href="https://bit.ly/odevrel_slack" target="blank">Join us at: #graal-cloud-native</a>
                 </li>
               </ul>
             </div>
@@ -979,7 +937,7 @@ export AWS_SECRET_ACCESS_KEY=xxx
             <h6 class="title-footer" onclick="fadeInAndOut(this)">About</h6>
             <div class="grow">
               <ul class="footer-list">
-                <li class="footer-list__item"><a href="/gcn/about/#gcn-support" target="blank">Commercial Support</a></li>
+                <li class="footer-list__item"><a href="/gcn/about/#support" target="blank">Commercial Support</a></li>
                 <li class="footer-list__item"><a href="https://www.graalvm.org/" target="blank">GraalVM Native Image</a></li>
                 <li class="footer-list__item"><a href="https://micronaut.io/" target="_blank">Micronaut</a></li>
                 <li class="footer-list__item"><a href="https://www.oracle.com/cloud/multicloud/what-is-multicloud/" target="_blank">Multicloud</a></li>
@@ -1080,5 +1038,7 @@ export AWS_SECRET_ACCESS_KEY=xxx
     <script src='/gcn/resources/js/ui.js'></script>
     <script src='/gcn/resources/js/filters.js'></script>
     <script src='/gcn/resources/js/sidebar.js'></script>
+    <script src='/gcn/resources/lib/highlight/highlight.min.js'></script> 
+    <script>hljs.highlightAll();</script>
   </body>
 </html>

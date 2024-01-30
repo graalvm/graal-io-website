@@ -1,4 +1,4 @@
-The launcher also generated the `/upload` endpoint which receives the file from the HTTP client via `CompletedFileUpload`, and the `userId` path parameter. It uploads the file to {{ include.storage }} using [ObjectStorageOperations](https://micronaut-projects.github.io/micronaut-object-storage/latest/guide/), and then returns its `ETag` in an HTTP response header to the client:
+The GCN Launcher also generated the `/upload` endpoint which receives the file from the HTTP client via `CompletedFileUpload`, and the `userId` path parameter. It uploads the file to {{ include.storage }} using [ObjectStorageOperations](https://micronaut-projects.github.io/micronaut-object-storage/latest/guide/), and then returns its `ETag` in an HTTP response header to the client:
 
 ```java
 @Override

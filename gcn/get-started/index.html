@@ -15,6 +15,7 @@
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
   <meta name="last_modified" content="2023-06-14 09:37:41 +0000"/>
+  <meta name="last_built" content="2024-01-30 10:05:12 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -69,21 +70,6 @@
             <li class="menu__item">
               <a href="/gcn/get-started/" class="menu__link">Get Started</a>
             </li>
-            <!-- <li class="menu__item">
-              <a href="/gcn/modules/" class="menu__link">Modules</a>
-            </li>
-            <li class="menu__item">
-              <a href="/gcn/guides/" class="menu__link">Guides</a>
-            </li>
-            <li class="menu__item">
-              <a href="/gcn/hands-on-labs/" class="menu__link">Hands-On Labs</a>
-            </li>
-            <li class="menu__item">
-              <a href="/gcn/vscode-tools/" class="menu__link">Tools</a>
-            </li> -->
-            <!-- <li class="menu__launch__mobile">
-              <a href="/gcn/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
-            </li> -->
             <li class="menu__item">
               <div class="stack-container">
                 <a href="#" class="menu__link stack__header">Docs</a>
@@ -157,49 +143,6 @@
   
 </header>
 
-<!-- <header  class="header header--content" >
-
-  
-
-  
-
-    <nav class="menu">
-      <div class="menu__row">
-        <div>
-          <a href="/gcn/graal">
-            <img class="logo-mobile" src="/gcn/resources/img/gcn-logo-01.svg" alt="Graal Cloud Native logo">
-          </a>
-        </div>
-        <div class="menu__container">
-          <ul class="menu__list">
-            <li class="menu__item">
-              <a href="/gcn/graal/#whatisgraal" class="menu__link">About</a>
-            </li>
-            <li class="menu__item">
-              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
-            </li>
-            <li class="menu__item">
-              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
-            </li>
-            <li class="menu__item">
-              <a href="https://graalvm.org" class="menu__link">GraalVM</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <div role="button" class="menu-btn menu-btn--menu js-show-menu" tabindex="-1" title="sweet hamburger">
-        <div class="hamburger">
-          <div class="inner"></div>
-        </div>
-      </div>
-      <button aria-label="hamburger mobile menu" class="btn btn-mobile-menu js-show-menu">
-        <div class="inner"></div>
-      </button>
-    </nav>
-
-  
-</header> -->
 
       <main  class="content"   aria-label="Content">
         <section class="about-banner-gcn">
@@ -216,23 +159,20 @@
     <div class="row">
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
-          <p class="gs-first-texts"><span class="orange-text">Graal Cloud Native (GCN)</span> is a build of a curated
-            set of Micronaut<sup>&reg;</sup>
+          <p class="gs-first-texts">
+            <span class="orange-text">Graal Cloud Native (GCN)</span> is a build of a curated set of Micronaut<sup>&reg;</sup>
             framework modules and their required libraries for building portable cloud native microservices that take
-            full advantage of
-            powerful cloud platform services and that can be compiled ahead-of-time by GraalVM Native Image.
-            GCN also provides project creation utilities and VS Code extensions for application development and
-            deployment.
-          </p>
-          <p class="gs-first-texts">The GCN modules provide platform-independent support for a set of core cloud
-            services including object storage,
-            secret management, streaming, tracing, and more.
-            This guide walks you through the steps to successfully create, build,
-            test and deploy a cloud native application to Oracle Cloud Infrastructure
-            and Amazon Web Services (AWS).
+            full advantage of powerful cloud platform services and that can be compiled ahead-of-time by GraalVM Native Image.
+            GCN also provides project creation utilities and VS Code extensions for application development and deployment.
           </p>
           <p class="gs-first-texts">
-            We showcase these capabilities by building a Java application which accesses cloud object storage in a vendor-independent way
+            The modules provide platform-independent support for a set of core cloud services including object storage,
+            secret management, streaming, tracing, and more.
+            This guide walks you through the steps to successfully create, build, test and deploy a cloud native application to Oracle Cloud Infrastructure,
+            Amazon Web Services (AWS), and Google Cloud Platform (GCP).
+          </p>
+          <p class="gs-first-texts">
+            We showcase these capabilities by building a Java application which accesses cloud object storage in a vendor-independent way.
           </p>
         </div>
       </div>
@@ -265,7 +205,7 @@
               <p>Cloud Accounts</p>
             </div>
             <div class="prerequisites__descrip">
-              <p>You have created account(s) for Oracle Cloud Infrastructure and/or Amazon Web Services cloud platforms.</p>
+              <p>You have created account(s) for Oracle Cloud Infrastructure, Amazon Web Services, and/or Google Cloud Platform.</p>
             </div>
             <a href="/gcn/get-started/setting-up-cloud-accounts/" target="_blank" class="btn btn-primary gs-btn">Set
               up</a>
@@ -278,7 +218,7 @@
               <p>Your Desktop</p>
             </div>
             <div class="prerequisites__descrip">
-              <p>You have set up your desktop development environment with required (and optional) tools.</p>
+              <p>You have set up your desktop development environment with required tools.</p>
               <br>
             </div>
             <a href="/gcn/get-started/setting-up-desktop/" target="_blank" class="btn btn-primary gs-btn">Set up</a>
@@ -294,12 +234,19 @@
   <div class="container-fluid container-fluid--custom-sm">
     <div class="getstarted-divider"></div>
     <p class="gs-root-texts">This guide describes how to create a <a href="https://micronaut.io/">Micronaut</a>
-      application that runs natively on Oracle Cloud Infrastructure and Amazon Web Services <em>without</em>
+      application that runs natively on Oracle Cloud Infrastructure, Amazon Web Services, and Google Cloud Platform <em>without</em>
       any source code changes.
-      The application demonstrates how to store and retrieve user profile pictures in Oracle Cloud Infrastructure and Amazon Web Services Object Storage using
-      the <a href="https://micronaut-projects.github.io/micronaut-object-storage/latest/guide/"
-        target="_blank">Micronaut Object Storage API</a>.
+      The application demonstrates how to store and retrieve user profile pictures in Oracle Cloud Infrastructure, Amazon Web Services and Google Cloud Platform Object Storage using
+      the <a href="https://micronaut-projects.github.io/micronaut-object-storage/latest/guide/" target="_blank">Micronaut Object Storage API</a>.
     </p>
+
+  <!--
+  An include file with a snippet of html to warn about the Windows/Gradle restriction
+-->
+<blockquote>
+  <!-- <img class="" src="/gcn/resources/img/warn-icon-fill.svg/" alt="warning icon"> -->
+  <p>Windows platform: The GCN guides are compatible with Gradle only. Maven support is coming soon.</p>
+</blockquote>
 
     <h2 style="color:#ffffff">1. Create the Application</h2>
     <p class="gs-root-texts">Create an application using the GCN Launcher.</p>
@@ -308,27 +255,28 @@
         Open the <a href="/gcn/launcher/?advanced=true" target="_blank">GCN Launcher</a>.
       </li>
       <li>Create a new project using the following selections. (Alternatively, use these shortcuts for <a
-          href="/gcn/launcher/?advanced=true&amp;type=APPLICATION&amp;name=GettingStarted&amp;package=com.example&amp;clouds=AWS%7COCI&amp;language=JAVA&amp;buildTool=MAVEN&amp;test=JUNIT&amp;java-version=JDK_17&amp;sample-code=true&amp;services=OBJECTSTORE">Maven</a>
+          href="/gcn/launcher/?advanced=true&amp;type=APPLICATION&amp;name=GettingStarted&amp;package=com.example&amp;clouds=AWS%7COCI%7CGCP&amp;language=JAVA&amp;buildTool=MAVEN&amp;test=JUNIT&amp;java-version=JDK_17&amp;sample-code=true&amp;services=OBJECTSTORE">Maven</a>
         or <a
-          href="/gcn/launcher/?advanced=true&amp;type=APPLICATION&amp;name=GettingStarted&amp;package=com.example&amp;clouds=AWS%7COCI&amp;language=JAVA&amp;buildTool=GRADLE&amp;test=JUNIT&amp;java-version=JDK_17&amp;sample-code=true&amp;services=OBJECTSTORE">Gradle</a>.)
+          href="/gcn/launcher/?advanced=true&amp;type=APPLICATION&amp;name=GettingStarted&amp;package=com.example&amp;clouds=AWS%7COCI%7CGCP&amp;language=JAVA&amp;buildTool=GRADLE&amp;test=JUNIT&amp;java-version=JDK_17&amp;sample-code=true&amp;services=OBJECTSTORE">Gradle</a>.)
         <ul>
-          <li><strong style="color:#C4D1EE">Project Type</strong>: <em>Application</em> (default)</li>
+          <li><strong style="color:#C4D1EE">Project Type</strong>: <em>Application</em> (Default)</li>
           <li><strong style="color:#C4D1EE">Project name</strong>: <em>GettingStarted</em></li>
-          <li><strong style="color:#C4D1EE">Base Package</strong>: <em>com.example</em> (default)</li>
-          <li><strong style="color:#C4D1EE">Clouds</strong>: <em>AWS</em> <strong style="color:#C4D1EE">and</strong>
+          <li><strong style="color:#C4D1EE">Base Package</strong>: <em>com.example</em> (Default)</li>
+          <li><strong style="color:#C4D1EE">Clouds</strong>: <em>AWS</em>, <em>GCP</em> <strong style="color:#C4D1EE">and</strong>
             <em>OCI</em></li>
-          <li><strong style="color:#C4D1EE">Language</strong>: <em>Java</em> (default)</li>
+          <li><strong style="color:#C4D1EE">Language</strong>: <em>Java</em> (Default)</li>
           <li><strong style="color:#C4D1EE">Build Tool</strong>: <em>Gradle (Groovy)</em> or <em>Maven</em></li>
-          <li><strong style="color:#C4D1EE">Test Framework</strong>: <em>JUnit</em> (default)</li>
-          <li><strong style="color:#C4D1EE">Java Version</strong>: <em>17</em> (default)</li>
-          <li><strong style="color:#C4D1EE">Micronaut Version</strong>: (default)</li>
+          <li><strong style="color:#C4D1EE">Test Framework</strong>: <em>JUnit</em> (Default)</li>
+          <li><strong style="color:#C4D1EE">Java Version</strong>: <em>17</em> (Default)</li>
+          <li><strong style="color:#C4D1EE">Micronaut Version</strong>: (Default)</li>
           <li><strong style="color:#C4D1EE">Cloud Services</strong>: <em>Object Storage</em></li>
-          <li><strong style="color:#C4D1EE">Features</strong>: <em>GraalVM Native Image</em> (default)</li>
-          <li><strong style="color:#C4D1EE">Sample Code</strong>: <em>Yes</em></li>
+          <li><strong style="color:#C4D1EE">Features</strong>: <em>GraalVM Native Image</em> (Default)</li>
+          <li><strong style="color:#C4D1EE">Sample Code</strong>: <em>Yes</em> (Default)</li>
         </ul>
         <p><br /><img src="/gcn/docs/get-started/images/GCNLauncher.png" class="gs-images" alt="GCN Launcher"></p>
       </li>
-      <li>Click <strong style="color:#C4D1EE">Generate Project</strong>. The GCN Launcher creates an application with
+      <li>Click <strong style="color:#C4D1EE">Generate Project</strong> and then click
+        <strong style="color:#C4D1EE">Download Zip</strong>. The GCN Launcher creates an application with
         the default package <code>com.example</code> in a directory named <em>GettingStarted</em>. The application ZIP
         file will be downloaded to your default downloads directory. Unzip it, open it in Visual Studio (VS) Code, and
         proceed to the next steps.</li>
@@ -345,44 +293,115 @@
     </ul>
     </p>
 
-    <h2 style="color:#ffffff">2. Configure the Project for Oracle Cloud Infrastructure</h2>
-    <p class="gs-root-texts">For this section, you will need an Oracle Cloud Infrastructure account and an Object Storage bucket created
-      already.
-      See how to create an Object Storage bucket <a
-        href="https://docs.oracle.com/iaas/Content/Object/Tasks/managingbuckets_topic-To_create_a_bucket.htm"
-        target="_blank">from the Oracle Cloud Console</a>
-      or <a href="/gcn/gcn-modules/object-storage/micronaut-object-storage-oracle-cloud/#3-set-up-oci-resources"
-        target="_blank">using the Oracle Cloud Infrastructure CLI</a>.</p>
-    <p class="gs-root-texts">Update the Oracle Cloud Infrastructure configuration file
-      (<em>oci/src/main/resources/application-oraclecloud.properties</em>) with the name of the bucket and its namespace:</p>
-    <pre><code>micronaut.object-storage.oracle-cloud.default.namespace=${OBJECT_STORAGE_NAMESPACE}
-micronaut.object-storage.oracle-cloud.default.bucket=${OBJECT_STORAGE_BUCKET}</code><button>Copy</button></pre>
-    <p class="gs-root-texts">Replace <code>${OBJECT_STORAGE_BUCKET}</code> with the name of your bucket and
-      <code>${OBJECT_STORAGE_NAMESPACE}</code> with your namespace.</p>
-
-    <h2 style="color:#ffffff">3. Configure the Project for Amazon Web Services</h2>
-    <p class="gs-root-texts">For this section, you will need an Amazon Web Services account and a S3 bucket created already. See <a
-        href="/gcn/gcn-modules/object-storage/micronaut-object-storage-aws/" target="_blank">Amazon S3 Object Storage
-        Guide</a> for assistance.</p>
-    <p class="gs-root-texts">Update the Amazon Web Services configuration file (<em>aws/src/main/resources/application-ec2.properties</em>)
-      with the name of the bucket:</p>
-    <pre><code>micronaut.object-storage.aws.default.bucket=${OBJECT_STORAGE_BUCKET}
-    </code><button>Copy</button></pre>
-    <p class="gs-root-texts">Replace <code>${OBJECT_STORAGE_BUCKET}</code> with the name of your bucket.</p>
-
-    <h2 style="color:#ffffff">4. Run the Application</h2>
+    <h2 style="color:#ffffff">2. Configure the Project</h2>
     <div class="gs-border-tab">
       <section class="gs-filter-content-section guides-back">
         <div class="container">
           <div class="gs__row">
             <div class="column-view">
               <div>
-                <p class="gs-filter-title"><span class="cloud-title-color">Cloud</span>FIlter</p>
+                <p class="gs-filter-title"><span class="cloud-title-color">Cloud</span>Filter</p>
               </div>
               <div class="guide-filter">
                 <div class="row">
                   <p class="filter-item cloud-filter" data-filter="oci">OCI</p>
                   <p class="filter-item cloud-filter" data-filter="aws">AWS</p>
+                  <p class="filter-item cloud-filter" data-filter="gcp">GCP</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="no-modules">
+        <section class="filter-content-section guides-back">
+          <div class="container-fluid container-fluid--custom-sm">
+            <div class="row">
+              <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="guide-filter">
+                  <div class="row">
+                    <p class="filter-item module-filter" data-filter="all">All</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="container-fluid container-fluid--custom-sm">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="row">
+              <div class="col-sm guides-box gs-section-indent oci gradle maven">
+                <p class="gs-root-texts">For this section, you will need an Oracle Cloud Infrastructure account and an Object Storage bucket created
+                  already.
+                  See how to create an Object Storage bucket <a
+                    href="https://docs.oracle.com/iaas/Content/Object/Tasks/managingbuckets_topic-To_create_a_bucket.htm"
+                    target="_blank">from the Oracle Cloud Console</a>.
+                </p>
+                <p class="gs-root-texts">Update the Oracle Cloud Infrastructure configuration file
+                  (<em>oci/src/main/resources/application-oraclecloud.properties</em>) with the name of the bucket and its namespace:</p>
+                <pre><code>micronaut.object-storage.oracle-cloud.default.namespace=${OBJECT_STORAGE_NAMESPACE}
+            micronaut.object-storage.oracle-cloud.default.bucket=${OBJECT_STORAGE_BUCKET}</code><button>Copy</button></pre>
+                <p class="gs-root-texts">Replace <code>${OBJECT_STORAGE_BUCKET}</code> with the name of your bucket and
+                  <code>${OBJECT_STORAGE_NAMESPACE}</code> with your namespace.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid container-fluid--custom-sm">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="row">
+              <div class="col-sm guides-box gs-section-indent aws gradle maven">
+                <p class="gs-root-texts">For this section, you will need an Amazon Web Services account and a S3 bucket created already. See <a
+                  href="/gcn/gcn-modules/object-storage/micronaut-object-storage-aws/" target="_blank">Amazon S3 Object Storage
+                  Guide</a> for assistance.</p>
+              <p class="gs-root-texts">Update the Amazon Web Services configuration file (<em>aws/src/main/resources/application-ec2.properties</em>)
+                with the name of the bucket:</p>
+              <pre><code>micronaut.object-storage.aws.default.bucket=${OBJECT_STORAGE_BUCKET}</code><button>Copy</button></pre>
+              <p class="gs-root-texts">Replace <code>${OBJECT_STORAGE_BUCKET}</code> with the name of your bucket.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid container-fluid--custom-sm">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="row">
+              <div class="col-sm guides-box gs-section-indent gcp gradle maven">
+                <p class="gs-root-texts">For this section, you will need a Google Cloud Platform account and a an Object Storage bucket created already.
+                  See <a href="/gcn/gcn-modules/object-storage/micronaut-object-storage-google-cloud/" target="_blank">GCP Object Storage
+                    Guide</a> for assistance.</p>
+                <p class="gs-root-texts">Update the Google Cloud Platform configuration file (<em>gcp/src/main/resources/application-gcp.properties</em>)
+                  with the name of the bucket:</p>
+                <pre><code>micronaut.object-storage.gcp.default.bucket=${OBJECT_STORAGE_BUCKET}</code><button>Copy</button></pre>
+                <p class="gs-root-texts">Replace <code>${OBJECT_STORAGE_BUCKET}</code> with the name of your bucket.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2 style="color:#ffffff">3. Run the Application</h2>
+    <div class="gs-border-tab">
+      <section class="gs-filter-content-section guides-back">
+        <div class="container">
+          <div class="gs__row">
+            <div class="column-view">
+              <div>
+                <p class="gs-filter-title"><span class="cloud-title-color">Cloud</span>Filter</p>
+              </div>
+              <div class="guide-filter">
+                <div class="row">
+                  <p class="filter-item cloud-filter" data-filter="oci">OCI</p>
+                  <p class="filter-item cloud-filter" data-filter="aws">AWS</p>
+                  <p class="filter-item cloud-filter" data-filter="gcp">GCP</p>
                 </div>
               </div>
             </div>
@@ -444,6 +463,18 @@ micronaut.object-storage.oracle-cloud.default.bucket=${OBJECT_STORAGE_BUCKET}</c
         <div class="row">
           <div class="col-12 col-sm-12 col-md-12 col-lg-12">
             <div class="row">
+              <div class="col-sm guides-box gs-section-indent gcp maven">
+                <pre
+                  style="margin-top:4px"><code class="language-bash hljs">./mvnw install -pl lib -am &amp;&amp; ./mvnw mn:run -pl gcp</code><button>Copy</button></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid container-fluid--custom-sm">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="row">
               <div class="col-sm guides-box gs-section-indent oci gradle">
                 <pre
                   style="margin-top:4px"><code class="language-bash hljs">./gradlew :oci:run</code><button>Copy</button></pre>
@@ -464,24 +495,36 @@ micronaut.object-storage.oracle-cloud.default.bucket=${OBJECT_STORAGE_BUCKET}</c
           </div>
         </div>
       </div>
+      <div class="container-fluid container-fluid--custom-sm">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="row">
+              <div class="col-sm guides-box gs-section-indent gcp gradle">
+                <pre
+                  style="margin-top:4px"><code class="language-bash hljs">./gradlew :gcp:run</code><button>Copy</button></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <h3 style="color:#ffffff">4.1. Upload the Picture</h3>
+    <h3 style="color:#ffffff">3.1. Upload the Picture</h3>
     <pre><code class="language-bash hljs"> curl -F <span class="hljs-string">"fileUpload=@my_picture.jpg"</span> http://localhost:8080/pictures/avatar</code><button>Copy</button></pre>
     <p class="gs-root-texts">The image type has to be of a JPEG format.</p>
-    <h3 style="color:#ffffff">4.2. Download the Picture</h3>
+    <h3 style="color:#ffffff">3.2. Download the Picture</h3>
     <pre><code class="language-bash hljs">curl http://localhost:8080/pictures/avatar -J -o profile.jpg</code><button>Copy</button></pre>
-    <h3 style="color:#ffffff">4.3. Delete the Picture</h3>
+    <h3 style="color:#ffffff">3.3. Delete the Picture</h3>
     <pre><code class="language-bash hljs">curl -X "DELETE" http://localhost:8080/pictures/avatar</code><button>Copy</button></pre>
 
-    <h2 style="color:#ffffff">5. Use VSCode Test Explorer to Test Your Code</h2>
+    <!--<h2 style="color:#ffffff">5. Use VSCode Test Explorer to Test Your Code</h2>
     <p class="gs-root-texts">Running tests for your GCN application is easy with VSCode Test Explorer.</p>
-    <p><img src="/gcn/docs/get-started/images/VSCodeTests.png" class="gs-images" alt="VS Code Tests"></p>
+    <p><img src="/gcn/docs/get-started/images/VSCodeTests.png" class="gs-images" alt="VS Code Tests"></p>-->
 
-    <h2 style="color:#ffffff">6. Build a Native Executable of Your Application with GraalVM</h2>
+    <h2 style="color:#ffffff">4. Build a Native Executable of Your Application with GraalVM</h2>
     <p class="gs-root-texts">To build a native executable of your application, you should install <a
         href="https://www.graalvm.org/downloads/" target="_blank">GraalVM with Native Image</a>. Once your local
-      environment is setup, run the following command to build a native executable:</p>
+      environment is setup, use the command below to build a native executable. Then run it and test it as above.</p>
     <!-- <h3 style="color:#ffffff">Windows</h3>
     <pre><code class="language-bash hljs">gu install native-image</code><button>Copy</button></pre>
     <h3 style="color:#ffffff">Linux and macOS</h3>
@@ -509,6 +552,7 @@ micronaut.object-storage.oracle-cloud.default.bucket=${OBJECT_STORAGE_BUCKET}</c
                 <div class="row">
                   <p class="filter-item cloud-filter" data-filter="oci">OCI</p>
                   <p class="filter-item cloud-filter" data-filter="aws">AWS</p>
+                  <p class="filter-item cloud-filter" data-filter="gcp">GCP</p>
                 </div>
               </div>
             </div>
@@ -584,12 +628,30 @@ micronaut.object-storage.oracle-cloud.default.bucket=${OBJECT_STORAGE_BUCKET}</c
         <div class="row">
           <div class="col-12 col-sm-12 col-md-12 col-lg-12">
             <div class="row">
+              <div class="col-sm guides-box gs-section-indent gcp maven">
+                <pre
+                  style="margin-top:4px"><code class="language-bash hljs">./mvnw install -pl lib -am &amp;&amp; ./mvnw package -pl gcp -Dpackaging=native-image</code><button>Copy</button></pre>
+                <p class="gs-tabs-text">
+                  The native executable is created in the <em>gcp/target/</em> directory
+                  and can be run with the following command:
+                </p>
+                <pre
+                  style="margin-top:4px"><code class="language-bash hljs">gcp/target/gcp</code><button>Copy</button></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid container-fluid--custom-sm">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="row">
               <div class="col-sm guides-box gs-section-indent oci gradle">
                 <pre
                   style="margin-top:4px"><code class="language-bash hljs">./gradlew :oci:nativeCompile</code><button>Copy</button></pre>
                 <p class="gs-tabs-text">
                   The native executable is created in the
-                  <em>oci/build/native/nativeCompile</em> directory and can be run with
+                  <em>oci/build/native/nativeCompile/</em> directory and can be run with
                   the following command:
                 </p>
                 <pre
@@ -608,7 +670,7 @@ micronaut.object-storage.oracle-cloud.default.bucket=${OBJECT_STORAGE_BUCKET}</c
                   style="margin-top:4px"><code class="language-bash hljs">./gradlew :aws:nativeCompile</code><button>Copy</button></pre>
                 <p class="gs-tabs-text">
                   The native executable is created in the
-                  <em>aws/build/native/nativeCompile</em> directory and can be run with
+                  <em>aws/build/native/nativeCompile/</em> directory and can be run with
                   the following command:
                 </p>
                 <pre
@@ -618,19 +680,62 @@ micronaut.object-storage.oracle-cloud.default.bucket=${OBJECT_STORAGE_BUCKET}</c
           </div>
         </div>
       </div>
+      <div class="container-fluid container-fluid--custom-sm">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="row">
+              <div class="col-sm guides-box gs-section-indent gcp gradle">
+                <pre
+                  style="margin-top:4px"><code class="language-bash hljs">./gradlew :gcp:nativeCompile</code><button>Copy</button></pre>
+                <p class="gs-tabs-text">
+                  The native executable is created in the
+                  <em>gcp/build/native/nativeCompile/</em> directory and can be run with
+                  the following command:
+                </p>
+                <pre
+                  style="margin-top:4px"><code class="language-bash hljs">gcp/build/native/nativeCompile/gcp</code><button>Copy</button></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <h2 style="color:#ffffff">7. Use VS Code and Oracle Cloud Infrastructure DevOps Service</h2>
-    <p class="gs-root-texts">Thanks to the <a href="/gcn/vscode-tools/"
-        target="_blank">GCN extension</a>, you can leverage the Oracle Cloud Infrastructure DevOps Resources in VS Code to build a native
-      executable of your application on the cloud instead of locally.</p>
+    <h2 style="color:#ffffff">5. Use VS Code and Oracle Cloud Infrastructure DevOps Service</h2>
+    <p class="gs-root-texts">
+      Thanks to the <a href="/gcn/vscode-tools/" target="_blank">GCN extension</a>, you can leverage the Oracle Cloud Infrastructure DevOps Resources in VS Code to build a native
+      executable of your application on the cloud instead of locally.
+    </p>
 
-    <h2 style="color:#ffffff">8. Deploy the Application as a Container on the Cloud</h2>
-    <p class="gs-root-texts">Next you can create a container with Native Image version of the application and deploy it
-      on a Kubernetes cluster on Oracle Cloud Infrastructure and Amazon Web Services.</p>
-    <h3 style="color:#ffffff">AWS</h3>
-    <p class="gs-root-texts">A complete guide on <a href="/gcn/get-started/deploy-to-aws-eks-in-vscode/"
-        target="_blank">how to deploy an application to a Kubernetes cluster in AWS EKS</a> is available.</p>
+    <h2 style="color:#ffffff">6. Deploy the Application as a Container on the Cloud</h2>
+    <p class="gs-root-texts">
+      Next you can create a container with Native Image version of the application and deploy it
+      on a Kubernetes cluster on Oracle Cloud Infrastructure, Amazon Web Services and Google Cloud Platform.
+    </p>
+    
+    <h3 style="color:#ffffff">6.1 Oracle Cloud Infrastructure</h3>
+    <p class="gs-root-texts">
+      You can install the Visual Studio Code extensions for GCN, covered in <a href="/gcn/vscode-tools/installing-gcn-tools/" target="_blank">Installing Graal Cloud Native Tools</a>, 
+      and use <a href="/gcn/vscode-tools/oci-devops-tools/" target="_blank">OCI DevOps Resources</a> to use the Oracle Cloud Infrastructure DevOps service to deploy your application
+      to a pre-created Kubernetes cluster from within VS Code.
+      </p>
+    <p><img src="/gcn/docs/get-started/images/VSCode_OCIServices.png" class="gs-images" alt="OCI Services in VS Code">
+    </p>
+    <p class="gs-root-texts">
+      Using the <a href="/gcn/vscode-tools/oci-devops-tools/" target="_blank">OCI DevOps Resources in VS Code</a>, 
+      you can easily deploy a Java application to Oracle Cloud Infrastructure, make source code changes, 
+      push them into the Oracle Cloud Infrastructure Git repository, and then trigger the build of a container image with
+      your native executable or a container image with JVM using the predefined Oracle Cloud Infrastructure Build Pipelines.
+    </p>
+    <p class="gs-root-texts">
+      Learn more about this is in the <a href="/gcn/get-started/setting-oci-devops-pipeline-in-vscode/" target="_blank">Setting Oracle Cloud Infrastructure DevOps Build and
+        Development Pipeline in VS Code guide</a>.
+    </p>
+    
+    <h3 style="color:#ffffff">6.2 AWS</h3>
+    <p class="gs-root-texts">
+      A complete guide on <a href="/gcn/get-started/deploy-to-aws-eks-in-vscode/" target="_blank">how to deploy an application to a Kubernetes cluster in AWS EKS</a> is available.
+    </p>
     <p class="gs-root-texts">With your AWS account ready and access to EKS configured, simply invoke command:</p>
 
     <div class="gs-border-tab">
@@ -672,19 +777,20 @@ micronaut.object-storage.oracle-cloud.default.bucket=${OBJECT_STORAGE_BUCKET}</c
         <div class="row">
           <div class="col-12 col-sm-12 col-md-12 col-lg-12">
             <div class="row">
-              <div class="col-sm guides-box gs-section-indent aws oci maven">
-                <pre><code class="language-bash hljs">./mvnw deploy -Dpackaging=docker -pl aws</code><button>Copy</button></pre>
+              <div class="col-sm guides-box gs-section-indent aws oci gcp maven">
+                <pre><code class="language-bash hljs">./mvnw deploy -Dpackaging=docker-native -pl aws</code><button>Copy</button></pre>
               </div>
             </div>
           </div>
         </div>
       </div>
+
       <div class="container-fluid container-fluid--custom-sm">
         <div class="row">
           <div class="col-12 col-sm-12 col-md-12 col-lg-12">
             <div class="row">
-              <div class="col-sm guides-box gs-section-indent aws oci gradle">
-                <pre><code class="language-bash hljs">./gradlew aws:dockerPush</code><button>Copy</button></pre>
+              <div class="col-sm guides-box gs-section-indent aws oci gcp gradle">
+                <pre><code class="language-bash hljs">./gradlew aws:dockerPushNative</code><button>Copy</button></pre>
               </div>
             </div>
           </div>
@@ -692,34 +798,112 @@ micronaut.object-storage.oracle-cloud.default.bucket=${OBJECT_STORAGE_BUCKET}</c
       </div>
     </div>
 
-    <p class="gs-root-texts">This will push an Amazon Web Services container image to a correct Amazon Web Services container registry. When you setup
-      your Kubernetes deployment for Amazon Web Services EKS, simply invoke the command:</p>
-    <pre><code class="language-bash hljs">kubectl apply -f deployment.yml</code><button>Copy</button></pre>
-    <h3 style="color:#ffffff">Oracle Cloud Infrastructure</h3>
-    <p class="gs-root-texts">You can install the Visual Studio Code extensions for GCN, covered in <a href="/gcn/vscode-tools/installing-gcn-tools/"
-        target="_blank">Installing Graal Cloud Native Tools</a>, and use <a href="/gcn/vscode-tools/oci-devops-tools/"
-          target="_blank">OCI DevOps Resources</a> to use the Oracle Cloud Infrastructure DevOps service to deploy your application
-        to a pre-created Kubernetes cluster from within VS Code.</p>
-    <p><img src="/gcn/docs/get-started/images/VSCode_OCIServices.png" class="gs-images" alt="OCI Services in VS Code">
+    <p class="gs-root-texts">
+      This will build a native executable, package it as a container image and push the container image to the correct Amazon Web Services container registry.
+      When you setup your Kubernetes deployment for Amazon Web Services EKS, simply invoke the command:
     </p>
-    <p class="gs-root-texts">Using the <a href="/gcn/vscode-tools/oci-devops-tools/"
-        target="_blank">OCI DevOps Resources in VS Code</a>, you can easily deploy a Java application to Oracle Cloud Infrastructure, make
-      source code changes, push them into the Oracle Cloud Infrastructure Git repository, and then trigger the build of a container image with
-      your native executable or a container image with JVM using the predefined Oracle Cloud Infrastructure Build Pipelines.</p>
-    <p class="gs-root-texts">Learn more about this is in the <a
-        href="/gcn/get-started/setting-oci-devops-pipeline-in-vscode/" target="_blank">Setting Oracle Cloud Infrastructure DevOps Build and
-        Development Pipeline in VS Code guide</a>.</p>
-    <h2 style="color:#ffffff">9. Developing the Application in VS Code</h2>
-    <p class="gs-root-texts">Develop Java applications in VS Code with Graal Cloud Native support. It offers help in the
-      form of relevant code completion suggestions when editing GCN specific configuration files.</p>
-    <p><img src="/gcn/docs/get-started/images/Step9-1.png" class="gs-images" alt="VS Code Hints"></p>
-    <p class="gs-root-texts">Java language support speeds up development of Java code with hints, etc.</p>
-    <p><img src="/gcn/docs/get-started/images/Step9-2.png" class="gs-images" alt="VS Code Quick Fix"></p>
-    <p class="gs-root-texts">When developing database applications, the GCN tooling provides advanced database related
-      code completion for `find… ()` methods:</p>
-    <p><img src="/gcn/docs/get-started/images/Step9-3.png" class="gs-images" alt="VS Code Completion"></p>
-    <p class="gs-root-texts">It offers the SQL code completion in @Query annotations among others, and so on.</p>
-    <p><img src="/gcn/docs/get-started/images/Step9-4.png" class="gs-images" alt="VS SQL Code Completion"></p>
+    <pre><code class="language-bash hljs">kubectl apply -f deployment.yml</code><button>Copy</button></pre>
+
+    <h3 style="color:#ffffff">6.3 GCP</h3>
+    <p class="gs-root-texts">
+      A complete guide on <a href="/gcn/get-started/deploy-to-google-k8s-engine-in-vscode//" target="_blank">how to deploy an application to Google Kubernetes Engine</a> is available.
+    </p>
+    <p class="gs-root-texts">With your GCP account ready and access to GKE configured, simply invoke command:</p>
+
+    <div class="gs-border-tab">
+      <section class="gs-filter-content-section guides-back">
+        <div class="container">
+          <div class="gs__row">
+            <div class="column-view">
+              <div>
+                <p class="gs-filter-title"><span class="buildtool-title-color">Build Tool</span>Filter</p>
+              </div>
+              <div class="guide-filter" id="gradle-maven switcher step 8">
+                <div class="row">
+                  <p class="filter-item buildtool-filter" data-filter="gradle">Gradle</p>
+                  <p class="filter-item buildtool-filter" data-filter="maven">Maven</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="no-modules">
+        <section class="filter-content-section guides-back">
+          <div class="container-fluid container-fluid--custom-sm">
+            <div class="row">
+              <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="guide-filter">
+                  <div class="row">
+                    <p class="filter-item module-filter" data-filter="all">All</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="container-fluid container-fluid--custom-sm">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="row">
+              <div class="col-sm guides-box gs-section-indent aws oci gcp maven">
+                <pre><code class="language-bash hljs">./mvnw deploy -Dpackaging=docker-native -pl gcp</code><button>Copy</button></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid container-fluid--custom-sm">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="row">
+              <div class="col-sm guides-box gs-section-indent aws oci gcp gradle">
+                <pre><code class="language-bash hljs">./gradlew gcp:dockerPushNative</code><button>Copy</button></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="gs-root-texts">
+      This will build a native executable, package it as a container image and push the container image to the correct Google container registry.
+      When you setup your Kubernetes deployment for GKE, simply invoke the command:
+    </p>
+    <pre><code class="language-bash hljs">kubectl apply -f deployment.yml</code><button>Copy</button></pre>
+    
+    <h2 style="color:#ffffff">7. Developing the Application in VS Code</h2>
+    <p class="gs-root-texts">
+      Develop Java applications in VS Code with Graal Cloud Native support.
+      It offers help in the
+      form of relevant code completion suggestions when editing GCN specific configuration files.
+    </p>
+    <p>
+      <img src="/gcn/docs/get-started/images/Step9-1.png" class="gs-images" alt="VS Code Hints">
+    </p>
+    <p class="gs-root-texts">
+      Java language support speeds up development of Java code with hints, etc.
+    </p>
+    <p>
+      <img src="/gcn/docs/get-started/images/Step9-2.png" class="gs-images" alt="VS Code Quick Fix">
+    </p>
+    <p class="gs-root-texts">
+      When developing database applications, the GCN tooling provides advanced database related
+      code completion for <code>find… ()</code> methods:
+    </p>
+    <p>
+      <img src="/gcn/docs/get-started/images/Step9-3.png" class="gs-images" alt="VS Code Completion">
+    </p>
+    <p class="gs-root-texts">
+      It offers the SQL code completion in <code>@Query</code> annotations among others, and so on.
+    </p>
+    <p>
+      <img src="/gcn/docs/get-started/images/Step9-4.png" class="gs-images" alt="VS SQL Code Completion">
+    </p>
 
     <div class="gs-guide__maintitle whatsnext__title">Next Steps</div>
     <div class="wrapper">
@@ -730,7 +914,10 @@ micronaut.object-storage.oracle-cloud.default.bucket=${OBJECT_STORAGE_BUCKET}</c
 
                 <h4 class="card__title">Explore</h4>
                 <div class="nextsteps-description">
-                  <p>GCN provides easy step-by-step guides, and companion sample applications, for the developer to learn how to use a specific cloud service (such as Micronaut Data). Browse the GCN site for list of modules and guides to learn more.</p>
+                  <p>
+                    GCN provides easy step-by-step guides, and companion sample applications, 
+                    for the developer to learn how to use a specific cloud service (such as Micronaut Data). 
+                    Browse the GCN site for list of modules and guides to learn more.</p>
                 </div>
                 <div class="nextsteps-btn">
                   <div class="nextsteps-link">
@@ -748,7 +935,9 @@ micronaut.object-storage.oracle-cloud.default.bucket=${OBJECT_STORAGE_BUCKET}</c
 
                 <h4 class="card__title">Create</h4>
                 <div class="nextsteps-description">
-                  <p>Build a multi-service application like <a href="https://github.com/graemerocher/ocidemo" target="_blank">MuShop for Micronaut</a>. For more information, view:</p>
+                  <p>
+                    Build a multi-service application like <a href="https://github.com/graemerocher/ocidemo" target="_blank">MuShop for Micronaut</a>. For more information, view:
+                  </p>
                 </div>
                 <div class="nextsteps-btn">
                   <div class="nextsteps-link">
@@ -782,7 +971,11 @@ micronaut.object-storage.oracle-cloud.default.bucket=${OBJECT_STORAGE_BUCKET}</c
                 <li class="footer-list__item"><a href="/gcn/hands-on-labs/">Labs</a></li>
                 <li class="footer-list__github">
                   <img class="footer__icon" src="/gcn/resources/img/footer/logo-github.svg" alt="Github icon">
-                  <a href="https://github.com/oracle/gcn">Github</a>
+                  <a href="https://github.com/oracle/gcn" target="blank">Github</a>
+                </li>
+                <li class="footer-list__github">
+                  <img class="footer__icon" src="/gcn/resources/img/footer/slack-icon.svg" alt="Github icon">
+                  <a href="https://bit.ly/odevrel_slack" target="blank">Join us at: #graal-cloud-native</a>
                 </li>
               </ul>
             </div>
@@ -791,7 +984,7 @@ micronaut.object-storage.oracle-cloud.default.bucket=${OBJECT_STORAGE_BUCKET}</c
             <h6 class="title-footer" onclick="fadeInAndOut(this)">About</h6>
             <div class="grow">
               <ul class="footer-list">
-                <li class="footer-list__item"><a href="/gcn/about/#gcn-support" target="blank">Commercial Support</a></li>
+                <li class="footer-list__item"><a href="/gcn/about/#support" target="blank">Commercial Support</a></li>
                 <li class="footer-list__item"><a href="https://www.graalvm.org/" target="blank">GraalVM Native Image</a></li>
                 <li class="footer-list__item"><a href="https://micronaut.io/" target="_blank">Micronaut</a></li>
                 <li class="footer-list__item"><a href="https://www.oracle.com/cloud/multicloud/what-is-multicloud/" target="_blank">Multicloud</a></li>
@@ -892,5 +1085,7 @@ micronaut.object-storage.oracle-cloud.default.bucket=${OBJECT_STORAGE_BUCKET}</c
     <script src='/gcn/resources/js/ui.js'></script>
     <script src='/gcn/resources/js/filters.js'></script>
     <script src='/gcn/resources/js/sidebar.js'></script>
+    <script src='/gcn/resources/lib/highlight/highlight.min.js'></script> 
+    <script>hljs.highlightAll();</script>
   </body>
 </html>

@@ -1,6 +1,6 @@
 ### 1.5. Warehouse Controller
 
-The launcher created a `WarehouseController` class to represent an external service that will be called by `WarehouseClient` in a file named _lib/src/main/java/com/example/WarehouseController.java_, as follows:
+The GCN Launcher created a `WarehouseController` class to represent an external service that will be called by `WarehouseClient` in a file named _lib/src/main/java/com/example/WarehouseController.java_, as follows:
 
 ```java
 package com.example;
