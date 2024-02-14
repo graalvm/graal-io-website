@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2024-01-31 16:07:29 +0000"/>
-  <meta name="last_built" content="2024-02-01 16:32:39 +0000"/>
+  <meta name="last_modified" content="2024-02-13 16:57:36 +0000"/>
+  <meta name="last_built" content="2024-02-14 09:58:07 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -626,13 +626,13 @@ class BookController {
 }
 </code></pre>
 
-<p><strong>1</strong> The <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Controller.html"><code>@Controller</code></a> annotation defines the class as a controller mapped to the root URI <code>/books</code>.</p>
+<p><strong>1</strong> The <a href="https://docs.micronaut.io/4.2.1/api/io/micronaut/http/annotation/Controller.html"><code>@Controller</code></a> annotation defines the class as a controller mapped to the root URI <code>/books</code>.</p>
 
 <p><strong>2</strong> Use constructor injection to inject a bean of type <code>BookService</code>.</p>
 
-<p><strong>3</strong> The <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Get.html"><code>@Get</code></a> annotation maps the <code>listAll</code> method to an HTTP GET request on <code>/books</code>.</p>
+<p><strong>3</strong> The <a href="https://docs.micronaut.io/4.2.1/api/io/micronaut/http/annotation/Get.html"><code>@Get</code></a> annotation maps the <code>listAll</code> method to an HTTP GET request on <code>/books</code>.</p>
 
-<p><strong>4</strong> The <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Get.html"><code>@Get</code></a> annotation maps the <code>findBook</code> method to an HTTP GET request on <code>/books/{isbn}</code>.</p>
+<p><strong>4</strong> The <a href="https://docs.micronaut.io/4.2.1/api/io/micronaut/http/annotation/Get.html"><code>@Get</code></a> annotation maps the <code>findBook</code> method to an HTTP GET request on <code>/books/{isbn}</code>.</p>
     
       <h4 id="114-bookcontrollertest">
         
@@ -784,7 +784,7 @@ public interface AnalyticsClient {
 
 <p>Sending a message to the streaming service is as simple as injecting <code>AnalyticsClient</code> and calling its <code>updateAnalytics</code> method. 
 The goal is to send a message every time the details of a book are returned from the <em>Books</em> microservice or, in other words, every time there is a call to <code>http://localhost:8080/books/{isbn}</code>.
-To achieve this, the GCN Launcher created an <a href="https://docs.micronaut.io/4.0.3/guide/#filters">Http Server Filter</a> in a file named <em>src/main/java/com/example/publisher/AnalyticsFilter.java</em> as follows:</p>
+To achieve this, the GCN Launcher created an <a href="https://docs.micronaut.io/4.2.1/guide/#filters">Http Server Filter</a> in a file named <em>src/main/java/com/example/publisher/AnalyticsFilter.java</em> as follows:</p>
 
 <pre><code class="language-java">package com.example.publisher;
 
@@ -821,13 +821,13 @@ class AnalyticsFilter implements HttpServerFilter { // &lt;2&gt;
 }
 </code></pre>
 
-<p><strong>1</strong> Annotate the class with <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Filter.html"><code>@Filter</code></a> and define the <a href="https://ant.apache.org/manual/dirtasks.html#patterns">Ant-style matcher pattern</a> to intercept all calls to the desired URIs.</p>
+<p><strong>1</strong> Annotate the class with <a href="https://docs.micronaut.io/4.2.1/api/io/micronaut/http/annotation/Filter.html"><code>@Filter</code></a> and define the <a href="https://ant.apache.org/manual/dirtasks.html#patterns">Ant-style matcher pattern</a> to intercept all calls to the desired URIs.</p>
 
-<p><strong>2</strong> The class must implement <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/filter/HttpServerFilter.html"><code>HttpServerFilter</code></a>.</p>
+<p><strong>2</strong> The class must implement <a href="https://docs.micronaut.io/4.2.1/api/io/micronaut/http/filter/HttpServerFilter.html"><code>HttpServerFilter</code></a>.</p>
 
 <p><strong>3</strong> Dependency injection for <code>AnalyticsClient</code>.</p>
 
-<p><strong>4</strong> Implement the <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/filter/HttpServerFilter.html#doFilter-io.micronaut.http.HttpRequest-io.micronaut.http.filter.FilterChain-"><code>doFilter</code></a> method.</p>
+<p><strong>4</strong> Implement the <a href="https://docs.micronaut.io/4.2.1/api/io/micronaut/http/filter/HttpServerFilter.html#doFilter-io.micronaut.http.HttpRequest-io.micronaut.http.filter.FilterChain-"><code>doFilter</code></a> method.</p>
 
 <p><strong>5</strong> Call the request; this will invoke the controller action.</p>
 
@@ -1112,9 +1112,9 @@ class AnalyticsController {
 }
 </code></pre>
 
-<p><strong>1</strong> The <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Controller.html"><code>@Controller</code></a> annotation defines the class as a controller mapped to the root URI <code>/analytics</code>.</p>
+<p><strong>1</strong> The <a href="https://docs.micronaut.io/4.2.1/api/io/micronaut/http/annotation/Controller.html"><code>@Controller</code></a> annotation defines the class as a controller mapped to the root URI <code>/analytics</code>.</p>
 
-<p><strong>2</strong> The <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Get.html"><code>@Get</code></a> annotation maps the <code>listAnalytics</code> method to an HTTP GET request on <code>/analytics</code>.</p>
+<p><strong>2</strong> The <a href="https://docs.micronaut.io/4.2.1/api/io/micronaut/http/annotation/Get.html"><code>@Get</code></a> annotation maps the <code>listAnalytics</code> method to an HTTP GET request on <code>/analytics</code>.</p>
 
 <p>The application doesn’t expose the method <code>updateBookAnalytics</code> created in <code>AnalyticsService</code>. This method will be invoked when reading messages from Kafka.</p>
     
@@ -1513,8 +1513,9 @@ A fast way to start Kafka is via a <a href="https://hub.docker.com/r/confluentin
           <div class="row">
             <div class="col-sm-12">
               <p class="copyright">
-                Copyright © 2023, Oracle and/or its affiliates. All rights reserved. Oracle and Java are
-                registered trademarks. Other names may be trademarks of their respective owners.
+                Copyright © 2023-2024, Oracle and/or its affiliates. All rights reserved.
+                Oracle and Java are registered trademarks of Oracle and/or its affiliates.
+                Other names may be trademarks of their respective owners. 
               </p>
               <div id="teconsent"></div>
             </div>

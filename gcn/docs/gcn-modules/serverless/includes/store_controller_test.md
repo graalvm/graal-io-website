@@ -96,10 +96,10 @@ class StoreControllerTest {
     }
 }
 ```
-**1** Annotate the class with [`@MicronautTest`](https://micronaut-projects.github.io/micronaut-test/latest/api/io/micronaut/test/annotation/MicronautTest.html) so the Micronaut framework will initialize the application context. This enables you to inject beans using the Jakarta `@Inject` annotation and to send requests to the `StoreController` defined in the application. Configure this test to use an identified context using the [`@Property(name = "use-test-storage-service", value = "true")`](https://docs.micronaut.io/4.0.3/api/io/micronaut/context/annotation/Property.html) annotation.
+**1** Annotate the class with [`@MicronautTest`](https://micronaut-projects.github.io/micronaut-test/latest/api/io/micronaut/test/annotation/MicronautTest.html) so the Micronaut framework will initialize the application context. This enables you to inject beans using the Jakarta `@Inject` annotation and to send requests to the `StoreController` defined in the application. Configure this test to use an identified context using the [`@Property(name = "use-test-storage-service", value = "true")`](https://docs.micronaut.io/4.2.1/api/io/micronaut/context/annotation/Property.html) annotation.
 
 **2** Create a mock implementation of `StorageService` so that the test is independent of the current state of the storage. The `@Requires(property = "use-test-storage-service", value = "true")` means that the bean should only be available if the specified property is set.
 
-**3** Create a [Micronaut Declarative Client](https://docs.micronaut.io/4.0.3/guide/#clientAnnotation) with the same `/store` path to send requests to the controller.
+**3** Create a [Micronaut Declarative Client](https://docs.micronaut.io/4.2.1/guide/#clientAnnotation) with the same `/store` path to send requests to the controller.
 
 **4** Create three tests using the defined client and assuming that `TestStorageService` is used.

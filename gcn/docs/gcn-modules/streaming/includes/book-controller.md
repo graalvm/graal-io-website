@@ -30,10 +30,10 @@ class BookController {
 }
 ```
 
-**1** The [`@Controller`](https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Controller.html) annotation defines the class as a controller mapped to the root URI `/books`.
+**1** The [`@Controller`](https://docs.micronaut.io/4.2.1/api/io/micronaut/http/annotation/Controller.html) annotation defines the class as a controller mapped to the root URI `/books`.
 
 **2** Use constructor injection to inject a bean of type `BookService`.
 
-**3** The [`@Get`](https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Get.html) annotation maps the `listAll` method to an HTTP GET request on `/books`.
+**3** The [`@Get`](https://docs.micronaut.io/4.2.1/api/io/micronaut/http/annotation/Get.html) annotation maps the `listAll` method to an HTTP GET request on `/books`.
 
-**4** The [`@Get`](https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Get.html) annotation maps the `findBook` method to an HTTP GET request on `/books/{isbn}`.
+**4** The [`@Get`](https://docs.micronaut.io/4.2.1/api/io/micronaut/http/annotation/Get.html) annotation maps the `findBook` method to an HTTP GET request on `/books/{isbn}`.

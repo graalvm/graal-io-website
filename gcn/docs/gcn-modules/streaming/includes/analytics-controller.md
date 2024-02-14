@@ -24,8 +24,8 @@ class AnalyticsController {
 }
 ```
 
-**1** The [`@Controller`](https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Controller.html) annotation defines the class as a controller mapped to the root URI `/analytics`.
+**1** The [`@Controller`](https://docs.micronaut.io/4.2.1/api/io/micronaut/http/annotation/Controller.html) annotation defines the class as a controller mapped to the root URI `/analytics`.
 
-**2** The [`@Get`](https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Get.html) annotation maps the `listAnalytics` method to an HTTP GET request on `/analytics`.
+**2** The [`@Get`](https://docs.micronaut.io/4.2.1/api/io/micronaut/http/annotation/Get.html) annotation maps the `listAnalytics` method to an HTTP GET request on `/analytics`.
 
 The application doesn't expose the method `updateBookAnalytics` created in `AnalyticsService`. This method will be invoked when reading messages from Kafka.

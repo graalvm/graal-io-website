@@ -43,18 +43,18 @@ class AuthController {
 }
 ```
 
-**1** The class is defined as a controller with the [`@Controller`](https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Controller.html){:target="_blank"} annotation mapped to the path `/`.
+**1** The class is defined as a controller with the [`@Controller`](https://docs.micronaut.io/4.2.1/api/io/micronaut/http/annotation/Controller.html){:target="_blank"} annotation mapped to the path `/`.
 
 **2** Annotate with [`@Secured`](https://micronaut-projects.github.io/micronaut-security/1.3.1/api/io/micronaut/security/annotation/Secured.html){:target="_blank"} to configure secured access. The `SecurityRule.IS_ANONYMOUS` expression allows access without authentication.
 
 **3** Use the [`@View`](https://micronaut-projects.github.io/micronaut-views/latest/api/io/micronaut/views/View.html){:target="_blank"} annotation to specify which template to use to render the response.
 
-**4** The [`@Get`](https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Get.html){:target="_blank"} annotation maps the `index` method to an HTTP GET request on `/`.
+**4** The [`@Get`](https://docs.micronaut.io/4.2.1/api/io/micronaut/http/annotation/Get.html){:target="_blank"} annotation maps the `index` method to an HTTP GET request on `/`.
 
 **5** Micronaut Security will inject the `Authentication` instance as a method parameter; by annotating with [`@Nullable`](https://docs.micronaut.io/latest/api/io/micronaut/core/annotation/Nullable.html){:target="_blank"}, you can determine whether the user is authenticated or not, and populate the model map accordingly.
 
 **6** Annotate with `@Secured` to configure secured access. The `SecurityRule.IS_AUTHENTICATED` expression allows access only to authenticated users.
 
-**7** The [`@Get`](https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Get.html) annotation maps the `secured` method to an HTTP GET request on `/secure`.
+**7** The [`@Get`](https://docs.micronaut.io/4.2.1/api/io/micronaut/http/annotation/Get.html) annotation maps the `secured` method to an HTTP GET request on `/secure`.
 
 **8** This method simply returns a model map that will be rendered as JSON (because there is no [`@View`](https://micronaut-projects.github.io/micronaut-views/latest/api/io/micronaut/views/View.html){:target="_blank"} annotation).

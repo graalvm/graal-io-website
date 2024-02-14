@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2024-01-26 11:18:57 +0000"/>
-  <meta name="last_built" content="2024-02-01 16:32:39 +0000"/>
+  <meta name="last_modified" content="2024-01-15 15:13:56 +0000"/>
+  <meta name="last_built" content="2024-02-14 09:58:07 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -624,15 +624,15 @@ class StoreController {
 }
 </code></pre>
 
-<p><strong>1</strong> The class is defined as a controller with the <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Controller.html"><code>@Controller</code></a> annotation mapped to the path <code>/store</code>.</p>
+<p><strong>1</strong> The class is defined as a controller with the <a href="https://docs.micronaut.io/4.2.1/api/io/micronaut/http/annotation/Controller.html"><code>@Controller</code></a> annotation mapped to the path <code>/store</code>.</p>
 
-<p><strong>2</strong> Use <a href="https://docs.micronaut.io/4.0.3/guide/#qualifiers">Micronaut argument injection</a> to inject a <code>StorageService</code> bean by defining it as the constructor argument. You will create the <code>StorageService</code> in next section.</p>
+<p><strong>2</strong> Use <a href="https://docs.micronaut.io/4.2.1/guide/#qualifiers">Micronaut argument injection</a> to inject a <code>StorageService</code> bean by defining it as the constructor argument. You will create the <code>StorageService</code> in next section.</p>
 
-<p><strong>3</strong> The <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Get.html"><code>@Get</code></a> annotation maps the <code>listAllItems</code> method to an HTTP GET request on <code>/store/all</code>.</p>
+<p><strong>3</strong> The <a href="https://docs.micronaut.io/4.2.1/api/io/micronaut/http/annotation/Get.html"><code>@Get</code></a> annotation maps the <code>listAllItems</code> method to an HTTP GET request on <code>/store/all</code>.</p>
 
-<p><strong>4</strong> The <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Get.html"><code>@Get</code></a> annotation maps the <code>listAvailableItems</code> method to an HTTP GET request on <code>/store/available</code>.</p>
+<p><strong>4</strong> The <a href="https://docs.micronaut.io/4.2.1/api/io/micronaut/http/annotation/Get.html"><code>@Get</code></a> annotation maps the <code>listAvailableItems</code> method to an HTTP GET request on <code>/store/available</code>.</p>
 
-<p><strong>5</strong> The <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Post.html"><code>@Post</code></a> annotation maps the <code>orderItem</code> method to an HTTP POST request on <code>/store/order/{name}/{amount}</code>. Use the <code>consumes</code> argument to specify which content-types are allowed in the request. Throwing <code>HttpStatusException</code> will set the corresponding HTTP status in the response.</p>
+<p><strong>5</strong> The <a href="https://docs.micronaut.io/4.2.1/api/io/micronaut/http/annotation/Post.html"><code>@Post</code></a> annotation maps the <code>orderItem</code> method to an HTTP POST request on <code>/store/order/{name}/{amount}</code>. Use the <code>consumes</code> argument to specify which content-types are allowed in the request. Throwing <code>HttpStatusException</code> will set the corresponding HTTP status in the response.</p>
     
       <h3 id="13-storageservice">
         
@@ -722,7 +722,7 @@ class StoreController {
 
     <p><strong>1</strong> Use <code>jakarta.inject.Singleton</code> to designate a class as a singleton.</p>
 
-    <p><strong>2</strong> The <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/context/annotation/Requires.html"><code>@Requires(missingBeans = StorageService.class)</code></a> annotation specifies that this implementation should only be used if no other implementations could be found.</p>
+    <p><strong>2</strong> The <a href="https://docs.micronaut.io/4.2.1/api/io/micronaut/context/annotation/Requires.html"><code>@Requires(missingBeans = StorageService.class)</code></a> annotation specifies that this implementation should only be used if no other implementations could be found.</p>
 
     <p><strong>3</strong> The implementation stores the items in a <code>List</code> and populates some sample items in the list.</p>
   </li>
@@ -839,7 +839,7 @@ class StoreControllerTest {
 
 <p><strong>2</strong> Create a mock implementation of <code>StorageService</code> so that the test is independent of the current state of the storage. The <code>@Requires(env="test-storage-service")</code> annotation specifies that the bean should only be available in the identified environment. (In this case it matches the one identified in the <code>@MicronautTest</code> annotation.)</p>
 
-<p><strong>3</strong> Create a <a href="https://docs.micronaut.io/4.0.3/guide/#clientAnnotation">Micronaut Declarative Client</a> with the same <code>/store</code> path to send requests to the controller.</p>
+<p><strong>3</strong> Create a <a href="https://docs.micronaut.io/4.2.1/guide/#clientAnnotation">Micronaut Declarative Client</a> with the same <code>/store</code> path to send requests to the controller.</p>
 
 <p><strong>4</strong> Create three tests using the defined client and assuming that <code>TestStorageService</code> is used.</p>
     
@@ -1554,8 +1554,9 @@ tasks {
           <div class="row">
             <div class="col-sm-12">
               <p class="copyright">
-                Copyright © 2023, Oracle and/or its affiliates. All rights reserved. Oracle and Java are
-                registered trademarks. Other names may be trademarks of their respective owners.
+                Copyright © 2023-2024, Oracle and/or its affiliates. All rights reserved.
+                Oracle and Java are registered trademarks of Oracle and/or its affiliates.
+                Other names may be trademarks of their respective owners. 
               </p>
               <div id="teconsent"></div>
             </div>

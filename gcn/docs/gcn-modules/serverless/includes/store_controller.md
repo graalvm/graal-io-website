@@ -55,12 +55,12 @@ class StoreController {
 }
 ```
 
-**1** The class is defined as a controller with the [`@Controller`](https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Controller.html) annotation mapped to the path `/store`.
+**1** The class is defined as a controller with the [`@Controller`](https://docs.micronaut.io/4.2.1/api/io/micronaut/http/annotation/Controller.html) annotation mapped to the path `/store`.
 
-**2** Use [Micronaut argument injection](https://docs.micronaut.io/4.0.3/guide/#qualifiers) to inject a `StorageService` bean by defining it as the constructor argument. You will create the `StorageService` in next section.
+**2** Use [Micronaut argument injection](https://docs.micronaut.io/4.2.1/guide/#qualifiers) to inject a `StorageService` bean by defining it as the constructor argument. You will create the `StorageService` in next section.
 
-**3** The [`@Get`](https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Get.html) annotation maps the `listAllItems` method to an HTTP GET request on `/store/all`.
+**3** The [`@Get`](https://docs.micronaut.io/4.2.1/api/io/micronaut/http/annotation/Get.html) annotation maps the `listAllItems` method to an HTTP GET request on `/store/all`.
 
-**4** The [`@Get`](https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Get.html) annotation maps the `listAvailableItems` method to an HTTP GET request on `/store/available`.
+**4** The [`@Get`](https://docs.micronaut.io/4.2.1/api/io/micronaut/http/annotation/Get.html) annotation maps the `listAvailableItems` method to an HTTP GET request on `/store/available`.
 
-**5** The [`@Post`](https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Post.html) annotation maps the `orderItem` method to an HTTP POST request on `/store/order/{name}/{amount}`. Use the `consumes` argument to specify which content-types are allowed in the request. Throwing `HttpStatusException` will set the corresponding HTTP status in the response.
+**5** The [`@Post`](https://docs.micronaut.io/4.2.1/api/io/micronaut/http/annotation/Post.html) annotation maps the `orderItem` method to an HTTP POST request on `/store/order/{name}/{amount}`. Use the `consumes` argument to specify which content-types are allowed in the request. Throwing `HttpStatusException` will set the corresponding HTTP status in the response.

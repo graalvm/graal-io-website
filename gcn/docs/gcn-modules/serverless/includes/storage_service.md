@@ -77,7 +77,7 @@
 
     **1** Use `jakarta.inject.Singleton` to designate a class as a singleton.
 
-    **2** The [`@Requires(missingBeans = StorageService.class)`](https://docs.micronaut.io/4.0.3/api/io/micronaut/context/annotation/Requires.html) annotation specifies that this implementation should only be used if no other implementations could be found.
+    **2** The [`@Requires(missingBeans = StorageService.class)`](https://docs.micronaut.io/4.2.1/api/io/micronaut/context/annotation/Requires.html) annotation specifies that this implementation should only be used if no other implementations could be found.
 
     **3** The implementation stores the items in a `List` and populates some sample items in the list.
 

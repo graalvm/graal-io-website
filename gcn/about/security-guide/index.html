@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2023-09-26 09:12:07 +0000"/>
-  <meta name="last_built" content="2024-02-01 16:32:39 +0000"/>
+  <meta name="last_modified" content="2024-02-13 16:57:36 +0000"/>
+  <meta name="last_built" content="2024-02-14 09:58:07 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -386,7 +386,7 @@
         
       </h1>
 
-<p>This documentation provides recommendations for secure coding practices when using the Micronaut<sup>®</sup> framework. To understand the security architecture of Micronaut, see <a href="https://docs.micronaut.io/4.0.3/guide/#architecture" target="blank">Micronaut Security Architecture</a>.</p>
+<p>This documentation provides recommendations for secure coding practices when using the Micronaut<sup>®</sup> framework. To understand the security architecture of Micronaut, see <a href="https://docs.micronaut.io/4.2.1/guide/#architecture" target="blank">Micronaut Security Architecture</a>.</p>
     
       <h2 id="secure-configuration">
         
@@ -404,7 +404,7 @@
 </code></pre>
 
 <p>Whenever you provide configuration in source files that can be included in a source repository, you <strong>should never</strong> include passwords, secrets, tokens, or any other potentially sensitive information.
-Micronaut has a variety of mechanisms available to <a href="https://docs.micronaut.io/4.0.3/guide/#propertySource" target="blank">externalize sensitive configuration</a> such as secrets.</p>
+Micronaut has a variety of mechanisms available to <a href="https://docs.micronaut.io/4.2.1/guide/#propertySource" target="blank">externalize sensitive configuration</a> such as secrets.</p>
     
       <h2 id="SSL-configuration">
         
@@ -414,7 +414,7 @@ Micronaut has a variety of mechanisms available to <a href="https://docs.microna
         
       </h2>
 
-<p>Micronaut requires that you <a href="https://docs.micronaut.io/4.0.3/guide/#https" target="blank">configure and enable SSL</a> and, when doing so, use known secure cryptography algorithms.</p>
+<p>Micronaut requires that you <a href="https://docs.micronaut.io/4.2.1/guide/#https" target="blank">configure and enable SSL</a> and, when doing so, use known secure cryptography algorithms.</p>
 
 <p>A self-signed certificate should never be used (Micronaut will print a warning if self-signed certificates are enabled).</p>
     
@@ -426,7 +426,7 @@ Micronaut has a variety of mechanisms available to <a href="https://docs.microna
         
       </h2>
 
-<p>Micronaut includes an optional <a href="https://docs.micronaut.io/4.0.3/guide/#management" target="blank">Management module</a> that exposes management endpoints over HTTP. By default no sensitive data is exposed by these endpoints, however you should configure and run these management endpoints on a separate port which is not exposed and accessible externally. This can be done using the following configuration:</p>
+<p>Micronaut includes an optional <a href="https://docs.micronaut.io/4.2.1/guide/#management" target="blank">Management module</a> that exposes management endpoints over HTTP. By default no sensitive data is exposed by these endpoints, however you should configure and run these management endpoints on a separate port which is not exposed and accessible externally. This can be done using the following configuration:</p>
 
 <pre><code class="language-yml">endpoints:
   all:
@@ -524,8 +524,9 @@ Micronaut has a variety of mechanisms available to <a href="https://docs.microna
           <div class="row">
             <div class="col-sm-12">
               <p class="copyright">
-                Copyright © 2023, Oracle and/or its affiliates. All rights reserved. Oracle and Java are
-                registered trademarks. Other names may be trademarks of their respective owners.
+                Copyright © 2023-2024, Oracle and/or its affiliates. All rights reserved.
+                Oracle and Java are registered trademarks of Oracle and/or its affiliates.
+                Other names may be trademarks of their respective owners. 
               </p>
               <div id="teconsent"></div>
             </div>

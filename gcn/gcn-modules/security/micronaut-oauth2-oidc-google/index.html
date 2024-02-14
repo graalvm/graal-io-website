@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2024-01-31 16:07:30 +0000"/>
-  <meta name="last_built" content="2024-02-01 16:32:39 +0000"/>
+  <meta name="last_modified" content="2024-01-30 10:40:48 +0000"/>
+  <meta name="last_built" content="2024-02-14 09:58:07 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -526,19 +526,19 @@ class AuthController {
 }
 </code></pre>
 
-<p><strong>1</strong> The class is defined as a controller with the <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Controller.html" target="_blank"><code>@Controller</code></a> annotation mapped to the path <code>/</code>.</p>
+<p><strong>1</strong> The class is defined as a controller with the <a href="https://docs.micronaut.io/4.2.1/api/io/micronaut/http/annotation/Controller.html" target="_blank"><code>@Controller</code></a> annotation mapped to the path <code>/</code>.</p>
 
 <p><strong>2</strong> Annotate with <a href="https://micronaut-projects.github.io/micronaut-security/1.3.1/api/io/micronaut/security/annotation/Secured.html" target="_blank"><code>@Secured</code></a> to configure secured access. The <code>SecurityRule.IS_ANONYMOUS</code> expression allows access without authentication.</p>
 
 <p><strong>3</strong> Use the <a href="https://micronaut-projects.github.io/micronaut-views/latest/api/io/micronaut/views/View.html" target="_blank"><code>@View</code></a> annotation to specify which template to use to render the response.</p>
 
-<p><strong>4</strong> The <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Get.html" target="_blank"><code>@Get</code></a> annotation maps the <code>index</code> method to an HTTP GET request on <code>/</code>.</p>
+<p><strong>4</strong> The <a href="https://docs.micronaut.io/4.2.1/api/io/micronaut/http/annotation/Get.html" target="_blank"><code>@Get</code></a> annotation maps the <code>index</code> method to an HTTP GET request on <code>/</code>.</p>
 
 <p><strong>5</strong> Micronaut Security will inject the <code>Authentication</code> instance as a method parameter; by annotating with <a href="https://docs.micronaut.io/latest/api/io/micronaut/core/annotation/Nullable.html" target="_blank"><code>@Nullable</code></a>, you can determine whether the user is authenticated or not, and populate the model map accordingly.</p>
 
 <p><strong>6</strong> Annotate with <code>@Secured</code> to configure secured access. The <code>SecurityRule.IS_AUTHENTICATED</code> expression allows access only to authenticated users.</p>
 
-<p><strong>7</strong> The <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Get.html"><code>@Get</code></a> annotation maps the <code>secured</code> method to an HTTP GET request on <code>/secure</code>.</p>
+<p><strong>7</strong> The <a href="https://docs.micronaut.io/4.2.1/api/io/micronaut/http/annotation/Get.html"><code>@Get</code></a> annotation maps the <code>secured</code> method to an HTTP GET request on <code>/secure</code>.</p>
 
 <p><strong>8</strong> This method simply returns a model map that will be rendered as JSON (because there is no <a href="https://micronaut-projects.github.io/micronaut-views/latest/api/io/micronaut/views/View.html" target="_blank"><code>@View</code></a> annotation).</p>
     
@@ -936,8 +936,9 @@ Packaged as a native executable, it significantly reduces application startup ti
           <div class="row">
             <div class="col-sm-12">
               <p class="copyright">
-                Copyright © 2023, Oracle and/or its affiliates. All rights reserved. Oracle and Java are
-                registered trademarks. Other names may be trademarks of their respective owners.
+                Copyright © 2023-2024, Oracle and/or its affiliates. All rights reserved.
+                Oracle and Java are registered trademarks of Oracle and/or its affiliates.
+                Other names may be trademarks of their respective owners. 
               </p>
               <div id="teconsent"></div>
             </div>

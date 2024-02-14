@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2024-01-31 16:07:30 +0000"/>
-  <meta name="last_built" content="2024-02-01 16:32:39 +0000"/>
+  <meta name="last_modified" content="2024-02-13 16:57:36 +0000"/>
+  <meta name="last_built" content="2024-02-14 09:58:07 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -567,15 +567,15 @@
  }
 </code></pre>
 
-    <p><strong>1</strong> The class is defined as a controller with the <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Controller.html"><code>@Controller</code></a> annotation mapped to the path <code>/users</code>.</p>
+    <p><strong>1</strong> The class is defined as a controller with the <a href="https://docs.micronaut.io/4.2.1/api/io/micronaut/http/annotation/Controller.html"><code>@Controller</code></a> annotation mapped to the path <code>/users</code>.</p>
 
     <p><strong>2</strong> Annotate with <code>io.micronaut.security.Secured</code> to configure secured access. The <code>isAuthenticated()</code> expression will allow access only to authenticated users.</p>
 
-    <p><strong>3</strong> The <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Post.html"><code>@Post</code></a> annotation maps the <code>add</code> method to an HTTP POST request on <code>/users</code>.</p>
+    <p><strong>3</strong> The <a href="https://docs.micronaut.io/4.2.1/api/io/micronaut/http/annotation/Post.html"><code>@Post</code></a> annotation maps the <code>add</code> method to an HTTP POST request on <code>/users</code>.</p>
 
-    <p><strong>4</strong> The <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Get.html"><code>@Get</code></a> annotation maps the <code>findById</code> method to an HTTP GET request on <code>/users/{id}</code>.</p>
+    <p><strong>4</strong> The <a href="https://docs.micronaut.io/4.2.1/api/io/micronaut/http/annotation/Get.html"><code>@Get</code></a> annotation maps the <code>findById</code> method to an HTTP GET request on <code>/users/{id}</code>.</p>
 
-    <p><strong>5</strong> The <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Get.html"><code>@Get</code></a> annotation maps the <code>getUsers</code> method to an HTTP GET request on <code>/users</code>.</p>
+    <p><strong>5</strong> The <a href="https://docs.micronaut.io/4.2.1/api/io/micronaut/http/annotation/Get.html"><code>@Get</code></a> annotation maps the <code>getUsers</code> method to an HTTP GET request on <code>/users</code>.</p>
   </li>
   <li>
     <p>The GCN Launcher created a <code>User</code> record to represent the customer in a file named <em>users/src/main/java/com/example/models/User.java</em>, as follows:</p>
@@ -614,7 +614,7 @@
  public record Credentials (String username, String password) {}
 </code></pre>
 
-    <p><strong>1</strong> The <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/context/annotation/ConfigurationProperties.html"><code>@ConfigurationProperties</code></a> annotation takes the configuration prefix.</p>
+    <p><strong>1</strong> The <a href="https://docs.micronaut.io/4.2.1/api/io/micronaut/context/annotation/ConfigurationProperties.html"><code>@ConfigurationProperties</code></a> annotation takes the configuration prefix.</p>
   </li>
   <li>
     <p>The GCN Launcher created a <code>CredentialsChecker</code> class in a file named <em>users/src/main/java/com/example/auth/CredentialsChecker.java</em>, which, as the name suggests, will check if the provided credentials inside the HTTP request’s <code>Authorization</code> header are the same as those that are stored inside the <code>Credentials</code> class created above:</p>
@@ -695,7 +695,7 @@
  }
 </code></pre>
 
-    <p><strong>1</strong> Use <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/client/annotation/Client.html"><code>@Client</code></a> to use <a href="https://docs.micronaut.io/4.0.3/guide/#clientAnnotation">declarative HTTP Clients</a>. You can annotate interfaces or abstract classes. You can use the <code>id</code> member to provide a service identifier or specify the URL directly as the annotation’s value.</p>
+    <p><strong>1</strong> Use <a href="https://docs.micronaut.io/4.2.1/api/io/micronaut/http/client/annotation/Client.html"><code>@Client</code></a> to use <a href="https://docs.micronaut.io/4.2.1/guide/#clientAnnotation">declarative HTTP Clients</a>. You can annotate interfaces or abstract classes. You can use the <code>id</code> member to provide a service identifier or specify the URL directly as the annotation’s value.</p>
   </li>
   <li>
     <p>The GCN Launcher created a <code>HealthTest</code> test that checks there is <code>/health</code> endpoint (required for service discovery) in a file named <em>users/src/test/java/com/example/HealthTest.java</em> with the following contents:</p>
@@ -850,7 +850,7 @@
     <p><strong>2</strong> Placeholder for a password that will be populated by Kubernetes.</p>
   </li>
   <li>
-    <p>Edit the <em>users/src/main/resources/bootstrap-k8s.properties</em> file to <a href="https://docs.micronaut.io/4.0.3/guide/#bootstrap">enable distributed configuration</a>. Modify the contents so that it matches the following:</p>
+    <p>Edit the <em>users/src/main/resources/bootstrap-k8s.properties</em> file to <a href="https://docs.micronaut.io/4.2.1/guide/#bootstrap">enable distributed configuration</a>. Modify the contents so that it matches the following:</p>
 
     <pre><code> micronaut.application.name=users
  # &lt;1&gt;
@@ -1082,15 +1082,15 @@
  }
 </code></pre>
 
-    <p><strong>1</strong> The class is defined as a controller with the <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Controller.html"><code>@Controller</code></a> annotation mapped to the path <code>/orders</code>.</p>
+    <p><strong>1</strong> The class is defined as a controller with the <a href="https://docs.micronaut.io/4.2.1/api/io/micronaut/http/annotation/Controller.html"><code>@Controller</code></a> annotation mapped to the path <code>/orders</code>.</p>
 
     <p><strong>2</strong> Annotate with <code>io.micronaut.security.Secured</code> to configure secured access. The <code>isAuthenticated()</code> expression will allow access only to authenticated users.</p>
 
-    <p><strong>3</strong> The <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Get.html"><code>@Get</code></a> annotation maps the <code>findById</code> method to an HTTP GET request on <code>/orders/{id}</code>.</p>
+    <p><strong>3</strong> The <a href="https://docs.micronaut.io/4.2.1/api/io/micronaut/http/annotation/Get.html"><code>@Get</code></a> annotation maps the <code>findById</code> method to an HTTP GET request on <code>/orders/{id}</code>.</p>
 
-    <p><strong>4</strong> The <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Get.html"><code>@Get</code></a> annotation maps the <code>getOrders</code> method to an HTTP GET request on <code>/orders</code>.</p>
+    <p><strong>4</strong> The <a href="https://docs.micronaut.io/4.2.1/api/io/micronaut/http/annotation/Get.html"><code>@Get</code></a> annotation maps the <code>getOrders</code> method to an HTTP GET request on <code>/orders</code>.</p>
 
-    <p><strong>5</strong> The <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Post.html"><code>@Post</code></a> annotation maps the <code>createOrder</code> method to an HTTP POST request on <code>/orders</code>.</p>
+    <p><strong>5</strong> The <a href="https://docs.micronaut.io/4.2.1/api/io/micronaut/http/annotation/Post.html"><code>@Post</code></a> annotation maps the <code>createOrder</code> method to an HTTP POST request on <code>/orders</code>.</p>
   </li>
   <li>
     <p>The GCN Launcher created the <code>ItemsController</code> class in a file named <em>orders/src/main/java/com/example/controllers/ItemsController.java</em>, as follows:</p>
@@ -1124,13 +1124,13 @@
  }
 </code></pre>
 
-    <p><strong>1</strong> The class is defined as a controller with the <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Controller.html"><code>@Controller</code></a> annotation mapped to the path <code>/items</code>.</p>
+    <p><strong>1</strong> The class is defined as a controller with the <a href="https://docs.micronaut.io/4.2.1/api/io/micronaut/http/annotation/Controller.html"><code>@Controller</code></a> annotation mapped to the path <code>/items</code>.</p>
 
     <p><strong>2</strong> Annotate with <code>io.micronaut.security.Secured</code> to configure secured access. The <code>isAuthenticated()</code> expression will allow access only to authenticated users.</p>
 
-    <p><strong>3</strong> The <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Get.html"><code>@Get</code></a> annotation maps the <code>findById</code> method to an HTTP GET request on <code>/items/{id}</code>.</p>
+    <p><strong>3</strong> The <a href="https://docs.micronaut.io/4.2.1/api/io/micronaut/http/annotation/Get.html"><code>@Get</code></a> annotation maps the <code>findById</code> method to an HTTP GET request on <code>/items/{id}</code>.</p>
 
-    <p><strong>4</strong> The <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Get.html"><code>@Get</code></a> annotation maps the <code>getItems</code> method to an HTTP GET request on <code>/items</code>.</p>
+    <p><strong>4</strong> The <a href="https://docs.micronaut.io/4.2.1/api/io/micronaut/http/annotation/Get.html"><code>@Get</code></a> annotation maps the <code>getItems</code> method to an HTTP GET request on <code>/items</code>.</p>
   </li>
   <li>
     <p>The GCN Launcher created the <code>Order</code> and <code>Item</code> objects, used by the <code>OrdersController</code> and <code>ItemsController</code> classes, to represent customer orders. <code>Order</code> is in the <em>orders/src/main/java/com/example/models/Order.java</em> file:</p>
@@ -1202,7 +1202,7 @@
  public record Credentials (String username, String password) {}
 </code></pre>
 
-    <p><strong>1</strong> The <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/context/annotation/ConfigurationProperties.html"><code>@ConfigurationProperties</code></a> annotation takes the configuration prefix.</p>
+    <p><strong>1</strong> The <a href="https://docs.micronaut.io/4.2.1/api/io/micronaut/context/annotation/ConfigurationProperties.html"><code>@ConfigurationProperties</code></a> annotation takes the configuration prefix.</p>
   </li>
   <li>
     <p>The GCN Launcher created a <code>CredentialsChecker</code> class in a file named <em>orders/src/main/java/com/example/auth/CredentialsChecker.java</em>, which, as the name suggests, will check if the provided credentials inside the HTTP request’s <code>Authorization</code> header are the same as those that are stored inside the <code>Credentials</code> class created above:</p>
@@ -1290,7 +1290,7 @@
  }
 </code></pre>
 
-    <p><strong>1</strong> Use <code>@Client</code> to use <a href="https://docs.micronaut.io/4.0.3/guide/#clientAnnotation">declarative HTTP Clients</a>. You can annotate interfaces or abstract classes. You can use the <code>id</code> member to provide a service identifier or specify the URL directly as the annotation’s value.</p>
+    <p><strong>1</strong> Use <code>@Client</code> to use <a href="https://docs.micronaut.io/4.2.1/guide/#clientAnnotation">declarative HTTP Clients</a>. You can annotate interfaces or abstract classes. You can use the <code>id</code> member to provide a service identifier or specify the URL directly as the annotation’s value.</p>
   </li>
   <li>
     <p>The GCN Launcher created a <code>HealthTest</code> class, in a file named <em>orders/src/test/java/com/example/HealthTest.java</em>, that checks if there is <code>/health</code> endpoint (required for service discovery), with the following contents:</p>
@@ -1515,7 +1515,7 @@
     <p><strong>2</strong> Placeholder for a password that will be populated by Kubernetes.</p>
   </li>
   <li>
-    <p>Edit the <em>orders/src/main/resources/bootstrap-k8s.properties</em> file to <a href="https://docs.micronaut.io/4.0.3/guide/#bootstrap">enable distributed configuration</a>. Modify the contents so that it matches the following:</p>
+    <p>Edit the <em>orders/src/main/resources/bootstrap-k8s.properties</em> file to <a href="https://docs.micronaut.io/4.2.1/guide/#bootstrap">enable distributed configuration</a>. Modify the contents so that it matches the following:</p>
 
     <pre><code> micronaut.application.name=orders
  # &lt;1&gt;
@@ -1773,25 +1773,25 @@
  }
 </code></pre>
 
-    <p><strong>1</strong> The class is defined as a controller with the <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Controller.html"><code>@Controller</code></a> annotation mapped to the path <code>/api</code>.</p>
+    <p><strong>1</strong> The class is defined as a controller with the <a href="https://docs.micronaut.io/4.2.1/api/io/micronaut/http/annotation/Controller.html"><code>@Controller</code></a> annotation mapped to the path <code>/api</code>.</p>
 
     <p><strong>2</strong> It is critical that any blocking I/O operations (such as fetching the data from the database) are offloaded to a separate thread pool that does not block the event loop.</p>
 
-    <p><strong>3</strong> The <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Get.html"><code>@Get</code></a> annotation maps the <code>getUserById</code> method to an HTTP GET request on <code>/users/{id}</code>.</p>
+    <p><strong>3</strong> The <a href="https://docs.micronaut.io/4.2.1/api/io/micronaut/http/annotation/Get.html"><code>@Get</code></a> annotation maps the <code>getUserById</code> method to an HTTP GET request on <code>/users/{id}</code>.</p>
 
-    <p><strong>4</strong> The <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Get.html"><code>@Get</code></a> annotation maps the <code>getOrdersById</code> method to an HTTP GET request on <code>/orders/{id}</code>.</p>
+    <p><strong>4</strong> The <a href="https://docs.micronaut.io/4.2.1/api/io/micronaut/http/annotation/Get.html"><code>@Get</code></a> annotation maps the <code>getOrdersById</code> method to an HTTP GET request on <code>/orders/{id}</code>.</p>
 
-    <p><strong>5</strong> The <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Get.html"><code>@Get</code></a> annotation maps the <code>getItemsById</code> method to an HTTP GET request on <code>/items/{id}</code>.</p>
+    <p><strong>5</strong> The <a href="https://docs.micronaut.io/4.2.1/api/io/micronaut/http/annotation/Get.html"><code>@Get</code></a> annotation maps the <code>getItemsById</code> method to an HTTP GET request on <code>/items/{id}</code>.</p>
 
-    <p><strong>6</strong> The <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Get.html"><code>@Get</code></a> annotation maps the <code>getUsers</code> method to an HTTP GET request on <code>/users</code>.</p>
+    <p><strong>6</strong> The <a href="https://docs.micronaut.io/4.2.1/api/io/micronaut/http/annotation/Get.html"><code>@Get</code></a> annotation maps the <code>getUsers</code> method to an HTTP GET request on <code>/users</code>.</p>
 
-    <p><strong>7</strong> The <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Get.html"><code>@Get</code></a> annotation maps the <code>getItems</code> method to an HTTP GET request on <code>/items</code>.</p>
+    <p><strong>7</strong> The <a href="https://docs.micronaut.io/4.2.1/api/io/micronaut/http/annotation/Get.html"><code>@Get</code></a> annotation maps the <code>getItems</code> method to an HTTP GET request on <code>/items</code>.</p>
 
-    <p><strong>8</strong> The <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Get.html"><code>@Get</code></a> annotation maps the <code>getOrders</code> method to an HTTP GET request on <code>/orders</code>.</p>
+    <p><strong>8</strong> The <a href="https://docs.micronaut.io/4.2.1/api/io/micronaut/http/annotation/Get.html"><code>@Get</code></a> annotation maps the <code>getOrders</code> method to an HTTP GET request on <code>/orders</code>.</p>
 
-    <p><strong>9</strong> The <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Post.html"><code>@Post</code></a> annotation maps the <code>createUser</code> method to an HTTP POST request on <code>/users</code>.</p>
+    <p><strong>9</strong> The <a href="https://docs.micronaut.io/4.2.1/api/io/micronaut/http/annotation/Post.html"><code>@Post</code></a> annotation maps the <code>createUser</code> method to an HTTP POST request on <code>/users</code>.</p>
 
-    <p><strong>10</strong> The <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/annotation/Post.html"><code>@Post</code></a> annotation maps the <code>createOrder</code> method to an HTTP POST request on <code>/orders</code>.</p>
+    <p><strong>10</strong> The <a href="https://docs.micronaut.io/4.2.1/api/io/micronaut/http/annotation/Post.html"><code>@Post</code></a> annotation maps the <code>createOrder</code> method to an HTTP POST request on <code>/orders</code>.</p>
   </li>
   <li>
     <p>The GCN Launcher created the <code>User</code>, <code>Order</code>, and <code>Item</code> objects to represent customers, orders, and items. The <code>User</code> record is in a file named <em>api/src/main/java/com/example/models/User.java</em>, as follows:</p>
@@ -1890,7 +1890,7 @@
  }
 </code></pre>
 
-    <p><strong>1</strong> Use <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/client/annotation/Client.html"><code>@Client</code></a> to use <a href="https://docs.micronaut.io/4.0.3/guide/#clientAnnotation">declarative HTTP Clients</a>. You can annotate interfaces or abstract classes. You can use the <code>id</code> member to provide a service identifier or specify the URL directly as the annotation’s value.</p>
+    <p><strong>1</strong> Use <a href="https://docs.micronaut.io/4.2.1/api/io/micronaut/http/client/annotation/Client.html"><code>@Client</code></a> to use <a href="https://docs.micronaut.io/4.2.1/guide/#clientAnnotation">declarative HTTP Clients</a>. You can annotate interfaces or abstract classes. You can use the <code>id</code> member to provide a service identifier or specify the URL directly as the annotation’s value.</p>
   </li>
   <li>
     <p>The GCN Launcher created an <code>OrdersClient</code> for the <em>orders</em> microservice in a file named <em>api/src/main/java/com/example/clients/OrdersClient.java</em>, as follows:</p>
@@ -1925,7 +1925,7 @@
  }
 </code></pre>
 
-    <p><strong>1</strong> Use <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/client/annotation/Client.html"><code>@Client</code></a> to use <a href="https://docs.micronaut.io/4.0.3/guide/#clientAnnotation">declarative HTTP Clients</a>. You can annotate interfaces or abstract classes. You can use the <code>id</code> member to provide a service identifier or specify the URL directly as the annotation’s value.</p>
+    <p><strong>1</strong> Use <a href="https://docs.micronaut.io/4.2.1/api/io/micronaut/http/client/annotation/Client.html"><code>@Client</code></a> to use <a href="https://docs.micronaut.io/4.2.1/guide/#clientAnnotation">declarative HTTP Clients</a>. You can annotate interfaces or abstract classes. You can use the <code>id</code> member to provide a service identifier or specify the URL directly as the annotation’s value.</p>
   </li>
   <li>
     <p>The GCN Launcher created a <code>Credentials</code> class, will load the username and password from configuration that will be needed for comparison when checking HTTP basic authentication credentials, in a file named <em>api/src/main/java/com/example/auth/Credentials.java</em> with the following contents:</p>
@@ -1938,7 +1938,7 @@
  public record Credentials (String username, String password) {}
 </code></pre>
 
-    <p><strong>1</strong> The <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/context/annotation/ConfigurationProperties.html"><code>@ConfigurationProperties</code></a> annotation takes the configuration prefix.</p>
+    <p><strong>1</strong> The <a href="https://docs.micronaut.io/4.2.1/api/io/micronaut/context/annotation/ConfigurationProperties.html"><code>@ConfigurationProperties</code></a> annotation takes the configuration prefix.</p>
   </li>
   <li>
     <p>The GCN Launcher created an <code>AuthClientFilter</code> class that acts as a client filter applied to every client. It adds a HTTP basic authentication header with credentials that are stored in the <code>Credentials</code> class, in a file named <em>api/src/main/java/com/example/auth/AuthClientFilter.java</em> with the following contents:</p>
@@ -2048,7 +2048,7 @@
  }
 </code></pre>
 
-    <p><strong>1</strong> Use <a href="https://docs.micronaut.io/4.0.3/api/io/micronaut/http/client/annotation/Client.html"><code>@Client</code></a> to use <a href="https://docs.micronaut.io/4.0.3/guide/#clientAnnotation">declarative HTTP Clients</a>. You can annotate interfaces or abstract classes. You can use the <code>id</code> member to provide a service identifier or specify the URL directly as the annotation’s value.</p>
+    <p><strong>1</strong> Use <a href="https://docs.micronaut.io/4.2.1/api/io/micronaut/http/client/annotation/Client.html"><code>@Client</code></a> to use <a href="https://docs.micronaut.io/4.2.1/guide/#clientAnnotation">declarative HTTP Clients</a>. You can annotate interfaces or abstract classes. You can use the <code>id</code> member to provide a service identifier or specify the URL directly as the annotation’s value.</p>
   </li>
   <li>
     <p>The GCN Launcher created a <code>HealthTest</code> class to check that there is <code>/health</code> endpoint (required for service discovery) in a file named <em>api/src/test/java/com/example/HealthTest.java</em> with the following contents:</p>
@@ -2315,7 +2315,7 @@
     <p><strong>2</strong> Placeholder for a password that will be populated by Kubernetes.</p>
   </li>
   <li>
-    <p>Edit the <em>api/src/main/resources/bootstrap-k8s.properties</em> file to <a href="https://docs.micronaut.io/4.0.3/guide/#bootstrap">enable distributed configuration</a>. Modify the contents so that it matches the following:</p>
+    <p>Edit the <em>api/src/main/resources/bootstrap-k8s.properties</em> file to <a href="https://docs.micronaut.io/4.2.1/guide/#bootstrap">enable distributed configuration</a>. Modify the contents so that it matches the following:</p>
 
     <pre><code> micronaut.application.name=api
  # &lt;1&gt;
@@ -3224,8 +3224,9 @@ Then run the next command to create the resources described above:</p>
           <div class="row">
             <div class="col-sm-12">
               <p class="copyright">
-                Copyright © 2023, Oracle and/or its affiliates. All rights reserved. Oracle and Java are
-                registered trademarks. Other names may be trademarks of their respective owners.
+                Copyright © 2023-2024, Oracle and/or its affiliates. All rights reserved.
+                Oracle and Java are registered trademarks of Oracle and/or its affiliates.
+                Other names may be trademarks of their respective owners. 
               </p>
               <div id="teconsent"></div>
             </div>

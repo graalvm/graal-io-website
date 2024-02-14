@@ -100,6 +100,6 @@ class StoreControllerTest {
 
 **2** Create a mock implementation of `StorageService` so that the test is independent of the current state of the storage. The `@Requires(env="test-storage-service")` annotation specifies that the bean should only be available in the identified environment. (In this case it matches the one identified in the `@MicronautTest` annotation.)
 
-**3** Create a [Micronaut Declarative Client](https://docs.micronaut.io/4.0.3/guide/#clientAnnotation) with the same `/store` path to send requests to the controller.
+**3** Create a [Micronaut Declarative Client](https://docs.micronaut.io/4.2.1/guide/#clientAnnotation) with the same `/store` path to send requests to the controller.
 
 **4** Create three tests using the defined client and assuming that `TestStorageService` is used.
