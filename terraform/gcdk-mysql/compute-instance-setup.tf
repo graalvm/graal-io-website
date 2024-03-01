@@ -2,7 +2,7 @@
 
 # disposable key pair for setup
 resource "tls_private_key" "setup_key_pair" {
-  algorithm   = "RSA"
+  algorithm = "RSA"
 }
 
 # Execute commands in Linux Instance

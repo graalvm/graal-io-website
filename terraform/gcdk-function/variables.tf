@@ -19,7 +19,7 @@ variable "public_subnet_cidr" {
 }
 
 variable "vcn_dns_label" {
-  default     = "gcnFnVCN"
+  default = "gcnFnVCN"
 }
 
 variable "subnet_dns_label" {

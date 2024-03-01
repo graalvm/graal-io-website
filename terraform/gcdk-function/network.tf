@@ -1,11 +1,11 @@
-resource "oci_core_vcn" this {
+resource "oci_core_vcn" "this" {
   dns_label      = var.vcn_dns_label
   cidr_block     = var.vcn_cidr
   compartment_id = var.compartment_ocid
   display_name   = var.vcn_display_name
 }
 
-resource oci_core_internet_gateway this {
+resource "oci_core_internet_gateway" "this" {
   compartment_id = var.compartment_ocid
   vcn_id         = oci_core_vcn.this.id
 }
@@ -20,13 +20,13 @@ resource "oci_core_default_route_table" "this" {
 
 data "oci_identity_availability_domain" "ad1" {
   compartment_id = var.compartment_ocid
-  ad_number = 1
+  ad_number      = 1
 }
 
 resource "oci_core_subnet" "public_subnet" {
-  cidr_block = var.public_subnet_cidr
+  cidr_block     = var.public_subnet_cidr
   compartment_id = var.compartment_ocid
-  vcn_id = oci_core_vcn.this.id
+  vcn_id         = oci_core_vcn.this.id
   security_list_ids = [
     oci_core_security_list.public_security_list.id,
     oci_core_vcn.this.default_security_list_id
@@ -36,12 +36,12 @@ resource "oci_core_subnet" "public_subnet" {
 
 resource "oci_core_security_list" "public_security_list" {
   compartment_id = var.compartment_ocid
-  vcn_id = oci_core_vcn.this.id
-  display_name = "Public Security List"
+  vcn_id         = oci_core_vcn.this.id
+  display_name   = "Public Security List"
   ingress_security_rules {
     description = "HTTPS for Micronaut app"
-    stateless = false
-    source = "0.0.0.0/0"
+    stateless   = false
+    source      = "0.0.0.0/0"
     source_type = "CIDR_BLOCK"
     # Get protocol numbers from https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml TCP is 6
     protocol = "6"
