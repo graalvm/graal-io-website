@@ -10,12 +10,12 @@
 
   <title>
     
-      Create an Application to Send Email Using JavaMail with Gmail
+      Create an Application to Send Email Using Jakarta Mail
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2024-01-31 16:07:30 +0000"/>
-  <meta name="last_built" content="2024-03-01 20:03:18 +0000"/>
+  <meta name="last_modified" content="2024-03-12 11:03:10 +0000"/>
+  <meta name="last_built" content="2024-03-13 11:18:54 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -24,7 +24,7 @@
   <meta name="msapplication-TileColor" content="#da532c">
   <meta name="theme-color" content="#ffffff">
   <meta name="google-site-verification" content="-vRqwa9WYn6AaQGnl88xvrLw6ac4xoKVkZkhanmlRhU" />
-  <link rel="canonical" href="https://www.graal.cloud/gcn/gcn-modules/email/micronaut-email-javamail/">
+  <link rel="canonical" href="https://www.graal.cloud/gcn/gcn-modules/email/micronaut-email-jakartamail/">
 
   <!-- jQuery UI Tabs -->
   <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
@@ -225,8 +225,8 @@
           <li class="toc-bullets-sub toc-bullets-highlight">
           
             
-            <a href="/gcn/gcn-modules/email/micronaut-email-javamail/">
-              Create an Application to Send Email Using JavaMail
+            <a href="/gcn/gcn-modules/email/micronaut-email-jakartamail/">
+              Create an Application to Send Email Using Jakarta Mail
             </a>
           </li>
 
@@ -355,15 +355,15 @@
         <!--
           Include file to warn of Windows/Gradle restriction
         -->
-        <h1 id="create-an-application-to-send-email-using-javamail">
+        <h1 id="create-an-application-to-send-email-using-jakarta-mail">
         
         
-          Create an Application to Send Email Using JavaMail
+          Create an Application to Send Email Using Jakarta Mail
         
         
       </h1>
 
-<p>This guide describes how to use GCN to create a Java application that sends email using <a href="https://javaee.github.io/javamail/">JavaMail</a> and the <a href="https://micronaut-projects.github.io/micronaut-email/latest/guide/">Micronaut Email</a> implementation of the JavaMail API. It assumes you have an existing <a href="https://mail.google.com/mail/">Gmail</a> account.</p>
+<p>This guide describes how to use GCN to create a Java application that sends email using the <a href="https://jakartaee.github.io/mail-api/">Jakarta Mail API</a> and the <a href="https://micronaut-projects.github.io/micronaut-email/latest/guide/">Micronaut Email</a> implementation of the Jakarta Mail API. It assumes you have an existing <a href="https://mail.google.com/mail/">Gmail</a> account.</p>
     
       <h3 id="prerequisites">
         
@@ -515,7 +515,7 @@ public class EmailController {
         try {
             emailSender.send(Email.builder()
                     .to(to)
-                    .subject("Sending email with JavaMail is Fun")
+                    .subject("Sending email with Jakarta Mail is Fun")
                     .body("and &lt;em&gt;easy&lt;/em&gt; to do anywhere with &lt;strong&gt;Micronaut Email&lt;/strong&gt;", HTML)); // &lt;6&gt;
         } catch (EmailException ignored) {
             return HttpResponse.unprocessableEntity(); // &lt;7&gt;
@@ -633,7 +633,7 @@ public class EmailControllerTest {
         assertEquals("bob@gcn.example", sentEmail.getFrom().getEmail());
         assertEquals(1, sentEmail.getTo().size());
         assertEquals("alice@gcn.example", sentEmail.getTo().stream().findFirst().get().getEmail());
-        assertEquals("Sending email with JavaMail is Fun", sentEmail.getSubject());
+        assertEquals("Sending email with Jakarta Mail is Fun", sentEmail.getSubject());
         assertNotNull(sentEmail.getBody());
         assertEquals("and &lt;em&gt;easy&lt;/em&gt; to do anywhere with &lt;strong&gt;Micronaut Email&lt;/strong&gt;",
                 sentEmail.getBody().get(HTML).get());
@@ -702,7 +702,7 @@ public class EmailControllerTest {
         
       </h2>
 
-<p>To use the Micronaut JavaMail with Gmail, you need a <a href="https://myaccount.google.com/">Google Account</a>.</p>
+<p>To use the Micronaut Jakarta Mail with Gmail, you need a <a href="https://myaccount.google.com/">Google Account</a>.</p>
 
 <p>Set environment variables using the following commands:</p>
 
@@ -809,7 +809,7 @@ export FROM_PASSWORD=&lt;password or app password&gt;
         
       </h3>
 
-<p>This guide demonstrated how to use GCN to create an application that sends email via JavaMail and the Micronaut Email module. Then you saw how to generate a native executable with GraalVM Native Image for faster startup and lower memory footprint.</p>
+<p>This guide demonstrated how to use GCN to create an application that sends email via the Jakarta Mail API and the Micronaut Email module. Then you saw how to generate a native executable with GraalVM Native Image for faster startup and lower memory footprint.</p>
     
       <h3 id="related-documentation">
         
@@ -971,6 +971,7 @@ export FROM_PASSWORD=&lt;password or app password&gt;
     <script src='/gcn/resources/js/ui.js'></script>
     <script src='/gcn/resources/js/filters.js'></script>
     <script src='/gcn/resources/js/sidebar.js'></script>
+    <script src='/gcn/resources/js/labs.js'></script>
     <script src='/gcn/resources/lib/highlight/highlight.min.js'></script> 
     <script>hljs.highlightAll();</script>
   </body>

@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2024-01-31 16:07:30 +0000"/>
-  <meta name="last_built" content="2024-03-01 20:03:18 +0000"/>
+  <meta name="last_modified" content="2024-03-11 15:51:30 +0000"/>
+  <meta name="last_built" content="2024-03-13 11:18:54 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -363,7 +363,7 @@
         
       </h1>
 
-<p>This guide describes how to use GCN to create a Java application that sends email using the <a href="https://docs.oracle.com/iaas/Content/Email/Concepts/overview.htm" target="_blank">Oracle Cloud Infrastructure Email Delivery service</a> and the <a href="https://micronaut-projects.github.io/micronaut-email/latest/guide/" target="_blank">Micronaut Email</a> implementation of the <a href="https://javaee.github.io/javamail/" target="_blank">JavaMail API</a>.</p>
+<p>This guide describes how to use GCN to create a Java application that sends email using the <a href="https://docs.oracle.com/iaas/Content/Email/Concepts/overview.htm" target="_blank">Oracle Cloud Infrastructure Email Delivery service</a> and the <a href="https://micronaut-projects.github.io/micronaut-email/latest/guide/" target="_blank">Micronaut Email</a> implementation of the <a href="https://jakartaee.github.io/mail-api/" target="_blank">Jakarta Mail API</a>.</p>
 
 <blockquote>
   <p>Oracle Cloud Infrastructure Email Delivery service is an email sending service and SMTP relay that provides a fast and reliable managed solution for sending both high volume bulk and transactional email that need to reach the inbox.</p>
@@ -488,7 +488,7 @@
         
       </h3>
 
-<p>Micronaut Email requires a bean of type <code>SessionProvider</code> when using JavaMail to create a <code>Session</code>. The GCN Launcher created the <code>OciSessionProvider</code> class in a file named <em>oci/src/main/java/com/example/OciSessionProvider.java</em> with the following contents:</p>
+<p>Micronaut Email requires a bean of type <code>SessionProvider</code> when using Jakarta Mail to create a <code>Session</code>. The GCN Launcher created the <code>OciSessionProvider</code> class in a file named <em>oci/src/main/java/com/example/OciSessionProvider.java</em> with the following contents:</p>
 
 <pre><code class="language-java">package com.example;
 
@@ -1278,6 +1278,7 @@ export SMTP_HOST=smtp.email.us-ashburn-1.oci.oraclecloud.com
     <script src='/gcn/resources/js/ui.js'></script>
     <script src='/gcn/resources/js/filters.js'></script>
     <script src='/gcn/resources/js/sidebar.js'></script>
+    <script src='/gcn/resources/js/labs.js'></script>
     <script src='/gcn/resources/lib/highlight/highlight.min.js'></script> 
     <script>hljs.highlightAll();</script>
   </body>

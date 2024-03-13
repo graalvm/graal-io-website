@@ -15,7 +15,7 @@
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
   <meta name="last_modified" content="2023-02-16 09:46:40 +0000"/>
-  <meta name="last_built" content="2024-03-01 20:03:18 +0000"/>
+  <meta name="last_built" content="2024-03-13 11:18:54 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -149,248 +149,397 @@
 
       <main  class="content"   aria-label="Content">
         <section class="guides-banner-gcn">
-    <div class="banner_home_guides container-fluid container-fluid--custom-sm">
-      <div class="tagline_home_gcn">
-        <p>Hands-on Labs
-        </p>
-      </div>
-      <div class="slogan_home">
-        <p>Use the filters to view the corresponding labs.</p>
-      </div>
+  <div class="banner_home_guides container-fluid container-fluid--custom-sm">
+    <div class="tagline_home_gcn">
+      <p>Hands-on Labs
+      </p>
     </div>
+    <div class="slogan_home">
+      <p>Use the filters to view the corresponding labs.</p>
+    </div>
+  </div>
 </section>
 
-  <!--Guides Module Filter-->
+<!--Guides Module Filter-->
 
 <section class="filter-content-section hol-back">
-    <div class="container-fluid container-fluid--custom-sm">
-      <div class="row">
-        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+  <div class="container-fluid container-fluid--custom-sm">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row">
+          <p class="filter-title">GCN<span class="module-title-color">Modules</span>Filter</p>
+        </div>
+        <div class="guide-filter">
           <div class="row">
-              <p class="filter-title">GCN<span class="module-title-color">Modules</span>Filter</p>
-          </div>
-          <div class="guide-filter">
-            <div class="row">
-              <p class="hol-filter-item module-filter" data-filter="database">Database</p>
-              <p class="hol-filter-item module-filter" data-filter="email">Email</p>
-              <!-- <p class="filter-item module-filter" data-filter="kubernetes">Kubernetes</p> -->
-              <p class="hol-filter-item module-filter" data-filter="logging">Logging</p>
-              <p class="hol-filter-item module-filter" data-filter="metrics">Metrics</p>
-              <p class="hol-filter-item module-filter" data-filter="object-storage">Object Storage</p>
-              <p class="hol-filter-item module-filter" data-filter="secret-management">Secret Management</p>
-              <!-- <p class="filter-item module-filter" data-filter="security">Security</p> -->
-              <!-- <p class="filter-item module-filter" data-filter="serverless">Serverless</p> -->
-              <!-- <p class="filter-item module-filter" data-filter="streaming">Streaming</p> -->
-              <p class="hol-filter-item module-filter" data-filter="tracing">Tracing</p>
-              <p class="hol-filter-item module-filter" data-filter="all">All</p>
-            </div>
+            <p class="hol-filter-item module-filter" data-filter="database">Database</p>
+            <p class="hol-filter-item module-filter" data-filter="email">Email</p>
+            <!-- <p class="filter-item module-filter" data-filter="kubernetes">Kubernetes</p> -->
+            <p class="hol-filter-item module-filter" data-filter="logging">Logging</p>
+            <p class="hol-filter-item module-filter" data-filter="metrics">Metrics</p>
+            <p class="hol-filter-item module-filter" data-filter="object-storage">Object Storage</p>
+            <p class="hol-filter-item module-filter" data-filter="secret-management">Secret Management</p>
+            <!-- <p class="filter-item module-filter" data-filter="security">Security</p> -->
+            <!-- <p class="filter-item module-filter" data-filter="serverless">Serverless</p> -->
+            <!-- <p class="filter-item module-filter" data-filter="streaming">Streaming</p> -->
+            <p class="hol-filter-item module-filter" data-filter="tracing">Tracing</p>
+            <p class="hol-filter-item module-filter" data-filter="all">All</p>
           </div>
         </div>
       </div>
     </div>
+  </div>
 </section>
 
 <section class="guides-content-section hol-back">
-    <div class="container-fluid container-fluid--custom-sm">
-      <div class="row">
-        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-          <div class="row">
-            <div class="col-sm hol-box all guides-section-indent object-storage">
-                <div class="card card--hovered box">
+  <div class="container-fluid container-fluid--custom-sm">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row">
+          <div class="col-sm hol-box all guides-section-indent object-storage">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
                   <div class="row">
-                    <div class="col-12">
-                      <div class="row">
-                      <p class="guide-category-cloud">#oci</p>
-                      <p class="guide-category-module">#object-storage</p>
-                      <p class="guide-category-buildtool">#maven</p>
-                      </div>
-                      <p class="guide-title">Oracle Cloud Infrastructure Object Storage, Micronaut, Graal Cloud Native</p>
-                      <p class="guide-text">Learn how to build a Java application to upload, download, and delete files from Oracle Cloud Infrastructure Object Storage with Graal Cloud Native and Micronaut. Learn how to use GraalVM Native Image to package and run the application as a native executable.</p>
+                    <p class="guide-category-cloud">#oci</p>
+                    <p class="guide-category-module">#object-storage</p>
+                  </div>
+                  <p class="guide-title">Oracle Cloud Infrastructure Object Storage, Micronaut, Graal Cloud Native</p>
+                  <p class="guide-text">Learn how to build a Java application to upload, download, and delete files from
+                    Oracle Cloud Infrastructure Object Storage with Graal Cloud Native and Micronaut. Then, learn how to use
+                    GraalVM Native Image to package and run the application as a native executable.</p>
+                  <p class="radio-text">Select how you would like to run this lab:</p>
+                  <div class="radio-container">
+                    <div class="radio-section">
+                      <input type="radio" id="radio1" name="radioGroup" value="option1"
+                        data-link="https://luna.oracle.com/lab/c8d189da-25de-4010-a2b2-543b76e93502" checked>
+                      <label class="radio-btn-text radio-lab" for="radio1">Run on an Oracle-owned tenancy (Luna
+                        Labs)<sup class="icon-container"><svg width="16" height="16" viewBox="0 0 12 12" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                              d="M5.31664 3.94993V3H6.68065V3.94993H5.31664ZM5.44655 9V5.57375L5 5.20027V4.70501H6.68065V9H5.44655Z"
+                              fill="#176AFF" />
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                              d="M6 11C8.76142 11 11 8.76142 11 6C11 3.23858 8.76142 1 6 1C3.23858 1 1 3.23858 1 6C1 8.76142 3.23858 11 6 11ZM6 12C9.31371 12 12 9.31371 12 6C12 2.68629 9.31371 0 6 0C2.68629 0 0 2.68629 0 6C0 9.31371 2.68629 12 6 12Z"
+                              fill="#176AFF" />
+                          </svg><span class="icon-tooltip">Dynamically creates resources in an Oracle-owned tenancy for
+                            you to use for free.</span></sup></label>
+                    </div>
+                    <div class="radio-section">
+                      <input type="radio" id="radio2" name="radioGroup" value="option2"
+                        data-link="https://apexapps.oracle.com/pls/apex/r/dbpm/livelabs/view-workshop?wid=3858">
+                      <label class="radio-btn-text" for="radio2">Run on your tenancy (LiveLabs)<sup
+                          class="icon-container"><svg width="16" height="16" viewBox="0 0 12 12" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                              d="M5.31664 3.94993V3H6.68065V3.94993H5.31664ZM5.44655 9V5.57375L5 5.20027V4.70501H6.68065V9H5.44655Z"
+                              fill="#176AFF" />
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                              d="M6 11C8.76142 11 11 8.76142 11 6C11 3.23858 8.76142 1 6 1C3.23858 1 1 3.23858 1 6C1 8.76142 3.23858 11 6 11ZM6 12C9.31371 12 12 9.31371 12 6C12 2.68629 9.31371 0 6 0C2.68629 0 0 2.68629 0 6C0 9.31371 2.68629 12 6 12Z"
+                              fill="#176AFF" />
+                          </svg><span class="icon-tooltip">Provides step-by-step instructions so you can run this lab
+                            on your own tenancy.</span></sup></label>
                     </div>
                   </div>
-                  <div>
-                    <a href="https://luna.oracle.com/lab/c8d189da-25de-4010-a2b2-543b76e93502" target="_blank"
-                      class="btn btn-primary guides">Start the lab</a>
-                  </div>
                 </div>
+              </div>
+              <div>
+                <a class="btn btn-primary guides" target="_blank" id="linkButton">Start</a>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="container-fluid container-fluid--custom-sm">
-      <div class="row">
-        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-          <div class="row">
-            <div class="col-sm hol-box all guides-section-indent database secret-management">
-                <div class="card card--hovered box">
+  <div class="container-fluid container-fluid--custom-sm">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row">
+          <div class="col-sm hol-box all guides-section-indent database secret-management">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
                   <div class="row">
-                    <div class="col-12">
-                      <div class="row">
-                      <p class="guide-category-cloud">#oci</p>
-                      <p class="guide-category-module">#database</p>
-                      <p class="guide-category-module">#secret-management</p>
-                      <p class="guide-category-buildtool">#maven</p>
+                    <p class="guide-category-cloud">#oci</p>
+                    <p class="guide-category-module">#database</p>
+                    <p class="guide-category-module">#secret-management</p>
+                  </div>
+                  <p class="guide-title">Oracle Cloud Infrastructure MySQL, Vault, Micronaut, Graal Cloud Native</p>
+                  <p class="guide-text">Learn how to build a Java application with Oracle Cloud
+                    Infrastructure MySQL Database service, Secrets in Oracle Cloud Infrastructure Vault, Graal Cloud
+                    Native and Micronaut. Then, learn how to use GraalVM Native Image to package and run the application as a
+                    native executable.</p>
+                    <p class="radio-text">Select how you would like to run this lab:</p>
+                    <div class="radio-container">
+                      <div class="radio-section">
+                        <input type="radio"
+                          data-link="https://luna.oracle.com/lab/c28c56d0-3bfa-4905-9fcd-6ba6e8a3ea42" checked>
+                        <label class="radio-btn-text radio-lab" for="radio1">Run on an Oracle-owned tenancy (Luna
+                          Labs)<sup class="icon-container"><svg width="16" height="16" viewBox="0 0 12 12" fill="none"
+                              xmlns="http://www.w3.org/2000/svg">
+                              <path
+                                d="M5.31664 3.94993V3H6.68065V3.94993H5.31664ZM5.44655 9V5.57375L5 5.20027V4.70501H6.68065V9H5.44655Z"
+                                fill="#176AFF" />
+                              <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M6 11C8.76142 11 11 8.76142 11 6C11 3.23858 8.76142 1 6 1C3.23858 1 1 3.23858 1 6C1 8.76142 3.23858 11 6 11ZM6 12C9.31371 12 12 9.31371 12 6C12 2.68629 9.31371 0 6 0C2.68629 0 0 2.68629 0 6C0 9.31371 2.68629 12 6 12Z"
+                                fill="#176AFF" />
+                            </svg><span class="icon-tooltip">Dynamically creates resources in an Oracle-owned tenancy for
+                              you to use for free.</span></sup></label>
                       </div>
-                      <p class="guide-title">Oracle Cloud Infrastructure MySQL, Vault, Micronaut, Graal Cloud Native</p>
-                      <p class="guide-text">Learn how to build a cloud-portable Java application with Oracle Cloud Infrastructure MySQL Database service, Secrets in Oracle Cloud Infrastructure Vault, Graal Cloud Native and Micronaut. Learn how to use GraalVM Native Image to package and run the application as a native executable.</p>
                     </div>
-                  </div>
-                  <div>
-                    <a href="https://luna.oracle.com/lab/c28c56d0-3bfa-4905-9fcd-6ba6e8a3ea42" target="_blank"
-                      class="btn btn-primary guides">Start the lab</a>
-                  </div>
                 </div>
+              </div>
+              <div>
+                <a href="https://luna.oracle.com/lab/c28c56d0-3bfa-4905-9fcd-6ba6e8a3ea42" target="_blank"
+                  class="btn btn-primary guides">Start</a>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="container-fluid container-fluid--custom-sm">
-      <div class="row">
-        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-          <div class="row">
-            <div class="col-sm hol-box all guides-section-indent database secret-management">
-                <div class="card card--hovered box">
+  <div class="container-fluid container-fluid--custom-sm">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row">
+          <div class="col-sm hol-box all guides-section-indent database secret-management">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
                   <div class="row">
-                    <div class="col-12">
-                      <div class="row">
-                        <p class="guide-category-cloud">#oci</p>
-                        <p class="guide-category-module">#database</p>
-                        <p class="guide-category-module">#secret-management</p>
-                        <p class="guide-category-buildtool">#maven</p>
+                    <p class="guide-category-cloud">#oci</p>
+                    <p class="guide-category-module">#database</p>
+                    <p class="guide-category-module">#secret-management</p>
+                  </div>
+                  <p class="guide-title">Oracle Cloud Infrastructure Autonomous DB, Vault, Micronaut, Graal Cloud Native
+                  </p>
+                  <p class="guide-text">Learn how to build a Java application with Oracle Cloud Infrastructure
+                    Autonomous Database service, Secrets in Oracle Cloud Infrastructure Vault, Graal Cloud Native,
+                    and Micronaut. Then, learn how to use GraalVM Native Image to package and run the application as a native
+                    executable.</p>
+                    <p class="radio-text">Select how you would like to run this lab:</p>
+                    <div class="radio-container">
+                      <div class="radio-section">
+                        <input type="radio"
+                          data-link="https://luna.oracle.com/lab/296b5fb9-32bc-4260-b83f-072d4dd2d3c4" checked>
+                        <label class="radio-btn-text radio-lab" for="radio1">Run on an Oracle-owned Tenancy (Luna
+                          Labs)<sup class="icon-container"><svg width="16" height="16" viewBox="0 0 12 12" fill="none"
+                              xmlns="http://www.w3.org/2000/svg">
+                              <path
+                                d="M5.31664 3.94993V3H6.68065V3.94993H5.31664ZM5.44655 9V5.57375L5 5.20027V4.70501H6.68065V9H5.44655Z"
+                                fill="#176AFF" />
+                              <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M6 11C8.76142 11 11 8.76142 11 6C11 3.23858 8.76142 1 6 1C3.23858 1 1 3.23858 1 6C1 8.76142 3.23858 11 6 11ZM6 12C9.31371 12 12 9.31371 12 6C12 2.68629 9.31371 0 6 0C2.68629 0 0 2.68629 0 6C0 9.31371 2.68629 12 6 12Z"
+                                fill="#176AFF" />
+                            </svg><span class="icon-tooltip">Dynamically creates resources in an Oracle-owned tenancy for
+                              you to use for free.</span></sup></label>
                       </div>
-                      <p class="guide-title">Oracle Cloud Infrastructure Autonomous DB, Vault, Micronaut, Graal Cloud Native</p>
-                      <p class="guide-text">Discover how to build a Java application with Oracle Cloud Infrastructure Autonomous Database (ADB) service, Secrets in Oracle Cloud Infrastructure Vault, Graal Cloud Native, and Micronaut. Learn how to use GraalVM Native Image to package and run the application as a native executable.</p>
                     </div>
-                  </div>
-                  <div>
-                    <a href="https://luna.oracle.com/lab/296b5fb9-32bc-4260-b83f-072d4dd2d3c4" target="_blank"
-                      class="btn btn-primary guides">Start the lab</a>
-                  </div>
                 </div>
+              </div>
+              <div>
+                <a href="https://luna.oracle.com/lab/296b5fb9-32bc-4260-b83f-072d4dd2d3c4" target="_blank"
+                  class="btn btn-primary guides">Start</a>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="container-fluid container-fluid--custom-sm">
-      <div class="row">
-        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-          <div class="row">
-            <div class="col-sm hol-box all guides-section-indent email">
-                <div class="card card--hovered box">
+  <div class="container-fluid container-fluid--custom-sm">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row">
+          <div class="col-sm hol-box all guides-section-indent email">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
                   <div class="row">
-                    <div class="col-12">
-                      <div class="row">
-                        <p class="guide-category-cloud">#oci</p>
-                        <p class="guide-category-module">#email</p>
-                        <p class="guide-category-buildtool">#maven</p>
+                    <p class="guide-category-cloud">#oci</p>
+                    <p class="guide-category-module">#email</p>
+                  </div>
+                  <p class="guide-title">Oracle Cloud Infrastructure Email, Micronaut, Graal Cloud Native</p>
+                  <p class="guide-text">Learn how to build a Java application to send emails using Oracle Cloud
+                    Infrastructure Email Delivery with Graal Cloud Native and Micronaut. Then, learn how to use GraalVM
+                    Native Image to package and run the application as a native executable.</p>
+                    <p class="radio-text">Select how you would like to run this lab:</p>
+                    <div class="radio-container">
+                      <div class="radio-section">
+                        <input type="radio"
+                          data-link="https://luna.oracle.com/lab/af981c37-8d86-4a9d-a67b-536d84b7f632" checked>
+                        <label class="radio-btn-text radio-lab" for="radio1">Run on an Oracle-owned tenancy (Luna
+                          Labs)<sup class="icon-container"><svg width="16" height="16" viewBox="0 0 12 12" fill="none"
+                              xmlns="http://www.w3.org/2000/svg">
+                              <path
+                                d="M5.31664 3.94993V3H6.68065V3.94993H5.31664ZM5.44655 9V5.57375L5 5.20027V4.70501H6.68065V9H5.44655Z"
+                                fill="#176AFF" />
+                              <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M6 11C8.76142 11 11 8.76142 11 6C11 3.23858 8.76142 1 6 1C3.23858 1 1 3.23858 1 6C1 8.76142 3.23858 11 6 11ZM6 12C9.31371 12 12 9.31371 12 6C12 2.68629 9.31371 0 6 0C2.68629 0 0 2.68629 0 6C0 9.31371 2.68629 12 6 12Z"
+                                fill="#176AFF" />
+                            </svg><span class="icon-tooltip">Dynamically creates resources in an Oracle-owned tenancy for
+                              you to use for free.</span></sup></label>
                       </div>
-                      <p class="guide-title">Oracle Cloud Infrastructure Email, Micronaut, Graal Cloud Native</p>
-                      <p class="guide-text">Learn how to build a Java application to send emails using Oracle Cloud Infrastructure Email Delivery with Graal Cloud Native and Micronaut. Discover how to use GraalVM Native Image to package and run the application as a native executable.</p>
-                    </div>
-                  </div>
-                  <div>
-                    <a href="https://luna.oracle.com/lab/af981c37-8d86-4a9d-a67b-536d84b7f632" target="_blank"
-                      class="btn btn-primary guides">Start the lab</a>
-                  </div>
+                    </div> 
                 </div>
+              </div>
+              <div>
+                <a href="https://luna.oracle.com/lab/af981c37-8d86-4a9d-a67b-536d84b7f632" target="_blank"
+                  class="btn btn-primary guides">Start</a>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="container-fluid container-fluid--custom-sm">
-      <div class="row">
-        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-          <div class="row">
-            <div class="col-sm hol-box all guides-section-indent tracing">
-                <div class="card card--hovered box">
+  <div class="container-fluid container-fluid--custom-sm">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row">
+          <div class="col-sm hol-box all guides-section-indent tracing">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
                   <div class="row">
-                    <div class="col-12">
-                      <div class="row">
-                        <p class="guide-category-cloud">#oci</p>
-                        <p class="guide-category-module">#tracing</p>
-                        <p class="guide-category-buildtool">#maven</p>
+                    <p class="guide-category-cloud">#oci</p>
+                    <p class="guide-category-module">#tracing</p>
+                  </div>
+                  <p class="guide-title">Oracle Cloud Infrastructure APM Tracing, Micronaut, Graal Cloud Native</p>
+                  <p class="guide-text">Learn how to create a Java application to send traces to Oracle Cloud
+                    Infrastructure Application Performance Monitoring (APM) Tracing with Graal Cloud Native and
+                    Micronaut, and visualize traces with the Oracle Cloud Infrastructure APM Trace Explorer. Then, learn how
+                    to use GraalVM Native Image to package and run the application as a native executable.</p>
+                    <p class="radio-text">Select how you would like to run this lab:</p>
+                    <div class="radio-container">
+                      <div class="radio-section">
+                        <input type="radio"
+                          data-link="https://luna.oracle.com/lab/eb7f2b61-cdc9-4733-98b1-53dadf7a076e" checked>
+                        <label class="radio-btn-text radio-lab" for="radio1">Run on an Oracle-owned tenancy (Luna
+                          Labs)<sup class="icon-container"><svg width="16" height="16" viewBox="0 0 12 12" fill="none"
+                              xmlns="http://www.w3.org/2000/svg">
+                              <path
+                                d="M5.31664 3.94993V3H6.68065V3.94993H5.31664ZM5.44655 9V5.57375L5 5.20027V4.70501H6.68065V9H5.44655Z"
+                                fill="#176AFF" />
+                              <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M6 11C8.76142 11 11 8.76142 11 6C11 3.23858 8.76142 1 6 1C3.23858 1 1 3.23858 1 6C1 8.76142 3.23858 11 6 11ZM6 12C9.31371 12 12 9.31371 12 6C12 2.68629 9.31371 0 6 0C2.68629 0 0 2.68629 0 6C0 9.31371 2.68629 12 6 12Z"
+                                fill="#176AFF" />
+                            </svg><span class="icon-tooltip">Dynamically creates resources in an Oracle-owned tenancy for
+                              you to use for free.</span></sup></label>
                       </div>
-                      <p class="guide-title">Oracle Cloud Infrastructure APM Tracing, Micronaut, Graal Cloud Native</p>
-                      <p class="guide-text">Learn how to configure a Java application to send traces to Oracle Cloud Infrastructure Application Performance Monitoring (APM) Tracing with Graal Cloud Native and Micronaut, and visualize traces with the Oracle Cloud Infrastructure APM Trace Explorer. Learn how to use GraalVM Native Image to package and run the application as a native executable.</p>
-                    </div>
-                  </div>
-                  <div>
-                    <a href="https://luna.oracle.com/lab/eb7f2b61-cdc9-4733-98b1-53dadf7a076e" target="_blank"
-                      class="btn btn-primary guides">Start the lab</a>
-                  </div>
+                    </div> 
                 </div>
+              </div>
+              <div>
+                <a href="https://luna.oracle.com/lab/eb7f2b61-cdc9-4733-98b1-53dadf7a076e" target="_blank"
+                  class="btn btn-primary guides">Start</a>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="container-fluid container-fluid--custom-sm">
-      <div class="row">
-        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-          <div class="row">
-            <div class="col-sm hol-box all guides-section-indent metrics">
-                <div class="card card--hovered box">
+  <div class="container-fluid container-fluid--custom-sm">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row">
+          <div class="col-sm hol-box all guides-section-indent metrics">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
                   <div class="row">
-                    <div class="col-12">
-                      <div class="row">
-                        <p class="guide-category-cloud">#oci</p>
-                        <p class="guide-category-module">#metrics</p>
-                        <p class="guide-category-buildtool">#maven</p>
+                    <p class="guide-category-cloud">#oci</p>
+                    <p class="guide-category-module">#metrics</p>
+                  </div>
+                  <p class="guide-title">Oracle Cloud Infrastructure Monitoring (Metrics), Micronaut, Graal Cloud Native
+                  </p>
+                  <p class="guide-text">Learn how to build a Java application to publish metrics to Oracle Cloud
+                    Infrastructure Monitoring with Graal Cloud Native and Micronaut. Then, learn how to use GraalVM Native Image to package and run the application as a native executable.</p>
+                    <p class="radio-text">Select how you would like to run this lab:</p>
+                    <div class="radio-container">
+                      <div class="radio-section">
+                        <input type="radio"
+                          data-link="https://luna.oracle.com/lab/f636d833-322c-4e76-8bc7-e81ce45677db" checked>
+                        <label class="radio-btn-text radio-lab" for="radio1">Run on an Oracle-owned tenancy (Luna
+                          Labs)<sup class="icon-container"><svg width="16" height="16" viewBox="0 0 12 12" fill="none"
+                              xmlns="http://www.w3.org/2000/svg">
+                              <path
+                                d="M5.31664 3.94993V3H6.68065V3.94993H5.31664ZM5.44655 9V5.57375L5 5.20027V4.70501H6.68065V9H5.44655Z"
+                                fill="#176AFF" />
+                              <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M6 11C8.76142 11 11 8.76142 11 6C11 3.23858 8.76142 1 6 1C3.23858 1 1 3.23858 1 6C1 8.76142 3.23858 11 6 11ZM6 12C9.31371 12 12 9.31371 12 6C12 2.68629 9.31371 0 6 0C2.68629 0 0 2.68629 0 6C0 9.31371 2.68629 12 6 12Z"
+                                fill="#176AFF" />
+                            </svg><span class="icon-tooltip">Dynamically creates resources in an Oracle-owned tenancy for
+                              you to use for free.</span></sup></label>
                       </div>
-                      <p class="guide-title">Oracle Cloud Infrastructure Monitoring (Metrics), Micronaut, Graal Cloud Native</p>
-                      <p class="guide-text">Learn how to build a Java application to publish metrics to Oracle Cloud Infrastructure Monitoring with Graal Cloud Native and Micronaut. Learn how to use GraalVM Native Image to package and run the application as a native executable.</p>
-                    </div>
-                  </div>
-                  <div>
-                    <a href="https://luna.oracle.com/lab/f636d833-322c-4e76-8bc7-e81ce45677db" target="_blank"
-                      class="btn btn-primary guides">Start the lab</a>
-                  </div>
+                    </div> 
                 </div>
+              </div>
+              <div>
+                <a href="https://luna.oracle.com/lab/f636d833-322c-4e76-8bc7-e81ce45677db" target="_blank"
+                  class="btn btn-primary guides">Start</a>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="container-fluid container-fluid--custom-sm">
-      <div class="row">
-        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-          <div class="row">
-            <div class="col-sm hol-box all guides-section-indent logging">
-                <div class="card card--hovered box">
+  <div class="container-fluid container-fluid--custom-sm">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row">
+          <div class="col-sm hol-box all guides-section-indent logging">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
                   <div class="row">
-                    <div class="col-12">
-                      <div class="row">
-                        <p class="guide-category-cloud">#oci</p>
-                        <p class="guide-category-module">#logging</p>
-                        <p class="guide-category-buildtool">#maven</p>
+                    <p class="guide-category-cloud">#oci</p>
+                    <p class="guide-category-module">#logging</p>
+                  </div>
+                  <p class="guide-title">Oracle Cloud Infrastructure Logging, Micronaut, Graal Cloud Native</p>
+                  <p class="guide-text">Learn how to create a Java application to send application logs to Oracle
+                    Cloud Infrastructure Logging using Graal Cloud Native and Micronaut. Then, learn how to use GraalVM Native Image to package and run the application as a native executable.</p>
+                    <p class="radio-text">Select how you would like to run this lab:</p>
+                    <div class="radio-container">
+                      <div class="radio-section">
+                        <input type="radio"
+                          data-link="https://luna.oracle.com/lab/1e1c7167-8e8e-43af-be05-1a3b8742d6a2" checked>
+                        <label class="radio-btn-text radio-lab" for="radio1">Run on an Oracle-owned tenancy (Luna
+                          Labs)<sup class="icon-container"><svg width="16" height="16" viewBox="0 0 12 12" fill="none"
+                              xmlns="http://www.w3.org/2000/svg">
+                              <path
+                                d="M5.31664 3.94993V3H6.68065V3.94993H5.31664ZM5.44655 9V5.57375L5 5.20027V4.70501H6.68065V9H5.44655Z"
+                                fill="#176AFF" />
+                              <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M6 11C8.76142 11 11 8.76142 11 6C11 3.23858 8.76142 1 6 1C3.23858 1 1 3.23858 1 6C1 8.76142 3.23858 11 6 11ZM6 12C9.31371 12 12 9.31371 12 6C12 2.68629 9.31371 0 6 0C2.68629 0 0 2.68629 0 6C0 9.31371 2.68629 12 6 12Z"
+                                fill="#176AFF" />
+                            </svg><span class="icon-tooltip">Dynamically creates resources in an Oracle-owned tenancy for
+                              you to use for free.</span></sup></label>
                       </div>
-                      <p class="guide-title">Oracle Cloud Infrastructure Logging, Micronaut, Graal Cloud Native</p>
-                      <p class="guide-text">Learn how to configure a Java application to send application logs to Oracle Cloud Infrastructure Logging using Graal Cloud Native and Micronaut. Learn how to use GraalVM Native Image to package and run the application as a native executable.</p>
-                    </div>
-                  </div>
-                  <div>
-                    <a href="https://luna.oracle.com/lab/1e1c7167-8e8e-43af-be05-1a3b8742d6a2" target="_blank"
-                      class="btn btn-primary guides">Start the lab</a>
-                  </div>
+                    </div> 
                 </div>
+              </div>
+              <div>
+                <a href="https://luna.oracle.com/lab/1e1c7167-8e8e-43af-be05-1a3b8742d6a2" target="_blank"
+                  class="btn btn-primary guides">Start</a>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
 </section>
-
       </main>
 
       
@@ -524,6 +673,7 @@
     <script src='/gcn/resources/js/ui.js'></script>
     <script src='/gcn/resources/js/filters.js'></script>
     <script src='/gcn/resources/js/sidebar.js'></script>
+    <script src='/gcn/resources/js/labs.js'></script>
     <script src='/gcn/resources/lib/highlight/highlight.min.js'></script> 
     <script>hljs.highlightAll();</script>
   </body>
