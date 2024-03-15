@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2024-01-26 11:18:40 +0000"/>
-  <meta name="last_built" content="2024-03-14 09:34:17 +0000"/>
+  <meta name="last_modified" content="2024-03-14 10:27:08 +0000"/>
+  <meta name="last_built" content="2024-03-15 16:45:18 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -442,10 +442,10 @@
 This extension will:</p>
 
 <ul>
-  <li>Create and configure an OCI DevOps project from a local Java project.</li>
-  <li>Trigger remote build and deployment pipelines from within VS Code.</li>
-  <li>Deploy built project containers to an Oracle Kubernetes Engine (OKE).</li>
-  <li>Audit Java projects’ third-party libraries for vulnerabilities.</li>
+  <li>Create and configure an OCI DevOps project from a local Java project</li>
+  <li>Trigger remote build and deployment pipelines from within VS Code</li>
+  <li>Deploy built project containers to an Oracle Kubernetes Engine (OKE)</li>
+  <li>Audit Java projects’ third-party libraries for vulnerabilities</li>
 </ul>
     
       <h3 id="supported-java-projects">
@@ -456,9 +456,9 @@ This extension will:</p>
         
       </h3>
 <ul>
-  <li><a href="https://micronaut.io">Micronaut</a><sup>®</sup>.</li>
-  <li><a href="https://www.graal.cloud/gcn/">Graal Cloud Native</a>.</li>
-  <li>SpringBoot (the GraalVM Native Support dependency must be enabled in the project).</li>
+  <li><a href="https://micronaut.io">Micronaut</a><sup>®</sup></li>
+  <li><a href="https://www.graal.cloud/gcn/">Graal Cloud Native</a></li>
+  <li>SpringBoot (the GraalVM Native Support dependency must be enabled in the project)</li>
 </ul>
     
       <h3 id="requirements">
@@ -472,7 +472,7 @@ This extension will:</p>
 <ul>
   <li><a href="https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack">Extension Pack for Java</a>.</li>
   <li><a href="https://marketplace.visualstudio.com/items?itemName=ms-kubernetes-tools.vscode-kubernetes-tools">Kubernetes</a>.</li>
-  <li><a href="https://www.graalvm.org/">GraalVM</a> 22.x, 23.0 Java 17, or higher.</li>
+  <li><a href="https://www.graalvm.org/">GraalVM for JDK 17</a>, or higher.</li>
   <li>Git version control system.</li>
   <li>A Docker-API compatible container runtime such as <a href="https://docs.rancherdesktop.io/getting-started/installation/">Rancher Desktop</a> or <a href="https://www.docker.io/gettingstarted/">Docker</a>.</li>
 </ul>
@@ -570,7 +570,7 @@ The extension also creates deployment pipelines that deploy these containers to 
         
       </h2>
 
-<p>The OCI DevOps Tools extension efficiently manages application configurations by creating a ConfigMap artifact within an OCI DevOps project. This artifact is essential for storing key configuration details and is automatically converted into a Kubernetes ConfigMap resource during the deployment pipeline execution. This process ensures that all necessary configuration data, including information about the OCI Vault and datasource, is seamlessly integrated and made available in the Kubernetes environment. For more insights into the OCI Vault and datasource configuration, refer to the <a href="/gcn/vscode-guides/creating-gcn-db-application-with-atp-connection/">following guide</a>.</p>
+<p>The OCI DevOps Tools extension efficiently manages application configurations by creating a ConfigMap artifact within an OCI DevOps project. This artifact is essential for storing key configuration details and is automatically converted into a Kubernetes ConfigMap resource during the deployment pipeline execution. This process ensures that all necessary configuration data, including information about the OCI Vault and datasource, is seamlessly integrated and made available in the Kubernetes environment. For more insights into the OCI Vault and datasource configuration, refer to <a href="/gcn/vscode-guides/creating-gcn-db-application-with-atp-connection/">Creating a Database Application and Connecting to an Oracle Autonomous Database</a>.</p>
     
       <h2 id="build-and-deploy-project-artifacts">
         
@@ -813,7 +813,7 @@ Learn more <a href="/gcn/vscode-guides/use-gcn-tools-on-vpn/">here</a>.</p>
   <li><a href="/gcn/vscode-guides/setting-oci-devops-pipeline-in-vscode/">Setting OCI DevOps Build and Development Pipeline in VS Code​</a></li>
   <li><a href="https://www.oracle.com/devops/devops-service/">OCI DevOps service</a></li>
   <li><a href="https://www.oracle.com/cloud/cloud-native/container-engine-kubernetes/">Oracle Container Engine for Kubernetes (OKE)</a></li>
-  <li><a href="creating-gcn-db-application-with-atp-connection">Creating a Database Application and Connecting to an Oracle Autonomous Database</a></li>
+  <li><a href="/gcn/vscode-guides/creating-gcn-db-application-with-atp-connection/">Creating a Database Application and Connecting to an Oracle Autonomous Database</a></li>
 </ul>
 
       </div>

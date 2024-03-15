@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2024-01-26 11:18:40 +0000"/>
-  <meta name="last_built" content="2024-03-14 09:34:17 +0000"/>
+  <meta name="last_modified" content="2024-03-15 16:31:25 +0000"/>
+  <meta name="last_built" content="2024-03-15 16:45:18 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -438,7 +438,8 @@
         
       </h1>
 
-<p>Micronaut Tools is a powerful extension for using <a href="https://www.oracle.com/java/graalvm/">GraalVM</a> to develop <a href="https://micronaut.io/">Micronaut framework</a> and <a href="https://graal.cloud/">Graal Cloud Native</a> applications within VS Code.</p>
+<p>Micronaut Tools is a powerful extension for using <a href="https://www.oracle.com/java/graalvm/">GraalVM</a> to develop <a href="https://micronaut.io/">Micronaut framework</a> and <a href="https://graal.cloud/">Graal Cloud Native</a> applications within VS Code.
+It provides additional features for application development such as database connection capabilities.</p>
 
 <ul>
   <li><a href="#debug-your-micronaut-application">Debug Your Micronaut Application</a></li>
@@ -485,11 +486,12 @@ VS Code will prompt you to install the extension when you open a Micronaut proje
 </ol>
 
 <p>The Micronaut Tools page opens as soon as the extension is installed.
-You can also find the extension listed on the <a href="https://marketplace.visualstudio.com/items?itemName=oracle-labs-graalvm.micronaut-tools">VS Code Marketplace</a>.</p>
+Notice the <strong>DATABASES</strong> view added to the Explorer Panel, providing the database connection features.</p>
+
+<p>You can also find the extension listed on the <a href="https://marketplace.visualstudio.com/items?itemName=oracle-labs-graalvm.micronaut-tools">VS Code Marketplace</a>.</p>
 
 <blockquote>
-  <p>Note: This extension is part of the <a href="https://marketplace.visualstudio.com/items?itemName=oracle-labs-graalvm.graal-cloud-native-pack">Graal Cloud Native Extensions Pack</a>.
-You are recommended to install the Graal Cloud Native Extensions Pack as it provides additional extensions for Micronaut development, including the <a href="https://marketplace.visualstudio.com/items?itemName=oracle-labs-graalvm.gcn-database-drivers">GCN Database Support</a> extension.</p>
+  <p>Note: This extension is part of the <a href="https://marketplace.visualstudio.com/items?itemName=oracle-labs-graalvm.graal-cloud-native-pack">Graal Cloud Native Extensions Pack</a>.</p>
 </blockquote>
     
       <h2 id="usage">
@@ -786,7 +788,6 @@ For more information about using the OCI DevOps Tools, see <a href="/gcn/vscode-
 <p><strong>Prerequisites:</strong></p>
 <ul>
   <li>An Oracle Cloud Infrastructure (OCI) account.</li>
-  <li>The <a href="https://marketplace.visualstudio.com/items?itemName=oracle-labs-graalvm.gcn-database-drivers">Database Features</a> extension (part of the <a href="https://marketplace.visualstudio.com/items?itemName=oracle-labs-graalvm.graal-cloud-native-pack">Graal Cloud Native Extension Pack</a>). (This adds a <strong>DATABASES</strong> view to the Explorer Panel.)</li>
 </ul>
 
 <p>To create a new connection to an Oracle Autonomous Database, follow the steps below:</p>
@@ -963,7 +964,6 @@ The relevant setting (in JSON format) is <code>micronaut-tools.buildsystemExecut
   <li><a href="https://micronaut.io/">Micronaut Framework</a></li>
   <li><a href="https://www.graalvm.org/">GraalVM Native Image</a></li>
   <li><a href="https://marketplace.visualstudio.com/items?itemName=oracle-labs-graalvm.oci-devops">OCI DevOps Tools</a></li>
-  <li><a href="https://marketplace.visualstudio.com/items?itemName=oracle-labs-graalvm.gcn-database-drivers">Database Features</a></li>
 </ul>
 
       </div>

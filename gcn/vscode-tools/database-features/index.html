@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2023-11-17 16:50:37 +0000"/>
-  <meta name="last_built" content="2024-03-14 09:34:17 +0000"/>
+  <meta name="last_modified" content="2024-03-15 16:31:25 +0000"/>
+  <meta name="last_built" content="2024-03-15 16:45:18 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -438,27 +438,20 @@
         
       </h1>
 
-<p>The Database Features extention provides the JDBC drivers that are supported by the Graal Cloud Native Tools and used by Apache NetBeans Language Server. 
-The extension provides drivers for <a href="https://www.oracle.com/autonomous-database/">Oracle Autonomous</a>, MySQL, and Postgres databases.</p>
+<p>The Database connection features are available in VS Code as part of the <a href="/gcn/vscode-tools/micronaut-tools/">Micronaut Tools extension</a>.
+The extension provides the drivers that are supported by Graal Cloud Native Tools and used by Apache NetBeans Language Server, such as <a href="https://www.oracle.com/autonomous-database/">Oracle Autonomous Database</a>, MySQL, and Postgres database drivers.</p>
     
-      <h2 id="extension-installation">
+      <h3 id="prerequisite">
         
         
-          Extension Installation <a href="#extension-installation" class="anchor_heading">#</a>
+          Prerequisite <a href="#prerequisite" class="anchor_heading">#</a>
         
         
-      </h2>
+      </h3>
 
-<blockquote>
-  <p>Note: This extension is part of the <a href="https://marketplace.visualstudio.com/items?itemName=oracle-labs-graalvm.graal-cloud-native-pack">Graal Cloud Native Extension Pack</a>. We recommend you to install the Graal Cloud Native Extension Pack as it provides additional features for the Graal Cloud Native applications and Micronaut development.</p>
-</blockquote>
-
-<ol>
-  <li>Navigate to Extensions in the left-hand side Activity Bar.</li>
-  <li>Search for “Graal Cloud Native Extension Pack” in the search field.</li>
-  <li>Once found, click <strong>Install</strong>. It installs the extension from the <a href="https://marketplace.visualstudio.com/items?itemName=oracle-labs-graalvm.gcn-database-drivers">VS Code Marketplace</a>.</li>
-  <li>Reload when required.</li>
-</ol>
+<ul>
+  <li>The <a href="/gcn/vscode-tools/micronaut-tools/">Micronaut Tools extension</a>.</li>
+</ul>
     
       <h2 id="usage">
         
@@ -468,7 +461,7 @@ The extension provides drivers for <a href="https://www.oracle.com/autonomous-da
         
       </h2>
 
-<p>Once the installation is completed and the required extensions are activated, the <strong>DATABASES</strong> view appears in the VS Code Explorer panel:</p>
+<p>Once the Micronaut Tools extension is installed, the <strong>DATABASES</strong> view appears in the VS Code Explorer panel:</p>
 
 <p><img src="/gcn/docs/vscode-tools/images/db-features/databases-panel.png" alt="DATABASES panel" /></p>
 
@@ -736,7 +729,7 @@ This allows to run the application seamlessly against a database configured for 
       </h3>
 
 <ul>
-  <li><a href="https://www.oracle.com/uk/autonomous-database/what-is-autonomous-database/">Oracle Autonomous Database</a></li>
+  <li><a href="https://marketplace.visualstudio.com/items?itemName=oracle-labs-graalvm.micronaut">Micronaut Tools</a></li>
   <li><a href="/gcn/vscode-guides/creating-gcn-db-application-with-atp-connection/">Creating a GCN Database Application and Connecting to an Oracle Autonomous Database</a></li>
 </ul>
 
