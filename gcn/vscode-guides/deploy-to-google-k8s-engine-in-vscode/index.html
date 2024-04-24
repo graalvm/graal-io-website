@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2024-01-26 11:18:40 +0000"/>
-  <meta name="last_built" content="2024-03-15 16:45:18 +0000"/>
+  <meta name="last_modified" content="2024-04-23 09:15:45 +0000"/>
+  <meta name="last_built" content="2024-04-24 15:11:43 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -460,11 +460,11 @@
         
       </h1>
 
-<p>This guide shows you how to create a Java application, containerize, and deploy it to <a href="https://cloud.google.com/kubernetes-engine">Google Kubernetes Engine (GKE)</a> from within VS Code, using the <a href="https://marketplace.visualstudio.com/items?itemName=oracle-labs-graalvm.gcn">Graal Cloud Native Tools</a>. 
-The <a href="https://micronaut-projects.github.io/micronaut-kubernetes/snapshot/guide/">Micronaut Kubernetes module</a> provides seamless integration with GKE.</p>
+<p>This guide shows you how to create a Java application, containerize, and deploy it to <a href="https://cloud.google.com/kubernetes-engine">Google Kubernetes Engine (GKE)</a> from within VS Code, using the <a href="https://marketplace.visualstudio.com/items?itemName=oracle-labs-graalvm.gcn">Graal Cloud Native Tools</a>.
+The <a href="https://micronaut-projects.github.io/micronaut-kubernetes/latest/guide/">Micronaut Kubernetes module</a> provides seamless integration with GKE.</p>
 
 <blockquote>
-  <p><a href="https://cloud.google.com/kubernetes-engine">Google Kubernetes Engine (GKE)</a> is managed Kubernetes service with full Kubernetes API, four-way autoscaling, release channels, and multi-cluster support.</p>
+  <p><a href="https://cloud.google.com/kubernetes-engine">Google Kubernetes Engine (GKE)</a> is managed Kubernetes service with full Kubernetes API, four-way autoscaling, release channels, and multicluster support.</p>
 </blockquote>
     
       <h3 id="prerequisites">
@@ -615,9 +615,9 @@ The <a href="https://micronaut-projects.github.io/micronaut-kubernetes/snapshot/
   <li>
     <p>Add the IAM policy binding using the Google Cloud CLI:</p>
 
-    <pre><code class="language-bash"> gcloud artifacts repositories add-iam-policy-binding 
+    <pre><code class="language-bash"> gcloud artifacts repositories add-iam-policy-binding
  &lt;repoName&gt; --location=&lt;regionName&gt;
- --member=serviceAccount:&lt;PROJECT_NUMBER&gt;&lt;-compute@developer.gserviceaccount.com&gt;  
+ --member=serviceAccount:&lt;PROJECT_NUMBER&gt;&lt;-compute@developer.gserviceaccount.com&gt;
  --role="roles/artifactregistry.reader"
 </code></pre>
   </li>
@@ -701,7 +701,7 @@ The <a href="https://micronaut-projects.github.io/micronaut-kubernetes/snapshot/
   <li>
     <p>Then create a Horizontal Pod Autoscaler resource for your deployment:</p>
 
-    <pre><code class="language-bash">kubectl autoscale deployment &lt;deploymentName&gt; --cpu-percent=80 --min=1 --max=5
+    <pre><code class="language-bash"> kubectl autoscale deployment &lt;deploymentName&gt; --cpu-percent=80 --min=1 --max=5
 </code></pre>
   </li>
   <li>
@@ -752,7 +752,7 @@ The <a href="https://micronaut-projects.github.io/micronaut-kubernetes/snapshot/
       </h3>
 
 <ul>
-  <li><a href="https://micronaut-projects.github.io/micronaut-kubernetes/snapshot/guide/">Micronaut Kubernetes module</a></li>
+  <li><a href="https://micronaut-projects.github.io/micronaut-kubernetes/latest/guide/">Micronaut Kubernetes module</a></li>
   <li><a href="https://cloud.google.com/kubernetes-engine">Google Kubernetes Engine (GKE)</a></li>
   <li><a href="https://marketplace.visualstudio.com/items?itemName=oracle-labs-graalvm.gcn">Graal Cloud Native Tools</a></li>
 </ul>
@@ -829,7 +829,7 @@ The <a href="https://micronaut-projects.github.io/micronaut-kubernetes/snapshot/
               <p class="copyright">
                 Copyright © 2023-2024, Oracle and/or its affiliates. All rights reserved.
                 Oracle and Java are registered trademarks of Oracle and/or its affiliates.
-                Other names may be trademarks of their respective owners. 
+                Other names may be trademarks of their respective owners.
               </p>
               <div id="teconsent"></div>
             </div>

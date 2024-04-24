@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2024-01-31 16:07:29 +0000"/>
-  <meta name="last_built" content="2024-03-15 16:45:18 +0000"/>
+  <meta name="last_modified" content="2024-04-21 23:13:02 +0000"/>
+  <meta name="last_built" content="2024-04-24 15:11:43 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -323,7 +323,7 @@ This guide describes how to create a [Micronaut](https://micronaut.io/)&reg; app
 
 2. Create a new project using the following selections. (Alternatively, use these shortcuts for [Maven](../../../launcher/?advanced=true&type=APPLICATION&name=gcn-quick-start&package=com.example&clouds=AWS%7COCI&language=JAVA&buildTool=MAVEN&test=JUNIT&java-version=JDK_17&sample-code=true&services=OBJECTSTORE) or [Gradle](../../../gcn-launcher/?advanced=true&type=APPLICATION&name=gcn-quick-start&package=com.example&clouds=AWS%7COCI&language=JAVA&buildTool=GRADLE&test=JUNIT&java-version=JDK_17&sample-code=true&services=OBJECTSTORE).)
     * **Project Type**: _Application_ (Default)
-    * **Project name**: _gcn-quick-start_
+    * **Project Name**: _gcn-quick-start_
     * **Base Package**: _com.example_ (Default)
     * **Clouds**: _AWS_ **and** _OCI_
     * **Language**: _Java_ (Default)
@@ -385,7 +385,7 @@ The GCN Launcher creates the following files:
   </div>
 </div>
 
-The [`ProfilePicturesApi`](src/ProfilePicturesApi.java) interface and the [`ProfilePicturesController`](src/ProfilePicturesController.java) class use the Micronaut Object Storage API to create, read, and delete objects in the major cloud providers​:
+The [`ProfilePicturesApi`](src/ProfilePicturesApi.java) interface and the [`ProfilePicturesController`](src/ProfilePicturesController.java) class use the Micronaut Object Storage API to create, read, and delete objects in the major cloud providers:
 
 * Amazon S3
 * Azure Blob Storage
@@ -807,7 +807,7 @@ This guide demonstrated how to create a [Micronaut](https://micronaut.io/) appli
               <p class="copyright">
                 Copyright © 2023-2024, Oracle and/or its affiliates. All rights reserved.
                 Oracle and Java are registered trademarks of Oracle and/or its affiliates.
-                Other names may be trademarks of their respective owners. 
+                Other names may be trademarks of their respective owners.
               </p>
               <div id="teconsent"></div>
             </div>

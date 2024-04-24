@@ -1,4 +1,4 @@
-Sending a message to the streaming service is as simple as injecting `AnalyticsClient` and calling its `updateAnalytics` method. 
+Sending a message to the streaming service is as simple as injecting `AnalyticsClient` and calling its `updateAnalytics` method.
 The goal is to send a message every time the details of a book are returned from the _Books_ microservice or, in other words, every time there is a call to `http://localhost:8080/books/{isbn}`.
 To achieve this, the GCN Launcher created an [Http Server Filter](https://docs.micronaut.io/4.2.1/guide/#filters) in a file named _lib/src/main/java/com/example/publisher/AnalyticsFilter.java_ as follows:
 

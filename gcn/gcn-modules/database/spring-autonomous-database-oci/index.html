@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2024-01-31 16:07:30 +0000"/>
-  <meta name="last_built" content="2024-03-15 16:45:18 +0000"/>
+  <meta name="last_modified" content="2024-04-23 09:15:45 +0000"/>
+  <meta name="last_built" content="2024-04-24 15:11:43 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -369,7 +369,7 @@
   <p><a href="https://docs.oracle.com/iaas/Content/Database/Concepts/adboverview.htm" target="_blank">Oracle Cloud Infrastructure Autonomous Database</a> is a fully automated database service that makes it easy for all organizations to develop and deploy application workloads regardless of complexity, scale, or criticality. All Oracle Cloud Infrastructure accounts (whether free or paid) get two Always Free Oracle Autonomous Databases. You can use these databases for transaction processing, data warehousing, Oracle APEX application development, or JSON-based application development. For current regional availability, see the <strong>Always Free Cloud Services</strong> table in <a href="https://www.oracle.com/cloud/data-regions.html" target="_blank">Cloud Regions—Infrastructure and Platform Services</a>.</p>
 </blockquote>
 
-<p><a href="https://micronaut-projects.github.io/micronaut-data/latest/guide/" target="_blank">Micronaut Data</a> is a database access toolkit that uses ahead-of-time compilation to pre-compute queries for repository interfaces that are then executed by a thin, lightweight runtime layer. Micronaut Data supports the following backends: JPA (Hibernate) and Hibernate Reactive; SQL (JDBC, R2DBC); and MongoDB.</p>
+<p><a href="https://micronaut-projects.github.io/micronaut-data/latest/guide/" target="_blank">Micronaut Data</a> is a database access toolkit that uses ahead-of-time compilation to precompute queries for repository interfaces that are then executed by a thin, lightweight runtime layer. Micronaut Data supports the following backends: JPA (Hibernate) and Hibernate Reactive; SQL (JDBC, R2DBC); and MongoDB.</p>
     
       <h3 id="prerequisites">
         
@@ -390,18 +390,18 @@
 <p>Follow the steps below to create the application from scratch. However, you can also download the completed example:</p>
 
 <div id="tabs-doc1">
-    <ul>
-        <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
-        <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
-    </ul>
-    <div id="gradle">
-        <p><a href="/gcn/docs/gcn-modules/database/archives/spring-boot-oci-adb-demo-java-gradle.zip">Gradle Oracle Cloud Infrastructure Autonomous Database Spring Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" /></a>
-        </p>
-    </div>
-    <div id="maven">
-        <p><a href="/gcn/docs/gcn-modules/database/archives/spring-boot-oci-adb-demo-java-maven.zip">Maven Oracle Cloud Infrastructure Autonomous Database Spring Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" /></a>
-        </p>
-    </div>
+  <ul>
+    <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
+    <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
+  </ul>
+  <div id="gradle">
+    <p><a href="https://github.com/oracle/gcn/releases/download/4.3.7.2/4.3.7.2_database_spring-boot-oci-adb-demo-java-gradle.zip">Gradle Oracle Cloud Infrastructure Autonomous Database Spring Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" /></a>
+    </p>
+  </div>
+  <div id="maven">
+    <p><a href="https://github.com/oracle/gcn/releases/download/4.3.7.2/4.3.7.2_database_spring-boot-oci-adb-demo-java-maven.zip">Maven Oracle Cloud Infrastructure Autonomous Database Spring Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" /></a>
+    </p>
+  </div>
 </div>
     
       <h4 id="a-note-regarding-your-development-environment">
@@ -464,7 +464,7 @@
         <p><em>build.gradle</em></p>
         <p>Add the Oracle Public Repository to the <code>repositories</code> block:</p>
         <pre><code>maven { url "https://maven.oracle.com/public" }</code></pre>
-        <p>Add the following dependencies:</p> 
+        <p>Add the following dependencies:</p>
     <pre><code class="language-java">implementation enforcedPlatform("cloud.graal.gcn:gcn-bom:4.2.1.2")
 implementation platform("io.micronaut.platform:micronaut-platform:4.2.1-oracle-00001")
 annotationProcessor platform('io.micronaut.platform:micronaut-platform:4.2.1-oracle-00001')
@@ -837,7 +837,7 @@ class GenreController {
     protected URI location(Long id) {
         return URI.create("/genres/" + id);
     }
-    
+
 }
 </code></pre>
 
@@ -1045,7 +1045,7 @@ public class GenreControllerTest {
 
 <p>To create the database schema, use Flyway. Micronaut <a href="https://micronaut-projects.github.io/micronaut-flyway/latest/guide/">integrates with Flyway</a> to automate schema changes, significantly simplify schema management tasks, such as migrating, rolling back, and reproducing in multiple environments.</p>
 
-<p>Configure Flyway to perform migrations on the default datasources. 
+<p>Configure Flyway to perform migrations on the default datasources.
 Add the following to the <em>src/main/resources/application.properties</em> file:</p>
 
 <pre><code class="language-xml">flyway.datasources.default.enabled=true
@@ -1328,7 +1328,7 @@ curl -i http://localhost:8080/genres/list
               <p class="copyright">
                 Copyright © 2023-2024, Oracle and/or its affiliates. All rights reserved.
                 Oracle and Java are registered trademarks of Oracle and/or its affiliates.
-                Other names may be trademarks of their respective owners. 
+                Other names may be trademarks of their respective owners.
               </p>
               <div id="teconsent"></div>
             </div>

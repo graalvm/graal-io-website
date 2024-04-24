@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2024-03-12 11:03:10 +0000"/>
-  <meta name="last_built" content="2024-03-15 16:45:18 +0000"/>
+  <meta name="last_modified" content="2024-04-22 15:10:06 +0000"/>
+  <meta name="last_built" content="2024-04-24 15:11:43 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -382,19 +382,18 @@
 <p>Create the application from scratch. However, you can also download the completed example in Java:</p>
 
 <div id="tabs-doc1">
-    <ul>
-        <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
-        <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
-    </ul>
-    <div id="gradle">
-        <p><a href="/gcn/docs/gcn-modules/email/archives/email-demo-java-gradle.zip">Gradle Email Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" />
-        </a>
-        </p>
-    </div>
-    <div id="maven">
-        <p><a href="/gcn/docs/gcn-modules/email/archives/email-demo-java-maven.zip">Maven Email Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" /></a>
-        </p>
-    </div>
+  <ul>
+    <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
+    <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
+  </ul>
+  <div id="gradle">
+    <p><a href="https://github.com/oracle/gcn/releases/download/4.3.7.2/4.3.7.2_email_email-demo-java-gradle.zip">Gradle Email Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" /></a>
+    </p>
+  </div>
+  <div id="maven">
+    <p><a href="https://github.com/oracle/gcn/releases/download/4.3.7.2/4.3.7.2_email_email-demo-java-maven.zip">Maven Email Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" /></a>
+    </p>
+  </div>
 </div>
     
       <h4 id="a-note-regarding-your-development-environment">
@@ -460,6 +459,7 @@
     --services=email \
     --features=graalvm \
     --build=gradle \
+    --jdk=17 \
     --lang=java</code></pre>
     </div>
     <div id="maven">
@@ -467,6 +467,7 @@
     --services=email \
     --features=graalvm \
     --build=maven \
+    --jdk=17 \
     --lang=java</code></pre>
     </div>
 </div>
@@ -706,10 +707,23 @@ public class EmailControllerTest {
 
 <p>Set environment variables using the following commands:</p>
 
-<pre><code class="language-bash">export FROM_NAME='GCN EMAIL'
+<div class="tabs-doc" data-name="system">
+    <div data-value="linux" data-label="Linux &amp; macOS">
+      <pre><code class="language-bash">export FROM_NAME='GCN EMAIL'
 export FROM_EMAIL=&lt;email@gmail.com&gt;
-export FROM_PASSWORD=&lt;password or app password&gt;
-</code></pre>
+export FROM_PASSWORD=&lt;password or app password&gt;</code></pre>
+   </div>
+   <div data-value="windows" data-label="Windows">
+      <pre><code class="language-bash">set FROM_NAME='GCN EMAIL'
+set FROM_EMAIL=&lt;email@gmail.com&gt;
+set FROM_PASSWORD=&lt;password or app password&gt;</code></pre>
+   </div>
+   <div data-value="windows-powershell" data-label="Windows PowerShell">
+      <pre><code class="language-bash">$ENV:FROM_NAME = "GCN EMAIL"
+$ENV:FROM_EMAIL = "&lt;email@gmail.com&gt;"
+$ENV:FROM_PASSWORD = "&lt;password or app password&gt;"</code></pre>
+   </div>
+</div>
 
 <p>If you have 2-Step-Verification, you must use a “App Password”. If you do not already have one, follow these steps:</p>
 <ol>
@@ -897,7 +911,7 @@ export FROM_PASSWORD=&lt;password or app password&gt;
               <p class="copyright">
                 Copyright © 2023-2024, Oracle and/or its affiliates. All rights reserved.
                 Oracle and Java are registered trademarks of Oracle and/or its affiliates.
-                Other names may be trademarks of their respective owners. 
+                Other names may be trademarks of their respective owners.
               </p>
               <div id="teconsent"></div>
             </div>

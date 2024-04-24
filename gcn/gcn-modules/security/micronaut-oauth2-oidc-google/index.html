@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2024-01-31 16:07:30 +0000"/>
-  <meta name="last_built" content="2024-03-15 16:45:18 +0000"/>
+  <meta name="last_modified" content="2024-04-23 09:15:45 +0000"/>
+  <meta name="last_built" content="2024-04-24 15:11:43 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -383,19 +383,18 @@ Google provides OAuth 2.0 APIs for both authentication and authorization, which 
 <p>Follow the steps below to create the application from scratch. However, you can also download the completed example in Java:</p>
 
 <div id="tabs-doc1">
-    <ul>
-        <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
-        <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
-    </ul>
-    <div id="gradle">
-        <p><a href="/gcn/docs/gcn-modules/security/archives/gcp-security-demo-java-gradle.zip">Gradle GCP Security Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" />
-        </a>
-        </p>
-    </div>
-    <div id="maven">
-        <p><a href="/gcn/docs/gcn-modules/security/archives/gcp-security-demo-java-maven.zip">Maven GCP Security Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" /></a>
-        </p>
-    </div>
+  <ul>
+    <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
+    <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
+  </ul>
+  <div id="gradle">
+    <p><a href="https://github.com/oracle/gcn/releases/download/4.3.7.2/4.3.7.2_security_gcp-security-demo-java-gradle.zip">Gradle GCP Security Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" /></a>
+    </p>
+  </div>
+  <div id="maven">
+    <p><a href="https://github.com/oracle/gcn/releases/download/4.3.7.2/4.3.7.2_security_gcp-security-demo-java-maven.zip">Maven GCP Security Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" /></a>
+    </p>
+  </div>
 </div>
     
       <h4 id="a-note-regarding-your-development-environment">
@@ -449,7 +448,7 @@ Google provides OAuth 2.0 APIs for both authentication and authorization, which 
   <li>Click <strong>Generate Project</strong>, then click <strong>Download Zip</strong>. The GCN Launcher creates an application with the default package <code>com.example</code> in a directory named <em>gcp-security-demo</em>. The application ZIP file will be downloaded in your default downloads directory. Unzip it, open in your code editor, and proceed to the next steps.</li>
 </ol>
 
-<p>Alternatively, use the GCN CLI as follows:</p>
+<p>Alternatively, use the <a href="/gcn/get-started/using-gcn-cli/">GCN CLI</a> as follows:</p>
 
 <div id="tabs-doc2">
     <ul>
@@ -462,6 +461,7 @@ Google provides OAuth 2.0 APIs for both authentication and authorization, which 
     --services=security \
     --features=graalvm \
     --build=gradle \
+    --jdk=17 \
     --lang=java</code></pre>
     </div>
     <div id="maven">
@@ -470,6 +470,7 @@ Google provides OAuth 2.0 APIs for both authentication and authorization, which 
     --services=security \
     --features=graalvm \
     --build=maven \
+    --jdk=17 \
     --lang=java</code></pre>
     </div>
 </div>
@@ -591,7 +592,7 @@ class AuthController {
     <p>Go to the <a href="https://console.developers.google.com">Google Console</a> and create a new project named “gcn-guides”:</p>
   </li>
   <li>
-    <p>Create OAuth 2.0 credentials for the project, because Google does not do that automatically. 
+    <p>Create OAuth 2.0 credentials for the project, because Google does not do that automatically.
  From the sidebar, open the navigation menu, then under <strong>APIs &amp; Services</strong> click <strong>Credentials</strong>:</p>
 
     <p><img src="/gcn/docs/gcn-modules/security/images/gcp/google-02.png" alt="Select Credentials" />
@@ -644,7 +645,7 @@ class AuthController {
 <br /></p>
   </li>
   <li>
-    <p>Select “Web application” as the <strong>Application Type</strong> and enter a name for the client, for example, “GCN Guide Client”. 
+    <p>Select “Web application” as the <strong>Application Type</strong> and enter a name for the client, for example, “GCN Guide Client”.
 Under <strong>Authorized redirect URIs</strong> click <strong>ADD URI</strong> and enter <code>http://localhost:8080/oauth/callback/gcn</code>.
 Finally, click <strong>Create</strong>:</p>
   </li>
@@ -663,7 +664,7 @@ Finally, click <strong>Create</strong>:</p>
         
       </h3>
 
-<p>The initial security configuration was generated in the file named <em>gcp/src/main/resources/application-gcp.properties</em>:</p>
+<p>The initial security configuration was generated in the file named <em>gcp/src/main/resources/application.properties</em>:</p>
 
 <pre><code>micronaut.application.name=gcp
 # &lt;1&gt;
@@ -679,9 +680,9 @@ micronaut.security.oauth2.clients.gcn.client-secret=${OAUTH_CLIENT_SECRET\:yyy}
 micronaut.security.oauth2.clients.gcn.openid.issuer=https\://accounts.google.com
 </code></pre>
 
-<p><strong>1</strong> Set <code>micronaut.security.authentication</code> as <code>idtoken</code>. 
-The <code>idtoken</code> provided by Google when the OAuth 2.0 Authorization code flow ends will be saved in a cookie. 
-The token is a signed JSON Web Token (JWT). 
+<p><strong>1</strong> Set <code>micronaut.security.authentication</code> as <code>idtoken</code>.
+The <code>idtoken</code> provided by Google when the OAuth 2.0 Authorization code flow ends will be saved in a cookie.
+The token is a signed JSON Web Token (JWT).
 For every request, the Micronaut framework extracts the JWT from the cookie and validates the JWT signature with the remote JSON Web Key Set (JWKS) exposed by Google.
 The JWKS is exposed by the <code>jws-uri</code> entry of Google <code>.well-known/openid-configuration</code>.</p>
 
@@ -726,7 +727,8 @@ export OAUTH_CLIENT_SECRET=YYYYYYYYYY
         <pre><code class="language-bash">./gradlew :gcp:run</code></pre>
     </div>
     <div id="maven">
-        <pre><code class="language-bash">./mvnw install -pl lib -am &amp;&amp; ./mvnw mn:run -pl gcp</code></pre>
+        <pre><code class="language-bash">./mvnw install -pl lib -am
+./mvnw mn:graalvm-resources mn:run -pl gcp</code></pre>
     </div>
 </div>
 
@@ -767,7 +769,8 @@ Packaged as a native executable, it significantly reduces application startup ti
     <pre><code class="language-bash">gcp/build/native/nativeCompile/gcp</code></pre>
   </div>
   <div id="maven">
-    <pre><code class="language-bash">./mvnw install -pl lib -am &amp;&amp; ./mvnw package -pl gcp -Dpackaging=native-image</code></pre>
+    <pre><code class="language-bash">./mvnw install -pl lib -am
+./mvnw mn:graalvm-resources package -pl gcp -Dpackaging=native-image</code></pre>
     <p>The native executable is created in the <em>gcp/target/</em> directory and can be run with the following command:</p>
     <pre><code class="language-bash">gcp/target/gcp</code></pre>
   </div>
@@ -938,7 +941,7 @@ Packaged as a native executable, it significantly reduces application startup ti
               <p class="copyright">
                 Copyright © 2023-2024, Oracle and/or its affiliates. All rights reserved.
                 Oracle and Java are registered trademarks of Oracle and/or its affiliates.
-                Other names may be trademarks of their respective owners. 
+                Other names may be trademarks of their respective owners.
               </p>
               <div id="teconsent"></div>
             </div>

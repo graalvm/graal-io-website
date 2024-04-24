@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2024-01-26 11:18:57 +0000"/>
-  <meta name="last_built" content="2024-03-15 16:45:18 +0000"/>
+  <meta name="last_modified" content="2024-04-23 15:26:14 +0000"/>
+  <meta name="last_built" content="2024-04-24 15:11:43 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -388,19 +388,18 @@
 <p>Follow the steps below to create the application from scratch. However, you can also download the completed example:</p>
 
 <div id="tabs-doc1">
-    <ul>
-        <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
-        <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
-    </ul>
-    <div id="gradle">
-        <p><a href="/gcn/docs/gcn-modules/streaming/archives/oci-streaming-demo-java-gradle.zip">Gradle Oracle Cloud Infrastructure Streaming Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" />
-        </a>
-        </p>
-    </div>
-    <div id="maven">
-        <p><a href="/gcn/docs/gcn-modules/streaming/archives/oci-streaming-demo-java-maven.zip">Maven Oracle Cloud Infrastructure Streaming Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" /></a>
-        </p>
-    </div>
+  <ul>
+    <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
+    <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
+  </ul>
+  <div id="gradle">
+    <p><a href="https://github.com/oracle/gcn/releases/download/4.3.7.2/4.3.7.2_streaming_oci-streaming-demo-java-gradle.zip">Gradle Oracle Cloud Infrastructure Streaming Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" /></a>
+    </p>
+  </div>
+  <div id="maven">
+    <p><a href="https://github.com/oracle/gcn/releases/download/4.3.7.2/4.3.7.2_streaming_oci-streaming-demo-java-maven.zip">Maven Oracle Cloud Infrastructure Streaming Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" /></a>
+    </p>
+  </div>
 </div>
     
       <h4 id="a-note-regarding-your-development-environment">
@@ -449,7 +448,7 @@
   <li>Create a new project using the following selections.
     <ul>
       <li><strong>Project Type</strong>: <em>Application</em> (Default)</li>
-      <li><strong>Project name</strong>: <em>books</em></li>
+      <li><strong>Project Name</strong>: <em>books</em></li>
       <li><strong>Base Package</strong>: <em>com.example.publisher</em></li>
       <li><strong>Clouds</strong>: <em>OCI</em></li>
       <li><strong>Language</strong>: <em>Java</em> (Default)</li>
@@ -482,6 +481,7 @@
     --services=streaming \
     --features=awaitility,graalvm,reactor,serialization-jackson \
     --build=gradle \
+    --jdk=17 \
     --lang=java \
     --example-code=false</code></pre>
   </div>
@@ -491,6 +491,7 @@
     --services=streaming \
     --features=awaitility,graalvm,reactor,serialization-jackson \
     --build=maven \
+    --jdk=17 \
     --lang=java \
     --example-code=false</code></pre>
   </div>
@@ -685,7 +686,7 @@ public interface AnalyticsClient {
         
       </h4>
 
-<p>Sending a message to the streaming service is as simple as injecting <code>AnalyticsClient</code> and calling its <code>updateAnalytics</code> method. 
+<p>Sending a message to the streaming service is as simple as injecting <code>AnalyticsClient</code> and calling its <code>updateAnalytics</code> method.
 The goal is to send a message every time the details of a book are returned from the <em>Books</em> microservice or, in other words, every time there is a call to <code>http://localhost:8080/books/{isbn}</code>.
 To achieve this, the GCN Launcher created an <a href="https://docs.micronaut.io/4.2.1/guide/#filters">Http Server Filter</a> in a file named <em>lib/src/main/java/com/example/publisher/AnalyticsFilter.java</em> as follows:</p>
 
@@ -753,7 +754,7 @@ class AnalyticsFilter implements HttpServerFilter { // &lt;2&gt;
   <li>Create a new project using the following selections.
     <ul>
       <li><strong>Project Type</strong>: <em>Application</em> (Default)</li>
-      <li><strong>Project name</strong>: <em>analytics</em></li>
+      <li><strong>Project Name</strong>: <em>analytics</em></li>
       <li><strong>Base Package</strong>: <em>com.example.consumer</em></li>
       <li><strong>Clouds</strong>: <em>OCI</em></li>
       <li><strong>Language</strong>: <em>Java</em> (Default)</li>
@@ -786,6 +787,7 @@ class AnalyticsFilter implements HttpServerFilter { // &lt;2&gt;
     --services=streaming \
     --features=awaitility,graalvm,serialization-jackson \
     --build=gradle \
+    --jdk=17 \
     --lang=java \
     --example-code=false</code></pre>
   </div>
@@ -795,6 +797,7 @@ class AnalyticsFilter implements HttpServerFilter { // &lt;2&gt;
     --services=streaming \
     --features=awaitility,graalvm,serialization-jackson \
     --build=maven \
+    --jdk=17 \
     --lang=java \
     --example-code=false</code></pre>
   </div>
@@ -1029,10 +1032,9 @@ class AnalyticsListener {
         
       </h4>
 
-<p>The <em>Books</em> and <em>Analytics</em> microservices are both run on your local machine, so they must run on different ports. Change the port that <em>Analytics</em> runs on by editing its <em>oci/src/main/resources/application-oraclecloud.properties</em> file so that it has the following contents:</p>
+<p>The <em>Books</em> and <em>Analytics</em> microservices are both run on your local machine, so they must run on different ports. Change the port that <em>Analytics</em> runs on by editing its <em>oci/src/main/resources/application.properties</em> to include the following configuration:</p>
 
-<pre><code>micronaut.application.name=oci
-micronaut.server.port=8081
+<pre><code>micronaut.server.port=8081
 </code></pre>
     
       <h2 id="2-use-streams-with-micronaut">
@@ -1048,11 +1050,9 @@ The GCN Launcher added the appropriate dependencies to your build file when you 
 
 <p>The Micronaut application configuration file contains the properties to authenticate your microservices against Oracle Cloud Infrastructure.</p>
 
-<p>Modify the file named <em>oci/src/main/resources/application-oraclecloud.properties</em> for each microservice so that its contents match the following:</p>
+<p>Modify the file named <em>oci/src/main/resources/application-oraclecloud.properties</em> for each microservice to include the following:</p>
 
-<pre><code>...
-oci.config.profile=${OCI_PROFILE}
-...
+<pre><code>oci.config.profile=${OCI_PROFILE}
 </code></pre>
     
       <h2 id="3-set-up-oracle-cloud-infrastructure-resources">
@@ -1065,18 +1065,10 @@ oci.config.profile=${OCI_PROFILE}
 
 <p>Each microservice’s <em>oci/src/main/resources/application-oraclecloud.properties</em> file relies on the values of environment variables to provide connection details. For example, the <em>Books</em> microservice has the following contents:</p>
 
-<pre><code>micronaut.application.name=oci
-micronaut.server.port=8080
-oci.config.profile=${OCI_PROFILE}
-netty.default.allocator.max-order=3
+<pre><code>oci.config.profile=${OCI_PROFILE}
 kafka.bootstrap.servers=${OCI_STREAM_POOL_FQDN}:9092
-kafka.max.partition.fetch.bytes=1048576
-kafka.max.request.size=1048576
-kafka.retries=3
 kafka.sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required username="${OCI_TENANCY_NAME}/${OCI_USERNAME}/${OCI_STREAM_POOL_OCID}" password="${OCI_AUTH_TOKEN}";
-kafka.sasl.mechanism=PLAIN
 kafka.security.protocol=SASL_SSL
-kafka.enable.idempotence=false
 </code></pre>
 
 <p>In this section, you provide the values for those environment variables by using the Oracle Cloud Infrastructure Console to create an authentication token, then create and configure a stream.</p>
@@ -1189,7 +1181,7 @@ Provide a description for the token, for example “gcn-stream-token”.</p>
     <pre><code class="language-bash"> oci setup bootstrap
 </code></pre>
 
-    <p>The command opens your browser for authentication. 
+    <p>The command opens your browser for authentication.
  When prompted, provide the tenancy’s region and a name for the profile, for example, “oci_stream_demo_profile”.</p>
 
     <p>Save the name of the profile as the value of the <code>OCI_PROFILE</code> environment variable, as follows:</p>
@@ -1223,16 +1215,22 @@ Provide a description for the token, for example “gcn-stream-token”.</p>
 
 <p>To run the <em>Books</em> microservice, use the following command, which starts the application on port 8080.</p>
 
-<div id="tabs-doc7">
+<div id="tabs-doc3">
     <ul>
         <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
         <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
     </ul>
     <div id="gradle">
-        <pre><code class="language-bash">./gradlew :oci:run</code></pre>
+        <pre><code class="language-bash">MICRONAUT_ENVIRONMENTS=oraclecloud ./gradlew :oci:run</code></pre>
+        <p>Or if you use Windows:</p>
+        <pre><code class="language-bash">cmd /C "set MICRONAUT_ENVIRONMENTS=oraclecloud &amp;&amp; gradlew :oci:run"</code></pre>
     </div>
     <div id="maven">
-        <pre><code class="language-bash">./mvnw install -pl lib -am &amp;&amp; ./mvnw -pl oci mn:run</code></pre>
+        <pre><code class="language-bash">./mvnw install -pl lib -am
+MICRONAUT_ENVIRONMENTS=oraclecloud ./mvnw -pl oci mn:run</code></pre>
+        <p>Or if you use Windows:</p>
+        <pre><code class="language-bash">mvnw install -pl lib -am
+cmd /C "set MICRONAUT_ENVIRONMENTS=oraclecloud &amp;&amp; mvnw -pl oci mn:run"</code></pre>
     </div>
 </div>
     
@@ -1246,16 +1244,22 @@ Provide a description for the token, for example “gcn-stream-token”.</p>
 
 <p>To run the <em>Analytics</em> microservice, use the following command, which starts the application on port 8081.</p>
 
-<div id="tabs-doc8">
+<div id="tabs-doc4">
     <ul>
         <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
         <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
     </ul>
     <div id="gradle">
-        <pre><code class="language-bash">./gradlew :oci:run</code></pre>
+        <pre><code class="language-bash">MICRONAUT_ENVIRONMENTS=oraclecloud ./gradlew :oci:run</code></pre>
+        <p>Or if you use Windows:</p>
+        <pre><code class="language-bash">cmd /C "set MICRONAUT_ENVIRONMENTS=oraclecloud &amp;&amp; gradlew :oci:run"</code></pre>
     </div>
     <div id="maven">
-        <pre><code class="language-bash">./mvnw install -pl lib -am &amp;&amp; ./mvnw -pl oci mn:run</code></pre>
+        <pre><code class="language-bash">./mvnw install -pl lib -am
+MICRONAUT_ENVIRONMENTS=oraclecloud ./mvnw -pl oci mn:run</code></pre>
+        <p>Or if you use Windows:</p>
+        <pre><code class="language-bash">mvnw install -pl lib -am
+cmd /C "set MICRONAUT_ENVIRONMENTS=oraclecloud &amp;&amp; mvnw -pl oci mn:run"</code></pre>
     </div>
 </div>
     
@@ -1313,24 +1317,34 @@ Provide a description for the token, for example “gcn-stream-token”.</p>
 
 <p>To generate a native executable, run the following command for each microservice:</p>
 
-<div id="tabs-doc9">
+<div id="tabs-doc5">
   <ul>
     <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
     <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
   </ul>
   <div id="gradle">
     <pre><code class="language-bash">./gradlew :oci:nativeCompile</code></pre>
-    <p>The native executable is created in the <em>oci/build/native/nativeCompile</em> directory and can be run with the following command.</p>
-    <pre><code class="language-bash">oci/build/native/nativeCompile/oci</code></pre>
-  </div>
+    <p>The native executable is created in the <em>oci/build/native/nativeCompile/</em> directory and can be run with the following command.</p>
+    <pre><code class="language-bash">MICRONAUT_ENVIRONMENTS=oraclecloud oci/build/native/nativeCompile/oci</code></pre>
+    <p>Or if you use Windows:</p>
+    <pre><code class="language-bash">gradlew :oci:nativeCompile</code></pre>
+    <p>The native executable is created in the <em>oci\build\native\nativeCompile\</em> directory and can be run with the following command.</p>
+    <pre><code class="language-bash">cmd /C "set MICRONAUT_ENVIRONMENTS=oraclecloud &amp;&amp; oci\build\native\nativeCompile\oci"</code></pre>
+</div>
   <div id="maven">
-    <pre><code class="language-bash">./mvnw install -pl lib -am &amp;&amp; ./mvnw package -pl oci -Dpackaging=native-image</code></pre>
+    <pre><code class="language-bash">./mvnw install -pl lib -am
+./mvnw package -pl oci -Dpackaging=native-image</code></pre>
     <p>The native executable is created in the <em>oci/target/</em> directory and can be run with the following command:</p>
-    <pre><code class="language-bash">oci/target/oci</code></pre>
-  </div>
+    <pre><code class="language-bash">MICRONAUT_ENVIRONMENTS=oraclecloud oci/target/oci</code></pre>
+    <p>Or if you use Windows:</p>
+    <pre><code class="language-bash">mvnw install -pl lib -am
+mvnw package -pl oci -Dpackaging=native-image</code></pre>
+    <p>The native executable is created in the <em>oci\target\</em> directory and can be run with the following command.</p>
+    <pre><code class="language-bash">cmd /C "set MICRONAUT_ENVIRONMENTS=oraclecloud &amp;&amp; oci\target\oci"</code></pre>
+</div>
 </div>
 
-<p>Start the native executable for the each microservice and run the same <code>curl</code> requests as before to check that everything works as expected.</p>
+<p>Start the native executable for each microservice and run the same <code>curl</code> requests as before to check that everything works as expected.</p>
 
 <p>You can see that the microservices behave identically as if you run them as Java applications, but with reduced startup time and smaller memory footprint.</p>
     
@@ -1433,7 +1447,7 @@ Provide a description for the token, for example “gcn-stream-token”.</p>
               <p class="copyright">
                 Copyright © 2023-2024, Oracle and/or its affiliates. All rights reserved.
                 Oracle and Java are registered trademarks of Oracle and/or its affiliates.
-                Other names may be trademarks of their respective owners. 
+                Other names may be trademarks of their respective owners.
               </p>
               <div id="teconsent"></div>
             </div>

@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2024-01-31 16:07:30 +0000"/>
-  <meta name="last_built" content="2024-03-15 16:45:18 +0000"/>
+  <meta name="last_modified" content="2024-04-22 20:44:56 +0000"/>
+  <meta name="last_built" content="2024-04-24 15:11:43 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -365,7 +365,7 @@
 
 <p>This guide describes how to create a <a href="https://micronaut.io/">Micronaut</a> application that demonstrates how to store, retrieve, and delete user profile pictures in Google Cloud Storage using the Micronaut Object Storage API.</p>
 
-<p>The Micronaut Object Storage API provides a uniform API to create, read and delete objects in the major cloud providers​:</p>
+<p>The Micronaut Object Storage API provides a uniform API to create, read and delete objects in the major cloud providers:</p>
 <ul>
   <li>Amazon S3</li>
   <li>Google Cloud Storage</li>
@@ -392,19 +392,18 @@
 <p>Follow the steps below to create the application from scratch. However, you can also download the completed example in Java:</p>
 
 <div id="tabs-doc1">
-    <ul>
-        <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
-        <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
-    </ul>
-    <div id="gradle">
-        <p><a href="/gcn/docs/gcn-modules/object-storage/archives/gcp-storage-demo-java-gradle.zip">Gradle GCP Object Storage Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" />
-        </a>
-        </p>
-    </div>
-    <div id="maven">
-        <p><a href="/gcn/docs/gcn-modules/object-storage/archives/gcp-storage-demo-java-maven.zip">Maven GCP Object Storage Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" /></a>
-        </p>
-    </div>
+  <ul>
+    <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
+    <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
+  </ul>
+  <div id="gradle">
+    <p><a href="https://github.com/oracle/gcn/releases/download/4.3.7.2/4.3.7.2_object-storage_gcp-storage-demo-java-gradle.zip">Gradle GCP Object Storage Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" /></a>
+    </p>
+  </div>
+  <div id="maven">
+    <p><a href="https://github.com/oracle/gcn/releases/download/4.3.7.2/4.3.7.2_object-storage_gcp-storage-demo-java-maven.zip">Maven GCP Object Storage Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" /></a>
+    </p>
+  </div>
 </div>
     
       <h4 id="a-note-regarding-your-development-environment">
@@ -459,7 +458,7 @@
   <li>Click <strong>Generate Project</strong>, then click <strong>Download Zip</strong>. The GCN Launcher creates an application with the default package <code>com.example</code> in a directory named <em>gcp-storage-demo</em>. The application ZIP file will be downloaded in your default downloads directory. Unzip it, open in your code editor, and proceed to the next steps.</li>
 </ol>
 
-<p>Alternatively, use the GCN CLI as follows:</p>
+<p>Alternatively, use the <a href="/gcn/get-started/using-gcn-cli/">GCN CLI</a> as follows:</p>
 
 <div id="tabs-doc2">
     <ul>
@@ -472,6 +471,7 @@
     --services=objectstore \
     --features=graalvm \
     --build=gradle \
+    --jdk=17 \
     --lang=java</code></pre>
     </div>
     <div id="maven">
@@ -480,6 +480,7 @@
     --services=objectstore \
     --features=graalvm \
     --build=maven \
+    --jdk=17 \
     --lang=java</code></pre>
     </div>
 </div>
@@ -714,29 +715,18 @@ public void delete(String userId) {
         
       </h3>
 
-<p>Assign the bucket name to an environment variable and use the Google Cloud CLI to create a bucket with the name:</p>
-<div class="tabs-doc" data-name="system">
-    <div data-value="linux" data-label="Linux &amp; Mac">
-      <pre><code class="language-bash">export OBJECT_STORAGE_BUCKET=gcn-guide-object-storage
-gcloud storage buckets create gs://$OBJECT_STORAGE_BUCKET</code></pre>
-   </div>
-   <div data-value="windows" data-label="Windows">
-      <pre><code class="language-bash">set OBJECT_STORAGE_BUCKET=gcn-guide-object-storage
-gcloud storage buckets create gs://%OBJECT_STORAGE_BUCKET%</code></pre>
-   </div>
-   <div data-value="windows-powershell" data-label="Windows PowerShell">
-      <pre><code class="language-bash">$OBJECT_STORAGE_BUCKET = "gcn-guide-object-storage"
-gcloud storage buckets create gs://$OBJECT_STORAGE_BUCKET</code></pre>
-   </div>
-</div>
+<p>Use the Google Cloud CLI to create a bucket with the name “gcn-guide-object-storage”:</p>
+
+<pre><code class="language-bash">gcloud storage buckets create gs://gcn-guide-object-storage
+</code></pre>
 
 <blockquote>
   <p>Note: Bucket names must be unique across all GCP accounts, so you might need to change the bucket name and retry the command with a different name.</p>
 </blockquote>
 
-<p>Then, configure the bucket name in <em>gcp/src/main/resources/application-gcp.properties</em>:</p>
-
-<pre><code>micronaut.object-storage.gcp.default.bucket=${OBJECT_STORAGE_BUCKET}
+<p>Then, configure the bucket in <em>gcp/src/main/resources/application.properties</em>:</p>
+<pre><code>micronaut.object-storage.gcp.default.bucket=gcn-guide-object-storage
+micronaut.object-storage.gcp.default.enabled=true
 </code></pre>
     
       <h3 id="33-configure-the-upload-parameters">
@@ -747,7 +737,7 @@ gcloud storage buckets create gs://$OBJECT_STORAGE_BUCKET</code></pre>
         
       </h3>
 
-<p>To upload a file larger than 1MB, configure the file <em>gcp/src/main/resources/application-gcp.properties</em> as follows:</p>
+<p>To upload a file larger than 1MB, configure the file <em>gcp/src/main/resources/application.properties</em> as follows:</p>
 
 <pre><code># 20MB = 20 * 1024 * 1024b = 20971520b
 micronaut.server.multipart.max-file-size=20971520
@@ -823,21 +813,8 @@ transfer-encoding: chunked
 
 <p>Use the <code>gcloud</code> CLI to verify that the file has been uploaded to an Google Cloud bucket:</p>
 
-<div class="tabs-doc" data-name="system">
-    <div data-value="linux" data-label="Linux &amp; Mac">
-      <pre><code class="language-bash">gcloud storage ls --recursive gs://$OBJECT_STORAGE_BUCKET</code></pre>
-   </div>
-   <div data-value="windows" data-label="Windows">
-      <pre><code class="language-bash">gcloud storage ls --recursive gs://%OBJECT_STORAGE_BUCKET%</code></pre>
-   </div>
-   <div data-value="windows-powershell" data-label="Windows PowerShell">
-      <pre><code class="language-bash">gcloud storage ls --recursive gs://$OBJECT_STORAGE_BUCKET</code></pre>
-   </div>
-</div>
-
-<blockquote>
-  <p>Note: You may need to export the <code>OBJECT_STORAGE_BUCKET</code> environment variable again as you did in Section <strong>3.2.</strong> for the command above to work.</p>
-</blockquote>
+<pre><code class="language-bash">gcloud storage ls --recursive gs://gcn-guide-object-storage
+</code></pre>
     
       <h3 id="52-download-a-profile-picture">
         
@@ -869,17 +846,8 @@ transfer-encoding: chunked
 
 <p>Then, check that the file has actually been deleted using the following command:</p>
 
-<div class="tabs-doc" data-name="system">
-    <div data-value="linux" data-label="Linux &amp; Mac">
-      <pre><code class="language-bash">gcloud storage ls --recursive gs://$OBJECT_STORAGE_BUCKET</code></pre>
-   </div>
-   <div data-value="windows" data-label="Windows">
-      <pre><code class="language-bash">gcloud storage ls --recursive gs://%OBJECT_STORAGE_BUCKET%</code></pre>
-   </div>
-   <div data-value="windows-powershell" data-label="Windows PowerShell">
-      <pre><code class="language-bash">gcloud storage ls --recursive gs://$OBJECT_STORAGE_BUCKET</code></pre>
-   </div>
-</div>
+<pre><code class="language-bash">gcloud storage ls --recursive gs://gcn-guide-object-storage
+</code></pre>
     
       <h2 id="6-generate-a-native-executable-using-graalvm">
         
@@ -1087,7 +1055,7 @@ Packaged as a native executable, it significantly reduces application startup ti
               <p class="copyright">
                 Copyright © 2023-2024, Oracle and/or its affiliates. All rights reserved.
                 Oracle and Java are registered trademarks of Oracle and/or its affiliates.
-                Other names may be trademarks of their respective owners. 
+                Other names may be trademarks of their respective owners.
               </p>
               <div id="teconsent"></div>
             </div>

@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2024-01-31 16:07:30 +0000"/>
-  <meta name="last_built" content="2024-03-15 16:45:18 +0000"/>
+  <meta name="last_modified" content="2024-04-22 03:39:46 +0000"/>
+  <meta name="last_built" content="2024-04-24 15:11:43 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -386,19 +386,18 @@ The OIDC APIs are easier to work with than OAuth because they use JSON instead o
 <p>Follow the steps below to create the application from scratch. However, you can also download the completed example in Java:</p>
 
 <div id="tabs-doc1">
-    <ul>
-        <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
-        <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
-    </ul>
-    <div id="gradle">
-        <p><a href="/gcn/docs/gcn-modules/security/archives/oci-security-demo-java-gradle.zip">Gradle Oracle Cloud Infrastructure Security Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" />
-        </a>
-        </p>
-    </div>
-    <div id="maven">
-        <p><a href="/gcn/docs/gcn-modules/security/archives/oci-security-demo-java-maven.zip">Maven Oracle Cloud Infrastructure Security Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" /></a>
-        </p>
-    </div>
+  <ul>
+    <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
+    <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
+  </ul>
+  <div id="gradle">
+    <p><a href="https://github.com/oracle/gcn/releases/download/4.3.7.2/4.3.7.2_security_oci-security-demo-java-gradle.zip">Gradle Oracle Cloud Infrastructure Security Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" /></a>
+    </p>
+  </div>
+  <div id="maven">
+    <p><a href="https://github.com/oracle/gcn/releases/download/4.3.7.2/4.3.7.2_security_oci-security-demo-java-maven.zip">Maven Oracle Cloud Infrastructure Security Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" /></a>
+    </p>
+  </div>
 </div>
     
       <h4 id="a-note-regarding-your-development-environment">
@@ -452,7 +451,7 @@ The OIDC APIs are easier to work with than OAuth because they use JSON instead o
   <li>Click <strong>Generate Project</strong>, then click <strong>Download Zip</strong>. The GCN Launcher creates an application with the default package <code>com.example</code> in a directory named <em>oci-security-demo</em>. The application ZIP file will be downloaded in your default downloads directory. Unzip it, open in your code editor, and proceed to the next steps.</li>
 </ol>
 
-<p>Alternatively, use the GCN CLI as follows:</p>
+<p>Alternatively, use the <a href="/gcn/get-started/using-gcn-cli/">GCN CLI</a> as follows:</p>
 
 <div id="tabs-doc2">
     <ul>
@@ -465,6 +464,7 @@ The OIDC APIs are easier to work with than OAuth because they use JSON instead o
     --services=security \
     --features=graalvm \
     --build=gradle \
+    --jdk=17 \
     --lang=java</code></pre>
     </div>
     <div id="maven">
@@ -473,6 +473,7 @@ The OIDC APIs are easier to work with than OAuth because they use JSON instead o
     --services=security \
     --features=graalvm \
     --build=maven \
+    --jdk=17 \
     --lang=java</code></pre>
     </div>
 </div>
@@ -730,7 +731,7 @@ Server returned HTTP response code: 401
         
       </h3>
 
-<p>The GCN Launcher generated an initial security configuration in <em>oci/src/main/resources/application-oraclecloud.properties</em>, as follows:</p>
+<p>The GCN Launcher generated an initial security configuration in <em>oci/src/main/resources/application.properties</em>, as follows:</p>
 
 <pre><code>micronaut.application.name=oci
 # &lt;1&gt;
@@ -763,31 +764,29 @@ micronaut.security.token.jwt.signatures.secret.generator.secret=${JWT_GENERATOR_
         
       </h2>
 
-<p>The generated <em>application-oraclecloud.properties</em> file contains placeholders  for the <code>client-id</code>, <code>client-secret</code>, and the <code>issuer</code> URL properties. Create environment variables for those before starting the application.</p>
+<p>The generated <em>application.properties</em> file contains placeholders  for the <code>client-id</code>, <code>client-secret</code>, and the <code>issuer</code> URL properties. Create environment variables for those before starting the application.</p>
 
 <ol>
   <li>
     <p>Create <code>OAUTH_CLIENT_ID</code>, <code>OAUTH_CLIENT_SECRET</code>, and <code>OAUTH_ISSUER</code> environment variables. Use the client ID and the client secret you saved when you created the Oracle Cloud Infrastructure application, and the issuer URL you saved (the Oracle Identity Cloud Service console URL without the <code>/ui/v1/adminconsole</code> path):</p>
 
-    <pre><code class="language-bash">export OAUTH_CLIENT_ID=XXXXXXXXXX
+    <div class="tabs-doc" data-name="system">
+     <div data-value="linux" data-label="Linux &amp; macOS">
+       <pre><code class="language-bash">export OAUTH_CLIENT_ID=XXXXXXXXXX
 export OAUTH_CLIENT_SECRET=YYYYYYYYYY
-export OAUTH_ISSUER=https://idcs-7084de14ec…….identity.oraclecloud.com
-</code></pre>
-
-    <details>
-     <summary>The <code>export</code> command syntax varies per platform. Expand for more details.</summary>
-     <p>If you use Windows, change <code>export</code> to <code>set</code> if using the <code>cmd</code> prompt:</p>
-         <pre><code>set VARNAME=&lt;VALUE&gt;</code></pre>
-
-     <p>If you use PowerShell, change <code>export</code> to <code>$</code> and use quotes around the value, for example:</p>
-     <pre><code>$VARNAME="&lt;VALUE&gt;"</code></pre>
-
-     <p>To dereference a value in Linux/macOS or Powershell, use <code>$</code>, for example:
-     <code>/some/command -option=$VARNAME</code>
-     </p>
-     <p>If you use <code>cmd</code>, use <code>%</code> before and after the name, for example: <code>/some/command -option=%VARNAME%</code>
-     </p>
- </details>
+export OAUTH_ISSUER=https://idcs-7084de14ec…….identity.oraclecloud.com</code></pre>
+     </div>
+     <div data-value="windows" data-label="Windows">
+         <pre><code class="language-bash">set OAUTH_CLIENT_ID=XXXXXXXXXX
+set OAUTH_CLIENT_SECRET=YYYYYYYYYY
+set OAUTH_ISSUER=https://idcs-7084de14ec…….identity.oraclecloud.com</code></pre>
+     </div>
+     <div data-value="windows-powershell" data-label="Windows PowerShell">
+         <pre><code class="language-bash">$ENV:OAUTH_CLIENT_ID = "XXXXXXXXXX"
+$ENV:OAUTH_CLIENT_SECRET = "YYYYYYYYYY"
+$ENV:OAUTH_ISSUER = "https://idcs-7084de14ec…….identity.oraclecloud.com"</code></pre>
+     </div>
+ </div>
   </li>
   <li>
     <p>Run the application, using the following command, which starts the application on port 8080.</p>
@@ -801,7 +800,8 @@ export OAUTH_ISSUER=https://idcs-7084de14ec…….identity.oraclecloud.com
          <pre><code class="language-bash">./gradlew :oci:run</code></pre>
      </div>
      <div id="maven">
-         <pre><code class="language-bash">./mvnw install -pl lib -am &amp;&amp; ./mvnw mn:run -pl oci</code></pre>
+         <pre><code class="language-bash">./mvnw install -pl lib -am
+./mvnw mn:graalvm-resources mn:run -pl oci</code></pre>
      </div>
  </div>
   </li>
@@ -849,7 +849,8 @@ export OAUTH_ISSUER=https://idcs-7084de14ec…….identity.oraclecloud.com
     <pre><code class="language-bash">oci/build/native/nativeCompile/oci</code></pre>
   </div>
   <div id="maven">
-    <pre><code class="language-bash">./mvnw install -pl lib -am &amp;&amp; ./mvnw package -pl oci -Dpackaging=native-image</code></pre>
+    <pre><code class="language-bash">./mvnw install -pl lib -am
+./mvnw mn:graalvm-resources package -pl oci -Dpackaging=native-image</code></pre>
     <p>The native executable is created in the <em>oci/target/</em> directory and can be run with the following command:</p>
     <pre><code class="language-bash">oci/target/oci</code></pre>
   </div>
@@ -964,7 +965,7 @@ export OAUTH_ISSUER=https://idcs-7084de14ec…….identity.oraclecloud.com
               <p class="copyright">
                 Copyright © 2023-2024, Oracle and/or its affiliates. All rights reserved.
                 Oracle and Java are registered trademarks of Oracle and/or its affiliates.
-                Other names may be trademarks of their respective owners. 
+                Other names may be trademarks of their respective owners.
               </p>
               <div id="teconsent"></div>
             </div>

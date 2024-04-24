@@ -14388,7 +14388,8 @@ p.gs-modified-at::before {
   font-size: 18px;
   max-width: 1100px; }
   .slogan_home_modules p sup {
-    top: 4px !important; }
+    top: 4px !important;
+    padding-right: 4px; }
   @media only screen and (min-width: 481px) and (max-width: 768px) {
     .slogan_home_modules p {
       font-size: 16px;
@@ -14571,6 +14572,8 @@ thead th:nth-child(4) {
     background-color: #2D3948; }
   .module-table td.row-noborder {
     border-bottom: 1px solid #ff790300; }
+  .module-table a.btn.btn-primary.open-guide.open-guide-icon {
+    color: transparent; }
 
 .build-icon {
   max-height: 24px; }

@@ -1,1 +1,1 @@
-> A Micronaut Gateway Function acts a a serverless cloud (HTTP) API gateway function.
+> A Micronaut Gateway Function acts as a serverless cloud (HTTP) API gateway function.

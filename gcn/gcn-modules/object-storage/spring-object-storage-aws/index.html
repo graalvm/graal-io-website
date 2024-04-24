@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2024-01-31 16:07:30 +0000"/>
-  <meta name="last_built" content="2024-03-15 16:45:18 +0000"/>
+  <meta name="last_modified" content="2024-04-23 15:26:14 +0000"/>
+  <meta name="last_built" content="2024-04-24 15:11:43 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -365,7 +365,7 @@
 
 <p>This guide describes how to create a <a href="https://github.com/spring-projects/spring-boot">Spring Boot 3</a> application that demonstrates how to store, retrieve, and delete user profile pictures in Amazon Web Services (AWS) S3 Object Storage using the Micronaut Object Storage API.</p>
 
-<p>The Micronaut Object Storage API provides a uniform API to create, read and delete objects in the major cloud providers​:</p>
+<p>The Micronaut Object Storage API provides a uniform API to create, read and delete objects in the major cloud providers:</p>
 <ul>
   <li>Amazon S3</li>
   <li>Google Cloud Storage</li>
@@ -392,18 +392,18 @@
 <p>Follow the steps below to create the application from scratch. However, you can also download the completed example in Java:</p>
 
 <div id="tabs-doc1">
-    <ul>
-        <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
-        <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
-    </ul>
-    <div id="gradle">
-        <p><a href="/gcn/docs/gcn-modules/object-storage/archives/spring-boot-aws-storage-demo-java-gradle.zip">Gradle AWS Object Storage Spring Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" /></a>
-        </p>
-    </div>
-    <div id="maven">
-        <p><a href="/gcn/docs/gcn-modules/object-storage/archives/spring-boot-aws-storage-demo-java-maven.zip">Maven AWS Object Storage Spring Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" /></a>
-        </p>
-    </div>
+  <ul>
+    <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
+    <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
+  </ul>
+  <div id="gradle">
+    <p><a href="https://github.com/oracle/gcn/releases/download/4.3.7.2/4.3.7.2_object-storage_spring-boot-aws-storage-demo-java-gradle.zip">Gradle AWS Object Storage Spring Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" /></a>
+    </p>
+  </div>
+  <div id="maven">
+    <p><a href="https://github.com/oracle/gcn/releases/download/4.3.7.2/4.3.7.2_object-storage_spring-boot-aws-storage-demo-java-maven.zip">Maven AWS Object Storage Spring Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" /></a>
+    </p>
+  </div>
 </div>
     
       <h4 id="a-note-regarding-your-development-environment">
@@ -917,7 +917,7 @@ micronaut.server.multipart.max-file-size: 20971520
 
 <p>Use the following command to run the test.</p>
 
-<div id="tabs-doc3">
+<div id="tabs-doc5">
     <ul>
         <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
         <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
@@ -941,7 +941,7 @@ micronaut.server.multipart.max-file-size: 20971520
 
 <p>To run the application, use the following command, which starts the application on port 8080.</p>
 
-<div id="tabs-doc5">
+<div id="tabs-doc6">
     <ul>
         <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
         <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
@@ -1136,7 +1136,7 @@ micronaut.server.multipart.max-file-size: 20971520
               <p class="copyright">
                 Copyright © 2023-2024, Oracle and/or its affiliates. All rights reserved.
                 Oracle and Java are registered trademarks of Oracle and/or its affiliates.
-                Other names may be trademarks of their respective owners. 
+                Other names may be trademarks of their respective owners.
               </p>
               <div id="teconsent"></div>
             </div>

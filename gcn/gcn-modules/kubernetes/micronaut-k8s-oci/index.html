@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2024-01-31 16:07:30 +0000"/>
-  <meta name="last_built" content="2024-03-15 16:45:18 +0000"/>
+  <meta name="last_modified" content="2024-04-23 09:15:45 +0000"/>
+  <meta name="last_built" content="2024-04-24 15:11:43 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -363,7 +363,7 @@
         
       </h1>
 
-<p>This guide shows how to deploy a Micronaut microservices application to the <a href="https://docs.oracle.com/iaas/Content/ContEng/Concepts/contengoverview.htm">Oracle Cloud Infrastructure Container Engine for Kubernetes (OKE)</a> using the <a href="https://micronaut-projects.github.io/micronaut-kubernetes/snapshot/guide/">Micronaut Kubernetes module</a>.</p>
+<p>This guide shows how to deploy a Micronaut microservices application to the <a href="https://docs.oracle.com/iaas/Content/ContEng/Concepts/contengoverview.htm">Oracle Cloud Infrastructure Container Engine for Kubernetes (OKE)</a> using the <a href="https://micronaut-projects.github.io/micronaut-kubernetes/latest/guide/">Micronaut Kubernetes module</a>.</p>
 
 <p><a href="https://www.oracle.com/cloud/cloud-native/container-engine-kubernetes/">OKE</a> is a managed <a href="https://www.oracle.com/cloud/cloud-native/container-engine-kubernetes/what-is-kubernetes/">Kubernetes</a> service for deploying containerized applications to the cloud.</p>
 
@@ -415,18 +415,18 @@
 <p>You can create a microservices application from scratch by following <a href="/gcn/gcn-modules/kubernetes/micronaut-k8s/">this guide</a>, or you can download the completed example in Java:</p>
 
 <div id="tabs-doc1">
-    <ul>
-        <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
-        <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
-    </ul>
-    <div id="gradle">
-        <p><a href="/gcn/docs/gcn-modules/kubernetes/archives/oci-kubernetes-demo-java-gradle.zip">Gradle Micronaut OKE Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" /></a>
-        </p>
-    </div>
-    <div id="maven">
-        <p><a href="/gcn/docs/gcn-modules/kubernetes/archives/oci-kubernetes-demo-java-maven.zip">Maven Micronaut OKE Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" /></a>
-        </p>
-    </div>
+  <ul>
+    <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
+    <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
+  </ul>
+  <div id="gradle">
+    <p><a href="https://github.com/oracle/gcn/releases/download/4.3.7.2/4.3.7.2_kubernetes_oci-kubernetes-demo-java-gradle.zip">Gradle Micronaut OKE Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" /></a>
+    </p>
+  </div>
+  <div id="maven">
+    <p><a href="https://github.com/oracle/gcn/releases/download/4.3.7.2/4.3.7.2_kubernetes_oci-kubernetes-demo-java-maven.zip">Maven Micronaut OKE Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" /></a>
+    </p>
+  </div>
 </div>
 
 <p>The application ZIP file will be downloaded in your default downloads directory. Unzip it, open in your code editor, and proceed to the next steps.</p>
@@ -440,8 +440,8 @@
 </ul>
 
 <blockquote>
-  <p>Note: By default, a Micronaut application detects its runtime environment. 
-A detected environment (in this case, <strong>k8s</strong>) overrides the default specified environment (in this case, <strong>oraclecloud</strong>). 
+  <p>Note: By default, a Micronaut application detects its runtime environment.
+A detected environment (in this case, <strong>k8s</strong>) overrides the default specified environment (in this case, <strong>oraclecloud</strong>).
 This means that you should locate your configuration in the <em>application-k8s.properties</em> and <em>bootstrap-k8s.properties</em> files.
 Alternatively, you can specify the <code>oraclecloud</code> environment passing it as a command-line option (<code>-Dmicronaut.environments=oraclecloud</code>) or via an environment variable (<code>MICRONAUT_ENVIRONMENTS=oraclecloud</code>).</p>
 </blockquote>
@@ -459,7 +459,7 @@ Alternatively, you can specify the <code>oraclecloud</code> environment passing 
 <p>Create a Kubernetes cluster with default settings using the <strong>Quick Create</strong> workflow:</p>
 <ol>
   <li>Login to the Oracle Cloud console, and browse <a href="https://cloud.oracle.com/containers/clusters/quick">Quick Kubernetes Clusters (OKE)</a>.</li>
-  <li>Choose your compartment in the <strong>Compartment</strong> dropdown.</li>
+  <li>Choose your compartment in the <strong>Compartment</strong> drop-down list.</li>
   <li>Under <strong>Containers</strong>, click <strong>Kubernetes Clusters (OKE)</strong>.</li>
   <li>Then click <strong>Create Cluster</strong> and choose the <strong>Quick Create</strong> option.</li>
   <li>Enter the name for your cluster, for example, <em>gcn-k8s</em>. Select <strong>Public Endpoint</strong> for the Kubernetes API endpoint; <strong>Private Workers</strong> for worker nodes; and the shape (choose the default). Then confirm cluster creation by clicking <strong>Next</strong>.</li>
@@ -581,58 +581,61 @@ export OCI_COMPARTMENT_ID="ocid1.compartment.oc1..aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
         
       </h3>
 
-<p>Edit the file named <em>users/k8s.yml</em> as follows:</p>
+<p>Edit the file named <em>users/k8s-oci.yml</em> as follows:</p>
 
 <pre><code class="language-yml">apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: gcn-k8s
-  name: "users"
+   namespace: gcn-k8s
+   name: "users"
 spec:
-  selector:
-    matchLabels:
-      app: "users"
-  template:
-    metadata:
-      labels:
-        app: "users"
-    spec:
-      serviceAccountName: gcn-service
-      containers:
-        - name: "users"
-          image: &lt;region-key&gt;.ocir.io/&lt;tenancy-namespace&gt;/gcn-k8s/users-oci:latest # &lt;1&gt;
-          imagePullPolicy: Always # &lt;2&gt;
-          ports:
-            - name: http
-              containerPort: 8080
-          readinessProbe:
-            httpGet:
-              path: /health/readiness
-              port: 8080
-            initialDelaySeconds: 5
-            timeoutSeconds: 3
-          livenessProbe:
-            httpGet:
-              path: /health/liveness
-              port: 8080
-            initialDelaySeconds: 5
-            timeoutSeconds: 3
-            failureThreshold: 10
-      imagePullSecrets:
-        - name: ocirsecret # &lt;3&gt;
+   selector:
+      matchLabels:
+         app: "users"
+   template:
+      metadata:
+         labels:
+            app: "users"
+      spec:
+         serviceAccountName: gcn-service
+         containers:
+            - name: "users"
+              image: &lt;region-key&gt;.ocir.io/&lt;tenancy-namespace&gt;/gcn-k8s/users-oci:latest # &lt;1&gt;
+              imagePullPolicy: Always # &lt;2&gt;
+              ports:
+                 - name: http
+                   containerPort: 8080
+              readinessProbe:
+                 httpGet:
+                    path: /health/readiness
+                    port: 8080
+                 initialDelaySeconds: 5
+                 timeoutSeconds: 3
+              livenessProbe:
+                 httpGet:
+                    path: /health/liveness
+                    port: 8080
+                 initialDelaySeconds: 5
+                 timeoutSeconds: 3
+                 failureThreshold: 10
+              env:
+                 - name: MICRONAUT_ENVIRONMENTS
+                   value: "oraclecloud"
+         imagePullSecrets:
+            - name: ocirsecret # &lt;3&gt;
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  namespace: gcn-k8s
-  name: "users"
+   namespace: gcn-k8s
+   name: "users"
 spec:
-  selector:
-    app: "users"
-  type: NodePort
-  ports:
-    - protocol: "TCP"
-      port: 8080
+   selector:
+      app: "users"
+   type: NodePort
+   ports:
+      - protocol: "TCP"
+        port: 8080
 </code></pre>
 
 <p><strong>1</strong> The container image name that exists in Container Registry. Change the <code>&lt;region-key&gt;</code> to your region and change the <code>&lt;tenancy-name&gt;</code> to your tenancy name.</p>
@@ -715,58 +718,61 @@ spec:
         
       </h3>
 
-<p>Edit the file named <em>orders/k8s.yml</em> as follows:</p>
+<p>Edit the file named <em>orders/k8s-oci.yml</em> as follows:</p>
 
 <pre><code class="language-yml">apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: gcn-k8s
-  name: "orders"
+   namespace: gcn-k8s
+   name: "orders"
 spec:
-  selector:
-    matchLabels:
-      app: "orders"
-  template:
-    metadata:
-      labels:
-        app: "orders"
-    spec:
-      serviceAccountName: gcn-service
-      containers:
-        - name: "orders"
-          image: &lt;region-key&gt;.ocir.io/&lt;tenancy-namespace&gt;/gcn-k8s/orders-oci:latest # &lt;1&gt;
-          imagePullPolicy: Always # &lt;2&gt;
-          ports:
-            - name: http
-              containerPort: 8080
-          readinessProbe:
-            httpGet:
-              path: /health/readiness
-              port: 8080
-            initialDelaySeconds: 5
-            timeoutSeconds: 3
-          livenessProbe:
-            httpGet:
-              path: /health/liveness
-              port: 8080
-            initialDelaySeconds: 5
-            timeoutSeconds: 3
-            failureThreshold: 10
-      imagePullSecrets:
-        - name: ocirsecret # &lt;3&gt;
+   selector:
+      matchLabels:
+         app: "orders"
+   template:
+      metadata:
+         labels:
+            app: "orders"
+      spec:
+         serviceAccountName: gcn-service
+         containers:
+            - name: "orders"
+              image: &lt;region-key&gt;.ocir.io/&lt;tenancy-namespace&gt;/gcn-k8s/orders-oci:latest # &lt;1&gt;
+              imagePullPolicy: Always # &lt;2&gt;
+              ports:
+                 - name: http
+                   containerPort: 8080
+              readinessProbe:
+                 httpGet:
+                    path: /health/readiness
+                    port: 8080
+                 initialDelaySeconds: 5
+                 timeoutSeconds: 3
+              livenessProbe:
+                 httpGet:
+                    path: /health/liveness
+                    port: 8080
+                 initialDelaySeconds: 5
+                 timeoutSeconds: 3
+                 failureThreshold: 10
+              env:
+                 - name: MICRONAUT_ENVIRONMENTS
+                   value: "oraclecloud"
+         imagePullSecrets:
+            - name: ocirsecret # &lt;3&gt;
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  namespace: gcn-k8s
-  name: "orders"
+   namespace: gcn-k8s
+   name: "orders"
 spec:
-  selector:
-    app: "orders"
-  type: NodePort
-  ports:
-    - protocol: "TCP"
-      port: 8080
+   selector:
+      app: "orders"
+   type: NodePort
+   ports:
+      - protocol: "TCP"
+        port: 8080
 </code></pre>
 
 <p><strong>1</strong> The container image name that exists in Container Registry. Change the <code>&lt;region-key&gt;</code> to your region and change the <code>&lt;tenancy-name&gt;</code> to your tenancy name.</p>
@@ -847,63 +853,66 @@ spec:
         
       </h3>
 
-<p>Edit the file named <em>api/k8s.yml</em> as follows:</p>
+<p>Edit the file named <em>api/k8s-oci.yml</em> as follows:</p>
 
 <pre><code class="language-yml">apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: gcn-k8s
-  name: "api"
+   namespace: gcn-k8s
+   name: "api"
 spec:
-  selector:
-    matchLabels:
-      app: "api"
-  template:
-    metadata:
-      labels:
-        app: "api"
-    spec:
-      serviceAccountName: gcn-service
-      containers:
-        - name: "api"
-          image: &lt;region-key&gt;.ocir.io/&lt;tenancy-namespace&gt;/gcn-k8s/api-oci:latest # &lt;1&gt;
-          imagePullPolicy: Always # &lt;2&gt;
-          ports:
-            - name: http
-              containerPort: 8080
-          readinessProbe:
-            httpGet:
-              path: /health/readiness
-              port: 8080
-            initialDelaySeconds: 5
-            timeoutSeconds: 3
-          livenessProbe:
-            httpGet:
-              path: /health/liveness
-              port: 8080
-            initialDelaySeconds: 5
-            timeoutSeconds: 3
-            failureThreshold: 10
-      imagePullSecrets:
-        - name: ocirsecret # &lt;3&gt;
+   selector:
+      matchLabels:
+         app: "api"
+   template:
+      metadata:
+         labels:
+            app: "api"
+      spec:
+         serviceAccountName: gcn-service
+         containers:
+            - name: "api"
+              image: &lt;region-key&gt;.ocir.io/&lt;tenancy-namespace&gt;/gcn-k8s/api-oci:latest # &lt;1&gt;
+              imagePullPolicy: Always # &lt;2&gt;
+              ports:
+                 - name: http
+                   containerPort: 8080
+              readinessProbe:
+                 httpGet:
+                    path: /health/readiness
+                    port: 8080
+                 initialDelaySeconds: 5
+                 timeoutSeconds: 3
+              livenessProbe:
+                 httpGet:
+                    path: /health/liveness
+                    port: 8080
+                 initialDelaySeconds: 5
+                 timeoutSeconds: 3
+                 failureThreshold: 10
+              env:
+                 - name: MICRONAUT_ENVIRONMENTS
+                   value: "oraclecloud"
+         imagePullSecrets:
+            - name: ocirsecret # &lt;3&gt;
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  namespace: gcn-k8s
-  name: "api"
-  annotations: # &lt;4&gt;
-    oci.oraclecloud.com/load-balancer-type: "lb"
-    service.beta.kubernetes.io/oci-load-balancer-shape: "flexible"
-    service.beta.kubernetes.io/oci-load-balancer-shape-flex-min: "10"
-    service.beta.kubernetes.io/oci-load-balancer-shape-flex-max: "10"
+   namespace: gcn-k8s
+   name: "api"
+   annotations: # &lt;4&gt;
+      oci.oraclecloud.com/load-balancer-type: "lb"
+      service.beta.kubernetes.io/oci-load-balancer-shape: "flexible"
+      service.beta.kubernetes.io/oci-load-balancer-shape-flex-min: "10"
+      service.beta.kubernetes.io/oci-load-balancer-shape-flex-max: "10"
 spec:
-  selector:
-    app: "api"
-  type: LoadBalancer
-  ports:
-    - protocol: "TCP"
-      port: 8080
+   selector:
+      app: "api"
+   type: LoadBalancer
+   ports:
+      - protocol: "TCP"
+        port: 8080
 </code></pre>
 
 <p><strong>1</strong> The container image name that exists in Container Registry. Change the <code>&lt;region-key&gt;</code> to your region and change the <code>&lt;tenancy-name&gt;</code> to your tenancy name.</p>
@@ -999,19 +1008,19 @@ spec:
   <li>
     <p>Deploy the <em>users</em> microservice:</p>
 
-    <pre><code class="language-bash"> kubectl apply -f users/k8s.yml
+    <pre><code class="language-bash"> kubectl apply -f users/k8s-oci.yml
 </code></pre>
   </li>
   <li>
     <p>Deploy the <em>orders</em> microservice:</p>
 
-    <pre><code class="language-bash"> kubectl apply -f orders/k8s.yml
+    <pre><code class="language-bash"> kubectl apply -f orders/k8s-oci.yml
 </code></pre>
   </li>
   <li>
     <p>Run the next command to deploy the <em>api</em> microservice:</p>
 
-    <pre><code class="language-bash"> kubectl apply -f api/k8s.yml
+    <pre><code class="language-bash"> kubectl apply -f api/k8s-oci.yml
 </code></pre>
   </li>
 </ol>
@@ -1054,7 +1063,7 @@ spec:
   <li>
     <p>Retrieve the URL of the <em>api</em> microservice and set it as the value of the $API_URL environment variable:</p>
 
-    <pre><code class="language-bash"> export API_URL=http://$(kubectl get svc api -n=gcn-k8s -o json | jq -r .status.loadBalancer.ingress[0].ip):8080
+    <pre><code class="language-bash"> export API_URL=http://$(kubectl get svc api -n=gcn-k8s -o json | jq -r '.status.loadBalancer.ingress[0].ip'):8080
 </code></pre>
   </li>
   <li>
@@ -1228,7 +1237,7 @@ spec:
       </h3>
 
 <ul>
-  <li><a href="https://micronaut-projects.github.io/micronaut-kubernetes/snapshot/guide/">Micronaut Kubernetes module</a></li>
+  <li><a href="https://micronaut-projects.github.io/micronaut-kubernetes/latest/guide/">Micronaut Kubernetes module</a></li>
   <li><a href="https://docs.oracle.com/iaas/Content/ContEng/Concepts/contengoverview.htm">Oracle Cloud Infrastructure Container Engine for Kubernetes (OKE)</a></li>
 </ul>
 
@@ -1306,7 +1315,7 @@ spec:
               <p class="copyright">
                 Copyright © 2023-2024, Oracle and/or its affiliates. All rights reserved.
                 Oracle and Java are registered trademarks of Oracle and/or its affiliates.
-                Other names may be trademarks of their respective owners. 
+                Other names may be trademarks of their respective owners.
               </p>
               <div id="teconsent"></div>
             </div>

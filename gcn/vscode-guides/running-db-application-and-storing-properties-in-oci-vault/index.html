@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2024-01-31 16:07:30 +0000"/>
-  <meta name="last_built" content="2024-03-15 16:45:18 +0000"/>
+  <meta name="last_modified" content="2024-04-23 09:15:45 +0000"/>
+  <meta name="last_built" content="2024-04-24 15:11:43 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -460,7 +460,7 @@
         
       </h1>
 
-<p>This guide shows you how to connect a Java application to an Oracle Autonomous Database and securely store connection properties in an Oracle Cloud Infrastructure (OCI) Vault from within VS Code. 
+<p>This guide shows you how to connect a Java application to an Oracle Autonomous Database and securely store connection properties in an Oracle Cloud Infrastructure (OCI) Vault from within VS Code.
 This enables you to deploy the same application to different containers that will securely connect to a database using isolated connections.</p>
 
 <blockquote>
@@ -498,7 +498,7 @@ This enables you to deploy the same application to different containers that wil
     <p>Step through the project creation wizard. The following list details how you should respond to each prompt:</p>
 
     <ul>
-      <li>Pick GCN Version: <em>4.2.1</em></li>
+      <li>Pick GCN Version: <em>4.3.7</em></li>
       <li>Pick an Application type: <em>Application</em></li>
       <li>Pick Project Java: Select your JDK installation</li>
       <li>Provide project name: <em>dbsample</em></li>
@@ -517,11 +517,11 @@ This enables you to deploy the same application to different containers that wil
       <li>Save the project and open it in a new VS Code window.</li>
     </ul>
 
-    <p>The project creation wizard creates a sample application with all necessary files for you: a domain entity, a repository interface, a controller, a service class, and even tests. 
+    <p>The project creation wizard creates a sample application with all necessary files for you: a domain entity, a repository interface, a controller, a service class, and even tests.
  It is sufficient to follow this guide.</p>
   </li>
   <li>
-    <p>Open the <em>dbsample/oci/src/main/resources/application-oraclecloud.properties</em> file and:</p>
+    <p>Open the <em>dbsample/oci/src/main/resources/application.properties</em> file and:</p>
 
     <ul>
       <li>Remove the following two lines:
@@ -645,7 +645,7 @@ CREATE SEQUENCE "GENRE_SEQ" MINVALUE 1 START WITH 1 NOCACHE NOCYCLE;
 
 <p>Now connect the VS Code developer tooling to your database.</p>
 
-<p>Within the Explorer panel, open the <strong>DATABASES</strong> pane, as shown in the screenshot below, and click <strong>Add Oracle Autonomous DB</strong>. 
+<p>Within the Explorer panel, open the <strong>DATABASES</strong> pane, as shown in the screenshot below, and click <strong>Add Oracle Autonomous DB</strong>.
 (This is also available in the Command Palette).</p>
 
 <p><img src="/gcn/docs/vscode-tools/images/db-features/databases-initial-view.png" alt="DATABASES Actions" /></p>
@@ -679,15 +679,15 @@ CREATE SEQUENCE "GENRE_SEQ" MINVALUE 1 START WITH 1 NOCACHE NOCYCLE;
         
       </h2>
 
-<p>Now run your application, connected to the Oracle Autonomous Database, and send an  HTTP GET request to test it.</p>
+<p>Now run your application, connected to the Oracle Autonomous Database, and send an HTTP GET request to test it.</p>
 
 <ol>
   <li>
     <p>Navigate to the <strong>Micronaut Tools</strong> view and open your application.</p>
   </li>
   <li>
-    <p>Click the <strong>Run Application Without Debugging</strong> icon: 
- <img src="/gcn/docs/vscode-tools/images/run-application-from-micronaut-tools.png" alt="Run the application from Micronaut Tools" /></p>
+    <p>Click the <strong>Run Application Without Debugging</strong> icon:
+ <img src="/gcn/docs/vscode-tools/images/run-application-from-micronaut-tools.png" alt="Run the application from the view" /></p>
 
     <p>The progress will be indicated in the Output view.</p>
   </li>
@@ -720,7 +720,7 @@ Learn more about database management in VS Code from the <a href="/gcn/vscode-to
         
       </h2>
 
-<p>Next <a href="https://docs.oracle.com/iaas/Content/KeyManagement/Tasks/managingvaults_topic-To_create_a_new_vault.htm">create an OCI Vault</a> and a <a href="https://docs.oracle.com/iaas/Content/KeyManagement/Tasks/managingkeys_topic-To_create_a_new_key.htm">Master Encryption Key</a>. 
+<p>Next <a href="https://docs.oracle.com/iaas/Content/KeyManagement/Tasks/managingvaults_topic-To_create_a_new_vault.htm">create an OCI Vault</a> and a <a href="https://docs.oracle.com/iaas/Content/KeyManagement/Tasks/managingkeys_topic-To_create_a_new_key.htm">Master Encryption Key</a>.
 This setup is essential before proceeding with the subsequent steps.</p>
 
 <ol>
@@ -752,7 +752,7 @@ This setup is essential before proceeding with the subsequent steps.</p>
         
       </h2>
 
-<p>You will package your server application in OCI and deploy it to <a href="https://www.oracle.com/cloud/cloud-native/container-engine-kubernetes/">Oracle Container Engine for Kubernetes (OKE)</a>. 
+<p>You will package your server application in OCI and deploy it to <a href="https://www.oracle.com/cloud/cloud-native/container-engine-kubernetes/">Oracle Container Engine for Kubernetes (OKE)</a>.
 For that you need to create a Kubernetes cluster (if you do not already have one).</p>
 
 <ol>
@@ -858,7 +858,7 @@ This also involves creating a <code>ConfigMap</code> artifact, which will later 
   </li>
 </ol>
 
-<p>This step encrypts and securely stores your database credentials in a Vault. 
+<p>This step encrypts and securely stores your database credentials in a Vault.
 If the DevOps Project includes a <code>ConfigMap</code> artifact, this command will add the OCIDs of the Vault and its compartment, along with a placeholder for datasource properties.</p>
     
       <h2 id="9-build-and-run-the-project-in-oci">
@@ -870,7 +870,7 @@ If the DevOps Project includes a <code>ConfigMap</code> artifact, this command w
       </h2>
 
 <ol>
-  <li>Return to the <strong>OCI DevOps</strong> pane and run the <strong>Build OCI Native Executable Container</strong> pipeline. 
+  <li>Return to the <strong>OCI DevOps</strong> pane and run the <strong>Build OCI Native Executable Container</strong> pipeline.
 It creates a container image containing a native executable of your application.</li>
   <li>Run the deploy pipeline, <strong>Deploy OCI Native Executable Container to OKE</strong>, to create a <code>ConfigMap</code> resource with all necessary information for the application to use the OCI Vault and connect to Oracle Autonomous Database. This step also involves creating a deployment from the container built in step <strong>1</strong>.</li>
 </ol>
@@ -883,7 +883,7 @@ It creates a container image containing a native executable of your application.
         
       </h2>
 
-<p>Access the application by clicking the <strong>Open in Browser</strong> icon in the <strong>Deployment</strong> pipeline. 
+<p>Access the application by clicking the <strong>Open in Browser</strong> icon in the <strong>Deployment</strong> pipeline.
 This action initiates port forwarding, enabling you to interact with your application running in OCI as if it were running locally.</p>
 
 <p>To test the application’s functionality, send an HTTP GET request.
@@ -924,7 +924,7 @@ Open a new Terminal window and run this command to test creating and storing a n
 <ul>
   <li><a href="/gcn/vscode-tools/database-features/">Database Features</a></li>
   <li><a href="/gcn/vscode-guides/setting-oci-devops-pipeline-in-vscode/">Setting OCI DevOps Build and Development Pipelines in VS Code</a></li>
-  <li><a href="https://marketplace.visualstudio.com/items?itemName=oracle-labs-graalvm.micronaut">Micronaut Tools</a></li>
+  <li><a href="https://marketplace.visualstudio.com/items?itemName=oracle-labs-graalvm.micronaut">Tools for Micronaut&lt;/a&gt;<sup>®</sup> Framework</a></li>
 </ul>
 
       </div>
@@ -999,7 +999,7 @@ Open a new Terminal window and run this command to test creating and storing a n
               <p class="copyright">
                 Copyright © 2023-2024, Oracle and/or its affiliates. All rights reserved.
                 Oracle and Java are registered trademarks of Oracle and/or its affiliates.
-                Other names may be trademarks of their respective owners. 
+                Other names may be trademarks of their respective owners.
               </p>
               <div id="teconsent"></div>
             </div>

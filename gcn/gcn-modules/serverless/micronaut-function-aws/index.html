@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2024-01-26 11:18:57 +0000"/>
-  <meta name="last_built" content="2024-03-15 16:45:18 +0000"/>
+  <meta name="last_modified" content="2024-04-22 15:10:06 +0000"/>
+  <meta name="last_built" content="2024-04-24 15:11:43 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -366,7 +366,7 @@
 <p>This guide describes how to create a Micronaut Gateway function, deploy it using <a href="https://aws.amazon.com/lambda/">Amazon Lambda</a>, and access it via <a href="https://aws.amazon.com/api-gateway/">Amazon API Gateway</a>. The application is compiled into a native executable using GraalVM Native Image and then built into a container image.</p>
 
 <blockquote>
-  <p>A Micronaut Gateway Function acts a a serverless cloud (HTTP) API gateway function.</p>
+  <p>A Micronaut Gateway Function acts as a serverless cloud (HTTP) API gateway function.</p>
 </blockquote>
 
 <blockquote>
@@ -391,19 +391,18 @@
 <p>Follow the steps below to create a Micronaut gateway function from scratch. However, you can also download the completed example:</p>
 
 <div id="tabs-doc1">
-    <ul>
-        <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
-        <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
-    </ul>
-    <div id="gradle">
-        <p><a href="/gcn/docs/gcn-modules/serverless/archives/aws-serverless-demo-java-gradle.zip">Gradle AWS Serverless Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" />
-        </a>
-        </p>
-    </div>
-    <div id="maven">
-        <p><a href="/gcn/docs/gcn-modules/serverless/archives/aws-serverless-demo-java-maven.zip">Maven AWS Serverless Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" /></a>
-        </p>
-    </div>
+  <ul>
+    <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
+    <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
+  </ul>
+  <div id="gradle">
+    <p><a href="https://github.com/oracle/gcn/releases/download/4.3.7.2/4.3.7.2_serverless_aws-serverless-demo-java-gradle.zip">Gradle AWS Serverless Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" /></a>
+    </p>
+  </div>
+  <div id="maven">
+    <p><a href="https://github.com/oracle/gcn/releases/download/4.3.7.2/4.3.7.2_serverless_aws-serverless-demo-java-maven.zip">Maven AWS Serverless Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" /></a>
+    </p>
+  </div>
 </div>
     
       <h4 id="a-note-regarding-your-development-environment">
@@ -441,7 +440,7 @@
   <li>Create a new project using the following selections.
     <ul>
       <li><strong>Project Type</strong>: <em>Gateway Function</em></li>
-      <li><strong>Project name</strong>: <em>aws-serverless-demo</em></li>
+      <li><strong>Project Name</strong>: <em>aws-serverless-demo</em></li>
       <li><strong>Base Package</strong>: <em>com.example</em> (Default)</li>
       <li><strong>Clouds</strong>: <em>AWS</em></li>
       <li><strong>Language</strong>: <em>Java</em> (Default)</li>
@@ -457,7 +456,7 @@
   <li>Click <strong>Generate Project</strong>, then click <strong>Download Zip</strong>. The GCN Launcher creates a Micronaut gateway function with the default package <code>com.example</code> in a directory named <em>aws-serverless-demo</em>. The application ZIP file will be downloaded in your default downloads directory. Unzip it, open in your code editor, and proceed to the next steps.</li>
 </ol>
 
-<p>Alternatively, use the GCN CLI as follows:</p>
+<p>Alternatively, use the <a href="/gcn/get-started/using-gcn-cli/">GCN CLI</a> as follows:</p>
 
 <div id="tabs-doc2">
   <ul>
@@ -469,6 +468,7 @@
     --clouds=aws \
     --features=graalvm,validation \
     --example-code=false \
+    --jdk=17 \
     --build=gradle \
     --lang=java</code></pre>
   </div>
@@ -477,6 +477,7 @@
     --clouds=aws \
     --features=graalvm,validation \
     --example-code=false \
+    --jdk=17 \
     --build=maven \
     --lang=java</code></pre>
   </div>
@@ -484,7 +485,7 @@
 
 <p>For more information, see <a href="/gcn/get-started/using-gcn-cli/">Using the GCN CLI</a>.</p>
 
-<p>The GCN Launcher creates a multi-module project with two subprojects: <strong>aws</strong> for Amazon Web Services, and <strong>lib</strong>.
+<p>The GCN Launcher creates a multimodule project with two subprojects: <strong>aws</strong> for Amazon Web Services, and <strong>lib</strong>.
 You develop the gateway function logic in the <strong>aws</strong> subproject. If your gateway function is to be deployed to multiple cloud providers, use the <strong>lib</strong> subproject to create classes that can be shared between the providers. This enables you to separate the code that is different between cloud providers, while keeping most of the implementation in the common <strong>lib</strong> subproject.</p>
     
       <h3 id="11-storeitem">
@@ -680,7 +681,7 @@ class StoreController {
      protected List&lt;StoreItem&gt; items = List.of( // &lt;3&gt;
          new StoreItem("chair", "A black chair with 4 legs", 10),
          new StoreItem("table", "A quality dining table", 6),
-         new StoreItem("sofa", "A grey sofa", 2),
+         new StoreItem("sofa", "A gray sofa", 2),
          new StoreItem("bookshelf", "A futuristic-looking bookshelf", 0)
      );
 
@@ -922,19 +923,17 @@ class StoreControllerTest {
 
 <ol>
   <li>
-    <p>Sign in to the AWS Console. Go to <a href="https://us-east-2.console.aws.amazon.com/lambda/home">Amazon Lambda Functions</a>. Click <strong>Create function</strong>.</p>
-
-    <p><img src="/gcn/docs/gcn-modules/serverless/images/aws-lambda1.png" alt="AWS Lambda Functions" /></p>
+    <p>Sign in to the AWS Console. Go to <a href="https://console.aws.amazon.com/lambda/home">Amazon Lambda Functions</a>. Click <strong>Create function</strong>.</p>
+  </li>
+  <li>Select <strong>Author from scratch</strong>, and provide the following information, then click <strong>Create function</strong>:
+    <ul>
+      <li>Enter “gcn-serverless-demo-native” for the name of the function.</li>
+      <li>For the runtime, select <strong>Amazon Linux 2023</strong> from the drop-down list.</li>
+      <li>Select <strong>x86_64</strong> as the architecture.</li>
+    </ul>
   </li>
   <li>
-    <p>Select <strong>Author from scratch</strong>, enter “gcn-serverless-demo-native” for the name of the function, and select <strong>Provide your own bootstrap on Amazon Linux 2</strong> for the runtime, then click <strong>Create function</strong>.</p>
-
-    <p><img src="/gcn/docs/gcn-modules/serverless/images/aws-lambda2.png" alt="AWS Create Lambda Function" /></p>
-  </li>
-  <li>
-    <p>Scroll down, in the <strong>Code</strong> tab, click <strong>Upload from</strong>, and select <strong>.zip file</strong>.</p>
-
-    <p><img src="/gcn/docs/gcn-modules/serverless/images/aws-lambda3.png" alt="AWS Lambda Upload Zip" /></p>
+    <p>Scroll down, in the <strong>Code</strong> tab, click <strong>Upload from</strong>, and select <strong>.zip file</strong> from the drop-down list.</p>
 
     <p>Choose the archive you created in the previous section (a container image) from the following location (read the logs from generation command if the file is not present):</p>
     <div id="tabs-doc5">
@@ -951,12 +950,8 @@ class StoreControllerTest {
 </div>
     <p>Click <strong>Save</strong>.</p>
   </li>
-  <li>
-    <p>Scroll down within the <strong>Code</strong> tab. In the <strong>Runtime settings</strong> section, click <strong>Edit</strong>.
-As Handler, enter <code>io.micronaut.function.aws.proxy.MicronautLambdaHandler</code>. Click <strong>Save</strong>.</p>
-
-    <p><img src="/gcn/docs/gcn-modules/serverless/images/aws-lambda3a.png" alt="AWS Lambda Runtime Settings Edit" /></p>
-  </li>
+  <li>Scroll down within the <strong>Code</strong> tab. In the <strong>Runtime settings</strong> section, click <strong>Edit</strong>.
+As Handler, enter <code>io.micronaut.function.aws.proxy.MicronautLambdaHandler</code>. Click <strong>Save</strong>.</li>
 </ol>
     
       <h3 id="33-test-the-lambda-function">
@@ -969,7 +964,7 @@ As Handler, enter <code>io.micronaut.function.aws.proxy.MicronautLambdaHandler</
 
 <ol>
   <li>In the Lambda Function, click the <strong>Test</strong> tab.
-Enter a name for the new test and paste the following event in JSON:
+Enter a name for the new test (such as “test”) and paste the following event in the <strong>Event JSON</strong> field:
     <pre><code class="language-json">{
   "path": "/store/all",
   "httpMethod": "GET",
@@ -979,14 +974,8 @@ Enter a name for the new test and paste the following event in JSON:
 }
 </code></pre>
     <p>Click <strong>Save</strong> to save the test. Click <strong>Test</strong> to run it.</p>
-
-    <p><img src="/gcn/docs/gcn-modules/serverless/images/aws-lambda4.png" alt="AWS Lambda Test" /></p>
   </li>
-  <li>
-    <p>Scroll up. Inside the <strong>Execution Result</strong> block verify that the response body is as expected.</p>
-
-    <p><img src="/gcn/docs/gcn-modules/serverless/images/aws-lambda5.png" alt="AWS Lambda Text Result" /></p>
-  </li>
+  <li>Scroll up. Inside the <strong>Execution Result</strong> block verify that the response body is as expected.</li>
 </ol>
     
       <h2 id="4-create-an-aws-api-gateway">
@@ -1001,40 +990,34 @@ Enter a name for the new test and paste the following event in JSON:
 
 <ol>
   <li>
-    <p>Go to <a href="https://us-east-2.console.aws.amazon.com/apigateway/main/apis">API Gateway</a> in the AWS Console. Scroll down to <strong>REST API</strong>. Click <strong>Build</strong>.</p>
-
-    <p><img src="/gcn/docs/gcn-modules/serverless/images/aws-gateway1.png" alt="AWS API Gateway" /></p>
+    <p>Go to <a href="https://console.aws.amazon.com/apigateway/main/apis">API Gateway</a> in the AWS Console.
+Scroll down to <strong>REST API</strong>. Click <strong>Build</strong>.</p>
   </li>
   <li>
-    <p>Select <strong>REST</strong> for the protocol and <strong>New API</strong>. Enter a name for the new API and click <strong>Create API</strong>.</p>
-
-    <p><img src="/gcn/docs/gcn-modules/serverless/images/aws-gateway2.png" alt="AWS Create REST API" /></p>
+    <p>Select <strong>New API</strong>.
+Enter a name for the new API and select <strong>Regional</strong> from the drop-down list for “API endpoint type”. Click <strong>Create API</strong>.</p>
   </li>
   <li>
-    <p>Once created, click <strong>Actions</strong> and select <strong>Create resource</strong>. Enter a name for the resource, and enter “Proxy” as the Resource Name and <code>{proxy+}</code> as the Resource Path to allow all paths. Click <strong>Create Resource</strong>.</p>
-
-    <p><img src="/gcn/docs/gcn-modules/serverless/images/aws-gateway4.png" alt="AWS REST API Create Resource" /></p>
+    <p>Once created, click <strong>Create resource</strong>.
+Enter a name for the resource, and enter “/” as the Resource Path and “{proxy+}” as the Resource Name to allow all paths.
+Click <strong>Create Resource</strong>.</p>
+  </li>
+  <li>Select the “/{proxy+}” resource and click <strong>Create method</strong>.
+Enter the following information, and then click <strong>Save</strong>.
+If a dialog box appears, click <strong>OK</strong> to give the gateway permission to run the function. Click <strong>Save</strong>.
+    <ul>
+      <li>For the “Method type”, select <strong>ANY</strong> from the drop-down list.</li>
+      <li>Select <strong>Lambda Proxy</strong> as the “Integration type”.</li>
+      <li>Select the <code>gcn-serverless-demo-native</code> function from the drop-down list as the name of the Lambda Function.</li>
+    </ul>
   </li>
   <li>
-    <p>Click the <strong>ANY</strong> method of the resource. Select <strong>Lambda Function Proxy</strong> as the Integration type, and enter <code>gcn-serverless-demo-native</code> as the name of the Lambda Function. Click <strong>Save</strong>. If a popup appears, click <strong>OK</strong> to give the gateway permission to run the function. Click <strong>Save</strong>.</p>
-
-    <p><img src="/gcn/docs/gcn-modules/serverless/images/aws-gateway5.png" alt="AWS REST API Create Integration" /></p>
+    <p>Click <strong>Deploy API</strong>.</p>
   </li>
   <li>
-    <p>Click <strong>Actions</strong>, and select <strong>Deploy API</strong>.</p>
-
-    <p><img src="/gcn/docs/gcn-modules/serverless/images/aws-gateway6.png" alt="AWS REST API Deploy Action" /></p>
+    <p>Select <strong>*New Stage*</strong> and click <strong>Deploy</strong>.</p>
   </li>
-  <li>
-    <p>Select <strong>[New Stage]</strong> and enter a stage name. Click <strong>Deploy</strong>.</p>
-
-    <p><img src="/gcn/docs/gcn-modules/serverless/images/aws-gateway7.png" alt="AWS Rest API Deploy" /></p>
-  </li>
-  <li>
-    <p>In the stage you just created, copy the <strong>Invoke URL</strong> value:</p>
-
-    <p><img src="/gcn/docs/gcn-modules/serverless/images/aws-gateway8.png" alt="AWS Rest API Stage" /></p>
-  </li>
+  <li>In the stage you just created (named “default”), copy the <strong>Invoke URL</strong> value.</li>
 </ol>
     
       <h2 id="5-test-lambda-function-gateway-deployment">
@@ -1076,7 +1059,7 @@ Enter a name for the new test and paste the following event in JSON:
    },
    {
      "name": "sofa",
-     "description": "A grey sofa",
+     "description": "A gray sofa",
      "numberInStorage": 2
    },
    {
@@ -1127,7 +1110,7 @@ Enter a name for the new test and paste the following event in JSON:
    },
    {
      "name": "sofa",
-     "description": "A grey sofa",
+     "description": "A gray sofa",
      "numberInStorage": 2
    }
  ]
@@ -1234,7 +1217,7 @@ Enter a name for the new test and paste the following event in JSON:
               <p class="copyright">
                 Copyright © 2023-2024, Oracle and/or its affiliates. All rights reserved.
                 Oracle and Java are registered trademarks of Oracle and/or its affiliates.
-                Other names may be trademarks of their respective owners. 
+                Other names may be trademarks of their respective owners.
               </p>
               <div id="teconsent"></div>
             </div>

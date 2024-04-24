@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2024-01-31 16:07:30 +0000"/>
-  <meta name="last_built" content="2024-03-15 16:45:18 +0000"/>
+  <meta name="last_modified" content="2024-04-23 09:15:45 +0000"/>
+  <meta name="last_built" content="2024-04-24 15:11:43 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -370,7 +370,7 @@
 <p>This guide describes how to use a Vault to store and retrieve details for a MySQL database connection, and demonstrates how to use <a href="https://micronaut-projects.github.io/micronaut-oracle-cloud/latest/guide/#vault" target="_blank">Micronaut integration with the Oracle Cloud Infrastructure Vault</a>.</p>
 
 <blockquote>
-  <p>Note: If this is your first experience of using an Oracle Cloud Infrastructure Vault with Micronaut, please review the <a href="/gcn/gcn-modules/secret-management/micronaut-secrets-oci/">Securely Store Application Secrets in an Oracle Cloud Infrastructure Vault</a> first. 
+  <p>Note: If this is your first experience of using an Oracle Cloud Infrastructure Vault with Micronaut, please review the <a href="/gcn/gcn-modules/secret-management/micronaut-secrets-oci/">Securely Store Application Secrets in an Oracle Cloud Infrastructure Vault</a> first.
 Unlike that guide, this guide describes how to use the Oracle Cloud Infrastructure <a href="https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/cliinstall.htm">Command Line Interface</a> (CLI) to set up your tenancy.</p>
 </blockquote>
     
@@ -397,19 +397,18 @@ Unlike that guide, this guide describes how to use the Oracle Cloud Infrastructu
 However, you can also download the completed example.</p>
 
 <div id="tabs-doc1">
-    <ul>
-        <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
-        <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
-    </ul>
-    <div id="gradle">
-        <p><a href="/gcn/docs/gcn-modules/secret-management/archives/oci-secrets-demo-java-gradle.zip">Gradle Oracle Cloud Infrastructure Vault Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" />
-        </a>
-        </p>
-    </div>
-    <div id="maven">
-        <p><a href="/gcn/docs/gcn-modules/secret-management/archives/oci-secrets-demo-java-maven.zip">Maven Oracle Cloud Infrastructure Vault Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" /></a>
-        </p>
-    </div>
+  <ul>
+    <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
+    <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
+  </ul>
+  <div id="gradle">
+    <p><a href="https://github.com/oracle/gcn/releases/download/4.3.7.2/4.3.7.2_secret-management_oci-secrets-demo-java-gradle.zip">Gradle Oracle Cloud Infrastructure Vault Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" /></a>
+    </p>
+  </div>
+  <div id="maven">
+    <p><a href="https://github.com/oracle/gcn/releases/download/4.3.7.2/4.3.7.2_secret-management_oci-secrets-demo-java-maven.zip">Maven Oracle Cloud Infrastructure Vault Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" /></a>
+    </p>
+  </div>
 </div>
     
       <h4 id="a-note-regarding-your-development-environment">
@@ -465,7 +464,7 @@ The application ZIP file will be downloaded in your default downloads directory.
 Unzip it, open in your code editor, and proceed to the next steps.</li>
 </ol>
 
-<p>Alternatively, use the GCN CLI as follows:</p>
+<p>Alternatively, use the <a href="/gcn/get-started/using-gcn-cli/">GCN CLI</a> as follows:</p>
 
 <div id="tabs-doc2">
     <ul>
@@ -478,6 +477,7 @@ Unzip it, open in your code editor, and proceed to the next steps.</li>
     --services=database,secretmanagement \
     --features=mysql,graalvm \
     --build=gradle \
+    --jdk=17 \
     --lang=java</code></pre>
     </div>
     <div id="maven">
@@ -486,6 +486,7 @@ Unzip it, open in your code editor, and proceed to the next steps.</li>
     --services=database,secretmanagement \
     --features=mysql,graalvm \
     --build=maven \
+    --jdk=17 \
     --lang=java</code></pre>
     </div>
 </div>
@@ -548,7 +549,7 @@ Follow the steps in section <strong>3</strong> (<em>Create a Compute Instance</e
 <p>The <code>create</code> command requires three parameters: compartment OCID, display name, and Vault type.
 (See <a href="https://docs.oracle.com/iaas/tools/oci-cli/latest/oci_cli_docs/cmdref/kms.html" target="_blank">Key Management</a> for more information.)</p>
 
-<p>Use the same compartment as the one you used for your database, above. 
+<p>Use the same compartment as the one you used for your database, above.
 You should have saved the compartment OCID as the value of the environment variable <code>$C</code>.</p>
 
 <p>Choose a display name (1-100 characters) and a Vault type, either <code>DEFAULT</code> or <code>VIRTUAL_PRIVATE</code>.</p>
@@ -564,7 +565,7 @@ You should have saved the compartment OCID as the value of the environment varia
     | jq -r '.data.id'
 </code></pre>
 
-<p>The <code>jq</code> utility extracts the OCID of the Vault from the <code>id</code> property in the response; this is the unique identifier for your Vault which you will need later. 
+<p>The <code>jq</code> utility extracts the OCID of the Vault from the <code>id</code> property in the response; this is the unique identifier for your Vault which you will need later.
 Store the OCID as the value of the <code>VAULT_ID</code> environment variable:</p>
 
 <pre><code class="language-bash">export VAULT_ID=ocid1.vault.oc1.iad.b5re3....abuwcljryp5dmxbu3si7...
@@ -578,7 +579,7 @@ Store the OCID as the value of the <code>VAULT_ID</code> environment variable:</
         
       </h3>
 
-<p>To <a href="https://docs.oracle.com/iaas/Content/KeyManagement/Tasks/managingkeys.htm" target="_blank">create a Master Encryption Key</a>, you need the Vault’s management endpoint URL. 
+<p>To <a href="https://docs.oracle.com/iaas/Content/KeyManagement/Tasks/managingkeys.htm" target="_blank">create a Master Encryption Key</a>, you need the Vault’s management endpoint URL.
 It is not in the response from the Vault <code>create</code> command, so run the <a href="https://docs.oracle.com/iaas/tools/oci-cli/latest/oci_cli_docs/cmdref/kms/management/vault/get.html" target="_blank">get command</a>, as follows:</p>
 
 <pre><code class="language-bash">oci kms management vault get --vault-id $VAULT_ID
@@ -704,7 +705,7 @@ Set the contents of the section as the Base64-encoded version of the database us
         
       </h4>
 
-<p>Create a third secret with the name “datasources.default.url”. 
+<p>Create a third secret with the name “datasources.default.url”.
 The URL is “jdbc:mysql://&lt;MySQL IP address&gt;:3306/&lt;MySQL Database Name&gt;” substituting the private IP address and name of your MySQL database.
 Set the contents of the secret as the Base64-encoded version of the URL.</p>
     
@@ -731,7 +732,7 @@ GCN added the appropriate dependencies to your build file when you selected the 
   <li>
     <p>The Micronaut <strong>bootstrap</strong> configuration file contains the properties to authenticate your application against Oracle Cloud Infrastructure, as well as the compartment OCIDs of the Vault and secrets.</p>
 
-    <p>Modify the file named <em>oci/src/main/resources/bootstrap-oraclecloud.properties</em> so that its contents matches the following:</p>
+    <p>Modify the file named <em>oci/src/main/resources/bootstrap.properties</em> so that its contents matches the following:</p>
 
     <pre><code> micronaut.application.name=oci
  micronaut.config-client.enabled=true
@@ -752,7 +753,7 @@ GCN added the appropriate dependencies to your build file when you selected the 
   </li>
   <li>
     <p>The Micronaut <strong>application</strong> configuration file contains the properties for your database connection.
- Modify the file named <em>oci/src/main/resources/application-oraclecloud.properties</em> so that its contents matches the following:</p>
+ Modify the file named <em>oci/src/main/resources/application.properties</em> so that its contents matches the following:</p>
 
     <pre><code> datasources.default.db-type=mysql
  datasources.default.dialect=MYSQL
@@ -783,7 +784,7 @@ To use this from your compute instance, create a dynamic group and add a policy 
       </h3>
 
 <p>Choose a group name, such as “gcn-guide-dg”, and a matching rule (the logic that will be used to determine group membership).
-For this guide, use a broad rule that includes all compute instances in your compartment: <code>ALL {instance.compartment.id = 'ocid1.compartment.oc1..aaaaaaaarkh3s2wcxbbm…​'}</code> replacing <code>ocid1.compartment.oc1..aaaaaaaarkh3s2wcxbbm…​</code>` with the compartment OCID.</p>
+For this guide, use a broad rule that includes all compute instances in your compartment: <code>ALL {instance.compartment.id = 'ocid1.compartment.oc1..aaaaaaaarkh3s2wcxbbm…'}</code> replacing <code>ocid1.compartment.oc1..aaaaaaaarkh3s2wcxbbm…</code>` with the compartment OCID.</p>
 
 <p>Run the <a href="https://docs.oracle.com/iaas/tools/oci-cli/latest/oci_cli_docs/cmdref/iam/dynamic-group/create.html"><code>create</code></a> command:</p>
 
@@ -846,7 +847,8 @@ For this guide, use a broad rule that includes all compute instances in your com
        <pre><code class="language-bash">./gradlew :oci:shadowJar</code></pre>
    </div>
    <div id="maven">
-       <pre><code class="language-bash">./mvnw install -pl lib -am &amp;&amp; ./mvnw package -pl oci -DskipTests</code></pre>
+       <pre><code class="language-bash">./mvnw install -pl lib -am
+./mvnw package -pl oci -DskipTests</code></pre>
    </div>
  </div>
   </li>
@@ -900,7 +902,7 @@ For this guide, use a broad rule that includes all compute instances in your com
         
       </h2>
 
-<p>GCN supports compiling a Java application ahead-of-time into a native executable using <a href="https://www.graalvm.org/native-image/" target="_blank">GraalVM Native Image</a>. 
+<p>GCN supports compiling a Java application ahead-of-time into a native executable using <a href="https://www.graalvm.org/native-image/" target="_blank">GraalVM Native Image</a>.
 You can use the <em><a href="https://graalvm.github.io/native-build-tools/latest/gradle-plugin.html" target="_blank">Gradle plugin for GraalVM Native Image building</a></em>/<em><a href="https://graalvm.github.io/native-build-tools/latest/maven-plugin.html" target="_blank">Maven plugin for GraalVM Native Image building</a></em>.
 Packaged as a native executable, it significantly reduces application startup time and memory footprint.</p>
 
@@ -920,7 +922,8 @@ To create a deployable native executable, use a different packaging command that
        <pre><code class="language-bash">./gradlew :oci:dockerBuildNative</code></pre>
    </div>
    <div id="maven">
-       <pre><code class="language-bash">./mvnw install -pl lib -am &amp;&amp; ./mvnw package -pl oci -Dpackaging=docker-native</code></pre>
+       <pre><code class="language-bash">./mvnw install -pl lib -am
+./mvnw package -pl oci -Dpackaging=docker-native</code></pre>
    </div>
  </div>
   </li>
@@ -1130,7 +1133,7 @@ You also saw how to package this application into a native executable and deploy
               <p class="copyright">
                 Copyright © 2023-2024, Oracle and/or its affiliates. All rights reserved.
                 Oracle and Java are registered trademarks of Oracle and/or its affiliates.
-                Other names may be trademarks of their respective owners. 
+                Other names may be trademarks of their respective owners.
               </p>
               <div id="teconsent"></div>
             </div>

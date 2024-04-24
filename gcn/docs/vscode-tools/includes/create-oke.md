@@ -1,4 +1,4 @@
-You will package your server application in OCI and deploy it to [Oracle Container Engine for Kubernetes (OKE)](https://www.oracle.com/cloud/cloud-native/container-engine-kubernetes/). 
+You will package your server application in OCI and deploy it to [Oracle Container Engine for Kubernetes (OKE)](https://www.oracle.com/cloud/cloud-native/container-engine-kubernetes/).
 For that you need to create a Kubernetes cluster (if you do not already have one).
 
 1. Create a Kubernetes cluster in the Oracle Cloud console, with default settings, using the **Quick Create** workflow:
@@ -11,7 +11,7 @@ For that you need to create a Kubernetes cluster (if you do not already have one
     - Open your newly created OKE cluster (**Developer Services** > **Kubernetes Clusters (OKE)**).
     - Click **Access Cluster**.
     - In the **Access Your Cluster** window, select **Local Access**, and run the commands tied to your user ID from your VS Code terminal window (**View** > **Terminal**). Make sure you access your cluster via the **VCN-Native public endpoint**.
-    
+
     Alternatively, see the [Setting Up Local Access to Clusters](https://docs.oracle.com/iaas/Content/ContEng/Tasks/contengdownloadkubeconfigfile.htm#localdownload) OCI guide for more information.
 
 > Note: On Windows, `kubectl` is typically installed within the Kubernetes extension and is not added to the system path. Windows users should configure a proxy in the _.kube/config_ file to successfully deploy a project to OCI: add a `proxy-url` property under `cluster`:

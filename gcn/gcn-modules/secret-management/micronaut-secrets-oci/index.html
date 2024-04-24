@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2024-01-31 16:07:30 +0000"/>
-  <meta name="last_built" content="2024-03-15 16:45:18 +0000"/>
+  <meta name="last_modified" content="2024-04-23 09:15:45 +0000"/>
+  <meta name="last_built" content="2024-04-24 15:11:43 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -440,7 +440,7 @@ The application ZIP file will be downloaded in your default downloads directory.
 Unzip it, open in your code editor, and proceed to the next steps.</li>
 </ol>
 
-<p>Alternatively, use the GCN CLI as follows:</p>
+<p>Alternatively, use the <a href="/gcn/get-started/using-gcn-cli/">GCN CLI</a> as follows:</p>
 
 <div id="tabs-doc1">
     <ul>
@@ -453,6 +453,7 @@ Unzip it, open in your code editor, and proceed to the next steps.</li>
     --services=secretmanagement \
     --features=graalvm \
     --build=gradle \
+    --jdk=17 \
     --lang=java \
     --example-code=false</code></pre>
     </div>
@@ -462,6 +463,7 @@ Unzip it, open in your code editor, and proceed to the next steps.</li>
     --services=secretmanagement \
     --features=graalvm \
     --build=maven \
+    --jdk=17 \
     --lang=java \
     --example-code=false</code></pre>
     </div>
@@ -477,7 +479,7 @@ Unzip it, open in your code editor, and proceed to the next steps.</li>
         
       </h3>
 
-<p>Create a controller that returns the contents of a secret. 
+<p>Create a controller that returns the contents of a secret.
 Copy the following content to a file named <em>lib/src/main/java/com/example/SecretController.java</em>:</p>
 
 <pre><code class="language-java">package com.example;
@@ -533,7 +535,7 @@ public class SecretController {
 <pre><code class="language-bash">oci setup bootstrap
 </code></pre>
 
-<p>The command opens your browser for authentication. 
+<p>The command opens your browser for authentication.
 When prompted, provide the tenancy’s region and a name for the profile, for example, “oci_secrets_demo_profile”.</p>
 
 <p>Save the name of the profile as the value of the <code>OCI_PROFILE</code> environment variable, as follows:</p>
@@ -557,7 +559,7 @@ When prompted, provide the tenancy’s region and a name for the profile, for ex
 
 <ol>
   <li>
-    <p>Login to the Oracle Cloud console, open the navigation menu and click <strong>Identity &amp; Security</strong>. 
+    <p>Login to the Oracle Cloud console, open the navigation menu and click <strong>Identity &amp; Security</strong>.
 Under <strong>Identity</strong>, click <strong>Compartments</strong>.</p>
   </li>
   <li>
@@ -641,7 +643,7 @@ Use the following properties:</p>
 (Use the compartment that you identified above.)</li>
   <li><strong>Name</strong>: Enter a name to identify the secret, such as “universe.answer”.</li>
   <li><strong>Description</strong>: Enter a description for the secret, such as “Answer to the Ultimate Question of Life, the Universe, and Everything”.</li>
-  <li><strong>Encryption Key</strong>: Select the master encryption key from the drop-down list. 
+  <li><strong>Encryption Key</strong>: Select the master encryption key from the drop-down list.
 (For example, “gcn-encryption-key”.)</li>
   <li><strong>Secret Type Template</strong>: Select <strong>Text</strong> from the drop-down list.</li>
   <li><strong>Secret Contents</strong>: Enter the contents of the secret, such as “42”.</li>
@@ -672,7 +674,7 @@ GCN added the appropriate dependencies to your build file when you selected the 
 
 <p>The Micronaut <strong>bootstrap</strong> configuration file contains the properties to authenticate your application against Oracle Cloud Infrastructure, as well as details of the Vault containing the secret.</p>
 
-<p>Modify the file named <em>oci/src/main/resources/bootstrap-oraclecloud.properties</em> so that its contents match the following:</p>
+<p>Modify the file named <em>oci/src/main/resources/bootstrap.properties</em> so that its contents match the following:</p>
 
 <pre><code>oci.vault.config.enabled=true
 # &lt;1&gt;
@@ -716,7 +718,8 @@ For an example of using instance principal authentication, see <a href="/gcn/gcn
         <pre><code class="language-bash">./gradlew :oci:run</code></pre>
     </div>
     <div id="maven">
-        <pre><code class="language-bash">./mvnw install -pl lib -am &amp;&amp; ./mvnw mn:run -pl oci</code></pre>
+        <pre><code class="language-bash">./mvnw install -pl lib -am
+./mvnw mn:run -pl oci</code></pre>
     </div>
 </div>
 
@@ -755,7 +758,7 @@ For an example of using instance principal authentication, see <a href="/gcn/gcn
         
       </h2>
 
-<p>GCN supports compiling a Java application ahead-of-time into a native executable using <a href="https://www.graalvm.org/" target="_blank">GraalVM Native Image</a>. 
+<p>GCN supports compiling a Java application ahead-of-time into a native executable using <a href="https://www.graalvm.org/" target="_blank">GraalVM Native Image</a>.
 You can use the <em><a href="https://graalvm.github.io/native-build-tools/latest/gradle-plugin.html" target="_blank">Gradle plugin for GraalVM Native Image building</a></em>/<em><a href="https://graalvm.github.io/native-build-tools/latest/maven-plugin.html" target="_blank">Maven plugin for GraalVM Native Image building</a></em>.
 Packaged as a native executable, it significantly reduces application startup time and memory footprint.</p>
 
@@ -769,16 +772,17 @@ Packaged as a native executable, it significantly reduces application startup ti
   <div id="gradle">
     <pre><code class="language-bash">./gradlew :oci:nativeCompile</code></pre>
     <p>The native executable is created in the <em>oci/build/native/nativeCompile</em> directory and can be run with the following command:</p>
-    <pre><code class="language-bash">./oci/build/native/nativeCompile/oci</code></pre>
+    <pre><code class="language-bash">oci/build/native/nativeCompile/oci</code></pre>
   </div>
   <div id="maven">
-    <pre><code class="language-bash">./mvnw install -pl lib -am &amp;&amp; ./mvnw package -pl oci -Dpackaging=native-image</code></pre>
+    <pre><code class="language-bash">./mvnw install -pl lib -am
+./mvnw package -pl oci -Dpackaging=native-image</code></pre>
     <p>The native executable is created in the <em>oci/target</em> directory and can be run with the following command:</p>
-    <pre><code class="language-bash">./oci/target/oci</code></pre>
+    <pre><code class="language-bash">oci/target/oci</code></pre>
   </div>
 </div>
 
-<p>The application starts on port 8080. 
+<p>The application starts on port 8080.
 Test it as described in the previous section.
 The application should behave identically as if you run it from a JAR file, but with reduced startup time and smaller memory footprint.</p>
     
@@ -892,7 +896,7 @@ You also saw how to package this application into a native executable using Graa
               <p class="copyright">
                 Copyright © 2023-2024, Oracle and/or its affiliates. All rights reserved.
                 Oracle and Java are registered trademarks of Oracle and/or its affiliates.
-                Other names may be trademarks of their respective owners. 
+                Other names may be trademarks of their respective owners.
               </p>
               <div id="teconsent"></div>
             </div>

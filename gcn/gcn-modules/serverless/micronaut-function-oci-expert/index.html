@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2024-01-26 11:18:57 +0000"/>
-  <meta name="last_built" content="2024-03-15 16:45:18 +0000"/>
+  <meta name="last_modified" content="2024-04-23 09:15:45 +0000"/>
+  <meta name="last_built" content="2024-04-24 15:11:43 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -366,11 +366,11 @@
 <p>This guide describes how to create a Micronaut Gateway Function, deploy it as a container image, using Oracle Cloud Infrastructure <a href="https://docs.oracle.com/iaas/Content/Functions/home.htm" target="_blank">Functions</a>, and access it via Oracle Cloud Infrastructure <a href="https://docs.oracle.com/iaas/Content/APIGateway/home.htm" target="_blank">API Gateway</a>.</p>
 
 <blockquote>
-  <p>A Micronaut Gateway Function acts a a serverless cloud (HTTP) API gateway function.</p>
+  <p>A Micronaut Gateway Function acts as a serverless cloud (HTTP) API gateway function.</p>
 </blockquote>
 
 <blockquote>
-  <p>Oracle Cloud Infrastructure Functions is a fully managed, multi-tenant, highly scalable, on-demand, Functions-as-a-Service platform.</p>
+  <p>Oracle Cloud Infrastructure Functions is a fully managed, multitenant, highly scalable, on-demand, Functions-as-a-Service platform.</p>
 </blockquote>
 
 <p>The guide consists of the following steps:</p>
@@ -404,19 +404,18 @@
 <p>Follow the steps below to create a Micronaut gateway function from scratch. However, you can also download the completed example:</p>
 
 <div id="tabs-doc1">
-    <ul>
-        <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
-        <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
-    </ul>
-    <div id="gradle">
-        <p><a href="/gcn/docs/gcn-modules/serverless/archives/oci-serverless-demo-java-gradle.zip">Gradle Oracle Cloud Infrastructure Serverless Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" />
-        </a>
-        </p>
-    </div>
-    <div id="maven">
-        <p><a href="/gcn/docs/gcn-modules/serverless/archives/oci-serverless-demo-java-maven.zip">Maven Oracle Cloud Infrastructure Serverless Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" /></a>
-        </p>
-    </div>
+  <ul>
+    <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
+    <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
+  </ul>
+  <div id="gradle">
+    <p><a href="https://github.com/oracle/gcn/releases/download/4.3.7.2/4.3.7.2_serverless_oci-serverless-demo-java-gradle.zip">Gradle Oracle Cloud Infrastructure Serverless Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" /></a>
+    </p>
+  </div>
+  <div id="maven">
+    <p><a href="https://github.com/oracle/gcn/releases/download/4.3.7.2/4.3.7.2_serverless_oci-serverless-demo-java-maven.zip">Maven Oracle Cloud Infrastructure Serverless Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" /></a>
+    </p>
+  </div>
 </div>
     
       <h4 id="a-note-regarding-your-development-environment">
@@ -454,7 +453,7 @@
   <li>Create a new project using the following selections.
     <ul>
       <li><strong>Project Type</strong>: <em>Gateway Function</em></li>
-      <li><strong>Project name</strong>: <em>oci-serverless-demo</em></li>
+      <li><strong>Project Name</strong>: <em>oci-serverless-demo</em></li>
       <li><strong>Base Package</strong>: <em>com.example</em> (Default)</li>
       <li><strong>Clouds</strong>: <em>OCI</em></li>
       <li><strong>Language</strong>: <em>Java</em> (Default)</li>
@@ -470,7 +469,7 @@
   <li>Click <strong>Generate Project</strong>, then click <strong>Download Zip</strong>. The GCN Launcher creates a Micronaut gateway function with the default package <code>com.example</code> in a directory named <em>oci-serverless-demo</em>. The application ZIP file will be downloaded in your default downloads directory. Unzip it, open in your code editor, and proceed to the next steps.</li>
 </ol>
 
-<p>Alternatively, use the GCN CLI as follows:</p>
+<p>Alternatively, use the <a href="/gcn/get-started/using-gcn-cli/">GCN CLI</a> as follows:</p>
 
 <div id="tabs-doc2">
   <ul>
@@ -482,6 +481,7 @@
     --clouds=oci \
     --features=graalvm,validation \
     --example-code=false \
+    --jdk=17 \
     --build=gradle \
     --lang=java</code></pre>
   </div>
@@ -490,6 +490,7 @@
     --clouds=oci \
     --features=graalvm,validation \
     --example-code=false \
+    --jdk=17 \
     --build=maven \
     --lang=java</code></pre>
   </div>
@@ -497,7 +498,7 @@
 
 <p>For more information, see <a href="/gcn/get-started/using-gcn-cli/">Using the GCN CLI</a>.</p>
 
-<p>The GCN Launcher creates a multi-module project with two subprojects: <strong>oci</strong> for Oracle Cloud Infrastructure, and <strong>lib</strong>.
+<p>The GCN Launcher creates a multimodule project with two subprojects: <strong>oci</strong> for Oracle Cloud Infrastructure, and <strong>lib</strong>.
 You develop the gateway function logic in the <strong>oci</strong> subproject. If your gateway function is to be deployed to multiple cloud providers, use the <strong>lib</strong> subproject to create classes that can be shared between the providers. This enables you to separate the code that is different between cloud providers, while keeping most of the implementation in the common <strong>lib</strong> subproject.</p>
     
       <h3 id="11-storeitem">
@@ -693,7 +694,7 @@ class StoreController {
      protected List&lt;StoreItem&gt; items = List.of( // &lt;3&gt;
          new StoreItem("chair", "A black chair with 4 legs", 10),
          new StoreItem("table", "A quality dining table", 6),
-         new StoreItem("sofa", "A grey sofa", 2),
+         new StoreItem("sofa", "A gray sofa", 2),
          new StoreItem("bookshelf", "A futuristic-looking bookshelf", 0)
      );
 
@@ -1094,7 +1095,7 @@ Save the build file, then run the following command to create and publish a cont
     <p>Use the following properties:</p>
     <ul>
       <li><strong>Source Type</strong>: <em>CIDR</em></li>
-      <li><strong>Source CIDR</strong>:  <em>0.0.0.0/0</em></li>
+      <li><strong>Source CIDR</strong>: <em>0.0.0.0/0</em></li>
       <li><strong>IP Protocol</strong>: <em>TCP</em></li>
       <li><strong>Destination Port Range</strong>: <em>443</em></li>
     </ul>
@@ -1277,7 +1278,7 @@ Click <strong>Create function</strong> and select <strong>Create from existing i
    },
    {
      "name": "sofa",
-     "description": "A grey sofa",
+     "description": "A gray sofa",
      "numberInStorage": 2
    },
    {
@@ -1328,7 +1329,7 @@ Click <strong>Create function</strong> and select <strong>Create from existing i
    },
    {
      "name": "sofa",
-     "description": "A grey sofa",
+     "description": "A gray sofa",
      "numberInStorage": 2
    }
  ]
@@ -1379,9 +1380,10 @@ tasks {
     }
 }</code></pre>
       <ul>
+        <li> For Windows users only, remove <code>baseImage(&#39;gcr.io/distroless/cc-debian10&#39;)</code> from the <code>dockerfileNative</code> task.</li>
         <li> Fill in the region identifier and object storage namespace as described in section <b>3.2</b>.</li>
-        <li> Set the container image name for the native docker build </li>
-        <li> Use a distroless base container image and limit the heap size to 80% for native executable </li>
+        <li> Set the container image name for the native docker build.</li>
+        <li> Use a distroless base container image and limit the heap size to 80% for native executable.</li>
       </ul>
     </p>
     <p>
@@ -1430,7 +1432,7 @@ tasks {
   &lt;/profile&gt;
 &lt;/profiles&gt;</code></pre>
     <ul>
-      <li>Make sure that the region identifier and object storage namespace properties are set as described in section <b>3.2.</b>.</li>
+      <li>Make sure that the region identifier and object storage namespace properties are set as described in section <b>3.2</b>.</li>
       <li>Use <code>&lt;jib.docker.image&gt;</code> to set the name of the container image created by the <code>docker-native</code> build command.</li>
       <li>Use <code>&lt;baseImageRun&gt;</code> to use a distroless base container image as the base runtime image.</li>
     </ul>
@@ -1454,7 +1456,7 @@ tasks {
 
 <p>To create a function on Oracle Functions with the native executable, repeat the steps in section <strong>3.2.</strong>, then set up an API gateway as described in section <strong>4</strong>.</p>
 
-<p>Alternatively, you can open the existing application in Oracle Cloud Infrastructure, find the function that you created and click <strong>Edit</strong>. In the popup, choose the native executable from the container registry and click <strong>Save</strong>. Once the function reloads, use the same API Gateway to access it and test it as described in section <strong>5</strong>.</p>
+<p>Alternatively, you can open the existing application in Oracle Cloud Infrastructure, find the function that you created and click <strong>Edit</strong>. In the list, choose the native executable from the container registry and click <strong>Save</strong>. Once the function reloads, use the same API Gateway to access it and test it as described in section <strong>5</strong>.</p>
     
       <h3 id="summary">
         
@@ -1556,7 +1558,7 @@ tasks {
               <p class="copyright">
                 Copyright © 2023-2024, Oracle and/or its affiliates. All rights reserved.
                 Oracle and Java are registered trademarks of Oracle and/or its affiliates.
-                Other names may be trademarks of their respective owners. 
+                Other names may be trademarks of their respective owners.
               </p>
               <div id="teconsent"></div>
             </div>

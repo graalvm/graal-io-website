@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2024-02-22 13:06:54 +0000"/>
-  <meta name="last_built" content="2024-03-15 16:45:18 +0000"/>
+  <meta name="last_modified" content="2024-04-23 09:15:45 +0000"/>
+  <meta name="last_built" content="2024-04-24 15:11:43 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -426,9 +426,10 @@ The application uses <a href="https://micronaut-projects.github.io/micronaut-mic
   <li>Create a new project using the following selections.
     <ul>
       <li><strong>Project Type</strong>: <em>Application</em> (Default)</li>
-      <li><strong>Project name</strong>: <em>oci-metrics-demo</em></li>
+      <li><strong>Project Name</strong>: <em>oci-metrics-demo</em></li>
       <li><strong>Base Package</strong>: <em>com.example</em> (Default)</li>
       <li><strong>Clouds</strong>: <em>OCI</em></li>
+      <li><strong>Language</strong>: <em>Java</em> (Default)</li>
       <li><strong>Build Tool</strong>: <em>Gradle (Groovy)</em> or <em>Maven</em></li>
       <li><strong>Test Framework</strong>: <em>JUnit</em> (Default)</li>
       <li><strong>Java Version</strong>: <em>17</em> (Default)</li>
@@ -441,7 +442,7 @@ The application uses <a href="https://micronaut-projects.github.io/micronaut-mic
   <li>Click <strong>Generate Project</strong>, then click <strong>Download Zip</strong>. The GCN Launcher creates a Java project with the default package <code>com.example</code> in a directory named <em>oci-metrics-demo</em>. The application ZIP file will be downloaded in your default downloads directory. Unzip it, open in your code editor, and proceed to the next steps.</li>
 </ol>
 
-<p>Alternatively, use the GCN CLI as follows:</p>
+<p>Alternatively, use the <a href="/gcn/get-started/using-gcn-cli/">GCN CLI</a> as follows:</p>
 
 <div id="tabs-doc2">
   <ul>
@@ -454,6 +455,7 @@ The application uses <a href="https://micronaut-projects.github.io/micronaut-mic
     --services=metrics \
     --features=graalvm,micrometer-annotation \
     --build=gradle \
+    --jdk=17 \
     --lang=java \
     --example-code=false</code></pre>
   </div>
@@ -463,6 +465,7 @@ The application uses <a href="https://micronaut-projects.github.io/micronaut-mic
     --services=metrics \
     --features=graalvm,micrometer-annotation \
     --build=maven \
+    --jdk=17 \
     --lang=java \
     --example-code=false</code></pre>
   </div>
@@ -470,7 +473,7 @@ The application uses <a href="https://micronaut-projects.github.io/micronaut-mic
 
 <p>For more information, see <a href="/gcn/get-started/using-gcn-cli/">Using the GCN CLI</a>.</p>
 
-<p>The GCN Launcher creates a multi-module project with two subprojects: <em>oci</em>, and <em>lib</em>. The common application logic is in the <em>lib</em> subproject, and the <em>oci</em> subproject contain logic specific to the Oracle Cloud Infrastructure platform.
+<p>The GCN Launcher creates a multimodule project with two subprojects: <em>oci</em>, and <em>lib</em>. The common application logic is in the <em>lib</em> subproject, and the <em>oci</em> subproject contain logic specific to the Oracle Cloud Infrastructure platform.
 When creating the application with GCN, the necessary features such as the <a href="https://logback.qos.ch/" target="_blank">Logback framework</a>, <a href="https://micronaut-projects.github.io/micronaut-micrometer/latest/guide/" target="_blank">Micronaut Micrometer</a>, and others were added for you. These features will be used in the guide.</p>
     
       <h3 id="11-configure-metrics-collection">
@@ -487,7 +490,7 @@ When creating the application with GCN, the necessary features such as the <a hr
   <p>Micrometer provides a simple facade over the instrumentation clients for a number of popular monitoring systems.</p>
 </blockquote>
 
-<p>To configure Micrometer, add the following properties to the application configuration file, <em>oci/src/main/resources/application-oraclecloud.properties</em>:</p>
+<p>To configure Micrometer, add the following properties to the application configuration file, <em>oci/src/main/resources/application.properties</em>:</p>
 
 <pre><code>micronaut.metrics.enabled=true
 micronaut.metrics.binders.files.enabled=true
@@ -1010,7 +1013,7 @@ class BookController {
       <p>Note: For more information, see <a href="https://docs.oracle.com/iaas/Content/API/Concepts/sdk_authentication_methods.htm" target="_blank">Oracle Cloud Infrastructure SDK Authentication Methods</a> and <a href="https://docs.oracle.com/iaas/Content/API/SDKDocs/cliinstall.htm#configfile" target="_blank">Setting up the Configuration File</a>.</p>
     </blockquote>
 
-    <p>Use the credentials in the configuration file <em>oci/src/main/resources/application-oraclecloud.properties</em>, as follows:</p>
+    <p>Use the credentials in the configuration file <em>oci/src/main/resources/application.properties</em>, as follows:</p>
 
     <pre><code> oci.config.profile=oci_metrics_demo_profile
 </code></pre>
@@ -1018,13 +1021,13 @@ class BookController {
     <p>Provide the profile name. If you didn’t create a custom profile name, use <code>DEFAULT</code>. Use the <code>oci.config.path</code> property if you need to specify the path to the configuration file.</p>
   </li>
   <li>
-    <p>To export metrics to Oracle Cloud Infrastructure, enable Oracle Cloud Infrastructure as an export location for Micrometer in the application configuration file. 
+    <p>To export metrics to Oracle Cloud Infrastructure, enable Oracle Cloud Infrastructure as an export location for Micrometer in the application configuration file.
 In addition, set the <code>namespace</code> property for your metrics to something meaningful, for example, an application name such as <code>ocimetricsdemo</code>.
 The namespace groups the metrics in Oracle Cloud Infrastructure Metrics.</p>
   </li>
 </ol>
 
-<p>Edit the file <em>oci/src/main/resources/application-oraclecloud.properties</em> so that it includes the following:</p>
+<p>Edit the file <em>oci/src/main/resources/application.properties</em> so that it includes the following:</p>
 
 <pre><code>micronaut.metrics.enabled=true
 micronaut.metrics.export.oraclecloud.enabled=true
@@ -1056,9 +1059,11 @@ micronaut.metrics.export.oraclecloud.namespace=ocimetricsdemo
          <pre><code class="language-bash">./gradlew :oci:run --args="-customMetrics.updateFrequency=5s"</code></pre>
      </div>
      <div id="maven">
-         <pre><code class="language-bash">./mvnw install -pl lib -am &amp;&amp; ./mvnw mn:run -pl oci</code></pre>
+         <pre><code class="language-bash">./mvnw install -pl lib -am
+./mvnw mn:run -pl oci</code></pre>
          <p>Alternatively, to cause the custom metric update to occur more frequently (to see the effects on metrics), start the application with a configuration override to update every five seconds, as follows:</p>
-         <pre><code class="language-bash">./mvnw install -pl lib -am &amp;&amp; ./mvnw mn:run -pl oci -Dmn.appArgs="-customMetrics.updateFrequency=5s"</code></pre>
+         <pre><code class="language-bash">./mvnw install -pl lib -am
+./mvnw mn:run -pl oci -Dmn.appArgs="-customMetrics.updateFrequency=5s"</code></pre>
      </div>
  </div>
   </li>
@@ -1182,7 +1187,8 @@ micronaut.metrics.export.oraclecloud.namespace=ocimetricsdemo
     <pre><code class="language-bash">oci/build/native/nativeCompile/oci</code></pre>
   </div>
   <div id="maven">
-      <pre><code class="language-bash">./mvnw install -pl lib -am &amp;&amp; ./mvnw package -pl oci -Dpackaging=native-image</code></pre>
+      <pre><code class="language-bash">./mvnw install -pl lib -am
+./mvnw package -pl oci -Dpackaging=native-image</code></pre>
       <p>The native executable is created in the <em>oci/target/</em> directory and can be run with the following command:</p>
     <pre><code class="language-bash">oci/target/oci</code></pre>
   </div>
@@ -1300,7 +1306,7 @@ micronaut.metrics.export.oraclecloud.namespace=ocimetricsdemo
               <p class="copyright">
                 Copyright © 2023-2024, Oracle and/or its affiliates. All rights reserved.
                 Oracle and Java are registered trademarks of Oracle and/or its affiliates.
-                Other names may be trademarks of their respective owners. 
+                Other names may be trademarks of their respective owners.
               </p>
               <div id="teconsent"></div>
             </div>

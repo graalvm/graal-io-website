@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2024-01-31 16:07:29 +0000"/>
-  <meta name="last_built" content="2024-03-15 16:45:18 +0000"/>
+  <meta name="last_modified" content="2024-04-23 09:15:45 +0000"/>
+  <meta name="last_built" content="2024-04-24 15:11:43 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -462,7 +462,7 @@
 
 <p>This guide shows you how to use the Graal Cloud Native tools in VS Code to create a Java application from an existing Oracle Autonomous Database schema.</p>
 
-<p>After completing this guide you will understand how to create entity and repository classes from an existing database schema tables, with no coding, and quickly build a simple CRUD application that lets you interact with the data stored in the database. All this is possible to accomplish from within VS Code thanks to the <a href="/gcn/vscode-tools/graal-cloud-native-launcher/">Graal Cloud Native</a> and <a href="/gcn/vscode-tools/micronaut-tools/">Micronaut<sup>®</sup> Tools</a>.</p>
+<p>After completing this guide you will understand how to create entity and repository classes from an existing database schema tables, with no coding, and quickly build a simple CRUD application that lets you interact with the data stored in the database. All this is possible to accomplish from within VS Code thanks to <a href="/gcn/vscode-tools/graal-cloud-native-launcher/">Graal Cloud Native</a> and <a href="/gcn/vscode-tools/micronaut-tools/">Tools for Micronaut<sup>®</sup> Framework</a>.</p>
     
       <h3 id="prerequisites">
         
@@ -517,7 +517,7 @@
         
       </h2>
 
-<p>Install one of the sample schemas that Oracle supplies into your new Oracle Autonomous Database. 
+<p>Install one of the sample schemas that Oracle supplies into your new Oracle Autonomous Database.
 For completing this guide, use the <a href="https://github.com/oracle/db-sample-schemas/releases/latest">Oracle Sample HR Schema</a>.</p>
     
       <h3 id="21-connect-to-the-autonomous-database">
@@ -561,7 +561,7 @@ Follow these steps: <a href="https://docs.oracle.com/en/database/oracle/oracle-d
     <p>Step through the project creation wizard. The following list details how you should respond to each prompt:</p>
 
     <ul>
-      <li>Pick GCN Version: <em>4.2.1</em></li>
+      <li>Pick GCN Version: <em>4.3.7</em></li>
       <li>Pick an Application type: <em>Application</em></li>
       <li>Pick Project Java: Select your JDK installation</li>
       <li>Provide project name: <em>dbsample</em></li>
@@ -582,7 +582,7 @@ Follow these steps: <a href="https://docs.oracle.com/en/database/oracle/oracle-d
   <li>
     <p>Save the project and open it in a new VS Code window.</p>
   </li>
-  <li>Remove the following two lines from <em>application-oraclecloud.properties</em>:
+  <li>Remove the following two lines from <em>application.properties</em>:
     <pre><code> datasources.default.ocid=
  datasources.default.walletPassword=
 </code></pre>
@@ -627,8 +627,8 @@ Follow these steps: <a href="https://docs.oracle.com/en/database/oracle/oracle-d
 
 <p>Now connect the VS Code developer tooling to your Oracle Autonomous Database.</p>
 
-<p>As you have the application opened, VS Code should show the Explorer panel. 
-Within the Explorer panel, open the <strong>DATABASES</strong> pane, as shown in the screenshot below, and click <strong>Add Oracle Autonomous DB</strong>. 
+<p>As you have the application opened, VS Code should show the Explorer panel.
+Within the Explorer panel, open the <strong>DATABASES</strong> pane, as shown in the screenshot below, and click <strong>Add Oracle Autonomous DB</strong>.
 (This is also available in the Command Palette).</p>
 
 <p><img src="/gcn/docs/vscode-tools/images/db-features/databases-initial-view.png" alt="DATABASES Actions" /></p>
@@ -766,7 +766,7 @@ Within the Explorer panel, open the <strong>DATABASES</strong> pane, as shown in
         
       </h2>
 
-<p>To run the application, there is no need to configure your database connection in your project <code>application.properties</code> or <code>application.yml</code> files. 
+<p>To run the application, there is no need to configure your database connection in your project <code>application.properties</code> or <code>application.yml</code> files.
 All you need is to keep the database connection active, and then run your application using CodeLens in the <em>Application.java</em> file  (<strong>Run main</strong>, <strong>Debug main</strong>, <strong>Run with Continuous Mode</strong>):</p>
 
 <p><img src="/gcn/docs/vscode-tools/images/db-features/run-db-app-from-codelens.png" alt="Running the application from CodeLens" /></p>
@@ -807,7 +807,7 @@ Learn more about database management in VS Code in the <a href="/gcn/vscode-tool
       </h3>
 
 <ul>
-  <li><a href="https://marketplace.visualstudio.com/items?itemName=oracle-labs-graalvm.micronaut">Micronaut Tools</a></li>
+  <li><a href="https://marketplace.visualstudio.com/items?itemName=oracle-labs-graalvm.micronaut">Tools for Micronaut&lt;/a&gt;<sup>®</sup> Framework</a></li>
   <li><a href="https://marketplace.visualstudio.com/items?itemName=oracle-labs-graalvm.gcn-database-drivers">Database Features</a></li>
   <li><a href="https://micronaut-projects.github.io/micronaut-data/latest/guide/">Micronaut Data</a></li>
   <li><a href="https://www.oracle.com/autonomous-database/">Oracle Autonomous Database</a></li>
@@ -886,7 +886,7 @@ Learn more about database management in VS Code in the <a href="/gcn/vscode-tool
               <p class="copyright">
                 Copyright © 2023-2024, Oracle and/or its affiliates. All rights reserved.
                 Oracle and Java are registered trademarks of Oracle and/or its affiliates.
-                Other names may be trademarks of their respective owners. 
+                Other names may be trademarks of their respective owners.
               </p>
               <div id="teconsent"></div>
             </div>

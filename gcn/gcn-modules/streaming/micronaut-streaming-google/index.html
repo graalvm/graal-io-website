@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2024-01-26 11:18:58 +0000"/>
-  <meta name="last_built" content="2024-03-15 16:45:18 +0000"/>
+  <meta name="last_modified" content="2024-04-23 09:15:45 +0000"/>
+  <meta name="last_built" content="2024-04-24 15:11:43 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -390,19 +390,18 @@ The application consists of two Micronaut microservices that use Google Cloud Pl
 <p>Follow the steps below to create the application from scratch. However, you can also download the completed example:</p>
 
 <div id="tabs-doc1">
-    <ul>
-        <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
-        <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
-    </ul>
-    <div id="gradle">
-        <p><a href="/gcn/docs/gcn-modules/streaming/archives/gcp-streaming-demo-java-gradle.zip">Gradle GCP Streaming Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" />
-        </a>
-        </p>
-    </div>
-    <div id="maven">
-        <p><a href="/gcn/docs/gcn-modules/streaming/archives/gcp-streaming-demo-java-maven.zip">Maven GCP Streaming Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" /></a>
-        </p>
-    </div>
+  <ul>
+    <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
+    <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
+  </ul>
+  <div id="gradle">
+    <p><a href="https://github.com/oracle/gcn/releases/download/4.3.7.2/4.3.7.2_streaming_gcp-streaming-demo-java-gradle.zip">Gradle GCP Streaming Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" /></a>
+    </p>
+  </div>
+  <div id="maven">
+    <p><a href="https://github.com/oracle/gcn/releases/download/4.3.7.2/4.3.7.2_streaming_gcp-streaming-demo-java-maven.zip">Maven GCP Streaming Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" /></a>
+    </p>
+  </div>
 </div>
     
       <h4 id="a-note-regarding-your-development-environment">
@@ -451,7 +450,7 @@ The application consists of two Micronaut microservices that use Google Cloud Pl
   <li>Create a new project using the following selections.
     <ul>
       <li><strong>Project Type</strong>: <em>Application</em> (Default)</li>
-      <li><strong>Project name</strong>: <em>books</em></li>
+      <li><strong>Project Name</strong>: <em>books</em></li>
       <li><strong>Base Package</strong>: <em>com.example.publisher</em></li>
       <li><strong>Clouds</strong>: <em>GCP</em></li>
       <li><strong>Language</strong>: <em>Java</em> (Default)</li>
@@ -484,6 +483,7 @@ The application consists of two Micronaut microservices that use Google Cloud Pl
     --services=streaming \
     --features=awaitility,graalvm,reactor,serialization-jackson \
     --build=gradle \
+    --jdk=17 \
     --lang=java \
     --example-code=false</code></pre>
   </div>
@@ -493,6 +493,7 @@ The application consists of two Micronaut microservices that use Google Cloud Pl
     --services=streaming \
     --features=awaitility,graalvm,reactor,serialization-jackson \
     --build=maven \
+    --jdk=17 \
     --lang=java \
     --example-code=false</code></pre>
   </div>
@@ -799,7 +800,7 @@ public interface AnalyticsClient {
         
       </h4>
 
-<p>Sending a message to the streaming service is as simple as injecting <code>AnalyticsClient</code> and calling its <code>updateAnalytics</code> method. 
+<p>Sending a message to the streaming service is as simple as injecting <code>AnalyticsClient</code> and calling its <code>updateAnalytics</code> method.
 The goal is to send a message every time the details of a book are returned from the <em>Books</em> microservice or, in other words, every time there is a call to <code>http://localhost:8080/books/{isbn}</code>.
 To achieve this, the GCN Launcher created an <a href="https://docs.micronaut.io/4.2.1/guide/#filters">Http Server Filter</a> in a file named <em>lib/src/main/java/com/example/publisher/AnalyticsFilter.java</em> as follows:</p>
 
@@ -871,7 +872,8 @@ class AnalyticsFilter implements HttpServerFilter { // &lt;2&gt;
         <pre><code class="language-bash">./gradlew :gcp:test</code></pre>
     </div>
     <div id="maven">
-        <pre><code class="language-bash">./mvnw install -pl lib -am &amp;&amp; ./mvnw package -pl gcp -DskipTests
+        <pre><code class="language-bash">./mvnw install -pl lib -am
+./mvnw package -pl gcp -DskipTests
 ./mvnw test</code></pre>
     </div>
 </div>
@@ -891,7 +893,7 @@ class AnalyticsFilter implements HttpServerFilter { // &lt;2&gt;
   <li>Create a new project using the following selections.
     <ul>
       <li><strong>Project Type</strong>: <em>Application</em> (Default)</li>
-      <li><strong>Project name</strong>: <em>analytics</em></li>
+      <li><strong>Project Name</strong>: <em>analytics</em></li>
       <li><strong>Base Package</strong>: <em>com.example.consumer</em></li>
       <li><strong>Clouds</strong>: <em>GCP</em></li>
       <li><strong>Language</strong>: <em>Java</em> (Default)</li>
@@ -924,6 +926,7 @@ class AnalyticsFilter implements HttpServerFilter { // &lt;2&gt;
     --services=streaming \
     --features=awaitility,graalvm,serialization-jackson \
     --build=gradle \
+    --jdk=17 \
     --lang=java \
     --example-code=false</code></pre>
   </div>
@@ -933,6 +936,7 @@ class AnalyticsFilter implements HttpServerFilter { // &lt;2&gt;
     --services=streaming \
     --features=awaitility,graalvm,serialization-jackson \
     --build=maven \
+    --jdk=17 \
     --lang=java \
     --example-code=false</code></pre>
   </div>
@@ -946,7 +950,7 @@ class AnalyticsFilter implements HttpServerFilter { // &lt;2&gt;
         
       </h4>
 
-<p>The lGCN auncher created a <code>Book</code> domain class in a file named <em>lib/src/main/java/com/example/consumer/Book.java</em>, as shown below. (This <code>Book</code> POJO is the same as the one in the <em>Books</em> microservice. In a real application this would be in a shared library.)</p>
+<p>The GCN Launcher created a <code>Book</code> domain class in a file named <em>lib/src/main/java/com/example/consumer/Book.java</em>, as shown below. (This <code>Book</code> POJO is the same as the one in the <em>Books</em> microservice. In a real application this would be in a shared library.)</p>
 
 <pre><code class="language-java">package com.example.consumer;
 
@@ -1231,7 +1235,8 @@ class AnalyticsListener {
         <pre><code class="language-bash">./gradlew :gcp:test</code></pre>
     </div>
     <div id="maven">
-        <pre><code class="language-bash">./mvnw install -pl lib -am &amp;&amp; ./mvnw package -pl gcp -DskipTests
+        <pre><code class="language-bash">./mvnw install -pl lib -am
+./mvnw package -pl gcp -DskipTests
 ./mvnw test</code></pre>
     </div>
 </div>
@@ -1244,10 +1249,9 @@ class AnalyticsListener {
         
       </h4>
 
-<p>The <em>Books</em> and <em>Analytics</em> microservices are both run on the same GCP Compute Engine instance, so they must run on different ports. Change the port that <em>Analytics</em> runs on by editing its <em>gcp/src/main/resources/application-gcp.properties</em> file so that it has the following contents:</p>
+<p>The <em>Books</em> and <em>Analytics</em> microservices are both run on the same GCP Compute Engine instance, so they must run on different ports. Change the port that <em>Analytics</em> runs on by editing its <em>gcp/src/main/resources/application.properties</em> to include the following configuration:</p>
 
-<pre><code>micronaut.application.name=gcp
-micronaut.server.port=8081
+<pre><code>micronaut.server.port=8081
 </code></pre>
     
       <h2 id="2-run-the-microservices">
@@ -1257,14 +1261,6 @@ micronaut.server.port=8081
         
         
       </h2>
-
-<p>To run the microservices locally, starting from <code>kafka.bootstrap.servers</code>, comment out the Kafka section of each microservice’s <em>application-gcp.properties</em> file by inserting “#” at the beginning of each line, as shown below:</p>
-
-<pre><code># kafka.bootstrap.servers=${KAFKA_BOOTSTRAP_SERVERS}
-# kafka.max.partition.fetch.bytes=1048576
-# kafka.max.request.size=1048576
-# kafka.retries=3
-</code></pre>
     
       <h3 id="21-start-the-books-microservice">
         
@@ -1285,7 +1281,8 @@ micronaut.server.port=8081
         <pre><code class="language-bash">./gradlew :gcp:run</code></pre>
     </div>
     <div id="maven">
-        <pre><code class="language-bash">./mvnw install -pl lib -am &amp;&amp; ./mvnw -pl gcp mn:run</code></pre>
+        <pre><code class="language-bash">./mvnw install -pl lib -am
+./mvnw -pl gcp mn:run</code></pre>
     </div>
 </div>
     
@@ -1308,7 +1305,8 @@ micronaut.server.port=8081
         <pre><code class="language-bash">./gradlew :gcp:run</code></pre>
     </div>
     <div id="maven">
-        <pre><code class="language-bash">./mvnw install -pl lib -am &amp;&amp; ./mvnw -pl gcp mn:run</code></pre>
+        <pre><code class="language-bash">./mvnw install -pl lib -am
+./mvnw -pl gcp mn:run</code></pre>
     </div>
 </div>
     
@@ -1397,7 +1395,7 @@ micronaut.server.port=8081
 </code></pre>
   </li>
   <li>
-    <p>To run the microservices locally, add the <code>bootstrap.servers</code> configuration to each microservice’s <em>application-gcp.properties</em> file. Remove the <code>bootstrap.servers</code> configuration when you finish testing the native executables.</p>
+    <p>To run the microservices locally, create a <em>gcp/src/main/resources/application-dev.properties</em> file for each microservice and add the <code>bootstrap.servers</code> configuration there:</p>
 
     <pre><code> kafka.enabled=true
  kafka.bootstrap.servers=localhost:9092
@@ -1414,12 +1412,17 @@ micronaut.server.port=8081
    <div id="gradle">
      <pre><code class="language-bash">./gradlew :gcp:nativeCompile</code></pre>
      <p>The native executable is created in the <em>gcp/build/native/nativeCompile/</em> directory and can be run with the following command.</p>
-     <pre><code class="language-bash">gcp/build/native/nativeCompile/gcp</code></pre>
+     <pre><code class="language-bash">MICRONAUT_ENVIRONMENTS=dev gcp/build/native/nativeCompile/gcp</code></pre>
+      Or if you use Windows:
+     <pre><code class="language-bash">cmd /C "set MICRONAUT_ENVIRONMENTS=dev &amp;&amp; gcp\build\native\nativeCompile\gcp"</code></pre>
    </div>
    <div id="maven">
-     <pre><code class="language-bash">./mvnw install -pl lib -am &amp;&amp; ./mvnw package -pl gcp -Dpackaging=native-image</code></pre>
+     <pre><code class="language-bash">./mvnw install -pl lib -am
+./mvnw package -pl gcp -Dpackaging=native-image</code></pre>
      <p>The native executable is created in the <em>gcp/target/</em> directory and can be run with the following command:</p>
-     <pre><code class="language-bash">gcp/target/gcp</code></pre>
+     <pre><code class="language-bash">MICRONAUT_ENVIRONMENTS=dev gcp/target/gcp</code></pre>
+      Or if you use Windows:
+     <pre><code class="language-bash">cmd /C "set MICRONAUT_ENVIRONMENTS=dev &amp;&amp; gcp\target\gcp"</code></pre>
    </div>
  </div>
   </li>
@@ -1507,7 +1510,7 @@ micronaut.server.port=8081
     <p>Select the <strong>us-east1-b</strong> zone.</p>
   </li>
   <li>
-    <p>Uncheck the check-boxes for <strong>Allow TCP port 9092 traffic from the Internet</strong> and <strong>Allow TCP port 6667 traffic from the Internet</strong>.</p>
+    <p>Deselect the check boxes for <strong>Allow TCP port 9092 traffic from the Internet</strong> and <strong>Allow TCP port 6667 traffic from the Internet</strong>.</p>
   </li>
   <li>
     <p>Click <strong>DEPLOY</strong> and wait for the deployment to finish.</p>
@@ -1594,40 +1597,12 @@ On your local computer run the following command:</p>
         
       </h2>
 
-<ol>
-  <li>
-    <p>Edit the file named <em>gcp/src/main/resources/application-gcp.properties</em> for the <em>Books</em> microservice so that it matches the following contents. (The Micronaut framework applies this configuration file only for the <code>gcp</code> environment.)</p>
+<p>After you deploy your applications to the GCP Compute instance, make sure you export the following environment variable; Micronaut will set the <code>kafka.bootstrap.servers</code> configuration property from its value:</p>
 
-    <pre><code>micronaut.application.name=gcp
-micronaut.server.port=8080
-netty.default.allocator.max-order=3
-kafka.enabled=true
-kafka.bootstrap.servers=${KAFKA_BOOTSTRAP_SERVERS}
-kafka.max.partition.fetch.bytes=1048576
-kafka.max.partition.request.size=1048576
-kafka.retries=3
+<pre><code>```bash
+export KAFKA_BOOTSTRAP_SERVERS=&lt;replace_with_the_saved_internal_kafka_vm_address_&gt;:9092
+```
 </code></pre>
-  </li>
-  <li>
-    <p>Edit the file named <em>gcp/src/main/resources/application-gcp.properties</em> for the <em>Analytics</em> microservice so that it matches the following contents. (The Micronaut framework applies this configuration file only for the <code>gcp</code> environment.)</p>
-
-    <pre><code>micronaut.application.name=gcp
-micronaut.server.port=8081
-netty.default.allocator.max-order=3
-kafka.enabled=true
-kafka.bootstrap.servers=${KAFKA_BOOTSTRAP_SERVERS}
-kafka.max.partition.fetch.bytes=1048576
-kafka.max.partition.request.size=1048576
-kafka.retries=3
-</code></pre>
-  </li>
-  <li>
-    <p>After you deploy your applications to the GCP Compute instance, make sure you export the following environment variable:</p>
-
-    <pre><code class="language-bash"> export KAFKA_BOOTSTRAP_SERVERS=&lt;replace_with_the_saved_internal_kafka_vm_address_&gt;:9092
-</code></pre>
-  </li>
-</ol>
     
       <h2 id="6-deploy-the-books-service-to-gcp-cloud">
         
@@ -1650,7 +1625,8 @@ kafka.retries=3
          <pre><code class="language-bash">./gradlew :gcp:shadowJar</code></pre>
      </div>
      <div id="maven">
-         <pre><code class="language-bash">./mvnw install -pl lib -am &amp;&amp; ./mvnw package -pl gcp -DskipTests</code></pre>
+         <pre><code class="language-bash">./mvnw install -pl lib -am
+./mvnw package -pl gcp -DskipTests</code></pre>
      </div>
  </div>
   </li>
@@ -1726,7 +1702,8 @@ kafka.retries=3
          <pre><code class="language-bash">./gradlew :gcp:shadowJar</code></pre>
      </div>
      <div id="maven">
-         <pre><code class="language-bash">./mvnw install -pl lib -am &amp;&amp; ./mvnw package -pl gcp -DskipTests</code></pre>
+         <pre><code class="language-bash">./mvnw install -pl lib -am
+./mvnw package -pl gcp -DskipTests</code></pre>
      </div>
  </div>
   </li>
@@ -1837,7 +1814,8 @@ sudo yum -y install zlib*
      <pre><code class="language-bash">gcp/build/native/nativeCompile/gcp</code></pre>
    </div>
    <div id="maven">
-     <pre><code class="language-bash">./mvnw install -pl lib -am &amp;&amp; ./mvnw package -pl gcp -Dpackaging=native-image</code></pre>
+     <pre><code class="language-bash">./mvnw install -pl lib -am
+./mvnw package -pl gcp -Dpackaging=native-image</code></pre>
      <p>The native executable is created in the <em>gcp/target/</em> directory and can be run with the following command:</p>
      <pre><code class="language-bash">gcp/target/gcp</code></pre>
    </div>
@@ -2013,7 +1991,7 @@ sudo yum -y install zlib*
               <p class="copyright">
                 Copyright © 2023-2024, Oracle and/or its affiliates. All rights reserved.
                 Oracle and Java are registered trademarks of Oracle and/or its affiliates.
-                Other names may be trademarks of their respective owners. 
+                Other names may be trademarks of their respective owners.
               </p>
               <div id="teconsent"></div>
             </div>

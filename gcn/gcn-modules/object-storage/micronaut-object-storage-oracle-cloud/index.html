@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2024-01-31 16:07:30 +0000"/>
-  <meta name="last_built" content="2024-03-15 16:45:18 +0000"/>
+  <meta name="last_modified" content="2024-04-22 15:10:06 +0000"/>
+  <meta name="last_built" content="2024-04-24 15:11:43 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -398,11 +398,11 @@
     <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
   </ul>
   <div id="gradle">
-    <p><a href="/gcn/docs/gcn-modules/object-storage/archives/oci-storage-demo-java-gradle.zip">Gradle Oracle Cloud Infrastructure Object Storage Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" /></a>
+    <p><a href="https://github.com/oracle/gcn/releases/download/4.3.7.2/4.3.7.2_object-storage_oci-storage-demo-java-gradle.zip">Gradle Oracle Cloud Infrastructure Object Storage Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" /></a>
     </p>
   </div>
   <div id="maven">
-    <p><a href="/gcn/docs/gcn-modules/object-storage/archives/oci-storage-demo-java-maven.zip">Maven Oracle Cloud Infrastructure Object Storage Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" /></a>
+    <p><a href="https://github.com/oracle/gcn/releases/download/4.3.7.2/4.3.7.2_object-storage_oci-storage-demo-java-maven.zip">Maven Oracle Cloud Infrastructure Object Storage Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" /></a>
     </p>
   </div>
 </div>
@@ -458,7 +458,7 @@
   <li>Click <strong>Generate Project</strong>, then click <strong>Download Zip</strong>. The GCN Launcher creates an application with the default package <code>com.example</code> in a directory named <em>oci-storage-demo</em>. The application ZIP file will be downloaded in your default downloads directory. Unzip it, open in your code editor, and proceed to the next steps.</li>
 </ol>
 
-<p>Alternatively, use the GCN CLI as follows:</p>
+<p>Alternatively, use the <a href="/gcn/get-started/using-gcn-cli/">GCN CLI</a> as follows:</p>
 
 <div id="tabs-doc2">
   <ul>
@@ -467,19 +467,21 @@
   </ul>
   <div id="gradle">
     <pre><code class="language-bash">gcn create-app com.example.oci-storage-demo \
-  --clouds=oci \
-  --services=objectstore \
-  --features=graalvm \
-  --build=gradle \
-  --lang=java</code></pre>
+    --clouds=oci \
+    --services=objectstore \
+    --features=graalvm \
+    --build=gradle \
+    --jdk=17 \
+    --lang=java</code></pre>
   </div>
   <div id="maven">
     <pre><code class="language-bash">gcn create-app com.example.oci-storage-demo \
-  --clouds=oci \
-  --services=objectstore \
-  --features=graalvm \
-  --build=maven \
-  --lang=java</code></pre>
+    --clouds=oci \
+    --services=objectstore \
+    --features=graalvm \
+    --build=maven \
+    --jdk=17 \
+    --lang=java</code></pre>
   </div>
 </div>
 
@@ -694,11 +696,14 @@ public void delete(String userId) {
 (It should be empty.)</p>
   </li>
   <li>
-    <p>Micronaut requires values for the name of the bucket and its namespace, so provide them as environment variables, as follows:</p>
+    <p>Micronaut requires values for the name of the bucket and its namespace, so provide them in <em>oci/src/main/resources/application.properties</em>:</p>
 
-    <pre><code class="language-bash"> export OBJECT_STORAGE_BUCKET=gcn-guide-object-storage
- export OBJECT_STORAGE_NAMESPACE=&lt;namespace&gt;
+    <pre><code> micronaut.object-storage.oracle-cloud.default.bucket=gcn-guide-object-storage
+ micronaut.object-storage.oracle-cloud.default.namespace=&lt;namespace&gt;
 </code></pre>
+    <blockquote>
+      <p>Note that if you deploy the application to Oracle Cloud Infrastructure, put these properties in <em>oci/src/main/resources/application-oraclecloud.properties</em>.</p>
+    </blockquote>
   </li>
 </ol>
     
@@ -710,7 +715,7 @@ public void delete(String userId) {
         
       </h3>
 
-<p>To upload a file larger than 1MB, configure the file <em>oci/src/main/resources/application-oraclecloud.properties</em> as follows:</p>
+<p>To upload a file larger than 1MB, configure the file <em>oci/src/main/resources/application.properties</em> as follows:</p>
 
 <pre><code># 20MB = 20 * 1024 * 1024b = 20971520b
 micronaut.server.multipart.max-file-size=20971520
@@ -735,7 +740,7 @@ micronaut.server.multipart.max-file-size=20971520
     <pre><code class="language-bash">./gradlew :oci:run</code></pre>
   </div>
   <div id="maven">
-    <pre><code class="language-bash">./mvnw install -pl lib -am 
+    <pre><code class="language-bash">./mvnw install -pl lib -am
 ./mvnw mn:run -pl oci</code></pre>
   </div>
 </div>
@@ -840,7 +845,7 @@ Packaged as a native executable, it significantly reduces application startup ti
     <pre><code class="language-bash">oci/build/native/nativeCompile/oci</code></pre>
   </div>
   <div id="maven">
-    <pre><code class="language-bash">./mvnw install -pl lib -am 
+    <pre><code class="language-bash">./mvnw install -pl lib -am
 ./mvnw package -pl oci -Dpackaging=native-image</code></pre>
     <p>The native executable is created in the <em>oci/target/</em> directory and can be run with the following command:</p>
     <pre><code class="language-bash">oci/target/oci</code></pre>
@@ -966,7 +971,7 @@ Follow the steps in <a href="https://docs.oracle.com/iaas/Content/Object/Tasks/m
               <p class="copyright">
                 Copyright © 2023-2024, Oracle and/or its affiliates. All rights reserved.
                 Oracle and Java are registered trademarks of Oracle and/or its affiliates.
-                Other names may be trademarks of their respective owners. 
+                Other names may be trademarks of their respective owners.
               </p>
               <div id="teconsent"></div>
             </div>

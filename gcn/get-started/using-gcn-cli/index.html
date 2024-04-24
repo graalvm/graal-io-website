@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2023-10-04 14:52:29 +0000"/>
-  <meta name="last_built" content="2024-03-15 16:45:18 +0000"/>
+  <meta name="last_modified" content="2024-03-22 17:48:26 +0000"/>
+  <meta name="last_built" content="2024-04-24 15:11:43 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -443,7 +443,7 @@
   <li><code>-x, --stacktrace</code>: Show full stack trace when exceptions occur.</li>
 </ul>
 
-<p>Once you run the command, <code>gcn</code> creates a multi-module project with separate subprojects for each cloud, and a “lib” subproject where you can create classes that are shared between the cloud subprojects. This enables you to separate certain logic that is different between cloud providers, while keeping most of the implementation in the common project.</p>
+<p>Once you run the command, <code>gcn</code> creates a multimodule project with separate subprojects for each cloud, and a “lib” subproject where you can create classes that are shared between the cloud subprojects. This enables you to separate certain logic that is different between cloud providers, while keeping most of the implementation in the common project.</p>
 
 <p>The <em>[name]</em> of the application (for example, “guide”) determines the name of the directory that contains the project. For example, a Maven project directory structure is as follows:</p>
 
@@ -471,7 +471,9 @@
 │       │   │       └── com
 │       │   │           └── Application.java
 │       │   └── resources
+│       │       ├── application.properties
 │       │       ├── application-ec2.properties
+│       │       ├── bootstrap.properties
 │       │       ├── bootstrap-ec2.properties
 │       │       └── logback.xml
 │       └── test
@@ -491,7 +493,9 @@
 │       │   │       └── con
 │       │   │           └── Application.java
 │       │   └── resources
+│       │       ├── application.properties
 │       │       ├── application-oraclecloud.properties
+│       │       ├── bootstrap.properties
 │       │       ├── bootstrap-oraclecloud.properties
 │       │       └── logback.xml
 │       └── test
@@ -588,7 +592,7 @@
               <p class="copyright">
                 Copyright © 2023-2024, Oracle and/or its affiliates. All rights reserved.
                 Oracle and Java are registered trademarks of Oracle and/or its affiliates.
-                Other names may be trademarks of their respective owners. 
+                Other names may be trademarks of their respective owners.
               </p>
               <div id="teconsent"></div>
             </div>

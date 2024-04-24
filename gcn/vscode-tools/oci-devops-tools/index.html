@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2024-03-14 10:27:08 +0000"/>
-  <meta name="last_built" content="2024-03-15 16:45:18 +0000"/>
+  <meta name="last_modified" content="2024-04-23 09:15:45 +0000"/>
+  <meta name="last_built" content="2024-04-24 15:11:43 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -276,7 +276,7 @@
           
             
             <a href="/gcn/vscode-tools/micronaut-tools/">
-              Micronaut Tools
+              Tools for Micronaut&lt;/a&gt;&lt;sup&gt;&amp;reg;&lt;/sup&gt; framework
             </a>
           </li>
 
@@ -287,7 +287,7 @@
           
             
             <a href="/gcn/vscode-tools/micronaut-launch/">
-              Micronaut Launch
+              Launch for Micronaut&lt;/a&gt;&lt;sup&gt;&amp;reg;&lt;/sup&gt; Framework
             </a>
           </li>
 
@@ -506,7 +506,7 @@ This extension will:</p>
         
       </h2>
 
-<p>If you are working with a Graal Cloud Native (or Spring Boot) project, the extension sets up build pipelines to build containers for your Java-based applications and native executables. 
+<p>If you are working with a Graal Cloud Native (or Spring Boot) project, the extension sets up build pipelines to build containers for your Java-based applications and native executables.
 The extension also creates deployment pipelines that deploy these containers to an OKE cluster.</p>
 
 <p>To get started, configure access to OCI (if you have not yet):</p>
@@ -517,7 +517,7 @@ The extension also creates deployment pipelines that deploy these containers to 
   <li><a href="https://docs.oracle.com/iaas/Content/API/Concepts/cliconcepts.htm">Install the OCI CLI</a> (needed for the OKE local access)</li>
 </ul>
 
-<p>Having done the above, and with a <a href="https://graal.cloud/">Graal Cloud Native</a>, or a <a href="https://spring.io">Spring Boot</a>, project, you can can now create an Oracle Cloud Infrastructure DevOps project.</p>
+<p>Having done the above, and with a <a href="https://graal.cloud/">Graal Cloud Native</a>, or a <a href="https://spring.io">Spring Boot</a>, project, you can now create an Oracle Cloud Infrastructure DevOps project.</p>
     
       <h2 id="create-an-oci-devops-project">
         
@@ -582,19 +582,19 @@ The extension also creates deployment pipelines that deploy these containers to 
 
 <p>Once an OCI DevOps Project is created, the OCI DevOps view is populated with items representing remote build and deployment pipelines for each project container artifact.</p>
 
-<p>To <em>build</em> a project container artifact, invoke the <strong>Run Build Pipeline</strong> action for the appropriate build pipeline item. 
-The remote build pipeline is started and VS Code displays its state and build log. 
+<p>To <em>build</em> a project container artifact, invoke the <strong>Run Build Pipeline</strong> action for the appropriate build pipeline item.
+The remote build pipeline is started and VS Code displays its state and build log.
 After a successful build, either use the <strong>Pull Container Image</strong> action to pull the resulting container artifact locally, or proceed to deploying the container to OKE.</p>
 
-<p>To <em>deploy</em> a built container artifact, invoke the <strong>Run Deployment Pipeline</strong> action for the appropriate deployment pipeline item. 
-The remote deployment pipeline is started and VS Code displays its state and deployment log. 
+<p>To <em>deploy</em> a built container artifact, invoke the <strong>Run Deployment Pipeline</strong> action for the appropriate deployment pipeline item.
+The remote deployment pipeline is started and VS Code displays its state and deployment log.
 After a successful deployment, use the <strong>Open In Browser</strong> action to set up a port forward from OKE and open the deployed application in your web browser.</p>
 
 <p><img src="/gcn/docs/vscode-tools/images/oke_test_app.png" alt="Build and Deployment Pipelines" /></p>
 
-<p>The build specification files for each pipeline are stored in <em>.devops/</em>. 
-If you update the build specification file, commit and push the change to the DevOps-hosted repository, the build pipelines will be updated to reflect this change. 
-Note that the build pipelines run on custom-sized build runners in order to ensure there is sufficient memory to build all native executables using <a href="https://www.graalvm.org/">GraalVM Native Image</a>. 
+<p>The build specification files for each pipeline are stored in <em>.devops/</em>.
+If you update the build specification file, commit and push the change to the DevOps-hosted repository, the build pipelines will be updated to reflect this change.
+Note that the build pipelines run on custom-sized build runners in order to ensure there is sufficient memory to build all native executables using <a href="https://www.graalvm.org/">GraalVM Native Image</a>.
 These can be customized within the Oracle Cloud Console.</p>
     
       <h2 id="kubernetes-deployment-with-oke">
@@ -605,7 +605,7 @@ These can be customized within the Oracle Cloud Console.</p>
         
       </h2>
 
-<p>When the build pipeline succeeds, the container image can be deployed to <a href="https://www.oracle.com/cloud/cloud-native/container-engine-kubernetes/">Oracle Container Engine for Kubernetes (OKE)</a> using the <strong>Deploy OCI Native Executable Container to OKE</strong> deployment pipeline. 
+<p>When the build pipeline succeeds, the container image can be deployed to <a href="https://www.oracle.com/cloud/cloud-native/container-engine-kubernetes/">Oracle Container Engine for Kubernetes (OKE)</a> using the <strong>Deploy OCI Native Executable Container to OKE</strong> deployment pipeline.
 When completed, the application can be tested in a browser by selecting the action <strong>Open in Browser</strong>.
 It sets up the port forwarding, using your local <code>kubectl</code> tool, from OKE to the <em>localhost</em> as indicated by the VS Code status bar:</p>
 
@@ -767,7 +767,7 @@ These actions are available for an Artifact Repository:</p>
         
       </h3>
 
-<p>When working behind a firewall over a proxy, Proxy Support in VS Code has to be turned on. In VS Code <strong>Settings</strong>, set <strong>Http: Proxy Support</strong> to <strong>ON</strong>. 
+<p>When working behind a firewall over a proxy, Proxy Support in VS Code has to be turned on. In VS Code <strong>Settings</strong>, set <strong>Http: Proxy Support</strong> to <strong>ON</strong>.
 Subsequently, when working without proxy, set this <strong>OFF</strong>.
 Learn more <a href="/gcn/vscode-guides/use-gcn-tools-on-vpn/">here</a>.</p>
 
@@ -810,7 +810,7 @@ Learn more <a href="/gcn/vscode-guides/use-gcn-tools-on-vpn/">here</a>.</p>
       </h3>
 
 <ul>
-  <li><a href="/gcn/vscode-guides/setting-oci-devops-pipeline-in-vscode/">Setting OCI DevOps Build and Development Pipeline in VS Code​</a></li>
+  <li><a href="/gcn/vscode-guides/setting-oci-devops-pipeline-in-vscode/">Setting OCI DevOps Build and Development Pipeline in VS Code</a></li>
   <li><a href="https://www.oracle.com/devops/devops-service/">OCI DevOps service</a></li>
   <li><a href="https://www.oracle.com/cloud/cloud-native/container-engine-kubernetes/">Oracle Container Engine for Kubernetes (OKE)</a></li>
   <li><a href="/gcn/vscode-guides/creating-gcn-db-application-with-atp-connection/">Creating a Database Application and Connecting to an Oracle Autonomous Database</a></li>
@@ -888,7 +888,7 @@ Learn more <a href="/gcn/vscode-guides/use-gcn-tools-on-vpn/">here</a>.</p>
               <p class="copyright">
                 Copyright © 2023-2024, Oracle and/or its affiliates. All rights reserved.
                 Oracle and Java are registered trademarks of Oracle and/or its affiliates.
-                Other names may be trademarks of their respective owners. 
+                Other names may be trademarks of their respective owners.
               </p>
               <div id="teconsent"></div>
             </div>

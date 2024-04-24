@@ -2,7 +2,7 @@
 
 2. Create a new project using the following selections.
     * **Project Type**: _Application_ (Default)
-    * **Project name**: _{{ include.project }}_
+    * **Project Name**: _{{ include.project }}_
     * **Base Package**: _com.example.{{ include.package }}_
     * **Clouds**: _{{ include.cloud_upper }}_
     * **Language**: _Java_ (Default)
@@ -17,7 +17,7 @@
     * **Features**: _Awaitility Framework_, _GraalVM Native Image_ and _Micronaut Serialization Jackson Core_
     {% endif %}
     * **Sample Code**: _No_
-   
+
 3. Click **Generate Project**, then click **Download Zip**. The GCN Launcher creates an application with the default package `com.example.{{ include.package }}` in a directory named _{{ include.project }}_. The application ZIP file will be downloaded in your default downloads directory. Unzip it, open in your code editor, and proceed to the next steps.
 
 Alternatively, use the [GCN CLI](/gcn/get-started/using-gcn-cli/) as follows:
@@ -33,6 +33,7 @@ Alternatively, use the [GCN CLI](/gcn/get-started/using-gcn-cli/) as follows:
     --services=streaming \
     {% if include.reactor == "true" %}--features=awaitility,graalvm,reactor,serialization-jackson \{% else %}--features=awaitility,graalvm,serialization-jackson \{% endif %}
     --build=gradle \
+    --jdk=17 \
     --lang=java \
     --example-code=false</code></pre>
   </div>
@@ -42,6 +43,7 @@ Alternatively, use the [GCN CLI](/gcn/get-started/using-gcn-cli/) as follows:
     --services=streaming \
     {% if include.reactor == "true" %}--features=awaitility,graalvm,reactor,serialization-jackson \{% else %}--features=awaitility,graalvm,serialization-jackson \{% endif %}
     --build=maven \
+    --jdk=17 \
     --lang=java \
     --example-code=false</code></pre>
   </div>

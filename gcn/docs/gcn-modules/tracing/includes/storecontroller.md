@@ -1,4 +1,4 @@
-### 1.4. Store Controller
+### 1.3. Store Controller
 
 The GCN Launcher created the `StoreController` class in a file named _lib/src/main/java/com/example/StoreController.java_, as follows:
 

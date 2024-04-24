@@ -48,7 +48,7 @@
         protected List<StoreItem> items = List.of( // <3>
             new StoreItem("chair", "A black chair with 4 legs", 10),
             new StoreItem("table", "A quality dining table", 6),
-            new StoreItem("sofa", "A grey sofa", 2),
+            new StoreItem("sofa", "A gray sofa", 2),
             new StoreItem("bookshelf", "A futuristic-looking bookshelf", 0)
         );
 

@@ -15,7 +15,7 @@
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
   <meta name="last_modified" content="2023-06-14 09:37:41 +0000"/>
-  <meta name="last_built" content="2024-03-15 16:45:18 +0000"/>
+  <meta name="last_built" content="2024-04-24 15:11:43 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -263,7 +263,7 @@
           href="/gcn/launcher/?advanced=true&amp;type=APPLICATION&amp;name=GettingStarted&amp;package=com.example&amp;clouds=AWS%7COCI%7CGCP&amp;language=JAVA&amp;buildTool=GRADLE&amp;test=JUNIT&amp;java-version=JDK_17&amp;sample-code=true&amp;services=OBJECTSTORE">Gradle</a>.)
         <ul>
           <li><strong style="color:#C4D1EE">Project Type</strong>: <em>Application</em> (Default)</li>
-          <li><strong style="color:#C4D1EE">Project name</strong>: <em>GettingStarted</em></li>
+          <li><strong style="color:#C4D1EE">Project Name</strong>: <em>GettingStarted</em></li>
           <li><strong style="color:#C4D1EE">Base Package</strong>: <em>com.example</em> (Default)</li>
           <li><strong style="color:#C4D1EE">Clouds</strong>: <em>AWS</em>, <em>GCP</em> <strong style="color:#C4D1EE">and</strong>
             <em>OCI</em></li>
@@ -285,7 +285,7 @@
         proceed to the next steps.</li>
     </ol>
     <p class="gs-root-texts">The GCN Launcher creates the following sample source code files that use the Micronaut
-      Object Storage API to create, read, and delete objects in the major cloud providers​:
+      Object Storage API to create, read, and delete objects in the major cloud providers:
     <ul>
       <li class="gs-root-texts">an interface describing the endpoints of the "profile pictures" microservice:</li>
       <li><em><a href="/gcn/docs/get-started/src/ProfilePicturesApi.java"
@@ -345,11 +345,11 @@
                     target="_blank">from the Oracle Cloud Console</a>.
                 </p>
                 <p class="gs-root-texts">Update the Oracle Cloud Infrastructure configuration file
-                  (<em>oci/src/main/resources/application-oraclecloud.properties</em>) with the name of the bucket and its namespace:</p>
-                <pre><code>micronaut.object-storage.oracle-cloud.default.namespace=${OBJECT_STORAGE_NAMESPACE}
-            micronaut.object-storage.oracle-cloud.default.bucket=${OBJECT_STORAGE_BUCKET}</code><button>Copy</button></pre>
-                <p class="gs-root-texts">Replace <code>${OBJECT_STORAGE_BUCKET}</code> with the name of your bucket and
-                  <code>${OBJECT_STORAGE_NAMESPACE}</code> with your namespace.</p>
+                  (<em>oci/src/main/resources/application.properties</em>) with the name of the bucket and its namespace:</p>
+                <pre><code class="language-bash">micronaut.object-storage.oracle-cloud.default.namespace=OBJECT_STORAGE_NAMESPACE
+micronaut.object-storage.oracle-cloud.default.bucket=OBJECT_STORAGE_BUCKET</code><button>Copy</button></pre>
+                <p class="gs-root-texts">Replace <code>OBJECT_STORAGE_BUCKET</code> with the name of your bucket and
+                  <code>OBJECT_STORAGE_NAMESPACE</code> with your namespace.</p>
               </div>
             </div>
           </div>
@@ -363,10 +363,10 @@
                 <p class="gs-root-texts">For this section, you will need an Amazon Web Services account and a S3 bucket created already. See <a
                   href="/gcn/gcn-modules/object-storage/micronaut-object-storage-aws/" target="_blank">Amazon S3 Object Storage
                   Guide</a> for assistance.</p>
-              <p class="gs-root-texts">Update the Amazon Web Services configuration file (<em>aws/src/main/resources/application-ec2.properties</em>)
+              <p class="gs-root-texts">Update the Amazon Web Services configuration file (<em>aws/src/main/resources/application.properties</em>)
                 with the name of the bucket:</p>
-              <pre><code>micronaut.object-storage.aws.default.bucket=${OBJECT_STORAGE_BUCKET}</code><button>Copy</button></pre>
-              <p class="gs-root-texts">Replace <code>${OBJECT_STORAGE_BUCKET}</code> with the name of your bucket.</p>
+              <pre><code class="language-bash">micronaut.object-storage.aws.default.bucket=OBJECT_STORAGE_BUCKET</code><button>Copy</button></pre>
+              <p class="gs-root-texts">Replace <code>OBJECT_STORAGE_BUCKET</code> with the name of your bucket.</p>
               </div>
             </div>
           </div>
@@ -380,10 +380,10 @@
                 <p class="gs-root-texts">For this section, you will need a Google Cloud Platform account and a an Object Storage bucket created already.
                   See <a href="/gcn/gcn-modules/object-storage/micronaut-object-storage-google-cloud/" target="_blank">GCP Object Storage
                     Guide</a> for assistance.</p>
-                <p class="gs-root-texts">Update the Google Cloud Platform configuration file (<em>gcp/src/main/resources/application-gcp.properties</em>)
+                <p class="gs-root-texts">Update the Google Cloud Platform configuration file (<em>gcp/src/main/resources/application.properties</em>)
                   with the name of the bucket:</p>
-                <pre><code>micronaut.object-storage.gcp.default.bucket=${OBJECT_STORAGE_BUCKET}</code><button>Copy</button></pre>
-                <p class="gs-root-texts">Replace <code>${OBJECT_STORAGE_BUCKET}</code> with the name of your bucket.</p>
+                <pre><code class="language-bash">micronaut.object-storage.gcp.default.bucket=OBJECT_STORAGE_BUCKET</code><button>Copy</button></pre>
+                <p class="gs-root-texts">Replace <code>OBJECT_STORAGE_BUCKET</code> with the name of your bucket.</p>
               </div>
             </div>
           </div>
@@ -715,18 +715,18 @@
       Next you can create a container with Native Image version of the application and deploy it
       on a Kubernetes cluster on Oracle Cloud Infrastructure, Amazon Web Services and Google Cloud Platform.
     </p>
-    
+
     <h3 style="color:#ffffff">6.1 Oracle Cloud Infrastructure</h3>
     <p class="gs-root-texts">
-      You can install the Visual Studio Code extensions for GCN, covered in <a href="/gcn/vscode-tools/installing-gcn-tools/" target="_blank">Installing Graal Cloud Native Tools</a>, 
+      You can install the Visual Studio Code extensions for GCN, covered in <a href="/gcn/vscode-tools/installing-gcn-tools/" target="_blank">Installing Graal Cloud Native Tools</a>,
       and use <a href="/gcn/vscode-tools/oci-devops-tools/" target="_blank">OCI DevOps Resources</a> to use the Oracle Cloud Infrastructure DevOps service to deploy your application
       to a pre-created Kubernetes cluster from within VS Code.
       </p>
     <p><img src="/gcn/docs/get-started/images/VSCode_OCIServices.png" class="gs-images" alt="OCI Services in VS Code">
     </p>
     <p class="gs-root-texts">
-      Using the <a href="/gcn/vscode-tools/oci-devops-tools/" target="_blank">OCI DevOps Resources in VS Code</a>, 
-      you can easily deploy a Java application to Oracle Cloud Infrastructure, make source code changes, 
+      Using the <a href="/gcn/vscode-tools/oci-devops-tools/" target="_blank">OCI DevOps Resources in VS Code</a>,
+      you can easily deploy a Java application to Oracle Cloud Infrastructure, make source code changes,
       push them into the Oracle Cloud Infrastructure Git repository, and then trigger the build of a container image with
       your native executable or a container image with JVM using the predefined Oracle Cloud Infrastructure Build Pipelines.
     </p>
@@ -734,7 +734,7 @@
       Learn more about this is in the <a href="/gcn/get-started/setting-oci-devops-pipeline-in-vscode/" target="_blank">Setting Oracle Cloud Infrastructure DevOps Build and
         Development Pipeline in VS Code guide</a>.
     </p>
-    
+
     <h3 style="color:#ffffff">6.2 AWS</h3>
     <p class="gs-root-texts">
       A complete guide on <a href="/gcn/get-started/deploy-to-aws-eks-in-vscode/" target="_blank">how to deploy an application to a Kubernetes cluster in AWS EKS</a> is available.
@@ -878,7 +878,7 @@
       When you setup your Kubernetes deployment for GKE, simply invoke the command:
     </p>
     <pre><code class="language-bash hljs">kubectl apply -f deployment.yml</code><button>Copy</button></pre>
-    
+
     <h2 style="color:#ffffff">7. Developing the Application in VS Code</h2>
     <p class="gs-root-texts">
       Develop Java applications in VS Code with Graal Cloud Native support.
@@ -918,8 +918,8 @@
                 <h4 class="card__title">Explore</h4>
                 <div class="nextsteps-description">
                   <p>
-                    GCN provides easy step-by-step guides, and companion sample applications, 
-                    for the developer to learn how to use a specific cloud service (such as Micronaut Data). 
+                    GCN provides easy step-by-step guides, and companion sample applications,
+                    for the developer to learn how to use a specific cloud service (such as Micronaut Data).
                     Browse the GCN site for list of modules and guides to learn more.</p>
                 </div>
                 <div class="nextsteps-btn">
@@ -939,7 +939,7 @@
                 <h4 class="card__title">Create</h4>
                 <div class="nextsteps-description">
                   <p>
-                    Build a multi-service application like <a href="https://github.com/graemerocher/ocidemo" target="_blank">MuShop for Micronaut</a>. For more information, view:
+                    Build a multiservice application like <a href="https://github.com/graemerocher/ocidemo" target="_blank">MuShop for Micronaut</a>. For more information, view:
                   </p>
                 </div>
                 <div class="nextsteps-btn">
@@ -1015,7 +1015,7 @@
               <p class="copyright">
                 Copyright © 2023-2024, Oracle and/or its affiliates. All rights reserved.
                 Oracle and Java are registered trademarks of Oracle and/or its affiliates.
-                Other names may be trademarks of their respective owners. 
+                Other names may be trademarks of their respective owners.
               </p>
               <div id="teconsent"></div>
             </div>

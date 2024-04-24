@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2024-01-31 16:07:30 +0000"/>
-  <meta name="last_built" content="2024-03-15 16:45:18 +0000"/>
+  <meta name="last_modified" content="2024-04-23 09:15:45 +0000"/>
+  <meta name="last_built" content="2024-04-24 15:11:43 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -363,7 +363,7 @@
         
       </h1>
 
-<p>This guide shows how to deploy a Micronaut microservices application to the <a href="https://cloud.google.com/kubernetes-engine">Google Kubernetes Engine (GKE)</a> using the <a href="https://micronaut-projects.github.io/micronaut-kubernetes/snapshot/guide/">Micronaut Kubernetes module</a>.</p>
+<p>This guide shows how to deploy a Micronaut microservices application to the <a href="https://cloud.google.com/kubernetes-engine">Google Kubernetes Engine (GKE)</a> using the <a href="https://micronaut-projects.github.io/micronaut-kubernetes/latest/guide/">Micronaut Kubernetes module</a>.</p>
 
 <p>GKE is a managed Kubernetes service for deploying containerized applications to the cloud.</p>
 
@@ -419,18 +419,18 @@
 <p>You can create a microservices application from scratch by following <a href="/gcn/gcn-modules/kubernetes/micronaut-k8s/">this guide</a>, or you can download the completed example in Java:</p>
 
 <div id="tabs-doc1">
-    <ul>
-        <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
-        <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
-    </ul>
-    <div id="gradle">
-        <p><a href="/gcn/docs/gcn-modules/kubernetes/archives/gcp-kubernetes-demo-java-gradle.zip">Gradle Micronaut GKE Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" /></a>
-        </p>
-    </div>
-    <div id="maven">
-        <p><a href="/gcn/docs/gcn-modules/kubernetes/archives/gcp-kubernetes-demo-java-maven.zip">Maven Micronaut GKE Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" /></a>
-        </p>
-    </div>
+  <ul>
+    <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
+    <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
+  </ul>
+  <div id="gradle">
+    <p><a href="https://github.com/oracle/gcn/releases/download/4.3.7.2/4.3.7.2_kubernetes_gcp-kubernetes-demo-java-gradle.zip">Gradle Micronaut GKE Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" /></a>
+    </p>
+  </div>
+  <div id="maven">
+    <p><a href="https://github.com/oracle/gcn/releases/download/4.3.7.2/4.3.7.2_kubernetes_gcp-kubernetes-demo-java-maven.zip">Maven Micronaut GKE Example <img class="download-img-guides" src="/gcn/resources/img/gcn_modules/download-archive.png" alt="Download completed example" /></a>
+    </p>
+  </div>
 </div>
 
 <p>The application ZIP file will be downloaded in your default downloads directory. Unzip it, open in your code editor, and proceed to the next steps.</p>
@@ -444,8 +444,8 @@
 </ul>
 
 <blockquote>
-  <p>Note: By default, a Micronaut application detects its runtime environment. 
-A detected environment (in this case, <strong>k8s</strong>) overrides the default specified environment (in this case, <strong>gcp</strong>). 
+  <p>Note: By default, a Micronaut application detects its runtime environment.
+A detected environment (in this case, <strong>k8s</strong>) overrides the default specified environment (in this case, <strong>gcp</strong>).
 This means that you should locate your configuration in the <em>application-k8s.properties</em> and <em>bootstrap-k8s.properties</em> files.
 Alternatively, you can specify the <code>gcp</code> environment passing it as a command-line option (<code>-Dmicronaut.environments=gcp</code>) or via an environment variable (<code>MICRONAUT_ENVIRONMENTS=gcp</code>).</p>
 </blockquote>
@@ -633,61 +633,64 @@ export GKE_CLUSTER_NAME="gcn-k8s"
 </code></pre>
   </li>
   <li>
-    <p>Edit the file named <em>users/k8s.yml</em> as follows:</p>
+    <p>Edit the file named <em>users/k8s-gcp.yml</em> as follows:</p>
 
-    <pre><code class="language-yml"> apiVersion: apps/v1
- kind: Deployment
- metadata:
+    <pre><code class="language-yml">apiVersion: apps/v1
+kind: Deployment
+metadata:
    namespace: gcn-k8s
    name: "users"
- spec:
+spec:
    selector:
-     matchLabels:
-       app: "users"
-   template:
-     metadata:
-       labels:
+      matchLabels:
          app: "users"
-     spec:
-       serviceAccountName: gcn-service
-       containers:
-         - name: "users"
-           image: gcr.io/&lt;gcp-project-id&gt;/users:latest # &lt;1&gt;
-           imagePullPolicy: Always # &lt;2&gt;
-           ports:
-             - name: http
-               containerPort: 8080
-           readinessProbe:
-             httpGet:
-               path: /health/readiness
-               port: 8080
-             initialDelaySeconds: 5
-             timeoutSeconds: 3
-           livenessProbe:
-             httpGet:
-               path: /health/liveness
-               port: 8080
-             initialDelaySeconds: 5
-             timeoutSeconds: 3
-             failureThreshold: 10
-       imagePullSecrets:
-         - name: gcpsersecret # &lt;3&gt;
- ---
- apiVersion: v1
- kind: Service
- metadata:
+   template:
+      metadata:
+         labels:
+            app: "users"
+      spec:
+         serviceAccountName: gcn-service
+         containers:
+            - name: "users"
+              image: gcr.io/&lt;gcp-project-id&gt;/users:latest  # &lt;1&gt;
+              imagePullPolicy: Always  # &lt;2&gt;
+              ports:
+                 - name: http
+                   containerPort: 8080
+              readinessProbe:
+                 httpGet:
+                    path: /health/readiness
+                    port: 8080
+                 initialDelaySeconds: 5
+                 timeoutSeconds: 3
+              livenessProbe:
+                 httpGet:
+                    path: /health/liveness
+                    port: 8080
+                 initialDelaySeconds: 5
+                 timeoutSeconds: 3
+                 failureThreshold: 10
+              env:
+                 - name: MICRONAUT_ENVIRONMENTS
+                   value: "gcp"
+         imagePullSecrets:
+            - name: gcpsersecret
+---
+apiVersion: v1
+kind: Service
+metadata:
    namespace: gcn-k8s
    name: "users"
- spec:
+spec:
    selector:
-     app: "users"
+      app: "users"
    type: NodePort
    ports:
-     - protocol: "TCP"
-       port: 8080
+      - protocol: "TCP"
+        port: 8080
 </code></pre>
 
-    <p><strong>1</strong> The URI of the repository that you created in GKE. Change the <code>&lt;project-id&gt;</code> to your Google project id. You can achieve this by running <code>sed -i'' -e "s/&lt;project-id&gt;/$GCP_PROJECT_ID/" users/k8s.yml</code>.</p>
+    <p><strong>1</strong> The URI of the repository that you created in GKE. Change the <code>&lt;project-id&gt;</code> to your Google project id. You can achieve this by running <code>sed -i'' -e "s/&lt;project-id&gt;/$GCP_PROJECT_ID/" users/k8s-gcp.yml</code>.</p>
 
     <p><strong>2</strong> Change <code>imagePullPolicy</code> to <code>Always</code>.</p>
 
@@ -758,61 +761,64 @@ export GKE_CLUSTER_NAME="gcn-k8s"
 </code></pre>
   </li>
   <li>
-    <p>Edit the file named <em>orders/k8s.yml</em> as follows:</p>
+    <p>Edit the file named <em>orders/k8s-gcp.yml</em> as follows:</p>
 
-    <pre><code class="language-yml"> apiVersion: apps/v1
- kind: Deployment
- metadata:
-   namespace: gcn-k8s
-   name: "orders"
- spec:
-   selector:
-     matchLabels:
-       app: "orders"
-   template:
-     metadata:
-       labels:
-         app: "orders"
-     spec:
-       serviceAccountName: gcn-service
-       containers:
-         - name: "orders"
-           image: gcr.io/&lt;gcp-project-id&gt;/orders:latest # &lt;1&gt;
-           imagePullPolicy: Always # &lt;2&gt;
-           ports:
-             - name: http
-               containerPort: 8080
-           readinessProbe:
-             httpGet:
-               path: /health/readiness
-               port: 8080
-             initialDelaySeconds: 5
-             timeoutSeconds: 3
-           livenessProbe:
-             httpGet:
-               path: /health/liveness
-               port: 8080
-             initialDelaySeconds: 5
-             timeoutSeconds: 3
-             failureThreshold: 10
-       imagePullSecrets:
-         - name: gcpsersecret # &lt;3&gt;
- ---
- apiVersion: v1
- kind: Service
- metadata:
-   namespace: gcn-k8s
-   name: "orders"
- spec:
-   selector:
-     app: "orders"
-   type: NodePort
-   ports:
-     - protocol: "TCP"
-       port: 8080
+    <pre><code class="language-yml">apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: gcn-k8s
+  name: "orders"
+spec:
+  selector:
+    matchLabels:
+      app: "orders"
+  template:
+    metadata:
+      labels:
+        app: "orders"
+    spec:
+      serviceAccountName: gcn-service
+      containers:
+        - name: "orders"
+          image: gcr.io/&lt;gcp-project-id&gt;/orders:latest
+          imagePullPolicy: Always  # &lt;2&gt;
+          ports:
+            - name: http
+              containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /health/readiness
+              port: 8080
+            initialDelaySeconds: 5
+            timeoutSeconds: 3
+          livenessProbe:
+            httpGet:
+              path: /health/liveness
+              port: 8080
+            initialDelaySeconds: 5
+            timeoutSeconds: 3
+            failureThreshold: 10
+          env:
+            - name: MICRONAUT_ENVIRONMENTS
+              value: "gcp"
+      imagePullSecrets:
+        - name: gcpsersecret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: gcn-k8s
+  name: "orders"
+spec:
+  selector:
+    app: "orders"
+  type: NodePort
+  ports:
+    - protocol: "TCP"
+      port: 8080
 </code></pre>
 
-    <p><strong>1</strong> The URI of the repository that you created in GKE. Change the <project-id> to your Google project id. You can achieve this by running <code>sed -i'' -e "s/&lt;project-id&gt;/$GCP_PROJECT_ID/" orders/k8s.yml</code>.</project-id></p>
+    <p><strong>1</strong> The URI of the repository that you created in GKE. Change the <project-id> to your Google project id. You can achieve this by running <code>sed -i'' -e "s/&lt;project-id&gt;/$GCP_PROJECT_ID/" orders/k8s-gcp.yml</code>.</project-id></p>
 
     <p><strong>2</strong> Change <code>imagePullPolicy</code> to <code>Always</code>.</p>
 
@@ -883,61 +889,64 @@ export GKE_CLUSTER_NAME="gcn-k8s"
 </code></pre>
   </li>
   <li>
-    <p>Edit the file named <em>api/k8s.yml</em> as follows:</p>
+    <p>Edit the file named <em>api/k8s-gcp.yml</em> as follows:</p>
 
     <pre><code class="language-yml"> apiVersion: apps/v1
  kind: Deployment
  metadata:
-   namespace: gcn-k8s
-   name: "api"
+    namespace: gcn-k8s
+    name: "api"
  spec:
-   selector:
-     matchLabels:
-       app: "api"
-   template:
-     metadata:
-       labels:
-         app: "api"
-     spec:
-       serviceAccountName: gcn-service
-       containers:
-         - name: "api"
-           image: gcr.io/&lt;gcp-project-id&gt;/api:latest # &lt;1&gt;
-           imagePullPolicy: Always # &lt;2&gt;
-           ports:
-             - name: http
-               containerPort: 8080
-           readinessProbe:
-             httpGet:
-               path: /health/readiness
-               port: 8080
-             initialDelaySeconds: 5
-             timeoutSeconds: 3
-           livenessProbe:
-             httpGet:
-               path: /health/liveness
-               port: 8080
-             initialDelaySeconds: 5
-             timeoutSeconds: 3
-             failureThreshold: 10
-       imagePullSecrets:
-         - name: gcpsersecret # &lt;3&gt;
+    selector:
+       matchLabels:
+          app: "api"
+    template:
+       metadata:
+          labels:
+             app: "api"
+       spec:
+          serviceAccountName: gcn-service
+          containers:
+             - name: "api"
+               image: gcr.io/&lt;gcp-project-id&gt;/api:latest  # &lt;1&gt;
+               imagePullPolicy: Always  # &lt;2&gt;
+               ports:
+                  - name: http
+                    containerPort: 8080
+               readinessProbe:
+                  httpGet:
+                     path: /health/readiness
+                     port: 8080
+                  initialDelaySeconds: 5
+                  timeoutSeconds: 3
+               livenessProbe:
+                  httpGet:
+                     path: /health/liveness
+                     port: 8080
+                  initialDelaySeconds: 5
+                  timeoutSeconds: 3
+                  failureThreshold: 10
+               env:
+                  - name: MICRONAUT_ENVIRONMENTS
+                    value: "gcp"
+          imagePullSecrets:
+             - name: gcpsersecret
  ---
  apiVersion: v1
  kind: Service
  metadata:
-   namespace: gcn-k8s
-   name: "api"
+    namespace: gcn-k8s
+    name: "api"
  spec:
-   selector:
-     app: "api"
-   type: LoadBalancer
-   ports:
-     - protocol: "TCP"
-       port: 8080
+    selector:
+       app: "api"
+    type: LoadBalancer
+    ports:
+       - protocol: "TCP"
+         port: 8080
 </code></pre>
 
-    <p><strong>1</strong> The URI of the repository that you created in GKE. Change the <code>&lt;project-id&gt;</code> to your Google project id. You can achieve this by running <code>sed -i'' -e "s/&lt;project-id&gt;/$GCP_PROJECT_ID/" api/k8s.yml</code>.</p>
+    <p><strong>1</strong> The URI of the repository that you created in GKE. Change the <code>&lt;project-id&gt;</code> to your Google project id. You can achieve this by running <code>sed -i'' -e "s/&lt;project-id&gt;/$GCP_PROJECT_ID/" api/k8s-gcp.yml</code>.</p>
 
     <p><strong>2</strong> Change <code>imagePullPolicy</code> to <code>Always</code>.</p>
 
@@ -1009,19 +1018,19 @@ export GKE_CLUSTER_NAME="gcn-k8s"
   <li>
     <p>Deploy the <em>users</em> microservice:</p>
 
-    <pre><code class="language-bash"> kubectl apply -f users/k8s.yml
+    <pre><code class="language-bash"> kubectl apply -f users/k8s-gcp.yml
 </code></pre>
   </li>
   <li>
     <p>Deploy the <em>orders</em> microservice:</p>
 
-    <pre><code class="language-bash"> kubectl apply -f orders/k8s.yml
+    <pre><code class="language-bash"> kubectl apply -f orders/k8s-gcp.yml
 </code></pre>
   </li>
   <li>
     <p>Run the next command to deploy the <em>api</em> microservice:</p>
 
-    <pre><code class="language-bash"> kubectl apply -f api/k8s.yml
+    <pre><code class="language-bash"> kubectl apply -f api/k8s-gcp.yml
 </code></pre>
   </li>
 </ol>
@@ -1304,7 +1313,7 @@ export GKE_CLUSTER_NAME="gcn-k8s"
       </h3>
 
 <ul>
-  <li><a href="https://micronaut-projects.github.io/micronaut-kubernetes/snapshot/guide/">Micronaut Kubernetes module</a></li>
+  <li><a href="https://micronaut-projects.github.io/micronaut-kubernetes/latest/guide/">Micronaut Kubernetes module</a></li>
   <li><a href="https://micronaut-projects.github.io/micronaut-gcp/latest/guide/">Micronaut Google Cloud Platform integration</a></li>
   <li><a href="https://cloud.google.com/kubernetes-engine">Google Kubernetes Engine</a></li>
   <li><a href="https://cloud.google.com/container-registry">Google Cloud Container Registry</a></li>
@@ -1385,7 +1394,7 @@ export GKE_CLUSTER_NAME="gcn-k8s"
               <p class="copyright">
                 Copyright © 2023-2024, Oracle and/or its affiliates. All rights reserved.
                 Oracle and Java are registered trademarks of Oracle and/or its affiliates.
-                Other names may be trademarks of their respective owners. 
+                Other names may be trademarks of their respective owners.
               </p>
               <div id="teconsent"></div>
             </div>

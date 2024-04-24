@@ -20,7 +20,7 @@ Create an application using the GCN Launcher.
 
 3. Click **Generate Project**, then click **Download Zip**. The GCN Launcher creates an application with the default package `com.example` in a directory named _{{ include.cloud }}-security-demo_. The application ZIP file will be downloaded in your default downloads directory. Unzip it, open in your code editor, and proceed to the next steps.
 
-Alternatively, use the GCN CLI as follows:
+Alternatively, use the [GCN CLI](/gcn/get-started/using-gcn-cli/) as follows:
 
 <div id="tabs-doc2">
     <ul>
@@ -33,6 +33,7 @@ Alternatively, use the GCN CLI as follows:
     --services=security \
     --features=graalvm \
     --build=gradle \
+    --jdk=17 \
     --lang=java</code></pre>
     </div>
     <div id="maven">
@@ -41,6 +42,7 @@ Alternatively, use the GCN CLI as follows:
     --services=security \
     --features=graalvm \
     --build=maven \
+    --jdk=17 \
     --lang=java</code></pre>
     </div>
 </div>
