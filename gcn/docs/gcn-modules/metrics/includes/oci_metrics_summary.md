@@ -1,1 +1,0 @@
-> [Oracle Cloud Infrastructure Monitoring](https://docs.oracle.com/iaas/Content/Monitoring/home.htm){:target="_blank"} enables you to actively and passively monitor your application and cloud resources using the Metrics and Alarms features.
