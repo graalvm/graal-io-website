@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="Graal Cloud Native (GCN) is a build of a curated set of Micronaut framework modules and their required libraries for building portable cloud-native microserv..."/>
-  <meta name="last_modified" content="2024-04-23 09:15:45 +0000"/>
-  <meta name="last_built" content="2024-04-24 17:01:47 +0000"/>
+  <meta name="last_modified" content="2024-04-24 12:51:04 +0000"/>
+  <meta name="last_built" content="2024-04-25 09:12:51 +0000"/>
   <link rel="stylesheet" href="/gcn/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gcn/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gcn/resources/img/favicon/favicon-32x32.png">
@@ -379,7 +379,6 @@ The application consists of two Micronaut microservices that use Google Cloud Pl
   <li>A Google Cloud Platform (GCP) account. See <a href="/gcn/get-started/setting-up-cloud-accounts/">Setting up Your Cloud Accounts</a>.</li>
   <li>The Google Cloud CLI. (The CLI is part of the Google Cloud SDK; for more information, see <a href="https://cloud.google.com/sdk">Cloud SDK</a>.)</li>
   <li>A Docker-API compatible container runtime such as <a href="https://docs.rancherdesktop.io/getting-started/installation/">Rancher Desktop</a> or <a href="https://www.docker.io/gettingstarted/">Docker</a> installed.</li>
-  <li>A Kafka environment for local testing. See <a href="https://kafka.apache.org/quickstart">Kafka Quickstart</a>. (Optional.)</li>
   <li>The GCN CLI. See <a href="/gcn/get-started/setting-up-desktop/">Setting up Your Desktop</a>. (Optional.)</li>
 </ul>
 
@@ -458,12 +457,8 @@ The application consists of two Micronaut microservices that use Google Cloud Pl
       <li><strong>Test Framework</strong>: <em>JUnit</em> (Default)</li>
       <li><strong>Java Version</strong>: <em>17</em> (Default)</li>
       <li><strong>Micronaut Version</strong>: (Default)</li>
-      <li>
-        <p><strong>Cloud Services</strong>: <em>Streaming</em></p>
-      </li>
-      <li>
-        <p><strong>Features</strong>: <em>Awaitility Framework</em>, <em>GraalVM Native Image</em>, <em>Micronaut Serialization Jackson Core</em>, and <em>Reactor</em></p>
-      </li>
+      <li><strong>Cloud Services</strong>: <em>Streaming</em></li>
+      <li><strong>Features</strong>: <em>Awaitility Framework</em>, <em>GraalVM Native Image</em>, <em>Micronaut Serialization Jackson Core</em>, and <em>Reactor</em></li>
       <li><strong>Sample Code</strong>: <em>No</em></li>
     </ul>
   </li>
@@ -863,7 +858,7 @@ class AnalyticsFilter implements HttpServerFilter { // &lt;2&gt;
 
 <p>Use the following command to test the <em>Books</em> microservice:</p>
 
-<div id="tabs-doc4">
+<div id="tabs-doc3">
     <ul>
         <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
         <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
@@ -901,12 +896,8 @@ class AnalyticsFilter implements HttpServerFilter { // &lt;2&gt;
       <li><strong>Test Framework</strong>: <em>JUnit</em> (Default)</li>
       <li><strong>Java Version</strong>: <em>17</em> (Default)</li>
       <li><strong>Micronaut Version</strong>: (Default)</li>
-      <li>
-        <p><strong>Cloud Services</strong>: <em>Streaming</em></p>
-      </li>
-      <li>
-        <p><strong>Features</strong>: <em>Awaitility Framework</em>, <em>GraalVM Native Image</em> and <em>Micronaut Serialization Jackson Core</em></p>
-      </li>
+      <li><strong>Cloud Services</strong>: <em>Streaming</em></li>
+      <li><strong>Features</strong>: <em>Awaitility Framework</em>, <em>GraalVM Native Image</em> and <em>Micronaut Serialization Jackson Core</em></li>
       <li><strong>Sample Code</strong>: <em>No</em></li>
     </ul>
   </li>
@@ -1226,7 +1217,7 @@ class AnalyticsListener {
 
 <p>Use the following command to test the <em>Analytics</em> microservice:</p>
 
-<div id="tabs-doc6">
+<div id="tabs-doc4">
     <ul>
         <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
         <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
@@ -1272,7 +1263,7 @@ class AnalyticsListener {
 
 <p>To run the <em>Books</em> microservice, use the following command, which starts the application on port 8080.</p>
 
-<div id="tabs-doc7">
+<div id="tabs-doc5">
     <ul>
         <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
         <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
@@ -1296,7 +1287,7 @@ class AnalyticsListener {
 
 <p>To run the <em>Analytics</em> microservice, use the following command, which starts the application on port 8081.</p>
 
-<div id="tabs-doc8">
+<div id="tabs-doc6">
     <ul>
         <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
         <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
@@ -1352,111 +1343,25 @@ class AnalyticsListener {
 
 <p>Update the <code>curl</code> command to the <em>Books</em> microservice to retrieve other books and repeat the invocations, then re-run the <code>curl</code> command to the <em>Analytics</em> microservice to see that the counts increase.</p>
     
-      <h2 id="3-generate-a-native-executable-using-graalvm">
+      <h2 id="3-set-up-gcp-resources">
         
         
-          3. Generate a Native Executable Using GraalVM <a href="#3-generate-a-native-executable-using-graalvm" class="anchor_heading">#</a>
-        
-        
-      </h2>
-
-<p>GCN supports compiling a Java application ahead-of-time into a native executable using <a href="https://www.graalvm.org/">GraalVM Native Image</a>. You can use the <em><a href="https://graalvm.github.io/native-build-tools/latest/gradle-plugin.html">Gradle plugin for GraalVM Native Image building</a></em>/<em><a href="https://graalvm.github.io/native-build-tools/latest/maven-plugin.html">Maven plugin for GraalVM Native Image building</a></em>. Packaged as a native executable, it significantly reduces application startup time and memory footprint.</p>
-
-<p><br /></p>
-
-<p>Before running this native executable, you must install and run a local Kafka instance.</p>
-<blockquote>
-  <p>Note: Open three terminals.</p>
-</blockquote>
-
-<ol>
-  <li>
-    <p>Download and install the latest stable release from <a href="https://kafka.apache.org/downloads">Kafka</a>.</p>
-  </li>
-  <li>
-    <p>In the first terminal, run the following command to start the ZooKeeper service:</p>
-
-    <pre><code class="language-bash"> cd /path/to/kafka/download
- sudo bin/zookeeper-server-start.sh config/zookeeper.properties
-</code></pre>
-  </li>
-  <li>
-    <p>In the second terminal, run the following command to start the Kafka broker service:</p>
-
-    <pre><code class="language-bash"> cd /path/to/kafka/download
- sudo bin/kafka-server-start.sh config/server.properties
-</code></pre>
-  </li>
-  <li>
-    <p>In the third terminal, run the following command to create the <code>analytics</code> Kafka topic:</p>
-
-    <pre><code class="language-bash"> cd /path/to/kafka/download
- sudo bin/kafka-topics.sh --create --topic analytics --bootstrap-server localhost:9092
-</code></pre>
-  </li>
-  <li>
-    <p>To run the microservices locally, create a <em>gcp/src/main/resources/application-dev.properties</em> file for each microservice and add the <code>bootstrap.servers</code> configuration there:</p>
-
-    <pre><code> kafka.enabled=true
- kafka.bootstrap.servers=localhost:9092
-</code></pre>
-  </li>
-  <li>
-    <p>To generate a native executable, run the following command for each microservice:</p>
-
-    <div id="tabs-doc9">
-   <ul>
-     <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
-     <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
-   </ul>
-   <div id="gradle">
-     <pre><code class="language-bash">./gradlew :gcp:nativeCompile</code></pre>
-     <p>The native executable is created in the <em>gcp/build/native/nativeCompile/</em> directory and can be run with the following command.</p>
-     <pre><code class="language-bash">MICRONAUT_ENVIRONMENTS=dev gcp/build/native/nativeCompile/gcp</code></pre>
-      Or if you use Windows:
-     <pre><code class="language-bash">cmd /C "set MICRONAUT_ENVIRONMENTS=dev &amp;&amp; gcp\build\native\nativeCompile\gcp"</code></pre>
-   </div>
-   <div id="maven">
-     <pre><code class="language-bash">./mvnw install -pl lib -am
-./mvnw package -pl gcp -Dpackaging=native-image</code></pre>
-     <p>The native executable is created in the <em>gcp/target/</em> directory and can be run with the following command:</p>
-     <pre><code class="language-bash">MICRONAUT_ENVIRONMENTS=dev gcp/target/gcp</code></pre>
-      Or if you use Windows:
-     <pre><code class="language-bash">cmd /C "set MICRONAUT_ENVIRONMENTS=dev &amp;&amp; gcp\target\gcp"</code></pre>
-   </div>
- </div>
-  </li>
-</ol>
-
-<p>Start the native executables for the two microservices and run the same <code>curl</code> requests as before to check that everything works as expected.</p>
-
-<p>You can see that the microservices behave identically as if you run them from JAR files, but with reduced startup time and smaller memory footprint.</p>
-    
-      <h2 id="4-set-up-gcp-resources">
-        
-        
-          4. Set up GCP Resources <a href="#4-set-up-gcp-resources" class="anchor_heading">#</a>
+          3. Set up GCP Resources <a href="#3-set-up-gcp-resources" class="anchor_heading">#</a>
         
         
       </h2>
 
 <p>Start with the Kafka cluster, and then configure the GCP Compute instance.</p>
     
-      <h3 id="41-create-a-gcp-project">
+      <h3 id="31-create-a-gcp-project">
         
         
-          4.1. Create a GCP Project <a href="#41-create-a-gcp-project" class="anchor_heading">#</a>
+          3.1. Create a GCP Project <a href="#31-create-a-gcp-project" class="anchor_heading">#</a>
         
         
       </h3>
 
 <p>Create a new GCP project named “gcn-guides” (follow the instructions contained in <a href="https://cloud.google.com/resource-manager/docs/creating-managing-projects">Creating and managing projects</a>).</p>
-
-<p><br /></p>
-
-<p>The Cloud SDK includes the <code>gcloud</code> command-line tool.</p>
-
-<p><br /></p>
 
 <ol>
   <li>
@@ -1479,10 +1384,10 @@ class AnalyticsListener {
   </li>
 </ol>
     
-      <h3 id="42-configure-gcp-kafka-vm">
+      <h3 id="32-configure-gcp-kafka-vm">
         
         
-          4.2. Configure GCP Kafka VM <a href="#42-configure-gcp-kafka-vm" class="anchor_heading">#</a>
+          3.2. Configure GCP Kafka VM <a href="#32-configure-gcp-kafka-vm" class="anchor_heading">#</a>
         
         
       </h3>
@@ -1528,10 +1433,10 @@ On your local computer run the following command:</p>
   </li>
 </ol>
     
-      <h3 id="43-launch-a-gcp-compute-instance">
+      <h3 id="33-launch-a-gcp-compute-instance">
         
         
-          4.3. Launch a GCP Compute Instance <a href="#43-launch-a-gcp-compute-instance" class="anchor_heading">#</a>
+          3.3. Launch a GCP Compute Instance <a href="#33-launch-a-gcp-compute-instance" class="anchor_heading">#</a>
         
         
       </h3>
@@ -1547,10 +1452,10 @@ On your local computer run the following command:</p>
   <p>Note: You will deploy the <em>Books</em> and <em>Analytics</em> microservices this compute instance.</p>
 </blockquote>
     
-      <h3 id="44-start-kafka-and-create-a-kafka-topic">
+      <h3 id="34-start-kafka-and-create-a-kafka-topic">
         
         
-          4.4. Start Kafka and Create a Kafka Topic <a href="#44-start-kafka-and-create-a-kafka-topic" class="anchor_heading">#</a>
+          3.4. Start Kafka and Create a Kafka Topic <a href="#34-start-kafka-and-create-a-kafka-topic" class="anchor_heading">#</a>
         
         
       </h3>
@@ -1589,20 +1494,44 @@ On your local computer run the following command:</p>
   </li>
 </ol>
     
-      <h2 id="5-configure-microservices">
+      <h2 id="4-generate-a-native-executable-using-graalvm">
         
         
-          5. Configure Microservices <a href="#5-configure-microservices" class="anchor_heading">#</a>
+          4. Generate a Native Executable Using GraalVM <a href="#4-generate-a-native-executable-using-graalvm" class="anchor_heading">#</a>
         
         
       </h2>
 
-<p>After you deploy your applications to the GCP Compute instance, make sure you export the following environment variable; Micronaut will set the <code>kafka.bootstrap.servers</code> configuration property from its value:</p>
+<p>GCN supports compiling a Java application ahead-of-time into a native executable using <a href="https://www.graalvm.org/">GraalVM Native Image</a>. You can use the <em><a href="https://graalvm.github.io/native-build-tools/latest/gradle-plugin.html">Gradle plugin for GraalVM Native Image building</a></em>/<em><a href="https://graalvm.github.io/native-build-tools/latest/maven-plugin.html">Maven plugin for GraalVM Native Image building</a></em>. Packaged as a native executable, it significantly reduces application startup time and memory footprint.</p>
 
-<pre><code>```bash
-export KAFKA_BOOTSTRAP_SERVERS=&lt;replace_with_the_saved_internal_kafka_vm_address_&gt;:9092
-```
+<p>To generate a native executable, run the following command for each microservice:</p>
+
+<div id="tabs-doc7">
+  <ul>
+    <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
+    <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
+  </ul>
+  <div id="gradle">
+    <pre><code class="language-bash">./gradlew :gcp:nativeCompile</code></pre>
+    <p>The native executable is created in the <em>gcp/build/native/nativeCompile/</em> directory and can be run with the following command.</p>
+    <pre><code class="language-bash">gcp/build/native/nativeCompile/gcp</code></pre>
+  </div>
+  <div id="maven">
+    <pre><code class="language-bash">./mvnw install -pl lib -am
+./mvnw package -pl gcp -Dpackaging=native-image</code></pre>
+    <p>The native executable is created in the <em>gcp/target/</em> directory and can be run with the following command:</p>
+    <pre><code class="language-bash">MICRONAUT_ENVIRONMENTS=dev gcp/target/gcp</code></pre>
+    </div>
+</div>
+
+<p>Export the following environment variable; Micronaut will set the <code>kafka.bootstrap.servers</code> configuration property from its value:</p>
+
+<pre><code class="language-bash">export KAFKA_BOOTSTRAP_SERVERS=&lt;replace_with_the_saved_internal_kafka_vm_address_&gt;:9092
 </code></pre>
+
+<p>Start the native executables for the two microservices and run the same <code>curl</code> requests as before to check that everything works as expected.</p>
+
+<p>You can see that the microservices behave identically as if you run them from JAR files, but with reduced startup time and smaller memory footprint.</p>
     
       <h2 id="6-deploy-the-books-service-to-gcp-cloud">
         
@@ -1616,7 +1545,7 @@ export KAFKA_BOOTSTRAP_SERVERS=&lt;replace_with_the_saved_internal_kafka_vm_addr
   <li>
     <p>Create a JAR file containing all the microservice’s dependencies, as follows:</p>
 
-    <div id="tabs-doc10">
+    <div id="tabs-doc8">
      <ul>
          <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
          <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
@@ -1633,7 +1562,7 @@ export KAFKA_BOOTSTRAP_SERVERS=&lt;replace_with_the_saved_internal_kafka_vm_addr
   <li>
     <p>Copy the JAR file to your GCP Compute instance, as follows:</p>
 
-    <div id="tabs-doc11">
+    <div id="tabs-doc9">
      <ul>
          <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
          <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
@@ -1668,7 +1597,7 @@ export KAFKA_BOOTSTRAP_SERVERS=&lt;replace_with_the_saved_internal_kafka_vm_addr
 </code></pre>
   </li>
   <li>
-    <p>Verify that the application is running by invoking the controller at <code>http://\[GCP_PUBLIC_IP\]:8080/books</code> using <code>curl</code>:</p>
+    <p>Verify that the application is running by invoking the controller at <code>http://[GCP_PUBLIC_IP]:8080/books</code> using <code>curl</code>:</p>
 
     <pre><code class="language-bash"> curl -i http://[GCP_PUBLIC_IP]:8080/books
 </code></pre>
@@ -1693,7 +1622,7 @@ export KAFKA_BOOTSTRAP_SERVERS=&lt;replace_with_the_saved_internal_kafka_vm_addr
   <li>
     <p>Create a JAR file containing all the microservice’s dependencies, as follows:</p>
 
-    <div id="tabs-doc12">
+    <div id="tabs-doc10">
      <ul>
          <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
          <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
@@ -1710,7 +1639,7 @@ export KAFKA_BOOTSTRAP_SERVERS=&lt;replace_with_the_saved_internal_kafka_vm_addr
   <li>
     <p>Copy the JAR file to your GCP Compute instance, as follows:</p>
 
-    <div id="tabs-doc13">
+    <div id="tabs-doc11">
      <ul>
          <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
          <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
@@ -1745,22 +1674,23 @@ export KAFKA_BOOTSTRAP_SERVERS=&lt;replace_with_the_saved_internal_kafka_vm_addr
 </code></pre>
   </li>
   <li>
-    <p>Verify that the application is running by invoking the controller at <code>http://\[GCP_PUBLIC_IP\]:8081/analytics</code> using <code>curl</code>:</p>
+    <p>Verify that the application is running by invoking the controller at <code>http://[GCP_PUBLIC_IP]:8081/analytics</code> using <code>curl</code>:</p>
 
-    <pre><code class="language-bash"> curl -i http://[VM IP Address]:8081/analytics
+    <pre><code class="language-bash"> curl -i http://[GCP_PUBLIC_IP]:8081/analytics
 </code></pre>
   </li>
 </ol>
     
-      <h2 id="8-deploy-native-executables">
+      <h2 id="8-deploy-native-executables-to-gcp">
         
         
-          8. Deploy Native Executables <a href="#8-deploy-native-executables" class="anchor_heading">#</a>
+          8. Deploy Native Executables to GCP <a href="#8-deploy-native-executables-to-gcp" class="anchor_heading">#</a>
         
         
       </h2>
 
-<p>If you build a native executable locally, it will only run on your OS, and is not suitable for deployment to a GCP Compute instance. To create a deployable native executable, use a different packaging command that builds the executable inside a container, which you will extract from the container to deploy to the cloud.</p>
+<p>If you build a native executable locally, it will only run on your OS, and is not suitable for deployment to a GCP Compute instance. 
+To create a deployable native executable, use a different packaging command that builds the executable inside a container, which you will extract from the container to deploy to the cloud.</p>
     
       <h3 id="81-run-native-executables-on-the-gcp-instance">
         
@@ -1803,7 +1733,7 @@ sudo yum -y install zlib*
   <li>
     <p>To generate a native executable, run the following command for each microservice:</p>
 
-    <div id="tabs-doc14">
+    <div id="tabs-doc12">
    <ul>
      <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
      <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
@@ -1811,13 +1741,17 @@ sudo yum -y install zlib*
    <div id="gradle">
      <pre><code class="language-bash">./gradlew :gcp:nativeCompile</code></pre>
      <p>The native executable is created in the <em>gcp/build/native/nativeCompile/</em> directory and can be run with the following command.</p>
-     <pre><code class="language-bash">gcp/build/native/nativeCompile/gcp</code></pre>
+     <pre><code class="language-bash">MICRONAUT_ENVIRONMENTS=gcp gcp/build/native/nativeCompile/gcp</code></pre>
+     <p>Or if you use Windows:</p>
+     <pre><code class="language-bash">cmd /C "set MICRONAUT_ENVIRONMENTS=gcp &amp;&amp; gcp\build\native\nativeCompile\gcp"</code></pre>
    </div>
    <div id="maven">
      <pre><code class="language-bash">./mvnw install -pl lib -am
 ./mvnw package -pl gcp -Dpackaging=native-image</code></pre>
      <p>The native executable is created in the <em>gcp/target/</em> directory and can be run with the following command:</p>
-     <pre><code class="language-bash">gcp/target/gcp</code></pre>
+     <pre><code class="language-bash">MICRONAUT_ENVIRONMENTS=gcp gcp/target/gcp</code></pre>
+     <p>Or if you use Windows:</p>
+     <pre><code class="language-bash">cmd /C "set MICRONAUT_ENVIRONMENTS=gcp &amp;&amp; gcp\target\gcp"</code></pre>
    </div>
  </div>
 
