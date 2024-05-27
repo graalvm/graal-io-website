@@ -1,9 +1,9 @@
 provider "oci" {}
 
-resource "oci_apigateway_deployment" "gcn-serverless-deployment-test" {
+resource "oci_apigateway_deployment" "gdk-serverless-deployment-test" {
 	compartment_id = var.compartment_ocid
-	display_name = "gcn-serverless-deployment-test"
-	gateway_id = oci_apigateway_gateway.gcn-serverless-gateway.id
+	display_name = "gdk-serverless-deployment-test"
+	gateway_id = oci_apigateway_gateway.gdk-serverless-gateway.id
 	path_prefix = "/store"
 	specification {
 		logging_policies {

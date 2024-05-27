@@ -3,7 +3,7 @@ variable "region" {}
 variable "ssh_public_key" {}
 
 variable "vcn_display_name" {
-  default = "GCN_serverless_guide_VCN"
+  default = DK_serverless_guide_VCN"
 }
 
 variable "vcn_cidr" {
@@ -19,7 +19,7 @@ variable "public_subnet_cidr" {
 }
 
 variable "vcn_dns_label" {
-  default = "gcnFnVCN"
+  default     = "gdkFnVCN"
 }
 
 variable "subnet_dns_label" {

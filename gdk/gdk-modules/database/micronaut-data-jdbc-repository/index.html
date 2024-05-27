@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:image" content="/gdk/resources/img/graalvm.png" />
+  <meta name="twitter:widgets:border-color" content="#55acee">
+
+  <title>
+    
+      Create and Connect a Micronaut Application to a MySQL Database
+    
+  </title>
+  <meta name="description" content="The Graal Development Kit for Micronaut (GDK) is a build of a curated set of Micronaut framework modules and their required libraries for building portable c..."/>
+  <meta name="last_modified" content="2024-05-23 17:36:09 +0000"/>
+  <meta name="last_built" content="2024-05-27 08:12:37 +0000"/>
+  <link rel="stylesheet" href="/gdk/assets/main.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="/gdk/resources/img/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/gdk/resources/img/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/gdk/resources/img/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/gdk/resources/img/favicon/site.webmanifest">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="google-site-verification" content="-vRqwa9WYn6AaQGnl88xvrLw6ac4xoKVkZkhanmlRhU" />
+  <link rel="canonical" href="https://www.graal.cloud/gdk/gdk-modules/database/micronaut-data-jdbc-repository/">
+
+  <!-- jQuery UI Tabs -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/gdk/resources/lib/jquery/jquery-ui.css">
+</head>
+
+      <script src="/gdk/resources/lib/jquery/jquery-3.6.1.min.js"></script>
+    <script src="/gdk/resources/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src='/gdk/resources/lib/sticky-sidebar/resizeSensor.js'></script>
+    <script src='/gdk/resources/lib/sticky-sidebar/sticky-sidebar.min.js'></script>
+    <script src="/gdk/resources/lib/highlight/highlight.min.js"></script>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- Add TRUSTe Consent Script and Analytics -->
+    <script async="async" type="text/javascript" src='//consent.trustarc.com/notice?domain=oracle.com&c=teconsent&js=bb&noticeType=bb&text=true&cdn=1&pcookie&gtm=1' crossorigin></script>
+    <script src="https://www.oracle.com/assets/truste-oraclelib.js"></script>
+    <!-- jQuery UI Tabs -->
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+
+  <body class="preload">
+    <!-- Start SiteCatalyst code -->
+    <script language="JavaScript" src="https://www.oracle.com/us/assets/metrics/ora_otn.js"></script>
+    <!-- End SiteCatalyst code -->
+
+    <div  class="wrapper wrapper--nofooter" >
+
+      <header  class="header header--content" 
+  role="banner">
+
+  
+
+  
+
+    <nav class="menu">
+      <div class="menu__row">
+        <div>
+          <a href="/gdk/">
+            <img class="logo-mobile" src="/gdk/resources/img/gdk-logo-new.svg" alt="Graal Development Kit for Micronaut logo">
+          </a>
+        </div>
+        <div class="menu__container">
+          <ul class="menu__list">
+            <li class="menu__item">
+              <a href="/gdk/about/" class="menu__link">About</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gdk/get-started/" class="menu__link">Get Started</a>
+            </li>
+            <li class="menu__item">
+              <div class="stack-container">
+                <a href="#" class="menu__link stack__header">Docs</a>
+                <div class="stack-menu-learn">
+                  <div class="stack-row">
+                    <div class="stack-column">
+                      <div class="stack__item">
+                        <img src='/gdk/resources/img/header-navigation/modules.svg'>
+                        <a href="/gdk/modules/" class="item-line">Modules</a>
+                      </div>
+                      <div class="stack__item">
+                        <img src='/gdk/resources/img/header-navigation/guides.svg'>
+                        <a href="/gdk/guides/" class="item-line">Guides</a>
+                      </div>
+                      <div class="stack__item">
+                        <img src='/gdk/resources/img/header-navigation/labs.svg'>
+                        <a href="/gdk/hands-on-labs/" class="item-line">Hands-On Labs</a>
+                      </div>
+                      <div class="stack__item">
+                        <img src='/gdk/resources/img/header-navigation/tools.svg'>
+                        <a href="/gdk/vscode-tools/" class="item-line">Tools</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="menu__item">
+              <div class="stack-container">
+                <a href="#" class="menu__link stack__header">Graal Projects</a>
+                <div class="stack-menu">
+                  <div class="stack-row">
+                    <div class="stack-column">
+                      <div class="stack__item">
+                        <img src='/gdk/resources/img/header-navigation/graalstack.svg'>
+                        <a href="https://graal.cloud/" class="item-line">Graal</a>
+                      </div>
+                      <div class="stack__item">
+                        <img src='/gdk/resources/img/header-navigation/graalvm.svg'>
+                        <a href="https://graalvm.org/" class="item-line">GraalVM</a>
+                      </div>
+                      <div class="stack__item">
+                        <img src='/gdk/resources/img/header-navigation/graalos.svg'>
+                        <a href="https://graal.cloud/graalos/" class="item-line">GraalOS</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="menu__launch__mobile">
+              <a href="/gdk/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
+            </li>
+          </ul>
+        </div>
+        <div class="menu__launch">
+          <a href="/gdk/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
+        </div>
+      </div>
+
+      <div role="button" class="menu-btn menu-btn--menu js-show-menu" tabindex="-1" title="sweet hamburger">
+        <div class="hamburger">
+          <div class="inner"></div>
+        </div>
+      </div>
+      <button aria-label="hamburger mobile menu" class="btn btn-mobile-menu js-show-menu">
+        <div class="inner"></div>
+      </button>
+    </nav>
+
+  
+</header>
+
+
+      <main  class="content"   aria-label="Content">
+        <div class="wrapper wrapper-content">
+  <article>
+  <div class="row d-flex flex-wrap">
+    <div class="col-sm-3 docsimpro col-bg">
+      <div class="sidebar-wrap">
+        <div class="sidebar">
+          <div class="menuabout">
+            <img id="sidebarClose" src="/gdk/resources/img/arrow_sidebar(close).svg" alt="Expand or collapse sidebar"
+              class="btn-color no-display">
+            <img id="sidebarOpen" src="/gdk/resources/img/arrow_sidebar.svg" alt="Expand or collapse sidebar">
+          </div>
+          
+<div class="toc-floating">
+
+
+<div class="toc-bullets">
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+
+    
+      
+        
+          <li class="toc-bullets-main">
+        
+          
+          <a href="/gdk/docs/gdk-modules/database/" class="_icon-book">
+            Database
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+          
+          <li class="toc-bullets-sub toc-bullets-highlight">
+          
+            
+            <a href="/gdk/gdk-modules/database/micronaut-data-jdbc-repository/">
+              Create and Connect a Micronaut Application to a MySQL Database
+            </a>
+          </li>
+
+          
+            <div>
+  <script>
+    var scriptElement = document.currentScript;
+    var div = $(scriptElement.parentElement);
+    $(window).on("load", function () {
+      $("#content-wrapper h2").each(function () {
+        var li = $("<li></li>", { class: "toc-bullets-sub toc-bullets-sub-3" });
+        var a = $("<a></a>", { href: "#" + $(this).attr("id") });
+        a.text($(this).text().replace('#', ''));
+        li.append(a);
+        li.click(function (e) {
+          e.preventDefault();
+          var target = $(a.attr('href'));
+          var scrollTo = target.offset().top - 80; // 80 - indent
+          $('html, body').animate({ scrollTop: scrollTo }, 1000);
+        });
+        div.append(li);
+      });
+    });
+  </script>
+</div>
+          
+        
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<!-- <li class="search additional-search">
+  <form class="form-inline sidebar" action="/docs/search" autocomplete="on" method="get">
+    <input class="input-search sidebar" type="text" id="search-box" name="query" placeholder="Search">
+    <button type="submit sidebar" class="search-button"></button>
+  </form>
+</li> -->
+
+</div>
+  <!-- Search form -->
+  <!-- <form class="search-container" action="/docs/search" autocomplete="on" method="get">
+   <label for="search-box">Search</label>
+    <input type="text" id="search-box" name="query">
+    <button type="submit" class="searchbttn"></button>
+  </form> -->
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-9 docsmod">
+      <div id="content-wrapper" class="docs-content docs-content--with-sidebar">
+        <!--
+          Include file to warn of Windows/Gradle restriction
+        -->
+        <h1 id="create-and-connect-a-micronaut-application-to-a-mysql-database">
+        
+        
+          Create and Connect a Micronaut Application to a MySQL Database
+        
+        
+      </h1>
+
+<p>This guide describes how to use the Graal Development Kit for Micronaut (GDK) to create a database application. The application stores data in a MySQL database using Micronaut<sup>®</sup> Data.</p>
+
+<p><a href="https://micronaut-projects.github.io/micronaut-data/latest/guide/">Micronaut Data</a> is a database access toolkit that uses ahead-of-time (AoT) compilation to precompute queries for repository interfaces that are then executed by a thin, lightweight runtime layer. Micronaut Data supports the following backends: JPA (Hibernate) and Hibernate Reactive; SQL (JDBC, R2DBC), and MongoDB.</p>
+    
+      <h3 id="prerequisites">
+        
+        
+          Prerequisites <a href="#prerequisites" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<ul>
+  <li>JDK 17 or higher. See <a href="/gdk/get-started/setting-up-desktop/">Setting up Your Desktop</a>.</li>
+  <li>A Docker-API compatible container runtime such as <a href="https://docs.rancherdesktop.io/getting-started/installation/">Rancher Desktop</a> or <a href="https://www.docker.io/gettingstarted/">Docker</a> installed to run MySQL and to run tests using <a href="https://www.testcontainers.org">Testcontainers</a>.</li>
+  <li>The GDK CLI. See <a href="/gdk/get-started/setting-up-desktop/">Setting up Your Desktop</a>. (Optional.)</li>
+</ul>
+
+<p>Follow the steps below to create the application from scratch. However, you can also download the completed example:</p>
+
+<div id="tabs-doc1">
+  <ul>
+    <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
+    <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
+  </ul>
+  <div id="gradle">
+    <p><a href="https://github.com/oracle/gcn/releases/download/4.3.7.2/4.3.7.2_database_db-demo-java-gradle.zip">Gradle MySQL Database Example <img class="download-img-guides" src="/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" /></a>
+    </p>
+  </div>
+  <div id="maven">
+    <p><a href="https://github.com/oracle/gcn/releases/download/4.3.7.2/4.3.7.2_database_db-demo-java-maven.zip">Maven MySQL Database Example <img class="download-img-guides" src="/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" /></a>
+    </p>
+  </div>
+</div>
+    
+      <h4 id="a-note-regarding-your-development-environment">
+        
+        
+          A note regarding your development environment
+        
+        
+      </h4>
+
+<p>Consider using Visual Studio Code that provides native support for developing applications with the <a href="/gdk/vscode-tools/using-gdk-vscode-tools/">Graal Development Kit extension</a>.</p>
+
+<blockquote>
+  <p>Note: If you use IntelliJ IDEA, <a href="/gdk/resources/img/annotationprocessorsintellij.png">enable annotation processing</a>.</p>
+</blockquote>
+
+<blockquote>
+  <p>Windows platform: The GDK guides are compatible with Gradle only. Maven support is coming soon.</p>
+</blockquote>
+    
+      <h2 id="1-create-the-application">
+        
+        
+          1. Create the Application <a href="#1-create-the-application" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>Create an application using the GDK Launcher.</p>
+
+<ol>
+  <li>
+    <p>Open the <a href="/gdk/launcher/?advanced=true">GDK Launcher in advanced mode</a>.</p>
+  </li>
+  <li>Create a new project using the following selections.
+    <ul>
+      <li><strong>Project Type</strong>: <em>Application</em> (Default)</li>
+      <li><strong>Project Name</strong>: <em>db-demo</em></li>
+      <li><strong>Base Package</strong>: <em>com.example</em> (Default)</li>
+      <li><strong>Clouds</strong>: <em>None</em></li>
+      <li><strong>Language</strong>: <em>Java</em> (Default)</li>
+      <li><strong>Build Tool</strong>: <em>Gradle (Groovy)</em> or <em>Maven</em></li>
+      <li><strong>Test Framework</strong>: <em>JUnit</em> (Default)</li>
+      <li><strong>Java Version</strong>: <em>17</em> (Default)</li>
+      <li><strong>Micronaut Version</strong>: (Default)</li>
+      <li><strong>Cloud Services</strong>: <em>Database</em></li>
+      <li><strong>Features</strong>: <em>GraalVM Native Image</em> (Default)</li>
+      <li><strong>Sample Code</strong>: <em>Yes</em> (Default)</li>
+    </ul>
+  </li>
+  <li>
+    <p>Switch to the <strong>Cloud Services</strong> tab and make sure the <strong>Database</strong> service is selected. Deselect the other services. The Database service bundles all necessary features for a Micronaut database application: <strong>Micronaut Data JDBC</strong>, <strong>Hikari JDBC Connection Pool</strong>, <strong>MySQL driver</strong> and default config, <strong>Flyway Database Migration</strong>.</p>
+  </li>
+  <li>
+    <p>Switch to <strong>Selected</strong> tab to verify the selection. You should see <strong>Database</strong> and the <strong>GraalVM Native Image</strong> packaging feature (selected by default) selected.</p>
+  </li>
+  <li>Click <strong>Generate Project</strong>, then click <strong>Download Zip</strong>. The GDK Launcher creates an application with the default package <code>com.example</code> in a directory named <em>db-demo</em>. The application ZIP file will be downloaded in your default downloads directory. Unzip it, open in your code editor, and proceed to the next steps.</li>
+</ol>
+
+<p>Alternatively, use the <a href="/gdk/get-started/using-gdk-cli/">GDK CLI</a> as follows:</p>
+
+<div id="tabs-doc2">
+  <ul>
+    <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
+    <li class="tabs-maven"><a href="#maven">Maven</a></li>
+  </ul>
+  <div id="gradle">
+    <pre><code class="language-bash">gcn create-app com.example.db-demo \
+    --services=database \
+    --features=graalvm \
+    --build=gradle \
+    --jdk=17 \
+    --lang=java</code></pre>
+  </div>
+  <div id="maven">
+    <pre><code class="language-bash">gcn create-app com.example.db-demo \
+    --services=database \
+    --features=graalvm \
+    --build=maven \
+    --jdk=17 \
+    --lang=java</code></pre>
+  </div>
+</div>
+
+<p>If you enable sample code generation, the GDK Launcher creates the main controller, repository interface, entity, service classes, and tests for you.
+In the <em>micronaut-cli.yml</em> file you can find all features packaged with the application:</p>
+
+<pre><code class="language-yml">features: [app-name, data, data-jdbc, flyway, gdk-bom, gdk-database, gdk-license, gdk-platform-independent, graalvm, http-client-test, java, java-application, jdbc-hikari, junit, logback, maven, maven-enforcer-plugin, micronaut-aot, mysql, netty-server, properties, readme, serialization-jackson, shade, test-resources, validation]
+</code></pre>
+
+<p>Let’s examine the project more closely.</p>
+    
+      <h3 id="11-configure-datasource">
+        
+        
+          1.1. Configure Datasource <a href="#11-configure-datasource" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>The default datasource is defined in the <em>src/main/resources/application.properties</em> file:</p>
+
+<pre><code>datasources.default.dialect=MYSQL
+datasources.default.db-type=mysql
+datasources.default.driver-class-name=com.mysql.cj.jdbc.Driver
+</code></pre>
+
+<p>If you deploy to, for example, Oracle MySQL Database, substitute the <code>driver-class-name</code> value with the Oracle Database Server (see <a href="/gdk/gdk-modules/database/micronaut-mysql-database-oci/">Create and Connect a Micronaut Application to the Oracle Cloud Infrastructure MySQL HeatWave Service</a>).</p>
+    
+      <h3 id="12-database-migration-with-flyway">
+        
+        
+          1.2. Database Migration with Flyway <a href="#12-database-migration-with-flyway" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>The GDK Launcher included <a href="http://www.flywaydb.org">Flyway</a> for database migrations. It uses the <a href="https://micronaut-projects.github.io/micronaut-flyway/latest/guide/">Micronaut integration with Flyway</a> that automates schema changes, significantly simplifies schema management tasks, such as migrating, rolling back, and reproducing in multiple environments.
+The GDK Launcher enables Flyway in the <em>src/main/resources/application.properties</em> file and configures it to perform migrations on the default datasources.</p>
+
+<pre><code>flyway.datasources.default.enabled=true
+</code></pre>
+
+<blockquote>
+  <p>Note: Flyway migrations are not compatible with the default automatic schema generation that is configured in <em>src/main/resources/application.properties</em>. If <code>schema-generate</code> is active, it will conflict with Flyway. So edit <em>src/main/resources/application.properties</em> and either delete the <code>datasources.default.schema-generate=CREATE_DROP</code> line or change that line to <code>datasources.default.schema-generate=NONE</code> to ensure that only Flyway manages your schema.</p>
+</blockquote>
+
+<p>Configuring multiple datasources is as simple as enabling Flyway for each one. You can also specify directories that will be used for migrating each datasource. For more information, see <a href="https://micronaut-projects.github.io/micronaut-flyway/latest/guide/">Micronaut integration with Flyway</a>.</p>
+
+<p>Flyway migration is automatically triggered before your application starts. Flyway reads migration file(s) in the <em>src/main/resources/db/migration/</em> directory. The migration file with the database schema, <em>src/main/resources/db/migration/V1__schema.sql</em>, was also created for you by the GDK Launcher.</p>
+
+<pre><code class="language-sql">DROP TABLE IF EXISTS genre;
+
+CREATE TABLE genre (
+   id    BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+   name  VARCHAR(255) NOT NULL UNIQUE
+);
+</code></pre>
+
+<p>During application startup, Flyway runs the commands in the SQL file and creates the schema needed for the application.</p>
+    
+      <h3 id="13-domain-entity">
+        
+        
+          1.3. Domain Entity <a href="#13-domain-entity" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>The GDK Launcher created the sample domain entity, named <em>Genre.java</em>, in the <em>src/main/java/com/example/domain/</em> directory.</p>
+
+<pre><code class="language-java">package com.example.domain;
+
+import io.micronaut.data.annotation.GeneratedValue;
+import io.micronaut.data.annotation.Id;
+import io.micronaut.data.annotation.MappedEntity;
+import io.micronaut.serde.annotation.Serdeable;
+
+import jakarta.validation.constraints.NotNull;
+
+@Serdeable
+@MappedEntity
+public class Genre {
+
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    @NotNull
+    private String name;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Genre{" + "id=" + id + ", name='" + name + "'}";
+    }
+}
+</code></pre>
+
+<p>You could use a <a href="https://micronaut-projects.github.io/micronaut-data/latest/guide/#sqlAnnotations">subset of supported JPA annotations</a> instead by including the following <code>compileOnly</code> scoped dependency: <code>jakarta.persistence:jakarta.persistence-api</code>.</p>
+    
+      <h3 id="14-repository-interface">
+        
+        
+          1.4. Repository Interface <a href="#14-repository-interface" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>A repository interface defines the operations to access the database. Micronaut Data implements the interface at compilation time. A sample repository interface, named <em>src/main/java/com/example/repository/GenreRepository.java</em>, was created for you:</p>
+
+<pre><code class="language-java">package com.example.repository;
+
+import com.example.domain.Genre;
+import io.micronaut.core.annotation.NonNull;
+import io.micronaut.data.annotation.Id;
+import io.micronaut.data.jdbc.annotation.JdbcRepository;
+import io.micronaut.data.repository.PageableRepository;
+
+import jakarta.validation.constraints.NotBlank;
+
+import static io.micronaut.data.model.query.builder.sql.Dialect.MYSQL;
+
+@JdbcRepository(dialect = MYSQL) // &lt;1&gt;
+public interface GenreRepository extends PageableRepository&lt;Genre, Long&gt; { // &lt;2&gt;
+
+    Genre save(@NonNull @NotBlank String name);
+
+    long update(@Id long id, @NonNull @NotBlank String name);
+}
+</code></pre>
+
+<p><strong>1</strong> <code>@JdbcRepository</code> with a specific dialect.</p>
+
+<p><strong>2</strong> <code>Genre</code>, the entity to treat as the root entity for the purposes of querying, is established either from the method signature or from the generic type parameter specified to the <code>GenericRepository</code> interface.</p>
+
+<p>The repository extends from <code>PageableRepository</code>. It inherits the hierarchy <code>PageableRepository</code> → <code>CrudRepository</code> → <code>GenericRepository</code>.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Repository</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>PageableRepository</code></td>
+      <td>A repository that supports pagination. <br />It provides <code>findAll(Pageable)</code> and <code>findAll(Sort)</code>.</td>
+    </tr>
+    <tr>
+      <td><code>CrudRepository</code></td>
+      <td>A repository interface for performing CRUD (Create, Read, Update, Delete). <br />It provides methods such as <code>findAll()</code>, <code>save(Genre)</code>, <code>deleteById(Long)</code>, and <code>findById(Long)</code>.</td>
+    </tr>
+    <tr>
+      <td><code>GenericRepository</code></td>
+      <td>A root interface that features no methods but defines the entity type and ID type as generic arguments.</td>
+    </tr>
+  </tbody>
+</table>
+    
+      <h3 id="15-controller">
+        
+        
+          1.5. Controller <a href="#15-controller" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>Hibernate Validator is a reference implementation of the Validation API. Micronaut <a href="https://docs.micronaut.io/latest/guide/#beanValidation">has built-in support for validation of beans</a> that use <code>jakarta.validation</code> annotations. The necessary dependencies are included by default when creating a project.</p>
+
+<p>The GDK Launcher created the main controller, <em>src/main/java/com/example/controller/GenreController.java</em>, that exposes a resource with the common CRUD operations:</p>
+
+<pre><code class="language-java">package com.example.controller;
+
+import com.example.domain.Genre;
+import com.example.service.GenreService;
+import io.micronaut.data.model.Pageable;
+import io.micronaut.http.HttpResponse;
+import io.micronaut.http.annotation.Body;
+import io.micronaut.http.annotation.Controller;
+import io.micronaut.http.annotation.Delete;
+import io.micronaut.http.annotation.Get;
+import io.micronaut.http.annotation.Post;
+import io.micronaut.http.annotation.Put;
+import io.micronaut.http.annotation.Status;
+import io.micronaut.scheduling.TaskExecutors;
+import io.micronaut.scheduling.annotation.ExecuteOn;
+
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+import java.net.URI;
+import java.util.List;
+import java.util.Optional;
+
+import static io.micronaut.http.HttpHeaders.LOCATION;
+import static io.micronaut.http.HttpStatus.NO_CONTENT;
+
+@ExecuteOn(TaskExecutors.IO) // &lt;1&gt;
+@Controller("/genres") // &lt;2&gt;
+class GenreController {
+
+    private final GenreService genreService;
+
+    GenreController(GenreService genreService) { // &lt;3&gt;
+        this.genreService = genreService;
+    }
+
+    @Get("/{id}") // &lt;4&gt;
+    public Optional&lt;Genre&gt; show(Long id) {
+        return genreService.findById(id);
+    }
+
+    @Put("/{id}/{name}") // &lt;5&gt;
+    public HttpResponse&lt;?&gt; update(long id, String name) {
+        genreService.update(id, name);
+        return HttpResponse
+                .noContent()
+                .header(LOCATION, URI.create("/genres/" + id).getPath());
+    }
+
+    @Get("/list") // &lt;6&gt;
+    public List&lt;Genre&gt; list(@Valid Pageable pageable) {
+        return genreService.list(pageable);
+    }
+
+    @Post // &lt;7&gt;
+    public HttpResponse&lt;Genre&gt; save(@Body("name") @NotBlank String name) {
+        Genre genre = genreService.save(name);
+
+        return HttpResponse
+                .created(genre)
+                .headers(headers -&gt; headers.location(URI.create("/genres/" + genre.getId())));
+    }
+
+    @Delete("/{id}") // &lt;8&gt;
+    @Status(NO_CONTENT)
+    public void delete(Long id) {
+        genreService.delete(id);
+    }
+}
+</code></pre>
+
+<p><strong>1</strong> It is critical that any blocking I/O operations (such as fetching the data from the database) are offloaded to a separate thread pool that does not block the event loop.</p>
+
+<p><strong>2</strong> The class is defined as a controller with the <a href="https://docs.micronaut.io/latest/api/io/micronaut/http/annotation/Controller.html"><code>@Controller</code></a> annotation mapped to the path <code>/genres</code>.</p>
+
+<p><strong>3</strong> Uses constructor injection to inject a bean of type <code>GenreRepository</code>.</p>
+
+<p><strong>4</strong> Maps a <code>GET</code> request to <code>/genres/{id}</code>, which attempts to show a genre. This illustrates the use of a URL path variable (<code>id</code>).</p>
+
+<p><strong>5</strong> Maps a <code>PUT</code> request to <code>/genres/{id}/{name}</code>, which attempts to update a genre. This illustrates the use of URL path variables (<code>id</code> and <code>name</code>).</p>
+
+<p><strong>6</strong> Maps a <code>GET</code> request to <code>/genres/list</code>, which returns a list of genres. This mapping illustrates URL parameters being mapped to a single POJO.</p>
+
+<p><strong>7</strong> Maps a <code>POST</code> request to <code>/genres</code>, which attempts to create a new genre.</p>
+
+<p><strong>8</strong> Maps a <code>DELETE</code> request to <code>/genres/{id}</code>, which attempts to remove a genre. This illustrates the use of a URL path variable (<code>id</code>).</p>
+    
+      <h3 id="16-service">
+        
+        
+          1.6. Service <a href="#16-service" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>A service contains business logic and facilitates communication between the controller and the repository. The domain is used to communicate between the controller and service layers.</p>
+
+<p>The GDK Launcher created a sample service class, <em>src/main/java/com/example/service/GenreService.java</em>, for you:</p>
+
+<pre><code class="language-java">package com.example.service;
+
+import com.example.domain.Genre;
+import com.example.repository.GenreRepository;
+import io.micronaut.data.model.Pageable;
+import jakarta.inject.Singleton;
+
+import jakarta.transaction.Transactional;
+import java.util.List;
+import java.util.Optional;
+
+@Singleton
+public class GenreService {
+
+    private final GenreRepository genreRepository;
+
+    GenreService(GenreRepository genreRepository) {
+        this.genreRepository = genreRepository;
+    }
+
+    public Optional&lt;Genre&gt; findById(Long id) {
+        return genreRepository.findById(id);
+    }
+
+    @Transactional
+    public long update(long id, String name) {
+        return genreRepository.update(id, name);
+    }
+
+    public List&lt;Genre&gt; list(Pageable pageable) {
+        return genreRepository.findAll(pageable).getContent();
+    }
+
+    @Transactional
+    public Genre save(String name) {
+        return genreRepository.save(name);
+    }
+
+    @Transactional
+    public void delete(long id) {
+        genreRepository.deleteById(id);
+    }
+}
+</code></pre>
+    
+      <h3 id="17-tests">
+        
+        
+          1.7. Tests <a href="#17-tests" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>The GDK Launcher wrote tests for you, in <em>src/test/java/com/example/GenreControllerTest.java</em> to verify the CRUD operations:</p>
+
+<pre><code class="language-java">package com.example;
+
+import com.example.domain.Genre;
+import com.example.repository.GenreRepository;
+import io.micronaut.core.type.Argument;
+import io.micronaut.context.env.Environment;
+import io.micronaut.http.HttpRequest;
+import io.micronaut.http.HttpResponse;
+import io.micronaut.http.client.HttpClient;
+import io.micronaut.http.client.annotation.Client;
+import io.micronaut.http.client.exceptions.HttpClientResponseException;
+import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
+import jakarta.inject.Inject;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
+
+import java.util.Collections;
+import java.util.List;
+
+import static io.micronaut.http.HttpHeaders.LOCATION;
+import static io.micronaut.http.HttpStatus.CREATED;
+import static io.micronaut.http.HttpStatus.NOT_FOUND;
+import static io.micronaut.http.HttpStatus.NO_CONTENT;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+@MicronautTest
+class GenreControllerTest {
+
+    @Inject
+    @Client("/")
+    HttpClient client;
+
+    @Test
+    void testFindNonExistingGenreReturns404() {
+        HttpClientResponseException thrown = assertThrows(HttpClientResponseException.class, () -&gt; {
+            client.toBlocking().exchange(HttpRequest.GET("/genres/99999"));
+        });
+
+        assertNotNull(thrown.getResponse());
+        assertEquals(NOT_FOUND, thrown.getStatus());
+    }
+
+    @Test
+    void testGenreCrudOperations() {
+
+        HttpResponse&lt;?&gt; response = client.toBlocking().exchange(
+                HttpRequest.POST("/genres", Collections.singletonMap("name", "DevOps")));
+        assertEquals(CREATED, response.getStatus());
+
+        response = client.toBlocking().exchange(
+                HttpRequest.POST("/genres", Collections.singletonMap("name", "Microservices")));
+        assertEquals(CREATED, response.getStatus());
+
+        Long id = entityId(response);
+
+        Genre genre = client.toBlocking().retrieve(
+                HttpRequest.GET("/genres/" + id), Genre.class);
+        assertEquals("Microservices", genre.getName());
+
+        response = client.toBlocking().exchange(
+                HttpRequest.PUT("/genres/" + id + "/Micro-services", null));
+        assertEquals(NO_CONTENT, response.getStatus());
+
+        genre = client.toBlocking().retrieve(
+                HttpRequest.GET("/genres/" + id), Genre.class);
+        assertEquals("Micro-services", genre.getName());
+
+        List&lt;Genre&gt; genres = client.toBlocking().retrieve(
+                HttpRequest.GET("/genres/list"), Argument.listOf(Genre.class));
+        assertEquals(2, genres.size());
+
+        genres = client.toBlocking().retrieve(
+                HttpRequest.GET("/genres/list?size=1"), Argument.listOf(Genre.class));
+        assertEquals(1, genres.size());
+        assertEquals("DevOps", genres.get(0).getName());
+
+        genres = client.toBlocking().retrieve(
+                HttpRequest.GET("/genres/list?size=1&amp;sort=name,desc"), Argument.listOf(Genre.class));
+        assertEquals(1, genres.size());
+        assertEquals("Micro-services", genres.get(0).getName());
+
+        genres = client.toBlocking().retrieve(
+                HttpRequest.GET("/genres/list?size=1&amp;page=2"), Argument.listOf(Genre.class));
+        assertEquals(0, genres.size());
+
+        response = client.toBlocking().exchange(
+                HttpRequest.DELETE("/genres/" + id));
+        assertEquals(NO_CONTENT, response.getStatus());
+    }
+
+    private Long entityId(HttpResponse&lt;?&gt; response) {
+        String value = response.header(LOCATION);
+        if (value == null) {
+            return null;
+        }
+        String path = "/genres/";
+        int index = value.indexOf(path);
+        return index == -1 ? null : Long.valueOf(value.substring(index + path.length()));
+    }
+
+    @Inject
+    GenreRepository genreRepository;
+
+    @AfterEach
+    void cleanup() {
+        genreRepository.deleteAll();
+    }
+}
+</code></pre>
+    
+      <h2 id="2-test-the-application">
+        
+        
+          2. Test the Application <a href="#2-test-the-application" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>To run the tests, use the following command:</p>
+<div id="tabs-doc3">
+<ul>
+    <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
+    <li class="tabs-maven"><a href="#maven">Maven</a></li>
+</ul>
+<div id="gradle">
+    <pre><code class="language-bash">./gradlew test</code></pre>
+</div>
+<div id="maven">
+    <pre><code class="language-bash">./mvnw test</code></pre>
+</div>
+</div>
+
+<p>When the application is started locally—either under test or by running the application—resolution of the datasources URL is detected, the Test Resources service will start a local MySQL container, and inject the properties required to use this as the datasources.</p>
+
+<p>For more information, see the <a href="https://micronaut-projects.github.io/micronaut-test-resources/latest/guide/#modules-databases-jdbc">JDBC section of the Test Resources documentation</a>.</p>
+    
+      <h2 id="3-package-with-graalvm-native-image">
+        
+        
+          3. Package with GraalVM Native Image <a href="#3-package-with-graalvm-native-image" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>The GDK supports compiling Java applications ahead-of-time into native executables using <a href="https://www.graalvm.org/">GraalVM Native Image</a> and <a href="https://graalvm.github.io/native-build-tools/latest/index.html">Native Build Tools</a>. Packaged as a native executable, it significantly reduces the application startup time and memory footprint.</p>
+
+<blockquote>
+  <p><strong>Prerequisites</strong>: GraalVM Native Image is required to build native executables. <a href="https://github.com/graalvm/get.graalvm.org/">Install GraalVM JDK with Native Image</a> if you have not yet done that.</p>
+</blockquote>
+
+<p>To generate a native executable, use the following command:</p>
+
+<div id="tabs-doc4">
+  <ul>
+      <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
+      <li class="tabs-maven"><a href="#maven">Maven</a></li>
+  </ul>
+  <div id="gradle">
+      <pre><code class="language-bash">./gradlew nativeCompile</code></pre>
+      <p>The native executable, <em>db-demo</em>, is created in the <em>build/native/nativeCompile/</em> directory.</p>
+  </div>
+  <div id="maven">
+      <pre><code class="language-bash">./mvnw package -Dpackaging=native-image</code></pre>
+      <p>The native executable, <em>db-demo</em>, is created in the <em>target/</em> directory.</p>
+  </div>
+</div>
+
+<p>Before running this native executable, you need to start and then connect to a MySQL database.</p>
+    
+      <h2 id="4-connect-to-a-mysql-database">
+        
+        
+          4. Connect to a MySQL Database <a href="#4-connect-to-a-mysql-database" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>Start and connect to an existing database. Then define the database driver URL, username, and password via environment variables.</p>
+
+<p>Use the following command to run a MySQL container:</p>
+<pre><code class="language-bash">docker run -it --rm \
+    -p 3306:3306 \
+    -e MYSQL_DATABASE=db \
+    -e MYSQL_USER=sherlock \
+    -e MYSQL_PASSWORD=elementary \
+    -e MYSQL_ALLOW_EMPTY_PASSWORD=true \
+    mysql:8
+</code></pre>
+
+<blockquote>
+  <p>Note: If you are using macOS on Apple Silicon (M1, M1 Pro), Docker might fail to pull a container image for <code>mysql:8</code>. In that case, substitute  with <code>mysql:oracle</code>.</p>
+</blockquote>
+
+<p>Define the database driver URL, username, and password via environment variables:</p>
+
+<div class="tabs-doc" data-name="system">
+    <div data-value="linux" data-label="Linux &amp; macOS">
+      <pre><code class="language-bash">export DATASOURCES_DEFAULT_URL=jdbc:mysql://localhost:3306/db
+export DATASOURCES_DEFAULT_USERNAME=sherlock
+export DATASOURCES_DEFAULT_PASSWORD=elementary
+</code></pre>
+   </div>
+   <div data-value="windows" data-label="Windows">
+      <pre><code class="language-bash">set DATASOURCES_DEFAULT_URL=jdbc:mysql://localhost:3306/db
+set DATASOURCES_DEFAULT_USERNAME=sherlock
+set DATASOURCES_DEFAULT_PASSWORD=elementary
+</code></pre>
+   </div>
+   <div data-value="windows-powershell" data-label="Windows PowerShell">
+      <pre><code class="language-bash">$ENV:DATASOURCES_DEFAULT_URL = "jdbc:mysql://localhost:3306/db"
+$ENV:DATASOURCES_DEFAULT_USERNAME = "sherlock"
+$ENV:DATASOURCES_DEFAULT_PASSWORD = "elementary"</code></pre>
+   </div>
+</div>
+
+<p>The Micronaut framework populates the properties <code>datasources.default.url</code>, <code>datasources.default.username</code> and <code>datasources.default.password</code> with those environment variables’ values. Learn more about <a href="https://micronaut-projects.github.io/micronaut-sql/latest/guide/#jdbc-connection-pools">JDBC Connection Pools</a>.</p>
+    
+      <h2 id="5-run-the-application">
+        
+        
+          5. Run the Application <a href="#5-run-the-application" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>Run the application from the native executable which starts the application on port 8080:</p>
+
+<div id="tabs-doc5">
+    <ul>
+        <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <pre><code class="language-bash">build/native/nativeCompile/db-demo</code></pre>
+    </div>
+    <div id="maven">
+        <pre><code class="language-bash">target/db-demo</code></pre>
+    </div>
+</div>
+
+<p>Save one genre and your <code>genre</code> database table will now contain an entry:</p>
+<pre><code class="language-bash">curl -X "POST" "http://localhost:8080/genres" \
+        -H 'Content-Type: application/json; charset=utf-8' \
+        -d '{ "name": "music" }'
+</code></pre>
+
+<p>Access the <code>genres</code> endpoint exposed by the application:</p>
+<pre><code class="language-bash">curl localhost:8080/genres/list
+</code></pre>
+
+<p>When you run the application, Micronaut Test Resources do not start a MySQL container because you have provided values for <code>datasources.default.*</code> properties</p>
+    
+      <h3 id="summary">
+        
+        
+          Summary <a href="#summary" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>This guide demonstrated how to use the GDK to create a Micronaut database application that stores data in a MySQL database. You also learned how to package and run this application as a native executable.</p>
+    
+      <h3 id="related-documentation">
+        
+        
+          Related Documentation <a href="#related-documentation" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<ul>
+  <li><a href="https://micronaut-projects.github.io/micronaut-data/latest/guide/">Micronaut Data</a></li>
+  <li><a href="https://graalvm.github.io/native-build-tools/latest/index.html">Native Build Tools</a></li>
+  <li><a href="https://www.graalvm.org/">GraalVM Native Image</a></li>
+</ul>
+
+      </div>
+
+      <div role="button" class="menu-btn menu-btn--sidebar js-show-sidebar" title="sweet hamburger">
+        <div class="hamburger">
+          <div class="inner"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+</div>
+
+      </main>
+
+      
+<footer class="footer footer__mobile">
+
+  <div class="container-fluid container-fluid--custom-sm">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row footer-content">
+          <div class="col-md-3 col-sm-4">
+            <h6 class="title-footer" onclick="fadeInAndOut(this)">Learn</h6>
+            <div class="grow">
+              <ul class="footer-list">
+                <li class="footer-list__item"><a href="/gdk/get-started/">Get Started</a></li>
+                <li class="footer-list__item"><a href="/gdk/guides/">Guides</a></li>
+                <li class="footer-list__item"><a href="/gdk/hands-on-labs/">Labs</a></li>
+                <li class="footer-list__github">
+                  <img class="footer__icon" src="/gdk/resources/img/footer/logo-github.svg" alt="Github icon">
+                  <a href="https://github.com/oracle/graal-dev-kit" target="blank">Github</a>
+                </li>
+                <li class="footer-list__github">
+                  <img class="footer__icon" src="/gdk/resources/img/footer/slack-icon.svg" alt="Github icon">
+                  <a href="https://bit.ly/odevrel_slack" target="blank">Join us at: #graal-cloud-native</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-4">
+            <h6 class="title-footer" onclick="fadeInAndOut(this)">About</h6>
+            <div class="grow">
+              <ul class="footer-list">
+                <li class="footer-list__item"><a href="/gdk/about/#gdk-support" target="blank">Commercial Support</a></li>
+                <li class="footer-list__item"><a href="https://www.graalvm.org/" target="blank">GraalVM Native Image</a></li>
+                <li class="footer-list__item"><a href="https://micronaut.io/" target="_blank">Micronaut</a></li>
+                <li class="footer-list__item"><a href="https://www.oracle.com/cloud/multicloud/what-is-multicloud/" target="_blank">Multicloud</a></li>
+                <li class="footer-list__item"><a href="https://www.oracle.com/cloud/" target="blank">Oracle Cloud Infrastructure</a></li>
+                <li class="footer-list__item"><a href="https://marketplace.visualstudio.com/items?itemName=oracle-labs-graalvm.graal-cloud-native-pack" target="blank">VS Code Tools</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-12 aligning_1024">
+            <div class="card--footer card--hovered box">
+              <div>
+                <div class="rubber-footer footer__oci-section">
+                  <p class="title-footer quickstart">Build, test, and deploy applications on Oracle Cloud Infrastructure for free</p>
+                  <a href="https://www.oracle.com/cloud/free/" target="_blank"
+                    class="btn btn-primary">Try Oracle Cloud Infrastructure Free Tier</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+          <div class="row">
+            <div class="col-sm-12">
+              <p class="copyright">
+                Copyright &copy; 2023-2024, Oracle and/or its affiliates.
+                All rights reserved.
+                Oracle and Java are registered trademarks of Oracle and/or its affiliates.<br/>
+                Micronaut<sup>&reg;</sup> is a registered trademark of Object Computing, Inc. 
+                Use is for referential purposes and does not imply any endorsement or affiliation with any third-party product.
+                Unauthorized use is strictly prohibited. Other names may be trademarks of their respective owners.
+              </p>
+              <div id="teconsent"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+<script>
+  function fadeInAndOut(thz) {
+    var elmt = thz.nextElementSibling;//Get the element that is below the button that
+    //was just clicked
+    if (elmt.clientHeight) {
+      elmt.style.height = 0;
+    } else {
+      var wrapper = elmt.querySelector('ul');
+      elmt.style.height = wrapper.clientHeight + "px";
+    }
+    /*
+        elmt.classList.toggle("acordianPanelHidden");//Toggle the class which changes
+        //attributes which triggers the transition CSS
+        */
+  }
+
+  // Check TRUSTe Consent for Functional or Implied Approval
+  // The if test verifies if the user has given the consent
+  if ( (oracle.truste.api.getGdprConsentDecision().consentDecision) &&
+      (oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(0) != -1 ||
+        oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(2) != -1) ) {
+
+      //The following is a sample of a Maxymiser Tag being written to the DOM
+      //If the user did not give consent, then the tag is not included and not invoked in the Browser
+      document.write('<script type="text/javascript" src="//service.maxymiser.net/cdn/oracle/js/mmcore.js"><\/script>');
+  }
+
+  // Check TRUSTe Consent for Advertising or Implied Approval
+  // The if test verifies if the user has given the consent
+  if ( (oracle.truste.api.getGdprConsentDecision().consentDecision) &&
+      (oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(0) != -1 ||
+        oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(3) != -1) ) {
+
+      //The following is a sample of a BlueKai Core Tag being written to the DOM
+      //If the user did not give consent, then the tag is not included and not invoked in the Browser
+      document.write('<script type="text/javascript">' +
+      'window.bk_async = function() { ' +
+      'BKTAG.doTag(62581, 1); }; ' +
+      '(function() { ' +
+      'var scripts = document.getElementsByTagName(\'script\')[0]; ' +
+      'var s = document.createElement(\'script\'); ' +
+      's.async = true; ' +
+      's.src = "https://tags.bkrtx.com/js/bk-coretag.js"; ' +
+      'scripts.parentNode.insertBefore(s, scripts); ' +
+      '}()); ' +
+      '<\/script>');
+  }
+</script>
+
+    </div>
+    <div class="overlay"></div>
+
+    <!-- Start SiteCatalyst code -->
+    <script language="JavaScript" src="https://www.oracle.com/us/assets/metrics/ora_otn.js"></script>
+    <!-- End SiteCatalyst code -->
+
+    <script src='/gdk/resources/lib/slick-slider/slick.min.js'></script>
+    <script src='/gdk/resources/js/main.js'></script>
+    <script src='/gdk/resources/js/ui.js'></script>
+    <script src='/gdk/resources/js/filters.js'></script>
+    <script src='/gdk/resources/js/sidebar.js'></script>
+    <script src='/gdk/resources/js/labs.js'></script>
+    <script src='/gdk/resources/lib/highlight/highlight.min.js'></script> 
+    <script>hljs.highlightAll();</script>
+  </body>
+</html>

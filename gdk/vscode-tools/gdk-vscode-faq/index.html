@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:image" content="/gdk/resources/img/graalvm.png" />
+  <meta name="twitter:widgets:border-color" content="#55acee">
+
+  <title>
+    
+      Frequently Asked Questions
+    
+  </title>
+  <meta name="description" content="The Graal Development Kit for Micronaut (GDK) is a build of a curated set of Micronaut framework modules and their required libraries for building portable c..."/>
+  <meta name="last_modified" content="2024-05-20 12:48:02 +0000"/>
+  <meta name="last_built" content="2024-05-27 08:12:37 +0000"/>
+  <link rel="stylesheet" href="/gdk/assets/main.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="/gdk/resources/img/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/gdk/resources/img/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/gdk/resources/img/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/gdk/resources/img/favicon/site.webmanifest">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="google-site-verification" content="-vRqwa9WYn6AaQGnl88xvrLw6ac4xoKVkZkhanmlRhU" />
+  <link rel="canonical" href="https://www.graal.cloud/gdk/vscode-tools/gdk-vscode-faq/">
+
+  <!-- jQuery UI Tabs -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/gdk/resources/lib/jquery/jquery-ui.css">
+</head>
+
+      <script src="/gdk/resources/lib/jquery/jquery-3.6.1.min.js"></script>
+    <script src="/gdk/resources/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src='/gdk/resources/lib/sticky-sidebar/resizeSensor.js'></script>
+    <script src='/gdk/resources/lib/sticky-sidebar/sticky-sidebar.min.js'></script>
+    <script src="/gdk/resources/lib/highlight/highlight.min.js"></script>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- Add TRUSTe Consent Script and Analytics -->
+    <script async="async" type="text/javascript" src='//consent.trustarc.com/notice?domain=oracle.com&c=teconsent&js=bb&noticeType=bb&text=true&cdn=1&pcookie&gtm=1' crossorigin></script>
+    <script src="https://www.oracle.com/assets/truste-oraclelib.js"></script>
+    <!-- jQuery UI Tabs -->
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+
+  <body class="preload">
+    <!-- Start SiteCatalyst code -->
+    <script language="JavaScript" src="https://www.oracle.com/us/assets/metrics/ora_otn.js"></script>
+    <!-- End SiteCatalyst code -->
+
+    <div  class="wrapper wrapper--nofooter" >
+
+      <header  class="header header--content" 
+  role="banner">
+
+  
+
+  
+
+    <nav class="menu">
+      <div class="menu__row">
+        <div>
+          <a href="/gdk/">
+            <img class="logo-mobile" src="/gdk/resources/img/gdk-logo-new.svg" alt="Graal Development Kit for Micronaut logo">
+          </a>
+        </div>
+        <div class="menu__container">
+          <ul class="menu__list">
+            <li class="menu__item">
+              <a href="/gdk/about/" class="menu__link">About</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gdk/get-started/" class="menu__link">Get Started</a>
+            </li>
+            <li class="menu__item">
+              <div class="stack-container">
+                <a href="#" class="menu__link stack__header">Docs</a>
+                <div class="stack-menu-learn">
+                  <div class="stack-row">
+                    <div class="stack-column">
+                      <div class="stack__item">
+                        <img src='/gdk/resources/img/header-navigation/modules.svg'>
+                        <a href="/gdk/modules/" class="item-line">Modules</a>
+                      </div>
+                      <div class="stack__item">
+                        <img src='/gdk/resources/img/header-navigation/guides.svg'>
+                        <a href="/gdk/guides/" class="item-line">Guides</a>
+                      </div>
+                      <div class="stack__item">
+                        <img src='/gdk/resources/img/header-navigation/labs.svg'>
+                        <a href="/gdk/hands-on-labs/" class="item-line">Hands-On Labs</a>
+                      </div>
+                      <div class="stack__item">
+                        <img src='/gdk/resources/img/header-navigation/tools.svg'>
+                        <a href="/gdk/vscode-tools/" class="item-line">Tools</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="menu__item">
+              <div class="stack-container">
+                <a href="#" class="menu__link stack__header">Graal Projects</a>
+                <div class="stack-menu">
+                  <div class="stack-row">
+                    <div class="stack-column">
+                      <div class="stack__item">
+                        <img src='/gdk/resources/img/header-navigation/graalstack.svg'>
+                        <a href="https://graal.cloud/" class="item-line">Graal</a>
+                      </div>
+                      <div class="stack__item">
+                        <img src='/gdk/resources/img/header-navigation/graalvm.svg'>
+                        <a href="https://graalvm.org/" class="item-line">GraalVM</a>
+                      </div>
+                      <div class="stack__item">
+                        <img src='/gdk/resources/img/header-navigation/graalos.svg'>
+                        <a href="https://graal.cloud/graalos/" class="item-line">GraalOS</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="menu__launch__mobile">
+              <a href="/gdk/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
+            </li>
+          </ul>
+        </div>
+        <div class="menu__launch">
+          <a href="/gdk/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
+        </div>
+      </div>
+
+      <div role="button" class="menu-btn menu-btn--menu js-show-menu" tabindex="-1" title="sweet hamburger">
+        <div class="hamburger">
+          <div class="inner"></div>
+        </div>
+      </div>
+      <button aria-label="hamburger mobile menu" class="btn btn-mobile-menu js-show-menu">
+        <div class="inner"></div>
+      </button>
+    </nav>
+
+  
+</header>
+
+
+      <main  class="content"   aria-label="Content">
+        <div class="wrapper wrapper-content">
+  <article>
+  <div class="row d-flex flex-wrap">
+    <div class="col-sm-3 docsimpro col-bg">
+      <div class="sidebar-wrap">
+        <div class="sidebar">
+          <div class="menuabout">
+            <img id="sidebarClose" src="/gdk/resources/img/arrow_sidebar(close).svg" alt="Expand or collapse sidebar"
+              class="btn-color no-display">
+            <img id="sidebarOpen" src="/gdk/resources/img/arrow_sidebar.svg" alt="Expand or collapse sidebar">
+          </div>
+          
+<div class="toc-floating">
+
+
+<div class="toc-bullets">
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+
+    
+      
+        
+          <li class="toc-bullets-main">
+        
+          
+          <a href="/gdk/vscode-tools/graal-development-kit-extension-pack/" class="_icon-book">
+            Graal Development Kit for Micronaut Extension Pack
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+          
+          <li class="toc-bullets-sub">
+          
+            
+            <a href="/gdk/vscode-tools/graal-cloud-native-launcher/">
+              Graal Development Kit for Micronaut Launcher
+            </a>
+          </li>
+
+          
+        
+          
+          <li class="toc-bullets-sub">
+          
+            
+            <a href="/gdk/vscode-tools/oci-devops-tools/">
+              OCI DevOps Tools
+            </a>
+          </li>
+
+          
+        
+          
+          <li class="toc-bullets-sub">
+          
+            
+            <a href="/gdk/vscode-tools/micronaut-tools/">
+              Tools for Micronaut® Framework
+            </a>
+          </li>
+
+          
+        
+          
+          <li class="toc-bullets-sub">
+          
+            
+            <a href="/gdk/vscode-tools/micronaut-launch/">
+              Launch for Micronaut® Framework
+            </a>
+          </li>
+
+          
+        
+          
+          <li class="toc-bullets-sub">
+          
+            
+            <a href="/gdk/vscode-tools/database-features/">
+              Database Features
+            </a>
+          </li>
+
+          
+        
+      
+    
+      
+        
+          <li class="toc-bullets-main">
+        
+          
+          <a href="/gdk/vscode-guides/" class="_icon-book">
+            VS Code Guides
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<!-- <li class="search additional-search">
+  <form class="form-inline sidebar" action="/docs/search" autocomplete="on" method="get">
+    <input class="input-search sidebar" type="text" id="search-box" name="query" placeholder="Search">
+    <button type="submit sidebar" class="search-button"></button>
+  </form>
+</li> -->
+
+</div>
+  <!-- Search form -->
+  <!-- <form class="search-container" action="/docs/search" autocomplete="on" method="get">
+   <label for="search-box">Search</label>
+    <input type="text" id="search-box" name="query">
+    <button type="submit" class="searchbttn"></button>
+  </form> -->
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-9 docsmod">
+      <div id="content-wrapper" class="docs-content docs-content--with-sidebar">
+        <h1 id="frequently-asked-questions">
+        
+        
+          Frequently Asked Questions
+        
+        
+      </h1>
+    
+      <h3 id="i-created-a-devops-project-in-vs-code-triggered-the-build-pipeline-which-ran-successfully-and-i-noticed-new-resources-created-in-my-oci-tenancycompartment-what-is-happening">
+        
+        
+          I created a DevOps project in VS Code, triggered the build pipeline which ran successfully, and I noticed new resources created in my OCI tenancy/compartment. What is happening? <a href="#i-created-a-devops-project-in-vs-code-triggered-the-build-pipeline-which-ran-successfully-and-i-noticed-new-resources-created-in-my-oci-tenancycompartment-what-is-happening" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>When you click <strong>Create DevOps Project</strong>, the <em>Graal Development Kit for Micronaut</em> Launcher (GDK Launcher) extension calls the OCI DevOps service and creates the following resources in your tenancy or compartment:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Resource Type</th>
+      <th>Name used by GDK Tooling</th>
+      <th style="text-align: center">Tenancy</th>
+      <th style="text-align: center">User Compartment</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>OKE Deploy Environment</td>
+      <td><code>&lt;projectname&gt;OkeDeployEnvironment</code></td>
+      <td style="text-align: center">X (Unique name per tenancy)</td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td>Notifications</td>
+      <td><code>&lt;usercompartmentname&gt;NotificationTopic</code></td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">X</td>
+    </tr>
+    <tr>
+      <td>DevOps Project</td>
+      <td><code>&lt;projectname&gt;</code></td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">X</td>
+    </tr>
+    <tr>
+      <td>Default Log Group</td>
+      <td><code>Default_Group</code></td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">X</td>
+    </tr>
+    <tr>
+      <td>Default Compartment Access Policy</td>
+      <td><code>CompartmentAccessPolicy</code></td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">X</td>
+    </tr>
+    <tr>
+      <td>Container Registry Repository</td>
+      <td><code>&lt;projectname&gt;</code></td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">X</td>
+    </tr>
+    <tr>
+      <td>Artifact Registry Repository</td>
+      <td><code>&lt;projectname&gt;ArtifactRepository</code></td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">X</td>
+    </tr>
+    <tr>
+      <td>ADM Knowledge Base</td>
+      <td><code>&lt;projectname&gt;Audits</code></td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">X</td>
+    </tr>
+    <tr>
+      <td>Source Code Repository</td>
+      <td>many under <code>&lt;projectname&gt;</code></td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">X</td>
+    </tr>
+    <tr>
+      <td>OKE Cluster</td>
+      <td>Leads user to web Quick Create OKE page</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">X</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The extension creates a policy to provide the DevOps service with access to the resources within the compartment. 
+One policy is created per compartment.
+A policy specifies who can access which resources, and how.
+You can review the compartment policies: in the Oracle Cloud Console navigation menu, select <strong>Identity &amp; Security</strong>. 
+Under <strong>Identity</strong> select <strong>Policies</strong>, and view the <strong>CompartmentAccessPolicy</strong> which is a default policy to access compartment resources created from VS Code. 
+Click it to see the policy statements.</p>
+
+<p>The policies created by the OCI DevOps service match this pattern:</p>
+<pre><code class="language-bash">const rules = [
+ `Allow any-user to read devops-family in compartment id ${compartmentID} where ALL {request.principal.type='devopsbuildpipeline', request.principal.compartment.id='${compartmentID}'}`,
+ `Allow any-user to manage generic-artifacts in compartment id ${compartmentID} where ALL {request.principal.type='devopsbuildpipeline', request.principal.compartment.id='${compartmentID}'}`,
+ `Allow any-user to manage repos in compartment id ${compartmentID} where ALL {request.principal.type='devopsbuildpipeline', request.principal.compartment.id='${compartmentID}'}`,
+ `Allow any-user to manage compute-container-instances in compartment id ${compartmentID} where ALL {request.principal.type='devopsdeploypipeline', request.principal.compartment.id='${compartmentID}'}`,
+ `Allow any-user to manage compute-containers in compartment id ${compartmentID} where ALL {request.principal.type='devopsdeploypipeline', request.principal.compartment.id='${compartmentID}'}`,
+ `Allow any-user to use vnics in compartment id ${compartmentID} where ALL {request.principal.type='devopsdeploypipeline', request.principal.compartment.id='${compartmentID}'}`,
+ `Allow any-user to use subnets in compartment id ${compartmentID} where ALL {request.principal.type='devopsdeploypipeline', request.principal.compartment.id='${compartmentID}'}`,
+ `Allow any-user to use dhcp-options in compartment id ${compartmentID} where ALL {request.principal.type='devopsdeploypipeline', request.principal.compartment.id='${compartmentID}'}`,
+ `Allow any-user to read all-artifacts in compartment id ${compartmentID} where ALL {request.principal.type='devopsdeploypipeline', request.principal.compartment.id='${compartmentID}'}`,
+ `Allow any-user to manage clusters in compartment id ${compartmentID} where ALL {request.principal.type='devopsdeploypipeline', request.principal.compartment.id='${compartmentID}'}`
+];
+</code></pre>
+    
+      <h3 id="how-does-the-oci-devops-service-handle-unique-resource-names-for-example-if-one-user-creates-two-projects-in-two-separate-compartments">
+        
+        
+          How does the OCI DevOps service handle unique resource names? For example, if one user creates two projects in two separate compartments? <a href="#how-does-the-oci-devops-service-handle-unique-resource-names-for-example-if-one-user-creates-two-projects-in-two-separate-compartments" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>DevOps Project names must be unique per tenancy. 
+The OCI DevOps Tools VS Code extension checks that the name is unique.</p>
+    
+      <h3 id="how-do-i-delete-a-devops-project-created-by-the-vs-code-oci-devops-extension">
+        
+        
+          How do I delete a DevOps project created by the VS Code OCI DevOps Extension? <a href="#how-do-i-delete-a-devops-project-created-by-the-vs-code-oci-devops-extension" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>You cannot currently delete a DevOps project from within VS Code. 
+Instead, delete the DevOps project from the Oracle Cloud Console. 
+Use the <strong>Delete</strong> action which is available from the root of the project.</p>
+
+      </div>
+
+      <div role="button" class="menu-btn menu-btn--sidebar js-show-sidebar" title="sweet hamburger">
+        <div class="hamburger">
+          <div class="inner"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+</div>
+
+      </main>
+
+      
+<footer class="footer footer__mobile">
+
+  <div class="container-fluid container-fluid--custom-sm">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row footer-content">
+          <div class="col-md-3 col-sm-4">
+            <h6 class="title-footer" onclick="fadeInAndOut(this)">Learn</h6>
+            <div class="grow">
+              <ul class="footer-list">
+                <li class="footer-list__item"><a href="/gdk/get-started/">Get Started</a></li>
+                <li class="footer-list__item"><a href="/gdk/guides/">Guides</a></li>
+                <li class="footer-list__item"><a href="/gdk/hands-on-labs/">Labs</a></li>
+                <li class="footer-list__github">
+                  <img class="footer__icon" src="/gdk/resources/img/footer/logo-github.svg" alt="Github icon">
+                  <a href="https://github.com/oracle/graal-dev-kit" target="blank">Github</a>
+                </li>
+                <li class="footer-list__github">
+                  <img class="footer__icon" src="/gdk/resources/img/footer/slack-icon.svg" alt="Github icon">
+                  <a href="https://bit.ly/odevrel_slack" target="blank">Join us at: #graal-cloud-native</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-4">
+            <h6 class="title-footer" onclick="fadeInAndOut(this)">About</h6>
+            <div class="grow">
+              <ul class="footer-list">
+                <li class="footer-list__item"><a href="/gdk/about/#gdk-support" target="blank">Commercial Support</a></li>
+                <li class="footer-list__item"><a href="https://www.graalvm.org/" target="blank">GraalVM Native Image</a></li>
+                <li class="footer-list__item"><a href="https://micronaut.io/" target="_blank">Micronaut</a></li>
+                <li class="footer-list__item"><a href="https://www.oracle.com/cloud/multicloud/what-is-multicloud/" target="_blank">Multicloud</a></li>
+                <li class="footer-list__item"><a href="https://www.oracle.com/cloud/" target="blank">Oracle Cloud Infrastructure</a></li>
+                <li class="footer-list__item"><a href="https://marketplace.visualstudio.com/items?itemName=oracle-labs-graalvm.graal-cloud-native-pack" target="blank">VS Code Tools</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-12 aligning_1024">
+            <div class="card--footer card--hovered box">
+              <div>
+                <div class="rubber-footer footer__oci-section">
+                  <p class="title-footer quickstart">Build, test, and deploy applications on Oracle Cloud Infrastructure for free</p>
+                  <a href="https://www.oracle.com/cloud/free/" target="_blank"
+                    class="btn btn-primary">Try Oracle Cloud Infrastructure Free Tier</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+          <div class="row">
+            <div class="col-sm-12">
+              <p class="copyright">
+                Copyright &copy; 2023-2024, Oracle and/or its affiliates.
+                All rights reserved.
+                Oracle and Java are registered trademarks of Oracle and/or its affiliates.<br/>
+                Micronaut<sup>&reg;</sup> is a registered trademark of Object Computing, Inc. 
+                Use is for referential purposes and does not imply any endorsement or affiliation with any third-party product.
+                Unauthorized use is strictly prohibited. Other names may be trademarks of their respective owners.
+              </p>
+              <div id="teconsent"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+<script>
+  function fadeInAndOut(thz) {
+    var elmt = thz.nextElementSibling;//Get the element that is below the button that
+    //was just clicked
+    if (elmt.clientHeight) {
+      elmt.style.height = 0;
+    } else {
+      var wrapper = elmt.querySelector('ul');
+      elmt.style.height = wrapper.clientHeight + "px";
+    }
+    /*
+        elmt.classList.toggle("acordianPanelHidden");//Toggle the class which changes
+        //attributes which triggers the transition CSS
+        */
+  }
+
+  // Check TRUSTe Consent for Functional or Implied Approval
+  // The if test verifies if the user has given the consent
+  if ( (oracle.truste.api.getGdprConsentDecision().consentDecision) &&
+      (oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(0) != -1 ||
+        oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(2) != -1) ) {
+
+      //The following is a sample of a Maxymiser Tag being written to the DOM
+      //If the user did not give consent, then the tag is not included and not invoked in the Browser
+      document.write('<script type="text/javascript" src="//service.maxymiser.net/cdn/oracle/js/mmcore.js"><\/script>');
+  }
+
+  // Check TRUSTe Consent for Advertising or Implied Approval
+  // The if test verifies if the user has given the consent
+  if ( (oracle.truste.api.getGdprConsentDecision().consentDecision) &&
+      (oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(0) != -1 ||
+        oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(3) != -1) ) {
+
+      //The following is a sample of a BlueKai Core Tag being written to the DOM
+      //If the user did not give consent, then the tag is not included and not invoked in the Browser
+      document.write('<script type="text/javascript">' +
+      'window.bk_async = function() { ' +
+      'BKTAG.doTag(62581, 1); }; ' +
+      '(function() { ' +
+      'var scripts = document.getElementsByTagName(\'script\')[0]; ' +
+      'var s = document.createElement(\'script\'); ' +
+      's.async = true; ' +
+      's.src = "https://tags.bkrtx.com/js/bk-coretag.js"; ' +
+      'scripts.parentNode.insertBefore(s, scripts); ' +
+      '}()); ' +
+      '<\/script>');
+  }
+</script>
+
+    </div>
+    <div class="overlay"></div>
+
+    <!-- Start SiteCatalyst code -->
+    <script language="JavaScript" src="https://www.oracle.com/us/assets/metrics/ora_otn.js"></script>
+    <!-- End SiteCatalyst code -->
+
+    <script src='/gdk/resources/lib/slick-slider/slick.min.js'></script>
+    <script src='/gdk/resources/js/main.js'></script>
+    <script src='/gdk/resources/js/ui.js'></script>
+    <script src='/gdk/resources/js/filters.js'></script>
+    <script src='/gdk/resources/js/sidebar.js'></script>
+    <script src='/gdk/resources/js/labs.js'></script>
+    <script src='/gdk/resources/lib/highlight/highlight.min.js'></script> 
+    <script>hljs.highlightAll();</script>
+  </body>
+</html>

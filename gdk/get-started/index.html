@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:image" content="/gdk/resources/img/graalvm.png" />
+  <meta name="twitter:widgets:border-color" content="#55acee">
+
+  <title>
+    
+      Get Started
+    
+  </title>
+  <meta name="description" content="The Graal Development Kit for Micronaut (GDK) is a build of a curated set of Micronaut framework modules and their required libraries for building portable c..."/>
+  <meta name="last_modified" content="2023-06-14 09:37:41 +0000"/>
+  <meta name="last_built" content="2024-05-27 08:12:37 +0000"/>
+  <link rel="stylesheet" href="/gdk/assets/main.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="/gdk/resources/img/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/gdk/resources/img/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/gdk/resources/img/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/gdk/resources/img/favicon/site.webmanifest">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="google-site-verification" content="-vRqwa9WYn6AaQGnl88xvrLw6ac4xoKVkZkhanmlRhU" />
+  <link rel="canonical" href="https://www.graal.cloud/gdk/get-started/">
+
+  <!-- jQuery UI Tabs -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/gdk/resources/lib/jquery/jquery-ui.css">
+</head>
+
+      <script src="/gdk/resources/lib/jquery/jquery-3.6.1.min.js"></script>
+    <script src="/gdk/resources/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src='/gdk/resources/lib/sticky-sidebar/resizeSensor.js'></script>
+    <script src='/gdk/resources/lib/sticky-sidebar/sticky-sidebar.min.js'></script>
+    <script src="/gdk/resources/lib/highlight/highlight.min.js"></script>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- Add TRUSTe Consent Script and Analytics -->
+    <script async="async" type="text/javascript" src='//consent.trustarc.com/notice?domain=oracle.com&c=teconsent&js=bb&noticeType=bb&text=true&cdn=1&pcookie&gtm=1' crossorigin></script>
+    <script src="https://www.oracle.com/assets/truste-oraclelib.js"></script>
+    <!-- jQuery UI Tabs -->
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+
+  <body class="preload">
+    <!-- Start SiteCatalyst code -->
+    <script language="JavaScript" src="https://www.oracle.com/us/assets/metrics/ora_otn.js"></script>
+    <!-- End SiteCatalyst code -->
+
+    <div  class="wrapper wrapper--nofooter" >
+
+      <header  class="header header--content" 
+  role="banner">
+
+  
+
+  
+
+    <nav class="menu">
+      <div class="menu__row">
+        <div>
+          <a href="/gdk/">
+            <img class="logo-mobile" src="/gdk/resources/img/gdk-logo-new.svg" alt="Graal Development Kit for Micronaut logo">
+          </a>
+        </div>
+        <div class="menu__container">
+          <ul class="menu__list">
+            <li class="menu__item">
+              <a href="/gdk/about/" class="menu__link">About</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gdk/get-started/" class="menu__link">Get Started</a>
+            </li>
+            <li class="menu__item">
+              <div class="stack-container">
+                <a href="#" class="menu__link stack__header">Docs</a>
+                <div class="stack-menu-learn">
+                  <div class="stack-row">
+                    <div class="stack-column">
+                      <div class="stack__item">
+                        <img src='/gdk/resources/img/header-navigation/modules.svg'>
+                        <a href="/gdk/modules/" class="item-line">Modules</a>
+                      </div>
+                      <div class="stack__item">
+                        <img src='/gdk/resources/img/header-navigation/guides.svg'>
+                        <a href="/gdk/guides/" class="item-line">Guides</a>
+                      </div>
+                      <div class="stack__item">
+                        <img src='/gdk/resources/img/header-navigation/labs.svg'>
+                        <a href="/gdk/hands-on-labs/" class="item-line">Hands-On Labs</a>
+                      </div>
+                      <div class="stack__item">
+                        <img src='/gdk/resources/img/header-navigation/tools.svg'>
+                        <a href="/gdk/vscode-tools/" class="item-line">Tools</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="menu__item">
+              <div class="stack-container">
+                <a href="#" class="menu__link stack__header">Graal Projects</a>
+                <div class="stack-menu">
+                  <div class="stack-row">
+                    <div class="stack-column">
+                      <div class="stack__item">
+                        <img src='/gdk/resources/img/header-navigation/graalstack.svg'>
+                        <a href="https://graal.cloud/" class="item-line">Graal</a>
+                      </div>
+                      <div class="stack__item">
+                        <img src='/gdk/resources/img/header-navigation/graalvm.svg'>
+                        <a href="https://graalvm.org/" class="item-line">GraalVM</a>
+                      </div>
+                      <div class="stack__item">
+                        <img src='/gdk/resources/img/header-navigation/graalos.svg'>
+                        <a href="https://graal.cloud/graalos/" class="item-line">GraalOS</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="menu__launch__mobile">
+              <a href="/gdk/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
+            </li>
+          </ul>
+        </div>
+        <div class="menu__launch">
+          <a href="/gdk/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
+        </div>
+      </div>
+
+      <div role="button" class="menu-btn menu-btn--menu js-show-menu" tabindex="-1" title="sweet hamburger">
+        <div class="hamburger">
+          <div class="inner"></div>
+        </div>
+      </div>
+      <button aria-label="hamburger mobile menu" class="btn btn-mobile-menu js-show-menu">
+        <div class="inner"></div>
+      </button>
+    </nav>
+
+  
+</header>
+
+
+      <main  class="content"   aria-label="Content">
+        <section class="about-banner-gdk">
+  <div class="banner_home_about container-fluid container-fluid--custom-sm">
+    <div class="tagline_about_gdk">
+      <p>Get Started
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="content-section about-first container_about">
+  <div class="container-fluid container-fluid--custom-sm">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row">
+          <p class="gs-first-texts">
+            <span class="orange-text">The Graal Development Kit for Micronaut (GDK)</span> is a build of a curated set of Micronaut<sup>&reg;</sup>
+            framework modules and their required libraries for building portable cloud native microservices that take
+            full advantage of powerful cloud platform services and that can be compiled ahead-of-time by GraalVM Native Image.
+            The GDK also provides project creation utilities and VS Code extensions for application development and deployment.
+          </p>
+          <p class="gs-first-texts">
+            The modules provide platform-independent support for a set of core cloud services including object storage,
+            secret management, streaming, tracing, and more.
+            This guide walks you through the steps to successfully create, build, test and deploy a cloud native application to Oracle Cloud Infrastructure,
+            Amazon Web Services (AWS), and Google Cloud Platform (GCP).
+          </p>
+          <p class="gs-first-texts">
+            We showcase these capabilities by building a Java application which accesses cloud object storage in a vendor-independent way.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="">
+  <div class="wrapper">
+    <div class="prerequisites">
+      <div class="container prerequisites__container">
+        <div class="prerequisites__maintitle">Prerequisites</div>
+        <div class="prerequisites__row">
+          <div class="prerequisites__card">
+            <div class="prerequisites__icon">
+              <img src="/gdk/resources/img/get-started/java_framework_icon.svg" alt="Small Footprint icon" />
+            </div>
+            <div class="prerequisites__title">
+              <p>Java Framework Experience</p>
+            </div>
+            <div class="prerequisites__descrip">
+              <p>You have a basic understanding of Java microservice frameworks such as Micronaut, Helidon, Spring Boot, or Quarkus.</p>
+            </div>
+            <a href="https://github.com/micronaut-projects/micronaut-core#readme" target="_blank" class="btn btn-primary gs-btn">About Micronaut</a>
+          </div>
+          <div class="prerequisites__card">
+            <div class="prerequisites__icon">
+              <img src="/gdk/resources/img/get-started/cloud_account_icon.svg" alt="Cloud accounts icon">
+            </div>
+            <div class="prerequisites__title">
+              <p>Cloud Accounts</p>
+            </div>
+            <div class="prerequisites__descrip">
+              <p>You have created account(s) for Oracle Cloud Infrastructure, Amazon Web Services, and/or Google Cloud Platform.</p>
+            </div>
+            <a href="/gdk/get-started/setting-up-cloud-accounts/" target="_blank" class="btn btn-primary gs-btn">Set
+              up</a>
+          </div>
+          <div class="prerequisites__card">
+            <div class="prerequisites__icon">
+              <img src="/gdk/resources/img/get-started/desktop_icon.svg" alt="Set desktop icon">
+            </div>
+            <div class="prerequisites__title">
+              <p>Your Desktop</p>
+            </div>
+            <div class="prerequisites__descrip">
+              <p>You have set up your desktop development environment with required tools.</p>
+              <br>
+            </div>
+            <a href="/gdk/get-started/setting-up-desktop/" target="_blank" class="btn btn-primary gs-btn">Set up</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+
+<section class="content-section gs-section">
+  <div class="container-fluid container-fluid--custom-sm">
+    <div class="getstarted-divider"></div>
+    <p class="gs-root-texts">This guide describes how to create a <a href="https://micronaut.io/">Micronaut</a>
+      application that runs natively on Oracle Cloud Infrastructure, Amazon Web Services, and Google Cloud Platform <em>without</em>
+      any source code changes.
+      The application demonstrates how to store and retrieve user profile pictures in Oracle Cloud Infrastructure, Amazon Web Services and Google Cloud Platform Object Storage using
+      the <a href="https://micronaut-projects.github.io/micronaut-object-storage/latest/guide/" target="_blank">Micronaut Object Storage API</a>.
+    </p>
+
+  <!--
+  An include file with a snippet of html to warn about the Windows/Gradle restriction
+-->
+<blockquote>
+  <!-- <img class="" src="/gdk/resources/img/warn-icon-fill.svg/" alt="warning icon"> -->
+  <p>Windows platform: The GDK guides are compatible with Gradle only. Maven support is coming soon.</p>
+</blockquote>
+
+    <h2 style="color:#ffffff">1. Create the Application</h2>
+    <p class="gs-root-texts">Create an application using the GDK Launcher.</p>
+    <ol style="color:#C4D1EE">
+      <li>
+        Open the <a href="/gdk/launcher/?advanced=true" target="_blank">GDK Launcher</a>.
+      </li>
+      <li>Create a new project using the following selections. (Alternatively, use these shortcuts for <a
+          href="/gdk/launcher/?advanced=true&amp;type=APPLICATION&amp;name=GettingStarted&amp;package=com.example&amp;clouds=AWS%7COCI%7CGCP&amp;language=JAVA&amp;buildTool=MAVEN&amp;test=JUNIT&amp;java-version=JDK_17&amp;sample-code=true&amp;services=OBJECTSTORE">Maven</a>
+        or <a
+          href="/gdk/launcher/?advanced=true&amp;type=APPLICATION&amp;name=GettingStarted&amp;package=com.example&amp;clouds=AWS%7COCI%7CGCP&amp;language=JAVA&amp;buildTool=GRADLE&amp;test=JUNIT&amp;java-version=JDK_17&amp;sample-code=true&amp;services=OBJECTSTORE">Gradle</a>.)
+        <ul>
+          <li><strong style="color:#C4D1EE">Project Type</strong>: <em>Application</em> (Default)</li>
+          <li><strong style="color:#C4D1EE">Project Name</strong>: <em>GettingStarted</em></li>
+          <li><strong style="color:#C4D1EE">Base Package</strong>: <em>com.example</em> (Default)</li>
+          <li><strong style="color:#C4D1EE">Clouds</strong>: <em>AWS</em>, <em>GCP</em> <strong style="color:#C4D1EE">and</strong>
+            <em>OCI</em></li>
+          <li><strong style="color:#C4D1EE">Language</strong>: <em>Java</em> (Default)</li>
+          <li><strong style="color:#C4D1EE">Build Tool</strong>: <em>Gradle (Groovy)</em> or <em>Maven</em></li>
+          <li><strong style="color:#C4D1EE">Test Framework</strong>: <em>JUnit</em> (Default)</li>
+          <li><strong style="color:#C4D1EE">Java Version</strong>: <em>17</em> (Default)</li>
+          <li><strong style="color:#C4D1EE">Micronaut Version</strong>: (Default)</li>
+          <li><strong style="color:#C4D1EE">Cloud Services</strong>: <em>Object Storage</em></li>
+          <li><strong style="color:#C4D1EE">Features</strong>: <em>GraalVM Native Image</em> (Default)</li>
+          <li><strong style="color:#C4D1EE">Sample Code</strong>: <em>Yes</em> (Default)</li>
+        </ul>
+        <p><br /><img src="/gdk/docs/get-started/images/GDKLauncher.png" class="gs-images" alt="GDK Launcher"></p>
+      </li>
+      <li>Click <strong style="color:#C4D1EE">Generate Project</strong> and then click
+        <strong style="color:#C4D1EE">Download Zip</strong>. The GDK Launcher creates an application with
+        the default package <code>com.example</code> in a directory named <em>GettingStarted</em>. The application ZIP
+        file will be downloaded to your default downloads directory. Unzip it, open it in Visual Studio (VS) Code, and
+        proceed to the next steps.</li>
+    </ol>
+    <p class="gs-root-texts">The GDK Launcher creates the following sample source code files that use the Micronaut
+      Object Storage API to create, read, and delete objects in the major cloud providers​:
+    <ul>
+      <li class="gs-root-texts">an interface describing the endpoints of the "profile pictures" microservice:</li>
+      <li><em><a href="/gdk/docs/get-started/src/ProfilePicturesApi.java"
+            target="_blank">lib/src/main/java/com/example/ProfilePicturesApi.java</a></em></li>
+      <li class="gs-root-texts">an implementation with the required dependencies:</li>
+      <li><em><a href="/gdk/docs/get-started/src/ProfilePicturesController.java"
+        target="_blank">lib/src/main/java/com/example/ProfilePicturesController.java</a></em></li>
+    </ul>
+    </p>
+
+    <h2 style="color:#ffffff">2. Configure the Project</h2>
+    <div class="gs-border-tab">
+      <section class="gs-filter-content-section guides-back">
+        <div class="container">
+          <div class="gs__row">
+            <div class="column-view">
+              <div>
+                <p class="gs-filter-title"><span class="cloud-title-color">Cloud</span>Filter</p>
+              </div>
+              <div class="guide-filter">
+                <div class="row">
+                  <p class="filter-item cloud-filter" data-filter="oci">OCI</p>
+                  <p class="filter-item cloud-filter" data-filter="aws">AWS</p>
+                  <p class="filter-item cloud-filter" data-filter="gcp">GCP</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="no-modules">
+        <section class="filter-content-section guides-back">
+          <div class="container-fluid container-fluid--custom-sm">
+            <div class="row">
+              <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="guide-filter">
+                  <div class="row">
+                    <p class="filter-item module-filter" data-filter="all">All</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="container-fluid container-fluid--custom-sm">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="row">
+              <div class="col-sm guides-box gs-section-indent oci gradle maven">
+                <p class="gs-root-texts">For this section, you will need an Oracle Cloud Infrastructure account and an Object Storage bucket created
+                  already.
+                  See how to create an Object Storage bucket <a
+                    href="https://docs.oracle.com/iaas/Content/Object/Tasks/managingbuckets_topic-To_create_a_bucket.htm"
+                    target="_blank">from the Oracle Cloud Console</a>.
+                </p>
+                <p class="gs-root-texts">Update the Oracle Cloud Infrastructure configuration file
+                  (<em>oci/src/main/resources/application.properties</em>) with the name of the bucket and its namespace:</p>
+                <pre><code class="language-bash">micronaut.object-storage.oracle-cloud.default.namespace=OBJECT_STORAGE_NAMESPACE
+micronaut.object-storage.oracle-cloud.default.bucket=OBJECT_STORAGE_BUCKET</code><button>Copy</button></pre>
+                <p class="gs-root-texts">Replace <code>OBJECT_STORAGE_BUCKET</code> with the name of your bucket and
+                  <code>OBJECT_STORAGE_NAMESPACE</code> with your namespace.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid container-fluid--custom-sm">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="row">
+              <div class="col-sm guides-box gs-section-indent aws gradle maven">
+                <p class="gs-root-texts">For this section, you will need an Amazon Web Services account and a S3 bucket created already. See <a
+                  href="/gdk/gdk-modules/object-storage/micronaut-object-storage-aws/" target="_blank">Amazon S3 Object Storage
+                  Guide</a> for assistance.</p>
+              <p class="gs-root-texts">Update the Amazon Web Services configuration file (<em>aws/src/main/resources/application.properties</em>)
+                with the name of the bucket:</p>
+              <pre><code class="language-bash">micronaut.object-storage.aws.default.bucket=OBJECT_STORAGE_BUCKET</code><button>Copy</button></pre>
+              <p class="gs-root-texts">Replace <code>OBJECT_STORAGE_BUCKET</code> with the name of your bucket.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid container-fluid--custom-sm">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="row">
+              <div class="col-sm guides-box gs-section-indent gcp gradle maven">
+                <p class="gs-root-texts">For this section, you will need a Google Cloud Platform account and a an Object Storage bucket created already.
+                  See <a href="/gdk/gdk-modules/object-storage/micronaut-object-storage-google-cloud/" target="_blank">GCP Object Storage
+                    Guide</a> for assistance.</p>
+                <p class="gs-root-texts">Update the Google Cloud Platform configuration file (<em>gcp/src/main/resources/application.properties</em>)
+                  with the name of the bucket:</p>
+                <pre><code class="language-bash">micronaut.object-storage.gcp.default.bucket=OBJECT_STORAGE_BUCKET</code><button>Copy</button></pre>
+                <p class="gs-root-texts">Replace <code>OBJECT_STORAGE_BUCKET</code> with the name of your bucket.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2 style="color:#ffffff">3. Run the Application</h2>
+    <div class="gs-border-tab">
+      <section class="gs-filter-content-section guides-back">
+        <div class="container">
+          <div class="gs__row">
+            <div class="column-view">
+              <div>
+                <p class="gs-filter-title"><span class="cloud-title-color">Cloud</span>Filter</p>
+              </div>
+              <div class="guide-filter">
+                <div class="row">
+                  <p class="filter-item cloud-filter" data-filter="oci">OCI</p>
+                  <p class="filter-item cloud-filter" data-filter="aws">AWS</p>
+                  <p class="filter-item cloud-filter" data-filter="gcp">GCP</p>
+                </div>
+              </div>
+            </div>
+            <div class="column-view">
+              <div>
+                <p class="gs-filter-title"><span class="buildtool-title-color">Build Tool</span>Filter</p>
+              </div>
+              <div class="guide-filter" id="gradle-maven switcher step 4">
+                <div class="row">
+                  <p class="filter-item buildtool-filter" data-filter="gradle">Gradle</p>
+                  <p class="filter-item buildtool-filter" data-filter="maven">Maven</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="no-modules">
+        <section class="filter-content-section guides-back">
+          <div class="container-fluid container-fluid--custom-sm">
+            <div class="row">
+              <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="guide-filter">
+                  <div class="row">
+                    <p class="filter-item module-filter" data-filter="all">All</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+      <div class="container-fluid container-fluid--custom-sm">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="row">
+              <div class="col-sm guides-box gs-section-indent oci maven">
+                <pre
+                  style="margin-top:4px"><code class="language-bash hljs">./mvnw install -pl lib -am &amp;&amp; ./mvnw mn:run -pl oci</code><button>Copy</button></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid container-fluid--custom-sm">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="row">
+              <div class="col-sm guides-box gs-section-indent aws maven">
+                <pre
+                  style="margin-top:4px"><code class="language-bash hljs">./mvnw install -pl lib -am &amp;&amp; ./mvnw mn:run -pl aws</code><button>Copy</button></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid container-fluid--custom-sm">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="row">
+              <div class="col-sm guides-box gs-section-indent gcp maven">
+                <pre
+                  style="margin-top:4px"><code class="language-bash hljs">./mvnw install -pl lib -am &amp;&amp; ./mvnw mn:run -pl gcp</code><button>Copy</button></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid container-fluid--custom-sm">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="row">
+              <div class="col-sm guides-box gs-section-indent oci gradle">
+                <pre
+                  style="margin-top:4px"><code class="language-bash hljs">./gradlew :oci:run</code><button>Copy</button></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid container-fluid--custom-sm">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="row">
+              <div class="col-sm guides-box gs-section-indent aws gradle">
+                <pre
+                  style="margin-top:4px"><code class="language-bash hljs">./gradlew :aws:run</code><button>Copy</button></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid container-fluid--custom-sm">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="row">
+              <div class="col-sm guides-box gs-section-indent gcp gradle">
+                <pre
+                  style="margin-top:4px"><code class="language-bash hljs">./gradlew :gcp:run</code><button>Copy</button></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="color:#ffffff">3.1. Upload the Picture</h3>
+    <pre><code class="language-bash hljs"> curl -F <span class="hljs-string">"fileUpload=@my_picture.jpg"</span> http://localhost:8080/pictures/avatar</code><button>Copy</button></pre>
+    <p class="gs-root-texts">The image type has to be of a JPEG format.</p>
+    <h3 style="color:#ffffff">3.2. Download the Picture</h3>
+    <pre><code class="language-bash hljs">curl http://localhost:8080/pictures/avatar -J -o profile.jpg</code><button>Copy</button></pre>
+    <h3 style="color:#ffffff">3.3. Delete the Picture</h3>
+    <pre><code class="language-bash hljs">curl -X "DELETE" http://localhost:8080/pictures/avatar</code><button>Copy</button></pre>
+
+    <!--<h2 style="color:#ffffff">5. Use VSCode Test Explorer to Test Your Code</h2>
+    <p class="gs-root-texts">Running tests for your application is easy with VSCode Test Explorer.</p>
+    <p><img src="/gdk/docs/get-started/images/VSCodeTests.png" class="gs-images" alt="VS Code Tests"></p>-->
+
+    <h2 style="color:#ffffff">4. Build a Native Executable of Your Application with GraalVM</h2>
+    <p class="gs-root-texts">To build a native executable of your application, you should install <a
+        href="https://www.graalvm.org/downloads/" target="_blank">GraalVM with Native Image</a>. Once your local
+      environment is setup, use the command below to build a native executable. Then run it and test it as above.</p>
+    <!-- <h3 style="color:#ffffff">Windows</h3>
+    <pre><code class="language-bash hljs">gu install native-image</code><button>Copy</button></pre>
+    <h3 style="color:#ffffff">Linux and macOS</h3>
+    <pre><code class="language-bash hljs">./gu install native-image</code><button>Copy</button></pre>
+    <h3 style="color:#ffffff">VS Code</h3>
+    <p class="gs-root-texts">Alternatively, if you are using VS Code, install <a
+        href="https://marketplace.visualstudio.com/items?itemName=oracle-labs-graalvm.graalvm" target="_blank">"GraalVM
+        Tools for Java"</a> extension and then use <strong style="color:#C4D1EE">Gr</strong> panel to install GraalVM
+      and native-image component.</p>
+    <p><img src="/gdk/docs/get-started/images/VSCodeInstallations.png" class="gs-images" alt="VS Code Installations">
+    </p>
+    <p class="gs-root-texts">Once your local environment is setup to build NI, then proceed to build native executables
+      of your application.</p> -->
+
+    <div class="gs-border-tab">
+      <section class="gs-filter-content-section guides-back">
+        <div class="container">
+          <div class="gs__row">
+            <!--Cloud Filters-->
+            <div class="column-view">
+              <div>
+                <p class="gs-filter-title"><span class="cloud-title-color">Cloud</span>FIlter</p>
+              </div>
+              <div class="guide-filter">
+                <div class="row">
+                  <p class="filter-item cloud-filter" data-filter="oci">OCI</p>
+                  <p class="filter-item cloud-filter" data-filter="aws">AWS</p>
+                  <p class="filter-item cloud-filter" data-filter="gcp">GCP</p>
+                </div>
+              </div>
+            </div>
+            <!--BuildTool Filters-->
+            <div class="column-view">
+              <div>
+                <p class="gs-filter-title"><span class="buildtool-title-color">Build Tool</span>Filter</p>
+              </div>
+              <div class="guide-filter" id="gradle-maven switcher step 6">
+                <div class="row">
+                  <p class="filter-item buildtool-filter" data-filter="gradle">Gradle</p>
+                  <p class="filter-item buildtool-filter" data-filter="maven">Maven</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Modules Filters(hidden)-->
+      <div class="no-modules">
+        <section class="filter-content-section guides-back">
+          <div class="container-fluid container-fluid--custom-sm">
+            <div class="row">
+              <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="guide-filter">
+                  <div class="row">
+                    <p class="filter-item module-filter" data-filter="all">All</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+      <!--Content for Filters-->
+      <div class="container-fluid container-fluid--custom-sm">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="row">
+              <div class="col-sm guides-box gs-section-indent oci maven">
+                <pre
+                  style="margin-top:4px"><code class="language-bash hljs">./mvnw install -pl lib -am &amp;&amp; ./mvnw package -pl oci -Dpackaging=native-image</code><button>Copy</button></pre>
+                <p class="gs-tabs-text">
+                  The native executable is created in the <em>oci/target/</em> directory
+                  and can be run with the following command:
+                </p>
+                <pre
+                  style="margin-top:4px"><code class="language-bash hljs">oci/target/oci</code><button>Copy</button></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid container-fluid--custom-sm">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="row">
+              <div class="col-sm guides-box gs-section-indent aws maven">
+                <pre
+                  style="margin-top:4px"><code class="language-bash hljs">./mvnw install -pl lib -am &amp;&amp; ./mvnw package -pl aws -Dpackaging=native-image</code><button>Copy</button></pre>
+                <p class="gs-tabs-text">
+                  The native executable is created in the <em>aws/target/</em> directory
+                  and can be run with the following command:
+                </p>
+                <pre
+                  style="margin-top:4px"><code class="language-bash hljs">aws/target/aws</code><button>Copy</button></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid container-fluid--custom-sm">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="row">
+              <div class="col-sm guides-box gs-section-indent gcp maven">
+                <pre
+                  style="margin-top:4px"><code class="language-bash hljs">./mvnw install -pl lib -am &amp;&amp; ./mvnw package -pl gcp -Dpackaging=native-image</code><button>Copy</button></pre>
+                <p class="gs-tabs-text">
+                  The native executable is created in the <em>gcp/target/</em> directory
+                  and can be run with the following command:
+                </p>
+                <pre
+                  style="margin-top:4px"><code class="language-bash hljs">gcp/target/gcp</code><button>Copy</button></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid container-fluid--custom-sm">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="row">
+              <div class="col-sm guides-box gs-section-indent oci gradle">
+                <pre
+                  style="margin-top:4px"><code class="language-bash hljs">./gradlew :oci:nativeCompile</code><button>Copy</button></pre>
+                <p class="gs-tabs-text">
+                  The native executable is created in the
+                  <em>oci/build/native/nativeCompile/</em> directory and can be run with
+                  the following command:
+                </p>
+                <pre
+                  style="margin-top:4px"><code class="language-bash hljs">oci/build/native/nativeCompile/oci</code><button>Copy</button></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid container-fluid--custom-sm">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="row">
+              <div class="col-sm guides-box gs-section-indent aws gradle">
+                <pre
+                  style="margin-top:4px"><code class="language-bash hljs">./gradlew :aws:nativeCompile</code><button>Copy</button></pre>
+                <p class="gs-tabs-text">
+                  The native executable is created in the
+                  <em>aws/build/native/nativeCompile/</em> directory and can be run with
+                  the following command:
+                </p>
+                <pre
+                  style="margin-top:4px"><code class="language-bash hljs">aws/build/native/nativeCompile/aws</code><button>Copy</button></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid container-fluid--custom-sm">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="row">
+              <div class="col-sm guides-box gs-section-indent gcp gradle">
+                <pre
+                  style="margin-top:4px"><code class="language-bash hljs">./gradlew :gcp:nativeCompile</code><button>Copy</button></pre>
+                <p class="gs-tabs-text">
+                  The native executable is created in the
+                  <em>gcp/build/native/nativeCompile/</em> directory and can be run with
+                  the following command:
+                </p>
+                <pre
+                  style="margin-top:4px"><code class="language-bash hljs">gcp/build/native/nativeCompile/gcp</code><button>Copy</button></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2 style="color:#ffffff">5. Use VS Code and Oracle Cloud Infrastructure DevOps Service</h2>
+    <p class="gs-root-texts">
+      Thanks to the <a href="/gdk/vscode-tools/" target="_blank">GDK extension</a>, you can leverage the Oracle Cloud Infrastructure DevOps Resources in VS Code to build a native
+      executable of your application on the cloud instead of locally.
+    </p>
+
+    <h2 style="color:#ffffff">6. Deploy the Application as a Container on the Cloud</h2>
+    <p class="gs-root-texts">
+      Next you can create a container with Native Image version of the application and deploy it
+      on a Kubernetes cluster on Oracle Cloud Infrastructure, Amazon Web Services and Google Cloud Platform.
+    </p>
+    
+    <h3 style="color:#ffffff">6.1 Oracle Cloud Infrastructure</h3>
+    <p class="gs-root-texts">
+      You can install the Visual Studio Code extensions for GDK, covered in <a href="/gdk/vscode-tools/graal-development-kit-extension-pack/" target="_blank">Installing the Graal Development Kit Tools</a>, 
+      and use <a href="/gdk/vscode-tools/oci-devops-tools/" target="_blank">OCI DevOps Resources</a> to use the Oracle Cloud Infrastructure DevOps service to deploy your application
+      to a pre-created Kubernetes cluster from within VS Code.
+      </p>
+    <p><img src="/gdk/docs/get-started/images/VSCode_OCIServices.png" class="gs-images" alt="OCI Services in VS Code">
+    </p>
+    <p class="gs-root-texts">
+      Using the <a href="/gdk/vscode-tools/oci-devops-tools/" target="_blank">OCI DevOps Resources in VS Code</a>, 
+      you can easily deploy a Java application to Oracle Cloud Infrastructure, make source code changes, 
+      push them into the Oracle Cloud Infrastructure Git repository, and then trigger the build of a container image with
+      your native executable or a container image with JVM using the predefined Oracle Cloud Infrastructure Build Pipelines.
+    </p>
+    <p class="gs-root-texts">
+      Learn more about this is in the <a href="/gdk/get-started/setting-oci-devops-pipeline-in-vscode/" target="_blank">Setting Oracle Cloud Infrastructure DevOps Build and
+        Development Pipeline in VS Code guide</a>.
+    </p>
+    
+    <h3 style="color:#ffffff">6.2 AWS</h3>
+    <p class="gs-root-texts">
+      A complete guide on <a href="/gdk/get-started/deploy-to-aws-eks-in-vscode/" target="_blank">how to deploy an application to a Kubernetes cluster in AWS EKS</a> is available.
+    </p>
+    <p class="gs-root-texts">With your AWS account ready and access to EKS configured, simply invoke command:</p>
+
+    <div class="gs-border-tab">
+      <section class="gs-filter-content-section guides-back">
+        <div class="container">
+          <div class="gs__row">
+            <div class="column-view">
+              <div>
+                <p class="gs-filter-title"><span class="buildtool-title-color">Build Tool</span>Filter</p>
+              </div>
+              <div class="guide-filter" id="gradle-maven switcher step 8">
+                <div class="row">
+                  <p class="filter-item buildtool-filter" data-filter="gradle">Gradle</p>
+                  <p class="filter-item buildtool-filter" data-filter="maven">Maven</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="no-modules">
+        <section class="filter-content-section guides-back">
+          <div class="container-fluid container-fluid--custom-sm">
+            <div class="row">
+              <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="guide-filter">
+                  <div class="row">
+                    <p class="filter-item module-filter" data-filter="all">All</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="container-fluid container-fluid--custom-sm">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="row">
+              <div class="col-sm guides-box gs-section-indent aws oci gcp maven">
+                <pre><code class="language-bash hljs">./mvnw deploy -Dpackaging=docker-native -pl aws</code><button>Copy</button></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid container-fluid--custom-sm">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="row">
+              <div class="col-sm guides-box gs-section-indent aws oci gcp gradle">
+                <pre><code class="language-bash hljs">./gradlew aws:dockerPushNative</code><button>Copy</button></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="gs-root-texts">
+      This will build a native executable, package it as a container image and push the container image to the correct Amazon Web Services container registry.
+      When you setup your Kubernetes deployment for Amazon Web Services EKS, simply invoke the command:
+    </p>
+    <pre><code class="language-bash hljs">kubectl apply -f deployment.yml</code><button>Copy</button></pre>
+
+    <h3 style="color:#ffffff">6.3 GCP</h3>
+    <p class="gs-root-texts">
+      A complete guide on <a href="/gdk/vscode-guides/deploy-to-google-k8s-engine-in-vscode//" target="_blank">how to deploy an application to Google Kubernetes Engine</a> is available.
+    </p>
+    <p class="gs-root-texts">With your GCP account ready and access to GKE configured, simply invoke command:</p>
+
+    <div class="gs-border-tab">
+      <section class="gs-filter-content-section guides-back">
+        <div class="container">
+          <div class="gs__row">
+            <div class="column-view">
+              <div>
+                <p class="gs-filter-title"><span class="buildtool-title-color">Build Tool</span>Filter</p>
+              </div>
+              <div class="guide-filter" id="gradle-maven switcher step 8">
+                <div class="row">
+                  <p class="filter-item buildtool-filter" data-filter="gradle">Gradle</p>
+                  <p class="filter-item buildtool-filter" data-filter="maven">Maven</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="no-modules">
+        <section class="filter-content-section guides-back">
+          <div class="container-fluid container-fluid--custom-sm">
+            <div class="row">
+              <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="guide-filter">
+                  <div class="row">
+                    <p class="filter-item module-filter" data-filter="all">All</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="container-fluid container-fluid--custom-sm">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="row">
+              <div class="col-sm guides-box gs-section-indent aws oci gcp maven">
+                <pre><code class="language-bash hljs">./mvnw deploy -Dpackaging=docker-native -pl gcp</code><button>Copy</button></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid container-fluid--custom-sm">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="row">
+              <div class="col-sm guides-box gs-section-indent aws oci gcp gradle">
+                <pre><code class="language-bash hljs">./gradlew gcp:dockerPushNative</code><button>Copy</button></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="gs-root-texts">
+      This will build a native executable, package it as a container image and push the container image to the correct Google container registry.
+      When you setup your Kubernetes deployment for GKE, simply invoke the command:
+    </p>
+    <pre><code class="language-bash hljs">kubectl apply -f deployment.yml</code><button>Copy</button></pre>
+    
+    <h2 style="color:#ffffff">7. Developing the Application in VS Code</h2>
+    <p class="gs-root-texts">
+      Develop Java applications in VS Code with Graal Development Kit support.
+      It offers help in the
+      form of relevant code completion suggestions when editing GDK-specific configuration files.
+    </p>
+    <p>
+      <img src="/gdk/docs/get-started/images/Step9-1.png" class="gs-images" alt="VS Code Hints">
+    </p>
+    <p class="gs-root-texts">
+      Java language support speeds up development of Java code with hints, etc.
+    </p>
+    <p>
+      <img src="/gdk/docs/get-started/images/Step9-2.png" class="gs-images" alt="VS Code Quick Fix">
+    </p>
+    <p class="gs-root-texts">
+      When developing database applications, the GDK tooling provides advanced database related
+      code completion for <code>find… ()</code> methods:
+    </p>
+    <p>
+      <img src="/gdk/docs/get-started/images/Step9-3.png" class="gs-images" alt="VS Code Completion">
+    </p>
+    <p class="gs-root-texts">
+      It offers the SQL code completion in <code>@Query</code> annotations among others, and so on.
+    </p>
+    <p>
+      <img src="/gdk/docs/get-started/images/Step9-4.png" class="gs-images" alt="VS SQL Code Completion">
+    </p>
+
+    <div class="gs-guide__maintitle whatsnext__title">Next Steps</div>
+    <div class="wrapper">
+      <div class="nextsteps reasons">
+        <div class="">
+            <div class="nextsteps__row">
+              <div class="nextsteps__card">
+
+                <h4 class="card__title">Explore</h4>
+                <div class="nextsteps-description">
+                  <p>
+                    The GDK provides easy step-by-step guides, and companion sample applications, 
+                    for the developer to learn how to use a specific cloud service (such as Micronaut Data). 
+                    Browse the GDK site for list of modules and guides to learn more.</p>
+                </div>
+                <div class="nextsteps-btn">
+                  <div class="nextsteps-link">
+                    <img src="/gdk/resources/img/gdk_modules/link_icon.svg" class="link-icon" alt="box" />
+                    <a href="/gdk/modules/" class="link-title-module">Modules</a>
+                  </div>
+                  <div class="nextsteps-link">
+                    <img src="/gdk/resources/img/gdk_modules/link_icon.svg" class="link-icon" alt="box" />
+                    <a href="/gdk/guides/" class="link-title-module">Guides</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="nextsteps__card">
+
+                <h4 class="card__title">Create</h4>
+                <div class="nextsteps-description">
+                  <p>
+                    Build a multiservice application like <a href="https://github.com/graemerocher/ocidemo" target="_blank">MuShop for Micronaut</a>. For more information, view:
+                  </p>
+                </div>
+                <div class="nextsteps-btn">
+                  <div class="nextsteps-link">
+                    <img src="/gdk/resources/img/gdk_modules/link_icon.svg" class="link-icon" alt="box" />
+                    <a href="https://oracle-quickstart.github.io/oci-micronaut/introduction/" class="link-title-module">Introduction to Micronaut MuShop</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+      </main>
+
+      
+<footer class="footer footer__mobile">
+
+  <div class="container-fluid container-fluid--custom-sm">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row footer-content">
+          <div class="col-md-3 col-sm-4">
+            <h6 class="title-footer" onclick="fadeInAndOut(this)">Learn</h6>
+            <div class="grow">
+              <ul class="footer-list">
+                <li class="footer-list__item"><a href="/gdk/get-started/">Get Started</a></li>
+                <li class="footer-list__item"><a href="/gdk/guides/">Guides</a></li>
+                <li class="footer-list__item"><a href="/gdk/hands-on-labs/">Labs</a></li>
+                <li class="footer-list__github">
+                  <img class="footer__icon" src="/gdk/resources/img/footer/logo-github.svg" alt="Github icon">
+                  <a href="https://github.com/oracle/graal-dev-kit" target="blank">Github</a>
+                </li>
+                <li class="footer-list__github">
+                  <img class="footer__icon" src="/gdk/resources/img/footer/slack-icon.svg" alt="Github icon">
+                  <a href="https://bit.ly/odevrel_slack" target="blank">Join us at: #graal-cloud-native</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-4">
+            <h6 class="title-footer" onclick="fadeInAndOut(this)">About</h6>
+            <div class="grow">
+              <ul class="footer-list">
+                <li class="footer-list__item"><a href="/gdk/about/#gdk-support" target="blank">Commercial Support</a></li>
+                <li class="footer-list__item"><a href="https://www.graalvm.org/" target="blank">GraalVM Native Image</a></li>
+                <li class="footer-list__item"><a href="https://micronaut.io/" target="_blank">Micronaut</a></li>
+                <li class="footer-list__item"><a href="https://www.oracle.com/cloud/multicloud/what-is-multicloud/" target="_blank">Multicloud</a></li>
+                <li class="footer-list__item"><a href="https://www.oracle.com/cloud/" target="blank">Oracle Cloud Infrastructure</a></li>
+                <li class="footer-list__item"><a href="https://marketplace.visualstudio.com/items?itemName=oracle-labs-graalvm.graal-cloud-native-pack" target="blank">VS Code Tools</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-12 aligning_1024">
+            <div class="card--footer card--hovered box">
+              <div>
+                <div class="rubber-footer footer__oci-section">
+                  <p class="title-footer quickstart">Build, test, and deploy applications on Oracle Cloud Infrastructure for free</p>
+                  <a href="https://www.oracle.com/cloud/free/" target="_blank"
+                    class="btn btn-primary">Try Oracle Cloud Infrastructure Free Tier</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+          <div class="row">
+            <div class="col-sm-12">
+              <p class="copyright">
+                Copyright &copy; 2023-2024, Oracle and/or its affiliates.
+                All rights reserved.
+                Oracle and Java are registered trademarks of Oracle and/or its affiliates.<br/>
+                Micronaut<sup>&reg;</sup> is a registered trademark of Object Computing, Inc. 
+                Use is for referential purposes and does not imply any endorsement or affiliation with any third-party product.
+                Unauthorized use is strictly prohibited. Other names may be trademarks of their respective owners.
+              </p>
+              <div id="teconsent"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+<script>
+  function fadeInAndOut(thz) {
+    var elmt = thz.nextElementSibling;//Get the element that is below the button that
+    //was just clicked
+    if (elmt.clientHeight) {
+      elmt.style.height = 0;
+    } else {
+      var wrapper = elmt.querySelector('ul');
+      elmt.style.height = wrapper.clientHeight + "px";
+    }
+    /*
+        elmt.classList.toggle("acordianPanelHidden");//Toggle the class which changes
+        //attributes which triggers the transition CSS
+        */
+  }
+
+  // Check TRUSTe Consent for Functional or Implied Approval
+  // The if test verifies if the user has given the consent
+  if ( (oracle.truste.api.getGdprConsentDecision().consentDecision) &&
+      (oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(0) != -1 ||
+        oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(2) != -1) ) {
+
+      //The following is a sample of a Maxymiser Tag being written to the DOM
+      //If the user did not give consent, then the tag is not included and not invoked in the Browser
+      document.write('<script type="text/javascript" src="//service.maxymiser.net/cdn/oracle/js/mmcore.js"><\/script>');
+  }
+
+  // Check TRUSTe Consent for Advertising or Implied Approval
+  // The if test verifies if the user has given the consent
+  if ( (oracle.truste.api.getGdprConsentDecision().consentDecision) &&
+      (oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(0) != -1 ||
+        oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(3) != -1) ) {
+
+      //The following is a sample of a BlueKai Core Tag being written to the DOM
+      //If the user did not give consent, then the tag is not included and not invoked in the Browser
+      document.write('<script type="text/javascript">' +
+      'window.bk_async = function() { ' +
+      'BKTAG.doTag(62581, 1); }; ' +
+      '(function() { ' +
+      'var scripts = document.getElementsByTagName(\'script\')[0]; ' +
+      'var s = document.createElement(\'script\'); ' +
+      's.async = true; ' +
+      's.src = "https://tags.bkrtx.com/js/bk-coretag.js"; ' +
+      'scripts.parentNode.insertBefore(s, scripts); ' +
+      '}()); ' +
+      '<\/script>');
+  }
+</script>
+
+    </div>
+    <div class="overlay"></div>
+
+    <!-- Start SiteCatalyst code -->
+    <script language="JavaScript" src="https://www.oracle.com/us/assets/metrics/ora_otn.js"></script>
+    <!-- End SiteCatalyst code -->
+
+    <script src='/gdk/resources/lib/slick-slider/slick.min.js'></script>
+    <script src='/gdk/resources/js/main.js'></script>
+    <script src='/gdk/resources/js/ui.js'></script>
+    <script src='/gdk/resources/js/filters.js'></script>
+    <script src='/gdk/resources/js/sidebar.js'></script>
+    <script src='/gdk/resources/js/labs.js'></script>
+    <script src='/gdk/resources/lib/highlight/highlight.min.js'></script> 
+    <script>hljs.highlightAll();</script>
+  </body>
+</html>

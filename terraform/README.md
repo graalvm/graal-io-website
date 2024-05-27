@@ -10,10 +10,10 @@ Instead, use command-line `zip`, then move the ZIP files to the _archives_ direc
 
 ```bash
 zip -r gcdk-mysql.zip gcdk-mysql
-mv gcdk-mysql.zip ../docs/gcn-modules/database/archives/
+mv gcdk-mysql.zip ../docs/gdk-modules/database/archives/
 ```
 
 ```bash
 zip -r gcdk-function.zip gcdk-function
-mv gcdk-function.zip ../docs/gcn-modules/serverless/archives
+mv gcdk-function.zip ../docs/gdk-modules/serverless/archives
 ```

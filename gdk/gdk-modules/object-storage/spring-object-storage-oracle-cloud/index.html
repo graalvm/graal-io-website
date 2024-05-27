@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:image" content="/gdk/resources/img/graalvm.png" />
+  <meta name="twitter:widgets:border-color" content="#55acee">
+
+  <title>
+    
+      Create and Connect a Spring Application to Oracle Cloud Infrastructure Object Storage
+    
+  </title>
+  <meta name="description" content="The Graal Development Kit for Micronaut (GDK) is a build of a curated set of Micronaut framework modules and their required libraries for building portable c..."/>
+  <meta name="last_modified" content="2024-05-15 16:28:09 +0000"/>
+  <meta name="last_built" content="2024-05-27 08:12:37 +0000"/>
+  <link rel="stylesheet" href="/gdk/assets/main.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="/gdk/resources/img/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/gdk/resources/img/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/gdk/resources/img/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/gdk/resources/img/favicon/site.webmanifest">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="google-site-verification" content="-vRqwa9WYn6AaQGnl88xvrLw6ac4xoKVkZkhanmlRhU" />
+  <link rel="canonical" href="https://www.graal.cloud/gdk/gdk-modules/object-storage/spring-object-storage-oracle-cloud/">
+
+  <!-- jQuery UI Tabs -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/gdk/resources/lib/jquery/jquery-ui.css">
+</head>
+
+      <script src="/gdk/resources/lib/jquery/jquery-3.6.1.min.js"></script>
+    <script src="/gdk/resources/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src='/gdk/resources/lib/sticky-sidebar/resizeSensor.js'></script>
+    <script src='/gdk/resources/lib/sticky-sidebar/sticky-sidebar.min.js'></script>
+    <script src="/gdk/resources/lib/highlight/highlight.min.js"></script>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- Add TRUSTe Consent Script and Analytics -->
+    <script async="async" type="text/javascript" src='//consent.trustarc.com/notice?domain=oracle.com&c=teconsent&js=bb&noticeType=bb&text=true&cdn=1&pcookie&gtm=1' crossorigin></script>
+    <script src="https://www.oracle.com/assets/truste-oraclelib.js"></script>
+    <!-- jQuery UI Tabs -->
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+
+  <body class="preload">
+    <!-- Start SiteCatalyst code -->
+    <script language="JavaScript" src="https://www.oracle.com/us/assets/metrics/ora_otn.js"></script>
+    <!-- End SiteCatalyst code -->
+
+    <div  class="wrapper wrapper--nofooter" >
+
+      <header  class="header header--content" 
+  role="banner">
+
+  
+
+  
+
+    <nav class="menu">
+      <div class="menu__row">
+        <div>
+          <a href="/gdk/">
+            <img class="logo-mobile" src="/gdk/resources/img/gdk-logo-new.svg" alt="Graal Development Kit for Micronaut logo">
+          </a>
+        </div>
+        <div class="menu__container">
+          <ul class="menu__list">
+            <li class="menu__item">
+              <a href="/gdk/about/" class="menu__link">About</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gdk/get-started/" class="menu__link">Get Started</a>
+            </li>
+            <li class="menu__item">
+              <div class="stack-container">
+                <a href="#" class="menu__link stack__header">Docs</a>
+                <div class="stack-menu-learn">
+                  <div class="stack-row">
+                    <div class="stack-column">
+                      <div class="stack__item">
+                        <img src='/gdk/resources/img/header-navigation/modules.svg'>
+                        <a href="/gdk/modules/" class="item-line">Modules</a>
+                      </div>
+                      <div class="stack__item">
+                        <img src='/gdk/resources/img/header-navigation/guides.svg'>
+                        <a href="/gdk/guides/" class="item-line">Guides</a>
+                      </div>
+                      <div class="stack__item">
+                        <img src='/gdk/resources/img/header-navigation/labs.svg'>
+                        <a href="/gdk/hands-on-labs/" class="item-line">Hands-On Labs</a>
+                      </div>
+                      <div class="stack__item">
+                        <img src='/gdk/resources/img/header-navigation/tools.svg'>
+                        <a href="/gdk/vscode-tools/" class="item-line">Tools</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="menu__item">
+              <div class="stack-container">
+                <a href="#" class="menu__link stack__header">Graal Projects</a>
+                <div class="stack-menu">
+                  <div class="stack-row">
+                    <div class="stack-column">
+                      <div class="stack__item">
+                        <img src='/gdk/resources/img/header-navigation/graalstack.svg'>
+                        <a href="https://graal.cloud/" class="item-line">Graal</a>
+                      </div>
+                      <div class="stack__item">
+                        <img src='/gdk/resources/img/header-navigation/graalvm.svg'>
+                        <a href="https://graalvm.org/" class="item-line">GraalVM</a>
+                      </div>
+                      <div class="stack__item">
+                        <img src='/gdk/resources/img/header-navigation/graalos.svg'>
+                        <a href="https://graal.cloud/graalos/" class="item-line">GraalOS</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="menu__launch__mobile">
+              <a href="/gdk/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
+            </li>
+          </ul>
+        </div>
+        <div class="menu__launch">
+          <a href="/gdk/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
+        </div>
+      </div>
+
+      <div role="button" class="menu-btn menu-btn--menu js-show-menu" tabindex="-1" title="sweet hamburger">
+        <div class="hamburger">
+          <div class="inner"></div>
+        </div>
+      </div>
+      <button aria-label="hamburger mobile menu" class="btn btn-mobile-menu js-show-menu">
+        <div class="inner"></div>
+      </button>
+    </nav>
+
+  
+</header>
+
+
+      <main  class="content"   aria-label="Content">
+        <div class="wrapper wrapper-content">
+  <article>
+  <div class="row d-flex flex-wrap">
+    <div class="col-sm-3 docsimpro col-bg">
+      <div class="sidebar-wrap">
+        <div class="sidebar">
+          <div class="menuabout">
+            <img id="sidebarClose" src="/gdk/resources/img/arrow_sidebar(close).svg" alt="Expand or collapse sidebar"
+              class="btn-color no-display">
+            <img id="sidebarOpen" src="/gdk/resources/img/arrow_sidebar.svg" alt="Expand or collapse sidebar">
+          </div>
+          
+<div class="toc-floating">
+
+
+<div class="toc-bullets">
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+
+    
+      
+        
+          <li class="toc-bullets-main">
+        
+          
+          <a href="/gdk/docs/gdk-modules/object-storage/" class="_icon-book">
+            Object Storage
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+          
+          <li class="toc-bullets-sub toc-bullets-highlight">
+          
+            
+            <a href="/gdk/gdk-modules/object-storage/spring-object-storage-oracle-cloud/">
+              Create and Connect a Spring Application to Oracle Cloud Infrastructure Object Storage
+            </a>
+          </li>
+
+          
+            <div>
+  <script>
+    var scriptElement = document.currentScript;
+    var div = $(scriptElement.parentElement);
+    $(window).on("load", function () {
+      $("#content-wrapper h2").each(function () {
+        var li = $("<li></li>", { class: "toc-bullets-sub toc-bullets-sub-3" });
+        var a = $("<a></a>", { href: "#" + $(this).attr("id") });
+        a.text($(this).text().replace('#', ''));
+        li.append(a);
+        li.click(function (e) {
+          e.preventDefault();
+          var target = $(a.attr('href'));
+          var scrollTo = target.offset().top - 80; // 80 - indent
+          $('html, body').animate({ scrollTop: scrollTo }, 1000);
+        });
+        div.append(li);
+      });
+    });
+  </script>
+</div>
+          
+        
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<!-- <li class="search additional-search">
+  <form class="form-inline sidebar" action="/docs/search" autocomplete="on" method="get">
+    <input class="input-search sidebar" type="text" id="search-box" name="query" placeholder="Search">
+    <button type="submit sidebar" class="search-button"></button>
+  </form>
+</li> -->
+
+</div>
+  <!-- Search form -->
+  <!-- <form class="search-container" action="/docs/search" autocomplete="on" method="get">
+   <label for="search-box">Search</label>
+    <input type="text" id="search-box" name="query">
+    <button type="submit" class="searchbttn"></button>
+  </form> -->
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-9 docsmod">
+      <div id="content-wrapper" class="docs-content docs-content--with-sidebar">
+        <!--
+          Include file to warn of Windows/Gradle restriction
+        -->
+        <h1 id="create-and-connect-a-spring-application-to-oracle-cloud-infrastructure-object-storage">
+        
+        
+          Create and Connect a Spring Application to Oracle Cloud Infrastructure Object Storage
+        
+        
+      </h1>
+
+<p>This guide describes how to create a <a href="https://github.com/spring-projects/spring-boot">Spring Boot 3</a> application (using the Graal Development Kit for Micronaut (GDK)) that demonstrates how to store, retrieve, and delete user profile pictures in Oracle Cloud Infrastructure Object Storage using the Micronaut<sup>®</sup> Object Storage API.</p>
+
+<p>The Micronaut Object Storage API provides a uniform API to create, read and delete objects in the major cloud providers​:</p>
+<ul>
+  <li>Amazon S3</li>
+  <li>Google Cloud Storage</li>
+  <li>Oracle Cloud Infrastructure Object Storage</li>
+</ul>
+
+<p>Using this API enables the creation of truly multicloud, portable applications.</p>
+    
+      <h3 id="prerequisites">
+        
+        
+          Prerequisites <a href="#prerequisites" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<ul>
+  <li>JDK 17 or higher. See <a href="/gdk/get-started/setting-up-desktop/">Setting up Your Desktop</a>.</li>
+  <li>An Oracle Cloud Infrastructure account. See <a href="/gdk/get-started/setting-up-cloud-accounts/">Setting up Your Cloud Accounts</a>.</li>
+  <li>The Oracle Cloud Infrastructure <a href="https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/cliinstall.htm">CLI</a> installed with <a href="https://docs.oracle.com/iaas/Content/API/SDKDocs/cliinstall.htm#configfile">local access configured</a>.</li>
+  <li>An Oracle Cloud Infrastructure <a href="https://docs.oracle.com/en/cloud/paas/integration-cloud/oracle-integration-oci/creating-oci-compartment.html">compartment</a> with appropriate permission granted to your Oracle Cloud Infrastructure user account to manage the Object Storage family in the compartment.</li>
+</ul>
+
+<p>Follow the steps below to create the application from scratch. However, you can also download the completed example:</p>
+
+<div id="tabs-doc1">
+  <ul>
+    <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
+    <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
+  </ul>
+  <div id="gradle">
+    <p><a href="https://github.com/oracle/gcn/releases/download/4.3.7.2/4.3.7.2_object-storage_spring-boot-oci-storage-demo-java-gradle.zip">Gradle Oracle Cloud Infrastructure Object Storage Spring Example <img class="download-img-guides" src="/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" /></a>
+    </p>
+  </div>
+  <div id="maven">
+    <p><a href="https://github.com/oracle/gcn/releases/download/4.3.7.2/4.3.7.2_object-storage_spring-boot-oci-storage-demo-java-maven.zip">Maven Oracle Cloud Infrastructure Object Storage Spring Example <img class="download-img-guides" src="/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" /></a>
+    </p>
+  </div>
+</div>
+    
+      <h4 id="a-note-regarding-your-development-environment">
+        
+        
+          A note regarding your development environment
+        
+        
+      </h4>
+
+<p>Consider using Visual Studio Code that provides native support for developing applications with the <a href="/gdk/vscode-tools/using-gdk-vscode-tools/">Graal Development Kit extension</a>.</p>
+
+<blockquote>
+  <p>Note: If you use IntelliJ IDEA, <a href="/gdk/resources/img/annotationprocessorsintellij.png">enable annotation processing</a>.</p>
+</blockquote>
+
+<blockquote>
+  <p>Windows platform: The GDK guides are compatible with Gradle only. Maven support is coming soon.</p>
+</blockquote>
+    
+      <h2 id="1-create-the-spring-boot-application">
+        
+        
+          1. Create the Spring Boot Application <a href="#1-create-the-spring-boot-application" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>Generate a Spring Boot application using Spring Initializr with Spring Web.</p>
+
+<div id="tabs-doc2">
+    <ul>
+        <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+      <p><a href="https://start.spring.io/#!type=gradle-project&amp;language=java&amp;platformVersion=3.2.1&amp;packaging=jar&amp;jvmVersion=17&amp;groupId=com.example&amp;artifactId=gdkguide&amp;name=gdkguide&amp;description=Example%20application%20for%20Spring%20Boot%20and%20GDK&amp;packageName=com.example&amp;dependencies=web">Create Spring Boot Application <img class="create-app-guides" src="/gdk/resources/img/gdk_modules/create-app-icon-1.png" alt="Create Spring Boot Application" /></a></p>
+    </div>
+    <div id="maven">
+      <p><a href="https://start.spring.io/#!type=maven-project&amp;language=java&amp;platformVersion=3.2.1&amp;packaging=jar&amp;jvmVersion=17&amp;groupId=com.example&amp;artifactId=gdkguide&amp;name=gdkguide&amp;description=Example%20application%20for%20Spring%20Boot%20and%20GDK&amp;packageName=com.example&amp;dependencies=web">Create Spring Boot Application <img class="create-app-guides" src="/gdk/resources/img/gdk_modules/create-app-icon-1.png" alt="Create Spring Boot Application" /></a></p>
+    </div>
+</div>
+    
+      <h3 id="11-add-dependencies">
+        
+        
+          1.1. Add Dependencies <a href="#11-add-dependencies" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>Add the following dependencies to your build file as described in <a href="https://micronaut-projects.github.io/micronaut-spring/latest/guide/#springBootStarter">Using the Micronaut Spring Boot Starter</a> to use Micronaut Features within a Spring Boot application.</p>
+
+<div id="tabs-doc3">
+    <ul>
+        <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <p><em>build.gradle</em></p>
+<p>Add the Oracle Public Repository to the <code>repositories</code> block:</p>
+        <pre><code>maven { url "https://maven.oracle.com/public" }</code></pre>
+<p>Add the following dependencies:</p>
+    <pre><code class="language-java">implementation enforcedPlatform("cloud.graal.gcn:gcn-bom:4.2.1.2")
+implementation platform("io.micronaut.platform:micronaut-platform:4.2.1-oracle-00001")
+annotationProcessor platform('io.micronaut.platform:micronaut-platform:4.2.1-oracle-00001')
+annotationProcessor("io.micronaut:micronaut-inject-java")
+implementation("io.micronaut.spring:micronaut-spring-boot-starter")</code></pre>
+    </div>
+    <div id="maven">
+      <p><em>pom.xml</em></p>
+      <p>Add the Micronaut version to the <code>properties</code> element:</p>
+      <pre><code class="language-xml">&lt;micronaut.version&gt;4.2.1-oracle-00001&lt;/micronaut.version&gt;
+&lt;micronaut.platform.version&gt;4.2.1-oracle-00001&lt;/micronaut.platform.version&gt;</code></pre>
+<p>Add the following <code>repositories</code> element:</p>
+<pre><code class="language-xml">&lt;repositories&gt;
+   &lt;repository&gt;
+      &lt;id&gt;gcn&lt;/id&gt;
+      &lt;url&gt;https://maven.oracle.com/public&lt;/url&gt;
+   &lt;/repository&gt;
+   &lt;repository&gt;
+      &lt;id&gt;central&lt;/id&gt;
+      &lt;url&gt;https://repo.maven.apache.org/maven2&lt;/url&gt;
+   &lt;/repository&gt;
+&lt;/repositories&gt;
+</code></pre>
+      <p>Add the following <code>dependencyManagement</code> element:</p>
+      <pre><code class="language-xml">&lt;dependencyManagement&gt;
+    &lt;dependencies&gt;
+      &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-framework-bom&lt;/artifactId&gt;
+        &lt;version&gt;${spring-framework.version}&lt;/version&gt;
+        &lt;type&gt;pom&lt;/type&gt;
+        &lt;scope&gt;import&lt;/scope&gt;
+      &lt;/dependency&gt;
+      &lt;dependency&gt;
+        &lt;groupId&gt;cloud.graal.gcn&lt;/groupId&gt;
+        &lt;artifactId&gt;gcn-bom&lt;/artifactId&gt;
+        &lt;version&gt;4.2.1.2&lt;/version&gt;
+        &lt;type&gt;pom&lt;/type&gt;
+        &lt;scope&gt;import&lt;/scope&gt;
+      &lt;/dependency&gt;
+      &lt;dependency&gt;
+        &lt;groupId&gt;io.micronaut.platform&lt;/groupId&gt;
+        &lt;artifactId&gt;micronaut-platform&lt;/artifactId&gt;
+        &lt;version&gt;${micronaut.platform.version}&lt;/version&gt;
+        &lt;type&gt;pom&lt;/type&gt;
+        &lt;scope&gt;import&lt;/scope&gt;
+      &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+&lt;/dependencyManagement&gt;</code></pre>
+    <p>Add the following plugin to the <code>build/plugins</code> element:</p>
+    <pre><code class="language-xml">&lt;plugin&gt;
+  &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+  &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
+  &lt;configuration&gt;
+    &lt;annotationProcessorPaths combine.children=&quot;append&quot;&gt;
+      &lt;path&gt;
+        &lt;groupId&gt;io.micronaut&lt;/groupId&gt;
+        &lt;artifactId&gt;micronaut-inject-java&lt;/artifactId&gt;
+        &lt;version&gt;${micronaut.version}&lt;/version&gt;
+      &lt;/path&gt;
+    &lt;/annotationProcessorPaths&gt;
+    &lt;compilerArgs&gt;
+      &lt;arg&gt;-Amicronaut.processing.group=com.example&lt;/arg&gt;
+      &lt;arg&gt;-Amicronaut.processing.module=gdkguide&lt;/arg&gt;
+    &lt;/compilerArgs&gt;
+  &lt;/configuration&gt;
+&lt;/plugin&gt;</code></pre>
+    <p>Add these dependencies to your <code>dependencies</code> element:</p>
+    <pre><code class="language-xml">&lt;dependency&gt;
+  &lt;groupId&gt;io.micronaut.spring&lt;/groupId&gt;
+  &lt;artifactId&gt;micronaut-spring-boot-starter&lt;/artifactId&gt;
+&lt;/dependency&gt;</code></pre>
+  </div>
+</div>
+
+<p>Additionally, add the following dependency to use Micronaut Oracle Cloud Infrastructure Object Storage:</p>
+
+<div id="tabs-doc4">
+    <ul>
+        <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <p><em>build.gradle</em></p>
+    <pre><code class="language-java">implementation("io.micronaut.objectstorage:micronaut-object-storage-oracle-cloud")
+implementation("io.micronaut.oraclecloud:micronaut-oraclecloud-httpclient-netty")</code></pre>
+    </div>
+    <div id="maven">
+        <p><em>pom.xml</em></p>
+        <pre><code class="language-xml">&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.objectstorage&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-object-storage-oracle-cloud&lt;/artifactId&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.oraclecloud&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-oraclecloud-httpclient-netty&lt;/artifactId&gt;
+&lt;/dependency&gt;</code></pre>
+    </div>
+</div>
+    
+      <h3 id="12-enable-micronaut">
+        
+        
+          1.2. Enable Micronaut <a href="#12-enable-micronaut" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>Add the <code>@EnableMicronaut</code> annotation for Spring Boot to start the Micronaut context. Edit the file named <em>src/main/java/com/example/Application.java</em> as follows:</p>
+
+<pre><code class="language-java">package com.example;
+
+import io.micronaut.spring.boot.starter.EnableMicronaut;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+@EnableMicronaut
+public class Application {
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
+}
+</code></pre>
+    
+      <h3 id="13-create-a-service">
+        
+        
+          1.3. Create a Service <a href="#13-create-a-service" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>Define a service that interacts with Object Storage in a file named <em>src/main/java/com/example/PictureService.java</em>, as follows:</p>
+
+<pre><code class="language-java">package com.example;
+
+import io.micronaut.objectstorage.ObjectStorageEntry;
+import io.micronaut.objectstorage.ObjectStorageException;
+import io.micronaut.objectstorage.ObjectStorageOperations;
+import io.micronaut.objectstorage.request.UploadRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Optional;
+
+@Service
+public class PictureService {
+
+    private static final Logger LOG = LoggerFactory.getLogger(PictureService.class);
+    private ObjectStorageOperations&lt;?, ?, ?&gt; pictureBucket;
+
+    public PictureService(ObjectStorageOperations&lt;?,?,?&gt; pictureBucket) { // &lt;1&gt;
+        this.pictureBucket = pictureBucket;
+    }
+
+    public boolean upload(String name, InputStream inputStream) {
+        try {
+            pictureBucket.upload(UploadRequest.fromBytes(inputStream.readAllBytes(), name)); // &lt;2&gt; &lt;3&gt;
+            return true;
+        } catch (IOException | ObjectStorageException ex) {
+            LOG.error("Failed to upload picture: " + name, ex);
+            return false;
+        }
+    }
+
+    public Optional&lt;InputStream&gt; download(String name) {
+        try {
+            return pictureBucket.retrieve(name).map(ObjectStorageEntry::getInputStream); // &lt;4&gt;
+        } catch (ObjectStorageException ex) {
+            LOG.error("Failed to download picture: " + name, ex);
+            return Optional.empty();
+        }
+    }
+
+    public void delete(String name) {
+        pictureBucket.delete(name); // &lt;5&gt;
+    }
+}
+</code></pre>
+
+<p><strong>1</strong> Parent interface that enables you to use the API in a generic way for all cloud providers.</p>
+
+<p><strong>2</strong> You can use any of the <a href="https://micronaut-projects.github.io/micronaut-object-storage/latest/api/io/micronaut/objectstorage/request/UploadRequest.html"><code>UploadRequest</code></a> static methods to build an upload request.</p>
+
+<p><strong>3</strong> The upload operation returns an <a href="https://micronaut-projects.github.io/micronaut-object-storage/latest/api/io/micronaut/objectstorage/response/UploadResponse.html"><code>UploadResponse</code></a>, which wraps the cloud-specific SDK response object.</p>
+
+<p><strong>4</strong> The retrieve operation returns an <a href="https://micronaut-projects.github.io/micronaut-object-storage/latest/api/io/micronaut/objectstorage/ObjectStorageEntry.html"><code>ObjectStorageEntry</code></a>, from which you can get an <code>InputStream</code>. There is also a <code>getNativeEntry()</code> method that gives you access to the cloud vendor-specific response object.</p>
+
+<p><strong>5</strong> The delete operation returns the cloud vendor-specific delete response object in case you need it.</p>
+    
+      <h3 id="14-create-a-controller">
+        
+        
+          1.4. Create a Controller <a href="#14-create-a-controller" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>Create a Controller in a file named <em>src/main/java/com/example/PictureController.java</em>:</p>
+
+<pre><code class="language-java">package com.example;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.List;
+import java.util.Optional;
+
+@Controller
+public class PictureController {
+
+    private final static List&lt;String&gt; ALLOWED_UPLOAD_EXTENSIONS = List.of("png", "jpg", "jpeg");
+    private static final String PICTURE = "picture.png"; // &lt;1&gt;
+    private static final String MISSING_PICTURE = "default.png"; // &lt;2&gt;
+
+    private PictureService pictureService;
+
+    public PictureController(PictureService pictureService) {
+        this.pictureService = pictureService;
+    }
+
+    @GetMapping
+    public String index() {
+        return "index.html";
+    }
+
+    @GetMapping("/download")
+    @ResponseBody
+    public byte[] download() throws IOException {
+        try(InputStream is = pictureService.download(PICTURE).orElse(getResourceAsStream(MISSING_PICTURE))) {
+            return is.readAllBytes();
+        }
+    }
+
+    @PostMapping ("/upload")
+    public ResponseEntity&lt;String&gt; upload(@RequestParam("file") MultipartFile file) throws IOException {
+
+        if(file != null) {
+            Optional&lt;String&gt; extension = Optional.ofNullable(file.getOriginalFilename())
+                    .filter(f -&gt; f.contains("."))
+                    .map(f -&gt; f.substring(file.getOriginalFilename().lastIndexOf(".") + 1));
+
+            if(extension.isPresent() &amp;&amp; ALLOWED_UPLOAD_EXTENSIONS.contains(extension.get())) {
+                if(pictureService.upload(PICTURE, file.getInputStream())) {
+                    return new ResponseEntity&lt;&gt;(file.getOriginalFilename() + " was successfully uploaded", HttpStatus.OK);
+                }
+            }
+        }
+
+        return new ResponseEntity&lt;&gt;("Could not upload picture", HttpStatus.BAD_REQUEST);
+    }
+
+    @DeleteMapping("/delete")
+    @ResponseBody
+    public void delete() {
+        pictureService.delete(PICTURE);
+    }
+
+    private InputStream getResourceAsStream(String resourceName) {
+        return getClass().getClassLoader().getResourceAsStream(resourceName);
+    }
+}
+</code></pre>
+<p><strong>1</strong> Name of the ‘object’ being stored, used for all operations (upload, download and delete).</p>
+
+<p><strong>2</strong> Name of the default picture in <em>src/main/resources</em>. (Not essential for the application to run.)</p>
+    
+      <h3 id="15-create-an-html-page">
+        
+        
+          1.5. Create an HTML Page <a href="#15-create-an-html-page" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>Create a simple HTML page to display the image in a browser. Create a new file named <em>src/main/resources/static/index.html</em> with the following contents:</p>
+
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Object Storage Example&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Spring Boot Example using Object Storage&lt;/h1&gt;
+    &lt;div&gt;
+      &lt;img src="/download"&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+    
+      <h3 id="16-write-tests-to-verify-application-logic">
+        
+        
+          1.6. Write Tests to Verify Application Logic <a href="#16-write-tests-to-verify-application-logic" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>Create a test class for the controller in <em>src/test/java/com/example/PictureControllerTest.java</em>, as follows:</p>
+
+<pre><code class="language-java">package com.example;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.mock.web.MockMultipartFile;
+import org.springframework.test.web.servlet.MockMvc;
+
+import java.io.InputStream;
+import java.util.Optional;
+
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.BDDMockito.given;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+@WebMvcTest(PictureController.class)
+class PictureControllerTest {
+
+    @Autowired
+    private MockMvc mockMvc;
+
+    @MockBean
+    private PictureService service;
+
+    @Test
+    void testUpload() throws Exception {
+
+        byte[] bytes = getResource().readAllBytes();
+
+        MockMultipartFile multipartFile = new MockMultipartFile("file", "test.png", null, bytes);
+
+        given(service.upload(eq("picture.png"), any(InputStream.class))).willReturn(true);
+
+        mockMvc.perform(multipart("/upload")
+                .file(multipartFile)).andExpect(status().isOk());
+    }
+
+    @Test
+    void testDownload() throws Exception {
+
+        Optional&lt;InputStream&gt; resource = Optional.of(getResource());
+        given(service.download("picture.png")).willReturn(resource);
+
+        mockMvc.perform(get("/download"))
+                .andExpect(status().isOk())
+                .andExpect(header().longValue("Content-Length", getResource().readAllBytes().length));
+    }
+
+    private InputStream getResource() {
+        return getClass().getClassLoader().getResourceAsStream("my_picture.png"); // &lt;1&gt;
+    }
+}
+
+</code></pre>
+<p><strong>1</strong> If you are not using the downloaded example, add an image file named <em>my_picture.png</em> to the <em>src/main/resources/</em> directory.</p>
+    
+      <h2 id="2-set-up-oracle-cloud-infrastructure-resources">
+        
+        
+          2. Set up Oracle Cloud Infrastructure Resources <a href="#2-set-up-oracle-cloud-infrastructure-resources" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>You need to find the OCID of the compartment and then create a bucket.</p>
+    
+      <h3 id="21-compartment-ocid">
+        
+        
+          2.1. Compartment OCID <a href="#21-compartment-ocid" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>Find the <a href="https://docs.oracle.com/iaas/tools/oci-cli/latest/oci_cli_docs/cmdref/iam/compartment/list.html">OCID of the compartment</a> where you will be deploying. Run this command to list all the compartments in your root compartment:</p>
+
+<pre><code class="language-bash">oci iam compartment list
+</code></pre>
+
+<p>Find the compartment by the name or description in the JSON output. It should look like this:</p>
+<pre><code class="language-json">{
+    "compartment-id": "ocid1.tenancy.oc1..aaaaaaaaud4g4e5ovjaw...",
+    "defined-tags": {},
+    "description": "GDK Guides",
+    "freeform-tags": {},
+    "id": "ocid1.compartment.oc1..aaaaaaaarkh3s2wcxbbm...",
+    "inactive-status": null,
+    "is-accessible": null,
+    "lifecycle-state": "ACTIVE",
+    "name": "gdk-guides",
+    "time-created": "2021-05-02T23:54:28.392000+00:00"
+}
+</code></pre>
+
+<p>In this case, there is a compartment named “gdk-guides”.</p>
+
+<p>Use the OCID from the <code>id</code> property; the <code>compartment-id</code> property is the parent compartment.</p>
+
+<p>For convenience, save the compartment OCID as an environment variable. For Linux or macOS, run the following command:</p>
+<pre><code class="language-bash">export C=ocid1.compartment.oc1..aaaaaaaarkh3s2wcxbbm...
+</code></pre>
+
+<p>or for Windows, if using <code>cmd</code> run this command</p>
+<pre><code class="language-shell">set C=ocid1.compartment.oc1..aaaaaaaarkh3s2wcxbbm...
+</code></pre>
+
+<p>and if using PowerShell run</p>
+<pre><code class="language-shell">$C = "ocid1.compartment.oc1..aaaaaaaarkh3s2wcxbbm..."
+</code></pre>
+
+<p>The examples below use Linux/macOS syntax for environment variables, for example <code>-c $C</code>. If you use Windows <code>cmd</code>, change those to <code>-c %C%</code> (but no change needed if you use PowerShell).</p>
+    
+      <h3 id="22-create-a-bucket">
+        
+        
+          2.2. Create a Bucket <a href="#22-create-a-bucket" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>Use the Oracle Cloud Infrastructure CLI to create the bucket:</p>
+<pre><code class="language-bash">export OBJECT_STORAGE_BUCKET=gdk-guide-object-storage
+oci os bucket create --compartment-id $C --name $OBJECT_STORAGE_BUCKET
+</code></pre>
+
+<p>You can also use the CLI to get the Object Storage namespace:</p>
+<pre><code class="language-bash">export OBJECT_STORAGE_NAMESPACE=$(oci os ns get --query "data" --raw-output)
+</code></pre>
+
+<p>Then, configure the bucket name and namespace in <em>src/main/resources/application.properties</em>:</p>
+
+<pre><code class="language-xml">micronaut.object-storage.oracle-cloud.default.bucket=${OBJECT_STORAGE_BUCKET}
+micronaut.object-storage.oracle-cloud.default.namespace=${OBJECT_STORAGE_NAMESPACE}
+</code></pre>
+    
+      <h3 id="23-configure-the-upload-parameters">
+        
+        
+          2.3. Configure the Upload Parameters <a href="#23-configure-the-upload-parameters" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>If you want to upload a file larger than 1MB, you need to configure this in the <em>src/main/resources/application.properties</em> file as follows:</p>
+
+<pre><code class="language-xml"># 20 * 1024 * 1024 = 20MB
+micronaut.server.multipart.max-file-size: 20971520
+</code></pre>
+    
+      <h2 id="3-run-the-tests-optional">
+        
+        
+          3. Run the Tests (Optional) <a href="#3-run-the-tests-optional" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>If you are not using the downloaded example, add an image file named <em>my_picture.png</em> to the <em>src/main/resources/</em> directory.</p>
+
+<p>Use the following command to run the test.</p>
+
+<div id="tabs-doc5">
+    <ul>
+        <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <pre><code class="language-bash">./gradlew test</code></pre>
+         <p>Then open the file <em>build/reports/tests/test/index.html</em> in a browser to view the results.</p>
+    </div>
+    <div id="maven">
+        <pre><code class="language-bash">./mvnw test</code></pre>
+    </div>
+</div>
+    
+      <h2 id="4-run-the-application">
+        
+        
+          4. Run the Application <a href="#4-run-the-application" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>To run the application, use the following command, which starts the application on port 8080.</p>
+
+<div id="tabs-doc6">
+    <ul>
+        <li class="tabs-gradle"><a name="gradle" href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <pre><code class="language-bash">./gradlew bootRun</code></pre>
+    </div>
+    <div id="maven">
+        <pre><code class="language-bash">./mvnw spring-boot:run</code></pre>
+    </div>
+</div>
+    
+      <h2 id="5-test-the-application">
+        
+        
+          5. Test the Application <a href="#5-test-the-application" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>Test the application by uploading, downloading, and deleting a user profile picture.</p>
+    
+      <h3 id="51-upload-a-picture">
+        
+        
+          5.1. Upload a Picture <a href="#51-upload-a-picture" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>If using the complete solution, navigate into the <em>src/main/resources/</em> directory before running the following command. Otherwise, update the <em>my_picture.png</em> file with an image you want to upload.</p>
+
+<pre><code class="language-bash">curl -i -F "file=@my_picture.png" http://localhost:8080/upload
+</code></pre>
+
+<p>Use the <code>oci</code> CLI to verify that the file has been uploaded to an Oracle Cloud Infrastructure bucket, as follows</p>
+
+<pre><code class="language-bash">oci os object list --bucket-name gdk-guide-object-storage
+</code></pre>
+    
+      <h3 id="52-view-the-website">
+        
+        
+          5.2. View the Website <a href="#52-view-the-website" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>Open a browser to <code>http://localhost:8080</code> and you should see:</p>
+
+<p><img src="/gdk/docs/gdk-modules/object-storage/object-storage-images/spring-app-website.png" alt="spring-object-storage-website" /></p>
+    
+      <h3 id="53-download-the-picture">
+        
+        
+          5.3. Download the Picture <a href="#53-download-the-picture" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>Use the following command to download a picture:</p>
+
+<pre><code class="language-bash">curl http://localhost:8080/download --raw -o image.png
+</code></pre>
+    
+      <h3 id="54-delete-the-picture">
+        
+        
+          5.4. Delete the Picture <a href="#54-delete-the-picture" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>Use the following command to delete a picture:</p>
+
+<pre><code class="language-bash">curl -X "DELETE" http://localhost:8080/delete
+</code></pre>
+
+<p>Then, check that the file has actually been deleted using the following command:</p>
+
+<pre><code class="language-bash">oci os object list --bucket-name gdk-guide-object-storage
+</code></pre>
+    
+      <h2 id="6-clean-up">
+        
+        
+          6. Clean up <a href="#6-clean-up" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>When you have completed the guide, remove the bucket from Oracle Cloud Infrastructure to avoid stale resources. Use the following command to delete the bucket:</p>
+
+<pre><code class="language-bash">oci os bucket delete --bucket-name gdk-guide-object-storage
+</code></pre>
+    
+      <h3 id="summary">
+        
+        
+          Summary <a href="#summary" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>This guide demonstrated how to create a Spring Boot application to store, retrieve, and delete user profile pictures in Oracle Cloud Infrastructure Object Storage.</p>
+    
+      <h3 id="related-documentation">
+        
+        
+          Related Documentation <a href="#related-documentation" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<ul>
+  <li><a href="https://micronaut-projects.github.io/micronaut-object-storage/latest/guide/">Micronaut Object Storage</a></li>
+  <li><a href="https://www.oracle.com/cloud/storage/object-storage/">Oracle Cloud Infrastructure Object Storage</a></li>
+  <li><a href="https://www.graalvm.org/">GraalVM Native Image</a></li>
+  <li><a href="https://micronaut-projects.github.io/micronaut-spring/latest/guide/">Spring integration with Micronaut</a></li>
+</ul>
+
+      </div>
+
+      <div role="button" class="menu-btn menu-btn--sidebar js-show-sidebar" title="sweet hamburger">
+        <div class="hamburger">
+          <div class="inner"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+</div>
+
+      </main>
+
+      
+<footer class="footer footer__mobile">
+
+  <div class="container-fluid container-fluid--custom-sm">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row footer-content">
+          <div class="col-md-3 col-sm-4">
+            <h6 class="title-footer" onclick="fadeInAndOut(this)">Learn</h6>
+            <div class="grow">
+              <ul class="footer-list">
+                <li class="footer-list__item"><a href="/gdk/get-started/">Get Started</a></li>
+                <li class="footer-list__item"><a href="/gdk/guides/">Guides</a></li>
+                <li class="footer-list__item"><a href="/gdk/hands-on-labs/">Labs</a></li>
+                <li class="footer-list__github">
+                  <img class="footer__icon" src="/gdk/resources/img/footer/logo-github.svg" alt="Github icon">
+                  <a href="https://github.com/oracle/graal-dev-kit" target="blank">Github</a>
+                </li>
+                <li class="footer-list__github">
+                  <img class="footer__icon" src="/gdk/resources/img/footer/slack-icon.svg" alt="Github icon">
+                  <a href="https://bit.ly/odevrel_slack" target="blank">Join us at: #graal-cloud-native</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-4">
+            <h6 class="title-footer" onclick="fadeInAndOut(this)">About</h6>
+            <div class="grow">
+              <ul class="footer-list">
+                <li class="footer-list__item"><a href="/gdk/about/#gdk-support" target="blank">Commercial Support</a></li>
+                <li class="footer-list__item"><a href="https://www.graalvm.org/" target="blank">GraalVM Native Image</a></li>
+                <li class="footer-list__item"><a href="https://micronaut.io/" target="_blank">Micronaut</a></li>
+                <li class="footer-list__item"><a href="https://www.oracle.com/cloud/multicloud/what-is-multicloud/" target="_blank">Multicloud</a></li>
+                <li class="footer-list__item"><a href="https://www.oracle.com/cloud/" target="blank">Oracle Cloud Infrastructure</a></li>
+                <li class="footer-list__item"><a href="https://marketplace.visualstudio.com/items?itemName=oracle-labs-graalvm.graal-cloud-native-pack" target="blank">VS Code Tools</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-12 aligning_1024">
+            <div class="card--footer card--hovered box">
+              <div>
+                <div class="rubber-footer footer__oci-section">
+                  <p class="title-footer quickstart">Build, test, and deploy applications on Oracle Cloud Infrastructure for free</p>
+                  <a href="https://www.oracle.com/cloud/free/" target="_blank"
+                    class="btn btn-primary">Try Oracle Cloud Infrastructure Free Tier</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+          <div class="row">
+            <div class="col-sm-12">
+              <p class="copyright">
+                Copyright &copy; 2023-2024, Oracle and/or its affiliates.
+                All rights reserved.
+                Oracle and Java are registered trademarks of Oracle and/or its affiliates.<br/>
+                Micronaut<sup>&reg;</sup> is a registered trademark of Object Computing, Inc. 
+                Use is for referential purposes and does not imply any endorsement or affiliation with any third-party product.
+                Unauthorized use is strictly prohibited. Other names may be trademarks of their respective owners.
+              </p>
+              <div id="teconsent"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+<script>
+  function fadeInAndOut(thz) {
+    var elmt = thz.nextElementSibling;//Get the element that is below the button that
+    //was just clicked
+    if (elmt.clientHeight) {
+      elmt.style.height = 0;
+    } else {
+      var wrapper = elmt.querySelector('ul');
+      elmt.style.height = wrapper.clientHeight + "px";
+    }
+    /*
+        elmt.classList.toggle("acordianPanelHidden");//Toggle the class which changes
+        //attributes which triggers the transition CSS
+        */
+  }
+
+  // Check TRUSTe Consent for Functional or Implied Approval
+  // The if test verifies if the user has given the consent
+  if ( (oracle.truste.api.getGdprConsentDecision().consentDecision) &&
+      (oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(0) != -1 ||
+        oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(2) != -1) ) {
+
+      //The following is a sample of a Maxymiser Tag being written to the DOM
+      //If the user did not give consent, then the tag is not included and not invoked in the Browser
+      document.write('<script type="text/javascript" src="//service.maxymiser.net/cdn/oracle/js/mmcore.js"><\/script>');
+  }
+
+  // Check TRUSTe Consent for Advertising or Implied Approval
+  // The if test verifies if the user has given the consent
+  if ( (oracle.truste.api.getGdprConsentDecision().consentDecision) &&
+      (oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(0) != -1 ||
+        oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(3) != -1) ) {
+
+      //The following is a sample of a BlueKai Core Tag being written to the DOM
+      //If the user did not give consent, then the tag is not included and not invoked in the Browser
+      document.write('<script type="text/javascript">' +
+      'window.bk_async = function() { ' +
+      'BKTAG.doTag(62581, 1); }; ' +
+      '(function() { ' +
+      'var scripts = document.getElementsByTagName(\'script\')[0]; ' +
+      'var s = document.createElement(\'script\'); ' +
+      's.async = true; ' +
+      's.src = "https://tags.bkrtx.com/js/bk-coretag.js"; ' +
+      'scripts.parentNode.insertBefore(s, scripts); ' +
+      '}()); ' +
+      '<\/script>');
+  }
+</script>
+
+    </div>
+    <div class="overlay"></div>
+
+    <!-- Start SiteCatalyst code -->
+    <script language="JavaScript" src="https://www.oracle.com/us/assets/metrics/ora_otn.js"></script>
+    <!-- End SiteCatalyst code -->
+
+    <script src='/gdk/resources/lib/slick-slider/slick.min.js'></script>
+    <script src='/gdk/resources/js/main.js'></script>
+    <script src='/gdk/resources/js/ui.js'></script>
+    <script src='/gdk/resources/js/filters.js'></script>
+    <script src='/gdk/resources/js/sidebar.js'></script>
+    <script src='/gdk/resources/js/labs.js'></script>
+    <script src='/gdk/resources/lib/highlight/highlight.min.js'></script> 
+    <script>hljs.highlightAll();</script>
+  </body>
+</html>
