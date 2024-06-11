@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="The Graal Development Kit for Micronaut (GDK) is a build of a curated set of Micronaut framework modules and their required libraries for building portable c..."/>
-  <meta name="last_modified" content="2024-05-03 12:02:55 +0000"/>
-  <meta name="last_built" content="2024-05-30 10:49:42 +0000"/>
+  <meta name="last_modified" content="2024-06-11 09:53:41 +0000"/>
+  <meta name="last_built" content="2024-06-11 11:25:32 +0000"/>
   <link rel="stylesheet" href="/gdk/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gdk/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gdk/resources/img/favicon/favicon-32x32.png">
@@ -363,11 +363,26 @@
         
       </h1>
 
-<p>This guide shows how to deploy a Micronaut<sup>®</sup> microservices application to the <a href="https://aws.amazon.com/eks/">Amazon Elastic Kubernetes Service (EKS)</a> using the <a href="https://micronaut-projects.github.io/micronaut-kubernetes/latest/guide/">Micronaut Kubernetes module</a>.</p>
+<p>This guide shows how to deploy a Micronaut<sup>®</sup> application, consisting of three microservices, to the <a href="https://aws.amazon.com/eks/">Amazon Elastic Kubernetes Service (EKS)</a> using the <a href="https://micronaut-projects.github.io/micronaut-kubernetes/latest/guide/">Micronaut Kubernetes project</a>.</p>
+<blockquote>
+  <p>The Micronaut Kubernetes project provides integration between Micronaut and Kubernetes.
+It adds support for the following features:</p>
+  <ul>
+    <li>Service Discovery</li>
+    <li>Configuration client for config maps and secrets</li>
+    <li>Kubernetes blocking and non-blocking clients built on top of the official Kubernetes Java SDK</li>
+  </ul>
+</blockquote>
 
-<p>EKS is a managed <a href="https://aws.amazon.com/eks/">Kubernetes</a> service for deploying containerized applications to the cloud.</p>
+<p>EKS is a managed <a href="https://aws.amazon.com/eks/">Kubernetes</a> service for deploying containerized applications to the cloud.
+The guide demonstrates how to use Kubernetes Service Discovery and Distributed Configuration to connect three microservices, and discover how Micronaut integration with Kubernetes simplifies deployment to EKS.
+The application consists of three microservices:</p>
 
-<p>The guide shows how to use Kubernetes Service Discovery and Distributed Configuration to connect several microservices, and discover how Micronaut integration with Kubernetes simplifies deployment to EKS.</p>
+<ul>
+  <li><em>users</em> - contains customer data that can place orders on items, also a new customer can be created. It requires HTTP basic authentication to access it.</li>
+  <li><em>orders</em> - contains all orders that customers have created as well as available items that customers can order. This microservice also enables the creation of new orders. It requires HTTP basic authentication to access it.</li>
+  <li><em>api</em> - acts as a gateway to the <em>orders</em> and <em>users</em> microservices. It combines results from both microservices and checks data when a customer creates a new order.</li>
+</ul>
     
       <h3 id="prerequisites">
         
@@ -383,7 +398,7 @@
   <li>The <a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html">AWS CLI</a>.</li>
   <li>An AWS user with sufficient permissions to create and manage EKS and <a href="https://aws.amazon.com/ecr/">Amazon Elastic Container Registry (ECR)</a>.</li>
   <li>An existing EKS. For that, follow the instructions in <a href="https://docs.aws.amazon.com/eks/latest/userguide/getting-started-console.html">Getting started with Amazon EKS – AWS Management Console and AWS CLI</a>.</li>
-  <li>A Docker-API compatible container runtime such as <a href="https://docs.rancherdesktop.io/getting-started/installation/">Rancher Desktop</a> or <a href="https://www.docker.io/gettingstarted/">Docker</a> installed to run MySQL and to run tests using <a href="https://www.testcontainers.org">Testcontainers</a>.</li>
+  <li>A Docker-API compatible container runtime such as <a href="https://docs.rancherdesktop.io/getting-started/installation/">Rancher Desktop</a> or <a href="https://www.docker.io/gettingstarted/">Docker</a> installed and running.</li>
   <li><a href="https://stedolan.github.io/jq/"><code>jq</code></a>: a lightweight and flexible command-line JSON processor.</li>
   <li><a href="https://kubernetes.io/docs/reference/kubectl/"><code>kubectl</code></a> to deploy the application to EKS.</li>
 </ul>
@@ -396,7 +411,7 @@
         
       </h4>
 
-<p>Consider using Visual Studio Code that provides native support for developing applications with the <a href="/gdk/vscode-tools/using-gdk-vscode-tools/">Graal Development Kit extension</a>.</p>
+<p>Consider using Visual Studio Code, which provides native support for developing applications with the <a href="/gdk/vscode-tools/using-gdk-vscode-tools/">Graal Development Kit extension</a>.</p>
 
 <blockquote>
   <p>Note: If you use IntelliJ IDEA, <a href="/gdk/resources/img/annotationprocessorsintellij.png">enable annotation processing</a>.</p>
@@ -414,7 +429,7 @@
         
       </h2>
 
-<p>You can create a microservices application from scratch by following <a href="/gdk/gdk-modules/kubernetes/micronaut-k8s/">this guide</a>, or you can download the completed example in Java:</p>
+<p>You can create a microservices application from scratch by following <a href="/gdk/gdk-modules/kubernetes/micronaut-k8s/">this guide</a>, or you can download the completed example:</p>
 
 <div id="tabs-doc1">
   <ul>
@@ -431,15 +446,7 @@
   </div>
 </div>
 
-<p>The application ZIP file will be downloaded in your default downloads directory. Unzip it, open in your code editor, and proceed to the next steps.</p>
-
-<p>The application consists of three microservices:</p>
-
-<ul>
-  <li><em>users</em> - contains customer data that can place orders on items, also a new customer can be created. It requires HTTP basic authentication to access it.</li>
-  <li><em>orders</em> - contains all orders that customers have created as well as available items that customers can order. This microservice also enables the creation of new orders. It requires HTTP basic authentication to access it.</li>
-  <li><em>api</em> - acts as a gateway to the <em>orders</em> and <em>users</em> microservices. It combines results from both microservices and checks data when a customer creates a new order.</li>
-</ul>
+<p>The application ZIP file will be downloaded to your default downloads directory. Unzip it, open it in your code editor, and proceed to the next steps.</p>
 
 <blockquote>
   <p>Note: By default, a Micronaut application detects its runtime environment.
@@ -491,15 +498,15 @@ export EKS_CLUSTER_NAME="gdk-k8s"
 <pre><code class="language-bash">aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
 </code></pre>
     
-      <h3 id="23-build-a-container-image-of-the-native-users-microservice">
+      <h3 id="23-create-and-publish-a-container-image-of-the-native-users-microservice">
         
         
-          2.3. Build a Container Image of the Native <em>Users</em> Microservice <a href="#23-build-a-container-image-of-the-native-users-microservice" class="anchor_heading">#</a>
+          2.3. Create and Publish a Container Image of the Native <em>Users</em> Microservice <a href="#23-create-and-publish-a-container-image-of-the-native-users-microservice" class="anchor_heading">#</a>
         
         
       </h3>
 
-<p>To build a container image of the native <em>users</em> microservice named “users”, run the following command from the <em>users</em> directory:</p>
+<p>To create a container image of the native <em>users</em> microservice named “users”, run the following command from the <em>users</em> directory:</p>
 
 <div id="tabs-doc11">
     <ul>
@@ -508,19 +515,22 @@ export EKS_CLUSTER_NAME="gdk-k8s"
     </ul>
     <div id="gradle">
         <pre><code class="language-bash">./gradlew dockerBuildNative</code></pre>
+
+        <blockquote>
+          <p>Note: If you encounter problems creating a container image, run the following command
+          from the <em>users/build/docker/native-main/</em> directory:</p>
+          <pre><code class="language-bash">docker build . -t users-aws -f DockerfileNative</code></pre>
+        </blockquote>
     </div>
     <div id="maven">
         <pre><code class="language-bash">./mvnw package -Dpackaging=docker-native -Pgraalvm</code></pre>
+        <blockquote>
+          <p>Note: If you encounter problems creating a container image, run the following command
+          from the <em>users/target/</em> directory:</p>
+          <pre><code class="language-bash">docker build . -t users-aws -f Dockerfile</code></pre>
+        </blockquote>
     </div>
 </div>
-
-<blockquote>
-  <p>Note: If you encounter problems building a container image, try the following:</p>
-  <ul>
-    <li>Gradle: from the <em>users/build/docker/native-main/</em> directory, run <code>docker build . -t users-aws -f DockerfileNative</code>.</li>
-    <li>Maven: from the <em>users/target/</em> directory, run <code>docker build . -t users-aws -f Dockerfile</code>.</li>
-  </ul>
-</blockquote>
 
 <blockquote>
   <p>Note: Ensure that you construct container images for the correct CPU architecture. For instance, if you are using AArch64, modify the <code>DOCKER_DEFAULT_PLATFORM</code> environment variable to the value <code>linux/amd64</code>. Alternatively, you have the option to use AArch64 instances within your Kubernetes cluster.</p>
@@ -624,15 +634,15 @@ spec:
   </li>
 </ol>
     
-      <h3 id="26-build-a-container-image-of-the-native-orders-microservice">
+      <h3 id="26-create-and-publish-a-container-image-of-the-native-orders-microservice">
         
         
-          2.6. Build a Container Image of the Native <em>Orders</em> Microservice <a href="#26-build-a-container-image-of-the-native-orders-microservice" class="anchor_heading">#</a>
+          2.6. Create and Publish a Container Image of the Native <em>Orders</em> Microservice <a href="#26-create-and-publish-a-container-image-of-the-native-orders-microservice" class="anchor_heading">#</a>
         
         
       </h3>
 
-<p>To build a container image of the native <em>orders</em> microservice named “orders”, run the following command from the <em>orders/</em> directory:</p>
+<p>To create a container image of the native <em>orders</em> microservice named “orders”, run the following command from the <em>orders/</em> directory:</p>
 
 <div id="tabs-doc12">
     <ul>
@@ -641,19 +651,21 @@ spec:
     </ul>
     <div id="gradle">
         <pre><code class="language-bash">./gradlew dockerBuildNative</code></pre>
+        <blockquote>
+          <p>Note: If you encounter problems creating a container image, run the following command
+          from the <em>orders/build/docker/native-main/</em> directory:</p>
+          <pre><code class="language-bash">docker build . -t orders-aws -f DockerfileNative</code></pre>
+        </blockquote>
     </div>
     <div id="maven">
         <pre><code class="language-bash">./mvnw package -Dpackaging=docker-native -Pgraalvm</code></pre>
+        <blockquote>
+          <p>Note: If you encounter problems creating a container image, run the following command
+          from the <em>orders/target/</em> directory:</p>
+          <pre><code class="language-bash">docker build . -t orders-aws -f Dockerfile</code></pre>
+        </blockquote>
     </div>
 </div>
-
-<blockquote>
-  <p>Note: If you encounter problems building a container image, try the following:</p>
-  <ul>
-    <li>Gradle: from the <em>orders/build/docker/native-main/</em> directory, run <code>docker build . -t orders-aws -f DockerfileNative</code>.</li>
-    <li>Maven: from the <em>orders/target/</em> directory, run <code>docker build . -t orders-aws -f Dockerfile</code>.</li>
-  </ul>
-</blockquote>
 
 <blockquote>
   <p>Note: Ensure that you construct container images for the correct CPU architecture. For instance, if you are using AArch64, modify the <code>DOCKER_DEFAULT_PLATFORM</code> environment variable to the value <code>linux/amd64</code>. Alternatively, you have the option to use AArch64 instances within your Kubernetes cluster.</p>
@@ -755,10 +767,10 @@ spec:
   </li>
 </ol>
     
-      <h3 id="29-build-a-container-image-of-the-native-api-gateway-microservice">
+      <h3 id="29-create-and-publish-a-container-image-of-the-native-api-gateway-microservice">
         
         
-          2.9. Build a Container Image of the Native <em>API</em> (Gateway) Microservice <a href="#29-build-a-container-image-of-the-native-api-gateway-microservice" class="anchor_heading">#</a>
+          2.9. Create and Publish a Container Image of the Native <em>API</em> (Gateway) Microservice <a href="#29-create-and-publish-a-container-image-of-the-native-api-gateway-microservice" class="anchor_heading">#</a>
         
         
       </h3>
@@ -772,19 +784,21 @@ spec:
     </ul>
     <div id="gradle">
         <pre><code class="language-bash">./gradlew dockerBuildNative</code></pre>
+        <blockquote>
+          <p>Note: If you encounter problems creating a container image, run the following command
+          from the <em>api/build/docker/native-main/</em> directory:</p>
+          <pre><code class="language-bash">docker build . -t api-aws -f DockerfileNative</code></pre>
+        </blockquote>
     </div>
     <div id="maven">
         <pre><code class="language-bash">./mvnw package -Dpackaging=docker-native -Pgraalvm</code></pre>
+        <blockquote>
+          <p>Note: If you encounter problems creating a container image, run the following command
+          from the <em>api/target/</em> directory:</p>
+          <pre><code class="language-bash">docker build . -t api-aws -f Dockerfile</code></pre>
+        </blockquote>
     </div>
 </div>
-
-<blockquote>
-  <p>Note: If you encounter problems building a container image, try the following:</p>
-  <ul>
-    <li>Gradle: from the <em>api/build/docker/native-main/</em> directory, run <code>docker build . -t api-aws -f DockerfileNative</code>.</li>
-    <li>Maven: from the <em>api/target/</em> directory, run <code>docker build . -t api-aws -f Dockerfile</code>.</li>
-  </ul>
-</blockquote>
 
 <blockquote>
   <p>Note: Ensure that you construct container images for the correct CPU architecture. For instance, if you are using AArch64, modify the <code>DOCKER_DEFAULT_PLATFORM</code> environment variable to the value <code>linux/amd64</code>. Alternatively, you have the option to use AArch64 instances within your Kubernetes cluster.</p>
@@ -970,10 +984,10 @@ spec:
  orders       NodePort       10.100.157.155   &lt;none&gt;                  8080:30742/TCP      20m
  users        NodePort       10.100.126.97    &lt;none&gt;                  8080:31580/TCP      20m</pre>
 
-    <p>If <code>EXTERNAL-IP</code> is in a <code>&lt;pending&gt;</code> state wait a couple of seconds and then run the command again. AWS will provide you with a hostname instead of an IP address. To access your application you will have to wait until DNS can resolve the hostname.</p>
+    <p>If <code>EXTERNAL-IP</code> is in a <code>&lt;pending&gt;</code> state, wait a couple of seconds and then run the command again. AWS will provide you with a hostname instead of an IP address. To access your application you will have to wait until DNS can resolve the hostname.</p>
   </li>
   <li>
-    <p>Retrieve the URL of the <em>api</em> microservice and set it as the value of the $API_URL environment variable:</p>
+    <p>Retrieve the URL of the <em>api</em> microservice and set it as the value of the <code>$API_URL</code> environment variable:</p>
 
     <pre><code class="language-bash"> export API_URL=http://$(kubectl get svc api -n=gdk-k8s -o json | jq -r '.status.loadBalancer.ingress[0].hostname'):8080
 </code></pre>
@@ -1189,7 +1203,7 @@ spec:
                 </li>
                 <li class="footer-list__github">
                   <img class="footer__icon" src="/gdk/resources/img/footer/slack-icon.svg" alt="Github icon">
-                  <a href="https://bit.ly/odevrel_slack" target="blank">Join us at: #graal-cloud-native</a>
+                  <a href="https://bit.ly/odevrel_slack" target="blank">#graal-dev-kit-for-micronaut</a>
                 </li>
               </ul>
             </div>

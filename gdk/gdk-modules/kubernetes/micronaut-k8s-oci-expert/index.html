@@ -10,11 +10,11 @@
 
   <title>
     
-      Deploy a Micronaut Microservices Application to the Google Kubernetes Engine
+      Expert&#39;s Guide to Deploy a Micronaut Microservices Application to Oracle Cloud Infrastructure Container Engine for Kubernetes
     
   </title>
   <meta name="description" content="The Graal Development Kit for Micronaut (GDK) is a build of a curated set of Micronaut framework modules and their required libraries for building portable c..."/>
-  <meta name="last_modified" content="2024-06-10 08:40:13 +0000"/>
+  <meta name="last_modified" content="2024-06-10 08:38:01 +0000"/>
   <meta name="last_built" content="2024-06-11 11:25:32 +0000"/>
   <link rel="stylesheet" href="/gdk/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gdk/resources/img/favicon/apple-touch-icon.png">
@@ -24,7 +24,7 @@
   <meta name="msapplication-TileColor" content="#da532c">
   <meta name="theme-color" content="#ffffff">
   <meta name="google-site-verification" content="-vRqwa9WYn6AaQGnl88xvrLw6ac4xoKVkZkhanmlRhU" />
-  <link rel="canonical" href="https://www.graal.cloud/gdk/gdk-modules/kubernetes/micronaut-k8s-gcp/">
+  <link rel="canonical" href="https://www.graal.cloud/gdk/gdk-modules/kubernetes/micronaut-k8s-oci-expert/">
 
   <!-- jQuery UI Tabs -->
   <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
@@ -269,10 +269,6 @@
   
 
   
-
-  
-
-  
     
 
     
@@ -295,8 +291,8 @@
           <li class="toc-bullets-sub toc-bullets-highlight">
           
             
-            <a href="/gdk/gdk-modules/kubernetes/micronaut-k8s-gcp/">
-              Deploy a Micronaut Microservices Application to the Google Kubernetes Engine
+            <a href="/gdk/gdk-modules/kubernetes/micronaut-k8s-oci-expert/">
+              Expert&#39;s Guide to Deploy a Micronaut Microservices Application to Oracle Cloud Infrastructure Container Engine for Kubernetes
             </a>
           </li>
 
@@ -330,6 +326,10 @@
 
   
 
+  
+
+  
+
 <!-- <li class="search additional-search">
   <form class="form-inline sidebar" action="/docs/search" autocomplete="on" method="get">
     <input class="input-search sidebar" type="text" id="search-box" name="query" placeholder="Search">
@@ -355,15 +355,16 @@
         <!--
           Include file to warn of Windows/Gradle restriction
         -->
-        <h1 id="deploy-a-micronaut-microservices-application-to-the-google-kubernetes-engine">
+        <h1 id="experts-guide-to-deploy-a-micronaut-microservices-application-to-oracle-cloud-infrastructure-container-engine-for-kubernetes">
         
         
-          Deploy a Micronaut Microservices Application to the Google Kubernetes Engine
+          Expert’s Guide to Deploy a Micronaut Microservices Application to Oracle Cloud Infrastructure Container Engine for Kubernetes
         
         
       </h1>
 
-<p>This guide shows how to deploy a Micronaut<sup>®</sup> application, consisting of three microservices, to the <a href="https://cloud.google.com/kubernetes-engine">Google Kubernetes Engine (GKE)</a> using the <a href="https://micronaut-projects.github.io/micronaut-kubernetes/latest/guide/">Micronaut Kubernetes project</a>.</p>
+<p>This guide describes how to deploy a Micronaut<sup>®</sup> application, consisting of three microservices, to the <a href="https://docs.oracle.com/iaas/Content/ContEng/Concepts/contengoverview.htm" target="_blank">Oracle Cloud Infrastructure Container Engine for Kubernetes (OKE)</a> using the <a href="https://micronaut-projects.github.io/micronaut-kubernetes/latest/guide/" target="_blank">Micronaut Kubernetes project</a>.</p>
+
 <blockquote>
   <p>The Micronaut Kubernetes project provides integration between Micronaut and Kubernetes.
 It adds support for the following features:</p>
@@ -374,10 +375,17 @@ It adds support for the following features:</p>
   </ul>
 </blockquote>
 
-<p>GKE is a managed Kubernetes service for deploying containerized applications to the cloud.</p>
+<blockquote>
+  <p><a href="https://www.oracle.com/cloud/cloud-native/container-engine-kubernetes/" target="_blank">OKE</a> is a managed <a href="https://www.oracle.com/cloud/cloud-native/container-engine-kubernetes/what-is-kubernetes/" target="_blank">Kubernetes</a> service for deploying containerized applications to the cloud.</p>
+</blockquote>
 
-<p>TThe guide demonstrates how to use Kubernetes Service Discovery and Distributed Configuration to connect three microservices, and discover how Micronaut integration with Kubernetes simplifies deployment to GKE.
-The application consists of three microservices:</p>
+<p>The guide demonstrates how to use Kubernetes Service Discovery and Distributed Configuration to connect three microservices, and discover how Micronaut integration with Kubernetes simplifies deployment to OKE.</p>
+
+<blockquote>
+  <p>Note: The guide assumes that the reader is familiar with using the Oracle Cloud Infrastructure Command Line Interface (CLI).</p>
+</blockquote>
+
+<p>The application consists of three microservices:</p>
 
 <ul>
   <li><em>users</em> - contains customer data that can place orders on items, also a new customer can be created. It requires HTTP basic authentication to access it.</li>
@@ -395,16 +403,14 @@ The application consists of three microservices:</p>
 
 <ul>
   <li>JDK 17 or higher. See <a href="/gdk/get-started/setting-up-desktop/">Setting up Your Desktop</a>.</li>
-  <li>A Google Cloud Platform (GCP) account. See <a href="/gdk/get-started/setting-up-cloud-accounts/">Setting up Your Cloud Accounts</a>.</li>
-  <li>The <a href="https://cloud.google.com/cli">Google Cloud CLI</a> authenticated with your Google credentials. (Run <code>gcloud init</code> for quick authentication.)</li>
+  <li>An Oracle Cloud Infrastructure account. See <a href="/gdk/get-started/setting-up-cloud-accounts/">Setting up Your Cloud Accounts</a>.</li>
+  <li>An Oracle Cloud Infrastructure <a href="https://docs.oracle.com/iaas/Content/GSG/Tasks/choosingcompartments.htm">compartment</a>.</li>
+  <li>Appropriate permission is granted to your user account to manage OKE. (For more information, see <a href="https://docs.oracle.com/iaas/Content/ContEng/Concepts/contengpolicyconfig.htm#Policy_Configuration_for_Cluster_Creation_and_Deployment">Policy Configuration for Cluster Creation and Deployment</a>.)</li>
+  <li>The Oracle Cloud Infrastructure <a href="https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/cliinstall.htm">CLI</a> installed with <a href="https://docs.oracle.com/iaas/Content/API/SDKDocs/cliinstall.htm#configfile">local access configured</a>.</li>
   <li>A Docker-API compatible container runtime such as <a href="https://docs.rancherdesktop.io/getting-started/installation/">Rancher Desktop</a> or <a href="https://www.docker.io/gettingstarted/">Docker</a> installed and running.</li>
   <li><a href="https://stedolan.github.io/jq/"><code>jq</code></a>: a lightweight and flexible command-line JSON processor.</li>
-  <li><a href="https://kubernetes.io/docs/reference/kubectl/"><code>kubectl</code></a> to deploy the application to GKE.</li>
+  <li><a href="https://kubernetes.io/docs/reference/kubectl/"><code>kubectl</code></a> to deploy the application to OKE.</li>
 </ul>
-
-<blockquote>
-  <p>Note: This guide uses paid services; you may need to <a href="https://cloud.google.com/billing/docs/how-to/modify-project">enable billing</a> in Google Cloud to complete some steps in this guide.</p>
-</blockquote>
     
       <h4 id="a-note-regarding-your-development-environment">
         
@@ -414,7 +420,7 @@ The application consists of three microservices:</p>
         
       </h4>
 
-<p>Consider using Visual Studio Code, which provides native support for developing applications with the <a href="/gdk/vscode-tools/using-gdk-vscode-tools/">Graal Development Kit extension</a>.</p>
+<p>Consider using Visual Studio Code that provides native support for developing applications with the <a href="/gdk/vscode-tools/using-gdk-vscode-tools/">Graal Development Kit extension</a>.</p>
 
 <blockquote>
   <p>Note: If you use IntelliJ IDEA, <a href="/gdk/resources/img/annotationprocessorsintellij.png">enable annotation processing</a>.</p>
@@ -432,7 +438,7 @@ The application consists of three microservices:</p>
         
       </h2>
 
-<p>You can create a microservices application from scratch by following <a href="/gdk/gdk-modules/kubernetes/micronaut-k8s/">this guide</a>, or you can download the completed example:</p>
+<p>You can create a microservices application from scratch by following <a href="/gdk/gdk-modules/kubernetes/micronaut-k8s/" target="_blank">this guide</a>, or you can download the completed example:</p>
 
 <div id="tabs-doc1">
   <ul>
@@ -440,130 +446,48 @@ The application consists of three microservices:</p>
     <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
   </ul>
   <div id="gradle">
-    <p><a href="https://github.com/oracle/gcn/releases/download/4.3.7.2/4.3.7.2_kubernetes_gcp-kubernetes-demo-java-gradle.zip">Gradle Micronaut GKE Example <img class="download-img-guides" src="/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" /></a>
+    <p><a href="https://github.com/oracle/gcn/releases/download/4.3.7.2/4.3.7.2_kubernetes_oci-kubernetes-demo-java-gradle.zip">Gradle Micronaut OKE Example <img class="download-img-guides" src="/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" /></a>
     </p>
   </div>
   <div id="maven">
-    <p><a href="https://github.com/oracle/gcn/releases/download/4.3.7.2/4.3.7.2_kubernetes_gcp-kubernetes-demo-java-maven.zip">Maven Micronaut GKE Example <img class="download-img-guides" src="/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" /></a>
+    <p><a href="https://github.com/oracle/gcn/releases/download/4.3.7.2/4.3.7.2_kubernetes_oci-kubernetes-demo-java-maven.zip">Maven Micronaut OKE Example <img class="download-img-guides" src="/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" /></a>
     </p>
   </div>
 </div>
 
-<p>The application ZIP file will be downloaded to your default downloads directory. Unzip it, open it in your code editor, and proceed to the next steps.</p>
+<p>The application ZIP file will be downloaded in your default downloads directory. Unzip it and proceed to the next steps.</p>
 
 <blockquote>
   <p>Note: By default, a Micronaut application detects its runtime environment.
-A detected environment (in this case, <strong>k8s</strong>) overrides the default specified environment (in this case, <strong>gcp</strong>).
+A detected environment (in this case, <strong>k8s</strong>) overrides the default specified environment (in this case, <strong>oraclecloud</strong>).
 This means that you should locate your configuration in the <em>application-k8s.properties</em> and <em>bootstrap-k8s.properties</em> files.
-Alternatively, you can specify the <code>gcp</code> environment passing it as a command-line option (<code>-Dmicronaut.environments=gcp</code>) or via an environment variable (<code>MICRONAUT_ENVIRONMENTS=gcp</code>).</p>
+Alternatively, you can specify the <code>oraclecloud</code> environment passing it as a command-line option (<code>-Dmicronaut.environments=oraclecloud</code>) or via an environment variable (<code>MICRONAUT_ENVIRONMENTS=oraclecloud</code>).</p>
 </blockquote>
     
-      <h2 id="2-set-up-gke">
+      <h2 id="2-create-an-oracle-cloud-infrastructure-kubernetes-cluster">
         
         
-          2. Set Up GKE <a href="#2-set-up-gke" class="anchor_heading">#</a>
+          2. Create an Oracle Cloud Infrastructure Kubernetes Cluster <a href="#2-create-an-oracle-cloud-infrastructure-kubernetes-cluster" class="anchor_heading">#</a>
         
         
       </h2>
 
-<p>In this section, you take the steps to set up GKE for your application: create a project, enable the Google Cloud Container Registry API, configure Google Cloud Docker, enable the Google Cloud Kubernetes Engine API, and create a GKE cluster.</p>
+<p>You will use <strong>Quick Create</strong> cluster option in OKE to create Kubernetes cluster.</p>
+
+<ol>
+  <li>Login to the Oracle Cloud console and open the navigation menu. Click <strong>Developer Services</strong>. Under <strong>Containers &amp; Artifacts</strong>, click <strong>Kubernetes Clusters (OKE)</strong>.</li>
+  <li>Choose your compartment in the <strong>Compartment</strong> drop-down list.</li>
+  <li>Click <strong>Create cluster</strong> and choose the <strong>Quick create</strong> option and click <strong>Submit</strong>.</li>
+  <li>Enter the name for your cluster, for example, <em>gdk-k8s</em>. Select <strong>Public Endpoint</strong> for the Kubernetes API endpoint; <strong>Private Workers</strong> for worker nodes; and the shape (choose the default). Click <strong>Next</strong>.</li>
+  <li>Click <strong>Create cluster</strong>.</li>
+  <li>It may take a few minutes to create all the resources. When they are all complete, click <strong>Close</strong>.</li>
+  <li>From the <strong>Cluster details</strong> tab click <strong>Copy</strong> to copy the Cluster Id (you will need it later).</li>
+</ol>
     
-      <h3 id="21-create-a-google-cloud-project">
+      <h2 id="3-prepare-to-deploy-microservices">
         
         
-          2.1. Create a Google Cloud Project <a href="#21-create-a-google-cloud-project" class="anchor_heading">#</a>
-        
-        
-      </h3>
-
-<p>Create a project in GCP and switch to it:</p>
-
-<pre><code class="language-bash">export PROJECT_ID=gdk-guides
-gcloud projects create $PROJECT_ID
-gcloud config set project $PROJECT_ID
-</code></pre>
-
-<blockquote>
-  <p>Note: The project id must be unique, so you may need to provide an alternative.</p>
-</blockquote>
-
-<blockquote>
-  <p>Note: If you want to switch to an existing project use <code>gcloud projects list</code> to list all the existing projects.</p>
-</blockquote>
-    
-      <h3 id="22-enable-the-google-cloud-container-registry-api">
-        
-        
-          2.2. Enable the Google Cloud Container Registry API <a href="#22-enable-the-google-cloud-container-registry-api" class="anchor_heading">#</a>
-        
-        
-      </h3>
-
-<p>You need somewhere to store your container images, so enable the Google Cloud Container Registry API for your project via the Google Cloud CLI:</p>
-
-<pre><code class="language-bash">gcloud services enable containerregistry.googleapis.com
-</code></pre>
-    
-      <h3 id="23-configure-google-cloud-docker">
-        
-        
-          2.3. Configure Google Cloud Docker <a href="#23-configure-google-cloud-docker" class="anchor_heading">#</a>
-        
-        
-      </h3>
-
-<p>Run <code>auth configure-docker</code> via the Google Cloud CLI, as follows:</p>
-
-<pre><code class="language-bash">gcloud auth configure-docker
-</code></pre>
-
-<p>You should see output similar to:</p>
-
-<pre><code>Adding credentials for all GCR repositories.
-WARNING: A long list of credential helpers may cause delays running 'docker build'. We recommend passing the registry name to configure only the registry you are using.
-After update, the following will be written to your Docker config file located at [~/.docker/config.json]:
- {
-  "credHelpers": {
-    "gcr.io": "gcloud",
-    "us.gcr.io": "gcloud",
-    "eu.gcr.io": "gcloud",
-    "asia.gcr.io": "gcloud",
-    "staging-k8s.gcr.io": "gcloud",
-    "marketplace.gcr.io": "gcloud"
-  }
-}
-</code></pre>
-    
-      <h3 id="24-enable-the-google-cloud-kubernetes-engine-api">
-        
-        
-          2.4. Enable the Google Cloud Kubernetes Engine API <a href="#24-enable-the-google-cloud-kubernetes-engine-api" class="anchor_heading">#</a>
-        
-        
-      </h3>
-
-<p>To use the Kubernetes Engine API, enable it for your project via the Google Cloud CLI:</p>
-
-<pre><code class="language-bash">gcloud services enable container.googleapis.com
-</code></pre>
-    
-      <h3 id="25-create-a-gke-cluster">
-        
-        
-          2.5. Create a GKE Cluster <a href="#25-create-a-gke-cluster" class="anchor_heading">#</a>
-        
-        
-      </h3>
-
-<p>Create a cluster named “gdk-k8s” and use two <em>n1-standard-2</em> instances as GKE nodes. Everything will be deployed on your default Google Cloud region. Create the “gdk-k8s” Kubernetes cluster, as follows:</p>
-
-<pre><code class="language-bash">gcloud container clusters create gdk-k8s --machine-type n1-standard-2 --num-nodes 2 --disk-type pd-standard
-</code></pre>
-    
-      <h2 id="3-prepare-microservices">
-        
-        
-          3. Prepare Microservices <a href="#3-prepare-microservices" class="anchor_heading">#</a>
+          3. Prepare to Deploy Microservices <a href="#3-prepare-to-deploy-microservices" class="anchor_heading">#</a>
         
         
       </h2>
@@ -578,22 +502,63 @@ After update, the following will be written to your Docker config file located a
 
 <p>Define some environment variables to make deploying process easier:</p>
 <ul>
-  <li><code>GCP_PROJECT_ID</code> to store your GCP project id.</li>
-  <li><code>GCP_REGION</code> to store GCP region code.</li>
-  <li><code>GKE_CLUSTER_NAME</code> to store the name of your cluster.</li>
+  <li><code>OCI_USER_ID</code> to store your user OCID, which you can find in your Oracle Cloud Infrastructure configuration file (usually <em>~/.oci/config</em>).</li>
+  <li><code>OCI_TENANCY_NAMESPACE</code> to store the tenancy namespace (retrieve your tenancy namespace using the Oracle Cloud Infrastructure CLI).</li>
+  <li><code>OCIR_USERNAME</code> store your username in the format <code>&lt;tenancy_namespace&gt;/&lt;username&gt;</code>. You can reuse <code>OCI_TENANCY_NAMESPACE</code> and only edit the <code>&lt;username&gt;</code> part.</li>
+  <li><code>OCI_REGION</code> to store your cloud region identifier, for example, “us-phoenix-1”.</li>
+  <li><code>OCI_CLUSTER_ID</code> to store the Cluster Id that you copied earlier.</li>
+  <li><code>OCI_COMPARTMENT_ID</code> to store your compartment id.</li>
 </ul>
 
 <p>For example:</p>
 
-<pre><code class="language-bash">export GCP_PROJECT_ID="$(gcloud config get-value project)"
-export GCP_REGION="$(gcloud config get-value compute/region)"
-export GKE_CLUSTER_NAME="gdk-k8s"
+<pre><code class="language-bash">export OCI_USER_ID="ocid1.user.oc1..aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+export OCI_TENANCY_NAMESPACE=$(oci os ns get | jq .data -r)
+export OCIR_USERNAME="$OCI_TENANCY_NAMESPACE/&lt;username&gt;"
+export OCI_REGION="&lt;region&gt;"
+export OCI_CLUSTER_ID="ocid1.cluster.oc1.iad.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+export OCI_COMPARTMENT_ID="ocid1.compartment.oc1..aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 </code></pre>
+
+<details>
+    <summary>The <code>export</code> command syntax varies per platform. Expand to learn more.</summary>
+    <p>If you use Windows, change <code>export</code> to <code>set</code> if using the <code>cmd</code> prompt:</p>
+    <pre><code class="language-bash">set OCI_USER_ID=&lt;id&gt;</code></pre>
+    <p>If you use PowerShell, change <code>export</code> to <code>$</code> and use quotes around the value, for example:</p>
+    <pre><code class="language-bash">$OCI_USER_ID="&lt;id&gt;"</code></pre>
+    <p>To dereference a value in Linux/macOS or Powershell, use <code>$</code>, for example:
+    <code>/some/command -option=$OCI_USER_ID</code></p>
+    <p>If you use <code>cmd</code>, use <code>%</code> before and after the name, for example: <code>/some/command -option=%OCI_USER_ID%</code></p>
+</details>
     
-      <h3 id="32-create-and-publish-a-container-image-of-the-native-users-microservice">
+      <h3 id="32-authenticate-to-oracle-cloud-infrastructure-registry">
         
         
-          3.2. Create and Publish a Container Image of the Native <em>Users</em> Microservice <a href="#32-create-and-publish-a-container-image-of-the-native-users-microservice" class="anchor_heading">#</a>
+          3.2. Authenticate to Oracle Cloud Infrastructure Registry <a href="#32-authenticate-to-oracle-cloud-infrastructure-registry" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<ol>
+  <li>
+    <p><a href="https://docs.oracle.com/iaas/Content/Registry/Tasks/registrygettingauthtoken.htm">Create an <code>AUTH_TOKEN</code></a> to authenticate to Oracle Cloud Infrastructure Registry (also known as Container Registry). (Oracle Cloud Infrastructure allows you to have only two authentication tokens at the same time. If you already have two, use the existing one or delete the one that you are not using.)</p>
+  </li>
+  <li>Export the <code>AUTH_TOKEN</code> variable:
+    <pre><code class="language-bash"> export AUTH_TOKEN=$(oci iam auth-token create --user-id $OCI_USER_ID --description gdk-k8s-token | jq -r '.data.token')
+</code></pre>
+  </li>
+  <li>Run the next command to log in to <code>ocir.io</code> (Container Registry):
+    <pre><code class="language-bash"> docker login $OCI_REGION.ocir.io -u $OCIR_USERNAME -p $AUTH_TOKEN
+</code></pre>
+
+    <p>The command should complete by printing “Login Succeeded”. (It may take some time before your authentication token activates.)</p>
+  </li>
+</ol>
+    
+      <h3 id="33-create-and-publish-a-container-image-of-the-native-users-microservice">
+        
+        
+          3.3. Create and Publish a Container Image of the Native <em>Users</em> Microservice <a href="#33-create-and-publish-a-container-image-of-the-native-users-microservice" class="anchor_heading">#</a>
         
         
       </h3>
@@ -610,7 +575,7 @@ export GKE_CLUSTER_NAME="gdk-k8s"
         <blockquote>
           <p>Note: If you encounter problems creating a container image, run the following command
           from the <em>users/build/docker/native-main/</em> directory:</p>
-          <pre><code class="language-bash">docker build . -t users-gcp -f DockerfileNative</code></pre>
+          <pre><code class="language-bash">docker build . -t users-oci -f DockerfileNative</code></pre>
         </blockquote>
     </div>
     <div id="maven">
@@ -618,7 +583,7 @@ export GKE_CLUSTER_NAME="gdk-k8s"
         <blockquote>
           <p>Note: If you encounter problems creating a container image, run the following command
           from the <em>users/target/</em> directory:</p>
-          <pre><code class="language-bash">docker build . -t users-gcp -f Dockerfile</code></pre>
+          <pre><code class="language-bash">docker build . -t users-oci -f Dockerfile</code></pre>
         </blockquote>
     </div>
 </div>
@@ -627,103 +592,112 @@ export GKE_CLUSTER_NAME="gdk-k8s"
   <p>Note: Ensure that you construct container images for the correct CPU architecture. For instance, if you are using AArch64, modify the <code>DOCKER_DEFAULT_PLATFORM</code> environment variable to the value <code>linux/amd64</code>. Alternatively, you have the option to use AArch64 instances within your Kubernetes cluster.</p>
 </blockquote>
     
-      <h3 id="33-prepare-the-users-microservice">
+      <h3 id="34-create-a-container-repository-for-the-users-microservice">
         
         
-          3.3. Prepare the <em>Users</em> Microservice <a href="#33-prepare-the-users-microservice" class="anchor_heading">#</a>
+          3.4. Create a Container Repository for the <em>Users</em> Microservice <a href="#34-create-a-container-repository-for-the-users-microservice" class="anchor_heading">#</a>
         
         
       </h3>
 
+<p>Your next step is to prepare a container repository in <a href="https://docs.oracle.com/iaas/Content/Registry/home.htm">Container Registry</a>.</p>
+
 <ol>
   <li>
-    <p>Export the <em>users</em> microservice container image repository to the <code>USERS_REPOSITORY</code> environment variable:</p>
+    <p>Create a Container Repository named “gdk-k8s/users-oci” in your compartment:</p>
 
-    <pre><code class="language-bash"> export USERS_REPOSITORY="gcr.io/$GCP_PROJECT_ID/users"
+    <pre><code class="language-bash"> export USERS_REPOSITORY=$(oci artifacts container repository create --display-name gdk-k8s/users-oci --compartment-id $OCI_COMPARTMENT_ID | jq .data.id -r)
 </code></pre>
   </li>
   <li>
-    <p>Edit the file named <em>users/k8s-gcp.yml</em> as follows:</p>
+    <p>Tag the existing <em>users</em> microservice container image with details of the container repository:</p>
 
-    <pre><code class="language-yml"> apiVersion: apps/v1
- kind: Deployment
- metadata:
-   namespace: gdk-k8s
-   name: users
- spec:
-   selector:
-     matchLabels:
-       app: users
-   template:
-     metadata:
-       labels:
-         app: users
-     spec:
-       serviceAccountName: gdk-service
-       containers:
-         - name: users
-           image: 'gcr.io/&lt;gcp-project-id&gt;/users:latest' # &lt;1&gt;
-           imagePullPolicy: Always #&lt;2&gt;
-           ports:
-             - name: http
-               containerPort: 8080
-           readinessProbe:
-             httpGet:
-               path: /health/readiness
-               port: 8080
-             initialDelaySeconds: 5
-             timeoutSeconds: 3
-           livenessProbe:
-             httpGet:
-               path: /health/liveness
-               port: 8080
-             initialDelaySeconds: 5
-             timeoutSeconds: 3
-             failureThreshold: 10
-           env:
-             - name: MICRONAUT_ENVIRONMENTS
-               value: gcp
-       imagePullSecrets:
-         - name: gcpsersecret # &lt;3&gt;
- ---
- apiVersion: v1
- kind: Service
- metadata:
-   namespace: gdk-k8s
-   name: users
- spec:
-   selector:
-     app: users
-   type: NodePort
-   ports:
-     - protocol: TCP
-       port: 8080
-</code></pre>
-
-    <p><strong>1</strong> The URI of the repository that you created in GKE. Change the <code>&lt;gcp-project-id&gt;</code> to your Google project id. You can achieve this by running <code>sed -i'' -e "s/&lt;project-id&gt;/$GCP_PROJECT_ID/" users/k8s-gcp.yml</code>.</p>
-
-    <p><strong>2</strong> Change <code>imagePullPolicy</code> to <code>Always</code>.</p>
-
-    <p><strong>3</strong> The name of a secret to pull container images from Google Container Registry.</p>
-  </li>
-  <li>
-    <p>Tag an existing <em>users</em> microservice container image:</p>
-
-    <pre><code class="language-bash"> docker tag users-gcp:latest ${USERS_REPOSITORY}:latest
+    <pre><code class="language-bash"> docker tag users-oci:latest $OCI_REGION.ocir.io/$OCI_TENANCY_NAMESPACE/gdk-k8s/users-oci:latest
 </code></pre>
   </li>
   <li>
     <p>Push the tagged <em>users</em> microservice container image to the remote repository:</p>
 
-    <pre><code class="language-bash"> docker push ${USERS_REPOSITORY}:latest
+    <pre><code class="language-bash"> docker push $OCI_REGION.ocir.io/$OCI_TENANCY_NAMESPACE/gdk-k8s/users-oci:latest
 </code></pre>
   </li>
 </ol>
     
-      <h3 id="34-create-and-publish-a-container-image-of-the-native-orders-microservice">
+      <h3 id="35-update-the-users-microservice">
         
         
-          3.4. Create and Publish a Container Image of the Native <em>Orders</em> Microservice <a href="#34-create-and-publish-a-container-image-of-the-native-orders-microservice" class="anchor_heading">#</a>
+          3.5. Update the <em>Users</em> Microservice <a href="#35-update-the-users-microservice" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>Edit the file named <em>users/k8s-oci.yml</em> as follows:</p>
+
+<pre><code class="language-yml">apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: gdk-k8s
+  name: users
+spec:
+  selector:
+    matchLabels:
+      app: users
+  template:
+    metadata:
+      labels:
+        app: users
+    spec:
+      serviceAccountName: gdk-service
+      containers:
+        - name: users
+          image: '&lt;region&gt;.ocir.io/&lt;tenancy-namespace&gt;/gdk-k8s/users-oci:latest' # &lt;1&gt;
+          imagePullPolicy: Always # &lt;2&gt;
+          ports:
+            - name: http
+              containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /health/readiness
+              port: 8080
+            initialDelaySeconds: 5
+            timeoutSeconds: 3
+          livenessProbe:
+            httpGet:
+              path: /health/liveness
+              port: 8080
+            initialDelaySeconds: 5
+            timeoutSeconds: 3
+            failureThreshold: 10
+          env:
+            - name: MICRONAUT_ENVIRONMENTS
+              value: oraclecloud
+      imagePullSecrets:
+        - name: ocirsecret # &lt;3&gt;
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: gdk-k8s
+  name: users
+spec:
+  selector:
+    app: users
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 8080
+</code></pre>
+
+<p><strong>1</strong> The tag of the container image in Container Registry. Change the <code>&lt;region&gt;</code> to your region and replace <code>&lt;tenancy-namespace&gt;</code> with your tenancy namespace. (This MUST match the tag you created above in step <strong>2</strong> of section <strong>3.4</strong>.)</p>
+
+<p><strong>2</strong> The <code>imagePullPolicy</code> is <code>Always</code>, which means that Kubernetes will always pull the latest version of the image from the container registry.</p>
+
+<p><strong>3</strong> The name of a secret to pull container images from Container Registry. (You will create the secret in section <strong>4</strong>.)</p>
+    
+      <h3 id="36-create-and-publish-a-container-image-of-the-native-orders-microservice">
+        
+        
+          3.6. Create and Publish a Container Image of the Native <em>Orders</em> Microservice <a href="#36-create-and-publish-a-container-image-of-the-native-orders-microservice" class="anchor_heading">#</a>
         
         
       </h3>
@@ -740,7 +714,7 @@ export GKE_CLUSTER_NAME="gdk-k8s"
         <blockquote>
           <p>Note: If you encounter problems creating a container image, run the following command
           from the <em>orders/build/docker/native-main/</em> directory:</p>
-          <pre><code class="language-bash">docker build . -t orders-gcp -f DockerfileNative</code></pre>
+          <pre><code class="language-bash">docker build . -t orders-oci -f DockerfileNative</code></pre>
         </blockquote>
     </div>
     <div id="maven">
@@ -748,7 +722,7 @@ export GKE_CLUSTER_NAME="gdk-k8s"
         <blockquote>
           <p>Note: If you encounter problems creating a container image, run the following command
           from the <em>orders/target/</em> directory:</p>
-          <pre><code class="language-bash">docker build . -t orders-gcp -f Dockerfile</code></pre>
+          <pre><code class="language-bash">docker build . -t orders-oci -f Dockerfile</code></pre>
         </blockquote>
     </div>
 </div>
@@ -757,103 +731,110 @@ export GKE_CLUSTER_NAME="gdk-k8s"
   <p>Note: Ensure that you construct container images for the correct CPU architecture. For instance, if you are using AArch64, modify the <code>DOCKER_DEFAULT_PLATFORM</code> environment variable to the value <code>linux/amd64</code>. Alternatively, you have the option to use AArch64 instances within your Kubernetes cluster.</p>
 </blockquote>
     
-      <h3 id="35-prepare-the-orders-microservice">
+      <h3 id="37-create-a-container-repository-for-the-orders-microservice">
         
         
-          3.5. Prepare the <em>Orders</em> Microservice <a href="#35-prepare-the-orders-microservice" class="anchor_heading">#</a>
+          3.7. Create a Container Repository for the <em>Orders</em> Microservice <a href="#37-create-a-container-repository-for-the-orders-microservice" class="anchor_heading">#</a>
         
         
       </h3>
 
 <ol>
   <li>
-    <p>Export the <em>orders</em> microservice container image repository to the <code>ORDERS_REPOSITORY</code> environment variable:</p>
+    <p>Create a container repository named “gdk-k8s/orders-oci” in your compartment.</p>
 
-    <pre><code class="language-bash"> export ORDERS_REPOSITORY="gcr.io/$GCP_PROJECT_ID/orders"
+    <pre><code class="language-bash"> export ORDERS_REPOSITORY=$(oci artifacts container repository create --display-name gdk-k8s/orders-oci --compartment-id $OCI_COMPARTMENT_ID | jq .data.id -r)
 </code></pre>
   </li>
   <li>
-    <p>Edit the file named <em>orders/k8s-gcp.yml</em> as follows:</p>
+    <p>Tag the existing <em>orders</em> microservice container image with details of the container repository:</p>
 
-    <pre><code class="language-yml"> apiVersion: apps/v1
- kind: Deployment
- metadata:
-   namespace: gdk-k8s
-   name: orders
- spec:
-   selector:
-     matchLabels:
-       app: orders
-   template:
-     metadata:
-       labels:
-         app: orders
-     spec:
-       serviceAccountName: gdk-service
-       containers:
-         - name: orders
-           image: 'gcr.io/&lt;gcp-project-id&gt;/orders:latest' # &lt;1&gt;
-           imagePullPolicy: Always # &lt;2&gt;
-           ports:
-             - name: http
-               containerPort: 8080
-           readinessProbe:
-             httpGet:
-               path: /health/readiness
-               port: 8080
-             initialDelaySeconds: 5
-             timeoutSeconds: 3
-           livenessProbe:
-             httpGet:
-               path: /health/liveness
-               port: 8080
-             initialDelaySeconds: 5
-             timeoutSeconds: 3
-             failureThreshold: 10
-           env:
-             - name: MICRONAUT_ENVIRONMENTS
-               value: gcp
-       imagePullSecrets:
-         - name: gcpsersecret # &lt;3&gt;
- ---
- apiVersion: v1
- kind: Service
- metadata:
-   namespace: gdk-k8s
-   name: orders
- spec:
-   selector:
-     app: orders
-   type: NodePort
-   ports:
-     - protocol: TCP
-       port: 8080
-</code></pre>
-
-    <p><strong>1</strong> The URI of the repository that you created in GKE. Change the <gcp-project-id> to your Google project id. You can achieve this by running <code>sed -i'' -e "s/&lt;project-id&gt;/$GCP_PROJECT_ID/" orders/k8s-gcp.yml</code>.</gcp-project-id></p>
-
-    <p><strong>2</strong> Change <code>imagePullPolicy</code> to <code>Always</code>.</p>
-
-    <p><strong>3</strong> The name of a secret to pull container images from Google Container Registry.</p>
-  </li>
-  <li>
-    <p>Tag an existing <em>orders</em> microservice container image:</p>
-
-    <pre><code class="language-bash"> docker tag orders-gcp:latest ${ORDERS_REPOSITORY}:latest
+    <pre><code class="language-bash"> docker tag orders-oci:latest $OCI_REGION.ocir.io/$OCI_TENANCY_NAMESPACE/gdk-k8s/orders-oci:latest
 </code></pre>
   </li>
   <li>
     <p>Push the tagged <em>orders</em> microservice container image to the remote repository:</p>
 
-    <pre><code class="language-bash"> docker push ${ORDERS_REPOSITORY}:latest
+    <pre><code class="language-bash"> docker push $OCI_REGION.ocir.io/$OCI_TENANCY_NAMESPACE/gdk-k8s/orders-oci:latest
 </code></pre>
   </li>
 </ol>
     
-      <h3 id="36-create-and-publish-a-container-image-of-the-native-api-gateway-microservice">
+      <h3 id="38-update-the-orders-microservice">
         
         
-          3.6. Create and Publish a Container Image of the Native <em>API</em> (Gateway) Microservice <a href="#36-create-and-publish-a-container-image-of-the-native-api-gateway-microservice" class="anchor_heading">#</a>
+          3.8. Update the <em>Orders</em> Microservice <a href="#38-update-the-orders-microservice" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>Edit the file named <em>orders/k8s-oci.yml</em> as follows:</p>
+
+<pre><code class="language-yml">apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: gdk-k8s
+  name: orders
+spec:
+  selector:
+    matchLabels:
+      app: orders
+  template:
+    metadata:
+      labels:
+        app: orders
+    spec:
+      serviceAccountName: gdk-service
+      containers:
+        - name: orders
+          image: '&lt;region&gt;.ocir.io/&lt;tenancy-namespace&gt;/gdk-k8s/orders-oci:latest' # &lt;1&gt;
+          imagePullPolicy: Always # &lt;2&gt;
+          ports:
+            - name: http
+              containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /health/readiness
+              port: 8080
+            initialDelaySeconds: 5
+            timeoutSeconds: 3
+          livenessProbe:
+            httpGet:
+              path: /health/liveness
+              port: 8080
+            initialDelaySeconds: 5
+            timeoutSeconds: 3
+            failureThreshold: 10
+          env:
+            - name: MICRONAUT_ENVIRONMENTS
+              value: oraclecloud
+      imagePullSecrets:
+        - name: ocirsecret # &lt;3&gt;
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: gdk-k8s
+  name: orders
+spec:
+  selector:
+    app: orders
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 8080
+</code></pre>
+
+<p><strong>1</strong> The container image tag that exists in Container Registry. Change the <code>&lt;region&gt;</code> to your region and replace <code>&lt;tenancy-namespace&gt;</code> with your tenancy namespace. (This MUST match the tag you created above in step <strong>2</strong> of section <strong>3.7</strong>.)</p>
+
+<p><strong>2</strong> Change <code>imagePullPolicy</code> to <code>Always</code>, which means that Kubernetes will always pull the latest version of the image from the container registry.</p>
+
+<p><strong>3</strong> The name of a secret to pull container images from Container Registry. (You will create the secret in section <strong>4</strong>.)</p>
+    
+      <h3 id="39-create-and-publish-a-container-image-of-the-native-api-gateway-microservice">
+        
+        
+          3.9. Create and Publish a Container Image of the Native <em>API</em> (Gateway) Microservice <a href="#39-create-and-publish-a-container-image-of-the-native-api-gateway-microservice" class="anchor_heading">#</a>
         
         
       </h3>
@@ -870,7 +851,7 @@ export GKE_CLUSTER_NAME="gdk-k8s"
         <blockquote>
           <p>Note: If you encounter problems creating a container image, run the following command
           from the <em>api/build/docker/native-main/</em> directory:</p>
-          <pre><code class="language-bash">docker build . -t api-gcp -f DockerfileNative</code></pre>
+          <pre><code class="language-bash">docker build . -t api-oci -f DockerfileNative</code></pre>
         </blockquote>
     </div>
     <div id="maven">
@@ -878,7 +859,7 @@ export GKE_CLUSTER_NAME="gdk-k8s"
         <blockquote>
           <p>Note: If you encounter problems creating a container image, run the following command
           from the <em>api/target/</em> directory:</p>
-          <pre><code class="language-bash">docker build . -t api-gcp -f Dockerfile</code></pre>
+          <pre><code class="language-bash">docker build . -t api-oci -f Dockerfile</code></pre>
         </blockquote>
     </div>
 </div>
@@ -887,103 +868,117 @@ export GKE_CLUSTER_NAME="gdk-k8s"
   <p>Note: Ensure that you construct container images for the correct CPU architecture. For instance, if you are using AArch64, modify the <code>DOCKER_DEFAULT_PLATFORM</code> environment variable to the value <code>linux/amd64</code>. Alternatively, you have the option to use AArch64 instances within your Kubernetes cluster.</p>
 </blockquote>
     
-      <h3 id="37-prepare-the-api-microservice">
+      <h3 id="310-create-a-container-repository-for-the-api-microservice">
         
         
-          3.7. Prepare the <em>API</em> Microservice <a href="#37-prepare-the-api-microservice" class="anchor_heading">#</a>
+          3.10. Create a Container Repository for the <em>API</em> Microservice <a href="#310-create-a-container-repository-for-the-api-microservice" class="anchor_heading">#</a>
         
         
       </h3>
 
 <ol>
   <li>
-    <p>Export the <em>api</em> microservice container image repository to the <code>API_REPOSITORY</code> environment variable:</p>
+    <p>Create a container repository named “gdk-k8s/api-oci” in your compartment:</p>
 
-    <pre><code class="language-bash"> export API_REPOSITORY="gcr.io/$GCP_PROJECT_ID/api"
+    <pre><code class="language-bash"> export API_REPOSITORY=$(oci artifacts container repository create --display-name gdk-k8s/api-oci --compartment-id $OCI_COMPARTMENT_ID | jq .data.id -r)
 </code></pre>
   </li>
   <li>
-    <p>Edit the file named <em>api/k8s-gcp.yml</em> as follows:</p>
+    <p>Tag the existing <em>api</em> microservice container image with details of the container repository:</p>
 
-    <pre><code class="language-yml"> apiVersion: apps/v1
- kind: Deployment
- metadata:
-   namespace: gdk-k8s
-   name: api
- spec:
-   selector:
-     matchLabels:
-       app: api
-   template:
-     metadata:
-       labels:
-         app: api
-     spec:
-       serviceAccountName: gdk-service
-       containers:
-         - name: api
-           image: 'gcr.io/&lt;gcp-project-id&gt;/api:latest' # &lt;1&gt;
-           imagePullPolicy: Always # &lt;2&gt;
-           ports:
-             - name: http
-               containerPort: 8080
-           readinessProbe:
-             httpGet:
-               path: /health/readiness
-               port: 8080
-             initialDelaySeconds: 5
-             timeoutSeconds: 3
-           livenessProbe:
-             httpGet:
-               path: /health/liveness
-               port: 8080
-             initialDelaySeconds: 5
-             timeoutSeconds: 3
-             failureThreshold: 10
-           env:
-             - name: MICRONAUT_ENVIRONMENTS
-               value: gcp
-       imagePullSecrets:
-         - name: gcpsersecret # &lt;3&gt;
- ---
- apiVersion: v1
- kind: Service
- metadata:
-   namespace: gdk-k8s
-   name: api
- spec:
-   selector:
-     app: api
-   type: LoadBalancer
-   ports:
-     - protocol: TCP
-       port: 8080
-</code></pre>
-
-    <p><strong>1</strong> The URI of the repository that you created in GKE. Change the <code>&lt;gcp-project-id&gt;</code> to your Google project id. You can achieve this by running <code>sed -i'' -e "s/&lt;project-id&gt;/$GCP_PROJECT_ID/" api/k8s-gcp.yml</code>.</p>
-
-    <p><strong>2</strong> Change <code>imagePullPolicy</code> to <code>Always</code>.</p>
-
-    <p><strong>3</strong> The name of a secret to pull container images from Google Container Registry.</p>
-  </li>
-  <li>
-    <p>Tag an existing <em>api</em> microservice container image:</p>
-
-    <pre><code class="language-bash"> docker tag api-gcp:latest ${API_REPOSITORY}:latest
+    <pre><code class="language-bash"> docker tag api-oci:latest $OCI_REGION.ocir.io/$OCI_TENANCY_NAMESPACE/gdk-k8s/api-oci:latest
 </code></pre>
   </li>
   <li>
     <p>Push the tagged <em>api</em> microservice container image to the remote repository:</p>
 
-    <pre><code class="language-bash"> docker push ${API_REPOSITORY}:latest
+    <pre><code class="language-bash"> docker push $OCI_REGION.ocir.io/$OCI_TENANCY_NAMESPACE/gdk-k8s/api-oci:latest
 </code></pre>
   </li>
 </ol>
     
-      <h2 id="4-deploy-microservices-to-gke">
+      <h3 id="311-update-the-api-microservice">
         
         
-          4. Deploy Microservices to GKE <a href="#4-deploy-microservices-to-gke" class="anchor_heading">#</a>
+          3.11. Update the <em>API</em> Microservice <a href="#311-update-the-api-microservice" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>Edit the file named <em>api/k8s-oci.yml</em> as follows:</p>
+
+<pre><code class="language-yml">apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: gdk-k8s
+  name: api
+spec:
+  selector:
+    matchLabels:
+      app: api
+  template:
+    metadata:
+      labels:
+        app: api
+    spec:
+      serviceAccountName: gdk-service
+      containers:
+        - name: api
+          image: '&lt;region&gt;.ocir.io/&lt;tenancy-namespace&gt;/gdk-k8s/api-oci:latest' # &lt;1&gt;
+          imagePullPolicy: Always # &lt;2&gt;
+          ports:
+            - name: http
+              containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /health/readiness
+              port: 8080
+            initialDelaySeconds: 5
+            timeoutSeconds: 3
+          livenessProbe:
+            httpGet:
+              path: /health/liveness
+              port: 8080
+            initialDelaySeconds: 5
+            timeoutSeconds: 3
+            failureThreshold: 10
+          env:
+            - name: MICRONAUT_ENVIRONMENTS
+              value: oraclecloud
+      imagePullSecrets:
+        - name: ocirsecret # &lt;3&gt;
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: gdk-k8s
+  name: api
+  annotations: # &lt;4&gt;
+    oci.oraclecloud.com/load-balancer-type: lb
+    service.beta.kubernetes.io/oci-load-balancer-shape: flexible
+    service.beta.kubernetes.io/oci-load-balancer-shape-flex-min: '10'
+    service.beta.kubernetes.io/oci-load-balancer-shape-flex-max: '10'
+spec:
+  selector:
+    app: api
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 8080
+</code></pre>
+
+<p><strong>1</strong> The container image name that exists in Container Registry. Change the <code>&lt;region&gt;</code> to your region and replace <code>&lt;tenancy-namespace&gt;</code> with your tenancy namespace. (This MUST match the tag you created above in step <strong>2</strong> of section <strong>3.10</strong>.)</p>
+
+<p><strong>2</strong> Change <code>imagePullPolicy</code> to <code>Always</code>, which means that Kubernetes will always pull the latest version of the image from the container registry.</p>
+
+<p><strong>3</strong> The name of a secret to pull container images from Container Registry. (You will create the secret in section <strong>4</strong>.)</p>
+
+<p><strong>4</strong> Metadata annotations for an <a href="https://docs.oracle.com/iaas/Content/ContEng/Tasks/contengcreatingloadbalancer.htm">Oracle Cloud Infrastructure Load Balancer</a>.</p>
+    
+      <h2 id="4-deploy-microservices-to-oke">
+        
+        
+          4. Deploy Microservices to OKE <a href="#4-deploy-microservices-to-oke" class="anchor_heading">#</a>
         
         
       </h2>
@@ -996,15 +991,14 @@ export GKE_CLUSTER_NAME="gdk-k8s"
 </code></pre>
   </li>
   <li>
-    <p>Install the Google <code>kubectl</code> component:</p>
+    <p>Generate a <code>kubectl</code> configuration for authentication to OKE:</p>
 
-    <pre><code class="language-bash"> gcloud components install kubectl
-</code></pre>
-  </li>
-  <li>
-    <p>Generate a <code>kubectl</code> configuration for authentication to GKE:</p>
-
-    <pre><code class="language-bash"> gcloud container clusters get-credentials gdk-k8s
+    <pre><code class="language-bash"> oci ce cluster create-kubeconfig \
+       --cluster-id $OCI_CLUSTER_ID \
+       --file $HOME/.kube/config \
+       --region $OCI_REGION \
+       --token-version 2.0.0 \
+       --kube-endpoint PUBLIC_ENDPOINT
 </code></pre>
   </li>
   <li>
@@ -1012,6 +1006,16 @@ export GKE_CLUSTER_NAME="gdk-k8s"
 
     <pre><code class="language-bash"> export KUBECONFIG=$HOME/.kube/config
 </code></pre>
+
+    <blockquote>
+      <p>Note: On Windows, <code>kubectl</code> is typically installed within the Kubernetes extension and is not added to the system path. Windows users should configure a proxy in <em>.kube/config</em> to successfully deploy a project to Oracle Cloud Infrastructure: add a <code>proxy-url</code> property under <code>cluster</code>.</p>
+      <pre><code class="language-yml"> clusters:
+ - name: "dev"
+   cluster:
+     proxy-url: http://user:password@proxy:port
+     ...
+</code></pre>
+    </blockquote>
   </li>
   <li>
     <p>Deploy the <em>auth.yml</em> file that you created in the <a href="/gdk/gdk-modules/kubernetes/micronaut-k8s/">Deploy a Micronaut Microservices Application to a Local Kubernetes Cluster</a> guide:</p>
@@ -1020,39 +1024,39 @@ export GKE_CLUSTER_NAME="gdk-k8s"
 </code></pre>
   </li>
   <li>
-    <p>Create a secret named “gcpsersecret” for authentication to Google Cloud Container Registry using the command below. (GKE needs credentials to be able to pull your microservice container images.)</p>
+    <p>Create an <code>ocirsecret</code> secret for authentication to Container Registry using the command below. The secret is a object to store user credential data (encrypted data), for example, the database username and password. In this case, OKE uses it to authenticate to Container Registry to be able to pull microservices container images.</p>
 
-    <pre><code class="language-bash"> kubectl create secret docker-registry gcpsersecret \
-       --docker-server=gcr.io \
-       --docker-username=oauth3accesstoken \
-       --docker-password="$(gcloud auth print-access-token)" \
-       --docker-email=your@email.com
+    <pre><code class="language-bash"> kubectl create secret docker-registry ocirsecret \
+       --docker-server=$OCI_REGION.ocir.io \
+       --docker-username=$OCIR_USERNAME \
+       --docker-password=$AUTH_TOKEN \
+       --namespace=gdk-k8s
 </code></pre>
   </li>
   <li>
     <p>Deploy the <em>users</em> microservice:</p>
 
-    <pre><code class="language-bash"> kubectl apply -f users/k8s-gcp.yml
+    <pre><code class="language-bash"> kubectl apply -f users/k8s-oci.yml
 </code></pre>
   </li>
   <li>
     <p>Deploy the <em>orders</em> microservice:</p>
 
-    <pre><code class="language-bash"> kubectl apply -f orders/k8s-gcp.yml
+    <pre><code class="language-bash"> kubectl apply -f orders/k8s-oci.yml
 </code></pre>
   </li>
   <li>
     <p>Run the next command to deploy the <em>api</em> microservice:</p>
 
-    <pre><code class="language-bash"> kubectl apply -f api/k8s-gcp.yml
+    <pre><code class="language-bash"> kubectl apply -f api/k8s-oci.yml
 </code></pre>
   </li>
 </ol>
     
-      <h2 id="5-test-integration-between-the-microservices-deployed-to-gke">
+      <h2 id="5-test-integration-between-the-microservices-deployed-to-oke">
         
         
-          5. Test Integration Between the Microservices Deployed to GKE <a href="#5-test-integration-between-the-microservices-deployed-to-gke" class="anchor_heading">#</a>
+          5. Test Integration Between the Microservices Deployed to OKE <a href="#5-test-integration-between-the-microservices-deployed-to-oke" class="anchor_heading">#</a>
         
         
       </h2>
@@ -1064,9 +1068,9 @@ export GKE_CLUSTER_NAME="gdk-k8s"
 
     <pre>
  NAME                      READY   STATUS    RESTARTS   AGE
- api-6fb4cd949f-kxxx8      1/1     Running   0          2d1h
- orders-595887ddd6-6lzp4   1/1     Running   0          2d1h
- users-df6f78cd7-lgnzx     1/1     Running   0          2d1h</pre>
+ api-6fb4cd949f-kxxx8      1/1     Running   0          13s
+ orders-595887ddd6-6lzp4   1/1     Running   0          25s
+ users-df6f78cd7-lgnzx     1/1     Running   0          37s</pre>
   </li>
   <li>
     <p>Run this command to check the status of the microservices:</p>
@@ -1075,14 +1079,16 @@ export GKE_CLUSTER_NAME="gdk-k8s"
 </code></pre>
 
     <pre>
- NAME         TYPE           CLUSTER-IP       EXTERNAL-IP             PORT(S)             AGE
- api          LoadBalancer   10.100.208.154   &lt;redacted&gt;              8080:31171/TCP      20m
- orders       NodePort       10.100.157.155   &lt;none&gt;                  8080:30742/TCP      20m
- users        NodePort       10.100.126.97    &lt;none&gt;                  8080:31580/TCP      20m</pre>
+ NAME         TYPE           CLUSTER-IP     EXTERNAL-IP      PORT(S)             AGE
+ api          LoadBalancer   10.96.70.48    129.146.149.81   8080:31666/TCP      2m9s
+ orders       NodePort       10.96.94.130   &lt;none&gt;           8080:31702/TCP      2m22s
+ users        NodePort       10.96.34.174   &lt;none&gt;           8080:31528/TCP      2m33s</pre>
 
-    <p>If <code>EXTERNAL-IP</code> is in a <code>&lt;pending&gt;</code> state, wait a couple of seconds and then run the command again.</p>
+    <p>If <code>EXTERNAL-IP</code> is in a <code>&lt;pending&gt;</code> state, wait a few seconds and then run the command again.</p>
   </li>
-  <li>Retrieve the URL of the <em>api</em> microservice and set it as the value of the <code>$API_URL</code> environment variable:
+  <li>
+    <p>Retrieve the URL of the <em>api</em> microservice and set it as the value of the <code>$API_URL</code> environment variable:</p>
+
     <pre><code class="language-bash"> export API_URL=http://$(kubectl get svc api -n=gdk-k8s -o json | jq -r '.status.loadBalancer.ingress[0].ip'):8080
 </code></pre>
   </li>
@@ -1205,102 +1211,46 @@ export GKE_CLUSTER_NAME="gdk-k8s"
   </li>
 </ol>
     
-      <h2 id="6-delete-kubernetes-resources">
+      <h2 id="6-clean-up-cloud-resources">
         
         
-          6. Delete Kubernetes Resources <a href="#6-delete-kubernetes-resources" class="anchor_heading">#</a>
-        
-        
-      </h2>
-
-<p>To delete all Kubernetes resources that were created in this guide, run this command:</p>
-
-<pre><code class="language-bash">kubectl delete namespaces gdk-k8s
-</code></pre>
-
-<p>Delete the <code>gdk-k8s/users</code> artifacts container repository:</p>
-
-<pre><code class="language-bash">gcloud container images delete ${USERS_REPOSITORY} --force-delete-tags --quiet
-</code></pre>
-
-<p>Delete the <code>gdk-k8s/orders</code> artifacts container repository:</p>
-
-<pre><code class="language-bash">gcloud container images delete ${ORDERS_REPOSITORY} --force-delete-tags --quiet
-</code></pre>
-
-<p>Delete the <code>gdk-k8s/api</code> artifacts container repository:</p>
-
-<pre><code class="language-bash">gcloud container images delete ${API_REPOSITORY} --force-delete-tags --quiet
-</code></pre>
-
-<p>Finally, delete the <code>gdk-k8s</code> GKE cluster:</p>
-
-<pre><code class="language-bash">gcloud container clusters delete gdk-k8s
-</code></pre>
-    
-      <h2 id="7-clean-up">
-        
-        
-          7. Clean Up <a href="#7-clean-up" class="anchor_heading">#</a>
+          6. Clean Up Cloud Resources <a href="#6-clean-up-cloud-resources" class="anchor_heading">#</a>
         
         
       </h2>
 
-<p>When you have completed the guide, you can clean up the resources you created on Google Cloud Platform so you will not be billed for them in the future.</p>
-    
-      <h3 id="71-delete-the-project">
-        
-        
-          7.1. Delete the Project <a href="#71-delete-the-project" class="anchor_heading">#</a>
-        
-        
-      </h3>
-
-<p>The easiest way to eliminate billing is to delete the project you created.</p>
-
-<p>Deleting a project has the following consequences:</p>
-
-<ul>
-  <li>
-    <p>If you used an existing project, you will also delete any other work you have done in the project.</p>
-  </li>
-  <li>
-    <p>You cannot reuse the project ID of a deleted project. If you created a custom project ID that you plan to use in the future, you should delete the resources inside the project instead. This ensures that URLs that use the project ID, such as an <em>appspot.com</em> URL, remain available.</p>
-  </li>
-  <li>
-    <p>If you are exploring multiple guides, reusing projects instead of deleting them prevents you from exceeding project quota limits.</p>
-  </li>
-</ul>
-    
-      <h4 id="711-via-the-cli">
-        
-        
-          7.1.1. Via the CLI
-        
-        
-      </h4>
-<p>To delete the project using the Google Cloud CLI, run the following command:</p>
-
-<pre><code class="language-bash">gcloud projects delete gdk-guides
-</code></pre>
-    
-      <h4 id="712-via-the-cloud-platform-console">
-        
-        
-          7.1.2. Via the Cloud Platform Console
-        
-        
-      </h4>
+<p>After you have finished this guide, clean up the resources you created.</p>
 
 <ol>
   <li>
-    <p>In the Cloud Platform Console, go to the <a href="https://console.cloud.google.com/iam-admin/projects">Projects page</a>.</p>
+    <p>Delete all Kubernetes resources that were created in this guide:</p>
+
+    <pre><code class="language-bash"> kubectl delete namespaces gdk-k8s
+</code></pre>
   </li>
   <li>
-    <p>In the project list, select the project you want to delete and click <strong>Delete project</strong>. Select the check box next to the project name and click <strong>Delete project</strong>.</p>
+    <p>Delete the OKE cluster:</p>
+
+    <pre><code class="language-bash"> oci ce cluster delete --cluster-id $OCI_CLUSTER_ID --force
+</code></pre>
   </li>
   <li>
-    <p>In the dialog box, enter the project ID, and then click <strong>Shut down</strong> to delete the project.</p>
+    <p>Delete the <code>gdk-k8s/users-oci</code> artifacts container repository:</p>
+
+    <pre><code class="language-bash"> oci artifacts container repository delete --repository-id $USERS_REPOSITORY --force
+</code></pre>
+  </li>
+  <li>
+    <p>Delete the <code>gdk-k8s/order-oci</code> artifacts container repository:</p>
+
+    <pre><code class="language-bash"> oci artifacts container repository delete --repository-id $ORDERS_REPOSITORY --force
+</code></pre>
+  </li>
+  <li>
+    <p>Delete the <code>gdk-k8s/api-oci</code> artifacts container repository:</p>
+
+    <pre><code class="language-bash"> oci artifacts container repository delete --repository-id $API_REPOSITORY --force
+</code></pre>
   </li>
 </ol>
     
@@ -1312,7 +1262,7 @@ export GKE_CLUSTER_NAME="gdk-k8s"
         
       </h3>
 
-<p>This guide demonstrated how to use Kubernetes Service Discovery and Distributed Configuration, provided with the Micronaut Kubernetes integration, to connect three microservices, and to deploy these microservices to a Kubernetes cluster on the Google Kubernetes Engine.</p>
+<p>This guide demonstrated how to use Kubernetes Service Discovery and Distributed Configuration, provided with the Micronaut Kubernetes integration, to connect three microservices, and to deploy these microservices to a Kubernetes cluster in Oracle Cloud Infrastructure Container Engine for Kubernetes.</p>
     
       <h3 id="related-documentation">
         
@@ -1324,10 +1274,7 @@ export GKE_CLUSTER_NAME="gdk-k8s"
 
 <ul>
   <li><a href="https://micronaut-projects.github.io/micronaut-kubernetes/latest/guide/">Micronaut Kubernetes module</a></li>
-  <li><a href="https://micronaut-projects.github.io/micronaut-gcp/latest/guide/">Micronaut Google Cloud Platform integration</a></li>
-  <li><a href="https://cloud.google.com/kubernetes-engine">Google Kubernetes Engine</a></li>
-  <li><a href="https://cloud.google.com/container-registry">Google Cloud Container Registry</a></li>
-  <li><a href="https://cloud.google.com/artifact-registry">Google Cloud Artifact Registry</a></li>
+  <li><a href="https://docs.oracle.com/iaas/Content/ContEng/Concepts/contengoverview.htm">Oracle Cloud Infrastructure Container Engine for Kubernetes (OKE)</a></li>
 </ul>
 
       </div>
