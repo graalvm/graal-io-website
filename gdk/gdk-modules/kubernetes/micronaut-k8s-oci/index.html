@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="The Graal Development Kit for Micronaut (GDK) is a build of a curated set of Micronaut framework modules and their required libraries for building portable c..."/>
-  <meta name="last_modified" content="2024-05-28 14:43:37 +0000"/>
-  <meta name="last_built" content="2024-06-11 11:25:32 +0000"/>
+  <meta name="last_modified" content="2024-07-08 11:59:32 +0000"/>
+  <meta name="last_built" content="2024-07-16 15:01:39 +0000"/>
   <link rel="stylesheet" href="/gdk/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gdk/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gdk/resources/img/favicon/favicon-32x32.png">
@@ -366,11 +366,11 @@
     <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
   </ul>
   <div id="gradle">
-    <p><a href="https://github.com/oracle/gcn/releases/download/4.3.7.2/4.3.7.2_kubernetes_oci-kubernetes-demo-java-gradle.zip">Gradle Micronaut OKE Example <img class="download-img-guides" src="/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" /></a>
+    <p><a href="https://github.com/oracle/gcn/releases/download/4.5.0.0/4.5.0.0_kubernetes_oci-kubernetes-demo-java-gradle.zip">Gradle Micronaut OKE Example <img class="download-img-guides" src="/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" /></a>
     </p>
   </div>
   <div id="maven">
-    <p><a href="https://github.com/oracle/gcn/releases/download/4.3.7.2/4.3.7.2_kubernetes_oci-kubernetes-demo-java-maven.zip">Maven Micronaut OKE Example <img class="download-img-guides" src="/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" /></a>
+    <p><a href="https://github.com/oracle/gcn/releases/download/4.5.0.0/4.5.0.0_kubernetes_oci-kubernetes-demo-java-maven.zip">Maven Micronaut OKE Example <img class="download-img-guides" src="/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" /></a>
     </p>
   </div>
 </div>
@@ -457,7 +457,7 @@ export OCI_COMPARTMENT_ID="ocid1.compartment.oc1..aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
     <pre><code class="language-bash">set OCI_USER_ID=&lt;id&gt;</code></pre>
     <p>If you use PowerShell, change <code>export</code> to <code>$</code> and use quotes around the value, for example:</p>
     <pre><code class="language-bash">$OCI_USER_ID="&lt;id&gt;"</code></pre>
-    <p>To dereference a value in Linux/macOS or Powershell, use <code>$</code>, for example:
+    <p>To dereference a value in Linux/macOS or PowerShell, use <code>$</code>, for example:
     <code>/some/command -option=$OCI_USER_ID</code></p>
     <p>If you use <code>cmd</code>, use <code>%</code> before and after the name, for example: <code>/some/command -option=%OCI_USER_ID%</code></p>
 </details>
@@ -503,7 +503,7 @@ export OCI_COMPARTMENT_ID="ocid1.compartment.oc1..aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
         <pre><code class="language-bash">./gradlew dockerBuildNative</code></pre>
     </div>
     <div id="maven">
-        <pre><code class="language-bash">./mvnw package -Dpackaging=docker-native -Pgraalvm</code></pre>
+        <pre><code class="language-bash">./mvnw clean package -Dpackaging=docker-native -Pgraalvm</code></pre>
     </div>
 </div>
 
@@ -640,7 +640,7 @@ spec:
         <pre><code class="language-bash">./gradlew dockerBuildNative</code></pre>
     </div>
     <div id="maven">
-        <pre><code class="language-bash">./mvnw package -Dpackaging=docker-native -Pgraalvm</code></pre>
+        <pre><code class="language-bash">./mvnw clean package -Dpackaging=docker-native -Pgraalvm</code></pre>
     </div>
 </div>
 
@@ -775,7 +775,7 @@ spec:
         <pre><code class="language-bash">./gradlew dockerBuildNative</code></pre>
     </div>
     <div id="maven">
-        <pre><code class="language-bash">./mvnw package -Dpackaging=docker-native -Pgraalvm</code></pre>
+        <pre><code class="language-bash">./mvnw clean package -Dpackaging=docker-native -Pgraalvm</code></pre>
     </div>
 </div>
 

@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="The Graal Development Kit for Micronaut (GDK) is a build of a curated set of Micronaut framework modules and their required libraries for building portable c..."/>
-  <meta name="last_modified" content="2024-05-23 18:59:28 +0000"/>
-  <meta name="last_built" content="2024-06-11 11:25:32 +0000"/>
+  <meta name="last_modified" content="2024-07-11 15:18:50 +0000"/>
+  <meta name="last_built" content="2024-07-16 15:01:39 +0000"/>
   <link rel="stylesheet" href="/gdk/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gdk/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gdk/resources/img/favicon/favicon-32x32.png">
@@ -489,22 +489,22 @@
 
 <ol>
   <li>
-    <p>Go to <strong>View</strong>, <strong>Command Palette</strong>, search for “gcn”, and invoke the <strong>GCN: Create GCN Project</strong> quick action:</p>
+    <p>Go to <strong>View</strong>, <strong>Command Palette</strong>, search for “Graal Dev Kit”, and invoke the <strong>Graal Dev Kit: Create New Project</strong> quick action:</p>
 
-    <p><img src="/gdk/docs/vscode-tools/images/vs-code/oci/gdk-vscode-actions.png" alt="gdk-vscode-actions.png" /></p>
+    <p><img src="/gdk/docs/vscode-tools/images/gdk-vscode-actions.png" alt="Create New Project Action" /></p>
   </li>
   <li>Follow the command prompts to generate a new Maven or Gradle project. For example, to create a simple Java application:
     <ul>
       <li>Pick Micronaut version: <em>Default</em></li>
       <li>Pick application type: <em>Application</em></li>
       <li>Pick project Java: <em>GraalVM</em> or Other Java</li>
-      <li>Provide a project name: <em>gcp-run-demo</em></li>
+      <li>Provide a project name: <em>cloudrun-demo</em></li>
       <li>Provide base package: <em>com.example</em></li>
       <li>Pick project services: <em>none</em>. Click <strong>OK</strong> to confirm</li>
       <li>Pick build tool: <em>Gradle (Groovy)</em> or <em>Maven</em></li>
       <li>Pick test framework: <em>JUnit</em></li>
       <li>Pick cloud platform: <em>GCP</em>. Click <strong>OK</strong> to confirm</li>
-      <li>Select the destination directory on your local disk and whether to open the project in a new window or add it to the current workspace. The wizard creates a directory named <em>gcp-run-demo</em> containing an application in a package named <code>com.example</code>.</li>
+      <li>Select the destination directory on your local disk and whether to open the project in a new window or add it to the current workspace. The wizard creates a directory named <em>cloudrun-demo</em> containing an application in a package named <code>com.example</code>.</li>
     </ul>
   </li>
   <li>
@@ -573,7 +573,6 @@
 
     <pre><code class="language-bash"> docker images
 </code></pre>
-    <p><img src="/gdk/docs/vscode-tools/images/images_cloudrun/docker-images.png" alt="Docker Images" /></p>
   </li>
   <li>
     <p>Tag your Docker image with Google Cloud’s registry address using the command:</p>
@@ -599,13 +598,9 @@
 
     <pre><code class="language-bash"> docker push gcr.io/&lt;Project ID&gt;/&lt;ImageName&gt;
 </code></pre>
-
-    <p><img src="/gdk/docs/vscode-tools/images/images_cloudrun/docker-push.png" alt="Push Container" /></p>
   </li>
   <li>
-    <p>Verify the successful creation of your container image in the Google Cloud Artifact Registry. Login to the console and check the creation of the repository:</p>
-
-    <p><img src="/gdk/docs/vscode-tools/images/images_cloudrun/artifact-created.png" alt="GCP Container Repository Created" /></p>
+    <p>Verify the successful creation of your container image in the Google Cloud Artifact Registry. Login to the console and check the creation of the repository.</p>
   </li>
 </ol>
     
@@ -636,9 +631,7 @@ Specify a name for the service:</p>
 
 <p>You will be asked to provide the number of the region.
 Select “Yes” to allow unauthenticated requests, if necessary.
-Once completed, the application will be accessible from the Service URL printed to the console:</p>
-
-<p><img src="/gdk/docs/vscode-tools/images/images_cloudrun/service-created.png" alt="Service Created to Cloud Run" /></p>
+Once completed, the application will be accessible from the Service URL printed to the console.</p>
     
       <h3 id="google-cloud-console">
         
@@ -662,8 +655,6 @@ Once completed, the application will be accessible from the Service URL printed 
 </ol>
 
 <p>Once created, open the Service URL in a browser to check that your application is successfully deployed and running on Google Cloud Platform.</p>
-
-<p><img src="/gdk/docs/vscode-tools/images/images_cloudrun/app-run.png" alt="Application Running" /></p>
     
       <h3 id="summary">
         

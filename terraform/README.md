@@ -14,6 +14,6 @@ mv gcdk-mysql.zip ../docs/gdk-modules/database/archives/
 ```
 
 ```bash
-zip -r gcdk-function.zip gcdk-function
-mv gcdk-function.zip ../docs/gdk-modules/serverless/archives
+zip -r gdk-function.zip gdk-function
+mv gdk-function.zip ../docs/gdk-modules/serverless/archives/
 ```

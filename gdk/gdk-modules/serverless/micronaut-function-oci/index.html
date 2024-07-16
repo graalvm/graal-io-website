@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="The Graal Development Kit for Micronaut (GDK) is a build of a curated set of Micronaut framework modules and their required libraries for building portable c..."/>
-  <meta name="last_modified" content="2024-06-04 16:21:31 +0000"/>
-  <meta name="last_built" content="2024-06-11 11:25:32 +0000"/>
+  <meta name="last_modified" content="2024-07-09 13:53:28 +0000"/>
+  <meta name="last_built" content="2024-07-16 15:01:39 +0000"/>
   <link rel="stylesheet" href="/gdk/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gdk/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gdk/resources/img/favicon/favicon-32x32.png">
@@ -392,11 +392,9 @@
       </h3>
 
 <ul>
-  <li><strong>This guide currently requires an x64-based machine</strong>.</li>
   <li>JDK 17 or higher. See <a href="/gdk/get-started/setting-up-desktop/">Setting up Your Desktop</a>.</li>
   <li>An Oracle Cloud Infrastructure account. See <a href="/gdk/get-started/setting-up-cloud-accounts/">Setting up Your Cloud Accounts</a>.</li>
   <li>A Docker-API compatible container runtime such as <a href="https://docs.rancherdesktop.io/getting-started/installation/">Rancher Desktop</a> or <a href="https://www.docker.io/gettingstarted/">Docker</a> installed and running.</li>
-  <li>An SSH key. See <a href="https://docs.oracle.com/en/learn/generate_ssh_keys/index.html">Generate SSH keys</a>.</li>
   <li>The GDK CLI. See <a href="/gdk/get-started/setting-up-desktop/">Setting up Your Desktop</a>. (Optional.)</li>
 </ul>
 
@@ -408,11 +406,11 @@
     <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
   </ul>
   <div id="gradle">
-    <p><a href="https://github.com/oracle/gcn/releases/download/4.3.7.2/4.3.7.2_serverless_oci-serverless-demo-java-gradle.zip">Gradle Oracle Cloud Infrastructure Serverless Example <img class="download-img-guides" src="/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" /></a>
+    <p><a href="https://github.com/oracle/gcn/releases/download/4.5.0.0/4.5.0.0_serverless_oci-serverless-demo-java-gradle.zip">Gradle Oracle Cloud Infrastructure Serverless Example <img class="download-img-guides" src="/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" /></a>
     </p>
   </div>
   <div id="maven">
-    <p><a href="https://github.com/oracle/gcn/releases/download/4.3.7.2/4.3.7.2_serverless_oci-serverless-demo-java-maven.zip">Maven Oracle Cloud Infrastructure Serverless Example <img class="download-img-guides" src="/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" /></a>
+    <p><a href="https://github.com/oracle/gcn/releases/download/4.5.0.0/4.5.0.0_serverless_oci-serverless-demo-java-maven.zip">Maven Oracle Cloud Infrastructure Serverless Example <img class="download-img-guides" src="/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" /></a>
     </p>
   </div>
 </div>
@@ -476,7 +474,7 @@
     <li class="tabs-maven"><a href="#maven">Maven</a></li>
   </ul>
   <div id="gradle">
-    <pre><code class="language-bash">gcn create-gateway-function com.example.oci-serverless-demo \
+    <pre><code class="language-bash">gdk create-gateway-function com.example.oci-serverless-demo \
     --clouds=oci \
     --features=graalvm,validation \
     --example-code=false \
@@ -485,7 +483,7 @@
     --lang=java</code></pre>
   </div>
   <div id="maven">
-    <pre><code class="language-bash">gcn create-gateway-function com.example.oci-serverless-demo \
+    <pre><code class="language-bash">gdk create-gateway-function com.example.oci-serverless-demo \
     --clouds=oci \
     --features=graalvm,validation \
     --example-code=false \
@@ -728,7 +726,7 @@ class StoreController {
   </li>
 </ol>
 
-<p>If you wish to implement a more advanced <code>StorageService</code> to be used instead of this one, annotate your implementation with <code>@Singleton</code> as shown above. Use the <code>@Requires(env = "oraclecloud")</code> annotation to make it specific to Oracle Cloud Infrastructure. Visit the <a href="gdk/modules/#database">Database Module</a> for details about how to store and manipulate data in a database.</p>
+<p>If you wish to implement a more advanced <code>StorageService</code> to be used instead of this one, annotate your implementation with <code>@Singleton</code> as shown above. Use the <code>@Requires(env = "oraclecloud")</code> annotation to make it specific to Oracle Cloud Infrastructure. Visit the <a href="/gdk/modules/#database">Database Module</a> for details about how to store and manipulate data in a database.</p>
     
       <h3 id="14-tests-to-verify-gateway-function-logic">
         
@@ -883,31 +881,38 @@ class StoreControllerTest {
 
 <ul>
   <li>A <a href="https://docs.oracle.com/iaas/Content/Registry/Concepts/registryoverview.htm" target="_blank">Container Repository in Oracle Cloud Infrastructure Registry</a> (named “gdk-function-demo”)</li>
-  <li>An Oracle <a href="https://docs.oracle.com/iaas/Content/Functions/Concepts/functionsconcepts.htm#applications" target="_blank">Application</a> (named “gdk-serverless-application”) to deploy your Oracle Function</li>
-  <li>An <a href="https://docs.oracle.com/iaas/Content/APIGateway/Concepts/apigatewayoverview.htm" target="_blank">API Gateway</a> (named “gdk-serverless-gateway”) to provide access to your Oracle Function</li>
-  <li>A <a href="https://docs.oracle.com/iaas/Content/GSG/Tasks/creatingnetwork.htm" target="_blank">Virtual Cloud Network</a> (named “GDK_serverless_guide_VCN”)
+  <li>An Oracle <a href="https://docs.oracle.com/iaas/Content/Functions/Concepts/functionsconcepts.htm#applications" target="_blank">Application</a> (named “gdk-function-application”) to deploy your Oracle Function</li>
+  <li>An <a href="https://docs.oracle.com/iaas/Content/APIGateway/Concepts/apigatewayoverview.htm" target="_blank">API Gateway</a> (named “gdk-function-gateway”) to provide access to your Oracle Function</li>
+  <li>A <a href="https://docs.oracle.com/iaas/Content/GSG/Tasks/creatingnetwork.htm" target="_blank">Virtual Cloud Network</a> (named “GDK-function-VCN”)
     <ul>
       <li>A public subnet open to the internet</li>
       <li>A private subnet to the API Gateway</li>
     </ul>
   </li>
-  <li>An <a href="https://docs.oracle.com/iaas/Content/Identity/Concepts/overview.htm" target="_blank">Identity and Access Management (IAM) Policy</a> (named “gdk-serverless-policy”) to give the API Gateway permission to call your Oracle Function.</li>
+  <li>An <a href="https://docs.oracle.com/iaas/Content/Identity/Concepts/overview.htm" target="_blank">Identity and Access Management (IAM) Policy</a> (named “gdk-function-policy”) to give the API Gateway permission to call your Oracle Function.</li>
 </ul>
 
 <p>Instead of creating the stack manually, use the following steps to provision the resources using <a href="https://docs.oracle.com/iaas/Content/ResourceManager/Concepts/resourcemanager.htm" target="_blank">Oracle Cloud Infrastructure Resource Manager</a>:</p>
 
 <ol>
   <li>
-    <p>Download the Terraform configuration <a href="/gdk/docs/gdk-modules/serverless/archives/gcdk-function.zip">GDK Function <img class="download-img-guides" src="/gdk/resources/img/gdk_modules/download-archive.png" alt="Download Terraform Configuration" /></a> to your default downloads directory. (For a general introduction to Terraform and the “infrastructure-as-code” model, see <a href="https://www.terraform.io" target="_blank">https://www.terraform.io</a>.)</p>
+    <p>Download the Terraform configuration <a href="/gdk/docs/gdk-modules/serverless/archives/gdk-function.zip">GDK Function <img class="download-img-guides" src="/gdk/resources/img/gdk_modules/download-archive.png" alt="Download Terraform Configuration" /></a> to your default downloads directory. 
+(For a general introduction to Terraform and the “infrastructure-as-code” model, see <a href="https://www.terraform.io" target="_blank">https://www.terraform.io</a>.)</p>
   </li>
   <li>Follow the instructions in <a href="https://docs.oracle.com/iaas/Content/ResourceManager/Tasks/create-stack-local.htm" target="_blank">Creating a Stack from a Zip File</a>.
+    <blockquote>
+      <p>Note: For <em>Linux/macOS AArch64</em> users<br />
+ Enter “GENERIC_ARM” in the “deployment_architecture” field of the <strong>Configure variables</strong> panel.</p>
+    </blockquote>
+
     <ul>
-      <li>In the “ssh_public_key” field of the <strong>Configure variables</strong> panel, paste the contents of your public SSH key.</li>
       <li>In the <strong>Review</strong> panel, click <strong>Run apply</strong>.</li>
     </ul>
   </li>
   <li>
-    <p>Click <strong>Create</strong>. (It can take up to ten minutes to provision the stack. The <strong>Log</strong> provides details of progress.)</p>
+    <p>Click <strong>Create</strong>. 
+(It can take up to ten minutes to provision the stack. 
+The <strong>Logs</strong> resource provides details of progress.)</p>
 
     <blockquote>
       <p>Note: These resources <strong>must not</strong> already exist in your Oracle Cloud Infrastructure tenancy, otherwise the Resource Manager will fail to provision the stack—in the Log you will see a message similar to <code>Error: 409-NAMESPACE_CONFLICT, Repository already exists.</code> Delete the conflicting resources before re-attempting to provision the stack.</p>
@@ -916,7 +921,7 @@ class StoreControllerTest {
   <li>When the job completes, click <strong>Outputs</strong> in the list of the job’s resources and make note of the following values:
     <ul>
       <li><code>gdk-function-demo_namespace</code> (the namespace for the container repository)</li>
-      <li><code>gdk-serverless-gateway_hostname</code> (the hostname of the API Gateway)</li>
+      <li><code>gdk-function-gateway_hostname</code> (the hostname of the API Gateway)</li>
       <li><code>region</code> (your region identifier)</li>
     </ul>
   </li>
@@ -992,13 +997,10 @@ class StoreControllerTest {
       Modify the <em>oci/build.gradle</em> file as follows (and as shown below):
         <ul>
           <li>
-            Insert variables for <code>regionIdentifier</code> and <code>objectStorageNamespace</code>.
+            Modify the variables for <code>regionIdentifier</code> and <code>objectStorageNamespace</code>. Replace <code>[REGION IDENTIFIER]</code> and <code>[FUNCTION NAMESPACE]</code> with their corresponding values from the Terraform job (<code>&lt;region&gt;</code> and <code>&lt;gdk-function-demo_namespace&gt;</code>, respectively).
           </li>
           <li>
             Modify the <code>dockerBuild</code> task.
-          </li>
-          <li>
-            Replace <code>[REGION IDENTIFIER]</code> and <code>[FUNCTION NAMESPACE]</code> with their corresponding values from the Terraform job (<code>&lt;region&gt;</code> and <code>&lt;gdk-function-demo_namespace&gt;</code>, respectively).
             <pre><code class="language-java">var regionIdentifier = "[REGION IDENTIFIER]"
 var objectStorageNamespace = "[FUNCTION NAMESPACE]"
 tasks {
@@ -1068,7 +1070,7 @@ tasks {
     <p>In the Oracle Cloud Console, open the navigation menu, click <strong>Developer Services</strong>. Under <strong>Functions</strong>, click <strong>Applications</strong>.</p>
   </li>
   <li>
-    <p>The table should contain an application named “gdk-serverless-application” (it was created for you by Oracle Resource Manager). Click its name.</p>
+    <p>The table should contain an application named “gdk-function-application” (it was created for you by Oracle Resource Manager). Click its name.</p>
   </li>
   <li>On the <strong>Application Details</strong> page, if necessary, click the <strong>Functions</strong> resource.
 Click <strong>Create function</strong> and select <strong>Create from existing image</strong> from the drop-down list. (If required, change compartment to select your published container image.)
@@ -1092,19 +1094,19 @@ Use the following properties:
       </h2>
 
 <p>An API Deployment is the means by which you deploy an API on an API Gateway. Before the API Gateway can handle requests to the API, you must create an API deployment.
-For more information, see <a href="https://docs.oracle.com/iaas/Content/APIGateway/Concepts/apigatewayconcepts.htm#API_Deployments">API Deployments</a>.</p>
+(For more information, see <a href="https://docs.oracle.com/iaas/Content/APIGateway/Concepts/apigatewayconcepts.htm#API_Deployments">API Deployments</a>.)</p>
 
 <ol>
   <li>
     <p>In the Oracle Cloud Console, open the navigation menu, click <strong>Developer Services</strong>. Under <strong>API Management</strong>, click <strong>Gateways</strong>.</p>
   </li>
   <li>
-    <p>The table should contain a gateway named “gdk-serverless-gateway” (it was created for you by Oracle Resource Manager). Click its name.</p>
+    <p>The table should contain a gateway named “gdk-function-gateway” (it was created for you by Oracle Resource Manager). Click its name.</p>
   </li>
   <li>
     <p>On the <strong>API Gateway Details</strong> page, click <strong>Deployments</strong> under <strong>Resources</strong>.
 Click <strong>Create deployment</strong>.
-Create a new deployment with the following properties :</p>
+Create a new deployment with the following properties, then click <strong>Create</strong>:</p>
     <ul>
       <li><strong>Basic information</strong>
         <ul>
@@ -1118,7 +1120,7 @@ Create a new deployment with the following properties :</p>
           <li><strong>Route1: Path</strong>: <em>/{path*}</em></li>
           <li><strong>Route1: Methods</strong>: <em>ANY</em></li>
           <li><strong>Route1: Backend Type</strong>: <em>Oracle functions</em></li>
-          <li><strong>Route1: Application</strong>: <em>gdk-serverless-application</em></li>
+          <li><strong>Route1: Application</strong>: <em>gdk-function-application</em></li>
           <li><strong>Route1: Function name</strong>: <em>gdk-serverless-fn</em></li>
         </ul>
       </li>
@@ -1134,17 +1136,18 @@ Create a new deployment with the following properties :</p>
         
       </h2>
 
-<p>Now the application is deployed to Oracle Cloud Infrastructure, you can test it by sending requests.</p>
+<p>When the deployment is active, test the function by sending it some requests.</p>
 
 <ol>
   <li>
-    <p>Define an environment variable for your gateway hostname:</p>
+    <p>Copy the hostname of the gateway from the <strong>Gateway information</strong> tab. 
+Define an environment variable for the hostname:</p>
 
-    <pre><code class="language-bash"> export GATEWAY_HOSTNAME=aaaaaaaaaaaaaaaaaaaaaaa.apigateway.ca-toronto-1.oci.customer-oci.com
+    <pre><code class="language-bash"> export GATEWAY_HOSTNAME=aaaaaaaaaaaaaaaaaaaaa.apigateway.us-phoenix-1.oci.customer-oci.com
 </code></pre>
 
     <blockquote>
-      <p>Note: On Windows, use <code>set GATEWAY_HOSTNAME=&lt;hostname&gt;</code> to set it and <code>%GATEWAY_HOSTNAME%</code> to access it. Or you can skip this step and paste the hostname to each of the following commands manually.</p>
+      <p>Note: For Windows PowerShell, use <code>$ENV:GATEWAY_HOSTNAME = "aaaaaaaaaaaaaaaaaaaaa.apigateway.us-phoenix-1.oci.customer-oci.com"</code> to set it, and <code>$ENV:GATEWAY_HOSTNAME</code> to access it. Or you can skip this step and paste the hostname to each of the following commands manually.</p>
     </blockquote>
   </li>
   <li>
@@ -1273,9 +1276,8 @@ Create a new deployment with the following properties :</p>
     <pre><code class="language-bash">./gradlew oci:dockerPushNative</code></pre>
   </div>
   <div id="maven">
-    <p>Modify the <em>oci/pom.xml</em> file. Add the following profile:
-      <pre><code class="language-xml">&lt;profiles&gt;
-  &lt;profile&gt;
+    <p>Modify the <em>oci/pom.xml</em> file. Add the following profile to the <code>&lt;profiles&gt;</code> element:
+      <pre><code class="language-xml">&lt;profile&gt;
     &lt;id&gt;docker-native&lt;/id&gt;
     &lt;activation&gt;
       &lt;property&gt;
@@ -1310,8 +1312,7 @@ Create a new deployment with the following properties :</p>
         &lt;/plugin&gt;
       &lt;/plugins&gt;
     &lt;/build&gt;
-  &lt;/profile&gt;
-&lt;/profiles&gt;</code></pre>
+  &lt;/profile&gt;</code></pre>
     <ul>
       <li>
         Use <code>&lt;jib.docker.image&gt;</code> to set the name of the container image created by the <code>docker-native</code> build command.
@@ -1345,7 +1346,7 @@ Create a new deployment with the following properties :</p>
     <p>In the Oracle Cloud Console, open the navigation menu, click <strong>Developer Services</strong>. Under <strong>Functions</strong>, click <strong>Applications</strong>.</p>
   </li>
   <li>
-    <p>The table contains your application named “gdk-serverless-application”.
+    <p>The table contains your application named “gdk-function-application”.
 Click its name.</p>
   </li>
   <li>
@@ -1379,7 +1380,7 @@ In the table of Functions, click the name of your Oracle Function “gdk-serverl
   <li>
     <p>In the Oracle Cloud Console, open the navigation menu, click <strong>Developer Services</strong>. Under <strong>API Management</strong> click <strong>Gateways</strong>.</p>
 
-    <p>1.1. The table contains a gateway named “gdk-serverless-gateway”. Click its name.</p>
+    <p>1.1. The table contains a gateway named “gdk-function-gateway”. Click its name.</p>
 
     <p>1.2. On the <strong>API Gateway Details</strong> page, click <strong>Deployments</strong> under <strong>Resources</strong>. The table contains your deployment named “gdk-serverless-deployment”. Click its name.</p>
 
@@ -1388,7 +1389,7 @@ In the table of Functions, click the name of your Oracle Function “gdk-serverl
   <li>
     <p>In the Oracle Cloud Console, open the navigation menu, click <strong>Developer Services</strong>. Under <strong>Functions</strong>, click <strong>Applications</strong>.</p>
 
-    <p>2.1. The table contains your application named “gdk-serverless-application”. Click its name.</p>
+    <p>2.1. The table contains your application named “gdk-function-application”. Click its name.</p>
 
     <p>2.2. On the page that describes your application, if necessary click the <strong>Functions</strong> resource. In the table of Functions, click the name of your Oracle Function “gdk-serverless-fn”.</p>
 

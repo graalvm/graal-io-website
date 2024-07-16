@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="The Graal Development Kit for Micronaut (GDK) is a build of a curated set of Micronaut framework modules and their required libraries for building portable c..."/>
-  <meta name="last_modified" content="2024-05-23 18:59:28 +0000"/>
-  <meta name="last_built" content="2024-06-11 11:25:32 +0000"/>
+  <meta name="last_modified" content="2024-07-11 15:18:50 +0000"/>
+  <meta name="last_built" content="2024-07-16 15:01:39 +0000"/>
   <link rel="stylesheet" href="/gdk/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gdk/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gdk/resources/img/favicon/favicon-32x32.png">
@@ -505,9 +505,9 @@
 
 <ol>
   <li>
-    <p>Go to <strong>View</strong>, <strong>Command Palette</strong>, search for “gcn”, and invoke the <strong>OCI for GCN: Create GCN Project</strong> quick action:</p>
+    <p>Go to <strong>View</strong>, <strong>Command Palette</strong>, search for “Graal Dev Kit”, and invoke the <strong>Graal Dev Kit: Create New Project</strong> quick action:</p>
 
-    <p><img src="/gdk/docs/vscode-tools/images/vs-code/oci/gdk-vscode-actions.png" alt="gdk-vscode-actions.png" /></p>
+    <p><img src="/gdk/docs/vscode-tools/images/gdk-vscode-actions.png" alt="Create New Project Action" /></p>
   </li>
   <li>Follow the command prompts to generate a new Maven or Gradle project. For example, to create a simple Java application:
     <ul>
@@ -665,14 +665,14 @@ public class HelloController {
   <li>
     <p>Create a repository in Amazon ECR that will hold your containerized application (a container image). Under your active AWS connection, focus on ECR and click <strong>Create Repository</strong>:</p>
 
-    <p><img src="/gdk/docs/vscode-tools/images/vs-code/aws/ecr-create-repository.png" alt="Amazon ECR: Create Repository" /></p>
+    <p><img src="/gdk/docs/vscode-tools/images/aws/ecr-create-repository.png" alt="Amazon ECR: Create Repository" /></p>
 
     <p>Enter a repository name, for example, <em>gdk-demo</em>.</p>
   </li>
   <li>
     <p>Get the repository URI. Open the ECR repositories list, right-click your new repository, and click <strong>Copy Repository URI</strong>:</p>
 
-    <p><img src="/gdk/docs/vscode-tools/images/vs-code/aws/ecr-copy-repo-uri.png" alt="Amazon ECR: Copy Repository URI" /></p>
+    <p><img src="/gdk/docs/vscode-tools/images/aws/ecr-copy-repo-uri.png" alt="Amazon ECR: Copy Repository URI" /></p>
   </li>
   <li>
     <p>Specify the path to your new repository in the build configuration file, <em>aws/build.gradle</em>, as follows:</p>

@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="The Graal Development Kit for Micronaut (GDK) is a build of a curated set of Micronaut framework modules and their required libraries for building portable c..."/>
-  <meta name="last_modified" content="2024-05-23 18:59:28 +0000"/>
-  <meta name="last_built" content="2024-06-11 11:25:32 +0000"/>
+  <meta name="last_modified" content="2024-07-11 15:18:54 +0000"/>
+  <meta name="last_built" content="2024-07-16 15:01:39 +0000"/>
   <link rel="stylesheet" href="/gdk/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gdk/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gdk/resources/img/favicon/favicon-32x32.png">
@@ -447,7 +447,7 @@
 The <a href="https://micronaut-projects.github.io/micronaut-kubernetes/snapshot/guide/">Micronaut<sup>®</sup> Kubernetes module</a> provides seamless integration with GKE.</p>
 
 <blockquote>
-  <p><a href="https://cloud.google.com/kubernetes-engine">Google Kubernetes Engine (GKE)</a> is managed Kubernetes service with full Kubernetes API, four-way autoscaling, release channels, and multi-cluster support.</p>
+  <p><a href="https://cloud.google.com/kubernetes-engine">Google Kubernetes Engine (GKE)</a> is managed Kubernetes service with full Kubernetes API, four-way autoscaling, release channels, and multicluster support.</p>
 </blockquote>
     
       <h3 id="prerequisites">
@@ -491,9 +491,9 @@ The <a href="https://micronaut-projects.github.io/micronaut-kubernetes/snapshot/
 
 <ol>
   <li>
-    <p>Go to <strong>View</strong>, <strong>Command Palette</strong>, search for “gcn”, and invoke the <strong>GCN: Create GCN Project</strong> quick action:</p>
+    <p>Go to <strong>View</strong>, <strong>Command Palette</strong>, search for “Graal Dev Kit”, and invoke the <strong>Graal Dev Kit: Create New Project</strong> quick action:</p>
 
-    <p><img src="/gdk/docs/vscode-tools/images/vs-code/oci/gdk-vscode-actions.png" alt="gdk-vscode-actions.png" /></p>
+    <p><img src="/gdk/docs/vscode-tools/images/gdk-vscode-actions.png" alt="Create New Project Action" /></p>
   </li>
   <li>Follow the command prompts to generate a new Maven or Gradle project. For example, to create a simple Java application:
     <ul>
@@ -575,8 +575,6 @@ The <a href="https://micronaut-projects.github.io/micronaut-kubernetes/snapshot/
 
     <pre><code class="language-bash"> docker images
 </code></pre>
-
-    <p><img src="/gdk/docs/vscode-tools/images/images_gke/docker-images-creation.png" alt="Docker Images" /></p>
   </li>
   <li>
     <p>Create a container repository in the <a href="https://cloud.google.com/artifact-registry/docs/overview">Google Cloud Artifact Registry</a> using the Google Cloud CLI:</p>
@@ -585,9 +583,7 @@ The <a href="https://micronaut-projects.github.io/micronaut-kubernetes/snapshot/
 </code></pre>
   </li>
   <li>
-    <p>Login to the Google Cloud console and check the creation of the repository:</p>
-
-    <p><img src="/gdk/docs/vscode-tools/images/images_gke/repo-created.png" alt="Container Repository Created" /></p>
+    <p>Login to the Google Cloud console and check the creation of the repository.</p>
   </li>
   <li>
     <p>Tag your container image:</p>
@@ -609,8 +605,6 @@ The <a href="https://micronaut-projects.github.io/micronaut-kubernetes/snapshot/
 
     <pre><code class="language-bash"> docker run --rm -p 8080:8080 &lt;regionName&gt;-docker.pkg.dev/&lt;PROJECT_ID&gt;/&lt;repositoryName/ID&gt;/&lt;appName&gt;:&lt;tagName&gt;
 </code></pre>
-
-    <p><img src="/gdk/docs/vscode-tools/images/images_gke/app-run.png" alt="Access a Running App from Browser" /></p>
   </li>
 </ol>
     
@@ -662,7 +656,7 @@ The <a href="https://micronaut-projects.github.io/micronaut-kubernetes/snapshot/
     <p>Follow any additional instructions if prompted. For example, you might be asked to install the <code>gcp-auth</code> plugin, follow these instructions <a href="https://cloud.google.com/blog/products/containers-kubernetes/kubectl-auth-changes-in-gke">gke-gcloud-auth-plugin</a>. This plugin automatically and dynamically configures pods to use your credentials, allowing the applications to access Google Cloud services as if they were running within Google Cloud.</p>
   </li>
   <li>
-    <p>Establish a connection to your GKE cluste:</p>
+    <p>Establish a connection to your GKE cluster:</p>
 
     <pre><code class="language-bash"> gcloud container clusters get-credentials &lt;ClusterName&gt; --region &lt;regionName&gt;
 </code></pre>
@@ -672,8 +666,6 @@ The <a href="https://micronaut-projects.github.io/micronaut-kubernetes/snapshot/
 
     <pre><code class="language-bash"> kubectl create deployment &lt;deploymentName&gt; --image=&lt;regionName&gt;-docker.pkg.dev/&lt;PROJECT_ID&gt;/&lt;repoName&gt;/&lt;appName&gt;:&lt;tag&gt;
 </code></pre>
-
-    <p><img src="/gdk/docs/vscode-tools/images/images_gke/create-deployment.png" alt="Create a Kubernetes Deployment" /></p>
   </li>
   <li>
     <p>Set a baseline number of deployment replicas to 3 for autoscaling:</p>
@@ -692,16 +684,12 @@ The <a href="https://micronaut-projects.github.io/micronaut-kubernetes/snapshot/
 
     <pre><code class="language-bash"> kubectl get pods
 </code></pre>
-
-    <p><img src="/gdk/docs/vscode-tools/images/images_gke/list-pods.png" alt="Pods Status" /></p>
   </li>
   <li>
     <p>Expose the port so your application will be accessible from your cluster:</p>
 
     <pre><code class="language-bash"> kubectl expose deployment &lt;deploymentName&gt; --name=&lt;serviceName&gt; --type=LoadBalancer --port 80 --target-port 8080
 </code></pre>
-
-    <p><img src="/gdk/docs/vscode-tools/images/images_gke/expose-port.png" alt="Expose Port" /></p>
   </li>
   <li>
     <p>List the services:</p>
@@ -709,11 +697,7 @@ The <a href="https://micronaut-projects.github.io/micronaut-kubernetes/snapshot/
     <pre><code class="language-bash">kubectl get services
 </code></pre>
   </li>
-  <li>
-    <p>Copy the external IP and open it in a browser:</p>
-
-    <p><img src="/gdk/docs/vscode-tools/images/images_gke/app-running-from-gke.png" alt="App Running from GKE" /></p>
-  </li>
+  <li>Copy the external IP and open it in a browser.</li>
 </ol>
     
       <h3 id="summary">

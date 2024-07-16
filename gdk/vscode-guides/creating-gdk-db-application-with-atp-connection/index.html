@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="The Graal Development Kit for Micronaut (GDK) is a build of a curated set of Micronaut framework modules and their required libraries for building portable c..."/>
-  <meta name="last_modified" content="2024-05-24 14:21:42 +0000"/>
-  <meta name="last_built" content="2024-06-11 11:25:32 +0000"/>
+  <meta name="last_modified" content="2024-07-11 15:18:54 +0000"/>
+  <meta name="last_built" content="2024-07-16 15:01:39 +0000"/>
   <link rel="stylesheet" href="/gdk/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gdk/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gdk/resources/img/favicon/favicon-32x32.png">
@@ -445,7 +445,8 @@
 
 <p>This guide shows you how to use the <em>Graal Development Kit for Micronaut</em> in VS Code to create a Java application from an existing Oracle Autonomous Database schema.</p>
 
-<p>After completing this guide you will understand how to create entity and repository classes from an existing database schema tables, with no coding, and quickly build a simple CRUD application that lets you interact with the data stored in the database. All this is possible to accomplish from within VS Code thanks to the <a href="/gdk/vscode-tools/graal-cloud-native-launcher/">Graal Development Kit for Micronaut</a> and <a href="/gdk/vscode-tools/micronaut-tools/">Micronaut<sup>®</sup> Tools</a>.</p>
+<p>After completing this guide you will understand how to create entity and repository classes from existing database schema tables, with no coding, and quickly build a simple CRUD application that lets you interact with the data stored in the database. 
+You can accomplish all of this from within VS Code thanks to the <a href="/gdk/vscode-tools/graal-cloud-native-launcher/">Graal Development Kit for Micronaut</a> and <a href="/gdk/vscode-tools/micronaut-tools/">Micronaut<sup>®</sup> Tools</a>.</p>
     
       <h3 id="prerequisites">
         
@@ -459,7 +460,7 @@
   <li>JDK 17 or higher. See <a href="/gdk/get-started/setting-up-desktop/">Setting up Your Desktop</a>. <a href="https://www.oracle.com/java/graalvm/">Oracle GraalVM</a> is a fast and efficient JDK from Oracle.</li>
   <li>An Oracle Cloud Infrastructure account. See <a href="/gdk/get-started/setting-up-cloud-accounts/">Setting up Your Cloud Accounts</a>.</li>
   <li>An Oracle Cloud Infrastructure <a href="https://docs.oracle.com/en/cloud/paas/integration-cloud/oracle-integration-oci/creating-oci-compartment.html#GUID-E41FF7DB-A848-4551-A7F1-61699DCB33AB">compartment</a>.</li>
-  <li>Graal Development Kit extension Pack. See <a href="/gdk/vscode-tools/graal-development-kit-extension-pack/#installing">Installing the Graal Development Kit for Micronaut Extension Pack</a>.</li>
+  <li>The Graal Development Kit extension Pack. See <a href="/gdk/vscode-tools/graal-development-kit-extension-pack/#installing">Installing the Graal Development Kit for Micronaut Extension Pack</a>.</li>
   <li>Optional: The Oracle Developer VS Code extension. See <a href="https://docs.oracle.com/en/database/oracle/developer-tools-for-vscode/getting-started/install">Installing Oracle Developer Tools for VS Code</a>.</li>
 </ul>
     
@@ -521,7 +522,7 @@ For completing this guide, use the <a href="https://github.com/oracle/db-sample-
         
       </h3>
 
-<p>Now that you are connected to your database, install the <code>HR</code> schema. This schema is a great place to start from.
+<p>Now that you are connected to your database, install the <code>HR</code> schema. This schema is a great place to start.
 Follow these steps: <a href="https://docs.oracle.com/en/database/oracle/oracle-database/21/comsc/installing-sample-schemas.html#GUID-1E645D09-F91F-4BA6-A286-57C5EC66321D">Installation of the Sample Schemas</a>.</p>
     
       <h2 id="3-create-a-graal-development-kit-for-micronaut-project">
@@ -536,7 +537,7 @@ Follow these steps: <a href="https://docs.oracle.com/en/database/oracle/oracle-d
 
 <ol>
   <li>
-    <p>Go to <strong>View</strong>, <strong>Command Palette</strong>, search for “Graal Cloud Native”, and invoke the <strong>Graal Cloud Native: Create New Project</strong> quick action:</p>
+    <p>Go to <strong>View</strong>, <strong>Command Palette</strong>, search for “Graal Dev Kit”, and invoke the <strong>Graal Dev Kit: Create New Project</strong> quick action:</p>
 
     <p><img src="/gdk/docs/vscode-tools/images/gdk-vscode-actions.png" alt="Create New Project Action" /></p>
   </li>
@@ -544,7 +545,7 @@ Follow these steps: <a href="https://docs.oracle.com/en/database/oracle/oracle-d
     <p>Step through the project creation wizard. The following list details how you should respond to each prompt:</p>
 
     <ul>
-      <li>Pick GDK Version: <em>4.3.7</em></li>
+      <li>Pick GDK Version: <em>4.5.0</em></li>
       <li>Pick an Application type: <em>Application</em></li>
       <li>Pick Project Java: Select your JDK installation</li>
       <li>Provide project name: <em>dbsample</em></li>
@@ -633,7 +634,7 @@ Within the Explorer panel, open the <strong>DATABASES</strong> pane, as shown in
   <li>
     <p>Open the database in the view, then right-click, and select <strong>Connect to Database</strong> from the menu:</p>
 
-    <p><img src="/gdk/docs/vscode-tools/images/db-features/connect-to-database-2.png" alt="Connect to Database" /></p>
+    <p><img src="/gdk/docs/vscode-tools/images/db-features/connect-to-database.png" alt="Connect to Database" /></p>
 
     <p>If the credentials you provided (username or password) are incorrect, it will fail to connect.</p>
   </li>
@@ -658,12 +659,12 @@ Within the Explorer panel, open the <strong>DATABASES</strong> pane, as shown in
   <li>
     <p>Open the <em>src</em> folder, as shown in the screenshot blow, right-click the <em>example</em> package and select <strong>New from Template</strong>. It launches a wizard to create Micronaut Data Entity classes directly from the database schema tables.</p>
 
-    <p><img src="/gdk/docs/vscode-tools/images/db-features/new-entity-from-template.png" alt="Create Entity class from template" /></p>
+    <p><img src="/gdk/docs/vscode-tools/images/micronaut/new-entity-from-template.png" alt="Create Entity class from template" /></p>
   </li>
   <li>
     <p>When prompted, select <strong>Micronaut</strong>, then <strong>Micronaut Data Entity Classes from Database</strong>. It starts reading tables from the default database connected:</p>
 
-    <p><img src="/gdk/docs/vscode-tools/images/db-features/micronaut-entity-class-from-db.png" alt="Reading reading tables from a database" /></p>
+    <p><img src="/gdk/docs/vscode-tools/images/micronaut/micronaut-entity-class-from-db.png" alt="Reading reading tables from a database" /></p>
   </li>
   <li>
     <p>The wizard then displays a selectable list of the available tables within the database schema that you can create corresponding entities. Select all:</p>
@@ -690,7 +691,7 @@ Within the Explorer panel, open the <strong>DATABASES</strong> pane, as shown in
   <li>
     <p>When prompted, select <strong>Micronaut</strong>, then <strong>Micronaut Data Repository Interfaces from Entity</strong>:</p>
 
-    <p><img src="/gdk/docs/vscode-tools/images/db-features/micronaut-repositories-from-entities.png" alt="Micronaut Data Repository Interfaces from Entity" /></p>
+    <p><img src="/gdk/docs/vscode-tools/images/micronaut/micronaut-repositories-from-entities.png" alt="Micronaut Data Repository Interfaces from Entity" /></p>
   </li>
   <li>
     <p>From the list of entities, select the Entities for which you want to create corresponding repositories. Select all.</p>
@@ -715,7 +716,7 @@ Within the Explorer panel, open the <strong>DATABASES</strong> pane, as shown in
   <li>
     <p>When prompted, select <strong>Micronaut</strong>, then <strong>Micronaut Controller Class</strong>:</p>
 
-    <p><img src="/gdk/docs/vscode-tools/images/db-features/micronaut-controller-class.png" alt="Micronaut Controller Class" /></p>
+    <p><img src="/gdk/docs/vscode-tools/images/micronaut/micronaut-controller-class.png" alt="Micronaut Controller Class" /></p>
 
     <p>It creates a Micronaut Controller class with a default GET endpoint.</p>
   </li>
@@ -752,7 +753,7 @@ Within the Explorer panel, open the <strong>DATABASES</strong> pane, as shown in
 <p>To run the application, there is no need to configure your database connection in your project <code>application.properties</code> or <code>application.yml</code> files.
 All you need is to keep the database connection active, and then run your application using CodeLens in the <em>Application.java</em> file  (<strong>Run main</strong>, <strong>Debug main</strong>, <strong>Run with Continuous Mode</strong>):</p>
 
-<p><img src="/gdk/docs/vscode-tools/images/db-features/run-db-app-from-codelens.png" alt="Running the application from CodeLens" /></p>
+<p><img src="/gdk/docs/vscode-tools/images/micronaut/run-app-from-codelens.png" alt="Running the application from CodeLens" /></p>
 
 <p>When the application is running, send an HTTP GET request to the <code>employees</code> endpoint from a new Terminal window:</p>
 
@@ -770,8 +771,9 @@ Learn more about database management in VS Code in the <a href="/gdk/vscode-tool
         
       </h3>
 
-<p>This guide provides a detailed walkthrough for creating a Java application in VS Code using the <em>Graal Development Kit for Micronaut</em> Extension Pack, based on an Oracle Autonomous Database schema. It begins with instructions on setting up and running the application locally, ensuring a foundational understanding of the development process. Key steps include:</p>
-
+<p>This guide provides a detailed walkthrough for creating a Java application in VS Code using the <em>Graal Development Kit for Micronaut</em> Extension Pack, based on an Oracle Autonomous Database schema. 
+It begins with instructions on setting up and running the application locally, ensuring a foundational understanding of the development process. 
+Key steps include:</p>
 <ul>
   <li>Creating and connecting to an Oracle Autonomous Database.</li>
   <li>Installing a sample schema and creating a GDK Project.</li>

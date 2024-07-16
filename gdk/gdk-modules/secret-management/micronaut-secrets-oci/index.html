@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="The Graal Development Kit for Micronaut (GDK) is a build of a curated set of Micronaut framework modules and their required libraries for building portable c..."/>
-  <meta name="last_modified" content="2024-06-11 09:53:41 +0000"/>
-  <meta name="last_built" content="2024-06-11 11:25:32 +0000"/>
+  <meta name="last_modified" content="2024-07-16 11:51:14 +0000"/>
+  <meta name="last_built" content="2024-07-16 15:01:39 +0000"/>
   <link rel="stylesheet" href="/gdk/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gdk/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gdk/resources/img/favicon/favicon-32x32.png">
@@ -448,7 +448,7 @@ Unzip it, open it in your code editor, and proceed to the next steps.</li>
         <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
     </ul>
     <div id="gradle">
-        <pre><code class="language-bash">gcn create-app com.example.oci-secrets-demo \
+        <pre><code class="language-bash">gdk create-app com.example.oci-secrets-demo \
     --clouds=oci \
     --services=secretmanagement \
     --features=graalvm \
@@ -458,7 +458,7 @@ Unzip it, open it in your code editor, and proceed to the next steps.</li>
     --example-code=false</code></pre>
     </div>
     <div id="maven">
-        <pre><code class="language-bash">gcn create-app com.example.oci-secrets-demo \
+        <pre><code class="language-bash">gdk create-app com.example.oci-secrets-demo \
     --clouds=oci \
     --services=secretmanagement \
     --features=graalvm \
@@ -776,9 +776,9 @@ Packaged as a native executable, it significantly reduces application startup ti
   </div>
   <div id="maven">
     <pre><code class="language-bash">./mvnw install -pl lib -am
-./mvnw package -pl oci -Dpackaging=native-image</code></pre>
+./mvnw clean package -pl oci -Dpackaging=native-image</code></pre>
     <p>The native executable is created in the <em>oci/target/</em> directory and can be run with the following command:</p>
-    <pre><code class="language-bash">oci/target/oci</code></pre>
+    <pre><code class="language-bash">oci/target/oci-secrets-demo-oci</code></pre>
   </div>
 </div>
 

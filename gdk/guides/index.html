@@ -15,7 +15,7 @@
   </title>
   <meta name="description" content="The Graal Development Kit for Micronaut (GDK) is a build of a curated set of Micronaut framework modules and their required libraries for building portable c..."/>
   <meta name="last_modified" content="2024-04-30 15:54:27 +0000"/>
-  <meta name="last_built" content="2024-06-11 11:25:32 +0000"/>
+  <meta name="last_built" content="2024-07-16 15:01:39 +0000"/>
   <link rel="stylesheet" href="/gdk/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gdk/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gdk/resources/img/favicon/favicon-32x32.png">
@@ -172,13 +172,13 @@
             <div class="row">
                 <p class="filter-title"><span class="cloud-title-color">Cloud</span>Filter</p>
             </div>
-            <div class="guide-filter">
+            <div class="guide-filter" tabindex="0">
               <div class="row">
-                <p class="filter-item cloud-filter" data-filter="independent">Platform Independent</p>
-                <p class="filter-item cloud-filter" data-filter="oci">OCI</p>
-                <p class="filter-item cloud-filter" data-filter="aws">AWS</p>
-                <p class="filter-item cloud-filter" data-filter="gcp">GCP</p>
-                <p class="filter-item cloud-filter" data-filter="all">All</p>
+                <p class="filter-item cloud-filter" data-filter="independent" tabindex="0">Platform Independent</p>
+                <p class="filter-item cloud-filter" data-filter="oci" tabindex="0">OCI</p>
+                <p class="filter-item cloud-filter" data-filter="aws" tabindex="0">AWS</p>
+                <p class="filter-item cloud-filter" data-filter="gcp" tabindex="0">GCP</p>
+                <p class="filter-item cloud-filter" data-filter="all" tabindex="0">All</p>
               </div>
             </div>
           </div>
@@ -189,10 +189,10 @@
             <div class="row">
               <p class="filter-title mobile-filter-title"><span class="buildtool-title-color">Build Tool</span>Filter</p>
             </div>
-            <div class="guide-filter" id="gradle-maven switcher">
+            <div class="guide-filter" id="gradle-maven switcher" tabindex="0">
               <div class="row">
-                <p class="filter-item buildtool-filter" data-filter="gradle">Gradle</p>
-                <p class="filter-item buildtool-filter" data-filter="maven">Maven</p>
+                <p class="filter-item buildtool-filter" data-filter="gradle" tabindex="0">Gradle</p>
+                <p class="filter-item buildtool-filter" data-filter="maven" tabindex="0">Maven</p>
               </div>
             </div>
           </div>
@@ -210,20 +210,20 @@
         <div class="row">
             <p class="filter-title">GDK<span class="module-title-color">Modules</span>Filter</p>
         </div>
-        <div class="guide-filter">
+        <div class="guide-filter" tabindex="0">
           <div class="row">
-            <p class="filter-item module-filter" data-filter="database">Database</p>
-            <p class="filter-item module-filter" data-filter="email">Email</p>
-            <p class="filter-item module-filter" data-filter="kubernetes">Kubernetes</p>
-            <p class="filter-item module-filter" data-filter="logging">Logging</p>
-            <p class="filter-item module-filter" data-filter="metrics">Metrics</p>
-            <p class="filter-item module-filter" data-filter="object-storage">Object Storage</p>
-            <p class="filter-item module-filter" data-filter="secret-management">Secret Management</p>
-            <p class="filter-item module-filter" data-filter="security">Security</p>
-            <p class="filter-item module-filter" data-filter="serverless">Serverless</p>
-            <p class="filter-item module-filter" data-filter="streaming">Streaming</p>
-            <p class="filter-item module-filter" data-filter="tracing">Tracing</p>
-            <p class="filter-item module-filter" data-filter="all">All</p>
+            <p class="filter-item module-filter" data-filter="database" tabindex="0">Database</p>
+            <p class="filter-item module-filter" data-filter="email" tabindex="0">Email</p>
+            <p class="filter-item module-filter" data-filter="kubernetes" tabindex="0">Kubernetes</p>
+            <p class="filter-item module-filter" data-filter="logging" tabindex="0">Logging</p>
+            <p class="filter-item module-filter" data-filter="metrics" tabindex="0">Metrics</p>
+            <p class="filter-item module-filter" data-filter="object-storage" tabindex="0">Object Storage</p>
+            <p class="filter-item module-filter" data-filter="secret-management" tabindex="0">Secret Management</p>
+            <p class="filter-item module-filter" data-filter="security" tabindex="0">Security</p>
+            <p class="filter-item module-filter" data-filter="serverless" tabindex="0">Serverless</p>
+            <p class="filter-item module-filter" data-filter="streaming" tabindex="0">Streaming</p>
+            <p class="filter-item module-filter" data-filter="tracing" tabindex="0">Tracing</p>
+            <p class="filter-item module-filter" data-filter="all" tabindex="0">All</p>
           </div>
         </div>
       </div>
@@ -2234,7 +2234,7 @@
 <!-- Serverless Guides -->
 <!-- Maven options-->
 
-  <!--<div class="container-fluid container-fluid--custom-sm">
+  <div class="container-fluid container-fluid--custom-sm">
     <div class="row">
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
@@ -2260,7 +2260,7 @@
         </div>
       </div>
     </div>
-  </div>-->
+  </div>
 
   <div class="container-fluid container-fluid--custom-sm">
     <div class="row">
@@ -2351,7 +2351,7 @@
 <!-- Serverless Guides -->
 <!-- Gradle options-->
 
-  <!--<div class="container-fluid container-fluid--custom-sm">
+  <div class="container-fluid container-fluid--custom-sm">
     <div class="row">
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
@@ -2377,7 +2377,7 @@
         </div>
       </div>
     </div>
-  </div>-->
+  </div>
 
   <div class="container-fluid container-fluid--custom-sm">
     <div class="row">

@@ -11129,7 +11129,7 @@ img {
   -ms-interpolation-mode: bicubic; }
 
 p img {
-  max-width: 90%; }
+  max-width: 50%; }
 
 figure > img {
   display: block; }
@@ -11211,7 +11211,7 @@ figcaption {
 img.download-img-guides {
   width: 28px;
   height: 28px;
-  margin: 0px 0px 12px 2px; }
+  vertical-align: text-bottom; }
 
 img.create-app-guides {
   width: 24px;
@@ -11301,11 +11301,8 @@ code {
   font-size: 0.9375rem; }
 
 code {
-  background-color: #ffffff;
-  border-radius: 4px;
-  padding: 2px; }
+  background-color: #ffffff; }
   .docs-content code {
-    padding: 2px 4px;
     font-size: 15px; }
   table code {
     background-color: #ffffff;

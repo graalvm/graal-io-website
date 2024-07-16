@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="The Graal Development Kit for Micronaut (GDK) is a build of a curated set of Micronaut framework modules and their required libraries for building portable c..."/>
-  <meta name="last_modified" content="2024-05-28 14:55:47 +0000"/>
-  <meta name="last_built" content="2024-06-11 11:25:32 +0000"/>
+  <meta name="last_modified" content="2024-07-11 15:18:50 +0000"/>
+  <meta name="last_built" content="2024-07-16 15:01:39 +0000"/>
   <link rel="stylesheet" href="/gdk/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gdk/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gdk/resources/img/favicon/favicon-32x32.png">
@@ -481,7 +481,7 @@ This enables you to deploy the same application to different containers that wil
     <p>Step through the project creation wizard. The following list details how you should respond to each prompt:</p>
 
     <ul>
-      <li>Pick GDK Version: <em>4.3.7</em></li>
+      <li>Pick GDK Version: <em>4.5.0</em></li>
       <li>Pick an Application type: <em>Application</em></li>
       <li>Pick Project Java: Select your JDK installation</li>
       <li>Provide project name: <em>dbsample</em></li>
@@ -646,7 +646,7 @@ CREATE SEQUENCE "GENRE_SEQ" MINVALUE 1 START WITH 1 NOCACHE NOCYCLE;
   <li>
     <p>Open the database in the view, then right-click, and select <strong>Connect to Database</strong> from the menu:</p>
 
-    <p><img src="/gdk/docs/vscode-tools/images/db-features/connect-to-database-new.png" alt="Connect to Database" /></p>
+    <p><img src="/gdk/docs/vscode-tools/images/db-features/connect-to-database.png" alt="Connect to Database" /></p>
 
     <p>If the credentials you provided (username or password) are incorrect, it will fail to connect.</p>
 
@@ -670,7 +670,7 @@ CREATE SEQUENCE "GENRE_SEQ" MINVALUE 1 START WITH 1 NOCACHE NOCYCLE;
   </li>
   <li>
     <p>Click the <strong>Run Application Without Debugging</strong> icon:
- <img src="/gdk/docs/vscode-tools/images/run-application-from-micronaut-tools.png" alt="Run the application from the view" /></p>
+ <img src="images/db-features/run-application-from-micronaut-tools.png" alt="Run the application from the view" /></p>
 
     <p>The progress will be indicated in the Output view.</p>
   </li>
@@ -791,7 +791,7 @@ This also involves creating a <code>ConfigMap</code> artifact, which will later 
   <li>
     <p>Click <strong>Create OCI DevOps Project</strong> to push the project from your local system to a newly created DevOps project:</p>
 
-    <p><img src="/gdk/docs/vscode-tools/images/vs-code/oci/create-dev-ops-project.png" alt="create-dev-ops-project.png" /></p>
+    <p><img src="/gdk/docs/vscode-tools/images/oci/create-dev-ops-project.png" alt="create-dev-ops-project.png" /></p>
 
     <p>You will see a notification <strong>Local sources will be pushed to a remote OCI code repository…</strong>. Select <strong>Confirm</strong> to proceed.</p>
   </li>
@@ -812,7 +812,7 @@ This also involves creating a <code>ConfigMap</code> artifact, which will later 
 
 <p>Once successfully created, a subset of existing actions is displayed in the <strong>OCI DevOps</strong> pane:</p>
 
-<p><img src="/gdk/docs/vscode-tools/images/vs-code/oci/devops-ci-jobs.png" alt="devops-ci-jobs.png" />
+<p><img src="/gdk/docs/vscode-tools/images/oci/devops-ci-jobs.png" alt="devops-ci-jobs.png" />
 <br /></p>
 
 <p>Learn more about DevOps Tools from the <a href="/gdk/vscode-tools/oci-devops-tools/">extension documentation</a>.</p>
@@ -837,7 +837,7 @@ This also involves creating a <code>ConfigMap</code> artifact, which will later 
 
     <p>Shortly, you see a confirmation pop-up window in the bottom right corner that secrets were created or updated:</p>
 
-    <p><img src="/gdk/docs/vscode-tools/images/secrets-were-created.png" alt="Secrets were created or updated" /></p>
+    <p><img src="/gdk/docs/vscode-tools/images/db-features/secrets-were-created.png" alt="Secrets were created or updated" /></p>
   </li>
 </ol>
 

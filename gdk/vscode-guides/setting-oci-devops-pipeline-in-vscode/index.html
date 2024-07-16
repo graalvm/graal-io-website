@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="The Graal Development Kit for Micronaut (GDK) is a build of a curated set of Micronaut framework modules and their required libraries for building portable c..."/>
-  <meta name="last_modified" content="2024-05-23 18:59:28 +0000"/>
-  <meta name="last_built" content="2024-06-11 11:25:32 +0000"/>
+  <meta name="last_modified" content="2024-07-11 15:18:50 +0000"/>
+  <meta name="last_built" content="2024-07-16 15:01:39 +0000"/>
   <link rel="stylesheet" href="/gdk/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gdk/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gdk/resources/img/favicon/favicon-32x32.png">
@@ -448,7 +448,7 @@ It allows you to transition from local to cloud-based application development an
 The extension offers a complete <strong>generate-build-deploy-delete</strong> project workflow.</p>
 
 <blockquote>
-  <p>The <a href="https://www.oracle.com/devops/devops-service/">OCI DevOps service</a> is a continuous integration/continuous delivery (CI/CD) platform for developers to simplify and automate their software development lifecycle.</p>
+  <p>The <a href="https://www.oracle.com/devops/devops-service/">OCI DevOps service</a> is a continuous integration/continuous delivery (CI/CD) platform for developers to simplify and automate their software development life cycle.</p>
 </blockquote>
 
 <p>This guide describes how to set up OCI DevOps service pipelines in VS Code, using the <em>Graal Development Kit for Micronaut</em> Extension Pack, so you can build and deploy your application in Oracle Cloud Infrastructure.</p>
@@ -510,27 +510,26 @@ The extension offers a complete <strong>generate-build-deploy-delete</strong> pr
 
 <ol>
   <li>
-    <p>Go to <strong>View</strong>, <strong>Command Palette</strong>, search for “Graal Cloud Native”, and invoke the <strong>Graal Cloud Native: Create New Project</strong> quick action:</p>
+    <p>Go to <strong>View</strong>, <strong>Command Palette</strong>, search for “Graal Dev Kit”, and invoke the <strong>Graal Dev Kit: Create New Project</strong> quick action:</p>
 
-    <p><img src="/gdk/docs/vscode-tools/images/vs-code/oci/gdk-vscode-actions-01.png" alt="gdk-vscode-actions-01.png" /></p>
+    <p><img src="/gdk/docs/vscode-tools/images/gdk-vscode-actions.png" alt="Create New Project Action" /></p>
   </li>
-  <li>Follow the command prompts to generate a new Maven or Gradle project. For example, to create a simple Java server application:
+  <li>Step through the project creation wizard. The following list details how you should respond to each prompt:
     <ul>
-      <li>Select the Micronaut version: <em>Default</em></li>
-      <li>Select the application type: <em>Application</em></li>
-      <li>Select the project Java (this is the JDK that will be used to build your project): <em>GraalVM</em></li>
+      <li>Pick GDK Version: <em>4.5.0</em></li>
+      <li>Pick an Application type: <em>Application</em></li>
+      <li>Pick Project Java: Select your JDK installation</li>
       <li>Provide project name: <em>devops-demo</em></li>
       <li>Provide base package: <em>com.example</em></li>
+      <li>Pick project language: <em>Java</em></li>
       <li>Pick project services: <em>None</em>. Click <strong>OK</strong> to confirm.</li>
-      <li>Pick project features: Click <strong>OK</strong> to confirm the selected features.</li>
-      <li>Select build tool: <em>Gradle (Groovy)</em></li>
-      <li>Select test framework: <em>JUnit</em></li>
-      <li>Select cloud providers to support: <em>OCI</em>. Click <strong>OK</strong> to confirm.</li>
-      <li>Select whether you want to generate sample code: <em>Yes</em></li>
+      <li>Pick the build tool: <em>Gradle</em></li>
+      <li>Pick test framework: <em>JUnit</em></li>
+      <li>Select cloud providers to support: <em>Oracle Cloud Infrastructure</em>. Click <strong>OK</strong> to confirm.</li>
+      <li>Pick generate sample code: <em>Yes</em></li>
     </ul>
   </li>
-  <li>Finally, you are asked to select the destination directory on your local disk and whether to open the new project in a new window or add it to the current workspace.
-The project is created and opened in the VS Code window.</li>
+  <li>Save the project and open it in a new VS Code window.</li>
 </ol>
     
       <h2 id="5-set-access-to-oracle-container-engine-for-kubernetes-oke">
@@ -596,7 +595,7 @@ For that you need to create a Kubernetes cluster (if you do not already have one
   <li>
     <p>Click <strong>Create OCI DevOps Project</strong> to push the project from your local system to a newly created OCI DevOps project:</p>
 
-    <p><img src="/gdk/docs/vscode-tools/images/vs-code/oci/create-dev-ops-project.png" alt="create-dev-ops-project.png" /></p>
+    <p><img src="/gdk/docs/vscode-tools/images/oci/create-dev-ops-project.png" alt="create-dev-ops-project.png" /></p>
 
     <blockquote>
       <p>Note: If you have not enabled access to OCI or misconfigured your OCI profile, the operation will fail with a message similar to:
@@ -620,9 +619,7 @@ For that you need to create a Kubernetes cluster (if you do not already have one
       <li>If the permissions on your SSH config file and keys, or the directory containing them, are incorrect you will see a dialog box that informs you of this and asks if it can resolve this issue by updating the permissions. Select <strong>Yes</strong> to proceed.</li>
     </ul>
 
-    <p>Then the DevOps project generation starts and a progress indicator provides you with feedback :</p>
-
-    <p><img src="/gdk/docs/vscode-tools/images/vs-code/oci/progress-bar.png" alt="progress-bar.png" /></p>
+    <p>Then the DevOps project generation starts and a progress indicator provides you with feedback.</p>
 
     <p>There is also a log for the action available in the OUTPUT window: open <strong>View</strong> &gt; <strong>Output</strong> and select <strong>OCI DevOps Tools</strong> from the dropdown list.</p>
 
@@ -631,7 +628,7 @@ For that you need to create a Kubernetes cluster (if you do not already have one
     <blockquote>
       <p>As the deployment is taking place you may see dialog boxes which are the result of project audits. These will detail if your project is using any libraries that have known Critical Vulnerabilities or Exposures (CVEs).</p>
 
-      <p><img src="/gdk/docs/vscode-tools/images/vs-code/oci/project-audit-notification.png" alt="project-audit-notification.png" /></p>
+      <p><img src="/gdk/docs/vscode-tools/images/oci/project-audit-notification.png" alt="project-audit-notification.png" /></p>
     </blockquote>
   </li>
 </ol>
@@ -641,12 +638,12 @@ For that you need to create a Kubernetes cluster (if you do not already have one
 
 <p>You can view your application files stored in the OCI DevOps project code repository by clicking the ellipsis (<strong>…</strong>) in the <strong>OCI DEVOPS</strong> panel and then <strong>Open Folder Code Repository in Oracle Cloud Console</strong>:</p>
 
-<p><img src="/gdk/docs/vscode-tools/images/vs-code/oci/open-code-repo-in-oci-action-01.png" alt="Open Folder Code Repository in Cloud Console" />
+<p><img src="/gdk/docs/vscode-tools/images/oci/open-code-repo-in-oci-action.png" alt="Open Folder Code Repository in Cloud Console" />
 <br /></p>
 
 <p>Once successfully created, a subset of existing actions is displayed in the <strong>OCI DevOps</strong> panel:</p>
 
-<p><img src="/gdk/docs/vscode-tools/images/vs-code/oci/devops-ci-jobs.png" alt="devops-ci-jobs.png" />
+<p><img src="/gdk/docs/vscode-tools/images/oci/devops-ci-jobs.png" alt="devops-ci-jobs.png" />
 <br /></p>
 
 <p>You can immediately perform the following actions on your OCI DevOps project:</p>
@@ -671,12 +668,12 @@ For that you need to create a Kubernetes cluster (if you do not already have one
   <li>
     <p>Hover over the <strong>Build OCI Native Executable Container</strong> action and click the “play” icon. This action uses a custom build runner shape that you may be charged for. A dialog box asks you to confirm this once, or permanently. You may also choose to cancel the build of the container if you do not wish to incur possible charges.</p>
 
-    <p><img src="/gdk/docs/vscode-tools/images/vs-code/oci/confirm-custom-build-runner-shape.png" alt="confirm-custom-build-runner-shape.png" /></p>
+    <p><img src="/gdk/docs/vscode-tools/images/oci/confirm-custom-build-runner-shape.png" alt="confirm-custom-build-runner-shape.png" /></p>
 
     <p>The action starts and you can follow the progress in the OUTPUT window (go to <strong>View</strong> &gt; <strong>OUTPUT</strong> and select the action name).
  Once completed, you can see a small download icon next to the play icon to download the build output (in this case a container image containing a native executable):</p>
 
-    <p><img src="/gdk/docs/vscode-tools/images/vs-code/oci/download-icon.png" alt="download-icon.png" /></p>
+    <p><img src="/gdk/docs/vscode-tools/images/oci/download-icon.png" alt="download-icon.png" /></p>
 
     <blockquote>
       <p>The build of the container with the native executable may take up to 15 minutes to complete.</p>
@@ -686,7 +683,7 @@ For that you need to create a Kubernetes cluster (if you do not already have one
     <p>Start the <strong>Deploy OCI Docker Native Executable to OKE</strong> action.
 When all stages are complete and the OKE deployment has succeeded, the action icon changes color to green, and the icon <strong>Open in Browser</strong> appears:</p>
 
-    <p><img src="/gdk/docs/vscode-tools/images/vs-code/oci/deploy-job-succeeded.png" alt="deploy-job-succeeded.png" /></p>
+    <p><img src="/gdk/docs/vscode-tools/images/oci/deploy-job-succeeded.png" alt="deploy-job-succeeded.png" /></p>
   </li>
 </ol>
 
@@ -703,7 +700,7 @@ To check if the container image has been successfully built, go to the Oracle Cl
 
 <p>The build and deployment targets in the <strong>OCI DevOps</strong> panel are not limited to the four listed above. There are many more: you can add an existing build pipeline, a build artifact, a container repository, and so on. (Click the <strong>+</strong> icon to view a full list.)</p>
 
-<p><img src="/gdk/docs/vscode-tools/images/vs-code/oci/more-ci-jobs.png" alt="more-ci-jobs.png" /></p>
+<p><img src="/gdk/docs/vscode-tools/images/oci/more-ci-jobs.png" alt="more-ci-jobs.png" /></p>
     
       <h3 id="summary">
         

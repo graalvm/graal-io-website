@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="The Graal Development Kit for Micronaut (GDK) is a build of a curated set of Micronaut framework modules and their required libraries for building portable c..."/>
-  <meta name="last_modified" content="2024-06-10 08:36:29 +0000"/>
-  <meta name="last_built" content="2024-06-11 11:25:32 +0000"/>
+  <meta name="last_modified" content="2024-07-16 11:51:14 +0000"/>
+  <meta name="last_built" content="2024-07-16 15:01:39 +0000"/>
   <link rel="stylesheet" href="/gdk/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gdk/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gdk/resources/img/favicon/favicon-32x32.png">
@@ -367,7 +367,7 @@
 
 <p><a href="https://cloud.google.com/sql/mysql">GCP Cloud SQL for MySQL</a> is a service for MySQL database to set up, manage, and administer MySQL deployments in the cloud. GCP Cloud SQL supports MySQL Community Edition versions 5.6, 5.7, and 8.0.</p>
 
-<p><a href="https://micronaut-projects.github.io/micronaut-data/latest/guide/" target="_blank">Micronaut Data</a> is a database access toolkit that uses ahead-of-time compilation to precompute queries for repository interfaces that are then executed by a thin, lightweight runtime layer. Micronaut Data supports the following backends: JPA (Hibernate and Hibernate Reactive); SQL (JDBC, R2DBC); and MongoDB.</p>
+<p><a href="https://micronaut-projects.github.io/micronaut-data/latest/guide/" target="_blank">Micronaut Data</a> is a database access toolkit that uses ahead-of-time compilation to precompute queries for repository interfaces that are then executed by a thin, lightweight runtime layer. Micronaut Data supports the following back ends: JPA (Hibernate and Hibernate Reactive); SQL (JDBC, R2DBC); and MongoDB.</p>
     
       <h3 id="prerequisites">
         
@@ -396,11 +396,11 @@
     <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
   </ul>
   <div id="gradle">
-    <p><a href="https://github.com/oracle/gcn/releases/download/4.3.7.2/4.3.7.2_database_gcp-db-demo-java-gradle.zip">Gradle GCP Database Example <img class="download-img-guides" src="/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" /></a>
+    <p><a href="https://github.com/oracle/gcn/releases/download/4.5.0.0/4.5.0.0_database_gcp-db-demo-java-gradle.zip">Gradle GCP Database Example <img class="download-img-guides" src="/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" /></a>
     </p>
   </div>
   <div id="maven">
-    <p><a href="https://github.com/oracle/gcn/releases/download/4.3.7.2/4.3.7.2_database_gcp-db-demo-java-maven.zip">Maven GCP Database Example <img class="download-img-guides" src="/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" /></a>
+    <p><a href="https://github.com/oracle/gcn/releases/download/4.5.0.0/4.5.0.0_database_gcp-db-demo-java-maven.zip">Maven GCP Database Example <img class="download-img-guides" src="/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" /></a>
     </p>
   </div>
 </div>
@@ -464,7 +464,7 @@
     <li class="tabs-maven"><a href="#maven">Maven</a></li>
   </ul>
   <div id="gradle">
-    <pre><code class="language-bash">gcn create-app com.example.gcp-db-demo \
+    <pre><code class="language-bash">gdk create-app com.example.gcp-db-demo \
     --clouds=gcp \
     --services=database \
     --features=graalvm \
@@ -473,7 +473,7 @@
     --lang=java</code></pre>
   </div>
   <div id="maven">
-    <pre><code class="language-bash">gcn create-app com.example.gcp-db-demo \
+    <pre><code class="language-bash">gdk create-app com.example.gcp-db-demo \
     --clouds=gcp \
     --services=database \
     --features=graalvm \
@@ -613,7 +613,7 @@ Would you like to enable and retry (this will take a few minutes)? (y/N)?
 
 <p>You will see the following output:</p>
 <pre><code>NAME              DATABASE_VERSION  LOCATION    TIER         PRIMARY_ADDRESS  PRIVATE_ADDRESS  STATUS
-gcn-guides-mysql  MYSQL_8_0         us-east1-c  db-f1-micro  34.xxx.xxx.65    -                RUNNABLE
+gdk-guides-mysql  MYSQL_8_0         us-east1-c  db-f1-micro  34.xxx.xxx.65    -                RUNNABLE
 </code></pre>
 
 <p>Make note of the <code>"Primary Address"</code>; you will need this later.</p>
@@ -779,7 +779,7 @@ $ENV:DATASOURCES_DEFAULT_PASSWORD = "&lt;user password&gt;"</code></pre>
      <pre><code class="language-bash">gcp/build/native/nativeCompile/gcp</code></pre>
  </div>
  <div id="maven">
-     <pre><code class="language-bash">gcp/target/gcp</code></pre>
+     <pre><code class="language-bash">gcp/target/gcp-db-demo-gcp</code></pre>
  </div>
  </div>
   </li>

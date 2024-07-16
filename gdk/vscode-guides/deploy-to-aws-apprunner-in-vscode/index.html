@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="The Graal Development Kit for Micronaut (GDK) is a build of a curated set of Micronaut framework modules and their required libraries for building portable c..."/>
-  <meta name="last_modified" content="2024-05-23 18:59:28 +0000"/>
-  <meta name="last_built" content="2024-06-11 11:25:32 +0000"/>
+  <meta name="last_modified" content="2024-07-11 15:18:54 +0000"/>
+  <meta name="last_built" content="2024-07-16 15:01:39 +0000"/>
   <link rel="stylesheet" href="/gdk/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gdk/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gdk/resources/img/favicon/favicon-32x32.png">
@@ -496,7 +496,7 @@
         
       </h3>
 
-<p>Install the <a href="https://aws.amazon.com/ru/visualstudiocode/">AWS Toolkit for Visual Studio Code</a> plugin:</p>
+<p>Install the <a href="https://aws.amazon.com/visualstudiocode/">AWS Toolkit for Visual Studio Code</a> plugin:</p>
 
 <ol>
   <li>In the VS Code Activity Bar, click the <strong>Extensions</strong> icon. This opens the Extensions view, which allows you to access the VS Code Marketplace.</li>
@@ -519,9 +519,9 @@
 
 <ol>
   <li>
-    <p>Go to <strong>View</strong>, <strong>Command Palette</strong>, search for “gcn”, and invoke the <strong>OCI for GCN: Create GCN Project</strong> quick action:</p>
+    <p>Go to <strong>View</strong>, <strong>Command Palette</strong>, search for “Graal Dev Kit”, and invoke the <strong>Graal Dev Kit: Create New Project</strong> quick action:</p>
 
-    <p><img src="/gdk/docs/vscode-tools/images/vs-code/oci/gdk-vscode-actions.png" alt="gdk-vscode-actions.png" /></p>
+    <p><img src="/gdk/docs/vscode-tools/images/gdk-vscode-actions.png" alt="Create New Project Action" /></p>
   </li>
   <li>Follow the command prompts to generate a new Maven or Gradle project. For example, to create a simple Java server application:
     <ul>
@@ -593,11 +593,7 @@
 
 <p><a href="https://docs.aws.amazon.com/AmazonECR/latest/userguide/what-is-ecr.html">Amazon Elastic Container Registry (Amazon ECR)</a> is an AWS-managed container image registry service. Amazon ECR supports private repositories with resource-based permissions. Amazon ECR is integrated with Amazon Elastic Container Service (Amazon ECS). Amazon ECR is a regional service.</p>
 
-<p><br /></p>
-
 <p>The following steps walk you through what is needed to push a container image to a private Amazon ECR repository using the AWS CLI. Before you begin, make sure that you have necessary software listed in the <a href="#prerequisites">Prerequisites</a>. Also, ensure that you have your AWS account id and region identifier (both of these can be obtained from your AWS console).</p>
-
-<p><br /></p>
 
 <ol>
   <li>
@@ -622,14 +618,14 @@
   <li>
     <p>Create a repository in Amazon ECR that will hold your containerized application (a container image). Under your active AWS connection, focus on ECR and click <strong>Create Repository</strong>:</p>
 
-    <p><img src="/gdk/docs/vscode-tools/images/vs-code/aws/ecr-create-repository.png" alt="Amazon ECR: Create Repository" /></p>
+    <p><img src="/gdk/docs/vscode-tools/images/aws/ecr-create-repository.png" alt="Amazon ECR: Create Repository" /></p>
 
     <p>Enter a repository name, for example, <em>gdk-demo</em>.</p>
   </li>
   <li>
     <p>Add the path (a repository URI) to your newly created repository in the build configuration file. To get the correct path, open the ECR repositories list, right-click your new repository, and click <strong>Copy Repository URL</strong>:</p>
 
-    <p><img src="/gdk/docs/vscode-tools/images/vs-code/aws/ecr-copy-repo-uri.png" alt="Amazon ECR: Copy Repository URL" /></p>
+    <p><img src="/gdk/docs/vscode-tools/images/aws/ecr-copy-repo-uri.png" alt="Amazon ECR: Copy Repository URL" /></p>
 
     <p>Now open <em>aws/build.gradle</em> and add the following, replacing the path with yours:</p>
 
@@ -700,13 +696,11 @@
 <p><a href="https://aws.amazon.com/apprunner/">AWS App Runner</a> is a fully managed container application service that lets you build, deploy, and run containerized web applications and API services.
 Thanks to the <em>Graal Development Kit for Micronaut</em> Launcher extension, you do not have to set up anything to start using AWS App Runner. Go ahead and create an App Runner service.</p>
 
-<p><br /></p>
-
 <ol>
   <li>
     <p>In the <strong>AWS:EXPLORER</strong> panel, under your connection, right-click <strong>App Runner</strong>. Select <strong>Create Service</strong>:</p>
 
-    <p><img src="/gdk/docs/vscode-tools/images/vs-code/aws/apprunner-create-service.png" alt="App Runner create service" /></p>
+    <p><img src="/gdk/docs/vscode-tools/images/aws/apprunner-create-service.png" alt="App Runner create service" /></p>
 
     <p>Follow the steps.</p>
 
@@ -714,7 +708,7 @@ Thanks to the <em>Graal Development Kit for Micronaut</em> Launcher extension, y
       <li>
         <p>Select <strong>ECR</strong> as a source code location type:</p>
 
-        <p><img src="/gdk/docs/vscode-tools/images/vs-code/aws/apprunner-select-code-location.png" alt="App Runner select ECR location" /></p>
+        <p><img src="/gdk/docs/vscode-tools/images/aws/apprunner-select-code-location.png" alt="App Runner select ECR location" /></p>
       </li>
       <li>
         <p>Select the AWS ECR repository containing your application image.</p>
@@ -725,7 +719,7 @@ Thanks to the <em>Graal Development Kit for Micronaut</em> Launcher extension, y
       <li>
         <p>Select a user role:</p>
 
-        <p><img src="/gdk/docs/vscode-tools/images/vs-code/aws/apprunner-select-user-role.png" alt="App Runner select user role" /></p>
+        <p><img src="/gdk/docs/vscode-tools/images/aws/apprunner-select-user-role.png" alt="App Runner select user role" /></p>
 
         <blockquote>
           <p>Note: If you are using an Amazon ECR private registry, you need the <code>AppRunnerECRAccessRole</code> ECR access role. This role allows App Runner to access Amazon ECR. See the AWS documentation to <a href="#">create this role</a>. You do not require an access role if your image is stored in Amazon ECR Public (where images are publicly available).</p>
@@ -737,7 +731,7 @@ Thanks to the <em>Graal Development Kit for Micronaut</em> Launcher extension, y
       <li>
         <p>Choose <strong>Skip</strong> for configure environment variables:</p>
 
-        <p><img src="/gdk/docs/vscode-tools/images/vs-code/aws/apprunner-configure-env-vars.png" alt="App Runner configure environment variables" /></p>
+        <p><img src="/gdk/docs/vscode-tools/images/aws/apprunner-configure-env-vars.png" alt="App Runner configure environment variables" /></p>
       </li>
       <li>
         <p>Input a name for your service, for example, <em>gdk-demo</em>.</p>
@@ -745,20 +739,14 @@ Thanks to the <em>Graal Development Kit for Micronaut</em> Launcher extension, y
       <li>
         <p>Select an available instance configuration. Choose the smallest:</p>
 
-        <p><img src="/gdk/docs/vscode-tools/images/vs-code/aws/apprunner-select-instance-configuration.png" alt="App Runner select instance configuration" /></p>
+        <p><img src="/gdk/docs/vscode-tools/images/aws/apprunner-select-instance-configuration.png" alt="App Runner select instance configuration" /></p>
 
         <p>Wait for the deployment to complete (it may take some minutes). The service status should change to <strong>Running</strong>:</p>
-
-        <p><img src="/gdk/docs/vscode-tools/images/vs-code/aws/apprunner-service-running.png" alt="App Runner server running state" /></p>
       </li>
     </ul>
   </li>
   <li>
-    <p>Open the application in your browser or send a <code>curl</code> request. Right-click your running service, and click <strong>Open in Browser</strong>:</p>
-
-    <p><img src="/gdk/docs/vscode-tools/images/vs-code/aws/apprunner-open-service-in-browser.png" alt="App Runner open application service in browser" /></p>
-
-    <p>Confirm the action.</p>
+    <p>Open the application in your browser or send a <code>curl</code> request. Right-click your running service, and click <strong>Open in Browser</strong>. Confirm the action.</p>
   </li>
 </ol>
 

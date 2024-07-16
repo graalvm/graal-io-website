@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="The Graal Development Kit for Micronaut (GDK) is a build of a curated set of Micronaut framework modules and their required libraries for building portable c..."/>
-  <meta name="last_modified" content="2024-05-23 17:36:09 +0000"/>
-  <meta name="last_built" content="2024-06-11 11:25:32 +0000"/>
+  <meta name="last_modified" content="2024-07-08 11:59:32 +0000"/>
+  <meta name="last_built" content="2024-07-16 15:01:39 +0000"/>
   <link rel="stylesheet" href="/gdk/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gdk/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gdk/resources/img/favicon/favicon-32x32.png">
@@ -397,11 +397,11 @@
     <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
   </ul>
   <div id="gradle">
-    <p><a href="https://github.com/oracle/gcn/releases/download/4.3.7.2/4.3.7.2_streaming_oci-streaming-demo-java-gradle.zip">Gradle Oracle Cloud Infrastructure Streaming Example <img class="download-img-guides" src="/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" /></a>
+    <p><a href="https://github.com/oracle/gcn/releases/download/4.5.0.0/4.5.0.0_streaming_oci-streaming-demo-java-gradle.zip">Gradle Oracle Cloud Infrastructure Streaming Example <img class="download-img-guides" src="/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" /></a>
     </p>
   </div>
   <div id="maven">
-    <p><a href="https://github.com/oracle/gcn/releases/download/4.3.7.2/4.3.7.2_streaming_oci-streaming-demo-java-maven.zip">Maven Oracle Cloud Infrastructure Streaming Example <img class="download-img-guides" src="/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" /></a>
+    <p><a href="https://github.com/oracle/gcn/releases/download/4.5.0.0/4.5.0.0_streaming_oci-streaming-demo-java-maven.zip">Maven Oracle Cloud Infrastructure Streaming Example <img class="download-img-guides" src="/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" /></a>
     </p>
   </div>
 </div>
@@ -476,7 +476,7 @@
     <li class="tabs-maven"><a href="#maven">Maven</a></li>
   </ul>
   <div id="gradle">
-    <pre><code class="language-bash">gcn create-app com.example.publisher.books \
+    <pre><code class="language-bash">gdk create-app com.example.publisher.books \
     --clouds=oci \
     --services=streaming \
     --features=awaitility,graalvm,reactor,serialization-jackson \
@@ -486,7 +486,7 @@
     --example-code=false</code></pre>
   </div>
   <div id="maven">
-    <pre><code class="language-bash">gcn create-app com.example.publisher.books \
+    <pre><code class="language-bash">gdk create-app com.example.publisher.books \
     --clouds=oci \
     --services=streaming \
     --features=awaitility,graalvm,reactor,serialization-jackson \
@@ -915,7 +915,7 @@ class AnalyticsFilter implements HttpServerFilter { // &lt;2&gt;
     <li class="tabs-maven"><a href="#maven">Maven</a></li>
   </ul>
   <div id="gradle">
-    <pre><code class="language-bash">gcn create-app com.example.consumer.analytics \
+    <pre><code class="language-bash">gdk create-app com.example.consumer.analytics \
     --clouds=oci \
     --services=streaming \
     --features=awaitility,graalvm,serialization-jackson \
@@ -925,7 +925,7 @@ class AnalyticsFilter implements HttpServerFilter { // &lt;2&gt;
     --example-code=false</code></pre>
   </div>
   <div id="maven">
-    <pre><code class="language-bash">gcn create-app com.example.consumer.analytics \
+    <pre><code class="language-bash">gdk create-app com.example.consumer.analytics \
     --clouds=oci \
     --services=streaming \
     --features=awaitility,graalvm,serialization-jackson \
@@ -1548,12 +1548,12 @@ class AnalyticsListener {
   </div>
   <div id="maven">
     <pre><code class="language-bash">./mvnw install -pl lib -am
-./mvnw package -pl oci -Dpackaging=native-image</code></pre>
+./mvnw clean package -pl oci -Dpackaging=native-image</code></pre>
     <p>The native executable is created in the <em>oci/target/</em> directory and can be run with the following command:</p>
     <pre><code class="language-bash">MICRONAUT_ENVIRONMENTS=oraclecloud oci/target/oci</code></pre>
     <p>Or if you use Windows:</p>
     <pre><code class="language-bash">mvnw install -pl lib -am
-mvnw package -pl oci -Dpackaging=native-image</code></pre>
+mvnw clean package -pl oci -Dpackaging=native-image</code></pre>
     <p>The native executable is created in the <em>oci\target\</em> directory and can be run with the following command:</p>
     <pre><code class="language-bash">cmd /C "set MICRONAUT_ENVIRONMENTS=oraclecloud &amp;&amp; oci\target\oci"</code></pre>
   </div>
@@ -1803,7 +1803,7 @@ sudo ln -s /usr/lib64/libstdc++.so.6 /usr/lib/libstdc++.so
    </div>
    <div id="maven">
      <pre><code class="language-bash">./mvnw install -pl lib -am
-./mvnw package -pl oci -Dpackaging=native-image</code></pre>
+./mvnw clean package -pl oci -Dpackaging=native-image</code></pre>
      <p>The native executable is created in the <em>oci/target/</em> directory and can be run with the following command:</p>
      <pre><code class="language-bash">oci/target/oci</code></pre>
    </div>

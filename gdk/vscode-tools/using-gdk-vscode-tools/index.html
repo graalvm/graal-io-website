@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="The Graal Development Kit for Micronaut (GDK) is a build of a curated set of Micronaut framework modules and their required libraries for building portable c..."/>
-  <meta name="last_modified" content="2024-05-23 17:13:14 +0000"/>
-  <meta name="last_built" content="2024-06-11 11:25:32 +0000"/>
+  <meta name="last_modified" content="2024-07-11 15:18:50 +0000"/>
+  <meta name="last_built" content="2024-07-16 15:01:39 +0000"/>
   <link rel="stylesheet" href="/gdk/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gdk/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gdk/resources/img/favicon/favicon-32x32.png">
@@ -491,7 +491,7 @@ You can install both extensions through the <a href="https://marketplace.visuals
   <li>
     <p>Open the <strong>OCI DEVOPS</strong> panel in VS Code Explorer and click <strong>Create OCI DevOps Project</strong>.</p>
 
-    <p><img src="/gdk/docs/vscode-tools/images/vs-code/oci/create_devops_prj.png" alt="devops-ci-jobs.png" /></p>
+    <p><img src="/gdk/docs/vscode-tools/images/oci/create_devops_prj.png" alt="create_devops_prj.png" /></p>
   </li>
   <li>
     <p>You will be guided through the process of creating an OCI DevOps project:</p>
@@ -508,7 +508,7 @@ You can install both extensions through the <a href="https://marketplace.visuals
       <li>
         <p>When the new OKE cluster is created, configure local access to your OKE Kubernetes cluster using the <code>VNC-Native Public Endpoint</code>. This is achieved with the OCI CLI and you may have already completed this in the prerequisite steps.</p>
 
-        <p><img src="/gdk/docs/vscode-tools/images/set_oke_access.png" alt="local-access-oke.png" /></p>
+        <p><img src="/gdk/docs/vscode-tools/images/oci/local-access-oke.png" alt="local_oke_access.png" /></p>
       </li>
     </ul>
 
@@ -518,7 +518,7 @@ You can install both extensions through the <a href="https://marketplace.visuals
 
 <p>Once you create a DevOps project, the following build targets become available from within VS Code:</p>
 
-<p><img src="/gdk/docs/vscode-tools/images/vs-code/oci/devops-ci-jobs.png" alt="devops-ci-jobs.png" /></p>
+<p><img src="/gdk/docs/vscode-tools/images/oci/devops-ci-jobs.png" alt="devops-ci-jobs.png" /></p>
 
 <p>You can invoke these build targets, which will run in the cloud, in the OCI DevOps service, and not locally, by clicking the triangle run icon.</p>
     
@@ -550,7 +550,7 @@ You can install both extensions through the <a href="https://marketplace.visuals
 <p>When the build pipeline succeeds, the container image can be deployed to OKE using the <strong>Deploy OCI Native Executable Container to OKE</strong>
 deployment pipeline. When complete, test the application in a browser by selecting the action <strong>Open in Browser</strong> for the Deploy pipeline. This will set up port forwarding using your local <code>kubectl</code>.</p>
 
-<p><img src="/gdk/docs/vscode-tools/images/vs-code/oci/oke_test_app.png" alt="Open OKE application in local browser" /></p>
+<p><img src="/gdk/docs/vscode-tools/images/oci/oke_test_app.png" alt="Open OKE application in local browser" /></p>
 
 <p>It will perform <strong>kubectl</strong> port forwarding from OKE to the localhost.</p>
     
@@ -567,7 +567,7 @@ The supported project types are Maven and Gradle. Project Audits require an OCI 
 
 <p>Select the <strong>Run Project Audit</strong> action in the <strong>Java Projects</strong> panel to check for vulnerabilities in an opened project. If a project contains a vulnerable dependency, it is shown in the <strong>PROBLEMS</strong> view.</p>
 
-<p><img src="/gdk/docs/vscode-tools/images/vs-code/oci/project_audit.png" alt="Project Audits action and reported errors" /></p>
+<p><img src="/gdk/docs/vscode-tools/images/oci/project_audit.png" alt="Project Audits action and reported errors" /></p>
 
 <p>When your project is moved into the DevOps service, it is scanned for vulnerabilities by ADM.
 The results of this audit can be displayed within the <strong>OCI DevOps</strong> panel by clicking the plus icon and selecting <strong>Add Knowledge Base</strong> from the services.</p>
@@ -583,7 +583,7 @@ The results of this audit can be displayed within the <strong>OCI DevOps</strong
 <p>The <strong>OCI DEVOPS</strong> services feature is not limited to the four jobs listed in the previous step. There are many more: You can
 add an existing build pipeline, a build artifact, a container registry, and so on.</p>
 
-<p><img src="/gdk/docs/vscode-tools/images/vs-code/oci/more-ci-jobs.png" alt="more-ci-jobs.png" /></p>
+<p><img src="/gdk/docs/vscode-tools/images/oci/more-ci-jobs.png" alt="more-ci-jobs.png" /></p>
     
       <h3 id="proxy-setup">
         
@@ -595,7 +595,7 @@ add an existing build pipeline, a build artifact, a container registry, and so o
 
 <p>When working behind firewall over a proxy then VS Code Proxy has to be set ON. In VS Code <strong>Settings</strong>,  set <strong>Http: Proxy Support</strong> to <strong>ON</strong>. Subsequently, when working without proxy, set this <strong>OFF</strong>. For more information, check <a href="/gdk/vscode-guides/use-gdk-tools-on-vpn/">Proxy Setup</a>.</p>
 
-<p><img src="/gdk/docs/vscode-tools/images/vs-code/oci/proxy.png" alt="HTTP Proxy in VSCode" /></p>
+<p><img src="/gdk/docs/vscode-tools/images/proxy.png" alt="HTTP Proxy in VSCode" /></p>
 
 <p>Many tools used to work on Java projects, such as Maven, Gradle, <code>kubectl</code>, and <code>docker</code> (if used), may require proxy configuration.</p>
     

@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="The Graal Development Kit for Micronaut (GDK) is a build of a curated set of Micronaut framework modules and their required libraries for building portable c..."/>
-  <meta name="last_modified" content="2024-06-11 09:53:41 +0000"/>
-  <meta name="last_built" content="2024-06-11 11:25:32 +0000"/>
+  <meta name="last_modified" content="2024-07-11 15:18:54 +0000"/>
+  <meta name="last_built" content="2024-07-16 15:01:39 +0000"/>
   <link rel="stylesheet" href="/gdk/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gdk/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gdk/resources/img/favicon/favicon-32x32.png">
@@ -493,7 +493,7 @@ Notice the <strong>DATABASES</strong> view added to the Explorer Panel, providin
 
 <p>The easiest way to run your Micronaut application is to view the <code>Application</code> class in the editor and click <strong>Run</strong> above the <code>main()</code> method, as shown here.</p>
 
-<p><img src="/gdk/docs/vscode-tools/images/run_main_method.png" alt="Run Micronaut Application" /></p>
+<p><img src="/gdk/docs/vscode-tools/images/micronaut/run_main_method.png" alt="Run Micronaut Application" /></p>
 
 <p>Alternatively, select <strong>Run Without Debugging</strong> from the <strong>Run</strong> menu.</p>
     
@@ -509,13 +509,13 @@ Notice the <strong>DATABASES</strong> view added to the Explorer Panel, providin
 (This is called “Continuous Mode”.)
 To run your Micronaut application in this mode, view the <code>Application</code> class in the editor and click <strong>Run with Micronaut Continuous Mode</strong> above the <code>main()</code> method, as shown here.</p>
 
-<p><img src="/gdk/docs/vscode-tools/images/run-continuous.png" alt="Run Micronaut Application in Continuous Mode" /></p>
+<p><img src="/gdk/docs/vscode-tools/images/micronaut/run-continuous.png" alt="Run Micronaut Application in Continuous Mode" /></p>
 
 <p>Alternatively, select <strong>Run and Debug</strong> in the activity bar and click <strong>create a launch.json file</strong>.
 When prompted, select <strong>Java</strong> as the debugger.
 A configuration labeled as “Continuous” will be created for your Micronaut application main class(es), similar to this example:</p>
 
-<p><img src="/gdk/docs/vscode-tools/images/run-continuous-config.png" alt="Select Launch Configuration to Run Micronaut Application in Continuous Mode" /></p>
+<p><img src="/gdk/docs/vscode-tools/images/micronaut/run-continuous-config.png" alt="Select Launch Configuration to Run Micronaut Application in Continuous Mode" /></p>
 
 <p>Select the newly added configuration in the <strong>Run and Debug</strong> view, and finally click <strong>Run</strong>.</p>
     
@@ -529,7 +529,7 @@ A configuration labeled as “Continuous” will be created for your Micronaut a
 
 <p>The easiest way to debug your Micronaut application is to view the <code>Application</code> class in the editor and click <strong>Debug</strong> above the <code>main()</code> method, as shown here.</p>
 
-<p><img src="/gdk/docs/vscode-tools/images/debug_main_method.png" alt="Debug Micronaut Application" /></p>
+<p><img src="/gdk/docs/vscode-tools/images/micronaut/debug_main_method.png" alt="Debug Micronaut Application" /></p>
 
 <p>Alternatively, select <strong>Start Debugging</strong> from the <strong>Run</strong> menu.</p>
     
@@ -563,7 +563,7 @@ This gives you all the IDE features that you would expect from <a href="https://
   <li><code>@+</code> to show all defined beans</li>
 </ul>
 
-<p><img src="/gdk/docs/vscode-tools/images/micronaut-navigation.png" alt="Navigate Micronaut Source Code" /></p>
+<p><img src="/gdk/docs/vscode-tools/images/micronaut/micronaut-navigation.png" alt="Navigate Micronaut Source Code" /></p>
     
       <h3 id="view-defined-beans-and-endpoints">
         
@@ -600,7 +600,7 @@ See <a href="#compose-rest-queries">Compose REST Queries</a> for details.</li>
 <p>The base address of a Micronaut or GDK application is configured to <em>http://localhost:8080</em> by default.
 You can customize it using the <strong>Edit Target Application Address</strong> action in the <strong>Endpoints</strong> view caption or next to a directory node if multiple directories are open in the workspace.</p>
 
-<p><img src="/gdk/docs/vscode-tools/images/beans_endpoints_view.png" alt="Beans and Endpoints views" /></p>
+<p><img src="/gdk/docs/vscode-tools/images/micronaut/beans_endpoints_view.png" alt="Beans and Endpoints views" /></p>
     
       <h3 id="compose-rest-queries">
         
@@ -620,7 +620,7 @@ Use the REST Client features to invoke and process the query.</p>
   <p>Note: If the REST Client extension is not installed when invoking the <strong>Compose REST Query</strong> action, a notification is displayed offering to install it.</p>
 </blockquote>
 
-<p><img src="/gdk/docs/vscode-tools/images/compose_rest_query.png" alt="Compose REST Query" /></p>
+<p><img src="/gdk/docs/vscode-tools/images/micronaut/compose_rest_query.png" alt="Compose REST Query" /></p>
     
       <h3 id="package-your-micronaut-application">
         
@@ -640,7 +640,7 @@ Enter “Micronaut Tools” and invoke the <strong>Micronaut Tools: Build…</st
   <li>
     <p>Select the <strong>compile</strong> build goal from a list of available goals:</p>
 
-    <p><img src="/gdk/docs/vscode-tools/images/micronaut-build-commands.png" alt="Micronaut Build Commands" /></p>
+    <p><img src="/gdk/docs/vscode-tools/images/micronaut/micronaut-build-commands.png" alt="Micronaut Build Commands" /></p>
   </li>
   <li>
     <p>When the compilation completes, invoke the <strong>Micronaut Tools: Build…</strong> command again.
@@ -674,7 +674,7 @@ Enter “Micronaut Tools” and invoke the <strong>Micronaut Tools: Build…</st
   <li>
     <p>Select the <strong>compile</strong> build goal from a list of available goals.</p>
 
-    <p><img src="/gdk/docs/vscode-tools/images/micronaut-build-commands.png" alt="Micronaut Build Commands" /></p>
+    <p><img src="/gdk/docs/vscode-tools/images/micronaut/micronaut-build-commands.png" alt="Micronaut Build Commands" /></p>
   </li>
   <li>
     <p>When the compilation completes, invoke the <strong>Micronaut Tools: Build…</strong> command again.
@@ -835,7 +835,7 @@ The temporary file has permissions that ensure only you are able to read it.</p>
   <li>
     <p>From the list of tables, select the tables for which you want to create corresponding entities.</p>
 
-    <p><img src="/gdk/docs/vscode-tools/images/db-features/micronaut-select-db-tables.png" alt="Select Database Tables" /></p>
+    <p><img src="/gdk/docs/vscode-tools/images/micronaut/micronaut-select-db-tables.png" alt="Select Database Tables" /></p>
   </li>
   <li>Click <strong>Enter</strong>.</li>
 </ol>
@@ -849,12 +849,12 @@ The temporary file has permissions that ensure only you are able to read it.</p>
   <li>
     <p>When prompted, select <strong>Micronaut</strong>, then <strong>Micronaut Data Repository Interfaces from Entity</strong>.</p>
 
-    <p><img src="/gdk/docs/vscode-tools/images/db-features/micronaut-create-repositories-action.png" alt="Create Micronaut Data Repository Interfaces from Entity" /></p>
+    <p><img src="/gdk/docs/vscode-tools/images/micronaut/micronaut-create-repositories-action.png" alt="Create Micronaut Data Repository Interfaces from Entity" /></p>
   </li>
   <li>
     <p>From the list of entities, select the entities for which you want to create corresponding repositories.</p>
 
-    <p><img src="/gdk/docs/vscode-tools/images/db-features/micronaut-select-entity-classes.png" alt="Create Repositories" /></p>
+    <p><img src="/gdk/docs/vscode-tools/images/micronaut/micronaut-select-entity-classes.png" alt="Create Repositories" /></p>
   </li>
   <li>Click <strong>Enter</strong>.</li>
 </ol>
