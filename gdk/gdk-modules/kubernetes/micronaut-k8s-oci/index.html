@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="The Graal Development Kit for Micronaut (GDK) is a build of a curated set of Micronaut framework modules and their required libraries for building portable c..."/>
-  <meta name="last_modified" content="2024-07-08 11:59:32 +0000"/>
-  <meta name="last_built" content="2024-07-16 16:03:16 +0000"/>
+  <meta name="last_modified" content="2024-07-19 11:17:17 +0000"/>
+  <meta name="last_built" content="2024-07-19 14:19:29 +0000"/>
   <link rel="stylesheet" href="/gdk/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gdk/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gdk/resources/img/favicon/favicon-32x32.png">
@@ -269,6 +269,62 @@
   
 
   
+    
+
+    
+      
+        
+          <li class="toc-bullets-main">
+        
+          
+          <a href="/gdk/docs/gdk-modules/kubernetes/" class="_icon-book">
+            Kubernetes
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+          
+          <li class="toc-bullets-sub toc-bullets-highlight">
+          
+            
+            <a href="/gdk/gdk-modules/kubernetes/micronaut-k8s-oci/">
+              Deploy a Micronaut Microservices Application to Oracle Cloud Infrastructure Container Engine for Kubernetes
+            </a>
+          </li>
+
+          
+            <div>
+  <script>
+    var scriptElement = document.currentScript;
+    var div = $(scriptElement.parentElement);
+    $(window).on("load", function () {
+      $("#content-wrapper h2").each(function () {
+        var li = $("<li></li>", { class: "toc-bullets-sub toc-bullets-sub-3" });
+        var a = $("<a></a>", { href: "#" + $(this).attr("id") });
+        a.text($(this).text().replace('#', ''));
+        li.append(a);
+        li.click(function (e) {
+          e.preventDefault();
+          var target = $(a.attr('href'));
+          var scrollTo = target.offset().top - 80; // 80 - indent
+          $('html, body').animate({ scrollTop: scrollTo }, 1000);
+        });
+        div.append(li);
+      });
+    });
+  </script>
+</div>
+          
+        
+      
+    
+  
+
+  
 
   
 
@@ -309,11 +365,31 @@
         
       </h1>
 
-<p>This guide shows how to deploy a Micronaut<sup>®</sup> microservices application to the <a href="https://docs.oracle.com/iaas/Content/ContEng/Concepts/contengoverview.htm">Oracle Cloud Infrastructure Container Engine for Kubernetes (OKE)</a> using the <a href="https://micronaut-projects.github.io/micronaut-kubernetes/latest/guide/">Micronaut Kubernetes module</a>.</p>
+<p>This guide describes how to deploy a Micronaut<sup>®</sup> application, consisting of three microservices, to the <a href="https://docs.oracle.com/iaas/Content/ContEng/Concepts/contengoverview.htm" target="_blank">Oracle Cloud Infrastructure Container Engine for Kubernetes (OKE)</a> using the <a href="https://micronaut-projects.github.io/micronaut-kubernetes/latest/guide/" target="_blank">Micronaut Kubernetes project</a>.</p>
 
-<p><a href="https://www.oracle.com/cloud/cloud-native/container-engine-kubernetes/">OKE</a> is a managed <a href="https://www.oracle.com/cloud/cloud-native/container-engine-kubernetes/what-is-kubernetes/">Kubernetes</a> service for deploying containerized applications to the cloud.</p>
+<blockquote>
+  <p>The Micronaut Kubernetes project provides integration between Micronaut and Kubernetes.
+It adds support for the following features:</p>
+  <ul>
+    <li>Service Discovery</li>
+    <li>Configuration client for config maps and secrets</li>
+    <li>Kubernetes blocking and non-blocking clients built on top of the official Kubernetes Java SDK</li>
+  </ul>
+</blockquote>
 
-<p>The guide shows how to use Kubernetes Service Discovery and Distributed Configuration to connect several microservices, and discover how Micronaut integration with Kubernetes simplifies deployment to OKE.</p>
+<blockquote>
+  <p><a href="https://www.oracle.com/cloud/cloud-native/container-engine-kubernetes/" target="_blank">OKE</a> is a managed <a href="https://www.oracle.com/cloud/cloud-native/container-engine-kubernetes/what-is-kubernetes/" target="_blank">Kubernetes</a> service for deploying containerized applications to the cloud.</p>
+</blockquote>
+
+<p>The guide demonstrates how to use Kubernetes Service Discovery and Distributed Configuration to connect three microservices, and discover how Micronaut integration with Kubernetes simplifies deployment to OKE.</p>
+
+<p>The application consists of three microservices:</p>
+
+<ul>
+  <li><em>users</em> - contains customer data that can place orders on items, also a new customer can be created. It requires HTTP basic authentication to access it.</li>
+  <li><em>orders</em> - contains all orders that customers have created as well as available items that customers can order. This microservice also enables the creation of new orders. It requires HTTP basic authentication to access it.</li>
+  <li><em>api</em> - acts as a gateway to the <em>orders</em> and <em>users</em> microservices. It combines results from both microservices and checks data when a customer creates a new order.</li>
+</ul>
     
       <h3 id="prerequisites">
         
@@ -326,10 +402,9 @@
 <ul>
   <li>JDK 17 or higher. See <a href="/gdk/get-started/setting-up-desktop/">Setting up Your Desktop</a>.</li>
   <li>An Oracle Cloud Infrastructure account. See <a href="/gdk/get-started/setting-up-cloud-accounts/">Setting up Your Cloud Accounts</a>.</li>
-  <li>The Oracle Cloud Infrastructure <a href="https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/cliinstall.htm">CLI</a> installed with <a href="https://docs.oracle.com/iaas/Content/API/SDKDocs/cliinstall.htm#configfile">local access configured</a>.</li>
-  <li>A Docker-API compatible container runtime such as <a href="https://docs.rancherdesktop.io/getting-started/installation/">Rancher Desktop</a> or <a href="https://www.docker.io/gettingstarted/">Docker</a> installed to run MySQL and to run tests using <a href="https://www.testcontainers.org">Testcontainers</a>.</li>
-  <li><a href="https://stedolan.github.io/jq/"><code>jq</code></a>: a lightweight and flexible command-line JSON processor.</li>
-  <li><a href="https://kubernetes.io/docs/reference/kubectl/"><code>kubectl</code></a> to deploy the application to OKE.</li>
+  <li>An Oracle Cloud Infrastructure <a href="https://docs.oracle.com/iaas/Content/GSG/Tasks/choosingcompartments.htm">compartment</a>.</li>
+  <li>Appropriate permission is granted to your user account to manage Kubernetes, Compute instances, Virtual Cloud Networks, and Stacks in the compartment.</li>
+  <li>An SSH key. See <a href="https://docs.oracle.com/en/learn/generate_ssh_keys/index.html">Generate SSH keys</a>.</li>
 </ul>
     
       <h4 id="a-note-regarding-your-development-environment">
@@ -358,7 +433,7 @@
         
       </h2>
 
-<p>You can create a microservices application from scratch by following <a href="/gdk/gdk-modules/kubernetes/micronaut-k8s/">this guide</a>, or you can download the completed example:</p>
+<p>You can create a microservices application from scratch by following <a href="/gdk/gdk-modules/kubernetes/micronaut-k8s/" target="_blank">this guide</a>, or you can download the completed example:</p>
 
 <div id="tabs-doc1">
   <ul>
@@ -375,15 +450,7 @@
   </div>
 </div>
 
-<p>The application ZIP file will be downloaded to your default downloads directory. Unzip it, open it in your code editor, and proceed to the next steps.</p>
-
-<p>The application consists of three microservices:</p>
-
-<ul>
-  <li><em>users</em> - contains customer data that can place orders on items, also a new customer can be created. It requires HTTP basic authentication to access it.</li>
-  <li><em>orders</em> - contains all orders that customers have created as well as available items that customers can order. This microservice also enables the creation of new orders. It requires HTTP basic authentication to access it.</li>
-  <li><em>api</em> - acts as a gateway to the <em>orders</em> and <em>users</em> microservices. It combines results from both microservices and checks data when a customer creates a new order.</li>
-</ul>
+<p>The application ZIP file will be downloaded in your default downloads directory. Unzip it and proceed to the next steps.</p>
 
 <blockquote>
   <p>Note: By default, a Micronaut application detects its runtime environment.
@@ -392,107 +459,147 @@ This means that you should locate your configuration in the <em>application-k8s.
 Alternatively, you can specify the <code>oraclecloud</code> environment passing it as a command-line option (<code>-Dmicronaut.environments=oraclecloud</code>) or via an environment variable (<code>MICRONAUT_ENVIRONMENTS=oraclecloud</code>).</p>
 </blockquote>
     
-      <h2 id="2-create-an-oracle-cloud-infrastructure-kubernetes-cluster">
+      <h2 id="2-set-up-oracle-cloud-infrastructure">
         
         
-          2. Create an Oracle Cloud Infrastructure Kubernetes Cluster <a href="#2-create-an-oracle-cloud-infrastructure-kubernetes-cluster" class="anchor_heading">#</a>
-        
-        
-      </h2>
-
-<p>You will use <strong>Quick Create</strong> cluster option in OKE to create Kubernetes cluster.</p>
-
-<p>Create a Kubernetes cluster with default settings using the <strong>Quick Create</strong> workflow:</p>
-<ol>
-  <li>Login to the Oracle Cloud console, and browse <a href="https://cloud.oracle.com/containers/clusters/quick">Quick Kubernetes Clusters (OKE)</a>.</li>
-  <li>Choose your compartment in the <strong>Compartment</strong> drop-down list.</li>
-  <li>Under <strong>Containers</strong>, click <strong>Kubernetes Clusters (OKE)</strong>.</li>
-  <li>Then click <strong>Create Cluster</strong> and choose the <strong>Quick Create</strong> option.</li>
-  <li>Enter the name for your cluster, for example, <em>gdk-k8s</em>. Select <strong>Public Endpoint</strong> for the Kubernetes API endpoint; <strong>Private Workers</strong> for worker nodes; and the shape (choose the default). Then confirm cluster creation by clicking <strong>Next</strong>.</li>
-  <li>It may take a few minutes to create all the resources. When they are all complete, click <strong>Close</strong>.</li>
-  <li>From the Cluster Details screen click <strong>Copy</strong> to copy the Cluster Id (you will need it later).</li>
-</ol>
-    
-      <h2 id="3-prepare-to-deploy-microservices">
-        
-        
-          3. Prepare to Deploy Microservices <a href="#3-prepare-to-deploy-microservices" class="anchor_heading">#</a>
+          2. Set Up Oracle Cloud Infrastructure <a href="#2-set-up-oracle-cloud-infrastructure" class="anchor_heading">#</a>
         
         
       </h2>
-    
-      <h3 id="31-export-environment-variables">
-        
-        
-          3.1. Export Environment Variables <a href="#31-export-environment-variables" class="anchor_heading">#</a>
-        
-        
-      </h3>
 
-<p>Define some environment variables to make deploying process easier:</p>
+<p>This guide requires the following Oracle Cloud Infrastructure resources (known as a “stack”):</p>
+
 <ul>
-  <li><code>OCI_USER_ID</code> to store your user OCID, which you can find in your Oracle Cloud Infrastructure configuration file.</li>
-  <li><code>OCI_TENANCY_NAMESPACE</code> to store the tenancy namespace (retrieve your tenancy namespace using the Oracle Cloud Infrastructure CLI).</li>
-  <li><code>OCIR_USERNAME</code> store your username in the format <code>&lt;tenancy_namespace&gt;/&lt;username&gt;</code>. You can reuse <code>OCI_TENANCY_NAMESPACE</code> and only edit the <code>&lt;username&gt;</code> part.</li>
-  <li><code>OCI_REGION</code> to store your cloud region code, for example, “us-phoenix-1”.</li>
-  <li><code>OCI_CLUSTER_ID</code> to store the Cluster Id that you copied earlier.</li>
-  <li><code>OCI_COMPARTMENT_ID</code> to store your compartment id.</li>
+  <li>A Kubernetes cluster, named “gdk_guide”.</li>
+  <li>A <a href="https://docs.oracle.com/iaas/Content/Registry/Concepts/registryoverview.htm" target="_blank">Container Repository in Oracle Cloud Infrastructure Registry</a> for each of the services, named “gdk-k8s/users-oci”, “gdk-k8s/orders-oci”, and “gdk-k8s/api-oci”.</li>
+  <li>A <a href="https://docs.oracle.com/iaas/Content/Compute/Concepts/computeoverview.htm" target="_blank">Compute instance</a> to build your application, named “gdk_guide_instance”.</li>
 </ul>
 
-<p>For example:</p>
-
-<pre><code class="language-bash">export OCI_USER_ID="ocid1.user.oc1..aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-export OCI_TENANCY_NAMESPACE=$(oci os ns get | jq .data -r)
-export OCIR_USERNAME="$OCI_TENANCY_NAMESPACE/&lt;username&gt;"
-export OCI_REGION="&lt;region-key&gt;"
-export OCI_CLUSTER_ID="ocid1.cluster.oc1.iad.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-export OCI_COMPARTMENT_ID="ocid1.compartment.oc1..aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-</code></pre>
-
-<details>
-    <summary>The <code>export</code> command syntax varies per platform. Expand to learn more.</summary>
-    <p>If you use Linux/macOS, the <code>export</code> command is:</p>
-        <pre><code class="language-bash">export OCI_USER_ID=&lt;id&gt;</code></pre>
-    <p>If you use Windows, change <code>export</code> to <code>set</code> if using the <code>cmd</code> prompt:</p>
-    <pre><code class="language-bash">set OCI_USER_ID=&lt;id&gt;</code></pre>
-    <p>If you use PowerShell, change <code>export</code> to <code>$</code> and use quotes around the value, for example:</p>
-    <pre><code class="language-bash">$OCI_USER_ID="&lt;id&gt;"</code></pre>
-    <p>To dereference a value in Linux/macOS or PowerShell, use <code>$</code>, for example:
-    <code>/some/command -option=$OCI_USER_ID</code></p>
-    <p>If you use <code>cmd</code>, use <code>%</code> before and after the name, for example: <code>/some/command -option=%OCI_USER_ID%</code></p>
-</details>
-    
-      <h3 id="32-authenticate-to-oracle-cloud-infrastructure-registry">
-        
-        
-          3.2. Authenticate to Oracle Cloud Infrastructure Registry <a href="#32-authenticate-to-oracle-cloud-infrastructure-registry" class="anchor_heading">#</a>
-        
-        
-      </h3>
+<p>Instead of creating the stack manually, use the following steps to provision the resources using <a href="https://docs.oracle.com/iaas/Content/ResourceManager/Concepts/resourcemanager.htm" target="_blank">Oracle Cloud Infrastructure Resource Manager</a>:</p>
 
 <ol>
   <li>
-    <p><a href="https://docs.oracle.com/iaas/Content/Registry/Tasks/registrygettingauthtoken.htm">Create an <code>AUTH_TOKEN</code></a> to authenticate to Oracle Cloud Infrastructure Registry (also known as Container Registry). (Oracle Cloud Infrastructure allows you to have only two authentication tokens at the same time. If you already have two, use the existing one or delete the one that you are not using.)</p>
+    <p>Download the Terraform configuration <a href="/gdk/docs/gdk-modules/kubernetes/archives/gdk-oke.zip">GDK Kubernetes <img class="download-img-guides" src="/gdk/resources/img/gdk_modules/download-archive.png" alt="Download Terraform Configuration" /></a> to your default downloads directory. (For a general introduction to Terraform and the “infrastructure-as-code” model, see <a href="https://www.terraform.io" target="_blank">https://www.terraform.io</a>.)</p>
   </li>
-  <li>Export the <code>AUTH_TOKEN</code> variable:
-    <pre><code class="language-bash"> export AUTH_TOKEN=$(oci iam auth-token create --user-id $OCI_USER_ID --description k8s-gdk | jq -r '.data.token')
-</code></pre>
+  <li>Follow the instructions in <a href="https://docs.oracle.com/iaas/Content/ResourceManager/Tasks/create-stack-local.htm" target="_blank">Creating a Stack from a Zip File</a>.
+    <ul>
+      <li>In the “ssh_public_key” field of the <strong>Configure variables</strong> panel, paste the contents of your public SSH key.</li>
+      <li>In the <strong>Review</strong> panel, click <strong>Run apply</strong>.</li>
+    </ul>
   </li>
-  <li>Run the next command to log in to <code>ocir.io</code> (Container Registry):
-    <pre><code class="language-bash"> docker login $OCI_REGION.ocir.io -u $OCIR_USERNAME -p $AUTH_TOKEN
-</code></pre>
+  <li>
+    <p>Click <strong>Create</strong>. (It can take up to 15 minutes to provision the stack. The <strong>Log</strong> provides details of progress.)</p>
+
+    <blockquote>
+      <p>Note: These resources <strong>must not</strong> already exist in your Oracle Cloud Infrastructure tenancy, otherwise the Resource Manager will fail to provision the stack—in the Log you will see a message similar to <code>Error: 409-NAMESPACE_CONFLICT, Repository already exists.</code> Delete the conflicting resources before re-attempting to provision the stack.</p>
+    </blockquote>
+  </li>
+  <li>When the job completes, click <strong>Outputs</strong> in the list of the job’s resources and make note of the following values:
+    <ul>
+      <li><code>compute_instance_public_ip</code> (the public IP address of the Compute instance)</li>
+      <li><code>tenancy-namespace</code> (the namespace of the tenancy)</li>
+      <li><code>region</code> (your region identifier)</li>
+      <li><code>cluster-id</code> (the OCID of the cluster you created)</li>
+    </ul>
+  </li>
+  <li>Define an environment variable for the public IP address of the compute instance:
+    <div class="tabs-doc" data-name="system">
+     <div data-value="linux" data-label="Linux &amp; macOS">
+       <pre><code class="language-bash">export COMPUTE_INSTANCE_PUBLIC_IP=&lt;compute_instance_public_ip&gt;</code></pre>
+    </div>
+    <div data-value="windows" data-label="Windows">
+       <pre><code class="language-bash">set COMPUTE_INSTANCE_PUBLIC_IP=&lt;compute_instance_public_ip&gt;</code></pre>
+    </div>
+    <div data-value="windows-powershell" data-label="Windows PowerShell">
+       <pre><code class="language-bash">$COMPUTE_INSTANCE_PUBLIC_IP = "&lt;compute_instance_public_ip&gt;"</code></pre>
+    </div>
+ </div>
+    <p>Replacing <code>&lt;compute_instance_public_ip&gt;</code> with its value.</p>
   </li>
 </ol>
     
-      <h3 id="33-build-a-container-image-of-the-native-users-microservice">
+      <h2 id="3-prepare-to-deploy-the-microservices">
         
         
-          3.3. Build a Container Image of the Native <em>Users</em> Microservice <a href="#33-build-a-container-image-of-the-native-users-microservice" class="anchor_heading">#</a>
+          3. Prepare to Deploy the Microservices <a href="#3-prepare-to-deploy-the-microservices" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<ol>
+  <li>
+    <p>From your local terminal, copy the ZIP file to the Compute instance using <code>scp</code>:</p>
+
+    <div id="tabs-doc3">
+   <ul>
+       <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
+       <li class="tabs-maven"><a href="#maven">Maven</a></li>
+   </ul>
+   <div id="gradle">
+       <pre><code class="language-bash">scp -i /path/to/ssh-key \
+       /path/to/downloads/oci-kubernetes-demo-java-gradle.zip \
+       opc@$COMPUTE_INSTANCE_PUBLIC_IP:</code></pre>
+   </div>
+   <div id="maven">
+       <pre><code class="language-bash">scp -i /path/to/ssh-key \
+       /path/to/downloads/oci-kubernetes-demo-java-maven.zip \
+       opc@$COMPUTE_INSTANCE_PUBLIC_IP:</code></pre>
+   </div>
+ </div>
+  </li>
+  <li>
+    <p>From the same terminal, use <code>ssh</code> to connect to your Compute instance (<code>ssh -i /path/to/ssh-key opc@$COMPUTE_INSTANCE_PUBLIC_IP</code>) and unzip the ZIP file using <code>unzip</code>, then <code>cd</code> into the newly created directory.</p>
+  </li>
+  <li>Define some environment variables to make the deploying process easier:
+    <div class="tabs-doc" data-name="system">
+     <div data-value="linux" data-label="Linux &amp; macOS">
+       <pre><code class="language-bash">export OCI_TENANCY_NAMESPACE=&lt;tenancy-namespace&gt;
+export OCI_REGION=&lt;region&gt;
+export OCI_CLUSTER_ID=&lt;cluster-id&gt;</code></pre>
+    </div>
+    <div data-value="windows" data-label="Windows">
+       <pre><code class="language-bash">set OCI_TENANCY_NAMESPACE=&lt;tenancy-namespace&gt;
+set OCI_REGION=&lt;region&gt;
+set OCI_CLUSTER_ID=&lt;cluster-id&gt;</code></pre>
+    </div>
+    <div data-value="windows-powershell" data-label="Windows PowerShell">
+       <pre><code class="language-bash">$OCI_TENANCY_NAMESPACE = "&lt;tenancy-namespace&gt;"
+$OCI_REGION = "&lt;region&gt;"
+$OCI_CLUSTER_ID = "&lt;cluster-id&gt;"</code></pre>
+    </div>
+ </div>
+  </li>
+  <li>
+    <p>Before you can publish a container image to Container Registry, you must first authenticate with it. For this, follow the steps in <a href="https://docs.oracle.com/en-us/iaas/Content/Registry/Tasks/registrygettingauthtoken.htm">Getting an Auth Token</a> to create an authentication token.</p>
+  </li>
+  <li>
+    <p>Authenticate with <code>docker</code> to Container Registry with your region identifier:</p>
+
+    <pre><code class="language-bash"> docker login $OCI_REGION.ocir.io
+</code></pre>
+
+    <ul>
+      <li>
+        <p>When asked for a username, provide <code>&lt;tenancy-namespace&gt;/&lt;username&gt;</code>, for example <code>ocideveloper/example@example.com</code>.</p>
+      </li>
+      <li>
+        <p>When asked for a password, provide the Auth token.</p>
+      </li>
+    </ul>
+
+    <p>The command should complete by printing “Login Succeeded”. (It may take some time before your authentication token activates.)</p>
+  </li>
+</ol>
+    
+      <h3 id="31-create-a-container-image-of-the-native-users-microservice">
+        
+        
+          3.1. Create a Container Image of the Native <em>Users</em> Microservice <a href="#31-create-a-container-image-of-the-native-users-microservice" class="anchor_heading">#</a>
         
         
       </h3>
 
-<p>To build a container image of the native <em>users</em> microservice named “users”, run the following command from the <em>users/</em> directory:</p>
+<p>To create a container image of the native <em>users</em> microservice named “users”, run the following command from the <em>users/</em> directory:</p>
 
 <div id="tabs-doc11">
     <ul>
@@ -501,28 +608,51 @@ export OCI_COMPARTMENT_ID="ocid1.compartment.oc1..aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
     </ul>
     <div id="gradle">
         <pre><code class="language-bash">./gradlew dockerBuildNative</code></pre>
+        <blockquote>
+          <p>Note: If you encounter problems creating a container image, run the following command
+          from the <em>users/build/docker/native-main/</em> directory:</p>
+          <pre><code class="language-bash">docker build . -t users-oci -f DockerfileNative</code></pre>
+        </blockquote>
     </div>
     <div id="maven">
         <pre><code class="language-bash">./mvnw clean package -Dpackaging=docker-native -Pgraalvm</code></pre>
+        <blockquote>
+          <p>Note: If you encounter problems creating a container image, run the following command
+          from the <em>users/target/</em> directory:</p>
+          <pre><code class="language-bash">docker build . -t users-oci -f Dockerfile</code></pre>
+        </blockquote>
     </div>
 </div>
-
-<blockquote>
-  <p>Note: If you encounter problems building a container image, try the following:</p>
-  <ul>
-    <li>Gradle: from the <em>users/build/docker/native-main/</em> directory, run <code>docker build . -t users-oci -f DockerfileNative</code>.</li>
-    <li>Maven: from the <em>users/target/</em> directory, run <code>docker build . -t users-oci -f Dockerfile</code>.</li>
-  </ul>
-</blockquote>
-
-<blockquote>
-  <p>Note: Ensure that you construct container images for the correct CPU architecture. For instance, if you are using AArch64, modify the <code>DOCKER_DEFAULT_PLATFORM</code> environment variable to the value <code>linux/amd64</code>. Alternatively, you have the option to use AArch64 instances within your Kubernetes cluster.</p>
-</blockquote>
     
-      <h3 id="34-update-the-users-microservice">
+      <h3 id="32-push-the-users-microservice-to-a-container-repository">
         
         
-          3.4. Update the <em>Users</em> Microservice <a href="#34-update-the-users-microservice" class="anchor_heading">#</a>
+          3.2. Push the <em>Users</em> Microservice to a Container Repository <a href="#32-push-the-users-microservice-to-a-container-repository" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>The Terraform job created a container repository named <em>gdk-k8s/users-oci</em>.</p>
+
+<ol>
+  <li>
+    <p>Tag the existing <em>users</em> microservice container image with details of the container repository:</p>
+
+    <pre><code class="language-bash"> docker tag users-oci:latest $OCI_REGION.ocir.io/$OCI_TENANCY_NAMESPACE/gdk-k8s/users-oci:latest
+</code></pre>
+  </li>
+  <li>
+    <p>Push the tagged <em>users</em> microservice container image to the remote repository:</p>
+
+    <pre><code class="language-bash"> docker push $OCI_REGION.ocir.io/$OCI_TENANCY_NAMESPACE/gdk-k8s/users-oci:latest
+</code></pre>
+  </li>
+</ol>
+    
+      <h3 id="33-update-the-users-microservice">
+        
+        
+          3.3. Update the <em>Users</em> Microservice <a href="#33-update-the-users-microservice" class="anchor_heading">#</a>
         
         
       </h3>
@@ -546,7 +676,7 @@ spec:
       serviceAccountName: gdk-service
       containers:
         - name: users
-          image: '&lt;region-key&gt;.ocir.io/&lt;tenancy-namespace&gt;/gdk-k8s/users-oci:latest' # &lt;1&gt;
+          image: '&lt;region&gt;.ocir.io/&lt;tenancy-namespace&gt;/gdk-k8s/users-oci:latest' # &lt;1&gt;
           imagePullPolicy: Always # &lt;2&gt;
           ports:
             - name: http
@@ -584,52 +714,21 @@ spec:
       port: 8080
 </code></pre>
 
-<p><strong>1</strong> The container image name that exists in Container Registry. Change the <code>&lt;region-key&gt;</code> to your region and change the <code>&lt;tenancy-name&gt;</code> to your tenancy name.</p>
+<p><strong>1</strong> The tag of the container image in Container Registry. <strong>Change</strong> the <code>&lt;region&gt;</code> to your region and replace <code>&lt;tenancy-namespace&gt;</code> with your tenancy namespace. (This MUST match the tag you created above in step <strong>1</strong> of section <strong>3.2</strong>.)</p>
 
-<p><strong>2</strong> Change <code>imagePullPolicy</code> to <code>Always</code>.</p>
+<p><strong>2</strong> The <code>imagePullPolicy</code> is <code>Always</code>, which means that Kubernetes will always pull the latest version of the image from the container registry.</p>
 
-<p><strong>3</strong> A secret needed to pull container images from Container Registry.</p>
+<p><strong>3</strong> The name of a secret to pull container images from Container Registry. (You will create the secret in section <strong>4</strong>.)</p>
     
-      <h3 id="35-create-a-container-repository-for-the-users-microservice">
+      <h3 id="34-create-a-container-image-of-the-native-orders-microservice">
         
         
-          3.5. Create a Container Repository for the <em>Users</em> Microservice <a href="#35-create-a-container-repository-for-the-users-microservice" class="anchor_heading">#</a>
+          3.4. Create a Container Image of the Native <em>Orders</em> Microservice <a href="#34-create-a-container-image-of-the-native-orders-microservice" class="anchor_heading">#</a>
         
         
       </h3>
 
-<p>Your next step is to prepare a container repository in <a href="https://docs.oracle.com/iaas/Content/Registry/home.htm">Container Registry</a>.</p>
-
-<ol>
-  <li>
-    <p>Create a Container Repository in your compartment:</p>
-
-    <pre><code class="language-bash"> export USERS_REPOSITORY=$(oci artifacts container repository create --display-name gdk-k8s/users-oci --compartment-id $OCI_COMPARTMENT_ID | jq .data.id -r)
-</code></pre>
-  </li>
-  <li>
-    <p>Tag an existing <em>users</em> microservice container image:</p>
-
-    <pre><code class="language-bash"> docker tag users-oci:latest $OCI_REGION.ocir.io/$OCI_TENANCY_NAMESPACE/gdk-k8s/users-oci:latest
-</code></pre>
-  </li>
-  <li>
-    <p>Push the tagged <em>users</em> microservice container image to the remote repository:</p>
-
-    <pre><code class="language-bash"> docker push $OCI_REGION.ocir.io/$OCI_TENANCY_NAMESPACE/gdk-k8s/users-oci:latest
-</code></pre>
-  </li>
-</ol>
-    
-      <h3 id="36-build-a-container-image-of-the-native-orders-microservice">
-        
-        
-          3.6. Build a Container Image of the Native <em>Orders</em> Microservice <a href="#36-build-a-container-image-of-the-native-orders-microservice" class="anchor_heading">#</a>
-        
-        
-      </h3>
-
-<p>To build a container image of the native <em>orders</em> microservice named “orders”, run the following command from the <em>orders/</em> directory:</p>
+<p>To create a container image of the native <em>orders</em> microservice named “orders”, run the following command from the <em>orders/</em> directory:</p>
 
 <div id="tabs-doc12">
     <ul>
@@ -638,28 +737,51 @@ spec:
     </ul>
     <div id="gradle">
         <pre><code class="language-bash">./gradlew dockerBuildNative</code></pre>
+        <blockquote>
+          <p>Note: If you encounter problems creating a container image, run the following command
+          from the <em>orders/build/docker/native-main/</em> directory:</p>
+          <pre><code class="language-bash">docker build . -t orders-oci -f DockerfileNative</code></pre>
+        </blockquote>
     </div>
     <div id="maven">
         <pre><code class="language-bash">./mvnw clean package -Dpackaging=docker-native -Pgraalvm</code></pre>
+        <blockquote>
+          <p>Note: If you encounter problems creating a container image, run the following command
+          from the <em>orders/target/</em> directory:</p>
+          <pre><code class="language-bash">docker build . -t orders-oci -f Dockerfile</code></pre>
+        </blockquote>
     </div>
 </div>
-
-<blockquote>
-  <p>Note: If you encounter problems building a container image, try the following:</p>
-  <ul>
-    <li>Gradle: from the <em>orders/build/docker/native-main/</em> directory, run <code>docker build . -t orders-oci -f DockerfileNative</code>.</li>
-    <li>Maven: from the <em>orders/target/</em> directory, run <code>docker build . -t orders-oci -f Dockerfile</code>.</li>
-  </ul>
-</blockquote>
-
-<blockquote>
-  <p>Note: Ensure that you construct container images for the correct CPU architecture. For instance, if you are using AArch64, modify the <code>DOCKER_DEFAULT_PLATFORM</code> environment variable to the value <code>linux/amd64</code>. Alternatively, you have the option to use AArch64 instances within your Kubernetes cluster.</p>
-</blockquote>
     
-      <h3 id="37-update-the-orders-microservice">
+      <h3 id="35-push-the-orders-microservice-to-a-container-repository">
         
         
-          3.7. Update the <em>Orders</em> Microservice <a href="#37-update-the-orders-microservice" class="anchor_heading">#</a>
+          3.5. Push the <em>Orders</em> Microservice to a Container Repository <a href="#35-push-the-orders-microservice-to-a-container-repository" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>The Terraform job created a container repository named <em>gdk-k8s/orders-oci</em>.</p>
+
+<ol>
+  <li>
+    <p>Tag the existing <em>orders</em> microservice container image with details of the container repository:</p>
+
+    <pre><code class="language-bash"> docker tag orders-oci:latest $OCI_REGION.ocir.io/$OCI_TENANCY_NAMESPACE/gdk-k8s/orders-oci:latest
+</code></pre>
+  </li>
+  <li>
+    <p>Push the tagged <em>orders</em> microservice container image to the remote repository:</p>
+
+    <pre><code class="language-bash"> docker push $OCI_REGION.ocir.io/$OCI_TENANCY_NAMESPACE/gdk-k8s/orders-oci:latest
+</code></pre>
+  </li>
+</ol>
+    
+      <h3 id="36-update-the-orders-microservice">
+        
+        
+          3.6. Update the <em>Orders</em> Microservice <a href="#36-update-the-orders-microservice" class="anchor_heading">#</a>
         
         
       </h3>
@@ -683,7 +805,7 @@ spec:
       serviceAccountName: gdk-service
       containers:
         - name: orders
-          image: '&lt;region-key&gt;.ocir.io/&lt;tenancy-namespace&gt;/gdk-k8s/orders-oci:latest' # &lt;1&gt;
+          image: '&lt;region&gt;.ocir.io/&lt;tenancy-namespace&gt;/gdk-k8s/orders-oci:latest' # &lt;1&gt;
           imagePullPolicy: Always # &lt;2&gt;
           ports:
             - name: http
@@ -721,50 +843,21 @@ spec:
       port: 8080
 </code></pre>
 
-<p><strong>1</strong> The container image name that exists in Container Registry. Change the <code>&lt;region-key&gt;</code> to your region and change the <code>&lt;tenancy-name&gt;</code> to your tenancy name.</p>
+<p><strong>1</strong> The container image tag that exists in Container Registry. <strong>Change</strong> the <code>&lt;region&gt;</code> to your region and replace <code>&lt;tenancy-namespace&gt;</code> with your tenancy namespace. (This MUST match the tag you created above in step <strong>1</strong> of section <strong>3.5</strong>.)</p>
 
-<p><strong>2</strong> Change <code>imagePullPolicy</code> to <code>Always</code>.</p>
+<p><strong>2</strong> The <code>imagePullPolicy</code> to <code>Always</code>, which means that Kubernetes will always pull the latest version of the image from the container registry.</p>
 
-<p><strong>3</strong> A secret needed to pull container images from Container Registry.</p>
+<p><strong>3</strong> The name of a secret to pull container images from Container Registry. (You will create the secret in section <strong>4</strong>.)</p>
     
-      <h3 id="38-create-a-container-repository-for-the-orders-microservice">
+      <h3 id="37-create-a-container-image-of-the-native-api-gateway-microservice">
         
         
-          3.8. Create a Container Repository for the <em>Orders</em> Microservice <a href="#38-create-a-container-repository-for-the-orders-microservice" class="anchor_heading">#</a>
+          3.7. Create a Container Image of the Native <em>API</em> (Gateway) Microservice <a href="#37-create-a-container-image-of-the-native-api-gateway-microservice" class="anchor_heading">#</a>
         
         
       </h3>
 
-<ol>
-  <li>
-    <p>Create a container repository in your compartment.</p>
-
-    <pre><code class="language-bash"> export ORDERS_REPOSITORY=$(oci artifacts container repository create --display-name gdk-k8s/orders-oci --compartment-id $OCI_COMPARTMENT_ID | jq .data.id -r)
-</code></pre>
-  </li>
-  <li>
-    <p>Tag an existing <em>orders</em> microservice container image:</p>
-
-    <pre><code class="language-bash"> docker tag orders-oci:latest $OCI_REGION.ocir.io/$OCI_TENANCY_NAMESPACE/gdk-k8s/orders-oci:latest
-</code></pre>
-  </li>
-  <li>
-    <p>Push the tagged <em>orders</em> microservice container image to the remote repository:</p>
-
-    <pre><code class="language-bash"> docker push $OCI_REGION.ocir.io/$OCI_TENANCY_NAMESPACE/gdk-k8s/orders-oci:latest
-</code></pre>
-  </li>
-</ol>
-    
-      <h3 id="39-build-a-container-image-of-the-native-api-gateway-microservice">
-        
-        
-          3.9. Build a Container Image of the Native <em>API</em> (Gateway) Microservice <a href="#39-build-a-container-image-of-the-native-api-gateway-microservice" class="anchor_heading">#</a>
-        
-        
-      </h3>
-
-<p>To build a container image of the native <em>api</em> microservice named “api”, run the following command from the <em>api/</em> directory:</p>
+<p>To create a container image of the native <em>api</em> microservice named “api”, run the following command from the <em>api/</em> directory:</p>
 
 <div id="tabs-doc13">
     <ul>
@@ -773,28 +866,51 @@ spec:
     </ul>
     <div id="gradle">
         <pre><code class="language-bash">./gradlew dockerBuildNative</code></pre>
+        <blockquote>
+          <p>Note: If you encounter problems creating a container image, run the following command
+          from the <em>api/build/docker/native-main/</em> directory:</p>
+          <pre><code class="language-bash">docker build . -t api-oci -f DockerfileNative</code></pre>
+        </blockquote>
     </div>
     <div id="maven">
         <pre><code class="language-bash">./mvnw clean package -Dpackaging=docker-native -Pgraalvm</code></pre>
+        <blockquote>
+          <p>Note: If you encounter problems creating a container image, run the following command
+          from the <em>api/target/</em> directory:</p>
+          <pre><code class="language-bash">docker build . -t api-oci -f Dockerfile</code></pre>
+        </blockquote>
     </div>
 </div>
-
-<blockquote>
-  <p>Note: If you encounter problems building a container image, try the following:</p>
-  <ul>
-    <li>Gradle: from the <em>api/build/docker/native-main/</em> directory, run <code>docker build . -t api-oci -f DockerfileNative</code>.</li>
-    <li>Maven: from the <em>api/target/</em> directory, run <code>docker build . -t api-oci -f Dockerfile</code>.</li>
-  </ul>
-</blockquote>
-
-<blockquote>
-  <p>Note: Ensure that you construct container images for the correct CPU architecture. For instance, if you are using AArch64, modify the <code>DOCKER_DEFAULT_PLATFORM</code> environment variable to the value <code>linux/amd64</code>. Alternatively, you have the option to use AArch64 instances within your Kubernetes cluster.</p>
-</blockquote>
     
-      <h3 id="310-update-the-api-microservice">
+      <h3 id="38-push-the-api-microservice-to-a-container-repository">
         
         
-          3.10. Update the <em>API</em> Microservice <a href="#310-update-the-api-microservice" class="anchor_heading">#</a>
+          3.8. Push the <em>API</em> Microservice to a Container Repository <a href="#38-push-the-api-microservice-to-a-container-repository" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>The Terraform job created a container repository named <em>gdk-k8s/api-oci</em>.</p>
+
+<ol>
+  <li>
+    <p>Tag the existing <em>api</em> microservice container image with details of the container repository:</p>
+
+    <pre><code class="language-bash"> docker tag api-oci:latest $OCI_REGION.ocir.io/$OCI_TENANCY_NAMESPACE/gdk-k8s/api-oci:latest
+</code></pre>
+  </li>
+  <li>
+    <p>Push the tagged <em>api</em> microservice container image to the remote repository:</p>
+
+    <pre><code class="language-bash"> docker push $OCI_REGION.ocir.io/$OCI_TENANCY_NAMESPACE/gdk-k8s/api-oci:latest
+</code></pre>
+  </li>
+</ol>
+    
+      <h3 id="39-update-the-api-microservice">
+        
+        
+          3.9. Update the <em>API</em> Microservice <a href="#39-update-the-api-microservice" class="anchor_heading">#</a>
         
         
       </h3>
@@ -818,7 +934,7 @@ spec:
       serviceAccountName: gdk-service
       containers:
         - name: api
-          image: '&lt;region-key&gt;.ocir.io/&lt;tenancy-namespace&gt;/gdk-k8s/api-oci:latest' # &lt;1&gt;
+          image: '&lt;region&gt;.ocir.io/&lt;tenancy-namespace&gt;/gdk-k8s/api-oci:latest' # &lt;1&gt;
           imagePullPolicy: Always # &lt;2&gt;
           ports:
             - name: http
@@ -861,42 +977,12 @@ spec:
       port: 8080
 </code></pre>
 
-<p><strong>1</strong> The container image name that exists in Container Registry. Change the <code>&lt;region-key&gt;</code> to your region and change the <code>&lt;tenancy-name&gt;</code> to your tenancy name.</p>
+<p><strong>1</strong> The container image name that exists in Container Registry. <strong>Change</strong> the <code>&lt;region&gt;</code> to your region and replace <code>&lt;tenancy-namespace&gt;</code> with your tenancy namespace. (This MUST match the tag you created above in step <strong>1</strong> of section <strong>3.8</strong>.)</p>
 
-<p><strong>2</strong> Change <code>imagePullPolicy</code> to <code>Always</code>.</p>
+<p><strong>2</strong> The <code>imagePullPolicy</code> to <code>Always</code>, which means that Kubernetes will always pull the latest version of the image from the container registry.</p>
 
-<p><strong>3</strong> A secret needed to pull container images from Container Registry.</p>
-
-<p><strong>4</strong> Metadata annotations for an <a href="https://docs.oracle.com/iaas/Content/ContEng/Tasks/contengcreatingloadbalancer.htm">Oracle Cloud Infrastructure Load Balancer</a>.</p>
-    
-      <h3 id="311-create-a-container-repository-for-the-api-microservice">
-        
-        
-          3.11. Create a Container Repository for the <em>API</em> Microservice <a href="#311-create-a-container-repository-for-the-api-microservice" class="anchor_heading">#</a>
-        
-        
-      </h3>
-
-<ol>
-  <li>
-    <p>Create a container repository in your compartment:</p>
-
-    <pre><code class="language-bash"> export API_REPOSITORY=$(oci artifacts container repository create --display-name gdk-k8s/api-oci --compartment-id $OCI_COMPARTMENT_ID | jq .data.id -r)
-</code></pre>
-  </li>
-  <li>
-    <p>Tag an existing <em>api</em> microservice container image:</p>
-
-    <pre><code class="language-bash"> docker tag api-oci:latest $OCI_REGION.ocir.io/$OCI_TENANCY_NAMESPACE/gdk-k8s/api-oci:latest
-</code></pre>
-  </li>
-  <li>
-    <p>Push the tagged <em>api</em> microservice container image to the remote repository:</p>
-
-    <pre><code class="language-bash"> docker push $OCI_REGION.ocir.io/$OCI_TENANCY_NAMESPACE/gdk-k8s/api-oci:latest
-</code></pre>
-  </li>
-</ol>
+<p><strong>3</strong> The name of a secret to pull container images from Container Registry. (You will create the secret in section <strong>4</strong>.)
+<strong>4</strong> Metadata annotations for an <a href="https://docs.oracle.com/iaas/Content/ContEng/Tasks/contengcreatingloadbalancer.htm">Oracle Cloud Infrastructure Load Balancer</a>.</p>
     
       <h2 id="4-deploy-microservices-to-oke">
         
@@ -916,24 +1002,13 @@ spec:
   <li>
     <p>Generate a <code>kubectl</code> configuration for authentication to OKE:</p>
 
-    <pre><code class="language-bash"> oci ce cluster create-kubeconfig --cluster-id $OCI_CLUSTER_ID --file $HOME/.kube/config --region $OCI_REGION --token-version 2.0.0  --kube-endpoint PUBLIC_ENDPOINT
+    <pre><code class="language-bash"> oci ce cluster create-kubeconfig \
+       --cluster-id $OCI_CLUSTER_ID \
+       --file $HOME/.kube/config \
+       --region $OCI_REGION \
+       --token-version 2.0.0 \
+       --kube-endpoint PUBLIC_ENDPOINT
 </code></pre>
-  </li>
-  <li>
-    <p>Set <code>KUBECONFIG</code> to the created config file, as shown below. (This variable is consumed by <code>kubectl</code>.)</p>
-
-    <pre><code class="language-bash"> export KUBECONFIG=$HOME/.kube/config
-</code></pre>
-
-    <blockquote>
-      <p>Note: On Windows, <code>kubectl</code> is typically installed within the Kubernetes extension and is not added to the system path. Windows users should configure a proxy in <em>.kube/config</em> to successfully deploy a project to Oracle Cloud Infrastructure: add a <code>proxy-url</code> property under <code>cluster</code>.</p>
-      <pre><code class="language-yml"> clusters:
- - name: "dev"
-   cluster:
-     proxy-url: http://user:password@proxy:port
-     ...
-</code></pre>
-    </blockquote>
   </li>
   <li>
     <p>Deploy the <em>auth.yml</em> file that you created in the <a href="/gdk/gdk-modules/kubernetes/micronaut-k8s/">Deploy a Micronaut Microservices Application to a Local Kubernetes Cluster</a> guide:</p>
@@ -942,12 +1017,12 @@ spec:
 </code></pre>
   </li>
   <li>
-    <p>Create an <code>ocirsecret</code> secret that will be used for authentication to Container Registry. The secret is a object to store user credential data (encrypted data), for example, the database username and password. In this case, OKE uses it to authenticate to Container Registry to be able to pull microservices container images.</p>
+    <p>Create an <code>ocirsecret</code> secret for authentication to Container Registry using the command below. The secret is a object to store user credential data (encrypted data), for example, the database username and password. In this case, OKE uses it to authenticate to Container Registry to be able to pull microservices container images.</p>
 
     <pre><code class="language-bash"> kubectl create secret docker-registry ocirsecret \
        --docker-server=$OCI_REGION.ocir.io \
-       --docker-username=$OCIR_USERNAME \
-       --docker-password=$AUTH_TOKEN \
+       --docker-username=&lt;username&gt; \
+       --docker-password=&lt;auth-token&gt; \
        --namespace=gdk-k8s
 </code></pre>
   </li>
@@ -986,10 +1061,9 @@ spec:
 
     <pre>
  NAME                      READY   STATUS    RESTARTS   AGE
- api-6fb4cd949f-kxxx8      1/1     Running   0          2d1h
- orders-595887ddd6-6lzp4   1/1     Running   0          2d1h
- users-df6f78cd7-lgnzx     1/1     Running   0          2d1h
- </pre>
+ api-6fb4cd949f-kxxx8      1/1     Running   0          13s
+ orders-595887ddd6-6lzp4   1/1     Running   0          25s
+ users-df6f78cd7-lgnzx     1/1     Running   0          37s</pre>
   </li>
   <li>
     <p>Run this command to check the status of the microservices:</p>
@@ -999,15 +1073,34 @@ spec:
 
     <pre>
  NAME         TYPE           CLUSTER-IP     EXTERNAL-IP      PORT(S)             AGE
- api          LoadBalancer   10.96.70.48    129.159.92.209   8080:31690/TCP      2d1h
- orders       NodePort       10.96.94.130   &lt;none&gt;           8080:31245/TCP      2d1h
- users        NodePort       10.96.34.174   &lt;none&gt;           8080:30790/TCP      2d1h
- </pre>
+ api          LoadBalancer   10.96.70.48    129.146.149.81   8080:31666/TCP      2m9s
+ orders       NodePort       10.96.94.130   &lt;none&gt;           8080:31702/TCP      2m22s
+ users        NodePort       10.96.34.174   &lt;none&gt;           8080:31528/TCP      2m33s</pre>
 
-    <p>If <code>EXTERNAL-IP</code> is in a <code>&lt;pending&gt;</code> state, wait a couple of seconds and then run the command again.</p>
+    <p>If the <code>EXTERNAL-IP</code> property of the <em>api</em> service has a <code>&lt;pending&gt;</code> status, wait a few seconds and then run the command again.
+ If the <code>&lt;pending&gt;</code> status persists for more than one minute, try the following:</p>
+    <ul>
+      <li>Verify that a Load Balancer was created and has an external (public) IP address.
+        <ol>
+          <li>In the Oracle Cloud Console, open the navigation menu.</li>
+          <li>Click <strong>Networking</strong>, and then click <strong>Load balancers</strong>.</li>
+          <li>Click <strong>Load balancer</strong>.</li>
+          <li>Ensure a Load Balancer has been created for your service and has an external IP address. It usually takes a few minutes to allocate an IP address.</li>
+        </ol>
+      </li>
+      <li>Check Load Balancer quota (if a Load Balancer was not created, you may have reached the quota limit).
+        <ol>
+          <li>In the Oracle Cloud Console, open the navigation menu.</li>
+          <li>Click <strong>Governance &amp; Administration</strong>.
+  Under <strong>Tenancy Management</strong>, click <strong>Limits, Quotas and Usage</strong>.</li>
+          <li>Select the Load Balancer quota. 
+  If the quota limit has been reached, request a quota increase or delete unused Load Balancers.</li>
+        </ol>
+      </li>
+    </ul>
   </li>
   <li>
-    <p>Retrieve the URL of the <em>api</em> microservice and set it as the value of the $API_URL environment variable:</p>
+    <p>Retrieve the URL of the <em>api</em> microservice and set it as the value of the <code>$API_URL</code> environment variable:</p>
 
     <pre><code class="language-bash"> export API_URL=http://$(kubectl get svc api -n=gdk-k8s -o json | jq -r '.status.loadBalancer.ingress[0].ip'):8080
 </code></pre>
@@ -1017,7 +1110,8 @@ spec:
 
     <pre><code class="language-bash"> curl -X "POST" "$API_URL/api/users" \
       -H 'Content-Type: application/json; charset=utf-8' \
-      -d '{ "first_name": "Nemanja", "last_name": "Mikic", "username": "nmikic" }'
+      -d '{ "first_name": "Nemanja", "last_name": "Mikic", "username": "nmikic" }' \
+      | jq
 </code></pre>
 
     <p>Your output should look like:</p>
@@ -1035,7 +1129,8 @@ spec:
 
     <pre><code class="language-bash"> curl -X "POST" "$API_URL/api/orders" \
       -H 'Content-Type: application/json; charset=utf-8' \
-      -d '{ "user_id": 1, "item_ids": [1,2] }'
+      -d '{ "user_id": 1, "item_ids": [1,2] }' \
+      | jq
 </code></pre>
 
     <p>Your output should include details of the order, as follows:</p>
@@ -1068,7 +1163,8 @@ spec:
     <p>Run a <code>curl</code> command to list the orders:</p>
 
     <pre><code class="language-bash"> curl "$API_URL/api/orders" \
-      -H 'Content-Type: application/json; charset=utf-8'
+      -H 'Content-Type: application/json; charset=utf-8' \
+      | jq
 </code></pre>
 
     <p>You should see output that is similar to the following:</p>
@@ -1104,7 +1200,8 @@ spec:
 
     <pre><code class="language-bash"> curl -X "POST" "$API_URL/api/orders" \
       -H 'Content-Type: application/json; charset=utf-8' \
-      -d '{ "user_id": 100, "item_ids": [1,2] }'
+      -d '{ "user_id": 100, "item_ids": [1,2] }' \
+      | jq
 </code></pre>
 
     <p>You should see the following error message:</p>
@@ -1131,38 +1228,26 @@ spec:
   </li>
 </ol>
     
-      <h2 id="6-delete-kubernetes-resources">
+      <h2 id="6-clean-up-cloud-resources">
         
         
-          6. Delete Kubernetes Resources <a href="#6-delete-kubernetes-resources" class="anchor_heading">#</a>
+          6. Clean Up Cloud Resources <a href="#6-clean-up-cloud-resources" class="anchor_heading">#</a>
         
         
       </h2>
 
-<p>To delete all Kubernetes resources that were created in this guide, run this command:</p>
+<p>After you have finished this guide, clean up the resources you created:</p>
 
-<pre><code class="language-bash">kubectl delete namespaces gdk-k8s
+<ol>
+  <li>Clean up the Oracle Cloud Infrastructure Load Balancer by deleting the namespaces you created:
+    <pre><code class="language-bash"> kubectl delete namespaces gdk-k8s
 </code></pre>
-
-<p>Delete the OKE cluster.</p>
-
-<pre><code class="language-bash">oci ce cluster delete --cluster-id $OCI_CLUSTER_ID --force
-</code></pre>
-
-<p>Delete the <code>gdk-k8s/users-oci</code> artifacts container repository:</p>
-
-<pre><code class="language-bash">oci artifacts container repository delete --repository-id $USERS_REPOSITORY --force
-</code></pre>
-
-<p>Delete the <code>gdk-k8s/order-oci</code> artifacts container repository:</p>
-
-<pre><code class="language-bash">oci artifacts container repository delete --repository-id $ORDERS_REPOSITORY --force
-</code></pre>
-
-<p>Delete the <code>gdk-k8s/api-oci</code> artifacts container repository:</p>
-
-<pre><code class="language-bash">oci artifacts container repository delete --repository-id $API_REPOSITORY --force
-</code></pre>
+  </li>
+  <li>
+    <p>Destroy the remaining Oracle Cloud Infrastructure resources associated with the stack by following the steps in <a href="https://docs.oracle.com/iaas/Content/ResourceManager/Tasks/create-job-destroy.htm" target="_blank">Creating a Destroy Job</a>.</p>
+  </li>
+  <li>Follow the instructions in <a href="https://docs.oracle.com/iaas/Content/ResourceManager/Tasks/delete-stack.htm" target="_blank">Deleting a Stack</a> to delete the stack.</li>
+</ol>
     
       <h3 id="summary">
         

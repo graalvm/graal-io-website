@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="The Graal Development Kit for Micronaut (GDK) is a build of a curated set of Micronaut framework modules and their required libraries for building portable c..."/>
-  <meta name="last_modified" content="2024-07-10 14:25:57 +0000"/>
-  <meta name="last_built" content="2024-07-16 16:03:16 +0000"/>
+  <meta name="last_modified" content="2024-07-18 12:18:18 +0000"/>
+  <meta name="last_built" content="2024-07-19 14:19:29 +0000"/>
   <link rel="stylesheet" href="/gdk/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gdk/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gdk/resources/img/favicon/favicon-32x32.png">
@@ -296,6 +296,8 @@
         
       
     
+  
+
   
 
   
@@ -728,7 +730,7 @@ export OAUTH_CLIENT_SECRET=YYYYYYYYYY
     </div>
     <div id="maven">
         <pre><code class="language-bash">./mvnw install -pl lib -am
-./mvnw mn:graalvm-resources mn:run -pl gcp</code></pre>
+./mvnw mn:run -pl gcp</code></pre>
     </div>
 </div>
 
@@ -770,7 +772,7 @@ Packaged as a native executable, it significantly reduces application startup ti
   </div>
   <div id="maven">
     <pre><code class="language-bash">./mvnw install -pl lib -am
-./mvnw mn:graalvm-resources package -pl gcp -Dpackaging=native-image</code></pre>
+./mvnw package -pl gcp -Dpackaging=native-image</code></pre>
     <p>The native executable is created in the <em>gcp/target/</em> directory and can be run with the following command:</p>
     <pre><code class="language-bash">gcp/target/gcp-security-demo-gcp</code></pre>
   </div>

@@ -11329,9 +11329,7 @@ pre {
   margin-bottom: 10px;
   overflow-x: auto;
   position: relative;
-  margin-top: 20px;
-  margin-right: 15px;
-  padding: 8px 12px; }
+  margin-right: 15px; }
   pre > code {
     border: 0;
     padding-right: 0;
@@ -11344,7 +11342,6 @@ pre {
       border-radius: 0 0 4px 4px; }
 
 ul, ol {
-  margin: 0 0 20px;
   padding-left: 16px; }
 
 ul li {
