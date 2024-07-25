@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="The Graal Development Kit for Micronaut (GDK) is a build of a curated set of Micronaut framework modules and their required libraries for building portable c..."/>
-  <meta name="last_modified" content="2024-07-23 09:53:18 +0000"/>
-  <meta name="last_built" content="2024-07-24 09:25:17 +0000"/>
+  <meta name="last_modified" content="2024-07-24 11:22:48 +0000"/>
+  <meta name="last_built" content="2024-07-25 09:25:43 +0000"/>
   <link rel="stylesheet" href="/gdk/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gdk/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gdk/resources/img/favicon/favicon-32x32.png">
@@ -889,7 +889,7 @@ This enables you to run the application locally and then view the traces in the 
         <pre><code class="language-bash">./gradlew :oci:run</code></pre>
     </div>
     <div id="maven">
-        <pre><code class="language-bash">./mvnw install -pl lib -am &amp;&amp; MICRONAUT_ENVIRONMENTS=oraclecloud
+        <pre><code class="language-bash">./mvnw install -pl lib -am
 ./mvnw mn:run -pl oci -Dmicronaut.application.name=oci</code></pre>
     </div>
 </div>
@@ -1027,7 +1027,7 @@ Click the trace name to view its details. You should see something similar to th
     <pre><code class="language-bash">oci/build/native/nativeCompile/oci -Dmicronaut.application.name=oci-native</code></pre>
   </div>
   <div id="maven">
-    <pre><code class="language-bash">MICRONAUT_ENVIRONMENTS=oraclecloud oci/target/oci-tracing-demo-oci -Dmicronaut.application.name=oci-native</code></pre>
+    <pre><code class="language-bash">oci/target/oci-tracing-demo-oci -Dmicronaut.application.name=oci-native</code></pre>
   </div>
 </div>
 
