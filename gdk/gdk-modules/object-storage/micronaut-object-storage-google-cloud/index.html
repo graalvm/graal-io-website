@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="The Graal Development Kit for Micronaut (GDK) is a build of a curated set of Micronaut framework modules and their required libraries for building portable c..."/>
-  <meta name="last_modified" content="2024-07-19 14:09:50 +0000"/>
-  <meta name="last_built" content="2024-07-25 09:25:43 +0000"/>
+  <meta name="last_modified" content="2024-08-07 21:25:06 +0000"/>
+  <meta name="last_built" content="2024-08-13 16:36:00 +0000"/>
   <link rel="stylesheet" href="/gdk/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gdk/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gdk/resources/img/favicon/favicon-32x32.png">
@@ -771,10 +771,11 @@ micronaut.server.multipart.max-file-size=20971520
         <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
     </ul>
     <div id="gradle">
-        <pre><code class="language-bash">MICRONAUT_ENVIRONMENTS=dev ./gradlew :gcp:run</code></pre>
+        <pre><code class="language-bash">./gradlew :gcp:run</code></pre>
     </div>
     <div id="maven">
-        <pre><code class="language-bash">./mvnw install -pl lib -am &amp;&amp; MICRONAUT_ENVIRONMENTS=dev ./mvnw mn:run -pl gcp</code></pre>
+        <pre><code class="language-bash">./mvnw install -pl lib -am  
+./mvnw mn:run -pl gcp</code></pre>
     </div>
 </div>
     
@@ -871,13 +872,13 @@ Packaged as a native executable, it significantly reduces application startup ti
   <div id="gradle">
     <pre><code class="language-bash">./gradlew :gcp:nativeCompile</code></pre>
     <p>The native executable is created in the <em>gcp/build/native/nativeCompile/</em> directory and can be run with the following command:</p>
-    <pre><code class="language-bash">MICRONAUT_ENVIRONMENTS=dev qgcp/build/native/nativeCompile/gcp</code></pre>
+    <pre><code class="language-bash">gcp/build/native/nativeCompile/gcp</code></pre>
   </div>
   <div id="maven">
     <pre><code class="language-bash">./mvnw install -pl lib -am
 ./mvnw package -pl gcp -Dpackaging=native-image</code></pre>
     <p>The native executable is created in the <em>gcp/target/</em> directory and can be run with the following command:</p>
-    <pre><code class="language-bash">MICRONAUT_ENVIRONMENTS=dev gcp/target/gcp-storage-demo-gcp</code></pre>
+    <pre><code class="language-bash">gcp/target/gcp-storage-demo-gcp</code></pre>
   </div>
 </div>
     
