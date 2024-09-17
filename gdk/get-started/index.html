@@ -15,7 +15,7 @@
   </title>
   <meta name="description" content="The Graal Development Kit for Micronaut (GDK) is a build of a curated set of Micronaut framework modules and their required libraries for building portable c..."/>
   <meta name="last_modified" content="2024-05-29 15:07:10 +0000"/>
-  <meta name="last_built" content="2024-08-23 09:07:41 +0000"/>
+  <meta name="last_built" content="2024-09-17 14:14:17 +0000"/>
   <link rel="stylesheet" href="/gdk/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gdk/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gdk/resources/img/favicon/favicon-32x32.png">
@@ -27,11 +27,11 @@
   <link rel="canonical" href="https://www.graal.cloud/gdk/get-started/">
 
   <!-- jQuery UI Tabs -->
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.14.0/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="/gdk/resources/lib/jquery/jquery-ui.css">
 </head>
 
-      <script src="/gdk/resources/lib/jquery/jquery-3.6.1.min.js"></script>
+      <script src="/gdk/resources/lib/jquery/jquery-3.7.1.min.js"></script>
     <script src="/gdk/resources/lib/bootstrap/js/bootstrap.min.js"></script>
     <script src='/gdk/resources/lib/sticky-sidebar/resizeSensor.js'></script>
     <script src='/gdk/resources/lib/sticky-sidebar/sticky-sidebar.min.js'></script>
@@ -41,7 +41,7 @@
     <script async="async" type="text/javascript" src='//consent.trustarc.com/notice?domain=oracle.com&c=teconsent&js=bb&noticeType=bb&text=true&cdn=1&pcookie&gtm=1' crossorigin></script>
     <script src="https://www.oracle.com/assets/truste-oraclelib.js"></script>
     <!-- jQuery UI Tabs -->
-    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="https://code.jquery.com/ui/1.14.0/jquery-ui.js"></script>
 
 
   <body class="preload">
@@ -172,7 +172,7 @@
             The modules provide platform-independent support for a set of core cloud services including object storage,
             secret management, streaming, tracing, and more.
             This guide walks you through the steps to successfully create, build, test and deploy a cloud native application to Oracle Cloud Infrastructure,
-            Amazon Web Services (AWS), and Google Cloud Platform (GCP).
+            Amazon Web Services (AWS), Google Cloud Platform (GCP), and Microsoft Azure.
           </p>
           <p class="gs-first-texts">
             We showcase these capabilities by building a Java application which accesses cloud object storage in a vendor-independent way.
@@ -208,7 +208,7 @@
               <p>Cloud Accounts</p>
             </div>
             <div class="prerequisites__descrip">
-              <p>You have created account(s) for Oracle Cloud Infrastructure, Amazon Web Services, and/or Google Cloud Platform.</p>
+              <p>You have created account(s) for Oracle Cloud Infrastructure, Amazon Web Services, Google Cloud Platform, and/or Microsoft Azure.</p>
             </div>
             <a href="/gdk/get-started/setting-up-cloud-accounts/" target="_blank" class="btn btn-primary gs-btn">Set
               up</a>
@@ -237,9 +237,9 @@
   <div class="container-fluid container-fluid--custom-sm">
     <div class="getstarted-divider"></div>
     <p class="gs-root-texts">This guide describes how to create a <a href="https://micronaut.io/">Micronaut</a>
-      application that runs natively on Oracle Cloud Infrastructure, Amazon Web Services, and Google Cloud Platform <em>without</em>
+      application that runs natively on Oracle Cloud Infrastructure, Amazon Web Services, Google Cloud Platform, and Microsoft Azure <em>without</em>
       any source code changes.
-      The application demonstrates how to store and retrieve user profile pictures in Oracle Cloud Infrastructure, Amazon Web Services and Google Cloud Platform Object Storage using
+      The application demonstrates how to store and retrieve user profile pictures in Oracle Cloud Infrastructure, Amazon Web Services, Google Cloud Platform, and Microsoft Azure using
       the <a href="https://micronaut-projects.github.io/micronaut-object-storage/latest/guide/" target="_blank">Micronaut Object Storage API</a>.
     </p>
 
@@ -258,15 +258,15 @@
         Open the <a href="/gdk/launcher/?advanced=true" target="_blank">GDK Launcher</a>.
       </li>
       <li>Create a new project using the following selections. (Alternatively, use these shortcuts for <a
-          href="/gdk/launcher/?advanced=true&amp;type=APPLICATION&amp;name=GettingStarted&amp;package=com.example&amp;clouds=AWS%7COCI%7CGCP&amp;language=JAVA&amp;buildTool=MAVEN&amp;test=JUNIT&amp;java-version=JDK_17&amp;sample-code=true&amp;services=OBJECTSTORE">Maven</a>
+          href="/gdk/launcher/?advanced=true&amp;type=APPLICATION&amp;name=GettingStarted&amp;package=com.example&amp;clouds=AWS%7COCI%7CGCP%7CAzure&amp;language=JAVA&amp;buildTool=MAVEN&amp;test=JUNIT&amp;java-version=JDK_17&amp;sample-code=true&amp;services=OBJECTSTORE">Maven</a>
         or <a
-          href="/gdk/launcher/?advanced=true&amp;type=APPLICATION&amp;name=GettingStarted&amp;package=com.example&amp;clouds=AWS%7COCI%7CGCP&amp;language=JAVA&amp;buildTool=GRADLE&amp;test=JUNIT&amp;java-version=JDK_17&amp;sample-code=true&amp;services=OBJECTSTORE">Gradle</a>.)
+          href="/gdk/launcher/?advanced=true&amp;type=APPLICATION&amp;name=GettingStarted&amp;package=com.example&amp;clouds=AWS%7COCI%7CGCP%7CAzure&amp;language=JAVA&amp;buildTool=GRADLE&amp;test=JUNIT&amp;java-version=JDK_17&amp;sample-code=true&amp;services=OBJECTSTORE">Gradle</a>.)
         <ul>
           <li><strong style="color:#C4D1EE">Project Type</strong>: <em>Application</em> (Default)</li>
           <li><strong style="color:#C4D1EE">Project Name</strong>: <em>GettingStarted</em></li>
           <li><strong style="color:#C4D1EE">Base Package</strong>: <em>com.example</em> (Default)</li>
-          <li><strong style="color:#C4D1EE">Clouds</strong>: <em>AWS</em>, <em>GCP</em> <strong style="color:#C4D1EE">and</strong>
-            <em>OCI</em></li>
+          <li><strong style="color:#C4D1EE">Clouds</strong>: <em>OCI</em>, <em>AWS</em>, <em>GCP</em>, <strong style="color:#C4D1EE">and</strong>
+            <em>Azure</em></li>
           <li><strong style="color:#C4D1EE">Language</strong>: <em>Java</em> (Default)</li>
           <li><strong style="color:#C4D1EE">Build Tool</strong>: <em>Gradle (Groovy)</em> or <em>Maven</em></li>
           <li><strong style="color:#C4D1EE">Test Framework</strong>: <em>JUnit</em> (Default)</li>
@@ -276,7 +276,7 @@
           <li><strong style="color:#C4D1EE">Features</strong>: <em>GraalVM Native Image</em> (Default)</li>
           <li><strong style="color:#C4D1EE">Sample Code</strong>: <em>Yes</em> (Default)</li>
         </ul>
-        <p><br/><img src="/gdk/docs/get-started/images/GDKlauncher-4.5.0.png" class="gs-images" alt="GDK Launcher"></p>
+        <p><br/><img src="/gdk/docs/get-started/images/GDKlauncher-4.6.0.png" class="gs-images" alt="GDK Launcher"></p>
       </li>
       <li>Click <strong style="color:#C4D1EE">Generate Project</strong> and then click
         <strong style="color:#C4D1EE">Download Zip</strong>. The GDK Launcher creates an application with
@@ -285,7 +285,7 @@
         proceed to the next steps.</li>
     </ol>
     <p class="gs-root-texts">The GDK Launcher creates the following sample source code files that use the Micronaut
-      Object Storage API to create, read, and delete objects in the major cloud providers​:
+      Object Storage API to create, read, and delete objects in the major cloud providers:
     <ul>
       <li class="gs-root-texts">an interface describing the endpoints of the "profile pictures" microservice:</li>
       <li><em><a href="/gdk/docs/get-started/src/ProfilePicturesApi.java"
@@ -310,6 +310,7 @@
                   <p class="filter-item cloud-filter" data-filter="oci" tabindex="0">OCI</p>
                   <p class="filter-item cloud-filter" data-filter="aws" tabindex="0">AWS</p>
                   <p class="filter-item cloud-filter" data-filter="gcp" tabindex="0">GCP</p>
+                  <p class="filter-item cloud-filter" data-filter="azure" tabindex="0">Azure</p>
                 </div>
               </div>
             </div>
@@ -377,13 +378,32 @@ micronaut.object-storage.oracle-cloud.default.bucket=OBJECT_STORAGE_BUCKET</code
           <div class="col-12 col-sm-12 col-md-12 col-lg-12">
             <div class="row">
               <div class="col-sm guides-box gs-section-indent gcp gradle maven">
-                <p class="gs-root-texts">For this section, you will need a Google Cloud Platform account and a an Object Storage bucket created already.
+                <p class="gs-root-texts">For this section, you will need a Google Cloud Platform account and an Object Storage bucket created already.
                   See <a href="/gdk/gdk-modules/object-storage/micronaut-object-storage-google-cloud/" target="_blank">GCP Object Storage
                     Guide</a> for assistance.</p>
                 <p class="gs-root-texts">Update the Google Cloud Platform configuration file (<em>gcp/src/main/resources/application.properties</em>)
                   with the name of the bucket:</p>
                 <pre><code class="language-bash" tabindex="0">micronaut.object-storage.gcp.default.bucket=OBJECT_STORAGE_BUCKET</code><button tabindex="0">Copy</button></pre>
                 <p class="gs-root-texts">Replace <code>OBJECT_STORAGE_BUCKET</code> with the name of your bucket.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid container-fluid--custom-sm">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="row">
+              <div class="col-sm guides-box gs-section-indent azure gradle maven">
+                <p class="gs-root-texts">For this section, you will need a Microsoft Azure account and a Storage Container created already.
+                  See <a href="/gdk/gdk-modules/object-storage/micronaut-object-storage-azure/" target="_blank">Azure Object Storage
+                    Guide</a> for assistance.</p>
+                <p class="gs-root-texts">Update the Azure configuration file (<em>azure/src/main/resources/application.properties</em>)
+                  with the name of the container and the storage endpoint:</p>
+                <pre><code class="language-bash" tabindex="0">micronaut.object-storage.azure.default.container=STORAGE_CONTAINER
+micronaut.object-storage.azure.default.endpoint=STORAGE_ENDPOINT</code><button tabindex="0">Copy</button></pre>
+                <p class="gs-root-texts">Replace <code>STORAGE_CONTAINER</code> with the name of your container and
+                  <code>STORAGE_ENDPOINT</code> with your storage endpoint (it will look like <em>https://gdkstorage.blob.core.windows.net/</em>).</p>
               </div>
             </div>
           </div>
@@ -405,6 +425,7 @@ micronaut.object-storage.oracle-cloud.default.bucket=OBJECT_STORAGE_BUCKET</code
                   <p class="filter-item cloud-filter" data-filter="oci" tabindex="0">OCI</p>
                   <p class="filter-item cloud-filter" data-filter="aws" tabindex="0">AWS</p>
                   <p class="filter-item cloud-filter" data-filter="gcp" tabindex="0">GCP</p>
+                  <p class="filter-item cloud-filter" data-filter="azure" tabindex="0">Azure</p>
                 </div>
               </div>
             </div>
@@ -443,8 +464,7 @@ micronaut.object-storage.oracle-cloud.default.bucket=OBJECT_STORAGE_BUCKET</code
           <div class="col-12 col-sm-12 col-md-12 col-lg-12">
             <div class="row">
               <div class="col-sm guides-box gs-section-indent oci maven">
-                <pre
-                  style="margin-top:4px"><code class="language-bash hljs" tabindex="0">./mvnw install -pl lib -am &amp;&amp; ./mvnw mn:run -pl oci</code><button tabindex="0">Copy</button></pre>
+                <pre style="margin-top:4px"><code class="language-bash hljs" tabindex="0">./mvnw install -pl lib -am &amp;&amp; ./mvnw mn:run -pl oci</code><button tabindex="0">Copy</button></pre>
               </div>
             </div>
           </div>
@@ -455,8 +475,7 @@ micronaut.object-storage.oracle-cloud.default.bucket=OBJECT_STORAGE_BUCKET</code
           <div class="col-12 col-sm-12 col-md-12 col-lg-12">
             <div class="row">
               <div class="col-sm guides-box gs-section-indent aws maven">
-                <pre
-                  style="margin-top:4px"><code class="language-bash hljs" tabindex="0">./mvnw install -pl lib -am &amp;&amp; ./mvnw mn:run -pl aws</code><button tabindex="0">Copy</button></pre>
+                <pre style="margin-top:4px"><code class="language-bash hljs" tabindex="0">./mvnw install -pl lib -am &amp;&amp; ./mvnw mn:run -pl aws</code><button tabindex="0">Copy</button></pre>
               </div>
             </div>
           </div>
@@ -467,8 +486,18 @@ micronaut.object-storage.oracle-cloud.default.bucket=OBJECT_STORAGE_BUCKET</code
           <div class="col-12 col-sm-12 col-md-12 col-lg-12">
             <div class="row">
               <div class="col-sm guides-box gs-section-indent gcp maven">
-                <pre
-                  style="margin-top:4px"><code class="language-bash hljs" tabindex="0">./mvnw install -pl lib -am &amp;&amp; ./mvnw mn:run -pl gcp</code><button tabindex="0">Copy</button></pre>
+                <pre style="margin-top:4px"><code class="language-bash hljs" tabindex="0">./mvnw install -pl lib -am &amp;&amp; ./mvnw mn:run -pl gcp</code><button tabindex="0">Copy</button></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid container-fluid--custom-sm">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="row">
+              <div class="col-sm guides-box gs-section-indent azure maven">
+                <pre style="margin-top:4px"><code class="language-bash hljs" tabindex="0">./mvnw install -pl lib -am &amp;&amp; ./mvnw mn:run -pl azure</code><button tabindex="0">Copy</button></pre>
               </div>
             </div>
           </div>
@@ -479,8 +508,7 @@ micronaut.object-storage.oracle-cloud.default.bucket=OBJECT_STORAGE_BUCKET</code
           <div class="col-12 col-sm-12 col-md-12 col-lg-12">
             <div class="row">
               <div class="col-sm guides-box gs-section-indent oci gradle">
-                <pre
-                  style="margin-top:4px"><code class="language-bash hljs" tabindex="0">./gradlew :oci:run</code><button tabindex="0">Copy</button></pre>
+                <pre style="margin-top:4px"><code class="language-bash hljs" tabindex="0">./gradlew :oci:run</code><button tabindex="0">Copy</button></pre>
               </div>
             </div>
           </div>
@@ -491,8 +519,7 @@ micronaut.object-storage.oracle-cloud.default.bucket=OBJECT_STORAGE_BUCKET</code
           <div class="col-12 col-sm-12 col-md-12 col-lg-12">
             <div class="row">
               <div class="col-sm guides-box gs-section-indent aws gradle">
-                <pre
-                  style="margin-top:4px"><code class="language-bash hljs" tabindex="0">./gradlew :aws:run</code><button tabindex="0">Copy</button></pre>
+                <pre style="margin-top:4px"><code class="language-bash hljs" tabindex="0">./gradlew :aws:run</code><button tabindex="0">Copy</button></pre>
               </div>
             </div>
           </div>
@@ -503,8 +530,18 @@ micronaut.object-storage.oracle-cloud.default.bucket=OBJECT_STORAGE_BUCKET</code
           <div class="col-12 col-sm-12 col-md-12 col-lg-12">
             <div class="row">
               <div class="col-sm guides-box gs-section-indent gcp gradle">
-                <pre
-                  style="margin-top:4px"><code class="language-bash hljs" tabindex="0">./gradlew :gcp:run</code><button tabindex="0">Copy</button></pre>
+                <pre style="margin-top:4px"><code class="language-bash hljs" tabindex="0">./gradlew :gcp:run</code><button tabindex="0">Copy</button></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid container-fluid--custom-sm">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="row">
+              <div class="col-sm guides-box gs-section-indent azure gradle">
+                <pre style="margin-top:4px"><code class="language-bash hljs" tabindex="0">./gradlew :azure:run</code><button tabindex="0">Copy</button></pre>
               </div>
             </div>
           </div>
@@ -539,6 +576,7 @@ micronaut.object-storage.oracle-cloud.default.bucket=OBJECT_STORAGE_BUCKET</code
                   <p class="filter-item cloud-filter" data-filter="oci" tabindex="0">OCI</p>
                   <p class="filter-item cloud-filter" data-filter="aws" tabindex="0">AWS</p>
                   <p class="filter-item cloud-filter" data-filter="gcp" tabindex="0">GCP</p>
+                  <p class="filter-item cloud-filter" data-filter="azure" tabindex="0">Azure</p>
                 </div>
               </div>
             </div>
@@ -579,14 +617,12 @@ micronaut.object-storage.oracle-cloud.default.bucket=OBJECT_STORAGE_BUCKET</code
           <div class="col-12 col-sm-12 col-md-12 col-lg-12">
             <div class="row">
               <div class="col-sm guides-box gs-section-indent oci maven">
-                <pre
-                  style="margin-top:4px"><code class="language-bash hljs" tabindex="0">./mvnw install -pl lib -am &amp;&amp; ./mvnw clean package -pl oci -Dpackaging=native-image</code><button tabindex="0">Copy</button></pre>
+                <pre style="margin-top:4px"><code class="language-bash hljs" tabindex="0">./mvnw install -pl lib -am &amp;&amp; ./mvnw clean package -pl oci -Dpackaging=native-image</code><button tabindex="0">Copy</button></pre>
                 <p class="gs-tabs-text">
                   The native executable is created in the <em>oci/target/</em> directory
                   and can be run with the following command:
                 </p>
-                <pre
-                  style="margin-top:4px"><code class="language-bash hljs" tabindex="0">oci/target/GettingStarted-oci</code><button tabindex="0">Copy</button></pre>
+                <pre style="margin-top:4px"><code class="language-bash hljs" tabindex="0">oci/target/GettingStarted-oci</code><button tabindex="0">Copy</button></pre>
               </div>
             </div>
           </div>
@@ -597,14 +633,12 @@ micronaut.object-storage.oracle-cloud.default.bucket=OBJECT_STORAGE_BUCKET</code
           <div class="col-12 col-sm-12 col-md-12 col-lg-12">
             <div class="row">
               <div class="col-sm guides-box gs-section-indent aws maven">
-                <pre
-                  style="margin-top:4px"><code class="language-bash hljs" tabindex="0">./mvnw install -pl lib -am &amp;&amp; ./mvnw package -pl aws -Dpackaging=native-image</code><button tabindex="0">Copy</button></pre>
+                <pre style="margin-top:4px"><code class="language-bash hljs" tabindex="0">./mvnw install -pl lib -am &amp;&amp; ./mvnw package -pl aws -Dpackaging=native-image</code><button tabindex="0">Copy</button></pre>
                 <p class="gs-tabs-text">
                   The native executable is created in the <em>aws/target/</em> directory
                   and can be run with the following command:
                 </p>
-                <pre
-                  style="margin-top:4px"><code class="language-bash hljs" tabindex="0">aws/target/GettingStarted-aws</code><button tabindex="0">Copy</button></pre>
+                <pre style="margin-top:4px"><code class="language-bash hljs" tabindex="0">aws/target/GettingStarted-aws</code><button tabindex="0">Copy</button></pre>
               </div>
             </div>
           </div>
@@ -615,14 +649,28 @@ micronaut.object-storage.oracle-cloud.default.bucket=OBJECT_STORAGE_BUCKET</code
           <div class="col-12 col-sm-12 col-md-12 col-lg-12">
             <div class="row">
               <div class="col-sm guides-box gs-section-indent gcp maven">
-                <pre
-                  style="margin-top:4px"><code class="language-bash hljs" tabindex="0">./mvnw install -pl lib -am &amp;&amp; ./mvnw package -pl gcp -Dpackaging=native-image</code><button tabindex="0">Copy</button></pre>
+                <pre style="margin-top:4px"><code class="language-bash hljs" tabindex="0">./mvnw install -pl lib -am &amp;&amp; ./mvnw package -pl gcp -Dpackaging=native-image</code><button tabindex="0">Copy</button></pre>
                 <p class="gs-tabs-text">
                   The native executable is created in the <em>gcp/target/</em> directory
                   and can be run with the following command:
                 </p>
-                <pre
-                  style="margin-top:4px"><code class="language-bash hljs" tabindex="0">gcp/target/GettingStarted-gcp</code><button tabindex="0">Copy</button></pre>
+                <pre style="margin-top:4px"><code class="language-bash hljs" tabindex="0">gcp/target/GettingStarted-gcp</code><button tabindex="0">Copy</button></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid container-fluid--custom-sm">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="row">
+              <div class="col-sm guides-box gs-section-indent azure maven">
+                <pre style="margin-top:4px"><code class="language-bash hljs" tabindex="0">./mvnw install -pl lib -am &amp;&amp; ./mvnw package -pl azure -Dpackaging=native-image</code><button tabindex="0">Copy</button></pre>
+                <p class="gs-tabs-text">
+                  The native executable is created in the <em>azure/target/</em> directory
+                  and can be run with the following command:
+                </p>
+                <pre style="margin-top:4px"><code class="language-bash hljs" tabindex="0">azure/target/GettingStarted-azure</code><button tabindex="0">Copy</button></pre>
               </div>
             </div>
           </div>
@@ -633,15 +681,13 @@ micronaut.object-storage.oracle-cloud.default.bucket=OBJECT_STORAGE_BUCKET</code
           <div class="col-12 col-sm-12 col-md-12 col-lg-12">
             <div class="row">
               <div class="col-sm guides-box gs-section-indent oci gradle">
-                <pre
-                  style="margin-top:4px"><code class="language-bash hljs" tabindex="0">./gradlew :oci:nativeCompile</code><button tabindex="0">Copy</button></pre>
+                <pre style="margin-top:4px"><code class="language-bash hljs" tabindex="0">./gradlew :oci:nativeCompile</code><button tabindex="0">Copy</button></pre>
                 <p class="gs-tabs-text">
                   The native executable is created in the
                   <em>oci/build/native/nativeCompile/</em> directory and can be run with
                   the following command:
                 </p>
-                <pre
-                  style="margin-top:4px"><code class="language-bash hljs" tabindex="0">oci/build/native/nativeCompile/oci</code><button tabindex="0">Copy</button></pre>
+                <pre style="margin-top:4px"><code class="language-bash hljs" tabindex="0">oci/build/native/nativeCompile/GettingStarted-oci</code><button tabindex="0">Copy</button></pre>
               </div>
             </div>
           </div>
@@ -652,15 +698,13 @@ micronaut.object-storage.oracle-cloud.default.bucket=OBJECT_STORAGE_BUCKET</code
           <div class="col-12 col-sm-12 col-md-12 col-lg-12">
             <div class="row">
               <div class="col-sm guides-box gs-section-indent aws gradle">
-                <pre
-                  style="margin-top:4px"><code class="language-bash hljs" tabindex="0">./gradlew :aws:nativeCompile</code><button tabindex="0">Copy</button></pre>
+                <pre style="margin-top:4px"><code class="language-bash hljs" tabindex="0">./gradlew :aws:nativeCompile</code><button tabindex="0">Copy</button></pre>
                 <p class="gs-tabs-text">
                   The native executable is created in the
                   <em>aws/build/native/nativeCompile/</em> directory and can be run with
                   the following command:
                 </p>
-                <pre
-                  style="margin-top:4px"><code class="language-bash hljs" tabindex="0">aws/build/native/nativeCompile/aws</code><button tabindex="0">Copy</button></pre>
+                <pre style="margin-top:4px"><code class="language-bash hljs" tabindex="0">aws/build/native/nativeCompile/GettingStarted-aws</code><button tabindex="0">Copy</button></pre>
               </div>
             </div>
           </div>
@@ -671,15 +715,30 @@ micronaut.object-storage.oracle-cloud.default.bucket=OBJECT_STORAGE_BUCKET</code
           <div class="col-12 col-sm-12 col-md-12 col-lg-12">
             <div class="row">
               <div class="col-sm guides-box gs-section-indent gcp gradle">
-                <pre
-                  style="margin-top:4px"><code class="language-bash hljs" tabindex="0">./gradlew :gcp:nativeCompile</code><button tabindex="0">Copy</button></pre>
+                <pre style="margin-top:4px"><code class="language-bash hljs" tabindex="0">./gradlew :gcp:nativeCompile</code><button tabindex="0">Copy</button></pre>
                 <p class="gs-tabs-text">
                   The native executable is created in the
                   <em>gcp/build/native/nativeCompile/</em> directory and can be run with
                   the following command:
                 </p>
-                <pre
-                  style="margin-top:4px"><code class="language-bash hljs" tabindex="0">gcp/build/native/nativeCompile/gcp</code><button tabindex="0">Copy</button></pre>
+                <pre style="margin-top:4px"><code class="language-bash hljs" tabindex="0">gcp/build/native/nativeCompile/GettingStarted-gcp</code><button tabindex="0">Copy</button></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid container-fluid--custom-sm">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="row">
+              <div class="col-sm guides-box gs-section-indent azure gradle">
+                <pre style="margin-top:4px"><code class="language-bash hljs" tabindex="0">./gradlew :azure:nativeCompile</code><button tabindex="0">Copy</button></pre>
+                <p class="gs-tabs-text">
+                  The native executable is created in the
+                  <em>azure/build/native/nativeCompile/</em> directory and can be run with
+                  the following command:
+                </p>
+                <pre style="margin-top:4px"><code class="language-bash hljs" tabindex="0">azure/build/native/nativeCompile/GettingStarted-azure</code><button tabindex="0">Copy</button></pre>
               </div>
             </div>
           </div>
@@ -696,20 +755,20 @@ micronaut.object-storage.oracle-cloud.default.bucket=OBJECT_STORAGE_BUCKET</code
     <h2 style="color:#ffffff">6. Deploy the Application as a Container on the Cloud</h2>
     <p class="gs-root-texts">
       Next you can create a container with Native Image version of the application and deploy it
-      on a Kubernetes cluster on Oracle Cloud Infrastructure, Amazon Web Services and Google Cloud Platform.
+      on a Kubernetes cluster on Oracle Cloud Infrastructure, Amazon Web Services, Google Cloud Platform, and Microsoft Azure.
     </p>
-    
-    <h3 style="color:#ffffff">6.1 Oracle Cloud Infrastructure</h3>
+
+    <h3 style="color:#ffffff">6.1. Oracle Cloud Infrastructure</h3>
     <p class="gs-root-texts">
-      You can install the Visual Studio Code extensions for GDK, covered in <a href="/gdk/vscode-tools/graal-development-kit-extension-pack/" target="_blank">Installing the Graal Development Kit Tools</a>, 
+      You can install the Visual Studio Code extensions for GDK, covered in <a href="/gdk/vscode-tools/graal-development-kit-extension-pack/" target="_blank">Installing the Graal Development Kit Tools</a>,
       and use <a href="/gdk/vscode-tools/oci-devops-tools/" target="_blank">OCI DevOps Resources</a> to use the Oracle Cloud Infrastructure DevOps service to deploy your application
       to a pre-created Kubernetes cluster from within VS Code.
       </p>
     <p><img src="/gdk/docs/get-started/images/VSCode_OCIServices.png" class="gs-images" alt="OCI Services in VS Code">
     </p>
     <p class="gs-root-texts">
-      Using the <a href="/gdk/vscode-tools/oci-devops-tools/" target="_blank">OCI DevOps Resources in VS Code</a>, 
-      you can easily deploy a Java application to Oracle Cloud Infrastructure, make source code changes, 
+      Using the <a href="/gdk/vscode-tools/oci-devops-tools/" target="_blank">OCI DevOps Resources in VS Code</a>,
+      you can easily deploy a Java application to Oracle Cloud Infrastructure, make source code changes,
       push them into the Oracle Cloud Infrastructure Git repository, and then trigger the build of a container image with
       your native executable or a container image with JVM using the predefined Oracle Cloud Infrastructure Build Pipelines.
     </p>
@@ -717,12 +776,12 @@ micronaut.object-storage.oracle-cloud.default.bucket=OBJECT_STORAGE_BUCKET</code
       Learn more about this is in the <a href="/gdk/get-started/setting-oci-devops-pipeline-in-vscode/" target="_blank">Setting Oracle Cloud Infrastructure DevOps Build and
         Development Pipeline in VS Code guide</a>.
     </p>
-    
-    <h3 style="color:#ffffff">6.2 AWS</h3>
+
+    <h3 style="color:#ffffff">6.2. AWS</h3>
     <p class="gs-root-texts">
       A complete guide on <a href="/gdk/get-started/deploy-to-aws-eks-in-vscode/" target="_blank">how to deploy an application to a Kubernetes cluster in AWS EKS</a> is available.
     </p>
-    <p class="gs-root-texts">With your AWS account ready and access to EKS configured, simply invoke command:</p>
+    <p class="gs-root-texts">With your AWS account ready and access to EKS configured, simply invoke this command:</p>
 
     <div class="gs-border-tab">
       <section class="gs-filter-content-section guides-back">
@@ -763,7 +822,7 @@ micronaut.object-storage.oracle-cloud.default.bucket=OBJECT_STORAGE_BUCKET</code
         <div class="row">
           <div class="col-12 col-sm-12 col-md-12 col-lg-12">
             <div class="row">
-              <div class="col-sm guides-box gs-section-indent aws oci gcp maven">
+              <div class="col-sm guides-box gs-section-indent aws maven">
                 <pre><code class="language-bash hljs" tabindex="0">./mvnw deploy -Dpackaging=docker-native -pl aws</code><button tabindex="0">Copy</button></pre>
               </div>
             </div>
@@ -775,7 +834,7 @@ micronaut.object-storage.oracle-cloud.default.bucket=OBJECT_STORAGE_BUCKET</code
         <div class="row">
           <div class="col-12 col-sm-12 col-md-12 col-lg-12">
             <div class="row">
-              <div class="col-sm guides-box gs-section-indent aws oci gcp gradle">
+              <div class="col-sm guides-box gs-section-indent aws gradle">
                 <pre><code class="language-bash hljs" tabindex="0">./gradlew aws:dockerPushNative</code><button tabindex="0">Copy</button></pre>
               </div>
             </div>
@@ -790,11 +849,11 @@ micronaut.object-storage.oracle-cloud.default.bucket=OBJECT_STORAGE_BUCKET</code
     </p>
     <pre><code class="language-bash hljs" tabindex="0">kubectl apply -f deployment.yml</code><button tabindex="0">Copy</button></pre>
 
-    <h3 style="color:#ffffff">6.3 GCP</h3>
+    <h3 style="color:#ffffff">6.3. GCP</h3>
     <p class="gs-root-texts">
-      A complete guide on <a href="/gdk/vscode-guides/deploy-to-google-k8s-engine-in-vscode//" target="_blank">how to deploy an application to Google Kubernetes Engine</a> is available.
+      A complete guide on <a href="/gdk/vscode-guides/deploy-to-google-k8s-engine-in-vscode/" target="_blank">how to deploy an application to Google Kubernetes Engine</a> is available.
     </p>
-    <p class="gs-root-texts">With your GCP account ready and access to GKE configured, simply invoke command:</p>
+    <p class="gs-root-texts">With your GCP account ready and access to GKE configured, simply invoke this command:</p>
 
     <div class="gs-border-tab">
       <section class="gs-filter-content-section guides-back">
@@ -835,7 +894,7 @@ micronaut.object-storage.oracle-cloud.default.bucket=OBJECT_STORAGE_BUCKET</code
         <div class="row">
           <div class="col-12 col-sm-12 col-md-12 col-lg-12">
             <div class="row">
-              <div class="col-sm guides-box gs-section-indent aws oci gcp maven">
+              <div class="col-sm guides-box gs-section-indent gcp maven">
                 <pre><code class="language-bash hljs" tabindex="0">./mvnw deploy -Dpackaging=docker-native -pl gcp</code><button tabindex="0">Copy</button></pre>
               </div>
             </div>
@@ -847,7 +906,7 @@ micronaut.object-storage.oracle-cloud.default.bucket=OBJECT_STORAGE_BUCKET</code
         <div class="row">
           <div class="col-12 col-sm-12 col-md-12 col-lg-12">
             <div class="row">
-              <div class="col-sm guides-box gs-section-indent aws oci gcp gradle">
+              <div class="col-sm guides-box gs-section-indent gcp gradle">
                 <pre><code class="language-bash hljs" tabindex="0">./gradlew gcp:dockerPushNative</code><button tabindex="0">Copy</button></pre>
               </div>
             </div>
@@ -861,7 +920,79 @@ micronaut.object-storage.oracle-cloud.default.bucket=OBJECT_STORAGE_BUCKET</code
       When you setup your Kubernetes deployment for GKE, simply invoke the command:
     </p>
     <pre><code class="language-bash hljs" tabindex="0">kubectl apply -f deployment.yml</code><button tabindex="0">Copy</button></pre>
-    
+
+    <h3 style="color:#ffffff">6.4. Azure</h3>
+    <p class="gs-root-texts">
+      A complete guide on <a href="/gdk/gdk-modules/kubernetes/micronaut-k8s-azure/" target="_blank">how to deploy an application to Azure Kubernetes Engine</a> is available.
+    </p>
+    <p class="gs-root-texts">With your Azure account ready and access to AKS configured, simply invoke this command:</p>
+
+    <div class="gs-border-tab">
+      <section class="gs-filter-content-section guides-back">
+        <div class="container">
+          <div class="gs__row">
+            <div class="column-view">
+              <div>
+                <p class="gs-filter-title"><span class="buildtool-title-color">Build Tool</span>Filter</p>
+              </div>
+              <div class="guide-filter" id="gradle-maven switcher step 8">
+                <div class="row">
+                  <p class="filter-item buildtool-filter" data-filter="gradle" tabindex="0">Gradle</p>
+                  <p class="filter-item buildtool-filter" data-filter="maven" tabindex="0">Maven</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="no-modules">
+        <section class="filter-content-section guides-back">
+          <div class="container-fluid container-fluid--custom-sm">
+            <div class="row">
+              <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="guide-filter">
+                  <div class="row">
+                    <p class="filter-item module-filter" data-filter="all" tabindex="0">All</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="container-fluid container-fluid--custom-sm">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="row">
+              <div class="col-sm guides-box gs-section-indent azure maven">
+                <pre><code class="language-bash hljs" tabindex="0">./mvnw deploy -Dpackaging=docker-native -pl azure</code><button tabindex="0">Copy</button></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid container-fluid--custom-sm">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="row">
+              <div class="col-sm guides-box gs-section-indent azure gradle">
+                <pre><code class="language-bash hljs" tabindex="0">./gradlew azure:dockerPushNative</code><button tabindex="0">Copy</button></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="gs-root-texts">
+      This will build a native executable, package it as a container image and push the container image to the correct Azure container registry.
+      When you setup your Kubernetes deployment for AKS, simply invoke the command:
+    </p>
+    <pre><code class="language-bash hljs" tabindex="0">kubectl apply -f deployment.yml</code><button tabindex="0">Copy</button></pre>
+
     <h2 style="color:#ffffff">7. Developing the Application in VS Code</h2>
     <p class="gs-root-texts">
       Develop Java applications in VS Code with Graal Development Kit support.
@@ -901,8 +1032,8 @@ micronaut.object-storage.oracle-cloud.default.bucket=OBJECT_STORAGE_BUCKET</code
                 <h4 class="card__title">Explore</h4>
                 <div class="nextsteps-description">
                   <p>
-                    The GDK provides easy step-by-step guides, and companion sample applications, 
-                    for the developer to learn how to use a specific cloud service (such as Micronaut Data). 
+                    The GDK provides easy step-by-step guides, and companion sample applications,
+                    for the developer to learn how to use a specific cloud service (such as Micronaut Data).
                     Browse the GDK site for list of modules and guides to learn more.</p>
                 </div>
                 <div class="nextsteps-btn">
@@ -999,7 +1130,7 @@ micronaut.object-storage.oracle-cloud.default.bucket=OBJECT_STORAGE_BUCKET</code
                 Copyright &copy; 2023-2024, Oracle and/or its affiliates.
                 All rights reserved.
                 Oracle and Java are registered trademarks of Oracle and/or its affiliates.<br/>
-                Micronaut<sup>&reg;</sup> is a registered trademark of Object Computing, Inc. 
+                Micronaut<sup>&reg;</sup> is a registered trademark of Object Computing, Inc.
                 Use is for referential purposes and does not imply any endorsement or affiliation with any third-party product.
                 Unauthorized use is strictly prohibited. Other names may be trademarks of their respective owners.
               </p>
@@ -1076,7 +1207,7 @@ micronaut.object-storage.oracle-cloud.default.bucket=OBJECT_STORAGE_BUCKET</code
     <script src='/gdk/resources/js/filters.js'></script>
     <script src='/gdk/resources/js/sidebar.js'></script>
     <script src='/gdk/resources/js/labs.js'></script>
-    <script src='/gdk/resources/lib/highlight/highlight.min.js'></script> 
+    <script src='/gdk/resources/lib/highlight/highlight.min.js'></script>
     <script>hljs.highlightAll();</script>
   </body>
 </html>

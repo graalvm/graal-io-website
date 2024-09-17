@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="The Graal Development Kit for Micronaut (GDK) is a build of a curated set of Micronaut framework modules and their required libraries for building portable c..."/>
-  <meta name="last_modified" content="2024-07-19 14:08:50 +0000"/>
-  <meta name="last_built" content="2024-08-23 09:07:41 +0000"/>
+  <meta name="last_modified" content="2024-08-14 14:21:47 +0000"/>
+  <meta name="last_built" content="2024-09-17 14:14:17 +0000"/>
   <link rel="stylesheet" href="/gdk/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gdk/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gdk/resources/img/favicon/favicon-32x32.png">
@@ -27,11 +27,11 @@
   <link rel="canonical" href="https://www.graal.cloud/gdk/gdk-modules/logging/micronaut-aws-logging/">
 
   <!-- jQuery UI Tabs -->
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.14.0/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="/gdk/resources/lib/jquery/jquery-ui.css">
 </head>
 
-      <script src="/gdk/resources/lib/jquery/jquery-3.6.1.min.js"></script>
+      <script src="/gdk/resources/lib/jquery/jquery-3.7.1.min.js"></script>
     <script src="/gdk/resources/lib/bootstrap/js/bootstrap.min.js"></script>
     <script src='/gdk/resources/lib/sticky-sidebar/resizeSensor.js'></script>
     <script src='/gdk/resources/lib/sticky-sidebar/sticky-sidebar.min.js'></script>
@@ -41,7 +41,7 @@
     <script async="async" type="text/javascript" src='//consent.trustarc.com/notice?domain=oracle.com&c=teconsent&js=bb&noticeType=bb&text=true&cdn=1&pcookie&gtm=1' crossorigin></script>
     <script src="https://www.oracle.com/assets/truste-oraclelib.js"></script>
     <!-- jQuery UI Tabs -->
-    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="https://code.jquery.com/ui/1.14.0/jquery-ui.js"></script>
 
 
   <body class="preload">
@@ -165,6 +165,10 @@
 
 <div class="toc-bullets">
 
+
+  
+
+  
 
   
 
@@ -332,6 +336,24 @@
 
   
 
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
 <!-- <li class="search additional-search">
   <form class="form-inline sidebar" action="/docs/search" autocomplete="on" method="get">
     <input class="input-search sidebar" type="text" id="search-box" name="query" placeholder="Search">
@@ -393,11 +415,11 @@
     <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
   </ul>
   <div id="gradle">
-    <p><a href="https://github.com/oracle/gcn/releases/download/4.5.0.0/4.5.0.0_logging_aws-logging-demo-java-gradle.zip">Gradle AWS Logging Example <img class="download-img-guides" src="/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" /></a>
+    <p><a href="https://github.com/oracle/gcn/releases/download/4.6.0.1/4.6.0.1_logging_aws-logging-demo-java-gradle.zip">Gradle AWS Logging Example <img class="download-img-guides" src="/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" /></a>
     </p>
   </div>
   <div id="maven">
-    <p><a href="https://github.com/oracle/gcn/releases/download/4.5.0.0/4.5.0.0_logging_aws-logging-demo-java-maven.zip">Maven AWS Logging Example <img class="download-img-guides" src="/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" /></a>
+    <p><a href="https://github.com/oracle/gcn/releases/download/4.6.0.1/4.6.0.1_logging_aws-logging-demo-java-maven.zip">Maven AWS Logging Example <img class="download-img-guides" src="/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" /></a>
     </p>
   </div>
 </div>
@@ -478,7 +500,7 @@
   </div>
 </div>
 
-<p>The GDK Launcher creates a multimodule project with two subprojects: <strong>aws</strong> for Amazon Web Services, and <strong>lib</strong>.
+<p>The GDK Launcher creates a multi-module project with two subprojects: <strong>aws</strong> for Amazon Web Services, and <strong>lib</strong>.
 You develop the application logic in the <strong>aws</strong> subproject. If your application is to be deployed to multiple cloud providers, use the <strong>lib</strong> subproject to create classes that can be shared between the providers. This enables you to separate the code that is different between cloud providers, while keeping most of the implementation in the common <strong>lib</strong> subproject.</p>
 
 <p>The Logging service that you selected at the project generation step bundles Logback, Jackson Databind, Oracle Cloud Infrastructure Logging, and other necessary dependencies.
@@ -663,7 +685,13 @@ class LogController {
         
       </h2>
 
-<p>The GDK supports compiling a Java application ahead-of-time into a native executable using <a href="https://www.graalvm.org/">GraalVM Native Image</a>. You can use the <em><a href="https://graalvm.github.io/native-build-tools/latest/gradle-plugin.html">Gradle plugin for GraalVM Native Image building</a>/<a href="https://graalvm.github.io/native-build-tools/latest/maven-plugin.html">Maven  plugin for GraalVM Native Image building</a></em>. Packaged as a native executable, it significantly reduces application startup time and memory footprint.</p>
+<p>The GDK supports compiling Java applications ahead-of-time into native executables using <a href="https://www.graalvm.org/" target="_blank">GraalVM Native Image</a>.
+You can use the <em><a href="https://graalvm.github.io/native-build-tools/latest/gradle-plugin.html" target="_blank">Gradle plugin for GraalVM Native Image building</a></em>/<em><a href="https://graalvm.github.io/native-build-tools/latest/maven-plugin.html" target="_blank">Maven plugin for GraalVM Native Image building</a></em>.
+Packaged as a native executable, it significantly reduces application startup time and memory footprint.</p>
+
+<blockquote>
+  <p><strong>Prerequisites</strong>: Make sure you have installed a GraalVM JDK. The easiest way to get started is with <a href="https://sdkman.io/jdks#graal">SDKMAN!</a>. For other installation options, visit the <a href="https://www.graalvm.org/downloads/">Downloads section</a>.</p>
+</blockquote>
 
 <p>To generate a native executable, run the following command:</p>
 
@@ -703,8 +731,8 @@ class LogController {
         
       </h3>
 
-<p>This guide demonstrated how to use the GDK to create an application that writes and publishes logs to CloudWatch Logs. 
-Then, using the AWS console, you viewed the logs produced by the application. 
+<p>This guide demonstrated how to use the GDK to create an application that writes and publishes logs to CloudWatch Logs.
+Then, using the AWS console, you viewed the logs produced by the application.
 Finally, you saw how to build a native executable for this application with GraalVM Native Image, and ran it to test publishing logs to AWS CloudWatch Logs.</p>
     
       <h3 id="related-documentation">
@@ -796,7 +824,7 @@ Finally, you saw how to build a native executable for this application with Graa
                 Copyright &copy; 2023-2024, Oracle and/or its affiliates.
                 All rights reserved.
                 Oracle and Java are registered trademarks of Oracle and/or its affiliates.<br/>
-                Micronaut<sup>&reg;</sup> is a registered trademark of Object Computing, Inc. 
+                Micronaut<sup>&reg;</sup> is a registered trademark of Object Computing, Inc.
                 Use is for referential purposes and does not imply any endorsement or affiliation with any third-party product.
                 Unauthorized use is strictly prohibited. Other names may be trademarks of their respective owners.
               </p>
@@ -873,7 +901,7 @@ Finally, you saw how to build a native executable for this application with Graa
     <script src='/gdk/resources/js/filters.js'></script>
     <script src='/gdk/resources/js/sidebar.js'></script>
     <script src='/gdk/resources/js/labs.js'></script>
-    <script src='/gdk/resources/lib/highlight/highlight.min.js'></script> 
+    <script src='/gdk/resources/lib/highlight/highlight.min.js'></script>
     <script>hljs.highlightAll();</script>
   </body>
 </html>

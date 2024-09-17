@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="The Graal Development Kit for Micronaut (GDK) is a build of a curated set of Micronaut framework modules and their required libraries for building portable c..."/>
-  <meta name="last_modified" content="2024-08-07 21:25:06 +0000"/>
-  <meta name="last_built" content="2024-08-23 09:07:41 +0000"/>
+  <meta name="last_modified" content="2024-09-12 19:32:02 +0000"/>
+  <meta name="last_built" content="2024-09-17 14:14:17 +0000"/>
   <link rel="stylesheet" href="/gdk/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gdk/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gdk/resources/img/favicon/favicon-32x32.png">
@@ -27,11 +27,11 @@
   <link rel="canonical" href="https://www.graal.cloud/gdk/gdk-modules/object-storage/micronaut-object-storage-google-cloud/">
 
   <!-- jQuery UI Tabs -->
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.14.0/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="/gdk/resources/lib/jquery/jquery-ui.css">
 </head>
 
-      <script src="/gdk/resources/lib/jquery/jquery-3.6.1.min.js"></script>
+      <script src="/gdk/resources/lib/jquery/jquery-3.7.1.min.js"></script>
     <script src="/gdk/resources/lib/bootstrap/js/bootstrap.min.js"></script>
     <script src='/gdk/resources/lib/sticky-sidebar/resizeSensor.js'></script>
     <script src='/gdk/resources/lib/sticky-sidebar/sticky-sidebar.min.js'></script>
@@ -41,7 +41,7 @@
     <script async="async" type="text/javascript" src='//consent.trustarc.com/notice?domain=oracle.com&c=teconsent&js=bb&noticeType=bb&text=true&cdn=1&pcookie&gtm=1' crossorigin></script>
     <script src="https://www.oracle.com/assets/truste-oraclelib.js"></script>
     <!-- jQuery UI Tabs -->
-    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="https://code.jquery.com/ui/1.14.0/jquery-ui.js"></script>
 
 
   <body class="preload">
@@ -229,6 +229,14 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
     
 
     
@@ -332,6 +340,20 @@
 
   
 
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
 <!-- <li class="search additional-search">
   <form class="form-inline sidebar" action="/docs/search" autocomplete="on" method="get">
     <input class="input-search sidebar" type="text" id="search-box" name="query" placeholder="Search">
@@ -365,13 +387,14 @@
         
       </h1>
 
-<p>This guide describes how to use the Graal Development Kit for Micronaut (GDK) to create a Micronaut<sup>®</sup> application that demonstrates how to store, retrieve, and delete user profile pictures in Google Cloud Storage using the Micronaut Object Storage API.</p>
+<p>This guide describes how to use the Graal Development Kit for Micronaut (GDK) to create a Micronaut<sup>®</sup> application that demonstrates how to store, retrieve, and delete user profile pictures in Google Cloud Storage using <a href="https://micronaut-projects.github.io/micronaut-object-storage/latest/guide/" target="_blank">Micronaut Object Storage</a>.</p>
 
-<p>The Micronaut Object Storage API provides a uniform API to create, read and delete objects in the major cloud providers​:</p>
+<p>The Micronaut Object Storage API provides a uniform API to create, read, and delete objects in the major cloud providers:</p>
 <ul>
+  <li>Oracle Cloud Infrastructure Object Storage</li>
   <li>Amazon S3</li>
   <li>Google Cloud Storage</li>
-  <li>Oracle Cloud Infrastructure (OCI) Object Storage</li>
+  <li>Azure Blob Storage</li>
 </ul>
 
 <p>Using this API enables the creation of truly multicloud, portable applications.</p>
@@ -399,11 +422,11 @@
     <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
   </ul>
   <div id="gradle">
-    <p><a href="https://github.com/oracle/gcn/releases/download/4.5.0.0/4.5.0.0_object-storage_gcp-storage-demo-java-gradle.zip">Gradle GCP Object Storage Example <img class="download-img-guides" src="/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" /></a>
+    <p><a href="https://github.com/oracle/gcn/releases/download/4.6.0.1/4.6.0.1_object-storage_gcp-storage-demo-java-gradle.zip">Gradle GCP Object Storage Example <img class="download-img-guides" src="/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" /></a>
     </p>
   </div>
   <div id="maven">
-    <p><a href="https://github.com/oracle/gcn/releases/download/4.5.0.0/4.5.0.0_object-storage_gcp-storage-demo-java-maven.zip">Maven GCP Object Storage Example <img class="download-img-guides" src="/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" /></a>
+    <p><a href="https://github.com/oracle/gcn/releases/download/4.6.0.1/4.6.0.1_object-storage_gcp-storage-demo-java-maven.zip">Maven GCP Object Storage Example <img class="download-img-guides" src="/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" /></a>
     </p>
   </div>
 </div>
@@ -733,7 +756,7 @@ public void delete(String userId) {
       <h3 id="33-configure-the-upload-parameters">
         
         
-          3.3 Configure the Upload Parameters <a href="#33-configure-the-upload-parameters" class="anchor_heading">#</a>
+          3.3. Configure the Upload Parameters <a href="#33-configure-the-upload-parameters" class="anchor_heading">#</a>
         
         
       </h3>
@@ -858,9 +881,13 @@ transfer-encoding: chunked
         
       </h2>
 
-<p>The GDK supports compiling a Java application ahead-of-time into a native executable using <a href="https://www.graalvm.org/">GraalVM Native Image</a>.
-You can use the <em><a href="https://graalvm.github.io/native-build-tools/latest/gradle-plugin.html">Gradle plugin for GraalVM Native Image building</a>/<a href="https://graalvm.github.io/native-build-tools/latest/maven-plugin.html">Maven plugin for GraalVM Native Image building</a></em>.
+<p>The GDK supports compiling Java applications ahead-of-time into native executables using <a href="https://www.graalvm.org/" target="_blank">GraalVM Native Image</a>.
+You can use the <em><a href="https://graalvm.github.io/native-build-tools/latest/gradle-plugin.html" target="_blank">Gradle plugin for GraalVM Native Image building</a></em>/<em><a href="https://graalvm.github.io/native-build-tools/latest/maven-plugin.html" target="_blank">Maven plugin for GraalVM Native Image building</a></em>.
 Packaged as a native executable, it significantly reduces application startup time and memory footprint.</p>
+
+<blockquote>
+  <p><strong>Prerequisites</strong>: Make sure you have installed a GraalVM JDK. The easiest way to get started is with <a href="https://sdkman.io/jdks#graal">SDKMAN!</a>. For other installation options, visit the <a href="https://www.graalvm.org/downloads/">Downloads section</a>.</p>
+</blockquote>
 
 <p>To generate a native executable, run the following command:</p>
 
@@ -1057,7 +1084,7 @@ Packaged as a native executable, it significantly reduces application startup ti
                 Copyright &copy; 2023-2024, Oracle and/or its affiliates.
                 All rights reserved.
                 Oracle and Java are registered trademarks of Oracle and/or its affiliates.<br/>
-                Micronaut<sup>&reg;</sup> is a registered trademark of Object Computing, Inc. 
+                Micronaut<sup>&reg;</sup> is a registered trademark of Object Computing, Inc.
                 Use is for referential purposes and does not imply any endorsement or affiliation with any third-party product.
                 Unauthorized use is strictly prohibited. Other names may be trademarks of their respective owners.
               </p>
@@ -1134,7 +1161,7 @@ Packaged as a native executable, it significantly reduces application startup ti
     <script src='/gdk/resources/js/filters.js'></script>
     <script src='/gdk/resources/js/sidebar.js'></script>
     <script src='/gdk/resources/js/labs.js'></script>
-    <script src='/gdk/resources/lib/highlight/highlight.min.js'></script> 
+    <script src='/gdk/resources/lib/highlight/highlight.min.js'></script>
     <script>hljs.highlightAll();</script>
   </body>
 </html>

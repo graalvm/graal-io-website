@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="The Graal Development Kit for Micronaut (GDK) is a build of a curated set of Micronaut framework modules and their required libraries for building portable c..."/>
-  <meta name="last_modified" content="2024-07-08 11:59:32 +0000"/>
-  <meta name="last_built" content="2024-08-23 09:07:41 +0000"/>
+  <meta name="last_modified" content="2024-08-14 14:21:47 +0000"/>
+  <meta name="last_built" content="2024-09-17 14:14:17 +0000"/>
   <link rel="stylesheet" href="/gdk/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gdk/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gdk/resources/img/favicon/favicon-32x32.png">
@@ -27,11 +27,11 @@
   <link rel="canonical" href="https://www.graal.cloud/gdk/gdk-modules/database/micronaut-mysql-database-oci-expert/">
 
   <!-- jQuery UI Tabs -->
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.14.0/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="/gdk/resources/lib/jquery/jquery-ui.css">
 </head>
 
-      <script src="/gdk/resources/lib/jquery/jquery-3.6.1.min.js"></script>
+      <script src="/gdk/resources/lib/jquery/jquery-3.7.1.min.js"></script>
     <script src="/gdk/resources/lib/bootstrap/js/bootstrap.min.js"></script>
     <script src='/gdk/resources/lib/sticky-sidebar/resizeSensor.js'></script>
     <script src='/gdk/resources/lib/sticky-sidebar/sticky-sidebar.min.js'></script>
@@ -41,7 +41,7 @@
     <script async="async" type="text/javascript" src='//consent.trustarc.com/notice?domain=oracle.com&c=teconsent&js=bb&noticeType=bb&text=true&cdn=1&pcookie&gtm=1' crossorigin></script>
     <script src="https://www.oracle.com/assets/truste-oraclelib.js"></script>
     <!-- jQuery UI Tabs -->
-    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="https://code.jquery.com/ui/1.14.0/jquery-ui.js"></script>
 
 
   <body class="preload">
@@ -332,6 +332,28 @@
 
   
 
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
 <!-- <li class="search additional-search">
   <form class="form-inline sidebar" action="/docs/search" autocomplete="on" method="get">
     <input class="input-search sidebar" type="text" id="search-box" name="query" placeholder="Search">
@@ -401,11 +423,11 @@
     <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
   </ul>
   <div id="gradle">
-    <p><a href="https://github.com/oracle/gcn/releases/download/4.5.0.0/4.5.0.0_database_oci-db-demo-java-gradle.zip">Gradle Oracle Cloud Infrastructure MySQL Database Example <img class="download-img-guides" src="/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" /></a>
+    <p><a href="https://github.com/oracle/gcn/releases/download/4.6.0.1/4.6.0.1_database_oci-db-demo-java-gradle.zip">Gradle Oracle Cloud Infrastructure MySQL Database Example <img class="download-img-guides" src="/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" /></a>
     </p>
   </div>
   <div id="maven">
-    <p><a href="https://github.com/oracle/gcn/releases/download/4.5.0.0/4.5.0.0_database_oci-db-demo-java-maven.zip">Maven Oracle Cloud Infrastructure MySQL Database Example <img class="download-img-guides" src="/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" /></a>
+    <p><a href="https://github.com/oracle/gcn/releases/download/4.6.0.1/4.6.0.1_database_oci-db-demo-java-maven.zip">Maven Oracle Cloud Infrastructure MySQL Database Example <img class="download-img-guides" src="/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" /></a>
     </p>
   </div>
 </div>
@@ -493,7 +515,7 @@
 <pre><code class="language-yml">features: [app-name, data, data-jdbc, flyway, gdk-bom, gdk-license, gdk-oci-cloud-app, gdk-oci-database, graalvm, http-client-test, java, java-application, jdbc-hikari, junit, logback, maven, maven-enforcer-plugin, micronaut-aot, mysql, netty-server, properties, readme, serialization-jackson, shade, test-resources, validation]
 </code></pre>
 
-<p>The GDK Launcher creates a multimodule project with two subprojects: <strong>oci</strong> for Oracle Cloud Infrastructure, and <strong>lib</strong> for common code and configuration shared across cloud platforms.
+<p>The GDK Launcher creates a multi-module project with two subprojects: <strong>oci</strong> for Oracle Cloud Infrastructure, and <strong>lib</strong> for common code and configuration shared across cloud platforms.
 You develop the application logic in the <strong>lib</strong> subproject, and keep the Oracle Cloud Infrastructure-specific configurations in the <strong>oci</strong> subproject.
 If you enable sample code generation, the GDK Launcher creates the main controller, repository interface, entity, service classes, and tests for you.
 Consider checking <a href="/gdk/gdk-modules/database/micronaut-data-jdbc-repository/">this guide</a> where each sample class is closely examined.</p>
@@ -1177,18 +1199,20 @@ $ENV:DATASOURCES_DEFAULT_PASSWORD = "&lt;password&gt;" # 3</code></pre>
 <p>This server application presents REST endpoints and stores data in the Oracle MySQL database.
 Next, you can package this application as a native executable. Deploying as a native executable does not require a JDK to run, so you can copy it to another Linux host and run easily.</p>
     
-      <h2 id="6-package-with-graalvm-native-image">
+      <h2 id="6-generate-a-native-executable-using-graalvm">
         
         
-          6. Package with GraalVM Native Image <a href="#6-package-with-graalvm-native-image" class="anchor_heading">#</a>
+          6. Generate a Native Executable Using GraalVM <a href="#6-generate-a-native-executable-using-graalvm" class="anchor_heading">#</a>
         
         
       </h2>
 
-<p>The GDK supports compiling Java applications ahead-of-time into native executables using <a href="https://www.graalvm.org/native-image/" target="_blank">GraalVM Native Image</a> and <a href="https://graalvm.github.io/native-build-tools/latest/index.html" target="_blank">Native Build Tools</a>. Packaged as a native executable, it significantly reduces the application startup time and memory footprint.</p>
+<p>The GDK supports compiling Java applications ahead-of-time into native executables using <a href="https://www.graalvm.org/" target="_blank">GraalVM Native Image</a>.
+You can use the <em><a href="https://graalvm.github.io/native-build-tools/latest/gradle-plugin.html" target="_blank">Gradle plugin for GraalVM Native Image building</a></em>/<em><a href="https://graalvm.github.io/native-build-tools/latest/maven-plugin.html" target="_blank">Maven plugin for GraalVM Native Image building</a></em>.
+Packaged as a native executable, it significantly reduces application startup time and memory footprint.</p>
 
 <blockquote>
-  <p><strong>Prerequisites</strong>: GraalVM Native Image is required to build native executables. <a href="https://www.graalvm.org/downloads/" target="_blank">Install GraalVM JDK with Native Image</a> if you have not done that yet.</p>
+  <p><strong>Prerequisites</strong>: Make sure you have installed a GraalVM JDK. The easiest way to get started is with <a href="https://sdkman.io/jdks#graal">SDKMAN!</a>. For other installation options, visit the <a href="https://www.graalvm.org/downloads/">Downloads section</a>.</p>
 </blockquote>
 
 <p>If you build a native executable locally, it will only run on your OS, but isn’t suitable for deployment to a Compute instance. To create deployable native executables, we’ll use a different packaging command that builds the executable inside a container, which we’ll extract from the container to deploy to the cloud.</p>
@@ -1393,7 +1417,7 @@ Next, you can package this application as a native executable. Deploying as a na
                 Copyright &copy; 2023-2024, Oracle and/or its affiliates.
                 All rights reserved.
                 Oracle and Java are registered trademarks of Oracle and/or its affiliates.<br/>
-                Micronaut<sup>&reg;</sup> is a registered trademark of Object Computing, Inc. 
+                Micronaut<sup>&reg;</sup> is a registered trademark of Object Computing, Inc.
                 Use is for referential purposes and does not imply any endorsement or affiliation with any third-party product.
                 Unauthorized use is strictly prohibited. Other names may be trademarks of their respective owners.
               </p>
@@ -1470,7 +1494,7 @@ Next, you can package this application as a native executable. Deploying as a na
     <script src='/gdk/resources/js/filters.js'></script>
     <script src='/gdk/resources/js/sidebar.js'></script>
     <script src='/gdk/resources/js/labs.js'></script>
-    <script src='/gdk/resources/lib/highlight/highlight.min.js'></script> 
+    <script src='/gdk/resources/lib/highlight/highlight.min.js'></script>
     <script>hljs.highlightAll();</script>
   </body>
 </html>

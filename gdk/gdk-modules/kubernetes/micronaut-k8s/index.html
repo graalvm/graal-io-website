@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="The Graal Development Kit for Micronaut (GDK) is a build of a curated set of Micronaut framework modules and their required libraries for building portable c..."/>
-  <meta name="last_modified" content="2024-06-28 09:44:14 +0000"/>
-  <meta name="last_built" content="2024-08-23 09:07:41 +0000"/>
+  <meta name="last_modified" content="2024-08-18 18:19:10 +0000"/>
+  <meta name="last_built" content="2024-09-17 14:14:17 +0000"/>
   <link rel="stylesheet" href="/gdk/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gdk/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gdk/resources/img/favicon/favicon-32x32.png">
@@ -27,11 +27,11 @@
   <link rel="canonical" href="https://www.graal.cloud/gdk/gdk-modules/kubernetes/micronaut-k8s/">
 
   <!-- jQuery UI Tabs -->
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.14.0/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="/gdk/resources/lib/jquery/jquery-ui.css">
 </head>
 
-      <script src="/gdk/resources/lib/jquery/jquery-3.6.1.min.js"></script>
+      <script src="/gdk/resources/lib/jquery/jquery-3.7.1.min.js"></script>
     <script src="/gdk/resources/lib/bootstrap/js/bootstrap.min.js"></script>
     <script src='/gdk/resources/lib/sticky-sidebar/resizeSensor.js'></script>
     <script src='/gdk/resources/lib/sticky-sidebar/sticky-sidebar.min.js'></script>
@@ -41,7 +41,7 @@
     <script async="async" type="text/javascript" src='//consent.trustarc.com/notice?domain=oracle.com&c=teconsent&js=bb&noticeType=bb&text=true&cdn=1&pcookie&gtm=1' crossorigin></script>
     <script src="https://www.oracle.com/assets/truste-oraclelib.js"></script>
     <!-- jQuery UI Tabs -->
-    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="https://code.jquery.com/ui/1.14.0/jquery-ui.js"></script>
 
 
   <body class="preload">
@@ -277,6 +277,26 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
     
 
     
@@ -330,6 +350,8 @@
         
       
     
+  
+
   
 
 <!-- <li class="search additional-search">
@@ -407,11 +429,11 @@
     <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
   </ul>
   <div id="gradle">
-    <p><a href="https://github.com/oracle/gcn/releases/download/4.5.0.0/4.5.0.0_kubernetes_kubernetes-demo-java-gradle.zip">Gradle Micronaut Kubernetes Example <img class="download-img-guides" src="/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" /></a>
+    <p><a href="https://github.com/oracle/gcn/releases/download/4.6.0.1/4.6.0.1_kubernetes_kubernetes-demo-java-gradle.zip">Gradle Micronaut Kubernetes Example <img class="download-img-guides" src="/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" /></a>
     </p>
   </div>
   <div id="maven">
-    <p><a href="https://github.com/oracle/gcn/releases/download/4.5.0.0/4.5.0.0_kubernetes_kubernetes-demo-java-maven.zip">Maven Micronaut Kubernetes Example <img class="download-img-guides" src="/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" /></a>
+    <p><a href="https://github.com/oracle/gcn/releases/download/4.6.0.1/4.6.0.1_kubernetes_kubernetes-demo-java-maven.zip">Maven Micronaut Kubernetes Example <img class="download-img-guides" src="/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" /></a>
     </p>
   </div>
 </div>
@@ -466,7 +488,7 @@
       <li><strong>Java Version</strong>: <em>17</em> (Default)</li>
       <li><strong>Micronaut Version</strong>: (Default)</li>
       <li><strong>Cloud Services</strong>: <em>Kubernetes</em></li>
-      <li><strong>Features</strong>: <em>GraalVM Native Image</em>, <em>Kubernetes Distributed Configuration</em>, <em>Kubernetes Service Discovery</em>, <em>Kubernetes Support</em>, <em>Micronaut Management</em>, <em>Micronaut Security</em>, and <em>Micronaut Serialization Jackson Core</em></li>
+      <li><strong>Features</strong>: <em>GraalVM Native Image</em>, <em>Kubernetes Service Discovery</em>, <em>Kubernetes Support</em>, <em>Micronaut Management</em>, <em>Micronaut Security</em>, and <em>Micronaut Serialization Jackson Core</em></li>
       <li><strong>Sample Code</strong>: <em>No</em></li>
     </ul>
   </li>
@@ -483,7 +505,7 @@
   <div id="gradle">
     <pre><code class="language-bash">gdk create-app com.example.users \
     --services=k8s \
-    --features=config-kubernetes,discovery-kubernetes,management,security,serialization-jackson,kubernetes,graalvm \
+    --features=discovery-kubernetes,management,security,serialization-jackson,kubernetes,graalvm \
     --example-code=false \
     --build=gradle \
     --jdk=17 \
@@ -492,7 +514,7 @@
   <div id="maven">
     <pre><code class="language-bash">gdk create-app com.example.users \
     --services=k8s \
-    --features=config-kubernetes,discovery-kubernetes,management,security,serialization-jackson,kubernetes,graalvm \
+    --features=discovery-kubernetes,management,security,serialization-jackson,kubernetes,graalvm \
     --example-code=false \
     --build=maven \
     --jdk=17 \
@@ -510,7 +532,7 @@
 
 <ol>
   <li>
-    <p>The GDK Launcher created a <code>UsersController</code> class to handle incoming HTTP requests for the <em>users</em> microservice in a file named <em>users/src/main/java/com/example/controllers/UsersController.java</em>:</p>
+    <p>Create a <code>UsersController</code> class to handle incoming HTTP requests for the <em>users</em> microservice in a file named <em>users/src/main/java/com/example/controllers/UsersController.java</em>:</p>
 
     <pre><code class="language-java"> package com.example.controllers;
 
@@ -582,7 +604,7 @@
     <p><strong>5</strong> The <a href="https://docs.micronaut.io/latest/api/io/micronaut/http/annotation/Get.html"><code>@Get</code></a> annotation maps the <code>getUsers</code> method to an HTTP GET request on <code>/users</code>.</p>
   </li>
   <li>
-    <p>The GDK Launcher created a <code>User</code> record to represent the customer in a file named <em>users/src/main/java/com/example/models/User.java</em>, as follows:</p>
+    <p>Create a <code>User</code> record to represent the customer in a file named <em>users/src/main/java/com/example/models/User.java</em>, as follows:</p>
 
     <pre><code class="language-java"> package com.example.models;
 
@@ -608,7 +630,7 @@
     <p><strong>2</strong> The ID will be generated by the application.</p>
   </li>
   <li>
-    <p>The GDK Launcher created a <code>Credentials</code> class in a file named <em>users/src/main/java/com/example/auth/Credentials.java</em>, which will load and store credentials (username and password) from a configuration file:</p>
+    <p>Create a <code>Credentials</code> class in a file named <em>users/src/main/java/com/example/auth/Credentials.java</em>, which will load and store credentials (username and password) from a configuration file:</p>
 
     <pre><code class="language-java"> package com.example.auth;
 
@@ -621,7 +643,7 @@
     <p><strong>1</strong> The <a href="https://docs.micronaut.io/latest/api/io/micronaut/context/annotation/ConfigurationProperties.html"><code>@ConfigurationProperties</code></a> annotation takes the configuration prefix.</p>
   </li>
   <li>
-    <p>The GDK Launcher created a <code>CredentialsChecker</code> class in a file named <em>users/src/main/java/com/example/auth/CredentialsChecker.java</em>, which, as the name suggests, will check if the provided credentials inside the HTTP request’s <code>Authorization</code> header are the same as those that are stored inside the <code>Credentials</code> class created above:</p>
+    <p>Create a <code>CredentialsChecker</code> class in a file named <em>users/src/main/java/com/example/auth/CredentialsChecker.java</em>, which, as the name suggests, will check if the provided credentials inside the HTTP request’s <code>Authorization</code> header are the same as those that are stored inside the <code>Credentials</code> class created above:</p>
 
     <pre><code class="language-java"> package com.example.auth;
 
@@ -672,7 +694,7 @@
 
 <ol>
   <li>
-    <p>The GDK Launcher created a <code>UsersClient</code> Micronaut HTTP inline client for testing in a file named <em>users/src/test/java/com/example/UsersClient.java</em>, as follows:</p>
+    <p>Create a <code>UsersClient</code> Micronaut HTTP inline client for testing in a file named <em>users/src/test/java/com/example/UsersClient.java</em>, as follows:</p>
 
     <pre><code class="language-java"> package com.example;
 
@@ -702,7 +724,7 @@
     <p><strong>1</strong> Use <a href="https://docs.micronaut.io/latest/api/io/micronaut/http/client/annotation/Client.html"><code>@Client</code></a> to use <a href="https://docs.micronaut.io/latest/guide/#clientAnnotation">declarative HTTP Clients</a>. You can annotate interfaces or abstract classes. You can use the <code>id</code> member to provide a service identifier or specify the URL directly as the annotation’s value.</p>
   </li>
   <li>
-    <p>The GDK Launcher created a <code>HealthTest</code> test that checks there is <code>/health</code> endpoint (required for service discovery) in a file named <em>users/src/test/java/com/example/HealthTest.java</em> with the following contents:</p>
+    <p>Create a <code>HealthTest</code> test that checks there is <code>/health</code> endpoint (required for service discovery) in a file named <em>users/src/test/java/com/example/HealthTest.java</em> with the following contents:</p>
 
     <pre><code class="language-java"> package com.example;
 
@@ -737,7 +759,7 @@
     <p><strong>2</strong> Inject the <code>HttpClient</code> bean and point it to the embedded server.</p>
   </li>
   <li>
-    <p>The GDK Launcher created a <code>UsersControllerTest</code> class to test endpoints inside the <code>UserController</code> in a file named <em>users/src/test/java/com/example/UsersControllerTest.java</em> with the following contents:</p>
+    <p>Create a <code>UsersControllerTest</code> class to test endpoints inside the <code>UserController</code> in a file named <em>users/src/test/java/com/example/UsersControllerTest.java</em> with the following contents:</p>
 
     <pre><code class="language-java"> package com.example;
 
@@ -872,7 +894,7 @@
     <p><strong>3</strong> Set <code>kubernetes.client.secrets.use-api: true</code> to use the Kubernetes API to fetch the configuration.</p>
   </li>
   <li>
-    <p>The GDK Launcher created a file named <em>users/src/main/resources/application-dev.properties</em>. This configuration file is applied only for the <code>dev</code> environment.</p>
+    <p>Create a file named <em>users/src/main/resources/application-dev.properties</em>. This configuration file is applied only for the <code>dev</code> environment.</p>
 
     <pre><code> # &lt;1&gt;
  micronaut.server.port=8081
@@ -889,7 +911,7 @@
     <p><strong>3</strong> Password for the development environment.</p>
   </li>
   <li>
-    <p>The GDK Launcher created a file named <em>users/src/main/resources/bootstrap-dev.properties</em> to disable distributed configuration in the <code>dev</code> environment:</p>
+    <p>Create a file named <em>users/src/main/resources/bootstrap-dev.properties</em> to disable distributed configuration in the <code>dev</code> environment:</p>
 
     <pre><code> # &lt;1&gt;
  kubernetes.client.secrets.enabled=false
@@ -898,7 +920,7 @@
     <p><strong>1</strong> Disable the Kubernetes secrets client.</p>
   </li>
   <li>
-    <p>The GDK Launcher created a file named <em>users/src/test/resources/application-test.properties</em> for use in the test environment:</p>
+    <p>Create a file named <em>users/src/test/resources/application-test.properties</em> for use in the test environment:</p>
 
     <pre><code> # &lt;1&gt;
  authentication-credentials.username=gdkdemo
@@ -981,7 +1003,7 @@
       <li><strong>Java Version</strong>: <em>17</em> (Default)</li>
       <li><strong>Micronaut Version</strong>: (Default)</li>
       <li><strong>Cloud Services</strong>: <em>Kubernetes</em></li>
-      <li><strong>Features</strong>: <em>GraalVM Native Image</em>, <em>Kubernetes Distributed Configuration</em>, <em>Kubernetes Service Discovery</em>, <em>Kubernetes Support</em>, <em>Micronaut Management</em>, <em>Micronaut Security</em>, and <em>Micronaut Serialization Jackson Core</em></li>
+      <li><strong>Features</strong>: <em>GraalVM Native Image</em>, <em>Kubernetes Service Discovery</em>, <em>Kubernetes Support</em>, <em>Micronaut Management</em>, <em>Micronaut Security</em>, and <em>Micronaut Serialization Jackson Core</em></li>
       <li><strong>Sample Code</strong>: <em>No</em></li>
     </ul>
   </li>
@@ -998,7 +1020,7 @@
   <div id="gradle">
     <pre><code class="language-bash">gdk create-app com.example.orders \
     --services=k8s \
-    --features=config-kubernetes,discovery-kubernetes,management,security,serialization-jackson,kubernetes,graalvm \
+    --features=discovery-kubernetes,management,security,serialization-jackson,kubernetes,graalvm \
     --example-code=false \
     --build=gradle \
     --jdk=17 \
@@ -1007,7 +1029,7 @@
   <div id="maven">
     <pre><code class="language-bash">gdk create-app com.example.orders \
     --services=k8s \
-    --features=config-kubernetes,discovery-kubernetes,management,security,serialization-jackson,kubernetes,graalvm \
+    --features=discovery-kubernetes,management,security,serialization-jackson,kubernetes,graalvm \
     --example-code=false \
     --build=maven \
     --jdk=17 \
@@ -1025,7 +1047,7 @@
 
 <ol>
   <li>
-    <p>The GDK Launcher created the <code>OrdersController</code> and <code>ItemsController</code> classes to handle incoming HTTP requests to the <em>orders</em> microservice. <code>OrdersController</code> is in the <em>orders/src/main/java/com/example/controllers/OrdersController.java</em> file:</p>
+    <p>Create the <code>OrdersController</code> and <code>ItemsController</code> classes to handle incoming HTTP requests to the <em>orders</em> microservice. <code>OrdersController</code> is in the <em>orders/src/main/java/com/example/controllers/OrdersController.java</em> file:</p>
 
     <pre><code class="language-java"> package com.example.controllers;
 
@@ -1099,7 +1121,7 @@
     <p><strong>5</strong> The <a href="https://docs.micronaut.io/latest/api/io/micronaut/http/annotation/Post.html"><code>@Post</code></a> annotation maps the <code>createOrder</code> method to an HTTP POST request on <code>/orders</code>.</p>
   </li>
   <li>
-    <p>The GDK Launcher created the <code>ItemsController</code> class in a file named <em>orders/src/main/java/com/example/controllers/ItemsController.java</em>, as follows:</p>
+    <p>Create the <code>ItemsController</code> class in a file named <em>orders/src/main/java/com/example/controllers/ItemsController.java</em>, as follows:</p>
 
     <pre><code class="language-java"> package com.example.controllers;
 
@@ -1139,7 +1161,7 @@
     <p><strong>4</strong> The <a href="https://docs.micronaut.io/latest/api/io/micronaut/http/annotation/Get.html"><code>@Get</code></a> annotation maps the <code>getItems</code> method to an HTTP GET request on <code>/items</code>.</p>
   </li>
   <li>
-    <p>The GDK Launcher created the <code>Order</code> and <code>Item</code> objects, used by the <code>OrdersController</code> and <code>ItemsController</code> classes, to represent customer orders. <code>Order</code> is in the <em>orders/src/main/java/com/example/models/Order.java</em> file:</p>
+    <p>Create the <code>Order</code> and <code>Item</code> objects, used by the <code>OrdersController</code> and <code>ItemsController</code> classes, to represent customer orders. <code>Order</code> is in the <em>orders/src/main/java/com/example/models/Order.java</em> file:</p>
 
     <pre><code class="language-java"> package com.example.models;
 
@@ -1198,7 +1220,7 @@
     <p><strong>1</strong> Declare the <code>@Serdeable</code> annotation at the type level in your source code to allow the type to be serialized or deserialized.</p>
   </li>
   <li>
-    <p>The GDK Launcher created the <code>Credentials</code> class to load and store credentials (username and password) from configuration files in a file named <em>orders/src/main/java/com/example/auth/Credentials.java</em> with the following contents:</p>
+    <p>Create the <code>Credentials</code> class to load and store credentials (username and password) from configuration files in a file named <em>orders/src/main/java/com/example/auth/Credentials.java</em> with the following contents:</p>
 
     <pre><code class="language-java"> package com.example.auth;
 
@@ -1211,7 +1233,7 @@
     <p><strong>1</strong> The <a href="https://docs.micronaut.io/latest/api/io/micronaut/context/annotation/ConfigurationProperties.html"><code>@ConfigurationProperties</code></a> annotation takes the configuration prefix.</p>
   </li>
   <li>
-    <p>The GDK Launcher created a <code>CredentialsChecker</code> class in a file named <em>orders/src/main/java/com/example/auth/CredentialsChecker.java</em>, which, as the name suggests, will check if the provided credentials inside the HTTP request’s <code>Authorization</code> header are the same as those that are stored inside the <code>Credentials</code> class created above:</p>
+    <p>Create a <code>CredentialsChecker</code> class in a file named <em>orders/src/main/java/com/example/auth/CredentialsChecker.java</em>, which, as the name suggests, will check if the provided credentials inside the HTTP request’s <code>Authorization</code> header are the same as those that are stored inside the <code>Credentials</code> class created above:</p>
 
     <pre><code class="language-java"> package com.example.auth;
 
@@ -1262,7 +1284,7 @@
 
 <ol>
   <li>
-    <p>The GDK Launcher created an <code>OrderItemClient</code> Micronaut HTTP inline client for testing in a file named <em>orders/src/test/java/com/example/OrderItemClient.java</em>, as follows:</p>
+    <p>Create an <code>OrderItemClient</code> Micronaut HTTP inline client for testing in a file named <em>orders/src/test/java/com/example/OrderItemClient.java</em>, as follows:</p>
 
     <pre><code class="language-java"> package com.example;
 
@@ -1299,7 +1321,7 @@
     <p><strong>1</strong> Use <code>@Client</code> to use <a href="https://docs.micronaut.io/latest/guide/#clientAnnotation">declarative HTTP Clients</a>. You can annotate interfaces or abstract classes. You can use the <code>id</code> member to provide a service identifier or specify the URL directly as the annotation’s value.</p>
   </li>
   <li>
-    <p>The GDK Launcher created a <code>HealthTest</code> class, in a file named <em>orders/src/test/java/com/example/HealthTest.java</em>, that checks if there is <code>/health</code> endpoint (required for service discovery), with the following contents:</p>
+    <p>Create a <code>HealthTest</code> class, in a file named <em>orders/src/test/java/com/example/HealthTest.java</em>, that checks if there is <code>/health</code> endpoint (required for service discovery), with the following contents:</p>
 
     <pre><code class="language-java"> package com.example;
 
@@ -1334,7 +1356,7 @@
     <p><strong>2</strong> Inject the <code>HttpClient</code> bean and point it to the embedded server.</p>
   </li>
   <li>
-    <p>The GDK Launcher created a <code>ItemsControllerTest</code> class, in the file named <em>orders/src/test/java/com/example/ItemsControllerTest.java</em>, to test endpoints inside the <code>ItemController</code>,  with the following contents:</p>
+    <p>Create a <code>ItemsControllerTest</code> class, in the file named <em>orders/src/test/java/com/example/ItemsControllerTest.java</em>, to test endpoints inside the <code>ItemController</code>,  with the following contents:</p>
 
     <pre><code class="language-java"> package com.example;
 
@@ -1404,7 +1426,7 @@
     <p><strong>1</strong> Annotate the class with <code>@MicronautTest</code> so the Micronaut framework will initialize the application context and the embedded server. (For more information, see <a href="https://micronaut-projects.github.io/micronaut-test/latest/guide/">Micronaut Test</a>.)</p>
   </li>
   <li>
-    <p>The GDK Launcher created an <code>OrdersControllerTest</code> class to test endpoints inside the <code>OrdersController</code> in a file named <em>orders/src/test/java/com/example/OrdersControllerTest.java</em></p>
+    <p>Create an <code>OrdersControllerTest</code> class to test endpoints inside the <code>OrdersController</code> in a file named <em>orders/src/test/java/com/example/OrdersControllerTest.java</em></p>
 
     <pre><code class="language-java"> package com.example;
 
@@ -1556,7 +1578,7 @@
     <p><strong>3</strong> Password for development environment.</p>
   </li>
   <li>
-    <p>The GDK Launcher created a file named <em>orders/src/main/resources/bootstrap-dev.properties</em> to disable distributed configuration in the <code>dev</code> environment:</p>
+    <p>Create a file named <em>orders/src/main/resources/bootstrap-dev.properties</em> to disable distributed configuration in the <code>dev</code> environment:</p>
 
     <pre><code> # &lt;1&gt;
  kubernetes.client.secrets.enabled=false
@@ -1565,7 +1587,7 @@
     <p><strong>1</strong> Disable the Kubernetes secrets client.</p>
   </li>
   <li>
-    <p>The GDK Launcher created a file named <em>orders/src/test/resources/application-test.properties</em> (to be used in the test environment) with the following contents:</p>
+    <p>Create a file named <em>orders/src/test/resources/application-test.properties</em> (to be used in the test environment) with the following contents:</p>
 
     <pre><code> micronaut.application.name=orders
  # &lt;1&gt;
@@ -1693,7 +1715,7 @@
 
 <ol>
   <li>
-    <p>The GDK Launcher created a <code>GatewayController</code> class to handle incoming HTTP requests to the <em>api</em> microservice in a file named <em>api/src/main/java/com/example/controllers/GatewayController.java</em> as follows:</p>
+    <p>Create a <code>GatewayController</code> class to handle incoming HTTP requests to the <em>api</em> microservice in a file named <em>api/src/main/java/com/example/controllers/GatewayController.java</em> as follows:</p>
 
     <pre><code class="language-java"> package com.example.controllers;
 
@@ -1802,7 +1824,7 @@
     <p><strong>10</strong> The <a href="https://docs.micronaut.io/latest/api/io/micronaut/http/annotation/Post.html"><code>@Post</code></a> annotation maps the <code>createOrder</code> method to an HTTP POST request on <code>/orders</code>.</p>
   </li>
   <li>
-    <p>The GDK Launcher created the <code>User</code>, <code>Order</code>, and <code>Item</code> objects to represent customers, orders, and items. The <code>User</code> record is in a file named <em>api/src/main/java/com/example/models/User.java</em>, as follows:</p>
+    <p>Create the <code>User</code>, <code>Order</code>, and <code>Item</code> objects to represent customers, orders, and items. The <code>User</code> record is in a file named <em>api/src/main/java/com/example/models/User.java</em>, as follows:</p>
 
     <pre><code class="language-java"> package com.example.models;
 
@@ -1873,7 +1895,7 @@
     <p><strong>1</strong> Declare the <code>@Serdeable</code> annotation at the type level in your source code to allow the type to be serialized or deserialized.</p>
   </li>
   <li>
-    <p>The GDK Launcher created a <code>UserClient</code> for the <em>users</em> microservice in a file named <em>api/src/main/java/com/example/clients/UsersClient.java</em>, as follows:</p>
+    <p>Create a <code>UserClient</code> for the <em>users</em> microservice in a file named <em>api/src/main/java/com/example/clients/UsersClient.java</em>, as follows:</p>
 
     <pre><code class="language-java"> package com.example.clients;
 
@@ -1901,7 +1923,7 @@
     <p><strong>1</strong> Use <a href="https://docs.micronaut.io/latest/api/io/micronaut/http/client/annotation/Client.html"><code>@Client</code></a> to use <a href="https://docs.micronaut.io/latest/guide/#clientAnnotation">declarative HTTP Clients</a>. You can annotate interfaces or abstract classes. You can use the <code>id</code> member to provide a service identifier or specify the URL directly as the annotation’s value.</p>
   </li>
   <li>
-    <p>The GDK Launcher created an <code>OrdersClient</code> for the <em>orders</em> microservice in a file named <em>api/src/main/java/com/example/clients/OrdersClient.java</em>, as follows:</p>
+    <p>Create an <code>OrdersClient</code> for the <em>orders</em> microservice in a file named <em>api/src/main/java/com/example/clients/OrdersClient.java</em>, as follows:</p>
 
     <pre><code class="language-java"> package com.example.clients;
 
@@ -1936,7 +1958,7 @@
     <p><strong>1</strong> Use <a href="https://docs.micronaut.io/latest/api/io/micronaut/http/client/annotation/Client.html"><code>@Client</code></a> to use <a href="https://docs.micronaut.io/latest/guide/#clientAnnotation">declarative HTTP Clients</a>. You can annotate interfaces or abstract classes. You can use the <code>id</code> member to provide a service identifier or specify the URL directly as the annotation’s value.</p>
   </li>
   <li>
-    <p>The GDK Launcher created a <code>Credentials</code> class, will load the username and password from configuration that will be needed for comparison when checking HTTP basic authentication credentials, in a file named <em>api/src/main/java/com/example/auth/Credentials.java</em> with the following contents:</p>
+    <p>Create a <code>Credentials</code> class, will load the username and password from configuration that will be needed for comparison when checking HTTP basic authentication credentials, in a file named <em>api/src/main/java/com/example/auth/Credentials.java</em> with the following contents:</p>
 
     <pre><code class="language-java"> package com.example.auth;
 
@@ -1949,7 +1971,7 @@
     <p><strong>1</strong> The <a href="https://docs.micronaut.io/latest/api/io/micronaut/context/annotation/ConfigurationProperties.html"><code>@ConfigurationProperties</code></a> annotation takes the configuration prefix.</p>
   </li>
   <li>
-    <p>The GDK Launcher created an <code>AuthClientFilter</code> class that acts as a client filter applied to every client. It adds a HTTP basic authentication header with credentials that are stored in the <code>Credentials</code> class, in a file named <em>api/src/main/java/com/example/auth/AuthClientFilter.java</em> with the following contents:</p>
+    <p>Create an <code>AuthClientFilter</code> class that acts as a client filter applied to every client. It adds a HTTP basic authentication header with credentials that are stored in the <code>Credentials</code> class, in a file named <em>api/src/main/java/com/example/auth/AuthClientFilter.java</em> with the following contents:</p>
 
     <pre><code class="language-java"> package com.example.auth;
 
@@ -1977,7 +1999,7 @@
 </code></pre>
   </li>
   <li>
-    <p>The GDK Launcher created an <code>ErrorExceptionHandler</code> class that will propagate errors from the <em>orders</em> and <em>users</em> microservices in a file named <em>api/src/main/java/com/example/ErrorExceptionHandler.java</em> with the following contents:</p>
+    <p>Create an <code>ErrorExceptionHandler</code> class that will propagate errors from the <em>orders</em> and <em>users</em> microservices in a file named <em>api/src/main/java/com/example/ErrorExceptionHandler.java</em> with the following contents:</p>
 
     <pre><code class="language-java"> package com.example;
 
@@ -2013,7 +2035,7 @@
 
 <ol>
   <li>
-    <p>The GDK Launcher created a <code>GatewayClient</code> Micronaut HTTP inline client for testing in a file named <em>api/src/test/java/com/example/GatewayClient.java</em></p>
+    <p>Create a <code>GatewayClient</code> Micronaut HTTP inline client for testing in a file named <em>api/src/test/java/com/example/GatewayClient.java</em></p>
 
     <pre><code class="language-java"> package com.example;
 
@@ -2059,7 +2081,7 @@
     <p><strong>1</strong> Use <a href="https://docs.micronaut.io/latest/api/io/micronaut/http/client/annotation/Client.html"><code>@Client</code></a> to use <a href="https://docs.micronaut.io/latest/guide/#clientAnnotation">declarative HTTP Clients</a>. You can annotate interfaces or abstract classes. You can use the <code>id</code> member to provide a service identifier or specify the URL directly as the annotation’s value.</p>
   </li>
   <li>
-    <p>The GDK Launcher created a <code>HealthTest</code> class to check that there is <code>/health</code> endpoint (required for service discovery) in a file named <em>api/src/test/java/com/example/HealthTest.java</em> with the following contents:</p>
+    <p>Create a <code>HealthTest</code> class to check that there is <code>/health</code> endpoint (required for service discovery) in a file named <em>api/src/test/java/com/example/HealthTest.java</em> with the following contents:</p>
 
     <pre><code class="language-java"> package com.example;
 
@@ -2094,7 +2116,7 @@
     <p><strong>2</strong> Inject the <code>HttpClient</code> bean and point it to the embedded server.</p>
   </li>
   <li>
-    <p>The GDK Launcher created a <code>GatewayControllerTest</code> class to test endpoints inside the <code>GatewayController</code> in a file named <em>api/src/test/java/com/example/GatewayControllerTest.java</em> with the following contents:</p>
+    <p>Create a <code>GatewayControllerTest</code> class to test endpoints inside the <code>GatewayController</code> in a file named <em>api/src/test/java/com/example/GatewayControllerTest.java</em> with the following contents:</p>
 
     <pre><code class="language-java"> package com.example;
 
@@ -2339,7 +2361,7 @@
     <p><strong>3</strong> Set <code>kubernetes.client.secrets.use-api: true</code> to use the Kubernetes API to fetch configuration.</p>
   </li>
   <li>
-    <p>The GDK Launcher created a file named <em>api/src/main/resources/application-dev.properties</em>. This configuration file is applied only for the <code>dev</code> environment.</p>
+    <p>Create a file named <em>api/src/main/resources/application-dev.properties</em>. This configuration file is applied only for the <code>dev</code> environment.</p>
 
     <pre><code> # &lt;1&gt;
  authentication-credentials.username=gdkdemo
@@ -2352,7 +2374,7 @@
     <p><strong>2</strong> Password for development environment.</p>
   </li>
   <li>
-    <p>The GDK Launcher created a file named <em>api/src/main/resources/bootstrap-dev.properties</em> to disable distributed configuration in the <code>dev</code> environment:</p>
+    <p>Create a file named <em>api/src/main/resources/bootstrap-dev.properties</em> to disable distributed configuration in the <code>dev</code> environment:</p>
 
     <pre><code> # &lt;1&gt;
  micronaut.http.services.users.urls=http://localhost:8081
@@ -2369,7 +2391,7 @@
     <p><strong>3</strong> Disable the Kubernetes secrets client.</p>
   </li>
   <li>
-    <p>The GDK Launcher created a file named <em>api/src/test/resources/application-test.properties</em> (to be used in the test environment) with the following contents:</p>
+    <p>Create a file named <em>api/src/test/resources/application-test.properties</em> (to be used in the test environment) with the following contents:</p>
 
     <pre><code> # &lt;1&gt;
  authentication-credentials.username=gdkdemo
@@ -2591,7 +2613,7 @@ Note: If you are using Gradle to build your application on AArch64, add the foll
 
 <ol>
   <li>
-    <p>The GDK Launcher created a filed named <em>auth.yml</em> that specifies a service role for microservices that have secret configurations.</p>
+    <p>Create a filed named <em>auth.yml</em> that specifies a service role for microservices that have secret configurations.</p>
 
     <pre><code class="language-yml"> apiVersion: v1
  kind: Namespace # &lt;1&gt;
@@ -3233,7 +3255,7 @@ Then run the next command to create the resources described above:</p>
                 Copyright &copy; 2023-2024, Oracle and/or its affiliates.
                 All rights reserved.
                 Oracle and Java are registered trademarks of Oracle and/or its affiliates.<br/>
-                Micronaut<sup>&reg;</sup> is a registered trademark of Object Computing, Inc. 
+                Micronaut<sup>&reg;</sup> is a registered trademark of Object Computing, Inc.
                 Use is for referential purposes and does not imply any endorsement or affiliation with any third-party product.
                 Unauthorized use is strictly prohibited. Other names may be trademarks of their respective owners.
               </p>
@@ -3310,7 +3332,7 @@ Then run the next command to create the resources described above:</p>
     <script src='/gdk/resources/js/filters.js'></script>
     <script src='/gdk/resources/js/sidebar.js'></script>
     <script src='/gdk/resources/js/labs.js'></script>
-    <script src='/gdk/resources/lib/highlight/highlight.min.js'></script> 
+    <script src='/gdk/resources/lib/highlight/highlight.min.js'></script>
     <script>hljs.highlightAll();</script>
   </body>
 </html>

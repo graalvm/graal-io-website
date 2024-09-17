@@ -15,7 +15,7 @@
   </title>
   <meta name="description" content="The Graal Development Kit for Micronaut (GDK) is a build of a curated set of Micronaut framework modules and their required libraries for building portable c..."/>
   <meta name="last_modified" content="2024-04-30 15:54:27 +0000"/>
-  <meta name="last_built" content="2024-08-23 09:07:41 +0000"/>
+  <meta name="last_built" content="2024-09-17 14:14:17 +0000"/>
   <link rel="stylesheet" href="/gdk/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gdk/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gdk/resources/img/favicon/favicon-32x32.png">
@@ -27,11 +27,11 @@
   <link rel="canonical" href="https://www.graal.cloud/gdk/guides/">
 
   <!-- jQuery UI Tabs -->
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.14.0/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="/gdk/resources/lib/jquery/jquery-ui.css">
 </head>
 
-      <script src="/gdk/resources/lib/jquery/jquery-3.6.1.min.js"></script>
+      <script src="/gdk/resources/lib/jquery/jquery-3.7.1.min.js"></script>
     <script src="/gdk/resources/lib/bootstrap/js/bootstrap.min.js"></script>
     <script src='/gdk/resources/lib/sticky-sidebar/resizeSensor.js'></script>
     <script src='/gdk/resources/lib/sticky-sidebar/sticky-sidebar.min.js'></script>
@@ -41,7 +41,7 @@
     <script async="async" type="text/javascript" src='//consent.trustarc.com/notice?domain=oracle.com&c=teconsent&js=bb&noticeType=bb&text=true&cdn=1&pcookie&gtm=1' crossorigin></script>
     <script src="https://www.oracle.com/assets/truste-oraclelib.js"></script>
     <!-- jQuery UI Tabs -->
-    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="https://code.jquery.com/ui/1.14.0/jquery-ui.js"></script>
 
 
   <body class="preload">
@@ -170,7 +170,7 @@
         <div class="row">
           <div class="col-12 col-sm-12 col-md-12 col-lg-8">
             <div class="row">
-                <p class="filter-title"><span class="cloud-title-color">Cloud</span>Filter</p>
+              <p class="filter-title"><span class="cloud-title-color">Cloud</span>Filter</p>
             </div>
             <div class="guide-filter" tabindex="0">
               <div class="row">
@@ -178,6 +178,7 @@
                 <p class="filter-item cloud-filter" data-filter="oci" tabindex="0">OCI</p>
                 <p class="filter-item cloud-filter" data-filter="aws" tabindex="0">AWS</p>
                 <p class="filter-item cloud-filter" data-filter="gcp" tabindex="0">GCP</p>
+                <p class="filter-item cloud-filter" data-filter="azure" tabindex="0">Azure</p>
                 <p class="filter-item cloud-filter" data-filter="all" tabindex="0">All</p>
               </div>
             </div>
@@ -196,6 +197,7 @@
               </div>
             </div>
           </div>
+        </div>
       </div>
     </div>
   </div>
@@ -208,7 +210,7 @@
     <div class="row">
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
-            <p class="filter-title">GDK<span class="module-title-color">Modules</span>Filter</p>
+          <p class="filter-title">GDK<span class="module-title-color">Modules</span>Filter</p>
         </div>
         <div class="guide-filter" tabindex="0">
           <div class="row">
@@ -252,23 +254,23 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent independent database maven">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#independent</p>
                     <p class="guide-category-module">#database</p>
                     <p class="guide-category-buildtool">#maven</p>
-                    </div>
-                    <p class="guide-title">Create and Connect a Micronaut Application to a MySQL Database</p>
-                    <p class="guide-text">Create and connect a Micronaut application to a MySQL database using Micronaut JDBC.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/database/micronaut-data-jdbc-repository/?buildTool=maven&lang=java" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Create and Connect a Micronaut Application to a MySQL Database</p>
+                  <p class="guide-text">Create and connect a Micronaut application to a MySQL database using Micronaut JDBC.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/database/micronaut-data-jdbc-repository/?buildTool=maven&lang=java"
+                   target="_blank" class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -280,23 +282,23 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent oci database maven">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#oci</p>
                     <p class="guide-category-module">#database</p>
                     <p class="guide-category-buildtool">#maven</p>
-                    </div>
-                    <p class="guide-title">Create and Connect a Micronaut Application to an Oracle Cloud Infrastructure Autonomous Database</p>
-                    <p class="guide-text">Create and connect a Micronaut application that stores data in an Autonomous Database in Oracle Cloud Infrastructure.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/database/micronaut-autonomous-database-oci/?buildTool=maven&lang=java" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Create and Connect a Micronaut Application to an Oracle Cloud Infrastructure Autonomous Database</p>
+                  <p class="guide-text">Create and connect a Micronaut application that stores data in an Autonomous Database in Oracle Cloud Infrastructure.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/database/micronaut-autonomous-database-oci/?buildTool=maven&lang=java"
+                   target="_blank" class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -336,23 +338,23 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent oci database maven">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#oci</p>
                     <p class="guide-category-module">#database</p>
                     <p class="guide-category-buildtool">#maven</p>
-                    </div>
-                    <p class="guide-title">Create and Connect a Micronaut Application to the Oracle Cloud Infrastructure MySQL HeatWave Service</p>
-                    <p class="guide-text">Create and connect a Micronaut application to the Oracle Cloud Infrastructure MySQL HeatWave Service.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/database/micronaut-mysql-database-oci/?buildTool=maven&lang=java" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Create and Connect a Micronaut Application to the Oracle Cloud Infrastructure MySQL HeatWave Service</p>
+                  <p class="guide-text">Create and connect a Micronaut application to the Oracle Cloud Infrastructure MySQL HeatWave Service.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/database/micronaut-mysql-database-oci/?buildTool=maven&lang=java"
+                   target="_blank" class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -364,24 +366,24 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent oci database maven">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#oci</p>
                     <p class="guide-category-module">#database</p>
                     <p class="guide-category-buildtool">#maven</p>
-                    </div>
-                    <p class="guide-title">Expert's Guide to Create and Connect a Micronaut Application to the Oracle Cloud Infrastructure MySQL HeatWave Service</p>
-                    <p class="guide-text">Create and connect a Micronaut application to the Oracle Cloud Infrastructure MySQL HeatWave Service.
-                      This guide assumes that you are familiar with the Oracle Cloud Infrastructure Command Line Interface.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/database/micronaut-mysql-database-oci-expert/?buildTool=maven&lang=java" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Expert's Guide to Create and Connect a Micronaut Application to the Oracle Cloud Infrastructure MySQL HeatWave Service</p>
+                  <p class="guide-text">Create and connect a Micronaut application to the Oracle Cloud Infrastructure MySQL HeatWave Service.
+                    This guide assumes that you are familiar with the Oracle Cloud Infrastructure Command Line Interface.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/database/micronaut-mysql-database-oci-expert/?buildTool=maven&lang=java"
+                   target="_blank" class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -393,51 +395,79 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent aws database maven">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#aws</p>
                     <p class="guide-category-module">#database</p>
                     <p class="guide-category-buildtool">#maven</p>
-                    </div>
-                    <p class="guide-title">Create and Connect a Micronaut Application to an Amazon Web Services RDS MySQL Database</p>
-                    <p class="guide-text">Create and connect a Micronaut application to an Amazon Web Services Relational Database Service (RDS) MySQL database.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/database/micronaut-mysql-database-aws/?buildTool=maven&lang=java" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Create and Connect a Micronaut Application to an Amazon Web Services RDS MySQL Database</p>
+                  <p class="guide-text">Create and connect a Micronaut application to an Amazon Web Services Relational Database Service (RDS) MySQL database.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/database/micronaut-mysql-database-aws/?buildTool=maven&lang=java"
+                   target="_blank" class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-   <div class="container-fluid container-fluid--custom-sm">
+  <div class="container-fluid container-fluid--custom-sm">
     <div class="row">
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent gcp database maven">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#gcp</p>
                     <p class="guide-category-module">#database</p>
                     <p class="guide-category-buildtool">#maven</p>
-                    </div>
-                    <p class="guide-title">Create and Connect a Micronaut Application to a Google MySQL Database</p>
-                    <p class="guide-text">Create and connect a Micronaut application a Google Cloud Platform (GCP) MySQL database.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/database/micronaut-mysql-database-google/?buildTool=maven&lang=java" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Create and Connect a Micronaut Application to a Google MySQL Database</p>
+                  <p class="guide-text">Create and connect a Micronaut application a Google Cloud Platform (GCP) MySQL database.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/database/micronaut-mysql-database-google/?buildTool=maven&lang=java"
+                   target="_blank" class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid container-fluid--custom-sm">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row">
+          <div class="col-sm guides-box guides-section-indent azure database maven">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
+                    <p class="guide-category-cloud">#azure</p>
+                    <p class="guide-category-module">#database</p>
+                    <p class="guide-category-buildtool">#maven</p>
+                  </div>
+                  <p class="guide-title">Create and Connect a Micronaut Application to an Azure Database for MySQL</p>
+                  <p class="guide-text">Create and connect a Micronaut application to an Azure Database for MySQL.</p>
+                </div>
+              </div>
+              <div>
+                <a href="/gdk/gdk-modules/database/micronaut-mysql-database-azure/?buildTool=maven&lang=java"
+                   target="_blank" class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -452,23 +482,23 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent independent database gradle">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#independent</p>
                     <p class="guide-category-module">#database</p>
                     <p class="guide-category-buildtool">#gradle</p>
-                    </div>
-                    <p class="guide-title">Create and Connect a Micronaut Application to a MySQL Database</p>
-                    <p class="guide-text">Create and connect a Micronaut application to a Database using Micronaut JDBC.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/database/micronaut-data-jdbc-repository/" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Create and Connect a Micronaut Application to a MySQL Database</p>
+                  <p class="guide-text">Create and connect a Micronaut application to a Database using Micronaut JDBC.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/database/micronaut-data-jdbc-repository/" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -480,23 +510,23 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent oci database gradle">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#oci</p>
                     <p class="guide-category-module">#database</p>
                     <p class="guide-category-buildtool">#gradle</p>
-                    </div>
-                    <p class="guide-title">Create and Connect a Micronaut Application to an Oracle Cloud Infrastructure Autonomous Database</p>
-                    <p class="guide-text">Create and connect a Micronaut application that stores data in an Autonomous Database in Oracle Cloud Infrastructure.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/database/micronaut-autonomous-database-oci" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Create and Connect a Micronaut Application to an Oracle Cloud Infrastructure Autonomous Database</p>
+                  <p class="guide-text">Create and connect a Micronaut application that stores data in an Autonomous Database in Oracle Cloud Infrastructure.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/database/micronaut-autonomous-database-oci" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -536,23 +566,23 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent oci database gradle">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#oci</p>
                     <p class="guide-category-module">#database</p>
                     <p class="guide-category-buildtool">#gradle</p>
-                    </div>
-                    <p class="guide-title">Create and Connect a Micronaut Application to the Oracle Cloud Infrastructure MySQL HeatWave Service</p>
-                    <p class="guide-text">Create and connect a Micronaut application to the Oracle Cloud Infrastructure MySQL HeatWave Service.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/database/micronaut-mysql-database-oci/" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Create and Connect a Micronaut Application to the Oracle Cloud Infrastructure MySQL HeatWave Service</p>
+                  <p class="guide-text">Create and connect a Micronaut application to the Oracle Cloud Infrastructure MySQL HeatWave Service.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/database/micronaut-mysql-database-oci/" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -564,24 +594,24 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent oci database gradle">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#oci</p>
                     <p class="guide-category-module">#database</p>
                     <p class="guide-category-buildtool">#gradle</p>
-                    </div>
-                    <p class="guide-title">Expert's Guide to Create and Connect a Micronaut Application to the Oracle Cloud Infrastructure MySQL HeatWave Service</p>
-                    <p class="guide-text">Create and connect a Micronaut application to the Oracle Cloud Infrastructure MySQL HeatWave Service.
-                      This guide assumes that you are familiar with the Oracle Cloud Infrastructure Command Line Interface.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/database/micronaut-mysql-database-oci-expert/" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Expert's Guide to Create and Connect a Micronaut Application to the Oracle Cloud Infrastructure MySQL HeatWave Service</p>
+                  <p class="guide-text">Create and connect a Micronaut application to the Oracle Cloud Infrastructure MySQL HeatWave Service.
+                    This guide assumes that you are familiar with the Oracle Cloud Infrastructure Command Line Interface.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/database/micronaut-mysql-database-oci-expert/" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -593,51 +623,79 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent aws database gradle">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#aws</p>
                     <p class="guide-category-module">#database</p>
                     <p class="guide-category-buildtool">#gradle</p>
-                    </div>
-                    <p class="guide-title">Create and Connect a Micronaut Application to an Amazon Web Services RDS MySQL Database</p>
-                    <p class="guide-text">Create and connect a Micronaut application to an Amazon Web Services Relational Database Service (RDS) MySQL database.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/database/micronaut-mysql-database-aws/" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Create and Connect a Micronaut Application to an Amazon Web Services RDS MySQL Database</p>
+                  <p class="guide-text">Create and connect a Micronaut application to an Amazon Web Services Relational Database Service (RDS) MySQL database.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/database/micronaut-mysql-database-aws/" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 
- <div class="container-fluid container-fluid--custom-sm">
+  <div class="container-fluid container-fluid--custom-sm">
     <div class="row">
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent gcp database gradle">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#gcp</p>
                     <p class="guide-category-module">#database</p>
                     <p class="guide-category-buildtool">#gradle</p>
-                    </div>
-                    <p class="guide-title">Create and Connect a Micronaut Application to a Google MySQL Database</p>
-                    <p class="guide-text">Create and connect a Micronaut application a Google Cloud Platform (GCP) MySQL database.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/database/micronaut-mysql-database-google/" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Create and Connect a Micronaut Application to a Google MySQL Database</p>
+                  <p class="guide-text">Create and connect a Micronaut application a Google Cloud Platform (GCP) MySQL database.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/database/micronaut-mysql-database-google/" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid container-fluid--custom-sm">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row">
+          <div class="col-sm guides-box guides-section-indent azure database gradle">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
+                    <p class="guide-category-cloud">#azure</p>
+                    <p class="guide-category-module">#database</p>
+                    <p class="guide-category-buildtool">#gradle</p>
+                  </div>
+                  <p class="guide-title">Create and Connect a Micronaut Application to an Azure Database for MySQL</p>
+                  <p class="guide-text">Create and connect a Micronaut application to an Azure Database for MySQL.</p>
+                </div>
+              </div>
+              <div>
+                <a href="/gdk/gdk-modules/database/micronaut-mysql-database-azure/" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -652,23 +710,23 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent oci email maven">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#oci</p>
                     <p class="guide-category-module">#email</p>
                     <p class="guide-category-buildtool">#maven</p>
-                    </div>
-                    <p class="guide-title">Create an Application to Send Email with the Oracle Cloud Infrastructure Email Delivery Service</p>
-                    <p class="guide-text">Learn how to send email with Oracle Cloud Infrastructure Email Delivery using the Micronaut framework</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/email/micronaut-email-oracle/?buildTool=maven&lang=java" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Create an Application to Send Email with the Oracle Cloud Infrastructure Email Delivery Service</p>
+                  <p class="guide-text">Learn how to send email with Oracle Cloud Infrastructure Email Delivery using the Micronaut framework.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/email/micronaut-email-oracle/?buildTool=maven&lang=java" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -680,55 +738,57 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent aws email maven">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#aws</p>
                     <p class="guide-category-module">#email</p>
                     <p class="guide-category-buildtool">#maven</p>
-                    </div>
-                    <p class="guide-title">Create an Application to Send Email with the Amazon Simple Email Service</p>
-                    <p class="guide-text">Learn how to send email with Amazon Simple Email Service (SES) using the Micronaut framework</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/email/micronaut-email-amazon-ses/?buildTool=maven&lang=java" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Create an Application to Send Email with the Amazon Simple Email Service</p>
+                  <p class="guide-text">Learn how to send email with Amazon Simple Email Service (SES) using the Micronaut framework.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/email/micronaut-email-amazon-ses/?buildTool=maven&lang=java" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 
+  
+
   <div class="container-fluid container-fluid--custom-sm">
-      <div class="row">
-        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-          <div class="row">
-            <div class="col-sm guides-box guides-section-indent independent email maven">
-                <div class="card card--hovered box">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row">
+          <div class="col-sm guides-box guides-section-indent independent email maven">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
                   <div class="row">
-                    <div class="col-12">
-                      <div class="row">
-                        <p class="guide-category-cloud">#independent</p>
-                        <p class="guide-category-module">#email</p>
-                        <p class="guide-category-buildtool">#maven</p>
-                      </div>
-                      <p class="guide-title">Create an Application to Send Email Using Jakarta Mail</p>
-                      <p class="guide-text">Learn how to send email with Jakarta Mail using the Micronaut framework.</p>
-                    </div>
+                    <p class="guide-category-cloud">#independent</p>
+                    <p class="guide-category-module">#email</p>
+                    <p class="guide-category-buildtool">#maven</p>
                   </div>
-                  <div>
-                    <a href="/gdk/gdk-modules/email/micronaut-email-jakartamail/?buildTool=maven&lang=java" target="_blank"
-                      class="btn btn-primary guides">View the guide</a>
-                  </div>
+                  <p class="guide-title">Create an Application to Send Email Using Jakarta Mail</p>
+                  <p class="guide-text">Learn how to send email with Jakarta Mail using the Micronaut framework.</p>
                 </div>
+              </div>
+              <div>
+                <a href="/gdk/gdk-modules/email/micronaut-email-jakartamail/?buildTool=maven&lang=java" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
   </div>
 
 <!-- Email Guides -->
@@ -739,23 +799,23 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent oci email gradle">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#oci</p>
                     <p class="guide-category-module">#email</p>
                     <p class="guide-category-buildtool">#gradle</p>
-                    </div>
-                    <p class="guide-title">Create an Application to Send Email with the Oracle Cloud Infrastructure Email Delivery Service</p>
-                    <p class="guide-text">Learn how to send an email with Oracle Cloud Infrastructure Email Delivery using the Micronaut framework.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/email/micronaut-email-oracle/" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Create an Application to Send Email with the Oracle Cloud Infrastructure Email Delivery Service</p>
+                  <p class="guide-text">Learn how to send an email with Oracle Cloud Infrastructure Email Delivery using the Micronaut framework.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/email/micronaut-email-oracle/" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -767,66 +827,68 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent aws email gradle">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#aws</p>
                     <p class="guide-category-module">#email</p>
                     <p class="guide-category-buildtool">#gradle</p>
-                    </div>
-                    <p class="guide-title">Create an Application to Send Email with the Amazon Simple Email Service</p>
-                    <p class="guide-text">Learn how to send email with Amazon Simple Email Service (SES) using the Micronaut framework.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/email/micronaut-email-amazon-ses/" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Create an Application to Send Email with the Amazon Simple Email Service</p>
+                  <p class="guide-text">Learn how to send email with Amazon Simple Email Service (SES) using the Micronaut framework.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/email/micronaut-email-amazon-ses/" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 
+  
+
   <div class="container-fluid container-fluid--custom-sm">
-      <div class="row">
-        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-          <div class="row">
-            <div class="col-sm guides-box guides-section-indent independent email gradle">
-                <div class="card card--hovered box">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row">
+          <div class="col-sm guides-box guides-section-indent independent email gradle">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
                   <div class="row">
-                    <div class="col-12">
-                      <div class="row">
-                        <p class="guide-category-cloud">#independent</p>
-                      <p class="guide-category-module">#email</p>
-                      <p class="guide-category-buildtool">#gradle</p>
-                      </div>
-                      <p class="guide-title">Create an Application to Send Email Using Jakarta Mail</p>
-                      <p class="guide-text">Learn how to send email with Jakarta Mail using the Micronaut framework.</p>
-                    </div>
+                    <p class="guide-category-cloud">#independent</p>
+                    <p class="guide-category-module">#email</p>
+                    <p class="guide-category-buildtool">#gradle</p>
                   </div>
-                  <div>
-                    <a href="/gdk/gdk-modules/email/micronaut-email-jakartamail/" target="_blank"
-                      class="btn btn-primary guides">View the guide</a>
-                  </div>
+                  <p class="guide-title">Create an Application to Send Email Using Jakarta Mail</p>
+                  <p class="guide-text">Learn how to send email with Jakarta Mail using the Micronaut framework.</p>
                 </div>
+              </div>
+              <div>
+                <a href="/gdk/gdk-modules/email/micronaut-email-jakartamail/" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
 
   </div>
 
 <!-- Kubernetes-->
 <!-- Maven options-->
 
-<div class="container-fluid container-fluid--custom-sm">
-  <div class="row">
-    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-      <div class="row">
-        <div class="col-sm guides-box guides-section-indent independent kubernetes maven">
+  <div class="container-fluid container-fluid--custom-sm">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row">
+          <div class="col-sm guides-box guides-section-indent independent kubernetes maven">
             <div class="card card--hovered box">
               <div class="row">
                 <div class="col-12">
@@ -841,20 +903,20 @@
               </div>
               <div>
                 <a href="/gdk/gdk-modules/kubernetes/micronaut-k8s/?buildTool=maven&lang=java" target="_blank"
-                  class="btn btn-primary guides">View the guide</a>
+                   class="btn btn-primary guides">View the guide</a>
               </div>
             </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="container-fluid container-fluid--custom-sm">
-  <div class="row">
-    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-      <div class="row">
-        <div class="col-sm guides-box guides-section-indent oci kubernetes maven">
+  <div class="container-fluid container-fluid--custom-sm">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row">
+          <div class="col-sm guides-box guides-section-indent oci kubernetes maven">
             <div class="card card--hovered box">
               <div class="row">
                 <div class="col-12">
@@ -869,21 +931,21 @@
                 </div>
               </div>
               <div>
-                <a href="/gdk/gdk-modules/kubernetes/micronaut-k8s-oci/" target="_blank"
-                  class="btn btn-primary guides">View the guide</a>
+                <a href="/gdk/gdk-modules/kubernetes/micronaut-k8s-oci/?buildTool=maven&lang=java" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
               </div>
             </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="container-fluid container-fluid--custom-sm">
-  <div class="row">
-    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-      <div class="row">
-        <div class="col-sm guides-box guides-section-indent oci kubernetes maven">
+  <div class="container-fluid container-fluid--custom-sm">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row">
+          <div class="col-sm guides-box guides-section-indent oci kubernetes maven">
             <div class="card card--hovered box">
               <div class="row">
                 <div class="col-12">
@@ -892,35 +954,35 @@
                     <p class="guide-category-module">#kubernetes</p>
                     <p class="guide-category-buildtool">#maven</p>
                   </div>
-                    <p class="guide-title">Expert's Guide to Deploy a Micronaut Microservices Application to Oracle Cloud Infrastructure Container Engine for Kubernetes</p>
-                    <p class="guide-text">This guide shows how to deploy a Micronaut microservices application to the Oracle Cloud Infrastructure Container Engine for Kubernetes using the Micronaut Kubernetes project.
-                      This guide guide assumes that you are familiar with the Oracle Cloud Infrastructure Command Line Interface.
-                    </p>
+                  <p class="guide-title">Expert's Guide to Deploy a Micronaut Microservices Application to Oracle Cloud Infrastructure Container Engine for Kubernetes</p>
+                  <p class="guide-text">This guide shows how to deploy a Micronaut microservices application to the Oracle Cloud Infrastructure Container Engine for Kubernetes using the Micronaut Kubernetes project.
+                    This guide assumes that you are familiar with the Oracle Cloud Infrastructure Command Line Interface.
+                  </p>
                 </div>
               </div>
               <div>
-                <a href="/gdk/gdk-modules/kubernetes/micronaut-k8s-oci-expert/" target="_blank"
-                  class="btn btn-primary guides">View the guide</a>
+                <a href="/gdk/gdk-modules/kubernetes/micronaut-k8s-oci-expert/?buildTool=maven&lang=java" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
               </div>
             </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="container-fluid container-fluid--custom-sm">
-  <div class="row">
-    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-      <div class="row">
-        <div class="col-sm guides-box guides-section-indent aws kubernetes maven">
+  <div class="container-fluid container-fluid--custom-sm">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row">
+          <div class="col-sm guides-box guides-section-indent aws kubernetes maven">
             <div class="card card--hovered box">
               <div class="row">
                 <div class="col-12">
                   <div class="row">
-                  <p class="guide-category-cloud">#aws</p>
-                  <p class="guide-category-module">#kubernetes</p>
-                  <p class="guide-category-buildtool">#maven</p>
+                    <p class="guide-category-cloud">#aws</p>
+                    <p class="guide-category-module">#kubernetes</p>
+                    <p class="guide-category-buildtool">#maven</p>
                   </div>
                   <p class="guide-title">Deploy a Micronaut Microservices Application to the Amazon Elastic Kubernetes Service</p>
                   <p class="guide-text">This guide shows how to deploy a Micronaut microservices application to the Amazon Elastic Kubernetes Service using the Micronaut Kubernetes module.</p>
@@ -928,27 +990,27 @@
               </div>
               <div>
                 <a href="/gdk/gdk-modules/kubernetes/micronaut-k8s-aws/?buildTool=maven&lang=java" target="_blank"
-                  class="btn btn-primary guides">View the guide</a>
+                   class="btn btn-primary guides">View the guide</a>
               </div>
             </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="container-fluid container-fluid--custom-sm">
-  <div class="row">
-    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-      <div class="row">
-        <div class="col-sm guides-box guides-section-indent gcp kubernetes maven">
+  <div class="container-fluid container-fluid--custom-sm">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row">
+          <div class="col-sm guides-box guides-section-indent gcp kubernetes maven">
             <div class="card card--hovered box">
               <div class="row">
                 <div class="col-12">
                   <div class="row">
-                  <p class="guide-category-cloud">#gcp</p>
-                  <p class="guide-category-module">#kubernetes</p>
-                  <p class="guide-category-buildtool">#maven</p>
+                    <p class="guide-category-cloud">#gcp</p>
+                    <p class="guide-category-module">#kubernetes</p>
+                    <p class="guide-category-buildtool">#maven</p>
                   </div>
                   <p class="guide-title">Deploy a Micronaut Microservices Application to the Google Kubernetes Engine</p>
                   <p class="guide-text">This guide shows how to deploy a Micronaut microservices application to the Google Kubernetes Engine using the Micronaut Kubernetes module.</p>
@@ -956,23 +1018,51 @@
               </div>
               <div>
                 <a href="/gdk/gdk-modules/kubernetes/micronaut-k8s-gcp/?buildTool=maven&lang=java" target="_blank"
-                  class="btn btn-primary guides">View the guide</a>
+                   class="btn btn-primary guides">View the guide</a>
               </div>
             </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+
+  <div class="container-fluid container-fluid--custom-sm">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row">
+          <div class="col-sm guides-box guides-section-indent azure kubernetes maven">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
+                    <p class="guide-category-cloud">#azure</p>
+                    <p class="guide-category-module">#kubernetes</p>
+                    <p class="guide-category-buildtool">#maven</p>
+                  </div>
+                  <p class="guide-title">Deploy a Micronaut Microservices Application to the Azure Kubernetes Service</p>
+                  <p class="guide-text">This guide shows how to deploy a Micronaut microservices application to the Azure Kubernetes Service (AKS) using the Micronaut Kubernetes module.</p>
+                </div>
+              </div>
+              <div>
+                <a href="/gdk/gdk-modules/kubernetes/micronaut-k8s-azure/?buildTool=maven&lang=java" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
 <!-- Kubernetes-->
 <!-- Gradle options-->
 
-<div class="container-fluid container-fluid--custom-sm">
-  <div class="row">
-    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-      <div class="row">
-        <div class="col-sm guides-box guides-section-indent independent kubernetes gradle">
+  <div class="container-fluid container-fluid--custom-sm">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row">
+          <div class="col-sm guides-box guides-section-indent independent kubernetes gradle">
             <div class="card card--hovered box">
               <div class="row">
                 <div class="col-12">
@@ -981,26 +1071,26 @@
                     <p class="guide-category-module">#kubernetes</p>
                     <p class="guide-category-buildtool">#gradle</p>
                   </div>
-                    <p class="guide-title">Deploy a Micronaut Microservices Application to a Local Kubernetes Cluster</p>
-                    <p class="guide-text">This guide shows how to create an application consisting of three microservices, build containerized versions of the microservices, and deploy them to a local Kubernetes cluster.</p>
+                  <p class="guide-title">Deploy a Micronaut Microservices Application to a Local Kubernetes Cluster</p>
+                  <p class="guide-text">This guide shows how to create an application consisting of three microservices, build containerized versions of the microservices, and deploy them to a local Kubernetes cluster.</p>
                 </div>
               </div>
               <div>
                 <a href="/gdk/gdk-modules/kubernetes/micronaut-k8s/" target="_blank"
-                  class="btn btn-primary guides">View the guide</a>
+                   class="btn btn-primary guides">View the guide</a>
               </div>
             </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="container-fluid container-fluid--custom-sm">
-  <div class="row">
-    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-      <div class="row">
-        <div class="col-sm guides-box guides-section-indent oci kubernetes gradle">
+  <div class="container-fluid container-fluid--custom-sm">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row">
+          <div class="col-sm guides-box guides-section-indent oci kubernetes gradle">
             <div class="card card--hovered box">
               <div class="row">
                 <div class="col-12">
@@ -1010,26 +1100,26 @@
                     <p class="guide-category-buildtool">#gradle</p>
                   </div>
                   <p class="guide-title">Deploy a Micronaut Microservices Application to Oracle Cloud Infrastructure Container Engine for Kubernetes</p>
-                    <p class="guide-text">This guide shows how to deploy a Micronaut microservices application to the Oracle Cloud Infrastructure Container Engine for Kubernetes using the Micronaut Kubernetes project.
-                    </p>
+                  <p class="guide-text">This guide shows how to deploy a Micronaut microservices application to the Oracle Cloud Infrastructure Container Engine for Kubernetes using the Micronaut Kubernetes project.
+                  </p>
                 </div>
               </div>
               <div>
                 <a href="/gdk/gdk-modules/kubernetes/micronaut-k8s-oci/" target="_blank"
-                  class="btn btn-primary guides">View the guide</a>
+                   class="btn btn-primary guides">View the guide</a>
               </div>
             </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="container-fluid container-fluid--custom-sm">
-  <div class="row">
-    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-      <div class="row">
-        <div class="col-sm guides-box guides-section-indent oci kubernetes gradle">
+  <div class="container-fluid container-fluid--custom-sm">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row">
+          <div class="col-sm guides-box guides-section-indent oci kubernetes gradle">
             <div class="card card--hovered box">
               <div class="row">
                 <div class="col-12">
@@ -1038,35 +1128,35 @@
                     <p class="guide-category-module">#kubernetes</p>
                     <p class="guide-category-buildtool">#gradle</p>
                   </div>
-                    <p class="guide-title">Expert's Guide to Deploy a Micronaut Microservices Application to Oracle Cloud Infrastructure Container Engine for Kubernetes</p>
-                    <p class="guide-text">This guide shows how to deploy a Micronaut microservices application to the Oracle Cloud Infrastructure Container Engine for Kubernetes using the Micronaut Kubernetes project.
-                      This guide guide assumes that you are familiar with the Oracle Cloud Infrastructure Command Line Interface.
-                    </p>
+                  <p class="guide-title">Expert's Guide to Deploy a Micronaut Microservices Application to Oracle Cloud Infrastructure Container Engine for Kubernetes</p>
+                  <p class="guide-text">This guide shows how to deploy a Micronaut microservices application to the Oracle Cloud Infrastructure Container Engine for Kubernetes using the Micronaut Kubernetes project.
+                    This guide assumes that you are familiar with the Oracle Cloud Infrastructure Command Line Interface.
+                  </p>
                 </div>
               </div>
               <div>
                 <a href="/gdk/gdk-modules/kubernetes/micronaut-k8s-oci-expert/" target="_blank"
-                  class="btn btn-primary guides">View the guide</a>
+                   class="btn btn-primary guides">View the guide</a>
               </div>
             </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="container-fluid container-fluid--custom-sm">
-  <div class="row">
-    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-      <div class="row">
-        <div class="col-sm guides-box guides-section-indent aws kubernetes gradle">
+  <div class="container-fluid container-fluid--custom-sm">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row">
+          <div class="col-sm guides-box guides-section-indent aws kubernetes gradle">
             <div class="card card--hovered box">
               <div class="row">
                 <div class="col-12">
                   <div class="row">
-                  <p class="guide-category-cloud">#aws</p>
-                  <p class="guide-category-module">#kubernetes</p>
-                  <p class="guide-category-buildtool">#gradle</p>
+                    <p class="guide-category-cloud">#aws</p>
+                    <p class="guide-category-module">#kubernetes</p>
+                    <p class="guide-category-buildtool">#gradle</p>
                   </div>
                   <p class="guide-title">Deploy a Micronaut Microservices Application to the Amazon Elastic Kubernetes Service</p>
                   <p class="guide-text">This guide shows how to deploy a Micronaut microservices application to the Amazon Elastic Kubernetes Service using the Micronaut Kubernetes module.</p>
@@ -1074,27 +1164,27 @@
               </div>
               <div>
                 <a href="/gdk/gdk-modules/kubernetes/micronaut-k8s-aws/" target="_blank"
-                  class="btn btn-primary guides">View the guide</a>
+                   class="btn btn-primary guides">View the guide</a>
               </div>
             </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="container-fluid container-fluid--custom-sm">
-  <div class="row">
-    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-      <div class="row">
-        <div class="col-sm guides-box guides-section-indent gcp kubernetes gradle">
+  <div class="container-fluid container-fluid--custom-sm">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row">
+          <div class="col-sm guides-box guides-section-indent gcp kubernetes gradle">
             <div class="card card--hovered box">
               <div class="row">
                 <div class="col-12">
                   <div class="row">
-                  <p class="guide-category-cloud">#gcp</p>
-                  <p class="guide-category-module">#kubernetes</p>
-                  <p class="guide-category-buildtool">#gradle</p>
+                    <p class="guide-category-cloud">#gcp</p>
+                    <p class="guide-category-module">#kubernetes</p>
+                    <p class="guide-category-buildtool">#gradle</p>
                   </div>
                   <p class="guide-title">Deploy a Micronaut Microservices Application to the Google Kubernetes Engine</p>
                   <p class="guide-text">This guide shows how to deploy a Micronaut microservices application to the Google Kubernetes Engine using the Micronaut Kubernetes module.</p>
@@ -1102,14 +1192,42 @@
               </div>
               <div>
                 <a href="/gdk/gdk-modules/kubernetes/micronaut-k8s-gcp/" target="_blank"
-                  class="btn btn-primary guides">View the guide</a>
+                   class="btn btn-primary guides">View the guide</a>
               </div>
             </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+
+  <div class="container-fluid container-fluid--custom-sm">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row">
+          <div class="col-sm guides-box guides-section-indent azure kubernetes gradle">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
+                    <p class="guide-category-cloud">#azure</p>
+                    <p class="guide-category-module">#kubernetes</p>
+                    <p class="guide-category-buildtool">#gradle</p>
+                  </div>
+                  <p class="guide-title">Deploy a Micronaut Microservices Application to the Azure Kubernetes Service</p>
+                  <p class="guide-text">This guide shows how to deploy a Micronaut microservices application to the Azure Kubernetes Service (AKS) using the Micronaut Kubernetes module.</p>
+                </div>
+              </div>
+              <div>
+                <a href="/gdk/gdk-modules/kubernetes/micronaut-k8s-azure/" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
 <!-- Logging Guides -->
 <!-- Maven options-->
@@ -1119,23 +1237,23 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent oci logging maven">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#oci</p>
                     <p class="guide-category-module">#logging</p>
                     <p class="guide-category-buildtool">#maven</p>
-                    </div>
-                    <p class="guide-title">Publish Application Logs to the Oracle Cloud Infrastructure Logging Service</p>
-                    <p class="guide-text">This guide describes how to create an application that publishes logs to the Oracle Cloud Infrastructure Logging service.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/logging/micronaut-oci-logging/?buildTool=maven&lang=java" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Publish Application Logs to the Oracle Cloud Infrastructure Logging Service</p>
+                  <p class="guide-text">This guide describes how to create an application that publishes logs to the Oracle Cloud Infrastructure Logging service.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/logging/micronaut-oci-logging/?buildTool=maven&lang=java" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1147,23 +1265,23 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent aws logging maven">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#aws</p>
                     <p class="guide-category-module">#logging</p>
                     <p class="guide-category-buildtool">#maven</p>
-                    </div>
-                    <p class="guide-title">Publish Application Logs to Amazon CloudWatch Logs</p>
-                    <p class="guide-text">This guide describes how to create an application that emits and pushes logs to Amazon CloudWatch Logs using the Micronaut Amazon Web Services integration.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/logging/micronaut-aws-logging/?buildTool=maven&lang=java" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Publish Application Logs to Amazon CloudWatch Logs</p>
+                  <p class="guide-text">This guide describes how to create an application that emits and pushes logs to Amazon CloudWatch Logs using the Micronaut Amazon Web Services integration.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/logging/micronaut-aws-logging/?buildTool=maven&lang=java" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1175,23 +1293,51 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent gcp logging maven">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#gcp</p>
                     <p class="guide-category-module">#logging</p>
                     <p class="guide-category-buildtool">#maven</p>
-                    </div>
-                    <p class="guide-title">Publish Application Logs to Google Cloud Logging</p>
-                    <p class="guide-text">In this guide, you create an application with the GDK that emits and pushes application logs to Google Cloud Logging using the Micronaut Google Cloud Platform (GCP) integration.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/logging/micronaut-google-logging/?buildTool=maven&lang=java" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Publish Application Logs to Google Cloud Logging</p>
+                  <p class="guide-text">In this guide, you create an application with the GDK that emits and pushes application logs to Google Cloud Logging using the Micronaut Google Cloud Platform (GCP) integration.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/logging/micronaut-google-logging/?buildTool=maven&lang=java" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid container-fluid--custom-sm">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row">
+          <div class="col-sm guides-box guides-section-indent azure logging maven">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
+                    <p class="guide-category-cloud">#azure</p>
+                    <p class="guide-category-module">#logging</p>
+                    <p class="guide-category-buildtool">#maven</p>
+                  </div>
+                  <p class="guide-title">Publish Application Logs to Azure Monitor Logs</p>
+                  <p class="guide-text">This guide describes how to create an application that emits and pushes logs to Azure Monitor Logs using the Micronaut Azure integration.</p>
+                </div>
+              </div>
+              <div>
+                <a href="/gdk/gdk-modules/logging/micronaut-azure-logging/?buildTool=maven&lang=java" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1206,23 +1352,23 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent oci logging gradle">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#oci</p>
                     <p class="guide-category-module">#logging</p>
                     <p class="guide-category-buildtool">#gradle</p>
-                    </div>
-                    <p class="guide-title">Publish Application Logs to the Oracle Cloud Infrastructure Logging Service</p>
-                    <p class="guide-text">This guide describes how to create an application that publishes logs to the Oracle Cloud Infrastructure Logging service.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/logging/micronaut-oci-logging/" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Publish Application Logs to the Oracle Cloud Infrastructure Logging Service</p>
+                  <p class="guide-text">This guide describes how to create an application that publishes logs to the Oracle Cloud Infrastructure Logging service.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/logging/micronaut-oci-logging/" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1234,23 +1380,23 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent aws logging gradle">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#aws</p>
                     <p class="guide-category-module">#logging</p>
                     <p class="guide-category-buildtool">#gradle</p>
-                    </div>
-                    <p class="guide-title">Publish Application Logs to Amazon CloudWatch Logs</p>
-                    <p class="guide-text">This guide describes how to create an application that emits and pushes logs to Amazon CloudWatch Logs using the Micronaut Amazon Web Services integration.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/logging/micronaut-aws-logging/" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Publish Application Logs to Amazon CloudWatch Logs</p>
+                  <p class="guide-text">This guide describes how to create an application that emits and pushes logs to Amazon CloudWatch Logs using the Micronaut Amazon Web Services integration.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/logging/micronaut-aws-logging/" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1262,23 +1408,51 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent gcp logging gradle">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#gcp</p>
                     <p class="guide-category-module">#logging</p>
                     <p class="guide-category-buildtool">#gradle</p>
-                    </div>
-                    <p class="guide-title">Publish Application Logs to Google Cloud Logging</p>
-                    <p class="guide-text">In this guide, you create an application with the GDK that emits and pushes application logs to Google Cloud Logging using the Micronaut Google Cloud Platform (GCP) integration.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/logging/micronaut-google-logging/" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Publish Application Logs to Google Cloud Logging</p>
+                  <p class="guide-text">In this guide, you create an application with the GDK that emits and pushes application logs to Google Cloud Logging using the Micronaut Google Cloud Platform (GCP) integration.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/logging/micronaut-google-logging/" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid container-fluid--custom-sm">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row">
+          <div class="col-sm guides-box guides-section-indent azure logging gradle">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
+                    <p class="guide-category-cloud">#azure</p>
+                    <p class="guide-category-module">#logging</p>
+                    <p class="guide-category-buildtool">#gradle</p>
+                  </div>
+                  <p class="guide-title">Publish Application Logs to Azure Monitor Logs</p>
+                  <p class="guide-text">This guide describes how to create an application that emits and pushes logs to Azure Monitor Logs using the Micronaut Azure integration.</p>
+                </div>
+              </div>
+              <div>
+                <a href="/gdk/gdk-modules/logging/micronaut-azure-logging/" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1293,23 +1467,23 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent independent metrics maven">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#independent</p>
                     <p class="guide-category-module">#metrics</p>
                     <p class="guide-category-buildtool">#maven</p>
-                    </div>
-                    <p class="guide-title">Create a Micronaut Application to Collect Metrics</p>
-                    <p class="guide-text">This guide describes how to create a Micronaut application that collects standard and custom metrics.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/metrics/micronaut-metrics/?buildTool=maven&lang=java" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Create a Micronaut Application to Collect Metrics</p>
+                  <p class="guide-text">This guide describes how to create a Micronaut application that collects standard and custom metrics.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/metrics/micronaut-metrics/?buildTool=maven&lang=java" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1321,23 +1495,23 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent oci metrics maven">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#oci</p>
                     <p class="guide-category-module">#metrics</p>
                     <p class="guide-category-buildtool">#maven</p>
-                    </div>
-                    <p class="guide-title">Create a Micronaut Application to Collect Metrics and Monitor Them on Oracle Cloud Infrastructure</p>
-                    <p class="guide-text">This guide describes how to create a Micronaut application that collects standard and custom metrics and publishes them to Oracle Cloud Infrastructure.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/metrics/micronaut-metrics-oci/?buildTool=maven&lang=java" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Create a Micronaut Application to Collect Metrics and Monitor Them on Oracle Cloud Infrastructure</p>
+                  <p class="guide-text">This guide describes how to create a Micronaut application that collects standard and custom metrics and publishes them to Oracle Cloud Infrastructure.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/metrics/micronaut-metrics-oci/?buildTool=maven&lang=java" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1349,23 +1523,23 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent oci metrics maven">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#oci</p>
                     <p class="guide-category-module">#metrics</p>
                     <p class="guide-category-buildtool">#maven</p>
-                    </div>
-                    <p class="guide-title">Create a Micronaut Database Application to Collect Metrics and Monitor Them on Oracle Cloud Infrastructure</p>
-                    <p class="guide-text">This guide describes how to create a Micronaut database application that collects standard and custom metrics, then publishes and monitors them on Oracle Cloud Infrastructure Monitoring.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/metrics/micronaut-metrics-db-oci/?buildTool=maven&lang=java" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Create a Micronaut Database Application to Collect Metrics and Monitor Them on Oracle Cloud Infrastructure</p>
+                  <p class="guide-text">This guide describes how to create a Micronaut database application that collects standard and custom metrics, then publishes and monitors them on Oracle Cloud Infrastructure Monitoring.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/metrics/micronaut-metrics-db-oci/?buildTool=maven&lang=java" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1377,23 +1551,23 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent aws metrics maven">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#aws</p>
                     <p class="guide-category-module">#metrics</p>
                     <p class="guide-category-buildtool">#maven</p>
-                    </div>
-                    <p class="guide-title">Create a Micronaut Application to Collect Metrics and Monitor Them on Amazon CloudWatch</p>
-                    <p class="guide-text">This guide describes how to create a Micronaut application that collects standard and custom metrics, then publishes and monitors them on Amazon CloudWatch Metrics.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/metrics/micronaut-metrics-aws/?buildTool=maven&lang=java" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Create a Micronaut Application to Collect Metrics and Monitor Them on Amazon CloudWatch</p>
+                  <p class="guide-text">This guide describes how to create a Micronaut application that collects standard and custom metrics, then publishes and monitors them on Amazon CloudWatch Metrics.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/metrics/micronaut-metrics-aws/?buildTool=maven&lang=java" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1405,23 +1579,51 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent gcp metrics maven">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#gcp</p>
                     <p class="guide-category-module">#metrics</p>
                     <p class="guide-category-buildtool">#maven</p>
-                    </div>
-                    <p class="guide-title">Create a Micronaut Application to Collect Metrics and Monitor Them on Google Cloud Monitoring</p>
-                    <p class="guide-text">This guide describes how to create a Micronaut application that collects standard and custom metrics, then publishes and monitors them on Google Cloud Monitoring.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/metrics/micronaut-metrics-google/?buildTool=maven&lang=java" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Create a Micronaut Application to Collect Metrics and Monitor Them on Google Cloud Monitoring</p>
+                  <p class="guide-text">This guide describes how to create a Micronaut application that collects standard and custom metrics, then publishes and monitors them on Google Cloud Monitoring.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/metrics/micronaut-metrics-google/?buildTool=maven&lang=java" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid container-fluid--custom-sm">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row">
+          <div class="col-sm guides-box guides-section-indent azure metrics maven">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
+                    <p class="guide-category-cloud">#azure</p>
+                    <p class="guide-category-module">#metrics</p>
+                    <p class="guide-category-buildtool">#maven</p>
+                  </div>
+                  <p class="guide-title">Create a Micronaut Application to Collect Metrics and Monitor Them on Azure Monitor Metrics</p>
+                  <p class="guide-text">This guide describes how to create a Micronaut application that collects standard and custom metrics, then publishes and monitors them on Azure Monitor Metrics.</p>
+                </div>
+              </div>
+              <div>
+                <a href="/gdk/gdk-modules/metrics/micronaut-metrics-azure/?buildTool=maven&lang=java" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1436,23 +1638,23 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent independent metrics gradle">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#independent</p>
                     <p class="guide-category-module">#metrics</p>
                     <p class="guide-category-buildtool">#gradle</p>
-                    </div>
-                    <p class="guide-title">Create a Micronaut Application to Collect Metrics</p>
-                    <p class="guide-text">This guide describes how to create a Micronaut application that collects standard and custom metrics.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/metrics/micronaut-metrics/" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Create a Micronaut Application to Collect Metrics</p>
+                  <p class="guide-text">This guide describes how to create a Micronaut application that collects standard and custom metrics.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/metrics/micronaut-metrics/" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1464,23 +1666,23 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent oci metrics gradle">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#oci</p>
                     <p class="guide-category-module">#metrics</p>
                     <p class="guide-category-buildtool">#gradle</p>
-                    </div>
-                    <p class="guide-title">Create a Micronaut Application to Collect Metrics and Monitor Them on Oracle Cloud Infrastructure</p>
-                    <p class="guide-text">This guide describes how to create a Micronaut application that collects standard and custom metrics and publishes them to Oracle Cloud Infrastructure.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/metrics/micronaut-metrics-oci/" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Create a Micronaut Application to Collect Metrics and Monitor Them on Oracle Cloud Infrastructure</p>
+                  <p class="guide-text">This guide describes how to create a Micronaut application that collects standard and custom metrics and publishes them to Oracle Cloud Infrastructure.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/metrics/micronaut-metrics-oci/" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1492,23 +1694,23 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent oci metrics gradle">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#oci</p>
                     <p class="guide-category-module">#metrics</p>
                     <p class="guide-category-buildtool">#gradle</p>
-                    </div>
-                    <p class="guide-title">Create a Micronaut Database Application to Collect Metrics and Monitor Them on Oracle Cloud Infrastructure</p>
-                    <p class="guide-text">This guide describes how to create a Micronaut database application that collects standard and custom metrics, then publishes and monitors them on Oracle Cloud Infrastructure Monitoring.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/metrics/micronaut-metrics-db-oci/" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Create a Micronaut Database Application to Collect Metrics and Monitor Them on Oracle Cloud Infrastructure</p>
+                  <p class="guide-text">This guide describes how to create a Micronaut database application that collects standard and custom metrics, then publishes and monitors them on Oracle Cloud Infrastructure Monitoring.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/metrics/micronaut-metrics-db-oci/" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1520,23 +1722,23 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent aws metrics gradle">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#aws</p>
                     <p class="guide-category-module">#metrics</p>
                     <p class="guide-category-buildtool">#gradle</p>
-                    </div>
-                    <p class="guide-title">Create a Micronaut Application to Collect Metrics and Monitor Them on Amazon CloudWatch</p>
-                    <p class="guide-text">This guide describes how to create a Micronaut application that collects standard and custom metrics, then publishes and monitors them on Amazon CloudWatch Metrics.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/metrics/micronaut-metrics-aws/" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Create a Micronaut Application to Collect Metrics and Monitor Them on Amazon CloudWatch</p>
+                  <p class="guide-text">This guide describes how to create a Micronaut application that collects standard and custom metrics, then publishes and monitors them on Amazon CloudWatch Metrics.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/metrics/micronaut-metrics-aws/" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1548,23 +1750,51 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent gcp metrics gradle">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#gcp</p>
                     <p class="guide-category-module">#metrics</p>
                     <p class="guide-category-buildtool">#gradle</p>
-                    </div>
-                    <p class="guide-title">Create a Micronaut Application to Collect Metrics and Monitor Them on Google Cloud Monitoring</p>
-                    <p class="guide-text">This guide describes how to create a Micronaut application that collects standard and custom metrics, then publishes and monitors them on Google Cloud Monitoring.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/metrics/micronaut-metrics-google/?buildTool=gradle&lang=java" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Create a Micronaut Application to Collect Metrics and Monitor Them on Google Cloud Monitoring</p>
+                  <p class="guide-text">This guide describes how to create a Micronaut application that collects standard and custom metrics, then publishes and monitors them on Google Cloud Monitoring.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/metrics/micronaut-metrics-google/?buildTool=gradle&lang=java" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid container-fluid--custom-sm">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row">
+          <div class="col-sm guides-box guides-section-indent azure metrics gradle">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
+                    <p class="guide-category-cloud">#azure</p>
+                    <p class="guide-category-module">#metrics</p>
+                    <p class="guide-category-buildtool">#gradle</p>
+                  </div>
+                  <p class="guide-title">Create a Micronaut Application to Collect Metrics and Monitor Them on Azure Monitor Metrics</p>
+                  <p class="guide-text">This guide describes how to create a Micronaut application that collects standard and custom metrics, then publishes and monitors them on Azure Monitor Metrics.</p>
+                </div>
+              </div>
+              <div>
+                <a href="/gdk/gdk-modules/metrics/micronaut-metrics-azure/" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1579,23 +1809,23 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent oci object-storage maven">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
-                      <p class="guide-category-cloud">#oci</p>
-                      <p class="guide-category-module">#object-storage</p>
-                      <p class="guide-category-buildtool">#maven</p>
-                    </div>
-                      <p class="guide-title">Create and Connect a Micronaut Application to Oracle Cloud Infrastructure Object Storage</p>
-                      <p class="guide-text">This guide describes how to create a Micronaut application that demonstrates how to store, retrieve, and delete user profile pictures in Oracle Cloud Infrastructure Object Storage using the Micronaut Object Storage API.</p>
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
+                    <p class="guide-category-cloud">#oci</p>
+                    <p class="guide-category-module">#object-storage</p>
+                    <p class="guide-category-buildtool">#maven</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/object-storage/micronaut-object-storage-oracle-cloud/?buildTool=maven&lang=java" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Create and Connect a Micronaut Application to Oracle Cloud Infrastructure Object Storage</p>
+                  <p class="guide-text">This guide describes how to create a Micronaut application that demonstrates how to store, retrieve, and delete user profile pictures in Oracle Cloud Infrastructure Object Storage using the Micronaut Object Storage API.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/object-storage/micronaut-object-storage-oracle-cloud/?buildTool=maven&lang=java"
+                  target="_blank" class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1635,23 +1865,23 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent aws object-storage maven">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#aws</p>
                     <p class="guide-category-module">#object-storage</p>
                     <p class="guide-category-buildtool">#maven</p>
-                    </div>
-                    <p class="guide-title">Create and Connect a Micronaut Application to Amazon S3 Object Storage</p>
-                    <p class="guide-text">This guide describes how to create a Micronaut application that demonstrates how to store, retrieve, and delete user profile pictures in Amazon Web Services S3 Object Storage using the Micronaut Object Storage API.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/object-storage/micronaut-object-storage-aws/?buildTool=maven&lang=java" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Create and Connect a Micronaut Application to Amazon S3 Object Storage</p>
+                  <p class="guide-text">This guide describes how to create a Micronaut application that demonstrates how to store, retrieve, and delete user profile pictures in Amazon Web Services S3 Object Storage using the Micronaut Object Storage API.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/object-storage/micronaut-object-storage-aws/?buildTool=maven&lang=java"
+                   target="_blank" class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1691,23 +1921,51 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent gcp object-storage maven">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#gcp</p>
                     <p class="guide-category-module">#object-storage</p>
                     <p class="guide-category-buildtool">#maven</p>
-                    </div>
-                    <p class="guide-title">Create and Connect a Micronaut Application to Google Cloud Storage</p>
-                    <p class="guide-text">This guide describes how to create a Micronaut application that demonstrates how to store, retrieve, and delete user profile pictures in Google Cloud Storage using the Micronaut Object Storage API.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/object-storage/micronaut-object-storage-google-cloud/?buildTool=maven&lang=java" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Create and Connect a Micronaut Application to Google Cloud Storage</p>
+                  <p class="guide-text">This guide describes how to create a Micronaut application that demonstrates how to store, retrieve, and delete user profile pictures in Google Cloud Storage using the Micronaut Object Storage API.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/object-storage/micronaut-object-storage-google-cloud/?buildTool=maven&lang=java"
+                  target="_blank" class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid container-fluid--custom-sm">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row">
+          <div class="col-sm guides-box guides-section-indent azure object-storage maven">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
+                    <p class="guide-category-cloud">#azure</p>
+                    <p class="guide-category-module">#object-storage</p>
+                    <p class="guide-category-buildtool">#maven</p>
+                  </div>
+                  <p class="guide-title">Create and Connect a Micronaut Application to Azure Blob Storage</p>
+                  <p class="guide-text">This guide describes how to create a Micronaut application that demonstrates how to store, retrieve, and delete user profile pictures in Azure Blob Storage using the Micronaut Object Storage API.</p>
+                </div>
+              </div>
+              <div>
+                <a href="/gdk/gdk-modules/object-storage/micronaut-object-storage-azure/?buildTool=maven&lang=java" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1722,23 +1980,23 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent oci object-storage gradle">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
-                      <p class="guide-category-cloud">#oci</p>
-                      <p class="guide-category-module">#object-storage</p>
-                      <p class="guide-category-buildtool">#gradle</p>
-                    </div>
-                      <p class="guide-title">Create and Connect a Micronaut Application to Oracle Cloud Infrastructure Object Storage</p>
-                      <p class="guide-text">This guide describes how to create a Micronaut application that demonstrates how to store, retrieve, and delete user profile pictures in Oracle Cloud Infrastructure Object Storage using the Micronaut Object Storage API.</p>
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
+                    <p class="guide-category-cloud">#oci</p>
+                    <p class="guide-category-module">#object-storage</p>
+                    <p class="guide-category-buildtool">#gradle</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/object-storage/micronaut-object-storage-oracle-cloud/" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Create and Connect a Micronaut Application to Oracle Cloud Infrastructure Object Storage</p>
+                  <p class="guide-text">This guide describes how to create a Micronaut application that demonstrates how to store, retrieve, and delete user profile pictures in Oracle Cloud Infrastructure Object Storage using the Micronaut Object Storage API.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/object-storage/micronaut-object-storage-oracle-cloud/" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1778,23 +2036,23 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent aws object-storage gradle">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#aws</p>
                     <p class="guide-category-module">#object-storage</p>
                     <p class="guide-category-buildtool">#gradle</p>
-                    </div>
-                    <p class="guide-title">Create and Connect a Micronaut Application to Amazon S3 Object Storage</p>
-                    <p class="guide-text">This guide describes how to create a Micronaut application that demonstrates how to store, retrieve, and delete user profile pictures in Amazon Web Services S3 Object Storage using the Micronaut Object Storage API.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/object-storage/micronaut-object-storage-aws/" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Create and Connect a Micronaut Application to Amazon S3 Object Storage</p>
+                  <p class="guide-text">This guide describes how to create a Micronaut application that demonstrates how to store, retrieve, and delete user profile pictures in Amazon Web Services S3 Object Storage using the Micronaut Object Storage API.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/object-storage/micronaut-object-storage-aws/" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1834,23 +2092,51 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent gcp object-storage gradle">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#gcp</p>
                     <p class="guide-category-module">#object-storage</p>
                     <p class="guide-category-buildtool">#gradle</p>
-                    </div>
-                    <p class="guide-title">Create and Connect a Micronaut Application to Google Cloud Storage</p>
-                    <p class="guide-text">This guide describes how to create a Micronaut application that demonstrates how to store, retrieve, and delete user profile pictures in Google Cloud Storage using the Micronaut Object Storage API.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/object-storage/micronaut-object-storage-google-cloud/" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Create and Connect a Micronaut Application to Google Cloud Storage</p>
+                  <p class="guide-text">This guide describes how to create a Micronaut application that demonstrates how to store, retrieve, and delete user profile pictures in Google Cloud Storage using the Micronaut Object Storage API.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/object-storage/micronaut-object-storage-google-cloud/" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid container-fluid--custom-sm">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row">
+          <div class="col-sm guides-box guides-section-indent azure object-storage gradle">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
+                    <p class="guide-category-cloud">#azure</p>
+                    <p class="guide-category-module">#object-storage</p>
+                    <p class="guide-category-buildtool">#gradle</p>
+                  </div>
+                  <p class="guide-title">Create and Connect a Micronaut Application to Azure Blob Storage</p>
+                  <p class="guide-text">This guide describes how to create a Micronaut application that demonstrates how to store, retrieve, and delete user profile pictures in Azure Blob Storage using the Micronaut Object Storage API.</p>
+                </div>
+              </div>
+              <div>
+                <a href="/gdk/gdk-modules/object-storage/micronaut-object-storage-azure/" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1865,23 +2151,23 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent oci secret-management maven">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#oci</p>
                     <p class="guide-category-module">#secret management</p>
                     <p class="guide-category-buildtool">#maven</p>
-                    </div>
-                    <p class="guide-title">Securely Store Application Secrets in an Oracle Cloud Infrastructure Vault</p>
-                    <p class="guide-text">Discover how to create a Java application to access secrets in an Oracle Cloud Infrastructure Vault.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/secret-management/micronaut-secrets-oci/?buildTool=maven&lang=java" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Securely Store Application Secrets in an Oracle Cloud Infrastructure Vault</p>
+                  <p class="guide-text">Discover how to create a Java application to access secrets in an Oracle Cloud Infrastructure Vault.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/secret-management/micronaut-secrets-oci/?buildTool=maven&lang=java"
+                   target="_blank" class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1893,23 +2179,23 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent oci secret-management maven">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#oci</p>
                     <p class="guide-category-module">#secret management</p>
                     <p class="guide-category-buildtool">#maven</p>
-                    </div>
-                    <p class="guide-title">Securely Store Database Connection Details in an Oracle Cloud Infrastructure Vault</p>
-                    <p class="guide-text">Discover how to create a Java application that stores MySQL database connection details as secrets in an Oracle Cloud Infrastructure Vault.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/secret-management/micronaut-secrets-oci-mysql/?buildTool=maven&lang=java" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Securely Store Database Connection Details in an Oracle Cloud Infrastructure Vault</p>
+                  <p class="guide-text">Discover how to create a Java application that stores MySQL database connection details as secrets in an Oracle Cloud Infrastructure Vault.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/secret-management/micronaut-secrets-oci-mysql/?buildTool=maven&lang=java"
+                   target="_blank" class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1921,23 +2207,23 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent aws secret-management maven">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#aws</p>
                     <p class="guide-category-module">#secret management</p>
                     <p class="guide-category-buildtool">#maven</p>
-                    </div>
-                    <p class="guide-title">Securely Store Application Secrets in Amazon Web Services Secrets Manager</p>
-                    <p class="guide-text">Discover how to create a Java application to access secrets in Amazon Web Services Secrets Manager.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/secret-management/micronaut-aws-secretsmanager/?buildTool=maven&lang=java" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Securely Store Application Secrets in Amazon Web Services Secrets Manager</p>
+                  <p class="guide-text">Discover how to create a Java application to access secrets in Amazon Web Services Secrets Manager.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/secret-management/micronaut-aws-secretsmanager/?buildTool=maven&lang=java"
+                   target="_blank" class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1949,23 +2235,51 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent gcp secret-management maven">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#gcp</p>
                     <p class="guide-category-module">#secret management</p>
                     <p class="guide-category-buildtool">#maven</p>
-                    </div>
-                    <p class="guide-title">Securely Store Application Secrets in Google Secret Manager</p>
-                    <p class="guide-text">This guide describes how to create secrets in Google Secret Manager and easily access them in a Micronaut application.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/secret-management/micronaut-cloud-secret-manager-google/?buildTool=maven&lang=java" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Securely Store Application Secrets in Google Secret Manager</p>
+                  <p class="guide-text">This guide describes how to create secrets in Google Secret Manager and easily access them in a Micronaut application.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/secret-management/micronaut-cloud-secret-manager-google/?buildTool=maven&lang=java"
+                  target="_blank" class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid container-fluid--custom-sm">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row">
+          <div class="col-sm guides-box guides-section-indent azure secret-management maven">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
+                    <p class="guide-category-cloud">#azure</p>
+                    <p class="guide-category-module">#secret management</p>
+                    <p class="guide-category-buildtool">#maven</p>
+                  </div>
+                  <p class="guide-title">Securely Store Application Secrets in Azure Key Vault</p>
+                  <p class="guide-text">Discover how to create a Java application to access secrets in Azure Key Vault.</p>
+                </div>
+              </div>
+              <div>
+                <a href="/gdk/gdk-modules/secret-management/micronaut-secrets-azure/?buildTool=maven&lang=java" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1980,23 +2294,23 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent oci secret-management gradle">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#oci</p>
                     <p class="guide-category-module">#secret management</p>
                     <p class="guide-category-buildtool">#gradle</p>
-                    </div>
-                    <p class="guide-title">Securely Store Application Secrets in an Oracle Cloud Infrastructure Vault</p>
-                    <p class="guide-text">Discover how to create a Java application to access secrets in an Oracle Cloud Infrastructure Vault.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/secret-management/micronaut-secrets-oci/" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Securely Store Application Secrets in an Oracle Cloud Infrastructure Vault</p>
+                  <p class="guide-text">Discover how to create a Java application to access secrets in an Oracle Cloud Infrastructure Vault.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/secret-management/micronaut-secrets-oci/" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -2008,23 +2322,23 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent oci secret-management gradle">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#oci</p>
                     <p class="guide-category-module">#secret management</p>
                     <p class="guide-category-buildtool">#gradle</p>
-                    </div>
-                    <p class="guide-title">Securely Store Database Connection Details in an Oracle Cloud Infrastructure Vault</p>
-                    <p class="guide-text">Discover how to create a Java application that stores MySQL database connection details as secrets in an Oracle Cloud Infrastructure vault.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/secret-management/micronaut-secrets-oci-mysql/" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Securely Store Database Connection Details in an Oracle Cloud Infrastructure Vault</p>
+                  <p class="guide-text">Discover how to create a Java application that stores MySQL database connection details as secrets in an Oracle Cloud Infrastructure vault.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/secret-management/micronaut-secrets-oci-mysql/" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -2036,23 +2350,23 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent aws secret-management gradle">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#aws</p>
                     <p class="guide-category-module">#secret management</p>
                     <p class="guide-category-buildtool">#gradle</p>
-                    </div>
-                    <p class="guide-title">Securely Store Application Secrets in Amazon Web Services Secrets Manager</p>
-                    <p class="guide-text">Discover how to create a Java application to access secrets in Amazon Web Services Secrets Manager.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/secret-management/micronaut-aws-secretsmanager/" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Securely Store Application Secrets in Amazon Web Services Secrets Manager</p>
+                  <p class="guide-text">Discover how to create a Java application to access secrets in Amazon Web Services Secrets Manager.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/secret-management/micronaut-aws-secretsmanager/" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -2092,23 +2406,51 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent gcp secret-management gradle">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#gcp</p>
                     <p class="guide-category-module">#secret management</p>
                     <p class="guide-category-buildtool">#gradle</p>
-                    </div>
-                    <p class="guide-title">Securely Store Application Secrets in Google Secret Manager</p>
-                    <p class="guide-text">This guide describes how to create secrets in Google Secret Manager and easily access them in a Micronaut application.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/secret-management/micronaut-cloud-secret-manager-google/" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Securely Store Application Secrets in Google Secret Manager</p>
+                  <p class="guide-text">This guide describes how to create secrets in Google Secret Manager and easily access them in a Micronaut application.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/secret-management/micronaut-cloud-secret-manager-google/" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid container-fluid--custom-sm">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row">
+          <div class="col-sm guides-box guides-section-indent azure secret-management gradle">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
+                    <p class="guide-category-cloud">#azure</p>
+                    <p class="guide-category-module">#secret management</p>
+                    <p class="guide-category-buildtool">#gradle</p>
+                  </div>
+                  <p class="guide-title">Securely Store Application Secrets in Azure Key Vault</p>
+                  <p class="guide-text">Discover how to create a Java application to access secrets in Azure Key Vault.</p>
+                </div>
+              </div>
+              <div>
+                <a href="/gdk/gdk-modules/secret-management/micronaut-secrets-azure/" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -2123,23 +2465,23 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent oci security maven">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
-                      <p class="guide-category-cloud">#oci</p>
-                      <p class="guide-category-module">#security</p>
-                      <p class="guide-category-buildtool">#maven</p>
-                    </div>
-                      <p class="guide-title">Secure an Application with Oracle Identity Cloud Service and OpenID Connect</p>
-                      <p class="guide-text">In this guide, you will create an application will authenticate users with Oracle Identity Cloud Service and OpenID Connect.</p>
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
+                    <p class="guide-category-cloud">#oci</p>
+                    <p class="guide-category-module">#security</p>
+                    <p class="guide-category-buildtool">#maven</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/security/micronaut-cloud-oidc-oracle/?buildTool=maven&lang=java" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Secure an Application with Oracle Identity Cloud Service and OpenID Connect</p>
+                  <p class="guide-text">In this guide, you will create an application will authenticate users with Oracle Identity Cloud Service and OpenID Connect.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/security/micronaut-cloud-oidc-oracle/?buildTool=maven&lang=java"
+                   target="_blank" class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -2151,56 +2493,58 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent aws security maven">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#aws</p>
                     <p class="guide-category-module">#security</p>
                     <p class="guide-category-buildtool">#maven</p>
-                    </div>
-                    <p class="guide-title">Secure an Application with Amazon Cognito</p>
-                    <p class="guide-text">In this guide, you will create an application and secure it with an Authorization Server provided by Amazon Cognito.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/security/micronaut-oauth2-cognito/?buildTool=maven&lang=java" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Secure an Application with Amazon Cognito</p>
+                  <p class="guide-text">In this guide, you will create an application and secure it with an Authorization Server provided by Amazon Cognito.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/security/micronaut-oauth2-cognito/?buildTool=maven&lang=java" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 
- <div class="container-fluid container-fluid--custom-sm">
+  <div class="container-fluid container-fluid--custom-sm">
     <div class="row">
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent gcp security maven">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#gcp</p>
                     <p class="guide-category-module">#security</p>
                     <p class="guide-category-buildtool">#maven</p>
-                    </div>
-                    <p class="guide-title">Secure an Application with Google OpenID Connect</p>
-                    <p class="guide-text">In this guide, you will create an application with the GDK and secure it with Google OpenID Connect.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/security/micronaut-oauth2-oidc-google/?buildTool=maven&lang=java" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Secure an Application with Google OpenID Connect</p>
+                  <p class="guide-text">In this guide, you will create an application with the GDK and secure it with Google OpenID Connect.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/security/micronaut-oauth2-oidc-google/?buildTool=maven&lang=java"
+                   target="_blank" class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+
+  
 
 <!-- Security Guides -->
 <!-- Gradle options-->
@@ -2210,23 +2554,23 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent oci security gradle">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
-                      <p class="guide-category-cloud">#oci</p>
-                      <p class="guide-category-module">#security</p>
-                      <p class="guide-category-buildtool">#gradle</p>
-                    </div>
-                    <p class="guide-title">Secure an Application with Oracle Identity Cloud Service and OpenID Connect</p>
-                    <p class="guide-text">In this guide, you will create an application that authenticates users with Oracle Identity Cloud Service and OpenID Connect.</p>
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
+                    <p class="guide-category-cloud">#oci</p>
+                    <p class="guide-category-module">#security</p>
+                    <p class="guide-category-buildtool">#gradle</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/security/micronaut-cloud-oidc-oracle/" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Secure an Application with Oracle Identity Cloud Service and OpenID Connect</p>
+                  <p class="guide-text">In this guide, you will create an application that authenticates users with Oracle Identity Cloud Service and OpenID Connect.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/security/micronaut-cloud-oidc-oracle/" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -2238,56 +2582,58 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent aws security gradle">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#aws</p>
                     <p class="guide-category-module">#security</p>
                     <p class="guide-category-buildtool">#gradle</p>
-                    </div>
-                    <p class="guide-title">Secure an Application with Amazon Cognito</p>
-                    <p class="guide-text">In this guide, you will create an application and secure it with an Authorization Server provided by Amazon Cognito.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/security/micronaut-oauth2-cognito/" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Secure an Application with Amazon Cognito</p>
+                  <p class="guide-text">In this guide, you will create an application and secure it with an Authorization Server provided by Amazon Cognito.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/security/micronaut-oauth2-cognito/" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 
- <div class="container-fluid container-fluid--custom-sm">
+  <div class="container-fluid container-fluid--custom-sm">
     <div class="row">
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent gcp security gradle">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#gcp</p>
                     <p class="guide-category-module">#security</p>
                     <p class="guide-category-buildtool">#gradle</p>
-                    </div>
-                    <p class="guide-title">Secure an Application with Google OpenID Connect</p>
-                    <p class="guide-text">In this guide, you will create an application with the GDK and secure it with Google OpenID Connect.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/security/micronaut-oauth2-oidc-google/" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Secure an Application with Google OpenID Connect</p>
+                  <p class="guide-text">In this guide, you will create an application with the GDK and secure it with Google OpenID Connect.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/security/micronaut-oauth2-oidc-google/" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+
+  
 
 <!-- Serverless Guides -->
 <!-- Maven options-->
@@ -2297,23 +2643,23 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent oci serverless maven">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#oci</p>
                     <p class="guide-category-module">#serverless</p>
                     <p class="guide-category-buildtool">#maven</p>
-                    </div>
-                    <p class="guide-title">Create and Deploy a Micronaut Gateway Function to Oracle Cloud Infrastructure</p>
-                    <p class="guide-text">This guide describes how to create a Micronaut Gateway function, deploy it using Oracle Cloud Infrastructure Functions, and access it via Oracle Cloud Infrastructure API Gateway.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/serverless/micronaut-function-oci/?buildTool=maven&lang=java" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Create and Deploy a Micronaut Gateway Function to Oracle Cloud Infrastructure</p>
+                  <p class="guide-text">This guide describes how to create a Micronaut Gateway function, deploy it using Oracle Cloud Infrastructure Functions, and access it via Oracle Cloud Infrastructure API Gateway.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/serverless/micronaut-function-oci/?buildTool=maven&lang=java" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -2325,25 +2671,24 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent oci serverless maven">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#oci</p>
                     <p class="guide-category-module">#serverless</p>
                     <p class="guide-category-buildtool">#maven</p>
-                    </div>
-                    <p class="guide-title">Expert's Guide to Create and Deploy a Micronaut Gateway Function to Oracle Cloud Infrastructure</p>
-                    <p class="guide-text">This guide describes how to create a Micronaut Gateway Function, deploy it as a container image, using Oracle Cloud Infrastructure Functions, and access it via Oracle Cloud Infrastructure API Gateway.
-                      The guide assumes you are familiar with the Oracle Cloud Console.
-                    </p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/serverless/micronaut-function-oci-expert/?buildTool=maven&lang=java" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Expert's Guide to Create and Deploy a Micronaut Gateway Function to Oracle Cloud Infrastructure</p>
+                  <p class="guide-text">This guide describes how to create a Micronaut Gateway Function, deploy it as a container image, using Oracle Cloud Infrastructure Functions, and access it via Oracle Cloud Infrastructure API Gateway. The guide assumes you are familiar with the Oracle Cloud Console.
+                  </p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/serverless/micronaut-function-oci-expert/?buildTool=maven&lang=java"
+                   target="_blank" class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -2355,23 +2700,23 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent aws serverless maven">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#aws</p>
                     <p class="guide-category-module">#serverless</p>
                     <p class="guide-category-buildtool">#maven</p>
-                    </div>
-                    <p class="guide-title">Create and Deploy a Micronaut Gateway Function as an Amazon Lambda Function</p>
-                    <p class="guide-text">This guide describes how to create a Micronaut Gateway function, deploy it using Amazon Lambda Functions, and access it via Amazon API Gateway.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/serverless/micronaut-function-aws/?buildTool=maven&lang=java" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Create and Deploy a Micronaut Gateway Function as an Amazon Lambda Function</p>
+                  <p class="guide-text">This guide describes how to create a Micronaut Gateway function, deploy it using Amazon Lambda Functions, and access it via Amazon API Gateway.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/serverless/micronaut-function-aws/?buildTool=maven&lang=java" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -2406,6 +2751,8 @@
     </div>
   </div>
 
+  
+
 <!-- Serverless Guides -->
 <!-- Gradle options-->
 
@@ -2414,23 +2761,23 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent oci serverless gradle">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#oci</p>
                     <p class="guide-category-module">#serverless</p>
                     <p class="guide-category-buildtool">#gradle</p>
-                    </div>
-                    <p class="guide-title">Create and Deploy a Micronaut Gateway Function to Oracle Cloud Infrastructure</p>
-                    <p class="guide-text">This guide describes how to create a Micronaut Gateway function, deploy it using Oracle Cloud Infrastructure Functions, and access it via Oracle Cloud Infrastructure API Gateway.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/serverless/micronaut-function-oci/" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Create and Deploy a Micronaut Gateway Function to Oracle Cloud Infrastructure</p>
+                  <p class="guide-text">This guide describes how to create a Micronaut Gateway function, deploy it using Oracle Cloud Infrastructure Functions, and access it via Oracle Cloud Infrastructure API Gateway.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/serverless/micronaut-function-oci/" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -2442,25 +2789,25 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent oci serverless gradle">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#oci</p>
                     <p class="guide-category-module">#serverless</p>
                     <p class="guide-category-buildtool">#gradle</p>
-                    </div>
-                    <p class="guide-title">Expert's Guide to Create and Deploy a Micronaut Gateway Function to Oracle Cloud Infrastructure</p>
-                    <p class="guide-text">This guide describes how to create a Micronaut Gateway Function, deploy it as a container image, using Oracle Cloud Infrastructure Functions, and access it via Oracle Cloud Infrastructure API Gateway.
-                      The guide assumes you are familiar with the Oracle Cloud Console.
-                    </p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/serverless/micronaut-function-oci-expert/" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Expert's Guide to Create and Deploy a Micronaut Gateway Function to Oracle Cloud Infrastructure</p>
+                  <p class="guide-text">This guide describes how to create a Micronaut Gateway Function, deploy it as a container image, using Oracle Cloud Infrastructure Functions, and access it via Oracle Cloud Infrastructure API Gateway.
+                    The guide assumes you are familiar with the Oracle Cloud Console.
+                  </p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/serverless/micronaut-function-oci-expert/" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -2472,23 +2819,23 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent aws serverless gradle">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#aws</p>
                     <p class="guide-category-module">#serverless</p>
                     <p class="guide-category-buildtool">#gradle</p>
-                    </div>
-                    <p class="guide-title">Create and Deploy a Micronaut Gateway Function as an Amazon Lambda Function</p>
-                    <p class="guide-text">This guide describes how to create a Micronaut Gateway function, deploy it using Amazon Lambda Functions, and access it via Amazon API Gateway.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/serverless/micronaut-function-aws/" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Create and Deploy a Micronaut Gateway Function as an Amazon Lambda Function</p>
+                  <p class="guide-text">This guide describes how to create a Micronaut Gateway function, deploy it using Amazon Lambda Functions, and access it via Amazon API Gateway.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/serverless/micronaut-function-aws/" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -2523,6 +2870,8 @@
     </div>
   </div>
 
+  
+
 <!-- Streaming Guides -->
 <!-- Maven options-->
 
@@ -2531,23 +2880,23 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent independent streaming maven">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#independent</p>
                     <p class="guide-category-module">#streaming</p>
                     <p class="guide-category-buildtool">#maven</p>
-                    </div>
-                    <p class="guide-title">Create a Streaming Application with Kafka</p>
-                    <p class="guide-text">This guide describes how to create a streaming application that uses the Micronaut Streaming API and Kafka Streams.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/streaming/micronaut-streaming/?buildTool=maven&lang=java" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Create a Streaming Application with Kafka</p>
+                  <p class="guide-text">This guide describes how to create a streaming application that uses the Micronaut Streaming API and Kafka Streams.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/streaming/micronaut-streaming/?buildTool=maven&lang=java" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -2559,23 +2908,23 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent oci streaming maven">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#oci</p>
                     <p class="guide-category-module">#streaming</p>
                     <p class="guide-category-buildtool">#maven</p>
-                    </div>
-                    <p class="guide-title">Create a Streaming Application with the Oracle Cloud Infrastructure Streaming Service</p>
-                    <p class="guide-text">This guide describes how to create a streaming application that uses Micronaut Streaming and the Oracle Cloud Infrastructure Streaming service.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/streaming/micronaut-streaming-oracle/?buildTool=maven&lang=java" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Create a Streaming Application with the Oracle Cloud Infrastructure Streaming Service</p>
+                  <p class="guide-text">This guide describes how to create a streaming application that uses Micronaut Streaming and the Oracle Cloud Infrastructure Streaming service.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/streaming/micronaut-streaming-oracle/?buildTool=maven&lang=java"
+                   target="_blank" class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -2587,24 +2936,23 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent oci streaming maven">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#oci</p>
                     <p class="guide-category-module">#streaming</p>
                     <p class="guide-category-buildtool">#maven</p>
-                    </div>
-                    <p class="guide-title">Create and Deploy a Streaming Application with the Oracle Cloud Infrastructure Streaming Service</p>
-                    <p class="guide-text">This guide describes how to create and deploy a streaming application that uses Micronaut Streaming and the Oracle Cloud Infrastructure Streaming service.
-                      The guide assumes that you are familiar with the Oracle Cloud Infrastructure Command Line Interface.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/streaming/micronaut-streaming-oracle-deploy/?buildTool=maven&lang=java" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Create and Deploy a Streaming Application with the Oracle Cloud Infrastructure Streaming Service</p>
+                  <p class="guide-text">This guide describes how to create and deploy a streaming application that uses Micronaut Streaming and the Oracle Cloud Infrastructure Streaming service. The guide assumes that you are familiar with the Oracle Cloud Infrastructure Command Line Interface.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/streaming/micronaut-streaming-oracle-deploy/?buildTool=maven&lang=java"
+                   target="_blank" class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -2616,23 +2964,23 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent aws streaming maven">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#aws</p>
                     <p class="guide-category-module">#streaming</p>
                     <p class="guide-category-buildtool">#maven</p>
-                    </div>
-                    <p class="guide-title">Create and Deploy a Streaming Application with Amazon Managed Streaming for Apache Kafka</p>
-                    <p class="guide-text">This guide describes how to create a streaming application that uses the Micronaut Streaming API.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/streaming/micronaut-streaming-aws/?buildTool=maven&lang=java" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Create and Deploy a Streaming Application with Amazon Managed Streaming for Apache Kafka</p>
+                  <p class="guide-text">This guide describes how to create a streaming application that uses the Micronaut Streaming API.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/streaming/micronaut-streaming-aws/?buildTool=maven&lang=java" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -2644,23 +2992,51 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent gcp streaming maven">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#gcp</p>
                     <p class="guide-category-module">#streaming</p>
                     <p class="guide-category-buildtool">#maven</p>
-                    </div>
-                    <p class="guide-title">Create and Deploy a Streaming Application with Google Cloud Platform Apache Kafka</p>
-                    <p class="guide-text">This guide describes how to create a streaming application that uses the Micronaut Streaming API.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/streaming/micronaut-streaming-google/?buildTool=maven&lang=java" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Create and Deploy a Streaming Application with Google Cloud Platform Apache Kafka</p>
+                  <p class="guide-text">This guide describes how to create a streaming application that uses the Micronaut Streaming API.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/streaming/micronaut-streaming-google/?buildTool=maven&lang=java"
+                   target="_blank" class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid container-fluid--custom-sm">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row">
+          <div class="col-sm guides-box guides-section-indent azure streaming maven">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
+                    <p class="guide-category-cloud">#azure</p>
+                    <p class="guide-category-module">#streaming</p>
+                    <p class="guide-category-buildtool">#maven</p>
+                  </div>
+                  <p class="guide-title">Create and Deploy a Streaming Application with Azure Event Hubs</p>
+                  <p class="guide-text">This guide describes how to create a streaming application that uses the Micronaut Streaming API.</p>
+                </div>
+              </div>
+              <div>
+                <a href="/gdk/gdk-modules/streaming/micronaut-streaming-azure/?buildTool=maven&lang=java" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -2675,23 +3051,23 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent independent streaming gradle">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#independent</p>
                     <p class="guide-category-module">#streaming</p>
                     <p class="guide-category-buildtool">#gradle</p>
-                    </div>
-                    <p class="guide-title">Create a Streaming Application with Kafka</p>
-                    <p class="guide-text">This guide describes how to create a streaming application that uses the Micronaut Streaming API and Kafka Streams.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/streaming/micronaut-streaming/" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Create a Streaming Application with Kafka</p>
+                  <p class="guide-text">This guide describes how to create a streaming application that uses the Micronaut Streaming API and Kafka Streams.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/streaming/micronaut-streaming/" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -2703,23 +3079,23 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent oci streaming gradle">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#oci</p>
                     <p class="guide-category-module">#streaming</p>
                     <p class="guide-category-buildtool">#gradle</p>
-                    </div>
-                    <p class="guide-title">Create a Streaming Application with the Oracle Cloud Infrastructure Streaming Service</p>
-                    <p class="guide-text">This guide describes how to create a streaming application that uses Micronaut Streaming and the Oracle Cloud Infrastructure Streaming service.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/streaming/micronaut-streaming-oracle/" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Create a Streaming Application with the Oracle Cloud Infrastructure Streaming Service</p>
+                  <p class="guide-text">This guide describes how to create a streaming application that uses Micronaut Streaming and the Oracle Cloud Infrastructure Streaming service.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/streaming/micronaut-streaming-oracle/" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -2731,53 +3107,51 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent oci streaming gradle">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#oci</p>
                     <p class="guide-category-module">#streaming</p>
                     <p class="guide-category-buildtool">#gradle</p>
-                    </div>
-                    <p class="guide-title">Create and Deploy a Streaming Application with the Oracle Cloud Infrastructure Streaming Service</p>
-                    <p class="guide-text">This guide describes how to create and deploy a streaming application that uses Micronaut Streaming and the Oracle Cloud Infrastructure Streaming service.
-                      The guide assumes that you are familiar with the Oracle Cloud Infrastructure Command Line Interface.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/streaming/micronaut-streaming-oracle-deploy" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Create and Deploy a Streaming Application with the Oracle Cloud Infrastructure Streaming Service</p>
+                  <p class="guide-text">This guide describes how to create and deploy a streaming application that uses Micronaut Streaming and the Oracle Cloud Infrastructure Streaming service. The guide assumes that you are familiar with the Oracle Cloud Infrastructure Command Line Interface.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/streaming/micronaut-streaming-oracle-deploy/" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-
 
   <div class="container-fluid container-fluid--custom-sm">
     <div class="row">
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent aws streaming gradle">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#aws</p>
                     <p class="guide-category-module">#streaming</p>
                     <p class="guide-category-buildtool">#gradle</p>
-                    </div>
-                    <p class="guide-title">Create and Deploy a Streaming Application with Amazon Managed Streaming for Apache Kafka</p>
-                    <p class="guide-text">This guide describes how to create a streaming application that uses the Micronaut Streaming API.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/streaming/micronaut-streaming-aws/" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Create and Deploy a Streaming Application with Amazon Managed Streaming for Apache Kafka</p>
+                  <p class="guide-text">This guide describes how to create a streaming application that uses the Micronaut Streaming API.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/streaming/micronaut-streaming-aws/" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -2789,29 +3163,56 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent gcp streaming gradle">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#gcp</p>
                     <p class="guide-category-module">#streaming</p>
                     <p class="guide-category-buildtool">#gradle</p>
-                    </div>
-                    <p class="guide-title">Create and Deploy a Streaming Application with Google Cloud Platform Apache Kafka</p>
-                    <p class="guide-text">This guide describes how to create a streaming application that uses the Micronaut Streaming API.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/streaming/micronaut-streaming-google/" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Create and Deploy a Streaming Application with Google Cloud Platform Apache Kafka</p>
+                  <p class="guide-text">This guide describes how to create a streaming application that uses the Micronaut Streaming API.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/streaming/micronaut-streaming-google/" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 
+  <div class="container-fluid container-fluid--custom-sm">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row">
+          <div class="col-sm guides-box guides-section-indent azure streaming gradle">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
+                    <p class="guide-category-cloud">#azure</p>
+                    <p class="guide-category-module">#streaming</p>
+                    <p class="guide-category-buildtool">#gradle</p>
+                  </div>
+                  <p class="guide-title">Create and Deploy a Streaming Application with Azure Event Hubs</p>
+                  <p class="guide-text">This guide describes how to create a streaming application that uses the Micronaut Streaming API.</p>
+                </div>
+              </div>
+              <div>
+                <a href="/gdk/gdk-modules/streaming/micronaut-streaming-azure/" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
 <!-- Tracing Guides -->
 <!-- Maven options-->
@@ -2821,23 +3222,23 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent oci tracing maven">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#oci</p>
                     <p class="guide-category-module">#tracing</p>
                     <p class="guide-category-buildtool">#maven</p>
-                    </div>
-                    <p class="guide-title">Create and Trace a Micronaut Application Using Oracle Cloud Infrastructure Application Performance Monitoring</p>
-                    <p class="guide-text">This guide describes how to create and trace a Micronaut application using Oracle Cloud Infrastructure Application Performance Monitoring.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/tracing/micronaut-trace-oracle/?buildTool=maven&lang=java" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Create and Trace a Micronaut Application Using Oracle Cloud Infrastructure Application Performance Monitoring</p>
+                  <p class="guide-text">This guide describes how to create and trace a Micronaut application using Oracle Cloud Infrastructure Application Performance Monitoring.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/tracing/micronaut-trace-oracle/?buildTool=maven&lang=java" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -2849,56 +3250,58 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent aws tracing maven">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#aws</p>
                     <p class="guide-category-module">#tracing</p>
                     <p class="guide-category-buildtool">#maven</p>
-                    </div>
-                    <p class="guide-title">Create and Trace a Micronaut Application Using Amazon Web Services X-Ray</p>
-                    <p class="guide-text">This guide describes how to create and trace a Micronaut application using Amazon Web Services X-Ray.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/tracing/micronaut-trace-aws/?buildTool=maven&lang=java" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Create and Trace a Micronaut Application Using Amazon Web Services X-Ray</p>
+                  <p class="guide-text">This guide describes how to create and trace a Micronaut application using Amazon Web Services X-Ray.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/tracing/micronaut-trace-aws/?buildTool=maven&lang=java" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 
- <div class="container-fluid container-fluid--custom-sm">
+  <div class="container-fluid container-fluid--custom-sm">
     <div class="row">
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent gcp tracing maven">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#gcp</p>
                     <p class="guide-category-module">#tracing</p>
                     <p class="guide-category-buildtool">#maven</p>
-                    </div>
-                    <p class="guide-title">Create and Trace a Micronaut Application Using Google Cloud Trace</p>
-                    <p class="guide-text">This guide describes how to use the GDK to create and trace a Micronaut application using Google Cloud Trace.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/tracing/micronaut-trace-google/?buildTool=maven&lang=java" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Create and Trace a Micronaut Application Using Google Cloud Trace</p>
+                  <p class="guide-text">This guide describes how to use the GDK to create and trace a Micronaut application using Google Cloud Trace.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/tracing/micronaut-trace-google/?buildTool=maven&lang=java" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+
+  
 
 <!-- Tracing Guides -->
 <!-- Gradle options-->
@@ -2908,23 +3311,23 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent oci tracing gradle">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#oci</p>
                     <p class="guide-category-module">#tracing</p>
                     <p class="guide-category-buildtool">#gradle</p>
-                    </div>
-                    <p class="guide-title">Create and Trace a Micronaut Application Using Oracle Cloud Infrastructure APM</p>
-                    <p class="guide-text">This guide describes how to create and trace a Micronaut application using Oracle Cloud Infrastructure Application Performance Monitoring.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/tracing/micronaut-trace-oracle/" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Create and Trace a Micronaut Application Using Oracle Cloud Infrastructure APM</p>
+                  <p class="guide-text">This guide describes how to create and trace a Micronaut application using Oracle Cloud Infrastructure Application Performance Monitoring.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/tracing/micronaut-trace-oracle/" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -2936,56 +3339,58 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent aws tracing gradle">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#aws</p>
                     <p class="guide-category-module">#tracing</p>
                     <p class="guide-category-buildtool">#gradle</p>
-                    </div>
-                    <p class="guide-title">Create and Trace a Micronaut Application Using Amazon Web Services X-Ray</p>
-                    <p class="guide-text">This guide describes how to create and trace a Micronaut application using Amazon Web Services X-Ray.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/tracing/micronaut-trace-aws/" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Create and Trace a Micronaut Application Using Amazon Web Services X-Ray</p>
+                  <p class="guide-text">This guide describes how to create and trace a Micronaut application using Amazon Web Services X-Ray.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/tracing/micronaut-trace-aws/" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 
- <div class="container-fluid container-fluid--custom-sm">
+  <div class="container-fluid container-fluid--custom-sm">
     <div class="row">
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-sm guides-box guides-section-indent gcp tracing gradle">
-              <div class="card card--hovered box">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
+            <div class="card card--hovered box">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
                     <p class="guide-category-cloud">#gcp</p>
                     <p class="guide-category-module">#tracing</p>
                     <p class="guide-category-buildtool">#gradle</p>
-                    </div>
-                    <p class="guide-title">Create and Trace a Micronaut Application Using Google Cloud Trace</p>
-                    <p class="guide-text">This guide describes how to use the GDK to create and trace a Micronaut application using Google Cloud Trace.</p>
                   </div>
-                </div>
-                <div>
-                  <a href="/gdk/gdk-modules/tracing/micronaut-trace-google/" target="_blank"
-                    class="btn btn-primary guides">View the guide</a>
+                  <p class="guide-title">Create and Trace a Micronaut Application Using Google Cloud Trace</p>
+                  <p class="guide-text">This guide describes how to use the GDK to create and trace a Micronaut application using Google Cloud Trace.</p>
                 </div>
               </div>
+              <div>
+                <a href="/gdk/gdk-modules/tracing/micronaut-trace-google/" target="_blank"
+                   class="btn btn-primary guides">View the guide</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+
+  
 
 </section>
 
@@ -3049,7 +3454,7 @@
                 Copyright &copy; 2023-2024, Oracle and/or its affiliates.
                 All rights reserved.
                 Oracle and Java are registered trademarks of Oracle and/or its affiliates.<br/>
-                Micronaut<sup>&reg;</sup> is a registered trademark of Object Computing, Inc. 
+                Micronaut<sup>&reg;</sup> is a registered trademark of Object Computing, Inc.
                 Use is for referential purposes and does not imply any endorsement or affiliation with any third-party product.
                 Unauthorized use is strictly prohibited. Other names may be trademarks of their respective owners.
               </p>
@@ -3126,7 +3531,7 @@
     <script src='/gdk/resources/js/filters.js'></script>
     <script src='/gdk/resources/js/sidebar.js'></script>
     <script src='/gdk/resources/js/labs.js'></script>
-    <script src='/gdk/resources/lib/highlight/highlight.min.js'></script> 
+    <script src='/gdk/resources/lib/highlight/highlight.min.js'></script>
     <script>hljs.highlightAll();</script>
   </body>
 </html>

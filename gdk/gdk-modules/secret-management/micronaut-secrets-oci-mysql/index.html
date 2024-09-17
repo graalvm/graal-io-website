@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="The Graal Development Kit for Micronaut (GDK) is a build of a curated set of Micronaut framework modules and their required libraries for building portable c..."/>
-  <meta name="last_modified" content="2024-07-08 11:59:32 +0000"/>
-  <meta name="last_built" content="2024-08-23 09:07:41 +0000"/>
+  <meta name="last_modified" content="2024-08-19 20:45:32 +0000"/>
+  <meta name="last_built" content="2024-09-17 14:14:17 +0000"/>
   <link rel="stylesheet" href="/gdk/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gdk/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gdk/resources/img/favicon/favicon-32x32.png">
@@ -27,11 +27,11 @@
   <link rel="canonical" href="https://www.graal.cloud/gdk/gdk-modules/secret-management/micronaut-secrets-oci-mysql/">
 
   <!-- jQuery UI Tabs -->
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.14.0/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="/gdk/resources/lib/jquery/jquery-ui.css">
 </head>
 
-      <script src="/gdk/resources/lib/jquery/jquery-3.6.1.min.js"></script>
+      <script src="/gdk/resources/lib/jquery/jquery-3.7.1.min.js"></script>
     <script src="/gdk/resources/lib/bootstrap/js/bootstrap.min.js"></script>
     <script src='/gdk/resources/lib/sticky-sidebar/resizeSensor.js'></script>
     <script src='/gdk/resources/lib/sticky-sidebar/sticky-sidebar.min.js'></script>
@@ -41,7 +41,7 @@
     <script async="async" type="text/javascript" src='//consent.trustarc.com/notice?domain=oracle.com&c=teconsent&js=bb&noticeType=bb&text=true&cdn=1&pcookie&gtm=1' crossorigin></script>
     <script src="https://www.oracle.com/assets/truste-oraclelib.js"></script>
     <!-- jQuery UI Tabs -->
-    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="https://code.jquery.com/ui/1.14.0/jquery-ui.js"></script>
 
 
   <body class="preload">
@@ -237,6 +237,16 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+  
     
 
     
@@ -290,6 +300,18 @@
         
       
     
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
   
 
   
@@ -404,11 +426,11 @@ However, you can also download the completed example.</p>
     <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
   </ul>
   <div id="gradle">
-    <p><a href="https://github.com/oracle/gcn/releases/download/4.5.0.0/4.5.0.0_secret-management_oci-secrets-demo-java-gradle.zip">Gradle Oracle Cloud Infrastructure Vault Example <img class="download-img-guides" src="/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" /></a>
+    <p><a href="https://github.com/oracle/gcn/releases/download/4.6.0.1/4.6.0.1_secret-management_oci-secrets-demo-java-gradle.zip">Gradle Oracle Cloud Infrastructure Vault Example <img class="download-img-guides" src="/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" /></a>
     </p>
   </div>
   <div id="maven">
-    <p><a href="https://github.com/oracle/gcn/releases/download/4.5.0.0/4.5.0.0_secret-management_oci-secrets-demo-java-maven.zip">Maven Oracle Cloud Infrastructure Vault Example <img class="download-img-guides" src="/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" /></a>
+    <p><a href="https://github.com/oracle/gcn/releases/download/4.6.0.1/4.6.0.1_secret-management_oci-secrets-demo-java-maven.zip">Maven Oracle Cloud Infrastructure Vault Example <img class="download-img-guides" src="/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" /></a>
     </p>
   </div>
 </div>
@@ -786,7 +808,7 @@ To use this from your compute instance, create a dynamic group and add a policy 
       </h3>
 
 <p>Choose a group name, such as “gdk-guide-dg”, and a matching rule (the logic that will be used to determine group membership).
-For this guide, use a broad rule that includes all compute instances in your compartment: <code>ALL {instance.compartment.id = 'ocid1.compartment.oc1..aaaaaaaarkh3s2wcxbbm…​'}</code> replacing <code>ocid1.compartment.oc1..aaaaaaaarkh3s2wcxbbm…​</code>` with the compartment OCID.</p>
+For this guide, use a broad rule that includes all compute instances in your compartment: <code>ALL {instance.compartment.id = 'ocid1.compartment.oc1..aaaaaaaarkh3s2wcxbbm…'}</code> replacing <code>ocid1.compartment.oc1..aaaaaaaarkh3s2wcxbbm…</code>` with the compartment OCID.</p>
 
 <p>Run the <a href="https://docs.oracle.com/iaas/tools/oci-cli/latest/oci_cli_docs/cmdref/iam/dynamic-group/create.html"><code>create</code></a> command:</p>
 
@@ -896,17 +918,21 @@ For this guide, use a broad rule that includes all compute instances in your com
   </li>
 </ol>
     
-      <h2 id="8-package-with-graalvm-native-image">
+      <h2 id="8-generate-a-native-executable-using-graalvm">
         
         
-          8. Package with GraalVM Native Image <a href="#8-package-with-graalvm-native-image" class="anchor_heading">#</a>
+          8. Generate a Native Executable Using GraalVM <a href="#8-generate-a-native-executable-using-graalvm" class="anchor_heading">#</a>
         
         
       </h2>
 
-<p>The GDK supports compiling a Java application ahead-of-time into a native executable using <a href="https://www.graalvm.org/native-image/" target="_blank">GraalVM Native Image</a>.
+<p>The GDK supports compiling Java applications ahead-of-time into native executables using <a href="https://www.graalvm.org/" target="_blank">GraalVM Native Image</a>.
 You can use the <em><a href="https://graalvm.github.io/native-build-tools/latest/gradle-plugin.html" target="_blank">Gradle plugin for GraalVM Native Image building</a></em>/<em><a href="https://graalvm.github.io/native-build-tools/latest/maven-plugin.html" target="_blank">Maven plugin for GraalVM Native Image building</a></em>.
 Packaged as a native executable, it significantly reduces application startup time and memory footprint.</p>
+
+<blockquote>
+  <p><strong>Prerequisites</strong>: Make sure you have installed a GraalVM JDK. The easiest way to get started is with <a href="https://sdkman.io/jdks#graal">SDKMAN!</a>. For other installation options, visit the <a href="https://www.graalvm.org/downloads/">Downloads section</a>.</p>
+</blockquote>
 
 <p>If you build a native executable locally, it will only run on your OS, and isn’t suitable for deployment to a compute instance.
 To create a deployable native executable, use a different packaging command that builds the executable inside a container, which you can extract to deploy to the cloud.</p>
@@ -1018,7 +1044,7 @@ Run this, replacing the date:</p>
 </code></pre>
   </li>
   <li>
-    <p>Finally, delete the database it <a href="https://docs.oracle.com/iaas/tools/oci-cli/latest/oci_cli_docs/cmdref/mysql/db-system/delete.html" target="_blank">using the CLI</a>. Run the following command:</p>
+    <p>Finally, delete the database <a href="https://docs.oracle.com/iaas/tools/oci-cli/latest/oci_cli_docs/cmdref/mysql/db-system/delete.html" target="_blank">using the CLI</a>. Run the following command:</p>
 
     <pre><code class="language-bash"> oci mysql db-system delete \
      --db-system-id ocid1.mysqldbsystem.oc1.iad.aaaaaaaa2pq3a37hftut...
@@ -1136,7 +1162,7 @@ You also saw how to package this application into a native executable and deploy
                 Copyright &copy; 2023-2024, Oracle and/or its affiliates.
                 All rights reserved.
                 Oracle and Java are registered trademarks of Oracle and/or its affiliates.<br/>
-                Micronaut<sup>&reg;</sup> is a registered trademark of Object Computing, Inc. 
+                Micronaut<sup>&reg;</sup> is a registered trademark of Object Computing, Inc.
                 Use is for referential purposes and does not imply any endorsement or affiliation with any third-party product.
                 Unauthorized use is strictly prohibited. Other names may be trademarks of their respective owners.
               </p>
@@ -1213,7 +1239,7 @@ You also saw how to package this application into a native executable and deploy
     <script src='/gdk/resources/js/filters.js'></script>
     <script src='/gdk/resources/js/sidebar.js'></script>
     <script src='/gdk/resources/js/labs.js'></script>
-    <script src='/gdk/resources/lib/highlight/highlight.min.js'></script> 
+    <script src='/gdk/resources/lib/highlight/highlight.min.js'></script>
     <script>hljs.highlightAll();</script>
   </body>
 </html>

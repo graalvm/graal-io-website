@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="The Graal Development Kit for Micronaut (GDK) is a build of a curated set of Micronaut framework modules and their required libraries for building portable c..."/>
-  <meta name="last_modified" content="2024-04-30 15:54:27 +0000"/>
-  <meta name="last_built" content="2024-08-23 09:07:41 +0000"/>
+  <meta name="last_modified" content="2024-08-17 18:58:53 +0000"/>
+  <meta name="last_built" content="2024-09-17 14:14:17 +0000"/>
   <link rel="stylesheet" href="/gdk/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gdk/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gdk/resources/img/favicon/favicon-32x32.png">
@@ -27,11 +27,11 @@
   <link rel="canonical" href="https://www.graal.cloud/gdk/get-started/setting-up-cloud-accounts/">
 
   <!-- jQuery UI Tabs -->
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.14.0/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="/gdk/resources/lib/jquery/jquery-ui.css">
 </head>
 
-      <script src="/gdk/resources/lib/jquery/jquery-3.6.1.min.js"></script>
+      <script src="/gdk/resources/lib/jquery/jquery-3.7.1.min.js"></script>
     <script src="/gdk/resources/lib/bootstrap/js/bootstrap.min.js"></script>
     <script src='/gdk/resources/lib/sticky-sidebar/resizeSensor.js'></script>
     <script src='/gdk/resources/lib/sticky-sidebar/sticky-sidebar.min.js'></script>
@@ -41,7 +41,7 @@
     <script async="async" type="text/javascript" src='//consent.trustarc.com/notice?domain=oracle.com&c=teconsent&js=bb&noticeType=bb&text=true&cdn=1&pcookie&gtm=1' crossorigin></script>
     <script src="https://www.oracle.com/assets/truste-oraclelib.js"></script>
     <!-- jQuery UI Tabs -->
-    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="https://code.jquery.com/ui/1.14.0/jquery-ui.js"></script>
 
 
   <body class="preload">
@@ -149,98 +149,126 @@
 
       <main  class="content"   aria-label="Content">
         <section class="modules-banner">
-  <div class="banner_home_modules container-fluid container-fluid--custom-sm">
-    <div class="tagline_home_gdk">
-      <p>Setting up Your Cloud Accounts</p>
+    <div class="banner_home_modules container-fluid container-fluid--custom-sm">
+        <div class="tagline_home_gdk">
+            <p>Setting up Your Cloud Accounts</p>
+        </div>
+        <div class="slogan_home_modules">
+            <p>This guide describes how to set up accounts with several cloud providers.</p>
+        </div>
     </div>
-    <div class="slogan_home_modules">
-      <p>This guide describes how to set up accounts with several cloud providers.</p>
-    </div>
-  </div>
 </section>
 
 <!--Oracle Cloud Infrastructure-->
 <section class="gs-section">
-  <div class="container-fluid container-fluid--custom-sm">
-    <div class="row">
-      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+    <div class="container-fluid container-fluid--custom-sm">
         <div class="row">
-            <div class="col-12">
-                <div class="indent-link">
-                  <img src="/gdk/resources/img/get-started/cloud_account_icon.svg" class="framework-icon" alt="box"/>
-                  <a href="https://signup.oraclecloud.com/" class="gs-root-title" target="_blank">Oracle Cloud Infrastructure</a>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="indent-link">
+                            <img src="/gdk/resources/img/get-started/cloud_account_icon.svg" class="framework-icon" alt="box"/>
+                            <a href="https://signup.oraclecloud.com/" class="gs-root-title" target="_blank">Oracle Cloud Infrastructure</a>
+                        </div>
+                    </div>
                 </div>
+                <div class="row">
+                    <ul>
+                        <li class="module-text">Create a paid or free trial account at <a href="https://signup.oraclecloud.com/" target="_blank">signup.oraclecloud.com</a>.</li>
+                        <li class="module-text">Create a compartment for your OCI resources (for more information, see <a href="https://docs.oracle.com/iaas/Content/Identity/compartments/managingcompartments.htm#Working" target="_blank">Working with Compartments</a>).</li>
+                        <li class="module-text"><a href="https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/cliinstall.htm" target="_blank">Install</a> and <a href="https://docs.oracle.com/iaas/Content/API/SDKDocs/cliinstall.htm#configfile" target="_blank">configure</a> the OCI Command Line Interface.</li>
+                    </ul>
+                </div>
+                <div class="module-divider"></div>
             </div>
         </div>
-        <div class="row">
-          <ul>
-            <li class="module-text">Create a paid or free trial account at <a href="https://signup.oraclecloud.com/"  target="_blank">signup.oraclecloud.com</a>.</li>
-            <li class="module-text">Create a compartment for your OCI resources (for more information, see <a href="https://docs.oracle.com/iaas/Content/Identity/compartments/managingcompartments.htm#Working" target="_blank">Working with Compartments</a>).</li>
-            <li class="module-text"><a href="https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/cliinstall.htm"  target="_blank">Install</a> and <a href="https://docs.oracle.com/iaas/Content/API/SDKDocs/cliinstall.htm#configfile"  target="_blank">configure</a> the OCI Command Line Interface.</li>
-          </ul>
-        </div>
-      <div class="module-divider"></div>
-  </div>
+    </div>
 </section>
 
 <!--Amazon Web Services-->
 <section class="gs-section">
     <div class="container-fluid container-fluid--custom-sm">
-      <div class="row">
-        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-          <div class="row">
-              <div class="col-12">
-                  <div class="indent-link">
-                    <img src="/gdk/resources/img/get-started/cloud_account_icon.svg" class="framework-icon" alt="box"/>
-                    <a href="https://console.aws.amazon.com/console/home" class="gs-root-title" target="_blank">Amazon Web Services</a>
-                  </div>
-              </div>
-          </div>
-          <div class="row">
-            <ul>
-              <li class="module-text">Create a paid or free trial account at <a href="https://console.aws.amazon.com/console/home"  target="_blank">signin.aws.amazon.com</a>.</li>
-              <li class="module-text"><a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html" target="_blank">Install</a> and <a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-quickstart.html" target="_blank">configure</a> the AWS Command Line Interface (CLI).</li>
-              <li class="module-text">Instead of using your AWS root account, use an administrator account. If you do not have one already, run the commands below to create one:
-              
-            <pre class="gs-set-pre"><code class="language-bash">aws iam create-group --group-name Administrators
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="indent-link">
+                            <img src="/gdk/resources/img/get-started/cloud_account_icon.svg" class="framework-icon" alt="box"/>
+                            <a href="https://console.aws.amazon.com/console/home" class="gs-root-title" target="_blank">Amazon Web Services</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <ul>
+                        <li class="module-text">Create a paid or free trial account at <a href="https://console.aws.amazon.com/console/home" target="_blank">signin.aws.amazon.com</a>.</li>
+                        <li class="module-text"><a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html" target="_blank">Install</a> and <a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-quickstart.html" target="_blank">configure</a> the AWS Command Line Interface (CLI).</li>
+                        <li class="module-text">Instead of using your AWS root account, use an administrator account. If you do not have one already, run the commands below to create one:
+
+                            <pre class="gs-set-pre"><code class="language-bash">aws iam create-group --group-name Administrators
 aws iam create-user --user-name Administrator
 aws iam add-user-to-group --user-name Administrator --group-name Administrators
 aws iam attach-group-policy --group-name Administrators \
-                            --policy-arn $(aws iam list-policies \ 
+                            --policy-arn $(aws iam list-policies \
                             --query 'Policies[?PolicyName==`AdministratorAccess`].{ARN:Arn}' \
                             --output text)
 aws iam create-access-key --user-name Administrator</code><button>Copy</button></pre>
-              Then run <code>aws configure</code> to configure your AWS CLI to use the administrator account just created. (This must include your default region.)
-            </li>
-          </ul>
-          </div>
+                            Then run <code>aws configure</code> to configure your AWS CLI to use the administrator account just created. (This must include your default region.)
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="module-divider"></div>
         </div>
-        <div class="module-divider"></div>
-      </div>
     </div>
 </section>
 
 <!--Google Cloud Platform-->
 <section class="content-section gs-section">
-  <div class="container-fluid container-fluid--custom-sm">
-    <div class="row">
-      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+    <div class="container-fluid container-fluid--custom-sm">
         <div class="row">
-            <div class="col-12">
-                <div class="indent-link">
-                <img src="/gdk/resources/img/get-started/cloud_account_icon.svg" class="framework-icon" alt="box"/>
-                <a href="https://cloud.google.com/gcp/" class="gs-root-title" target="_blank">Google Cloud Platform</a>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="indent-link">
+                            <img src="/gdk/resources/img/get-started/cloud_account_icon.svg" class="framework-icon" alt="box"/>
+                            <a href="https://cloud.google.com/gcp/" class="gs-root-title" target="_blank">Google Cloud Platform</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <ul>
+                            <li class="module-text">Create a paid or free trial account at <a href="https://cloud.google.com/gcp/" target="_blank">cloud.google.com/gcp</a>.</li>
+                            <li class="module-text"><a href="https://cloud.google.com/sdk/docs/install" target="_blank">Install</a> and <a href="https://cloud.google.com/sdk/docs/authorizing" target="_blank">authorize</a> the GCP Command Line Interface.</li>
+                        </ul>
+                    </div>
+                    <div class="module-divider"></div>
+                </div>
             </div>
         </div>
-        <div class="row">
-          <ul>
-            <li class="module-text">Create a paid or free trial account at <a href="https://cloud.google.com/gcp/" target="_blank">cloud.google.com/gcp</a>.</li>
-            <li class="module-text"><a href="https://cloud.google.com/sdk/docs/install" target="_blank">Install</a> and <a href="https://cloud.google.com/sdk/docs/authorizing" target="_blank">authorize</a> the GCP Command Line Interface.</li>
-          </ul>
-      </div>
-      <div class="module-divider"></div>
     </div>
-  </div>
+</section>
+
+<!--Microsoft Azure-->
+<section class="content-section gs-section">
+    <div class="container-fluid container-fluid--custom-sm">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="indent-link">
+                            <img src="/gdk/resources/img/get-started/cloud_account_icon.svg" class="framework-icon" alt="box"/>
+                            <a href="https://azure.microsoft.com/" class="gs-root-title" target="_blank">Microsoft Azure</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <ul>
+                            <li class="module-text">Create an Azure account at <a href="https://azure.microsoft.com/free/" target="_blank">azure.microsoft.com/free</a>.</li>
+                            <li class="module-text"><a href="https://learn.microsoft.com/en-us/cli/azure/install-azure-cli" target="_blank">Install</a> and <a href="https://learn.microsoft.com/en-us/cli/azure/authenticate-azure-cli" target="_blank">authorize</a> the Azure Command Line Interface.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 
       </main>
@@ -303,7 +331,7 @@ aws iam create-access-key --user-name Administrator</code><button>Copy</button><
                 Copyright &copy; 2023-2024, Oracle and/or its affiliates.
                 All rights reserved.
                 Oracle and Java are registered trademarks of Oracle and/or its affiliates.<br/>
-                Micronaut<sup>&reg;</sup> is a registered trademark of Object Computing, Inc. 
+                Micronaut<sup>&reg;</sup> is a registered trademark of Object Computing, Inc.
                 Use is for referential purposes and does not imply any endorsement or affiliation with any third-party product.
                 Unauthorized use is strictly prohibited. Other names may be trademarks of their respective owners.
               </p>
@@ -380,7 +408,7 @@ aws iam create-access-key --user-name Administrator</code><button>Copy</button><
     <script src='/gdk/resources/js/filters.js'></script>
     <script src='/gdk/resources/js/sidebar.js'></script>
     <script src='/gdk/resources/js/labs.js'></script>
-    <script src='/gdk/resources/lib/highlight/highlight.min.js'></script> 
+    <script src='/gdk/resources/lib/highlight/highlight.min.js'></script>
     <script>hljs.highlightAll();</script>
   </body>
 </html>

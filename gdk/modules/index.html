@@ -15,7 +15,7 @@
   </title>
   <meta name="description" content="The Graal Development Kit for Micronaut (GDK) is a build of a curated set of Micronaut framework modules and their required libraries for building portable c..."/>
   <meta name="last_modified" content="2024-05-29 15:07:10 +0000"/>
-  <meta name="last_built" content="2024-08-23 09:07:41 +0000"/>
+  <meta name="last_built" content="2024-09-17 14:14:17 +0000"/>
   <link rel="stylesheet" href="/gdk/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gdk/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gdk/resources/img/favicon/favicon-32x32.png">
@@ -27,11 +27,11 @@
   <link rel="canonical" href="https://www.graal.cloud/gdk/modules/">
 
   <!-- jQuery UI Tabs -->
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.14.0/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="/gdk/resources/lib/jquery/jquery-ui.css">
 </head>
 
-      <script src="/gdk/resources/lib/jquery/jquery-3.6.1.min.js"></script>
+      <script src="/gdk/resources/lib/jquery/jquery-3.7.1.min.js"></script>
     <script src="/gdk/resources/lib/bootstrap/js/bootstrap.min.js"></script>
     <script src='/gdk/resources/lib/sticky-sidebar/resizeSensor.js'></script>
     <script src='/gdk/resources/lib/sticky-sidebar/sticky-sidebar.min.js'></script>
@@ -41,7 +41,7 @@
     <script async="async" type="text/javascript" src='//consent.trustarc.com/notice?domain=oracle.com&c=teconsent&js=bb&noticeType=bb&text=true&cdn=1&pcookie&gtm=1' crossorigin></script>
     <script src="https://www.oracle.com/assets/truste-oraclelib.js"></script>
     <!-- jQuery UI Tabs -->
-    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="https://code.jquery.com/ui/1.14.0/jquery-ui.js"></script>
 
 
   <body class="preload">
@@ -153,8 +153,7 @@
 <section class="modules-banner">
     <div class="banner_home_modules container-fluid container-fluid--custom-sm">
         <div class="tagline_home_gdk">
-            <p>Modules
-            </p>
+            <p>Modules</p>
         </div>
         <div class="slogan_home_modules">
             <p>The Micronaut<sup>&reg;</sup> framework modules each implement a
@@ -220,13 +219,12 @@
                     <div class="row">
                         <p class="module-text">The Micronaut Data module provides database access functionality to
                             pre-compute queries for repository interfaces that are then executed by a thin, lightweight
-                            runtime layer. It supports the following databases:
+                            runtime layer. It supports the following databases:</p>
                         <ul class="list-aligh">
                             <li class="list-style">JPA (Hibernate) and Hibernate Reactive</li>
                             <li class="list-style">SQL (JDBC, R2DBC)</li>
                             <li class="list-style">MongoDB</li>
                         </ul>
-                        </p>
                     </div>
                     <div class="row">
                         <p class="module-table-subtitle">Module Guides</p>
@@ -250,16 +248,16 @@
                                     <td>Platform Independent Guide</td>
                                     <td>Create and Connect a Micronaut Application to a MySQL Database <span
                                             class="highlight-mark">*</span></td>
-                                    <td class="cell-center"><a
-                                            href="/gdk/gdk-modules/database/micronaut-data-jdbc-repository/"
-                                            class="btn btn-primary open-guide open-guide-icon">Learn More</a></td>
+                                    <td class="cell-center">
+                                        <a href="/gdk/gdk-modules/database/micronaut-data-jdbc-repository/"
+                                           class="btn btn-primary open-guide open-guide-icon">Learn More</a></td>
                                 </tr>
                                 <tr>
                                     <td>Oracle Cloud Infrastructure</td>
                                     <td>Create and Connect a Micronaut Application to an Oracle Cloud Infrastructure Autonomous Database</td>
-                                    <td class="cell-center"><a
-                                            href="/gdk/gdk-modules/database/micronaut-autonomous-database-oci/"
-                                            class="btn btn-primary open-guide open-guide-icon">Learn More</a></td>
+                                    <td class="cell-center">
+                                        <a href="/gdk/gdk-modules/database/micronaut-autonomous-database-oci/"
+                                           class="btn btn-primary open-guide open-guide-icon">Learn More</a></td>
                                 </tr>
                                 <!-- <tr>
                                     <td>Oracle Cloud Infrastructure</td>
@@ -271,31 +269,41 @@
                                 <tr>
                                     <td>Oracle Cloud Infrastructure</td>
                                     <td>Create and Connect a Micronaut Application to the Oracle Cloud Infrastructure MySQL HeatWave Service</td>
-                                    <td class="cell-center"><a
-                                            href="/gdk/gdk-modules/database/micronaut-mysql-database-oci/"
-                                            class="btn btn-primary open-guide open-guide-icon">Learn More</a></td>
+                                    <td class="cell-center">
+                                        <a href="/gdk/gdk-modules/database/micronaut-mysql-database-oci/"
+                                           class="btn btn-primary open-guide open-guide-icon">Learn More</a>
+                                    </td>
                                 </tr>
                                 <tr>
                                   <td>Oracle Cloud Infrastructure</td>
                                   <td>Expert's Guide to Create and Connect a Micronaut Application to the Oracle Cloud Infrastructure MySQL HeatWave Service</td>
-                                  <td class="cell-center"><a
-                                          href="/gdk/gdk-modules/database/micronaut-mysql-database-oci-expert/"
-                                          class="btn btn-primary open-guide open-guide-icon"></a></td>
-                              </tr>
-                              <tr>
-                                    <td>Amazon Web Services</td>
-                                    <td>Create and Connect a Micronaut Application to an Amazon Web Services MySQL Database</td>
-                                    <td class="cell-center"><a
-                                            href="/gdk/gdk-modules/database/micronaut-mysql-database-aws/"
-                                            class="btn btn-primary open-guide open-guide-icon">Learn More</a></td>
+                                  <td class="cell-center">
+                                      <a href="/gdk/gdk-modules/database/micronaut-mysql-database-oci-expert/"
+                                         class="btn btn-primary open-guide open-guide-icon"></a>
+                                  </td>
                                 </tr>
                                 <tr>
-                                    <td class="row-noborder add-radius">Google Cloud Platform</td>
-                                    <td class="row-noborder">Create and Connect a Micronaut Application to a Google MySQL Database</td>
+                                    <td>Amazon Web Services</td>
+                                    <td>Create and Connect a Micronaut Application to an Amazon Web Services MySQL Database</td>
+                                    <td class="cell-center">
+                                        <a href="/gdk/gdk-modules/database/micronaut-mysql-database-aws/"
+                                           class="btn btn-primary open-guide open-guide-icon">Learn More</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Google Cloud Platform</td>
+                                    <td>Create and Connect a Micronaut Application to a Google MySQL Database</td>
+                                    <td class="cell-center">
+                                        <a href="/gdk/gdk-modules/database/micronaut-mysql-database-google/"
+                                           class="btn btn-primary open-guide open-guide-icon">Learn More</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="row-noborder add-radius">Microsoft Azure</td>
+                                    <td class="row-noborder">Create and Connect a Micronaut Application to an Azure Database for MySQL</td>
                                     <td class="cell-center add-radius row-noborder">
-                                      <a
-                                            href="/gdk/gdk-modules/database/micronaut-mysql-database-google/"
-                                            class="btn btn-primary open-guide open-guide-icon"></a>
+                                        <a href="/gdk/gdk-modules/database/micronaut-mysql-database-azure/"
+                                           class="btn btn-primary open-guide open-guide-icon">Learn More</a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -337,18 +345,17 @@
                             <div class="indent-link indent-link-bottom">
                                 <img src="/gdk/resources/img/gdk_modules/link_icon.svg" class="link-icon" alt="box" />
                                 <a href="https://luna.oracle.com/lab/c28c56d0-3bfa-4905-9fcd-6ba6e8a3ea42"
-                                    target="blank" class="link-title-module">Oracle Cloud Infrastructure MySQL, Vault, Micronaut, Graal Development Kit for Micronaut</a>
+                                   target="blank" class="link-title-module">Oracle Cloud Infrastructure MySQL, Vault, Micronaut, Graal Development Kit for Micronaut</a>
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="indent-link indent-link-bottom">
                                 <img src="/gdk/resources/img/gdk_modules/link_icon.svg" class="link-icon" alt="box" />
                                 <a href="https://luna.oracle.com/lab/296b5fb9-32bc-4260-b83f-072d4dd2d3c4"
-                                    target="blank" class="link-title-module">Oracle Cloud Infrastructure Autonomous DB, Vault, Micronaut, Graal Development Kit for Micronaut</a>
+                                   target="blank" class="link-title-module">Oracle Cloud Infrastructure Autonomous DB, Vault, Micronaut, Graal Development Kit for Micronaut</a>
                             </div>
                         </div>
                     </div>
-
                     <div class="module-divider"></div>
                 </div>
             </div>
@@ -378,9 +385,9 @@
                                     <th>Description</th>
                                     <th>
                                         <img src="/gdk/resources/img/gdk_modules/gradle-enterprise-gradient-primary 1.svg"
-                                            class="build-icon table-picture" alt="Gradle">
+                                             class="build-icon table-picture" alt="Gradle">
                                         <img src="/gdk/resources/img/gdk_modules/Apache_Maven_logo_white.svg"
-                                            class="build-icon table-picture" alt="Maven">
+                                             class="build-icon table-picture" alt="Maven">
                                     </th>
                                 </tr>
                             </thead>
@@ -410,11 +417,18 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="row-noborder add-radius">Google Cloud Platform</td>
-                                    <td class="row-noborder">Google Cloud Platform does not provide an equivalent email
-                                        service.<br/> Instead, use <a
-                                            href="/gdk/gdk-modules/email/micronaut-email-jakartamail/">Create an Application to Send Email Using Jakarta Mail</a>.</td>
-                                    <td class="row-noborder add-radius cell-center">
+                                    <td>Google Cloud Platform</td>
+                                    <td>Google Cloud Platform does not provide an equivalent email service.<br/>
+                                        Instead, use <a href="/gdk/gdk-modules/email/micronaut-email-jakartamail/">Create an Application to Send Email Using Jakarta Mail</a>.
+                                    </td>
+                                    <td class="cell-center"></td>
+                                </tr>
+                                <tr>
+                                    <td class="row-noborder add-radius">Microsoft Azure</td>
+                                    <td class="row-noborder">Create an Application to Send Email with Azure Communication Services</td>
+                                    <td class="cell-center add-radius row-noborder">
+                                        <p class="coming-soon">Coming soon</p>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -426,7 +440,7 @@
                         <div class="col-12">
                             <div class="indent-link indent-link-bottom">
                                 <img src="/gdk/resources/img/gdk_modules/link_icon.svg" class="link-icon" alt="box" />
-                                <a href="/gdk/modules/build-configuration/#email"target="blank" class="link-title-module">Build Configuration for Micronaut Email</a>
+                                <a href="/gdk/modules/build-configuration/#email" target="blank" class="link-title-module">Build Configuration for Micronaut Email</a>
                             </div>
                         </div>
                         <div class="col-12">
@@ -445,12 +459,14 @@
                             <div class="indent-link indent-link-bottom">
                                 <img src="/gdk/resources/img/gdk_modules/link_icon.svg" class="link-icon" alt="box">
                                 <a href="https://luna.oracle.com/lab/af981c37-8d86-4a9d-a67b-536d84b7f632"
-                                    target="blank" class="link-title-module">Oracle Cloud Infrastructure Email, Micronaut, Graal Development Kit for Micronaut</a>
+                                   target="blank" class="link-title-module">Oracle Cloud Infrastructure Email, Micronaut, Graal Development Kit for Micronaut</a>
                             </div>
                         </div>
                     </div>
                     <div class="module-divider"></div>
                 </div>
+            </div>
+        </div>
     </section>
 
     <!--Kubernetes-->
@@ -465,7 +481,7 @@
                         <p class="module-text">The Micronaut Kubernetes module provides integration between Micronaut
                             and Kubernetes. It greatly simplifies Kubernetes deployments and enables you to connect
                             several microservices using Kubernetes Service Discovery and Distributed Configuration. It
-                            provides support for the following features:
+                            provides support for the following features:</p>
 
                         <ul class="list-aligh">
                             <li class="list-style">Service Discovery</li>
@@ -474,11 +490,8 @@
                                     href="https://github.com/kubernetes-client/java">official Kubernetes Java Client</a>
                             </li>
                         </ul>
-                        </p>
                     </div>
-                    <div class="row">
-                        </p>
-                    </div>
+                    <div class="row"></div>
                     <div class="row">
                         <p class="module-table-subtitle">Module Guides</p>
                     </div>
@@ -490,9 +503,9 @@
                                     <th>Description</th>
                                     <th>
                                         <img src="/gdk/resources/img/gdk_modules/gradle-enterprise-gradient-primary 1.svg"
-                                            class="build-icon table-picture" alt="Gradle" />
+                                             class="build-icon table-picture" alt="Gradle" />
                                         <img src="/gdk/resources/img/gdk_modules/Apache_Maven_logo_white.svg"
-                                            class="build-icon table-picture" alt="Maven" />
+                                             class="build-icon table-picture" alt="Maven" />
                                     </th>
                                 </tr>
                             </thead>
@@ -502,7 +515,7 @@
                                     <td>Deploy a Micronaut Microservices Application to a Local Kubernetes Cluster <span class="highlight-mark">*</span></td>
                                     <td class="cell-center">
                                         <a href="/gdk/gdk-modules/kubernetes/micronaut-k8s/"
-                                            class="btn btn-primary open-guide open-guide-icon">Learn More</a>
+                                           class="btn btn-primary open-guide open-guide-icon">Learn More</a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -511,34 +524,40 @@
                                         Container Engine for Kubernetes</td>
                                     <td class="cell-center">
                                         <a href="/gdk/gdk-modules/kubernetes/micronaut-k8s-oci/"
-                                            class="btn btn-primary open-guide open-guide-icon">Learn More</a>
+                                           class="btn btn-primary open-guide open-guide-icon">Learn More</a>
                                     </td>
                                 </tr>
                                 <tr>
-                                  <td>Oracle Cloud Infrastructure</td>
-                                  <td>Expert's Guide to Deploy a Micronaut Microservices Application to Oracle Cloud Infrastructure
-                                      Container Engine for Kubernetes</td>
-                                  <td class="cell-center">
-                                      <a href="/gdk/gdk-modules/kubernetes/micronaut-k8s-oci-expert/"
-                                          class="btn btn-primary open-guide open-guide-icon"></a>
-                                  </td>
-                              </tr>
-                              
+                                    <td>Oracle Cloud Infrastructure</td>
+                                    <td>Expert's Guide to Deploy a Micronaut Microservices Application to Oracle Cloud Infrastructure
+                                        Container Engine for Kubernetes</td>
+                                    <td class="cell-center">
+                                        <a href="/gdk/gdk-modules/kubernetes/micronaut-k8s-oci-expert/"
+                                           class="btn btn-primary open-guide open-guide-icon"></a>
+                                    </td>
+                                </tr>
                                 <tr>
                                     <td>Amazon Web Services</td>
-                                    <td>Deploy a Micronaut Microservices Application to the Amazon Elastic Kubernetes
-                                        Service</td>
+                                    <td>Deploy a Micronaut Microservices Application to the Amazon Elastic Kubernetes Service</td>
                                     <td class="cell-center">
                                         <a href="/gdk/gdk-modules/kubernetes/micronaut-k8s-aws/"
-                                            class="btn btn-primary open-guide open-guide-icon">Learn More</a>
+                                           class="btn btn-primary open-guide open-guide-icon">Learn More</a>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="row-noborder add-radius">Google Cloud Platform</td>
-                                    <td class="row-noborder">Deploy a Micronaut Microservices Application to the Google Kubernetes Engine</td>
+                                    <td>Google Cloud Platform</td>
+                                    <td>Deploy a Micronaut Microservices Application to the Google Kubernetes Engine</td>
                                     <td class="cell-center">
                                         <a href="/gdk/gdk-modules/kubernetes/micronaut-k8s-gcp/"
-                                        class="btn btn-primary open-guide open-guide-icon"></a>
+                                           class="btn btn-primary open-guide open-guide-icon">Learn More</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="row-noborder add-radius">Microsoft Azure</td>
+                                    <td class="row-noborder">Deploy a Micronaut Microservices Application to the Azure Kubernetes Service</td>
+                                    <td class="cell-center">
+                                        <a href="/gdk/gdk-modules/kubernetes/micronaut-k8s-azure/"
+                                           class="btn btn-primary open-guide open-guide-icon">Learn More</a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -549,23 +568,23 @@
                           <span class="highlight-mark">*</span>This guide provides an example of using the Micronaut Kubernetes
                           module. We recommend that you begin with it.
                       </p>
-                  </div>
+                    </div>
                     <div class="row">
                         <p class="module-subtitle">Module Documentation</p>
                     </div>
-                        <div class="row">
-                          <div class="col-12">
+                    <div class="row">
+                        <div class="col-12">
                             <div class="indent-link indent-link-bottom">
                                 <img src="/gdk/resources/img/gdk_modules/link_icon.svg" class="link-icon" alt="box" />
                                 <a href="/gdk/modules/build-configuration/#kubernetes"
-                                    target="blank" class="link-title-module">Build Configuration for Micronaut Kubernetes</a>
+                                   target="blank" class="link-title-module">Build Configuration for Micronaut Kubernetes</a>
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="indent-link indent-link-bottom">
                                 <img src="/gdk/resources/img/gdk_modules/link_icon.svg" class="link-icon" alt="box" />
                                 <a href="https://micronaut-projects.github.io/micronaut-kubernetes/latest/guide/"
-                                    target="blank" class="link-title-module">Micronaut Kubernetes</a>
+                                   target="blank" class="link-title-module">Micronaut Kubernetes</a>
                             </div>
                         </div>
                     </div>
@@ -599,9 +618,9 @@
                                     <th>Description</th>
                                     <th>
                                         <img src="/gdk/resources/img/gdk_modules/gradle-enterprise-gradient-primary 1.svg"
-                                            class="build-icon table-picture" alt="Gradle">
+                                             class="build-icon table-picture" alt="Gradle">
                                         <img src="/gdk/resources/img/gdk_modules/Apache_Maven_logo_white.svg"
-                                            class="build-icon table-picture" alt="Maven">
+                                             class="build-icon table-picture" alt="Maven">
                                     </th>
                                 </tr>
                             </thead>
@@ -611,7 +630,7 @@
                                     <td>Publish Application Logs to the Oracle Cloud Infrastructure Logging Service</td>
                                     <td class="cell-center">
                                         <a href="/gdk/gdk-modules/logging/micronaut-oci-logging/"
-                                            class="btn btn-primary open-guide open-guide-icon">Learn More</a>
+                                           class="btn btn-primary open-guide open-guide-icon">Learn More</a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -619,15 +638,23 @@
                                     <td>Publish Application Logs to Amazon CloudWatch Logs</td>
                                     <td class="cell-center">
                                         <a href="/gdk/gdk-modules/logging/micronaut-aws-logging/"
-                                            class="btn btn-primary open-guide open-guide-icon">Learn More</a>
+                                           class="btn btn-primary open-guide open-guide-icon">Learn More</a>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="row-noborder add-radius">Google Cloud Platform</td>
-                                    <td class="row-noborder">Publish Application Logs to Google Cloud Logging</td>
+                                    <td>Google Cloud Platform</td>
+                                    <td>Publish Application Logs to Google Cloud Logging</td>
                                     <td class="cell-center">
                                         <a href="/gdk/gdk-modules/logging/micronaut-google-logging/"
-                                            class="btn btn-primary open-guide open-guide-icon"></a>
+                                           class="btn btn-primary open-guide open-guide-icon">Learn More</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="row-noborder add-radius">Microsoft Azure</td>
+                                    <td class="row-noborder">Publish Application Logs to Azure Monitor Logs</td>
+                                    <td class="cell-center">
+                                        <a href="/gdk/gdk-modules/logging/micronaut-azure-logging/"
+                                           class="btn btn-primary open-guide open-guide-icon">Learn More</a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -647,7 +674,7 @@
                             <div class="indent-link indent-link-bottom">
                                 <img src="/gdk/resources/img/gdk_modules/link_icon.svg" class="link-icon" alt="box">
                                 <a href="https://micronaut-projects.github.io/micronaut-oracle-cloud/latest/guide/#logging"
-                                    target="blank" class="link-title-module">Micronaut Oracle Cloud Infrastructure Logging integration</a>
+                                   target="blank" class="link-title-module">Micronaut Oracle Cloud Infrastructure Logging integration</a>
                             </div>
                         </div>
                     </div>
@@ -656,7 +683,7 @@
                           <div class="indent-link indent-link-bottom">
                               <img src="/gdk/resources/img/gdk_modules/link_icon.svg" class="link-icon" alt="box">
                               <a href="https://micronaut-projects.github.io/micronaut-aws/latest/guide/index.html#cloudWatchLogging"
-                                  target="blank" class="link-title-module">Micronaut Amazon CloudWatch Logging integration</a>
+                                 target="blank" class="link-title-module">Micronaut Amazon CloudWatch Logging integration</a>
                           </div>
                       </div>
                     </div>
@@ -665,10 +692,19 @@
                           <div class="indent-link indent-link-bottom">
                               <img src="/gdk/resources/img/gdk_modules/link_icon.svg" class="link-icon" alt="box">
                               <a href="https://micronaut-projects.github.io/micronaut-gcp/latest/guide/#logging"
-                                  target="blank" class="link-title-module">Micronaut Google Cloud Logging integration</a>
+                                 target="blank" class="link-title-module">Micronaut Google Cloud Logging integration</a>
                           </div>
                       </div>
                     </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="indent-link indent-link-bottom">
+                                <img src="/gdk/resources/img/gdk_modules/link_icon.svg" class="link-icon" alt="box">
+                                <a href="https://micronaut-projects.github.io/micronaut-azure/latest/guide/"
+                                   target="blank" class="link-title-module">Micronaut Azure Logging integration</a>
+                            </div>
+                        </div>
+                      </div>
                     <div class="row">
                         <p class="module-subtitle">Hands-on Labs</p>
                     </div>
@@ -677,7 +713,7 @@
                             <div class="indent-link indent-link-bottom">
                                 <img src="/gdk/resources/img/gdk_modules/link_icon.svg" class="link-icon" alt="box">
                                 <a href="https://luna.oracle.com/lab/1e1c7167-8e8e-43af-be05-1a3b8742d6a2"
-                                    target="blank" class="link-title-module">Oracle Cloud Infrastructure Logging, Micronaut, Graal Development Kit for Micronaut</a>
+                                   target="blank" class="link-title-module">Oracle Cloud Infrastructure Logging, Micronaut, Graal Development Kit for Micronaut</a>
                             </div>
                         </div>
                     </div>
@@ -697,8 +733,7 @@
                     </div>
                     <div class="row">
                         <p class="module-text">The Micronaut Metrics module integrates Micronaut and
-                            <a href="https://micrometer.io/">Micrometer</a>, enabling metrics collection for Micronaut
-                            applications.
+                            <a href="https://micrometer.io/">Micrometer</a>, enabling metrics collection for Micronaut applications.
                         </p>
                     </div>
                     <div class="row">
@@ -712,9 +747,9 @@
                                     <th>Description</th>
                                     <th>
                                         <img src="/gdk/resources/img/gdk_modules/gradle-enterprise-gradient-primary 1.svg"
-                                            class="build-icon table-picture" alt="Gradle" />
+                                             class="build-icon table-picture" alt="Gradle" />
                                         <img src="/gdk/resources/img/gdk_modules/Apache_Maven_logo_white.svg"
-                                            class="build-icon table-picture" alt="Maven" />
+                                             class="build-icon table-picture" alt="Maven" />
                                     </th>
                                 </tr>
                             </thead>
@@ -724,7 +759,7 @@
                                     <td>Create a Micronaut Application to Collect Metrics</td>
                                     <td class="cell-center">
                                         <a href="/gdk/gdk-modules/metrics/micronaut-metrics/"
-                                            class="btn btn-primary open-guide open-guide-icon">Learn More</a>
+                                           class="btn btn-primary open-guide open-guide-icon">Learn More</a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -732,32 +767,39 @@
                                     <td>Create a Micronaut Application to Collect Metrics and Monitor Them on Oracle Cloud Infrastructure</td>
                                     <td class="cell-center">
                                         <a href="/gdk/gdk-modules/metrics/micronaut-metrics-oci/"
-                                            class="btn btn-primary open-guide open-guide-icon">Learn More</a>
+                                           class="btn btn-primary open-guide open-guide-icon">Learn More</a>
                                     </td>
                                 </tr>
                                 <tr>
-                                  <td>Oracle Cloud Infrastructure</td>
-                                  <td>Create a Micronaut Database Application to Collect Metrics and Monitor Them on Oracle Cloud Infrastructure</td>
-                                  <td class="cell-center">
-                                      <a href="/gdk/gdk-modules/metrics/micronaut-metrics-db-oci/"
-                                          class="btn btn-primary open-guide open-guide-icon">Learn More</a>
-                                  </td>
-                              </tr>
-                              <tr>
+                                    <td>Oracle Cloud Infrastructure</td>
+                                    <td>Create a Micronaut Database Application to Collect Metrics and Monitor Them on Oracle Cloud Infrastructure</td>
+                                    <td class="cell-center">
+                                        <a href="/gdk/gdk-modules/metrics/micronaut-metrics-db-oci/"
+                                           class="btn btn-primary open-guide open-guide-icon">Learn More</a>
+                                    </td>
+                                </tr>
+                                <tr>
                                     <td>Amazon Web Services</td>
-                                    <td>Create a Micronaut Application to Collect Metrics and Monitor Them on Amazon
-                                        CloudWatch</td>
+                                    <td>Create a Micronaut Application to Collect Metrics and Monitor Them on Amazon CloudWatch</td>
                                     <td class="cell-center">
                                         <a href="/gdk/gdk-modules/metrics/micronaut-metrics-aws/"
-                                            class="btn btn-primary open-guide open-guide-icon">Learn More</a>
+                                           class="btn btn-primary open-guide open-guide-icon">Learn More</a>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="row-noborder add-radius">Google Cloud Platform</td>
-                                    <td class="row-noborder">Create a Micronaut Application to Collect Metrics and Monitor Them on Google Cloud Monitoring</td>
+                                    <td>Google Cloud Platform</td>
+                                    <td>Create a Micronaut Application to Collect Metrics and Monitor Them on Google Cloud Monitoring</td>
                                     <td class="cell-center">
                                         <a href="/gdk/gdk-modules/metrics/micronaut-metrics-google/"
-                                            class="btn btn-primary open-guide open-guide-icon"></a>
+                                           class="btn btn-primary open-guide open-guide-icon">Learn More</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="row-noborder add-radius">Microsoft Azure</td>
+                                    <td class="row-noborder">Create a Micronaut Application to Collect Metrics and Monitor Them on Azure Monitor Metrics</td>
+                                    <td class="cell-center">
+                                        <a href="/gdk/gdk-modules/metrics/micronaut-metrics-azure/"
+                                           class="btn btn-primary open-guide open-guide-icon">Learn More</a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -766,7 +808,7 @@
                     <div class="row">
                       <p class="module-text"><span class="highlight-mark">*</span> This guide provides an example of
                           using the Micronaut Metrics module. We recommend that you begin with it.</p>
-                  </div>
+                    </div>
                     <div class="row">
                         <p class="module-subtitle">Module Documentation</p>
                     </div>
@@ -781,7 +823,7 @@
                             <div class="indent-link indent-link-bottom">
                                 <img src="/gdk/resources/img/gdk_modules/link_icon.svg" class="link-icon" alt="box" />
                                 <a href="https://micronaut-projects.github.io/micronaut-micrometer/latest/guide/"
-                                    target="blank" class="link-title-module">Micronaut Micrometer</a>
+                                   target="blank" class="link-title-module">Micronaut Micrometer</a>
                             </div>
                         </div>
                     </div>
@@ -793,7 +835,7 @@
                             <div class="indent-link indent-link-bottom">
                                 <img src="/gdk/resources/img/gdk_modules/link_icon.svg" class="link-icon" alt="box">
                                 <a href="https://luna.oracle.com/lab/f636d833-322c-4e76-8bc7-e81ce45677db"
-                                    target="blank" class="link-title-module">Oracle Cloud Infrastructure Monitoring (Metrics), Micronaut, Graal Development Kit for Micronaut</a>
+                                   target="blank" class="link-title-module">Oracle Cloud Infrastructure Monitoring (Metrics), Micronaut, Graal Development Kit for Micronaut</a>
                             </div>
                         </div>
                     </div>
@@ -813,14 +855,13 @@
                     </div>
                     <div class="row">
                         <p class="module-text">The Micronaut Object Storage module provides a uniform API to create,
-                            read, and delete objects in the major cloud providers​:
+                            read, and delete objects in the major cloud providers:</p>
                         <ul class="list-aligh">
-                            <li class="list-style">Amazon S3</li>
-                            <li class="list-style">Azure Blob Storage</li>
-                            <li class="list-style">Google Cloud Storage</li>
                             <li class="list-style">Oracle Cloud Infrastructure Object Storage</li>
+                            <li class="list-style">Amazon S3</li>
+                            <li class="list-style">Google Cloud Storage</li>
+                            <li class="list-style">Azure Blob Storage</li>
                         </ul>
-                        </p>
                     </div>
                     <div class="row">
                         <p class="module-text">
@@ -838,17 +879,16 @@
                                     <th>Description</th>
                                     <th>
                                         <img src="/gdk/resources/img/gdk_modules/gradle-enterprise-gradient-primary 1.svg"
-                                            class="build-icon table-picture" alt="Gradle" />
+                                             class="build-icon table-picture" alt="Gradle" />
                                         <img src="/gdk/resources/img/gdk_modules/Apache_Maven_logo_white.svg"
-                                            class="build-icon table-picture" alt="Maven" />
+                                             class="build-icon table-picture" alt="Maven" />
                                     </th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>Oracle Cloud Infrastructure</td>
-                                    <td>Create and Connect a Micronaut Application to Oracle Cloud Infrastructure Object
-                                        Storage</td>
+                                    <td>Create and Connect a Micronaut Application to Oracle Cloud Infrastructure Object Storage</td>
                                     <td class="cell-center">
                                         <a href="/gdk/gdk-modules/object-storage/micronaut-object-storage-oracle-cloud/"
                                             class="btn btn-primary open-guide open-guide-icon">Learn More</a>
@@ -856,8 +896,7 @@
                                 </tr>
                                 <!-- <tr>
                                     <td>Oracle Cloud Infrastructure</td>
-                                    <td>Create and Connect a Spring Application to Oracle Cloud Infrastructure Object
-                                        Storage</td>
+                                    <td>Create and Connect a Spring Application to Oracle Cloud Infrastructure Object Storage</td>
                                     <td class="cell-center">
                                         <a href="/gdk/gdk-modules/object-storage/spring-object-storage-oracle-cloud/"
                                             class="btn btn-primary open-guide open-guide-icon">Learn More</a>
@@ -868,7 +907,7 @@
                                     <td>Create and Connect a Micronaut Application to Amazon S3 Object Storage</td>
                                     <td class="cell-center">
                                         <a href="/gdk/gdk-modules/object-storage/micronaut-object-storage-aws/"
-                                            class="btn btn-primary open-guide open-guide-icon">Learn More</a>
+                                           class="btn btn-primary open-guide open-guide-icon">Learn More</a>
                                     </td>
                                 </tr>
                                 <!-- <tr>
@@ -880,11 +919,19 @@
                                     </td>
                                 </tr> -->
                                 <tr>
-                                    <td class="row-noborder add-radius">Google Cloud Platform</td>
-                                    <td class="row-noborder">Create and Connect a Micronaut Application to Google Cloud Storage</td>
+                                    <td>Google Cloud Platform</td>
+                                    <td>Create and Connect a Micronaut Application to Google Cloud Storage</td>
                                     <td class="cell-center">
                                         <a href="/gdk/gdk-modules/object-storage/micronaut-object-storage-google-cloud/"
-                                            class="btn btn-primary open-guide open-guide-icon"></a>
+                                           class="btn btn-primary open-guide open-guide-icon">Learn More</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="row-noborder add-radius">Microsoft Azure</td>
+                                    <td class="row-noborder">Create and Connect a Micronaut Application to Azure Blob Storage</td>
+                                    <td class="cell-center">
+                                        <a href="/gdk/gdk-modules/object-storage/micronaut-object-storage-azure/"
+                                           class="btn btn-primary open-guide open-guide-icon">Learn More</a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -893,8 +940,8 @@
                     <div class="row">
                         <p class="module-subtitle">Module Documentation</p>
                     </div>
-                        <div class="row">
-                          <div class="col-12">
+                    <div class="row">
+                        <div class="col-12">
                             <div class="indent-link indent-link-bottom">
                                 <img src="/gdk/resources/img/gdk_modules/link_icon.svg" class="link-icon" alt="box" />
                                 <a href="/gdk/modules/build-configuration/#object-storage" target="blank" class="link-title-module">Build Configuration for Micronaut Object Storage</a>
@@ -904,7 +951,14 @@
                             <div class="indent-link indent-link-bottom">
                                 <img src="/gdk/resources/img/gdk_modules/link_icon.svg" class="link-icon" alt="box" />
                                 <a href="https://micronaut-projects.github.io/micronaut-object-storage/latest/guide/"
-                                    target="blank" class="link-title-module">Micronaut Object Storage</a>
+                                   target="blank" class="link-title-module">Micronaut Object Storage</a>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="indent-link indent-link-bottom">
+                                <img src="/gdk/resources/img/gdk_modules/link_icon.svg" class="link-icon" alt="box" />
+                                <a href="https://micronaut-projects.github.io/micronaut-azure/latest/guide/#azureBlobStorage"
+                                   target="blank" class="link-title-module">Micronaut Azure Blob Storage integration</a>
                             </div>
                         </div>
                     </div>
@@ -916,7 +970,7 @@
                             <div class="indent-link indent-link-bottom">
                                 <img src="/gdk/resources/img/gdk_modules/link_icon.svg" class="link-icon" alt="box" />
                                 <a href="https://luna.oracle.com/lab/c8d189da-25de-4010-a2b2-543b76e93502"
-                                    target="blank" class="link-title-module">Oracle Cloud Infrastructure Object Storage, Micronaut, Graal Development Kit for Micronaut</a>
+                                   target="blank" class="link-title-module">Oracle Cloud Infrastructure Object Storage, Micronaut, Graal Development Kit for Micronaut</a>
                             </div>
                         </div>
                     </div>
@@ -956,9 +1010,9 @@
                                     <th>Description</th>
                                     <th>
                                         <img src="/gdk/resources/img/gdk_modules/gradle-enterprise-gradient-primary 1.svg"
-                                            class="build-icon table-picture" alt="Gradle" />
+                                             class="build-icon table-picture" alt="Gradle" />
                                         <img src="/gdk/resources/img/gdk_modules/Apache_Maven_logo_white.svg"
-                                            class="build-icon table-picture" alt="Maven" />
+                                             class="build-icon table-picture" alt="Maven" />
                                     </th>
                                 </tr>
                             </thead>
@@ -968,7 +1022,7 @@
                                     <td>Securely Store Application Secrets in an Oracle Cloud Infrastructure Vault</td>
                                     <td class="cell-center">
                                         <a href="/gdk/gdk-modules/secret-management/micronaut-secrets-oci/"
-                                            class="btn btn-primary open-guide open-guide-icon">Learn More</a>
+                                           class="btn btn-primary open-guide open-guide-icon">Learn More</a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -978,21 +1032,29 @@
                                       <a href="/gdk/gdk-modules/secret-management/micronaut-secrets-oci-mysql"
                                           class="btn btn-primary open-guide open-guide-icon">Learn More</a>
                                   </td>
-                              </tr>
-                              <tr>
+                                </tr>
+                                <tr>
                                     <td>Amazon Web Services</td>
                                     <td>Securely Store Application Secrets in Amazon Web Services Secrets Manager</td>
                                     <td class="cell-center">
                                         <a href="/gdk/gdk-modules/secret-management/micronaut-aws-secretsmanager/"
-                                            class="btn btn-primary open-guide open-guide-icon">Learn More</a>
+                                           class="btn btn-primary open-guide open-guide-icon">Learn More</a>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="row-noborder add-radius">Google Cloud Platform</td>
-                                    <td class="row-noborder">Securely Store Application Secrets in Google Secret Manager</td>
+                                    <td>Google Cloud Platform</td>
+                                    <td>Securely Store Application Secrets in Google Secret Manager</td>
                                     <td class="cell-center">
                                         <a href="/gdk/gdk-modules/secret-management/micronaut-cloud-secret-manager-google/"
-                                            class="btn btn-primary open-guide open-guide-icon"></a>
+                                           class="btn btn-primary open-guide open-guide-icon">Learn More</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="row-noborder add-radius">Microsoft Azure</td>
+                                    <td class="row-noborder">Securely Store Application Secrets in Azure Key Vault</td>
+                                    <td class="cell-center">
+                                        <a href="/gdk/gdk-modules/secret-management/micronaut-secrets-azure/"
+                                           class="btn btn-primary open-guide open-guide-icon">Learn More</a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -1012,19 +1074,22 @@
                             <div class="indent-link indent-link-bottom">
                                 <img src="/gdk/resources/img/gdk_modules/link_icon.svg" class="link-icon" alt="box" />
                                 <a href="https://micronaut-projects.github.io/micronaut-oracle-cloud/latest/guide/#vault"
-                                    target="blank" class="link-title-module">Micronaut Oracle Cloud Infrastructure Vault integration</a>
+                                   target="blank" class="link-title-module">Micronaut Oracle Cloud Infrastructure Vault integration</a>
                             </div>
                             <div class="indent-link indent-link-bottom">
                                 <img src="/gdk/resources/img/gdk_modules/link_icon.svg" class="link-icon" alt="box" />
                                 <a href="https://micronaut-projects.github.io/micronaut-aws/latest/guide/#distributedconfigurationsecretsmanager"
-                                    target="blank" class="link-title-module">Micronaut Amazon Web Services Secrets Manager
-                                    integration</a>
+                                   target="blank" class="link-title-module">Micronaut Amazon Web Services Secrets Manager integration</a>
                             </div>
                             <div class="indent-link indent-link-bottom">
                                 <img src="/gdk/resources/img/gdk_modules/link_icon.svg" class="link-icon" alt="box" />
                                 <a href="https://micronaut-projects.github.io/micronaut-gcp/latest/guide/#secretManager"
-                                    target="blank" class="link-title-module">Micronaut GCP Secret Manager
-                                    integration</a>
+                                   target="blank" class="link-title-module">Micronaut GCP Secret Manager integration</a>
+                            </div>
+                            <div class="indent-link indent-link-bottom">
+                                <img src="/gdk/resources/img/gdk_modules/link_icon.svg" class="link-icon" alt="box" />
+                                <a href="https://micronaut-projects.github.io/micronaut-azure/latest/guide/#azureKeyVault"
+                                   target="blank" class="link-title-module">Micronaut Azure Key Vault integration</a>
                             </div>
                         </div>
                     </div>
@@ -1037,14 +1102,14 @@
                             <div class="indent-link indent-link-bottom">
                                 <img src="/gdk/resources/img/gdk_modules/link_icon.svg" class="link-icon" alt="box" />
                                 <a href="https://luna.oracle.com/lab/c28c56d0-3bfa-4905-9fcd-6ba6e8a3ea42"
-                                    target="blank" class="link-title-module">Oracle Cloud Infrastructure MySQL, Vault, Micronaut, and Graal Development Kit for Micronaut</a>
+                                   target="blank" class="link-title-module">Oracle Cloud Infrastructure MySQL, Vault, Micronaut, and Graal Development Kit for Micronaut</a>
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="indent-link indent-link-bottom">
                                 <img src="/gdk/resources/img/gdk_modules/link_icon.svg" class="link-icon" alt="box" />
                                 <a href="https://luna.oracle.com/lab/296b5fb9-32bc-4260-b83f-072d4dd2d3c4"
-                                    target="blank" class="link-title-module">Oracle Cloud Infrastructure Autonomous DB, Vault, Micronaut, and Graal Development Kit for Micronaut</a>
+                                   target="blank" class="link-title-module">Oracle Cloud Infrastructure Autonomous DB, Vault, Micronaut, and Graal Development Kit for Micronaut</a>
                             </div>
                         </div>
                     </div>
@@ -1077,9 +1142,9 @@
                                     <th>Description</th>
                                     <th>
                                         <img src="/gdk/resources/img/gdk_modules/gradle-enterprise-gradient-primary 1.svg"
-                                            class="build-icon table-picture" alt="Gradle" />
+                                             class="build-icon table-picture" alt="Gradle" />
                                         <img src="/gdk/resources/img/gdk_modules/Apache_Maven_logo_white.svg"
-                                            class="build-icon table-picture" alt="Maven" />
+                                             class="build-icon table-picture" alt="Maven" />
                                     </th>
                                 </tr>
                             </thead>
@@ -1089,7 +1154,7 @@
                                     <td>Secure an Application with Oracle Identity Cloud Service and OpenID Connect</td>
                                     <td class="cell-center">
                                         <a href="/gdk/gdk-modules/security/micronaut-cloud-oidc-oracle/"
-                                            class="btn btn-primary open-guide open-guide-icon">Learn More</a>
+                                           class="btn btn-primary open-guide open-guide-icon">Learn More</a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -1097,15 +1162,22 @@
                                     <td>Secure an Application with Amazon Cognito</td>
                                     <td class="cell-center">
                                         <a href="/gdk/gdk-modules/security/micronaut-oauth2-cognito/"
-                                            class="btn btn-primary open-guide open-guide-icon">Learn More</a>
+                                           class="btn btn-primary open-guide open-guide-icon">Learn More</a>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="row-noborder add-radius">Google Cloud Platform</td>
-                                    <td class="row-noborder">Secure an Application with Google OpenID Connect</td>
+                                    <td>Google Cloud Platform</td>
+                                    <td>Secure an Application with Google OpenID Connect</td>
                                     <td class="cell-center">
                                         <a href="/gdk/gdk-modules/security/micronaut-oauth2-oidc-google/"
-                                            class="btn btn-primary open-guide open-guide-icon"></a>
+                                           class="btn btn-primary open-guide open-guide-icon">Learn More</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="row-noborder add-radius">Microsoft Azure</td>
+                                    <td class="row-noborder">Secure an Application with Microsoft Entra ID</td>
+                                    <td class="cell-center">
+                                        <p class="coming-soon">Coming soon</p>
                                     </td>
                                 </tr>
                             </tbody>
@@ -1125,7 +1197,7 @@
                             <div class="indent-link indent-link-bottom">
                                 <img src="/gdk/resources/img/gdk_modules/link_icon.svg" class="link-icon" alt="box" />
                                 <a href="https://micronaut-projects.github.io/micronaut-security/latest/guide/#oauth"
-                                    target="blank" class="link-title-module">Micronaut OAuth 2.0 Integration</a>
+                                   target="blank" class="link-title-module">Micronaut OAuth 2.0 Integration</a>
                             </div>
                         </div>
                     </div>
@@ -1160,45 +1232,50 @@
                                     <th>Description</th>
                                     <th>
                                         <img src="/gdk/resources/img/gdk_modules/gradle-enterprise-gradient-primary 1.svg"
-                                            class="build-icon table-picture" alt="Gradle" />
+                                             class="build-icon table-picture" alt="Gradle" />
                                         <img src="/gdk/resources/img/gdk_modules/Apache_Maven_logo_white.svg"
-                                            class="build-icon table-picture" alt="Maven" />
+                                             class="build-icon table-picture" alt="Maven" />
                                     </th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>Oracle Cloud Infrastructure</td>
-                                    <td>Create and Deploy a Micronaut Gateway Function to Oracle Cloud Infrastructure
-                                    </td>
+                                    <td>Create and Deploy a Micronaut Gateway Function to Oracle Cloud Infrastructure</td>
                                     <td class="cell-center">
                                         <a href="/gdk/gdk-modules/serverless/micronaut-function-oci"
-                                            class="btn btn-primary open-guide open-guide-icon">Learn More</a>
+                                           class="btn btn-primary open-guide open-guide-icon">Learn More</a>
                                     </td>
                                 </tr>
                                 <tr>
-                                  <td>Oracle Cloud Infrastructure</td>
-                                  <td>Expert's Guide to Create and Deploy a Micronaut Gateway Function to Oracle Cloud Infrastructure
-                                  </td>
-                                  <td class="cell-center">
-                                      <a href="/gdk/gdk-modules/serverless/micronaut-function-oci-expert"
-                                          class="btn btn-primary open-guide open-guide-icon"></a>
-                                  </td>
-                              </tr>
+                                    <td>Oracle Cloud Infrastructure</td>
+                                    <td>Expert's Guide to Create and Deploy a Micronaut Gateway Function to Oracle Cloud Infrastructure</td>
+                                    <td class="cell-center">
+                                        <a href="/gdk/gdk-modules/serverless/micronaut-function-oci-expert"
+                                           class="btn btn-primary open-guide open-guide-icon"></a>
+                                    </td>
+                                </tr>
                                 <tr>
                                     <td>Amazon Web Services</td>
                                     <td>Create and Deploy a Micronaut Gateway Function as an Amazon Lambda Function</td>
                                     <td class="cell-center">
                                         <a href="/gdk/gdk-modules/serverless/micronaut-function-aws/"
-                                            class="btn btn-primary open-guide open-guide-icon">Learn More</a>
+                                           class="btn btn-primary open-guide open-guide-icon">Learn More</a>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="row-noborder add-radius">Google Cloud Platform</td>
-                                    <td class="row-noborder">Create and Deploy a Micronaut Gateway Function as a Google Cloud Function</td>
+                                    <td>Google Cloud Platform</td>
+                                    <td>Create and Deploy a Micronaut Gateway Function as a Google Cloud Function</td>
+                                    <td class="cell-center">
+                                        <a href="/gdk/gdk-modules/serverless/micronaut-function-gcp/"
+                                           class="btn btn-primary open-guide open-guide-icon">Learn More</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="row-noborder add-radius">Microsoft Azure</td>
+                                    <td class="row-noborder">Create and Deploy a Micronaut Gateway Function to Azure Functions</td>
                                     <td class="row-noborder cell-center add-radius">
-                                      <a href="/gdk/gdk-modules/serverless/micronaut-function-gcp/"
-                                            class="btn btn-primary open-guide open-guide-icon">Learn More</a>
+                                        <p class="coming-soon">Coming soon</p>
                                     </td>
                                 </tr>
                             </tbody>
@@ -1206,35 +1283,44 @@
                     </div>
                     <div class="row">
                       <p class="module-subtitle">Module Documentation</p>
-                  </div>
-                  <div class="row">
-                      <div class="col-12">
-                          <div class="indent-link indent-link-bottom">
-                              <img src="/gdk/resources/img/gdk_modules/link_icon.svg" class="link-icon" alt="box" />
-                              <a href="https://micronaut-projects.github.io/micronaut-oracle-cloud/latest/guide/#httpFunctions"
-                                  target="blank" class="link-title-module">Micronaut Oracle Functions HTTP (Serverless) integration</a>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-12">
-                        <div class="indent-link indent-link-bottom">
-                            <img src="/gdk/resources/img/gdk_modules/link_icon.svg" class="link-icon" alt="box" />
-                            <a href="https://micronaut-projects.github.io/micronaut-aws/latest/guide/index.html#lambda"
-                                target="blank" class="link-title-module">Micronaut AWS Lambda integration</a>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="indent-link indent-link-bottom">
+                                <img src="/gdk/resources/img/gdk_modules/link_icon.svg" class="link-icon" alt="box" />
+                                <a href="https://micronaut-projects.github.io/micronaut-oracle-cloud/latest/guide/#httpFunctions"
+                                   target="blank" class="link-title-module">Micronaut Oracle Functions HTTP (Serverless) integration</a>
+                            </div>
                         </div>
                     </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-12">
-                        <div class="indent-link indent-link-bottom">
-                            <img src="/gdk/resources/img/gdk_modules/link_icon.svg" class="link-icon" alt="box" />
-                            <a href="https://micronaut-projects.github.io/micronaut-aws/latest/guide/index.html#lambda"
-                                target="blank" class="link-title-module">Micronaut GCP Function integration</a>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="indent-link indent-link-bottom">
+                                <img src="/gdk/resources/img/gdk_modules/link_icon.svg" class="link-icon" alt="box" />
+                                <a href="https://micronaut-projects.github.io/micronaut-aws/latest/guide/index.html#lambda"
+                                   target="blank" class="link-title-module">Micronaut AWS Lambda integration</a>
+                            </div>
                         </div>
                     </div>
-                  </div>
-                  <div class="module-divider"></div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="indent-link indent-link-bottom">
+                                <img src="/gdk/resources/img/gdk_modules/link_icon.svg" class="link-icon" alt="box" />
+                                <a href="https://micronaut-projects.github.io/micronaut-aws/latest/guide/index.html#lambda"
+                                   target="blank" class="link-title-module">Micronaut GCP Function integration</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="indent-link indent-link-bottom">
+                                <img src="/gdk/resources/img/gdk_modules/link_icon.svg" class="link-icon" alt="box" />
+                                <a href="https://micronaut-projects.github.io/micronaut-azure/latest/guide/#azureFunction"
+                                   target="blank" class="link-title-module">Micronaut Azure Function integration</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="module-divider"></div>
                 </div>
             </div>
         </div>
@@ -1264,9 +1350,9 @@
                                     <th>Description</th>
                                     <th>
                                         <img src="/gdk/resources/img/gdk_modules/gradle-enterprise-gradient-primary 1.svg"
-                                            class="build-icon table-picture" alt="Gradle" />
+                                             class="build-icon table-picture" alt="Gradle" />
                                         <img src="/gdk/resources/img/gdk_modules/Apache_Maven_logo_white.svg"
-                                            class="build-icon table-picture" alt="Maven" />
+                                             class="build-icon table-picture" alt="Maven" />
                                     </th>
                                 </tr>
                             </thead>
@@ -1278,42 +1364,47 @@
                                     </td>
                                     <td class="cell-center">
                                         <a href="/gdk/gdk-modules/streaming/micronaut-streaming/"
-                                            class="btn btn-primary open-guide open-guide-icon">Learn More</a>
+                                           class="btn btn-primary open-guide open-guide-icon">Learn More</a>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Oracle Cloud Infrastructure</td>
-                                    <td>Create a Streaming Application with the Oracle Cloud Infrastructure
-                                        Streaming Service</td>
+                                    <td>Create a Streaming Application with the Oracle Cloud Infrastructure Streaming Service</td>
                                     <td class="cell-center">
                                         <a href="/gdk/gdk-modules/streaming/micronaut-streaming-oracle/"
-                                            class="btn btn-primary open-guide open-guide-icon">Learn More</a>
+                                           class="btn btn-primary open-guide open-guide-icon">Learn More</a>
                                     </td>
                                 </tr>
                                 <tr>
-                                  <td>Oracle Cloud Infrastructure</td>
-                                  <td>Create and Deploy a Streaming Application with the Oracle Cloud Infrastructure
-                                      Streaming Service</td>
-                                  <td class="cell-center">
-                                      <a href="/gdk/gdk-modules/streaming/micronaut-streaming-oracle-deploy/"
-                                          class="btn btn-primary open-guide open-guide-icon">Learn More</a>
-                                  </td>
-                              </tr>
-                              <tr>
+                                    <td>Oracle Cloud Infrastructure</td>
+                                    <td>Create and Deploy a Streaming Application with the Oracle Cloud Infrastructure Streaming Service</td>
+                                    <td class="cell-center">
+                                        <a href="/gdk/gdk-modules/streaming/micronaut-streaming-oracle-deploy/"
+                                           class="btn btn-primary open-guide open-guide-icon">Learn More</a>
+                                    </td>
+                                </tr>
+                                <tr>
                                     <td>Amazon Web Services</td>
-                                    <td>Create and Deploy a Streaming Application with Amazon Managed Streaming for
-                                        Apache Kafka</td>
+                                    <td>Create and Deploy a Streaming Application with Amazon Managed Streaming for Apache Kafka</td>
                                     <td class="cell-center">
                                         <a href="/gdk/gdk-modules/streaming/micronaut-streaming-aws/"
-                                            class="btn btn-primary open-guide open-guide-icon">Learn More</a>
+                                           class="btn btn-primary open-guide open-guide-icon">Learn More</a>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Google Cloud Platform</td>
-                                    <td class="row-noborder">Create and Deploy a Streaming Application with Google Cloud Platform Apache Kafka</td>
+                                    <td>Create and Deploy a Streaming Application with Google Cloud Platform Apache Kafka</td>
                                     <td class="cell-center">
                                         <a href="/gdk/gdk-modules/streaming/micronaut-streaming-google/"
-                                            class="btn btn-primary open-guide open-guide-icon"></a>
+                                           class="btn btn-primary open-guide open-guide-icon">Learn More</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Microsoft Azure</td>
+                                    <td class="row-noborder">Create and Deploy a Streaming Application with Azure Event Hubs</td>
+                                    <td class="cell-center">
+                                        <a href="/gdk/gdk-modules/streaming/micronaut-streaming-azure/"
+                                           class="btn btn-primary open-guide open-guide-icon">Learn More</a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -1339,7 +1430,7 @@
                             <div class="indent-link indent-link-bottom">
                                 <img src="/gdk/resources/img/gdk_modules/link_icon.svg" class="link-icon" alt="box" />
                                 <a href="https://micronaut-projects.github.io/micronaut-kafka/latest/guide/"
-                                    target="blank" class="link-title-module">Micronaut Kafka</a>
+                                   target="blank" class="link-title-module">Micronaut Kafka</a>
                             </div>
                         </div>
                     </div>
@@ -1372,9 +1463,9 @@
                                     <th>Description</th>
                                     <th>
                                         <img src="/gdk/resources/img/gdk_modules/gradle-enterprise-gradient-primary 1.svg"
-                                            class="build-icon table-picture" alt="Gradle" />
+                                             class="build-icon table-picture" alt="Gradle" />
                                         <img src="/gdk/resources/img/gdk_modules/Apache_Maven_logo_white.svg"
-                                            class="build-icon table-picture" alt="Maven" />
+                                             class="build-icon table-picture" alt="Maven" />
                                     </th>
                                 </tr>
                             </thead>
@@ -1385,7 +1476,7 @@
                                         Monitoring</td>
                                     <td class="cell-center">
                                         <a href="/gdk/gdk-modules/tracing/micronaut-trace-oracle/"
-                                            class="btn btn-primary open-guide open-guide-icon">Learn More</a>
+                                           class="btn btn-primary open-guide open-guide-icon">Learn More</a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -1393,15 +1484,22 @@
                                     <td>Create and Trace a Micronaut Application Using Amazon Web Services X-Ray</td>
                                     <td class="cell-center">
                                         <a href="/gdk/gdk-modules/tracing/micronaut-trace-aws/"
-                                            class="btn btn-primary open-guide open-guide-icon">Learn More</a>
+                                           class="btn btn-primary open-guide open-guide-icon">Learn More</a>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="row-noborder add-radius">Google Cloud Platform</td>
-                                    <td class="row-noborder">Create and Trace a Micronaut Application Using Google Cloud Trace</td>
+                                    <td>Google Cloud Platform</td>
+                                    <td>Create and Trace a Micronaut Application Using Google Cloud Trace</td>
                                     <td class="cell-center">
                                         <a href="/gdk/gdk-modules/tracing/micronaut-trace-google/"
-                                            class="btn btn-primary open-guide open-guide-icon"></a>
+                                           class="btn btn-primary open-guide open-guide-icon">Learn More</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="row-noborder add-radius">Microsoft Azure</td>
+                                    <td class="row-noborder">Create and Trace a Micronaut Application Using Azure Application Insights</td>
+                                    <td class="cell-center">
+                                        <p class="coming-soon">Coming soon</p>
                                     </td>
                                 </tr>
                             </tbody>
@@ -1422,7 +1520,7 @@
                             <div class="indent-link indent-link-bottom">
                                 <img src="/gdk/resources/img/gdk_modules/link_icon.svg" class="link-icon" alt="box" />
                                 <a href="https://micronaut-projects.github.io/micronaut-tracing/latest/guide/"
-                                    target="blank" class="link-title-module">Micronaut Tracing</a>
+                                   target="blank" class="link-title-module">Micronaut Tracing</a>
                             </div>
                         </div>
                     </div>
@@ -1434,7 +1532,7 @@
                             <div class="indent-link indent-link-bottom">
                                 <img src="/gdk/resources/img/gdk_modules/link_icon.svg" class="link-icon" alt="box" />
                                 <a href="https://luna.oracle.com/lab/eb7f2b61-cdc9-4733-98b1-53dadf7a076e"
-                                    target="blank" class="link-title-module">Oracle Cloud Infrastructure APM Tracing, Micronaut, Graal Development Kit for Micronaut</a>
+                                   target="blank" class="link-title-module">Oracle Cloud Infrastructure APM Tracing, Micronaut, Graal Development Kit for Micronaut</a>
                             </div>
                         </div>
                     </div>
@@ -1442,7 +1540,6 @@
             </div>
         </div>
     </section>
-
 </section>
 
       </main>
@@ -1505,7 +1602,7 @@
                 Copyright &copy; 2023-2024, Oracle and/or its affiliates.
                 All rights reserved.
                 Oracle and Java are registered trademarks of Oracle and/or its affiliates.<br/>
-                Micronaut<sup>&reg;</sup> is a registered trademark of Object Computing, Inc. 
+                Micronaut<sup>&reg;</sup> is a registered trademark of Object Computing, Inc.
                 Use is for referential purposes and does not imply any endorsement or affiliation with any third-party product.
                 Unauthorized use is strictly prohibited. Other names may be trademarks of their respective owners.
               </p>
@@ -1582,7 +1679,7 @@
     <script src='/gdk/resources/js/filters.js'></script>
     <script src='/gdk/resources/js/sidebar.js'></script>
     <script src='/gdk/resources/js/labs.js'></script>
-    <script src='/gdk/resources/lib/highlight/highlight.min.js'></script> 
+    <script src='/gdk/resources/lib/highlight/highlight.min.js'></script>
     <script>hljs.highlightAll();</script>
   </body>
 </html>

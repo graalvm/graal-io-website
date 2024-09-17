@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="The Graal Development Kit for Micronaut (GDK) is a build of a curated set of Micronaut framework modules and their required libraries for building portable c..."/>
-  <meta name="last_modified" content="2024-07-09 13:53:28 +0000"/>
-  <meta name="last_built" content="2024-08-23 09:07:41 +0000"/>
+  <meta name="last_modified" content="2024-07-29 20:48:13 +0000"/>
+  <meta name="last_built" content="2024-09-17 14:14:17 +0000"/>
   <link rel="stylesheet" href="/gdk/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gdk/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gdk/resources/img/favicon/favicon-32x32.png">
@@ -27,11 +27,11 @@
   <link rel="canonical" href="https://www.graal.cloud/gdk/gdk-modules/serverless/micronaut-function-oci/">
 
   <!-- jQuery UI Tabs -->
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.14.0/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="/gdk/resources/lib/jquery/jquery-ui.css">
 </head>
 
-      <script src="/gdk/resources/lib/jquery/jquery-3.6.1.min.js"></script>
+      <script src="/gdk/resources/lib/jquery/jquery-3.7.1.min.js"></script>
     <script src="/gdk/resources/lib/bootstrap/js/bootstrap.min.js"></script>
     <script src='/gdk/resources/lib/sticky-sidebar/resizeSensor.js'></script>
     <script src='/gdk/resources/lib/sticky-sidebar/sticky-sidebar.min.js'></script>
@@ -41,7 +41,7 @@
     <script async="async" type="text/javascript" src='//consent.trustarc.com/notice?domain=oracle.com&c=teconsent&js=bb&noticeType=bb&text=true&cdn=1&pcookie&gtm=1' crossorigin></script>
     <script src="https://www.oracle.com/assets/truste-oraclelib.js"></script>
     <!-- jQuery UI Tabs -->
-    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="https://code.jquery.com/ui/1.14.0/jquery-ui.js"></script>
 
 
   <body class="preload">
@@ -247,6 +247,20 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
     
 
     
@@ -300,6 +314,14 @@
         
       
     
+  
+
+  
+
+  
+
+  
+
   
 
   
@@ -408,11 +430,11 @@
     <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
   </ul>
   <div id="gradle">
-    <p><a href="https://github.com/oracle/gcn/releases/download/4.5.0.0/4.5.0.0_serverless_oci-serverless-demo-java-gradle.zip">Gradle Oracle Cloud Infrastructure Serverless Example <img class="download-img-guides" src="/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" /></a>
+    <p><a href="https://github.com/oracle/gcn/releases/download/4.6.0.1/4.6.0.1_serverless_oci-serverless-demo-java-gradle.zip">Gradle Oracle Cloud Infrastructure Serverless Example <img class="download-img-guides" src="/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" /></a>
     </p>
   </div>
   <div id="maven">
-    <p><a href="https://github.com/oracle/gcn/releases/download/4.5.0.0/4.5.0.0_serverless_oci-serverless-demo-java-maven.zip">Maven Oracle Cloud Infrastructure Serverless Example <img class="download-img-guides" src="/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" /></a>
+    <p><a href="https://github.com/oracle/gcn/releases/download/4.6.0.1/4.6.0.1_serverless_oci-serverless-demo-java-maven.zip">Maven Oracle Cloud Infrastructure Serverless Example <img class="download-img-guides" src="/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" /></a>
     </p>
   </div>
 </div>
@@ -497,7 +519,7 @@
 
 <p>For more information, see <a href="/gdk/get-started/using-gdk-cli/">Using the GDK CLI</a>.</p>
 
-<p>The GDK Launcher creates a multimodule project with two subprojects: <strong>oci</strong> for Oracle Cloud Infrastructure, and <strong>lib</strong>.
+<p>The GDK Launcher creates a multi-module project with two subprojects: <strong>oci</strong> for Oracle Cloud Infrastructure, and <strong>lib</strong>.
 You develop the gateway function logic in the <strong>oci</strong> subproject. If your gateway function is to be deployed to multiple cloud providers, use the <strong>lib</strong> subproject to create classes that can be shared between the providers. This enables you to separate the code that is different between cloud providers, while keeping most of the implementation in the common <strong>lib</strong> subproject.</p>
     
       <h3 id="11-storeitem">
@@ -898,7 +920,7 @@ class StoreControllerTest {
 
 <ol>
   <li>
-    <p>Download the Terraform configuration <a href="/gdk/docs/gdk-modules/serverless/archives/gdk-function.zip">GDK Function <img class="download-img-guides" src="/gdk/resources/img/gdk_modules/download-archive.png" alt="Download Terraform Configuration" /></a> to your default downloads directory. 
+    <p>Download the Terraform configuration <a href="/gdk/docs/gdk-modules/serverless/archives/gdk-function.zip">GDK Function <img class="download-img-guides" src="/gdk/resources/img/gdk_modules/download-archive.png" alt="Download Terraform Configuration" /></a> to your default downloads directory.
 (For a general introduction to Terraform and the “infrastructure-as-code” model, see <a href="https://www.terraform.io" target="_blank">https://www.terraform.io</a>.)</p>
   </li>
   <li>Follow the instructions in <a href="https://docs.oracle.com/iaas/Content/ResourceManager/Tasks/create-stack-local.htm" target="_blank">Creating a Stack from a Zip File</a>.
@@ -912,8 +934,8 @@ class StoreControllerTest {
     </ul>
   </li>
   <li>
-    <p>Click <strong>Create</strong>. 
-(It can take up to ten minutes to provision the stack. 
+    <p>Click <strong>Create</strong>.
+(It can take up to ten minutes to provision the stack.
 The <strong>Logs</strong> resource provides details of progress.)</p>
 
     <blockquote>
@@ -1142,7 +1164,7 @@ Create a new deployment with the following properties, then click <strong>Create
 
 <ol>
   <li>
-    <p>Copy the hostname of the gateway from the <strong>Gateway information</strong> tab. 
+    <p>Copy the hostname of the gateway from the <strong>Gateway information</strong> tab.
 Define an environment variable for the hostname:</p>
 
     <pre><code class="language-bash"> export GATEWAY_HOSTNAME=aaaaaaaaaaaaaaaaaaaaa.apigateway.us-phoenix-1.oci.customer-oci.com
@@ -1506,7 +1528,7 @@ In the table of Functions, click the name of your Oracle Function “gdk-serverl
                 Copyright &copy; 2023-2024, Oracle and/or its affiliates.
                 All rights reserved.
                 Oracle and Java are registered trademarks of Oracle and/or its affiliates.<br/>
-                Micronaut<sup>&reg;</sup> is a registered trademark of Object Computing, Inc. 
+                Micronaut<sup>&reg;</sup> is a registered trademark of Object Computing, Inc.
                 Use is for referential purposes and does not imply any endorsement or affiliation with any third-party product.
                 Unauthorized use is strictly prohibited. Other names may be trademarks of their respective owners.
               </p>
@@ -1583,7 +1605,7 @@ In the table of Functions, click the name of your Oracle Function “gdk-serverl
     <script src='/gdk/resources/js/filters.js'></script>
     <script src='/gdk/resources/js/sidebar.js'></script>
     <script src='/gdk/resources/js/labs.js'></script>
-    <script src='/gdk/resources/lib/highlight/highlight.min.js'></script> 
+    <script src='/gdk/resources/lib/highlight/highlight.min.js'></script>
     <script>hljs.highlightAll();</script>
   </body>
 </html>

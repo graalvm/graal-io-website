@@ -14713,6 +14713,12 @@ p.note-text {
 .label-soon {
   background: url("/gdk/resources/img/gdk_modules/Soon.svg") 95% 7%/28px 9px no-repeat; }
 
+p.coming-soon {
+  font-size: 14px;
+  font-weight: 400;
+  color: #ffffff;
+  margin-bottom: 0px; }
+
 .container-table {
   max-width: 1108px; }
   @media only screen and (min-device-width: 320px) and (max-device-width: 800px) {
