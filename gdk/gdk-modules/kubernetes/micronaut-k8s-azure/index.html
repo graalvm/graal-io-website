@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="The Graal Development Kit for Micronaut (GDK) is a build of a curated set of Micronaut framework modules and their required libraries for building portable c..."/>
-  <meta name="last_modified" content="2024-09-25 16:23:53 +0000"/>
-  <meta name="last_built" content="2024-10-04 13:25:37 +0000"/>
+  <meta name="last_modified" content="2024-10-14 13:10:56 +0000"/>
+  <meta name="last_built" content="2024-10-15 16:35:11 +0000"/>
   <link rel="stylesheet" href="/gdk/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gdk/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gdk/resources/img/favicon/favicon-32x32.png">
@@ -165,6 +165,8 @@
 
 <div class="toc-bullets">
 
+
+  
 
   
 
@@ -453,11 +455,11 @@ The application consists of three microservices:</p>
     <li class="tabs-maven"><a name="maven" href="#maven">Maven</a></li>
   </ul>
   <div id="gradle">
-    <p><a href="https://github.com/oracle/graal-dev-kit/releases/download/4.6.0.1/4.6.0.1_kubernetes_azure-kubernetes-demo-java-gradle.zip">Gradle Azure Kubernetes Example <img class="download-img-guides" src="/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" /></a>
+    <p><a href="https://github.com/oracle/graal-dev-kit/releases/download/4.6.0.3/4.6.0.3_kubernetes_azure-kubernetes-demo-java-gradle.zip">Gradle Azure Kubernetes Example <img class="download-img-guides" src="/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" /></a>
     </p>
   </div>
   <div id="maven">
-    <p><a href="https://github.com/oracle/graal-dev-kit/releases/download/4.6.0.1/4.6.0.1_kubernetes_azure-kubernetes-demo-java-maven.zip">Maven Azure Kubernetes Example <img class="download-img-guides" src="/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" /></a>
+    <p><a href="https://github.com/oracle/graal-dev-kit/releases/download/4.6.0.3/4.6.0.3_kubernetes_azure-kubernetes-demo-java-maven.zip">Maven Azure Kubernetes Example <img class="download-img-guides" src="/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" /></a>
     </p>
   </div>
 </div>
@@ -536,10 +538,30 @@ Alternatively, you can specify the <code>azure</code> environment passing it as 
 
 <p>Once the <code>"registrationState": "Registering"</code>  changes to <code>"registrationState": "Registered"</code>, the registration is complete.</p>
     
-      <h3 id="24-create-an-azure-container-registry">
+      <h3 id="24-register-microsoftcompute-as-a-resource-provider">
         
         
-          2.4. Create an Azure Container Registry <a href="#24-create-an-azure-container-registry" class="anchor_heading">#</a>
+          2.4. Register Microsoft.Compute as a Resource Provider <a href="#24-register-microsoftcompute-as-a-resource-provider" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>Run the <a href="https://learn.microsoft.com/cli/azure/provider?view=azure-cli-latest#az-provider-register"><code>az provider register</code></a> command to register <em>Microsoft.Compute</em> as a Resource Provider:</p>
+
+<pre><code class="language-bash">az provider register --namespace 'Microsoft.Compute'
+</code></pre>
+
+<p>This will take a while to execute. Check the status:</p>
+
+<pre><code class="language-bash">az provider show --namespace Microsoft.Compute
+</code></pre>
+
+<p>Once the <code>"registrationState": "Registering"</code>  changes to <code>"registrationState": "Registered"</code>, the registration is complete.</p>
+    
+      <h3 id="25-create-an-azure-container-registry">
+        
+        
+          2.5. Create an Azure Container Registry <a href="#25-create-an-azure-container-registry" class="anchor_heading">#</a>
         
         
       </h3>
@@ -552,10 +574,10 @@ Alternatively, you can specify the <code>azure</code> environment passing it as 
    --sku Basic
 </code></pre>
     
-      <h3 id="25-create-an-azure-kubernetes-cluster">
+      <h3 id="26-create-an-azure-kubernetes-cluster">
         
         
-          2.5. Create an Azure Kubernetes Cluster <a href="#25-create-an-azure-kubernetes-cluster" class="anchor_heading">#</a>
+          2.6. Create an Azure Kubernetes Cluster <a href="#26-create-an-azure-kubernetes-cluster" class="anchor_heading">#</a>
         
         
       </h3>
@@ -581,10 +603,10 @@ Alternatively, you can specify the <code>azure</code> environment passing it as 
 aks-nodepool1-70833750-vmss000000   Ready    &lt;none&gt;    3m   v1.29.7
 </code></pre>
     
-      <h3 id="26-authenticate-to-your-azure-container-registry">
+      <h3 id="27-authenticate-to-your-azure-container-registry">
         
         
-          2.6. Authenticate to Your Azure Container Registry <a href="#26-authenticate-to-your-azure-container-registry" class="anchor_heading">#</a>
+          2.7. Authenticate to Your Azure Container Registry <a href="#27-authenticate-to-your-azure-container-registry" class="anchor_heading">#</a>
         
         
       </h3>
@@ -617,18 +639,18 @@ aks-nodepool1-70833750-vmss000000   Ready    &lt;none&gt;    3m   v1.29.7
 
 <p>You should see <code>Login Succeeded</code> after logging in.</p>
     
-      <h3 id="27-create-and-publish-container-images">
+      <h3 id="28-create-and-publish-container-images">
         
         
-          2.7. Create and Publish Container Images <a href="#27-create-and-publish-container-images" class="anchor_heading">#</a>
+          2.8. Create and Publish Container Images <a href="#28-create-and-publish-container-images" class="anchor_heading">#</a>
         
         
       </h3>
     
-      <h4 id="271-create-and-publish-a-container-image-of-the-native-users-microservice">
+      <h4 id="281-create-and-publish-a-container-image-of-the-native-users-microservice">
         
         
-          2.7.1. Create and Publish a Container Image of the Native <em>Users</em> Microservice
+          2.8.1. Create and Publish a Container Image of the Native <em>Users</em> Microservice
         
         
       </h4>
@@ -660,19 +682,19 @@ aks-nodepool1-70833750-vmss000000   Ready    &lt;none&gt;    3m   v1.29.7
  </div>
   </li>
   <li>Tag the image with the login server of your container registry:
-    <pre><code class="language-bash"> docker tag users-azure gdkrepo.azurecr.io/users-azure:latest
+    <pre><code class="language-bash"> docker tag users-azure gdkrepo.azurecr.io/users:latest
 </code></pre>
   </li>
   <li>Push the image to the container registry:
-    <pre><code class="language-bash"> docker push gdkrepo.azurecr.io/users-azure:latest
+    <pre><code class="language-bash"> docker push gdkrepo.azurecr.io/users:latest
 </code></pre>
   </li>
 </ol>
     
-      <h4 id="272-create-and-publish-a-container-image-of-the-native-orders-microservice">
+      <h4 id="282-create-and-publish-a-container-image-of-the-native-orders-microservice">
         
         
-          2.7.2. Create and Publish a Container Image of the Native <em>Orders</em> Microservice
+          2.8.2. Create and Publish a Container Image of the Native <em>Orders</em> Microservice
         
         
       </h4>
@@ -704,19 +726,19 @@ aks-nodepool1-70833750-vmss000000   Ready    &lt;none&gt;    3m   v1.29.7
  </div>
   </li>
   <li>Tag the image with the login server of your container registry:
-    <pre><code class="language-bash"> docker tag orders-azure gdkrepo.azurecr.io/orders-azure:latest
+    <pre><code class="language-bash"> docker tag orders-azure gdkrepo.azurecr.io/orders:latest
 </code></pre>
   </li>
   <li>Push the image to the container registry:
-    <pre><code class="language-bash"> docker push gdkrepo.azurecr.io/orders-azure:latest
+    <pre><code class="language-bash"> docker push gdkrepo.azurecr.io/orders:latest
 </code></pre>
   </li>
 </ol>
     
-      <h4 id="273-create-and-publish-a-container-image-of-the-native-api-gateway-microservice">
+      <h4 id="283-create-and-publish-a-container-image-of-the-native-api-gateway-microservice">
         
         
-          2.7.3. Create and Publish a Container Image of the Native <em>API</em> (Gateway) Microservice
+          2.8.3. Create and Publish a Container Image of the Native <em>API</em> (Gateway) Microservice
         
         
       </h4>
@@ -748,27 +770,27 @@ aks-nodepool1-70833750-vmss000000   Ready    &lt;none&gt;    3m   v1.29.7
  </div>
   </li>
   <li>Tag the image with the login server of your container registry:
-    <pre><code class="language-bash"> docker tag api-azure gdkrepo.azurecr.io/api-azure:latest
+    <pre><code class="language-bash"> docker tag api-azure gdkrepo.azurecr.io/api:latest
 </code></pre>
   </li>
   <li>Push the image to the container registry:
-    <pre><code class="language-bash"> docker push gdkrepo.azurecr.io/api-azure:latest
+    <pre><code class="language-bash"> docker push gdkrepo.azurecr.io/api:latest
 </code></pre>
   </li>
 </ol>
     
-      <h3 id="28-update-the-kubernetes-manifest-files">
+      <h3 id="29-update-the-kubernetes-manifest-files">
         
         
-          2.8. Update the Kubernetes Manifest Files <a href="#28-update-the-kubernetes-manifest-files" class="anchor_heading">#</a>
+          2.9. Update the Kubernetes Manifest Files <a href="#29-update-the-kubernetes-manifest-files" class="anchor_heading">#</a>
         
         
       </h3>
     
-      <h4 id="281-update-the-users-manifest-file">
+      <h4 id="291-update-the-users-manifest-file">
         
         
-          2.8.1. Update the <em>Users</em> Manifest File
+          2.9.1. Update the <em>Users</em> Manifest File
         
         
       </h4>
@@ -832,10 +854,10 @@ spec:
 
 <p><strong>2</strong> Change <code>imagePullPolicy</code> to <code>Always</code>.</p>
     
-      <h4 id="282-update-the-orders-manifest-file">
+      <h4 id="292-update-the-orders-manifest-file">
         
         
-          2.8.2. Update the <em>Orders</em> Manifest File
+          2.9.2. Update the <em>Orders</em> Manifest File
         
         
       </h4>
@@ -899,10 +921,10 @@ spec:
 
 <p><strong>2</strong> Change <code>imagePullPolicy</code> to <code>Always</code>.</p>
     
-      <h4 id="283-update-the-api-manifest-file">
+      <h4 id="293-update-the-api-manifest-file">
         
         
-          2.8.3. Update the <em>API</em> Manifest File
+          2.9.3. Update the <em>API</em> Manifest File
         
         
       </h4>

@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="The Graal Development Kit for Micronaut (GDK) is a build of a curated set of Micronaut framework modules and their required libraries for building portable c..."/>
-  <meta name="last_modified" content="2024-09-25 16:23:42 +0000"/>
-  <meta name="last_built" content="2024-10-04 13:25:37 +0000"/>
+  <meta name="last_modified" content="2024-10-02 07:38:27 +0000"/>
+  <meta name="last_built" content="2024-10-15 16:35:11 +0000"/>
   <link rel="stylesheet" href="/gdk/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gdk/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gdk/resources/img/favicon/favicon-32x32.png">
@@ -294,6 +294,8 @@
 
   
 
+  
+
 <!-- <li class="search additional-search">
   <form class="form-inline sidebar" action="/docs/search" autocomplete="on" method="get">
     <input class="input-search sidebar" type="text" id="search-box" name="query" placeholder="Search">
@@ -344,8 +346,8 @@ This guide describes how to create a [Micronaut](https://micronaut.io/)&reg; app
     * **Project Name**: _gcn-quick-start_
     * **Base Package**: _com.example_ (Default)
     * **Clouds**: _AWS_ **and** _OCI_
-    * **Language**: _Java_ (Default)
     * **Build Tool**: _Gradle (Groovy)_ or _Maven_
+    * **Language**: _Java_ (Default)
     * **Test Framework**: _JUnit_ (Default)
     * **Java Version**: _17_ (Default)
     * **Micronaut Version**: (Default)

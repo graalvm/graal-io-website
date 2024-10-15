@@ -25,10 +25,10 @@
 
 2. Tag the image with the login server of your container registry:
     ```bash
-    docker tag {{ include.app }}-azure gdkrepo.azurecr.io/{{ include.app }}-azure:latest
+    docker tag {{ include.app }}-azure gdkrepo.azurecr.io/{{ include.app }}:latest
     ```
 
 3. Push the image to the container registry:
     ```bash
-    docker push gdkrepo.azurecr.io/{{ include.app }}-azure:latest
+    docker push gdkrepo.azurecr.io/{{ include.app }}:latest
     ```
