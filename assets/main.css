@@ -11289,7 +11289,8 @@ blockquote {
   background-color: #E0EAFF;
   margin: 16px 15px 24px 0px; }
   blockquote p {
-    margin: 0px; }
+    margin: 0px;
+    padding-right: 15px; }
   blockquote > :before {
     content: none !important; }
 
