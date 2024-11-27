@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="The Graal Development Kit for Micronaut (GDK) is a build of a curated set of Micronaut framework modules and their required libraries for building portable c..."/>
-  <meta name="last_modified" content="2024-09-25 16:23:42 +0000"/>
-  <meta name="last_built" content="2024-10-29 09:25:27 +0000"/>
+  <meta name="last_modified" content="2024-11-27 14:50:18 +0000"/>
+  <meta name="last_built" content="2024-11-27 17:11:00 +0000"/>
   <link rel="stylesheet" href="/gdk/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gdk/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gdk/resources/img/favicon/favicon-32x32.png">
@@ -565,12 +565,11 @@ Follow these steps: <a href="https://docs.oracle.com/en/database/oracle/oracle-d
     <p>Step through the project creation wizard. The following list details how you should respond to each prompt:</p>
 
     <ul>
-      <li>Pick GDK Version: <em>4.5.0</em></li>
+      <li>Pick GDK Version</li>
       <li>Pick an Application type: <em>Application</em></li>
       <li>Pick Project Java: Select your JDK installation</li>
       <li>Provide project name: <em>dbsample</em></li>
       <li>Provide base package: <em>com.example</em></li>
-      <li>Pick project language: <em>Java</em></li>
       <li>Pick project services: <em>Database</em></li>
       <li>
         <p>Pick project features: <em>Oracle Cloud Autonomous Transaction Processing (ATP)</em> (as shown in the screenshot below):</p>
@@ -586,7 +585,7 @@ Follow these steps: <a href="https://docs.oracle.com/en/database/oracle/oracle-d
   <li>
     <p>Save the project and open it in a new VS Code window.</p>
   </li>
-  <li>Remove the following two lines from <em>application-oraclecloud.properties</em>:
+  <li>Remove the following two lines from <em>oci/src/resources/application.properties</em>:
     <pre><code> datasources.default.ocid=
  datasources.default.walletPassword=
 </code></pre>
@@ -714,9 +713,11 @@ Within the Explorer panel, open the <strong>DATABASES</strong> pane, as shown in
     <p><img src="/gdk/docs/vscode-tools/images/micronaut/micronaut-repositories-from-entities.png" alt="Micronaut Data Repository Interfaces from Entity" /></p>
   </li>
   <li>
-    <p>From the list of entities, select the Entities for which you want to create corresponding repositories. Select all.</p>
+    <p>Select <strong>CRUD repository</strong>.</p>
+
+    <p><img src="/gdk/docs/vscode-tools/images/micronaut/micronaut-crud-repository.png" alt="CRUD repository" /></p>
   </li>
-  <li>Click <strong>Enter</strong>.</li>
+  <li>From the list of entities, select the Entities for which you want to create corresponding repositories. For this demo, select all and confirm the action by pressing Enter.</li>
 </ol>
     
       <h2 id="7-create-a-rest-controller">
