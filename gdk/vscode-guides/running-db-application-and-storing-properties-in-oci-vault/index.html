@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="The Graal Development Kit for Micronaut (GDK) is a build of a curated set of Micronaut framework modules and their required libraries for building portable c..."/>
-  <meta name="last_modified" content="2024-07-19 14:08:49 +0000"/>
-  <meta name="last_built" content="2024-11-29 14:31:57 +0000"/>
+  <meta name="last_modified" content="2024-12-01 10:35:40 +0000"/>
+  <meta name="last_built" content="2024-12-02 15:15:17 +0000"/>
   <link rel="stylesheet" href="/gdk/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gdk/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gdk/resources/img/favicon/favicon-32x32.png">
@@ -494,20 +494,19 @@ This enables you to deploy the same application to different containers that wil
         
       </h2>
 
-<p>Create a database application with support for the Oracle Database Server and <a href="https://micronaut-projects.github.io/micronaut-data/latest/guide/">Micronaut<sup>®</sup> Data</a>.</p>
+<p>Create a database application with support for Oracle Database and <a href="https://micronaut-projects.github.io/micronaut-data/latest/guide/">Micronaut<sup>®</sup> Data</a>.</p>
 
 <ol>
-  <li>In your VS Code window, go to <strong>View</strong>, <strong>Command Palette</strong>, search for “Graal Cloud Native”, and invoke the <strong>Graal Cloud Native: Create New Project</strong> quick action.</li>
+  <li>In your VS Code window, go to <strong>View</strong>, <strong>Command Palette</strong>, search for “Graal Cloud Native”, and invoke the <strong>Graal Dev Kit: Create New Project</strong> quick action.</li>
   <li>
     <p>Step through the project creation wizard. The following list details how you should respond to each prompt:</p>
 
     <ul>
-      <li>Pick GDK Version: <em>4.5.0</em></li>
+      <li>Pick GDK Version</li>
       <li>Pick an Application type: <em>Application</em></li>
       <li>Pick Project Java: Select your JDK installation</li>
       <li>Provide project name: <em>dbsample</em></li>
       <li>Provide base package: <em>com.example</em></li>
-      <li>Pick project language: <em>Java</em></li>
       <li>Pick project services: <em>Database</em></li>
       <li>
         <p>Pick project features: <em>Oracle Cloud Autonomous Transaction Processing (ATP)</em> (as shown in the screenshot below):</p>
@@ -516,7 +515,7 @@ This enables you to deploy the same application to different containers that wil
       </li>
       <li>Pick the build tool: <em>Maven</em> or <em>Gradle</em></li>
       <li>Pick the test framework: <em>JUnit</em></li>
-      <li>Select cloud providers to support: <em>Oracle Cloud Infrastructure</em></li>
+      <li>Select cloud providers to support: <em>OCI</em></li>
       <li>Pick generate sample code: <em>Yes</em></li>
       <li>Save the project and open it in a new VS Code window.</li>
     </ul>
@@ -690,8 +689,9 @@ CREATE SEQUENCE "GENRE_SEQ" MINVALUE 1 START WITH 1 NOCACHE NOCYCLE;
     <p>Navigate to the <strong>Micronaut Tools</strong> view and open your application.</p>
   </li>
   <li>
-    <p>Click the <strong>Run Application Without Debugging</strong> icon:
- <img src="images/db-features/run-application-from-micronaut-tools.png" alt="Run the application from the view" /></p>
+    <p>Click the <strong>Run Application Without Debugging</strong> icon:</p>
+
+    <p><img src="/gdk/docs/vscode-tools/images/db-features/run-application-from-micronaut-tools.png" alt="Run the application from the view" /></p>
 
     <p>The progress will be indicated in the Output view.</p>
   </li>
@@ -763,7 +763,7 @@ For that you need to create a Kubernetes cluster (if you do not already have one
   <li>Create a Kubernetes cluster in the Oracle Cloud console, with default settings, using the <strong>Quick Create</strong> workflow:
     <ul>
       <li>Open the navigation menu and click <strong>Developer Services</strong>.</li>
-      <li>Under <strong>Containers</strong>, click <strong>Kubernetes Clusters (OKE)</strong>.</li>
+      <li>Under <strong>Containers &amp; Artifacts</strong>, click <strong>Kubernetes Clusters (OKE)</strong>.</li>
       <li>Then click <strong>Create Cluster</strong> and choose <strong>Quick Create</strong> option.
  It takes a few minutes to create a cluster.</li>
     </ul>

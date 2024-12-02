@@ -3,7 +3,7 @@ For that you need to create a Kubernetes cluster (if you do not already have one
 
 1. Create a Kubernetes cluster in the Oracle Cloud console, with default settings, using the **Quick Create** workflow:
     - Open the navigation menu and click **Developer Services**.
-    - Under **Containers**, click **Kubernetes Clusters (OKE)**.
+    - Under **Containers & Artifacts**, click **Kubernetes Clusters (OKE)**.
     - Then click **Create Cluster** and choose **Quick Create** option.
     It takes a few minutes to create a cluster.
 
