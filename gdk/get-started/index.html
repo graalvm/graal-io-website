@@ -15,7 +15,7 @@
   </title>
   <meta name="description" content="The Graal Development Kit for Micronaut (GDK) is a build of a curated set of Micronaut framework modules and their required libraries for building portable c..."/>
   <meta name="last_modified" content="2024-05-29 15:07:10 +0000"/>
-  <meta name="last_built" content="2024-12-04 09:42:35 +0000"/>
+  <meta name="last_built" content="2024-12-06 13:33:30 +0000"/>
   <link rel="stylesheet" href="/gdk/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gdk/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gdk/resources/img/favicon/favicon-32x32.png">
@@ -211,7 +211,7 @@
             <div class="prerequisites__descrip">
               <p>You have created account(s) for Oracle Cloud Infrastructure, Amazon Web Services, Google Cloud Platform, and/or Microsoft Azure.</p>
             </div>
-            <a href="/gdk/get-started/setting-up-cloud-accounts/" target="_blank" class="btn btn-primary gs-btn">Set
+            <a href="/gdk/get-started/setting-up-cloud-accounts/" class="btn btn-primary gs-btn">Set
               up</a>
           </div>
           <div class="prerequisites__card">
@@ -225,7 +225,7 @@
               <p>You have set up your desktop development environment with required tools.</p>
               <br>
             </div>
-            <a href="/gdk/get-started/setting-up-desktop/" target="_blank" class="btn btn-primary gs-btn">Set up</a>
+            <a href="/gdk/get-started/setting-up-desktop/" class="btn btn-primary gs-btn">Set up</a>
           </div>
         </div>
       </div>
@@ -256,7 +256,7 @@
     <p class="gs-root-texts">Create an application using the GDK Launcher.</p>
     <ol style="color:#C4D1EE">
       <li>
-        Open the <a href="/gdk/launcher/?advanced=true" target="_blank">GDK Launcher</a>.
+        Open the <a href="/gdk/launcher/?advanced=true">GDK Launcher</a>.
       </li>
       <li>Create a new project using the following selections. (Alternatively, use these shortcuts for <a
           href="/gdk/launcher/?advanced=true&amp;type=APPLICATION&amp;name=GettingStarted&amp;package=com.example&amp;clouds=AWS%7COCI%7CGCP%7CAzure&amp;language=JAVA&amp;buildTool=MAVEN&amp;test=JUNIT&amp;java-version=JDK_17&amp;sample-code=true&amp;services=OBJECTSTORE">Maven</a>
@@ -363,7 +363,7 @@ micronaut.object-storage.oracle-cloud.default.bucket=OBJECT_STORAGE_BUCKET</code
             <div class="row">
               <div class="col-sm guides-box gs-section-indent aws gradle maven">
                 <p class="gs-root-texts">For this section, you will need an Amazon Web Services account and a S3 bucket created already. See <a
-                  href="/gdk/gdk-modules/object-storage/micronaut-object-storage-aws/" target="_blank">Amazon S3 Object Storage
+                  href="/gdk/gdk-modules/object-storage/micronaut-object-storage-aws/">Amazon S3 Object Storage
                   Guide</a> for assistance.</p>
               <p class="gs-root-texts">Update the Amazon Web Services configuration file (<em>aws/src/main/resources/application.properties</em>)
                 with the name of the bucket:</p>
@@ -380,7 +380,7 @@ micronaut.object-storage.oracle-cloud.default.bucket=OBJECT_STORAGE_BUCKET</code
             <div class="row">
               <div class="col-sm guides-box gs-section-indent gcp gradle maven">
                 <p class="gs-root-texts">For this section, you will need a Google Cloud Platform account and an Object Storage bucket created already.
-                  See <a href="/gdk/gdk-modules/object-storage/micronaut-object-storage-google-cloud/" target="_blank">GCP Object Storage
+                  See <a href="/gdk/gdk-modules/object-storage/micronaut-object-storage-google-cloud/">GCP Object Storage
                     Guide</a> for assistance.</p>
                 <p class="gs-root-texts">Update the Google Cloud Platform configuration file (<em>gcp/src/main/resources/application.properties</em>)
                   with the name of the bucket:</p>
@@ -397,7 +397,7 @@ micronaut.object-storage.oracle-cloud.default.bucket=OBJECT_STORAGE_BUCKET</code
             <div class="row">
               <div class="col-sm guides-box gs-section-indent azure gradle maven">
                 <p class="gs-root-texts">For this section, you will need a Microsoft Azure account and a Storage Container created already.
-                  See <a href="/gdk/gdk-modules/object-storage/micronaut-object-storage-azure/" target="_blank">Azure Object Storage
+                  See <a href="/gdk/gdk-modules/object-storage/micronaut-object-storage-azure/">Azure Object Storage
                     Guide</a> for assistance.</p>
                 <p class="gs-root-texts">Update the Azure configuration file (<em>azure/src/main/resources/application.properties</em>)
                   with the name of the container and the storage endpoint:</p>
@@ -749,7 +749,7 @@ micronaut.object-storage.azure.default.endpoint=STORAGE_ENDPOINT</code><button t
 
     <h2 style="color:#ffffff">5. Use VS Code and Oracle Cloud Infrastructure DevOps Service</h2>
     <p class="gs-root-texts">
-      Thanks to the <a href="/gdk/vscode-tools/" target="_blank">GDK extension</a>, you can leverage the Oracle Cloud Infrastructure DevOps Resources in VS Code to build a native
+      Thanks to the <a href="/gdk/vscode-tools/">GDK extension</a>, you can leverage the Oracle Cloud Infrastructure DevOps Resources in VS Code to build a native
       executable of your application on the cloud instead of locally.
     </p>
 
@@ -761,26 +761,26 @@ micronaut.object-storage.azure.default.endpoint=STORAGE_ENDPOINT</code><button t
 
     <h3 style="color:#ffffff">6.1. Oracle Cloud Infrastructure</h3>
     <p class="gs-root-texts">
-      You can install the Visual Studio Code extensions for GDK, covered in <a href="/gdk/vscode-tools/graal-development-kit-extension-pack/" target="_blank">Installing the Graal Development Kit Tools</a>,
-      and use <a href="/gdk/vscode-tools/oci-devops-tools/" target="_blank">OCI DevOps Resources</a> to use the Oracle Cloud Infrastructure DevOps service to deploy your application
+      You can install the Visual Studio Code extensions for GDK, covered in <a href="/gdk/vscode-tools/graal-development-kit-extension-pack/">Installing the Graal Development Kit Tools</a>,
+      and use <a href="/gdk/vscode-tools/oci-devops-tools/">OCI DevOps Resources</a> to use the Oracle Cloud Infrastructure DevOps service to deploy your application
       to a pre-created Kubernetes cluster from within VS Code.
       </p>
     <p><img src="/gdk/docs/get-started/images/VSCode_OCIServices.png" class="gs-images" alt="OCI Services in VS Code">
     </p>
     <p class="gs-root-texts">
-      Using the <a href="/gdk/vscode-tools/oci-devops-tools/" target="_blank">OCI DevOps Resources in VS Code</a>,
+      Using the <a href="/gdk/vscode-tools/oci-devops-tools/">OCI DevOps Resources in VS Code</a>,
       you can easily deploy a Java application to Oracle Cloud Infrastructure, make source code changes,
       push them into the Oracle Cloud Infrastructure Git repository, and then trigger the build of a container image with
       your native executable or a container image with JVM using the predefined Oracle Cloud Infrastructure Build Pipelines.
     </p>
     <p class="gs-root-texts">
-      Learn more about this is in the <a href="/gdk/get-started/setting-oci-devops-pipeline-in-vscode/" target="_blank">Setting Oracle Cloud Infrastructure DevOps Build and
+      Learn more about this is in the <a href="/gdk/get-started/setting-oci-devops-pipeline-in-vscode/">Setting Oracle Cloud Infrastructure DevOps Build and
         Development Pipeline in VS Code guide</a>.
     </p>
 
     <h3 style="color:#ffffff">6.2. AWS</h3>
     <p class="gs-root-texts">
-      A complete guide on <a href="/gdk/get-started/deploy-to-aws-eks-in-vscode/" target="_blank">how to deploy an application to a Kubernetes cluster in AWS EKS</a> is available.
+      A complete guide on <a href="/gdk/get-started/deploy-to-aws-eks-in-vscode/">how to deploy an application to a Kubernetes cluster in AWS EKS</a> is available.
     </p>
     <p class="gs-root-texts">With your AWS account ready and access to EKS configured, simply invoke this command:</p>
 
@@ -852,7 +852,7 @@ micronaut.object-storage.azure.default.endpoint=STORAGE_ENDPOINT</code><button t
 
     <h3 style="color:#ffffff">6.3. GCP</h3>
     <p class="gs-root-texts">
-      A complete guide on <a href="/gdk/vscode-guides/deploy-to-google-k8s-engine-in-vscode/" target="_blank">how to deploy an application to Google Kubernetes Engine</a> is available.
+      A complete guide on <a href="/gdk/vscode-guides/deploy-to-google-k8s-engine-in-vscode/">how to deploy an application to Google Kubernetes Engine</a> is available.
     </p>
     <p class="gs-root-texts">With your GCP account ready and access to GKE configured, simply invoke this command:</p>
 
@@ -924,7 +924,7 @@ micronaut.object-storage.azure.default.endpoint=STORAGE_ENDPOINT</code><button t
 
     <h3 style="color:#ffffff">6.4. Azure</h3>
     <p class="gs-root-texts">
-      A complete guide on <a href="/gdk/gdk-modules/kubernetes/micronaut-k8s-azure/" target="_blank">how to deploy an application to Azure Kubernetes Engine</a> is available.
+      A complete guide on <a href="/gdk/gdk-modules/kubernetes/micronaut-k8s-azure/">how to deploy an application to Azure Kubernetes Engine</a> is available.
     </p>
     <p class="gs-root-texts">With your Azure account ready and access to AKS configured, simply invoke this command:</p>
 

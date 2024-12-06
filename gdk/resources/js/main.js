@@ -861,7 +861,6 @@ $(function() {
   $(filterElem).on('click', (event) => {
     selectionBuildTool = event.target.innerHTML;
   });
-
   $(document).on('click', 'a', (event) => {
     const elemHref = event.target.getAttribute('href');
     if (elemHref === '#java' || elemHref === '#kotlin' || elemHref === '#groovy' ||
@@ -870,7 +869,8 @@ $(function() {
     }
     if (elemHref.indexOf('gdk-modules') > 0) {
       event.preventDefault();
-      window.open(`${event.target.href}?buildTool=${selectionBuildTool.toLowerCase()}&lang=${selectionLanguage.toLowerCase()}`, '_blank').focus();
+      const newUrl = `${event.target.href}?buildTool=${selectionBuildTool.toLowerCase()}&lang=${selectionLanguage.toLowerCase()}`;
+      window.location.href = newUrl;
     }
   });
 });
