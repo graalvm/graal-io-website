@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="The Graal Development Kit for Micronaut (GDK) is a build of a curated set of Micronaut framework modules and their required libraries for building portable c..."/>
-  <meta name="last_modified" content="2024-07-19 14:08:49 +0000"/>
-  <meta name="last_built" content="2024-12-06 14:26:04 +0000"/>
+  <meta name="last_modified" content="2025-01-16 11:44:56 +0000"/>
+  <meta name="last_built" content="2025-02-06 20:56:42 +0000"/>
   <link rel="stylesheet" href="/gdk/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gdk/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gdk/resources/img/favicon/favicon-32x32.png">
@@ -459,7 +459,7 @@ It provides additional features for application development such as database con
 <ul>
   <li><a href="#debug-your-micronaut-application">Debug Your Micronaut Application</a></li>
   <li><a href="#view-suggested-code-completions">View Suggested Code Completions</a></li>
-  <li><a href="#navigate-micronaut-source-code">Navigate Micronaut Source Code</a></li>
+  <li><a href="#navigate-micronaut-source-code">Navigate to Micronaut Source Code</a></li>
   <li><a href="#view-defined-beans-and-endpoints">View Defined Beans and Endpoints</a></li>
   <li><a href="#compose-rest-queries">Compose REST Queries</a></li>
   <li><a href="#package-your-micronaut-application">Package Your Micronaut Application</a></li>
@@ -468,6 +468,9 @@ It provides additional features for application development such as database con
   <li><a href="#deploy-your-application-to-oracle-cloudinfrastructure">Deploy Your Application to Oracle Cloud Infrastructure</a></li>
   <li><a href="#connect-to-an-oracle-autonomous-database">Connect to an Oracle Autonomous Database</a></li>
   <li><a href="#create-entity-and-repository-classes-from-an-existing-database-schema">Create Entity and Repository Classes From an Existing Database Schema</a></li>
+  <li><a href="#create-micronaut-controller-classes-from-micronaut-data-repositories">Create Micronaut Controller Classes from Micronaut Data Repositories</a></li>
+  <li><a href="#create-tests-for-micronaut-controller-endpoints">Create Tests for Micronaut Controller Endpoints</a></li>
+  <li><a href="#run-tests-with-multicloud-tester">Run Tests with Multicloud Tester</a></li>
 </ul>
     
       <h3 id="prerequisites">
@@ -867,7 +870,7 @@ The temporary file has permissions that ensure only you are able to read it.</p>
   <li>
     <p>From the list of tables, select the tables for which you want to create corresponding entities.</p>
 
-    <p><img src="/gdk/docs/vscode-tools/images/micronaut/micronaut-select-db-tables.png" alt="Select Database Tables" /></p>
+    <p><img src="/gdk/docs/vscode-tools/images/micronaut/create-entities.gif" alt="Create entity classes" /></p>
   </li>
   <li>Click <strong>Enter</strong>.</li>
 </ol>
@@ -886,10 +889,109 @@ The temporary file has permissions that ensure only you are able to read it.</p>
   <li>
     <p>From the list of entities, select the entities for which you want to create corresponding repositories.</p>
 
-    <p><img src="/gdk/docs/vscode-tools/images/micronaut/micronaut-select-entity-classes.png" alt="Create Repositories" /></p>
+    <p><img src="/gdk/docs/vscode-tools/images/micronaut/create-repositories.gif" alt="Create Repositories" /></p>
   </li>
   <li>Click <strong>Enter</strong>.</li>
 </ol>
+    
+      <h3 id="create-micronaut-controller-classes-from-micronaut-data-repositories">
+        
+        
+          Create Micronaut Controller Classes from Micronaut Data Repositories <a href="#create-micronaut-controller-classes-from-micronaut-data-repositories" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>In a similar way, you can create Controller classes from Micronaut Data repositories.
+By creating Controllers that expose your Micronaut Data repository interfaces, you can quickly turn them into a REST API.</p>
+
+<p>Create your Micronaut Data entity and repository interfaces first and then:</p>
+
+<ol>
+  <li>Right-click the package name and select <strong>New From Template…</strong> from the menu.</li>
+  <li>When prompted, select <strong>Micronaut</strong>, then <strong>Micronaut Controller Classes (from Data Repositories)</strong>.</li>
+  <li>From the list of repositories, select one or more items. You can select all, a selection of them.</li>
+  <li>Click <strong>Enter</strong>.</li>
+</ol>
+
+<p>A controller that has access to the data repository is generated for each of the Micronaut Data repository interfaces that you selected in the wizard.
+By default, it contains a REST endpoint to access the repository’s <code>findAll()</code> method in its <code>list()</code> method.</p>
+
+<p>Other REST Endpoints accessing a repository can be added to the controller.
+It is possible to add various <em>get</em>, <em>save</em>, <em>update</em>, and <em>delete</em> endpoint methods delegating to methods available in the corresponding repository.This can be done either through <strong>code completion</strong> (select the desired method from the list) or directly from the editor:  <strong>Source Action… | Generate Data Endpoint…</strong>.</p>
+
+<p>Currently, variants of the <code>get()</code>, <code>save()</code>, <code>update()</code>, and <code>delete()</code> methods are provided.</p>
+
+<p><img src="/gdk/docs/vscode-tools/images/micronaut/create-controllers.gif" alt="Create Micronaut Controller Classes" /></p>
+    
+      <h3 id="create-tests-for-micronaut-controller-endpoints">
+        
+        
+          Create Tests for Micronaut Controller Endpoints <a href="#create-tests-for-micronaut-controller-endpoints" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>To generate a test class with a test method for every endpoint method of a controller class, invoke <strong>Source Action</strong> and then <strong>Generate Micronaut Endpoint Tests…</strong> inside of the controller class opened in the editor.</p>
+
+<p><img src="/gdk/docs/vscode-tools/images/micronaut/controller-source-actions.png" alt="Create Tests for Micronaut Controller Endpoints" /></p>
+    
+      <h3 id="run-tests-with-multicloud-tester">
+        
+        
+          Run Tests with Multicloud Tester <a href="#run-tests-with-multicloud-tester" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>The Multicloud Tester is a feature provided by the extension to run application tests.
+It is specifically designed for multicloud <a href="https://graal.cloud/gdk/">GDK</a> applications.
+This feature introduces a new <strong>Text Matrix</strong> output window, which displays a table view of all project tests.</p>
+
+<p>Follow these steps to get started with this feature:</p>
+<ol>
+  <li>Disable the <a href="https://marketplace.visualstudio.com/items?itemName=redhat.java">Language Support for Java(TM) by Red Hat</a>. Open the Extensions window in Visual Studio Code and disable the extension.</li>
+  <li>Enable the <a href="https://marketplace.visualstudio.com/items?itemName=ASF.apache-netbeans-java">Apache NetBeans Language Server Extension</a> if it is not already enabled.</li>
+  <li>Open a GDK project developed for one or more supported cloud platforms (OCI, AWS, GCP, or Azure).</li>
+</ol>
+
+<p>Once the project is detected, the Text Matrix panel will appear automatically in the bottom panel area of VS Code, alongside the Debug Console and Terminal.</p>
+
+<blockquote>
+  <p>If the Language Support for Java(TM) by Red Hat is not disabled, the disable dialogue will appear in the right bottom corner:</p>
+</blockquote>
+
+<p><img src="/gdk/docs/vscode-tools/images/micronaut/disable-java-pack-dialogue.png" alt="Disable Java LSP" /></p>
+
+<p>The Text Matrix organizes test results in a table format:</p>
+<ul>
+  <li>Columns represent different clouds or modules.</li>
+  <li>Rows represent test suites or individual test methods.</li>
+</ul>
+
+<p>A new default test-running profile is registered, which includes a new action <strong>Run Tests in Parallel</strong> for each GDK project module. 
+Running tests in parallel significantly speeds up test execution.</p>
+
+<p><img src="/gdk/docs/vscode-tools/images/micronaut/run_tests_parallel.gif" alt="Running Tests in Parallel" /></p>
+
+<p>The Text Matrix provides the following actions to streamline your testing workflow:</p>
+<ul>
+  <li>
+    <p>Opening a test case: click on any cell in the matrix to open the corresponding test case source code.</p>
+
+    <p><img src="/gdk/docs/vscode-tools/images/micronaut/test_case_click.gif" alt="Test Matrix Cell Click" /></p>
+  </li>
+  <li>
+    <p>Running tests in parallel shortcut:</p>
+
+    <p><img src="/gdk/docs/vscode-tools/images/micronaut/run_tests_parallel_shortcut.png" alt="Running Tests in Parallel Shortcut" /></p>
+  </li>
+  <li>
+    <p>Clearing test results shortcut:</p>
+
+    <p><img src="/gdk/docs/vscode-tools/images/micronaut/clear_all_results.png" alt="Clear test results" /></p>
+  </li>
+</ul>
     
       <h2 id="extension-settings">
         

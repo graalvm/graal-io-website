@@ -10,12 +10,12 @@
 
   <title>
     
-      Deploying a Java Application to AWS App Runner in VS Code
+      Deploying a Micronaut Application to AWS App Runner in VS Code
     
   </title>
   <meta name="description" content="The Graal Development Kit for Micronaut (GDK) is a build of a curated set of Micronaut framework modules and their required libraries for building portable c..."/>
-  <meta name="last_modified" content="2024-07-19 14:08:49 +0000"/>
-  <meta name="last_built" content="2024-12-06 14:26:04 +0000"/>
+  <meta name="last_modified" content="2024-12-06 12:23:24 +0000"/>
+  <meta name="last_built" content="2025-02-06 20:56:42 +0000"/>
   <link rel="stylesheet" href="/gdk/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gdk/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gdk/resources/img/favicon/favicon-32x32.png">
@@ -235,7 +235,7 @@
           
             
             <a href="/gdk/vscode-guides/deploy-to-aws-apprunner-in-vscode/">
-              Deploying a Java Application to AWS App Runner in VS Code
+              Deploying a Micronaut Application to AWS App Runner in VS Code
             </a>
           </li>
 
@@ -268,7 +268,7 @@
           
             
             <a href="/gdk/vscode-guides/deploy-to-aws-eks-in-vscode/">
-              Deploying a Java Application to Amazon Elastic Kubernetes Cluster in VS Code
+              Deploying a Micronaut Application to Amazon Elastic Kubernetes Cluster in VS Code
             </a>
           </li>
 
@@ -456,10 +456,10 @@
 
     <div class="col-sm-9 docsmod">
       <div id="content-wrapper" class="docs-content docs-content--with-sidebar">
-        <h1 id="deploying-a-java-application-to-amazon-web-services-app-runner-in-vs-code">
+        <h1 id="deploying-a-micronaut-application-to-amazon-web-services-app-runner-in-vs-code">
         
         
-          Deploying a Java Application to Amazon Web Services App Runner in VS Code
+          Deploying a Micronaut Application to Amazon Web Services App Runner in VS Code
         
         
       </h1>
@@ -546,15 +546,17 @@
   </li>
   <li>Follow the command prompts to generate a new Maven or Gradle project. For example, to create a simple Java server application:
     <ul>
-      <li>Pick Micronaut version: <em>Default</em></li>
+      <li>Pick Micronaut version</li>
       <li>Pick application type: <em>Application</em></li>
-      <li>Pick project Java: <em>GraalVM</em> or Other Java</li>
+      <li>Pick project Java: Select your JDK installation</li>
       <li>Provide a project name: <em>aws-apprunner-demo</em></li>
       <li>Provide base package: <em>com.example</em></li>
       <li>Pick project services: none. Click <strong>OK</strong> to confirm</li>
+      <li>Pick project features: none. Click <strong>OK</strong> to confirm</li>
       <li>Pick build tool: <em>Gradle (Groovy)</em></li>
       <li>Pick test framework: <em>JUnit</em></li>
-      <li>Pick cloud platform: <em>AWS</em>. Click <strong>OK</strong> to confirm</li>
+      <li>Pick cloud platform: <em>AWS</em></li>
+      <li>Pick generate sample code: <em>No</em></li>
     </ul>
   </li>
   <li>
@@ -644,7 +646,7 @@
     <p>Enter a repository name, for example, <em>gdk-demo</em>.</p>
   </li>
   <li>
-    <p>Add the path (a repository URI) to your newly created repository in the build configuration file. To get the correct path, open the ECR repositories list, right-click your new repository, and click <strong>Copy Repository URL</strong>:</p>
+    <p>Add the path (a repository URI) to your newly created repository in the build configuration file. To get the correct path, open the ECR repositories list, right-click your new repository, and click <strong>Copy Repository URI</strong>:</p>
 
     <p><img src="/gdk/docs/vscode-tools/images/aws/ecr-copy-repo-uri.png" alt="Amazon ECR: Copy Repository URL" /></p>
 
@@ -667,7 +669,7 @@
         
       </h2>
 
-<p>In this section, you create a container image of your Java application, and then push the image to Amazon ECR.</p>
+<p>In this section, you create a container image of your Micronaut application, and then push the image to Amazon ECR.</p>
 
 <blockquote>
   <p>Note: The build and deployment architecture must match. You cannot build a container image on an AArch64 platform and deploy it to an Intel-based platform, such as Amazon Elastic Compute Cloud (Amazon EC2) or Amazon Elastic Kubernetes Service (Amazon EKS).</p>

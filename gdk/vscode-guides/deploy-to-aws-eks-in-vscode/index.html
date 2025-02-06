@@ -10,12 +10,12 @@
 
   <title>
     
-      Deploying a Java Application to Amazon Elastic Kubernetes Cluster in VS Code
+      Deploying a Micronaut Application to Amazon Elastic Kubernetes Cluster in VS Code
     
   </title>
   <meta name="description" content="The Graal Development Kit for Micronaut (GDK) is a build of a curated set of Micronaut framework modules and their required libraries for building portable c..."/>
-  <meta name="last_modified" content="2024-07-19 14:08:49 +0000"/>
-  <meta name="last_built" content="2024-12-06 14:26:04 +0000"/>
+  <meta name="last_modified" content="2024-12-06 14:56:47 +0000"/>
+  <meta name="last_built" content="2025-02-06 20:56:42 +0000"/>
   <link rel="stylesheet" href="/gdk/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gdk/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gdk/resources/img/favicon/favicon-32x32.png">
@@ -235,7 +235,7 @@
           
             
             <a href="/gdk/vscode-guides/deploy-to-aws-apprunner-in-vscode/">
-              Deploying a Java Application to AWS App Runner in VS Code
+              Deploying a Micronaut Application to AWS App Runner in VS Code
             </a>
           </li>
 
@@ -246,7 +246,7 @@
           
             
             <a href="/gdk/vscode-guides/deploy-to-aws-eks-in-vscode/">
-              Deploying a Java Application to Amazon Elastic Kubernetes Cluster in VS Code
+              Deploying a Micronaut Application to Amazon Elastic Kubernetes Cluster in VS Code
             </a>
           </li>
 
@@ -456,15 +456,15 @@
 
     <div class="col-sm-9 docsmod">
       <div id="content-wrapper" class="docs-content docs-content--with-sidebar">
-        <h1 id="deploying-a-java-application-to-amazon-elastic-kubernetes-cluster-in-vs-code">
+        <h1 id="deploying-a-micronaut-application-to-amazon-elastic-kubernetes-cluster-in-vs-code">
         
         
-          Deploying a Java Application to Amazon Elastic Kubernetes Cluster in VS Code
+          Deploying a Micronaut Application to Amazon Elastic Kubernetes Cluster in VS Code
         
         
       </h1>
 
-<p>This guide shows you how to create a Java application, containerize and deploy it to <a href="https://aws.amazon.com/eks/">Amazon Elastic Kubernetes Service (EKS)</a> from within VS Code with ease, using the <a href="https://marketplace.visualstudio.com/items?itemName=oracle-labs-graalvm.gcn">Graal Development Kit for Micronaut Extension Pack</a>. The <a href="https://micronaut-projects.github.io/micronaut-kubernetes/snapshot/guide/">Micronaut<sup>®</sup> Kubernetes module</a> provides seamless integration with EKS.</p>
+<p>This guide shows you how to create a Micronaut application, containerize and deploy it to <a href="https://aws.amazon.com/eks/">Amazon Elastic Kubernetes Service (EKS)</a> from within VS Code with ease, using the <a href="https://marketplace.visualstudio.com/items?itemName=oracle-labs-graalvm.gcn">Graal Development Kit for Micronaut Extension Pack</a>. The <a href="https://micronaut-projects.github.io/micronaut-kubernetes/snapshot/guide/">Micronaut<sup>®</sup> Kubernetes module</a> provides seamless integration with EKS.</p>
 
 <blockquote>
   <p><a href="https://aws.amazon.com/eks/">EKS</a> is a managed Kubernetes service for deploying containerized applications to the cloud.</p>
@@ -495,7 +495,7 @@
         
       </h2>
 
-<p>To get started, install the <em>Graal Development Kit for Micronaut</em> Extension Pack and AWS Toolkit for Visual Studio Code.</p>
+<p>To get started, install the <em>Graal Development Kit for Micronaut</em> Extension Pack and <em>AWS Toolkit for Visual Studio Code</em>.</p>
 
 <ol>
   <li>
@@ -532,15 +532,17 @@
   </li>
   <li>Follow the command prompts to generate a new Maven or Gradle project. For example, to create a simple Java application:
     <ul>
-      <li>Pick Micronaut version: <em>Default</em></li>
+      <li>Pick Micronaut version</li>
       <li>Pick application type: <em>Application</em></li>
-      <li>Pick project Java: <em>GraalVM</em> or Other Java</li>
+      <li>Pick project Java: Select your JDK installation</li>
       <li>Provide a project name: <em>aws-k8s-demo</em></li>
       <li>Provide base package: <em>com.example</em></li>
       <li>Pick project services: <em>none</em>. Click <strong>OK</strong> to confirm</li>
+      <li>Pick project features: none. Click <strong>OK</strong> to confirm</li>
       <li>Pick build tool: <em>Gradle (Groovy)</em></li>
       <li>Pick test framework: <em>JUnit</em></li>
-      <li>Pick cloud platform: <em>AWS</em>. Click <strong>OK</strong> to confirm</li>
+      <li>Pick cloud platform: <em>AWS</em></li>
+      <li>Pick generate sample code: <em>No</em></li>
     </ul>
   </li>
   <li>
@@ -715,7 +717,7 @@ public class HelloController {
         
       </h2>
 
-<p>In this section, you create a container image of your Java application and then push it to Amazon ECR.</p>
+<p>In this section, you create a container image of your Micronaut application and then push it to Amazon ECR.</p>
 
 <blockquote>
   <p>Note: The build and deployment architecture must match. You cannot build a container image on an AArch64 platform and deploy it to an Intel-based platform, such as Amazon Elastic Compute Cloud (Amazon EC2) or Amazon Elastic Kubernetes Service (Amazon EKS).</p>
