@@ -1,1015 +1,1087 @@
 <!DOCTYPE html>
-<html lang="en"><head><style type="text/css">.truste_caIcon_display {display: block !important;}</style><style type="text/css">.truste_cursor_pointer {cursor: pointer;}.truste_border_none {border: none;}</style>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta property="og:image" content="https://graal-cloud-staging.us.oracle.com/gdk/resources/img/graalvm.png">
-    <meta name="twitter:widgets:border-color" content="#55acee">
+<html lang="en">
 
-    <link rel="stylesheet" href="https://graal-cloud-staging.us.oracle.com/gdk/resources/lib/highlight/highlight.min.js">
-    <script src="https://graal-cloud-staging.us.oracle.com/gdk/resources/lib/highlight/highlight.min.js"></script>
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:image" content="/gdk/resources/img/graalvm.png" />
+  <meta name="twitter:widgets:border-color" content="#55acee">
 
-    <title>Running a Database Application in Oracle Cloud and Storing Properties in OCI Vault from VS Code</title>
-    <meta name="description" content="The Graal Development Kit for Micronaut (GDK) is a build of a curated set of Micronaut framework modules and their required libraries for building portable c...">
-    <meta name="last_modified" content="2024-10-10 16:30:05 +0000">
-    <meta name="last_built" content="2024-10-29 09:25:27 +0000">
-    <link rel="stylesheet" href="https://graal-cloud-staging.us.oracle.com/gdk/assets/main.css" >
-    <link rel="apple-touch-icon" sizes="180x180" href="https://graal-cloud-staging.us.oracle.com/gdk/resources/img/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="https://graal-cloud-staging.us.oracle.com/gdk/resources/img/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://graal-cloud-staging.us.oracle.com/gdk/resources/img/favicon/favicon-16x16.png">
-    <link rel="manifest" href="https://graal-cloud-staging.us.oracle.com/gdk/resources/img/favicon/site.webmanifest">
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="theme-color" content="#ffffff">
-    <meta name="google-site-verification" content="-vRqwa9WYn6AaQGnl88xvrLw6ac4xoKVkZkhanmlRhU">
-    <link rel="canonical" href="https://www.graal.cloud/gdk/gdk-modules/database/micronaut-data-jdbc-repository/">
+  <title>
+    
+      Running a Database Application in Oracle Cloud and Storing Properties in OCI Vault from VS Code
+    
+  </title>
+  <meta name="description" content="The Graal Development Kit for Micronaut (GDK) is a build of a curated set of Micronaut framework modules and their required libraries for building portable c..."/>
+  <meta name="last_modified" content="2024-12-01 10:35:40 +0000"/>
+  <meta name="last_built" content="2025-02-12 19:02:56 +0000"/>
+  <link rel="stylesheet" href="/gdk/assets/main.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="/gdk/resources/img/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/gdk/resources/img/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/gdk/resources/img/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/gdk/resources/img/favicon/site.webmanifest">
+  <link rel="stylesheet" type="text/css" href="/gdk/resources/styles/codicon.css" />
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="google-site-verification" content="-vRqwa9WYn6AaQGnl88xvrLw6ac4xoKVkZkhanmlRhU" />
+  <link rel="canonical" href="https://www.graal.cloud/gdk/vscode-guides/running-db-application-and-storing-properties-in-oci-vault/">
 
-    <!-- TODO: move to stylesheet -->
-    <style>
-        @media (min-width: 768px) {
-            .content {
-                padding-top: 60px;
-            }
-        }
+  <!-- jQuery UI Tabs -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.14.0/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/gdk/resources/lib/jquery/jquery-ui.css">
+</head>
 
-        .colist table {
-            border: 0;
-
-            td {
-                border: 0;
-            }
-
-            tr {
-                border: 0;
-            }
-        }
-
-        .imageblock {
-            max-width: 50%;
-        }
-
-        main{
-            padding-top: 50px !important;
-        }
-
-        .content{
-            padding-top: 0;
-        }
-
-        ul.sectlevel0 > li > a:first-of-type {
-            color: #F68831 !important;
-            font-weight: 700;
-        }
-
-        ul.sectlevel1 > li > a {
-            color: #dbe6ff;
-            font-weight: 400 !important;
-            padding-left: 20px;
-            font-size: 14px;
-        }
-
-        .conum[data-value]::after {
-            content: attr(data-value);
-            display: inline-block;
-            border: 1px solid;
-            -webkit-border-radius: 50%;
-            border-radius: 50%;
-            text-align: center;
-            font-size: .75em;
-            width: 1.67em;
-            height: 1.67em;
-            line-height: 1.67em;
-            font-family: "Open Sans", "DejaVu Sans", sans-serif;
-            font-style: normal;
-            font-weight: bold;
-        }
-        .conum[data-value]+b {
-            display: none;
-        }
-    </style>
-
+      <script src="/gdk/resources/lib/jquery/jquery-3.7.1.min.js"></script>
+    <script src="/gdk/resources/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src='/gdk/resources/lib/sticky-sidebar/resizeSensor.js'></script>
+    <script src='/gdk/resources/lib/sticky-sidebar/sticky-sidebar.min.js'></script>
+    <script src="/gdk/resources/lib/highlight/highlight.min.js"></script>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- Add TRUSTe Consent Script and Analytics -->
+    <script async="async" type="text/javascript" src='//consent.trustarc.com/notice?domain=oracle.com&c=teconsent&js=bb&noticeType=bb&text=true&cdn=1&pcookie&gtm=1' crossorigin></script>
+    <script src="https://www.oracle.com/assets/truste-oraclelib.js"></script>
     <!-- jQuery UI Tabs -->
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.14.0/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="https://graal-cloud-staging.us.oracle.com/gdk/resources/lib/jquery/jquery-ui.css">
-    <script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/a8476471/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script src="https://www.youtube.com/iframe_api"></script><script async="" src="https://tags.bkrtx.com/js/bk-coretag.js"></script><script src="https://graal-cloud-staging.us.oracle.com/gdk/resources/lib/jquery/jquery-3.7.1.min.js"></script><script src="https://graal-cloud-staging.us.oracle.com/gdk/resources/lib/bootstrap/js/bootstrap.min.js"></script><script src="https://graal-cloud-staging.us.oracle.com/gdk/resources/lib/sticky-sidebar/resizeSensor.js"></script><script src="https://graal-cloud-staging.us.oracle.com/gdk/resources/lib/sticky-sidebar/sticky-sidebar.min.js"></script><script async="" defer="" src="https://buttons.github.io/buttons.js"></script><script async="async" type="text/javascript" src="//consent.trustarc.com/notice?domain=oracle.com&amp;c=teconsent&amp;js=bb&amp;noticeType=bb&amp;text=true&amp;cdn=1&amp;pcookie&amp;gtm=1" crossorigin="" id="truste_0.9548969741402604"></script><script src="https://www.oracle.com/assets/truste-oraclelib.js"></script><script src="https://code.jquery.com/ui/1.14.0/jquery-ui.js"></script></head>
-
-<!-- Add TRUSTe Consent Script and Analytics -->
+    <script src="https://code.jquery.com/ui/1.14.0/jquery-ui.js"></script>
 
 
-<!-- jQuery UI Tabs -->
+  <body class="preload">
+    <!-- Start SiteCatalyst code -->
+    <script language="JavaScript" src="https://www.oracle.com/us/assets/metrics/ora_otn.js"></script>
+    <!-- End SiteCatalyst code -->
 
-<body class="">
-<!-- Start SiteCatalyst code -->
-<script language="JavaScript" src="https://www.oracle.com/us/assets/metrics/ora_otn.js"></script><script type="text/javascript" src="https://www.oracleimg.com/us/assets/metrics/ora_code_otn.js"></script><script type="text/javascript" src="https://www.oracleimg.com/us/assets/metrics/ora_code.js"></script>
-<!-- End SiteCatalyst code -->
+    <div  class="wrapper wrapper--nofooter" >
 
-<div class="wrapper wrapper--nofooter">
+      <header  class="header header--content" 
+  role="banner">
 
-    <header class="header header--content" role="banner">
-        <nav class="menu">
-            <div class="menu__row">
-                <div>
-                    <a href="/gdk/" class="activeMenuItem">
-                        <img class="logo-mobile" src="https://graal-cloud-staging.us.oracle.com/gdk/resources/img/gdk-logo-new.svg" alt="Graal Development Kit for Micronaut logo" style="margin-left: 0px;">
-                    </a>
+  
+
+  
+
+    <nav class="menu">
+      <div class="menu__row">
+        <div>
+          <a href="/gdk/">
+            <img class="logo-mobile" src="/gdk/resources/img/gdk-logo-new.svg" alt="Graal Development Kit for Micronaut logo">
+          </a>
+        </div>
+        <div class="menu__container">
+          <ul class="menu__list">
+            <li class="menu__item">
+              <a href="/gdk/about/" class="menu__link">About</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gdk/get-started/" class="menu__link">Get Started</a>
+            </li>
+            <li class="menu__item">
+              <div class="stack-container">
+                <a href="#" class="menu__link stack__header">Docs</a>
+                <div class="stack-menu-learn">
+                  <div class="stack-row">
+                    <div class="stack-column">
+                      <div class="stack__item">
+                        <img src='/gdk/resources/img/header-navigation/modules.svg'>
+                        <a href="/gdk/modules/" class="item-line">Modules</a>
+                      </div>
+                      <div class="stack__item">
+                        <img src='/gdk/resources/img/header-navigation/guides.svg'>
+                        <a href="/gdk/guides/" class="item-line">Guides</a>
+                      </div>
+                      <div class="stack__item">
+                        <img src='/gdk/resources/img/header-navigation/labs.svg'>
+                        <a href="/gdk/hands-on-labs/" class="item-line">Hands-On Labs</a>
+                      </div>
+                      <div class="stack__item">
+                        <img src='/gdk/resources/img/header-navigation/tools.svg'>
+                        <a href="/gdk/vscode-tools/" class="item-line">Tools</a>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div class="menu__container">
-                    <ul class="menu__list">
-                        <li class="menu__item">
-                            <a href="/gdk/about/" class="menu__link">About</a>
-                        </li>
-                        <li class="menu__item">
-                            <a href="/gdk/get-started/" class="menu__link">Get Started</a>
-                        </li>
-                        <li class="menu__item">
-                            <div class="stack-container">
-                                <a href="#" class="menu__link stack__header">Docs</a>
-                                <div class="stack-menu-learn">
-                                    <div class="stack-row">
-                                        <div class="stack-column">
-                                            <div class="stack__item">
-                                                <img src="https://graal-cloud-staging.us.oracle.com/gdk/resources/img/header-navigation/modules.svg">
-                                                <a href="/gdk/modules/" class="item-line">Modules</a>
-                                            </div>
-                                            <div class="stack__item">
-                                                <img src="https://graal-cloud-staging.us.oracle.com/gdk/resources/img/header-navigation/guides.svg">
-                                                <a href="/gdk/guides/" class="item-line">Guides</a>
-                                            </div>
-                                            <div class="stack__item">
-                                                <img src="https://graal-cloud-staging.us.oracle.com/gdk/resources/img/header-navigation/labs.svg">
-                                                <a href="/gdk/hands-on-labs/" class="item-line">Hands-On Labs</a>
-                                            </div>
-                                            <div class="stack__item">
-                                                <img src="https://graal-cloud-staging.us.oracle.com/gdk/resources/img/header-navigation/tools.svg">
-                                                <a href="/gdk/vscode-tools/" class="item-line">Tools</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="menu__item">
-                            <div class="stack-container">
-                                <a href="#" class="menu__link stack__header">Graal Projects</a>
-                                <div class="stack-menu">
-                                    <div class="stack-row">
-                                        <div class="stack-column">
-                                            <div class="stack__item">
-                                                <img src="https://graal-cloud-staging.us.oracle.com/gdk/resources/img/header-navigation/graalstack.svg">
-                                                <a href="/" class="item-line">Graal</a>
-                                            </div>
-                                            <div class="stack__item">
-                                                <img src="https://graal-cloud-staging.us.oracle.com/gdk/resources/img/header-navigation/graalvm.svg">
-                                                <a href="https://graalvm.org/" class="item-line">GraalVM</a>
-                                            </div>
-                                            <div class="stack__item">
-                                                <img src="https://graal-cloud-staging.us.oracle.com/gdk/resources/img/header-navigation/graalos.svg">
-                                                <a href="/graalos/" class="item-line">GraalOS</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="menu__launch__mobile">
-                            <a href="/gdk/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
-                        </li>
-                    </ul>
+              </div>
+            </li>
+            <li class="menu__item">
+              <div class="stack-container">
+                <a href="#" class="menu__link stack__header">Graal Projects</a>
+                <div class="stack-menu">
+                  <div class="stack-row">
+                    <div class="stack-column">
+                      <div class="stack__item">
+                        <img src='/gdk/resources/img/header-navigation/graalstack.svg'>
+                        <a href="https://graal.cloud/" class="item-line">Graal</a>
+                      </div>
+                      <div class="stack__item">
+                        <img src='/gdk/resources/img/header-navigation/graalvm.svg'>
+                        <a href="https://graalvm.org/" class="item-line">GraalVM</a>
+                      </div>
+                      <div class="stack__item">
+                        <img src='/gdk/resources/img/header-navigation/graalos.svg'>
+                        <a href="https://graal.cloud/graalos/" class="item-line">GraalOS</a>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div class="menu__launch">
-                    <a href="/gdk/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
-                </div>
-            </div>
+              </div>
+            </li>
+            <li class="menu__launch__mobile">
+              <a href="/gdk/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
+            </li>
+          </ul>
+        </div>
+        <div class="menu__launch">
+          <a href="/gdk/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
+        </div>
+      </div>
 
-            <div role="button" class="menu-btn menu-btn--menu js-show-menu" tabindex="-1" title="sweet hamburger">
-                <div class="hamburger">
-                    <div class="inner"></div>
-                </div>
-            </div>
-            <button aria-label="hamburger mobile menu" class="btn btn-mobile-menu js-show-menu">
-                <div class="inner"></div>
-            </button>
-        </nav>
+      <div role="button" class="menu-btn menu-btn--menu js-show-menu" tabindex="-1" title="sweet hamburger">
+        <div class="hamburger">
+          <div class="inner"></div>
+        </div>
+      </div>
+      <button aria-label="hamburger mobile menu" class="btn btn-mobile-menu js-show-menu">
+        <div class="inner"></div>
+      </button>
+    </nav>
+
+  
+</header>
 
 
-    </header>
-
-
-    <main class="content" aria-label="Content">
+      <main  class="content"   aria-label="Content">
         <div class="wrapper wrapper-content">
-            <article>
-                <div class="row d-flex flex-wrap">
-                    <div class="col-sm-3 docsimpro col-bg">
-                        <div class="sidebar-wrap is-affixed" style="height: 473px; position: relative;"><div class="inner-wrapper-sticky" style="position: fixed; top: 74px; left: 0px; width: 300px;">
-                            <div class="sidebar">
-                                <div class="menuabout">
-                                    <img id="sidebarClose" src="https://graal-cloud-staging.us.oracle.com/gdk/resources/img/arrow_sidebar(close).svg" alt="Expand or collapse sidebar" class="btn-color no-display">
-                                    <img id="sidebarOpen" src="https://graal-cloud-staging.us.oracle.com/gdk/resources/img/arrow_sidebar.svg" alt="Expand or collapse sidebar">
-                                </div>
+  <article>
+  <div class="row d-flex flex-wrap">
+    <div class="col-sm-3 docsimpro col-bg">
+      <div class="sidebar-wrap">
+        <div class="sidebar">
+          <div class="menuabout">
+            <img id="sidebarClose" src="/gdk/resources/img/arrow_sidebar(close).svg" alt="Expand or collapse sidebar"
+              class="btn-color no-display">
+            <img id="sidebarOpen" src="/gdk/resources/img/arrow_sidebar.svg" alt="Expand or collapse sidebar">
+          </div>
+          
+<div class="toc-floating">
 
-                                                                <div class="toc-floating">
-                                <div class="toc-bullets">
-                                    <li class="toc-bullets-main">
-                                        <a href="/gdk/vscode-guides/" class="_icon-book">
-                                            VS Code Guides
-                                        </a>
-                                    </li>
-                                    <li class="toc-bullets-sub toc-bullets-highlight">
-                                        <a href="/gdk/vscode-guides/running-db-application-and-storing-properties-in-oci-vault/" class="activeMenuItem">
-                                            Running a Database Application in Oracle Cloud and Storing Properties in OCI Vault from VS Code
-                                        </a>
-                                    </li>
-                                    <div id="toc" class="toc">
-<div id="toctitle"></div>
-<ul class="sectlevel1">
-<li><a href="#create-a-database-application">1. Create a Database Application</a></li>
-<li><a href="#create-an-oracle-cloud-infrastructure-autonomous-database">2. Create an Oracle Cloud Infrastructure Autonomous Database</a></li>
-<li><a href="#connect-to-your-oracle-cloud-infrastructure-autonomous-database-in-vs-code">3. Connect to Your Oracle Cloud Infrastructure Autonomous Database in VS Code</a></li>
-<li><a href="#run-the-application">4. Run the Application</a></li>
-<li><a href="#create-an-oracle-cloud-infrastructure-vault-and-master-encryption-key">5. Create an Oracle Cloud Infrastructure Vault and Master Encryption Key</a></li>
-<li><a href="#set-access-to-oracle-container-engine-for-kubernetes-oke">6. Set Access to Oracle Container Engine for Kubernetes (OKE)</a></li>
-<li><a href="#set-up-an-oracle-cloud-infrastructure-devops-project-in-vs-code">7. Set Up an Oracle Cloud Infrastructure DevOps Project in VS Code</a></li>
-<li><a href="#add-database-credentials-to-oracle-cloud-infrastructure-vault">8. Add Database Credentials to Oracle Cloud Infrastructure Vault</a></li>
-<li><a href="#build-and-run-the-project-in-oci">9. Build and Run the Project in OCI</a></li>
-<li><a href="#access-the-application">10. Access the Application</a></li>
-</ul>
+
+<div class="toc-bullets">
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+
+    
+      
+        
+          <li class="toc-bullets-main">
+        
+          
+          <a href="/gdk/vscode-tools/graal-development-kit-extension-pack/" class="_icon-book">
+            Graal Development Kit for Micronaut Extension Pack
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+      
+    
+      
+        
+          <li class="toc-bullets-main">
+        
+          
+          <a href="/gdk/vscode-guides/" class="_icon-book">
+            VS Code Guides
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+          
+          <li class="toc-bullets-sub">
+          
+            
+            <a href="/gdk/vscode-guides/creating-gdk-db-application-with-atp-connection/">
+              Creating a Database Application and Connecting to an Oracle Autonomous Database
+            </a>
+          </li>
+
+          
+        
+          
+          <li class="toc-bullets-sub">
+          
+            
+            <a href="/gdk/vscode-guides/deploy-to-aws-apprunner-in-vscode/">
+              Deploying a Micronaut Application to AWS App Runner in VS Code
+            </a>
+          </li>
+
+          
+        
+          
+          <li class="toc-bullets-sub">
+          
+            
+            <a href="/gdk/vscode-guides/deploy-to-aws-eks-in-vscode/">
+              Deploying a Micronaut Application to Amazon Elastic Kubernetes Cluster in VS Code
+            </a>
+          </li>
+
+          
+        
+          
+          <li class="toc-bullets-sub">
+          
+            
+            <a href="/gdk/vscode-guides/deploy-to-google-cloud-run-in-vscode/">
+              Deploying a Java Application to Google Cloud Run in VS Code
+            </a>
+          </li>
+
+          
+        
+          
+          <li class="toc-bullets-sub">
+          
+            
+            <a href="/gdk/vscode-guides/deploy-to-google-k8s-engine-in-vscode/">
+              Deploying a Java Application to Google Kubernetes Engine in VS Code
+            </a>
+          </li>
+
+          
+        
+          
+          <li class="toc-bullets-sub toc-bullets-highlight">
+          
+            
+            <a href="/gdk/vscode-guides/running-db-application-and-storing-properties-in-oci-vault/">
+              Running a Database Application in Oracle Cloud and Storing Properties in OCI Vault from VS Code
+            </a>
+          </li>
+
+          
+            <div>
+  <script>
+    var scriptElement = document.currentScript;
+    var div = $(scriptElement.parentElement);
+    $(window).on("load", function () {
+      $("#content-wrapper h2").each(function () {
+        var li = $("<li></li>", { class: "toc-bullets-sub toc-bullets-sub-3" });
+        var a = $("<a></a>", { href: "#" + $(this).attr("id") });
+        a.text($(this).text().replace('#', ''));
+        li.append(a);
+        li.click(function (e) {
+          e.preventDefault();
+          var target = $(a.attr('href'));
+          var scrollTo = target.offset().top - 80; // 80 - indent
+          $('html, body').animate({ scrollTop: scrollTo }, 1000);
+        });
+        div.append(li);
+      });
+    });
+  </script>
 </div>
-                                </div>
-                            </div>
+          
+        
+          
+          <li class="toc-bullets-sub">
+          
+            
+            <a href="/gdk/vscode-guides/setting-oci-devops-pipeline-in-vscode/">
+              Setting OCI DevOps Build and Development Pipelines in VS Code
+            </a>
+          </li>
 
+          
+        
+      
+    
+  
 
-                            </div>
-                            <div class="resize-sensor" style="position: absolute; inset: 0px; overflow: hidden; z-index: -1; visibility: hidden;"><div class="resize-sensor-expand" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; z-index: -1; visibility: hidden;"><div style="position: absolute; left: 0px; top: 0px; transition: all 0s ease 0s; width: 100000px; height: 100000px;"></div></div><div class="resize-sensor-shrink" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; z-index: -1; visibility: hidden;"><div style="position: absolute; left: 0; top: 0; transition: 0s; width: 200%; height: 200%"></div></div></div></div></div>
-                        <div class="resize-sensor" style="position: absolute; inset: 0px; overflow: hidden; z-index: -1; visibility: hidden;"><div class="resize-sensor-expand" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; z-index: -1; visibility: hidden;"><div style="position: absolute; left: 0px; top: 0px; transition: all 0s ease 0s; width: 100000px; height: 100000px;"></div></div><div class="resize-sensor-shrink" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; z-index: -1; visibility: hidden;"><div style="position: absolute; left: 0; top: 0; transition: 0s; width: 200%; height: 200%"></div></div></div></div>
+  
 
-                    <div class="col-sm-9 docsmod">
-                        <div id="content-wrapper" class="docs-content docs-content--with-sidebar"><h1>Running a Database Application in Oracle Cloud and Storing Properties in OCI Vault from VS Code</h1>
-<div id="preamble">
-<div class="sectionbody">
-<div class="paragraph">
-<p>This guide shows you how to connect a Java application to an Oracle Autonomous Database and securely store connection properties in an Oracle Cloud Infrastructure (OCI) Vault from within VS Code, using the Graal Development Kit for Micronaut Extension Pack. This enables you to deploy the same application to different containers that will securely connect to a database using isolated connections.</p>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<!-- <li class="search additional-search">
+  <form class="form-inline sidebar" action="/docs/search" autocomplete="on" method="get">
+    <input class="input-search sidebar" type="text" id="search-box" name="query" placeholder="Search">
+    <button type="submit sidebar" class="search-button"></button>
+  </form>
+</li> -->
+
 </div>
-<div class="quoteblock">
+  <!-- Search form -->
+  <!-- <form class="search-container" action="/docs/search" autocomplete="on" method="get">
+   <label for="search-box">Search</label>
+    <input type="text" id="search-box" name="query">
+    <button type="submit" class="searchbttn"></button>
+  </form> -->
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-9 docsmod">
+      <div id="content-wrapper" class="docs-content docs-content--with-sidebar">
+        <h1 id="running-a-database-application-in-oracle-cloud-and-storing-properties-in-oci-vault-from-vs-code">
+        
+        
+          Running a Database Application in Oracle Cloud and Storing Properties in OCI Vault from VS Code
+        
+        
+      </h1>
+
+<p>This guide shows you how to connect a Java application to an Oracle Autonomous Database and securely store connection properties in an Oracle Cloud Infrastructure (OCI) Vault from within VS Code, using the <em>Graal Development Kit for Micronaut</em> Extension Pack.
+This enables you to deploy the same application to different containers that will securely connect to a database using isolated connections.</p>
+
 <blockquote>
-<div class="paragraph">
-<p>The <a href="https://docs.oracle.com/iaas/Content/KeyManagement/Concepts/keyoverview.htm">OCI Vault service</a> is a management service that stores and manages master encryption keys and secrets for secure access to resources.</p>
-</div>
+  <p>The <a href="https://docs.oracle.com/iaas/Content/KeyManagement/Concepts/keyoverview.htm">OCI Vault service</a> is a management service that stores and manages master encryption keys and secrets for secure access to resources.</p>
 </blockquote>
-</div>
-<h3 id="prerequisites" class="discrete">Prerequisites</h3>
-<div class="ulist">
+    
+      <h3 id="prerequisites">
+        
+        
+          Prerequisites <a href="#prerequisites" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
 <ul>
-<li>
-<p>A Java Development Kit (JDK) installation (JDK 17 or later).</p>
-</li>
-<li>
-<p>An Oracle Cloud Infrastructure account. See <a href="/gdk/get-started/setting-up-cloud-accounts/">Setting up Your Cloud Accounts</a>.</p>
-</li>
-<li>
-<p>An Oracle Cloud Infrastructure <a href="https://docs.oracle.com/en/cloud/paas/integration-cloud/oracle-integration-oci/creating-oci-compartment.html#GUID-E41FF7DB-A848-4551-A7F1-61699DCB33AB">compartment</a>.</p>
-</li>
-<li>
-<p><em>Graal Development Kit for Micronaut</em> Extension Pack. See <a href="/gdk/vscode-tools/graal-development-kit-extension-pack/#installing">Installing the Graal Development Kit for Micronaut Extension Pack</a>.</p>
-</li>
+  <li>A Java Development Kit (JDK) installation (JDK 17 or later).</li>
+  <li>An Oracle Cloud Infrastructure account. See <a href="/gdk/get-started/setting-up-cloud-accounts/">Setting up Your Cloud Accounts</a>.</li>
+  <li>An Oracle Cloud Infrastructure <a href="https://docs.oracle.com/en/cloud/paas/integration-cloud/oracle-integration-oci/creating-oci-compartment.html#GUID-E41FF7DB-A848-4551-A7F1-61699DCB33AB">compartment</a>.</li>
+  <li><em>Graal Development Kit for Micronaut</em> Extension Pack. See <a href="/gdk/vscode-tools/graal-development-kit-extension-pack/#installing">Installing the Graal Development Kit for Micronaut Extension Pack</a>.</li>
 </ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="create-a-database-application">1. Create a Database Application</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Create a database application with support for Oracle Database and <a href="https://micronaut-projects.github.io/micronaut-data/latest/guide/">Micronaut Data</a>.</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>In your VS Code window, go to <strong>View</strong>, <strong>Command Palette</strong>, search for “Graal Cloud Native”, and invoke the <strong>Graal Dev Kit: Create New Project</strong> quick action.</p>
-</li>
-<li>
-<p>Step through the project creation wizard. The following list details how you should respond to each prompt:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pick the GDK Version: <em>4.7.3.2-SNAPSHOT</em></p>
-</li>
-<li>
-<p>Pick an Application type: <em>Application</em></p>
-</li>
-<li>
-<p>Pick Project Java: Select your JDK installation</p>
-</li>
-<li>
-<p>Provide project name: <em>dbsample</em></p>
-</li>
-<li>
-<p>Provide base package: <em>com.example</em></p>
-</li>
-<li>
-<p>Pick project services: <em>Database</em></p>
-</li>
-<li>
-<p>Pick project features: <em>Oracle Cloud Autonomous Transaction Processing (ATP)</em> (as shown in the screenshot below):</p>
-<div class="paragraph">
-<p><span class="image"><img src="/gdk/images/tools/db-features/add-oracle-atp-feature.png" alt="Add project services"></span></p>
-</div>
-</li>
-<li>
-<p>Pick the build tool: <em>Maven</em> or <em>Gradle</em></p>
-</li>
-<li>
-<p>Pick the test framework: <em>JUnit</em></p>
-</li>
-<li>
-<p>Select cloud providers to support: <em>OCI</em></p>
-</li>
-<li>
-<p>Pick generate sample code: <em>Yes</em></p>
-</li>
-<li>
-<p>Save the project and open it in a new VS Code window.</p>
-<div class="paragraph">
-<p>The project creation wizard creates a sample application with all necessary files for you: a domain entity, a repository interface, a controller, a service class, and even tests.
-It is sufficient to follow this guide.</p>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Open the <em>dbsample/oci/src/main/resources/application.properties</em> file and:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Remove the following two lines:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">datasources.default.ocid=
-datasources.default.walletPassword=</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Add this line:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">flyway.datasources.default.baseline-on-migrate=true</code></pre>
-</div>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Add the dependency to integrate Micronaut with Oracle Cloud Infrastructure Vault:</p>
-</li>
-</ol>
-</div>
-<div class="gradle-maven-tabs ui-tabs ui-corner-all ui-widget ui-widget-content">
-    <ul role="tablist" class="ui-tabs-nav ui-corner-all ui-helper-reset ui-helper-clearfix ui-widget-header">
-        <li class="tabs-gradle ui-tabs-tab ui-corner-top ui-state-default ui-tabs-active ui-state-active" role="tab" tabindex="0" aria-controls="gradle" aria-labelledby="ui-id-1" aria-selected="true" aria-expanded="true"><a name="gradle" href="#gradle" tabindex="-1" class="ui-tabs-anchor" id="ui-id-1">Gradle</a></li>
-        <li class="tabs-maven ui-tabs-tab ui-corner-top ui-state-default" role="tab" tabindex="-1" aria-controls="maven" aria-labelledby="ui-id-2" aria-selected="false" aria-expanded="false"><a name="maven" href="#maven" tabindex="-1" class="ui-tabs-anchor" id="ui-id-2">Maven</a></li>
+    
+      <h2 id="1-create-a-database-application">
+        
+        
+          1. Create a Database Application <a href="#1-create-a-database-application" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>Create a database application with support for Oracle Database and <a href="https://micronaut-projects.github.io/micronaut-data/latest/guide/">Micronaut<sup>®</sup> Data</a>.</p>
+
+<ol>
+  <li>In your VS Code window, go to <strong>View</strong>, <strong>Command Palette</strong>, search for “Graal Cloud Native”, and invoke the <strong>Graal Dev Kit: Create New Project</strong> quick action.</li>
+  <li>
+    <p>Step through the project creation wizard. The following list details how you should respond to each prompt:</p>
+
+    <ul>
+      <li>Pick GDK Version</li>
+      <li>Pick an Application type: <em>Application</em></li>
+      <li>Pick Project Java: Select your JDK installation</li>
+      <li>Provide project name: <em>dbsample</em></li>
+      <li>Provide base package: <em>com.example</em></li>
+      <li>Pick project services: <em>Database</em></li>
+      <li>
+        <p>Pick project features: <em>Oracle Cloud Autonomous Transaction Processing (ATP)</em> (as shown in the screenshot below):</p>
+
+        <p><img src="/gdk/docs/vscode-tools/images/db-features/add-oracle-atp-feature.png" alt="Add project services" /></p>
+      </li>
+      <li>Pick the build tool: <em>Maven</em> or <em>Gradle</em></li>
+      <li>Pick the test framework: <em>JUnit</em></li>
+      <li>Select cloud providers to support: <em>OCI</em></li>
+      <li>Pick generate sample code: <em>Yes</em></li>
+      <li>Save the project and open it in a new VS Code window.</li>
     </ul>
-    <div id="gradle" aria-labelledby="ui-id-1" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false">
-<div class="paragraph">
-<p>Add the following lines to the file <em>oci/build.gradle</em>:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">implementation("io.micronaut.oraclecloud:micronaut-oraclecloud-vault")</code></pre>
-</div>
-</div>
-</div>
-    <div id="maven" aria-labelledby="ui-id-2" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
-<div class="paragraph">
-<p>Add the following line to the file <em>oci/pom.xml</em>:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
+
+    <p>The project creation wizard creates a sample application with all necessary files for you: a domain entity, a repository interface, a controller, a service class, and even tests.
+ It is sufficient to follow this guide.</p>
+  </li>
+  <li>
+    <p>Open the <em>dbsample/oci/src/main/resources/application.properties</em> file and:</p>
+
+    <ul>
+      <li>Remove the following two lines:
+        <pre><code>  datasources.default.ocid=
+  datasources.default.walletPassword=
+</code></pre>
+      </li>
+      <li>Add this line:
+        <pre><code>  flyway.datasources.default.baseline-on-migrate=true
+</code></pre>
+      </li>
+    </ul>
+  </li>
+  <li>Add the dependency to integrate Micronaut with Oracle Cloud Infrastructure Vault:</li>
+</ol>
+
+<div id="tabs-doc3">
+    <ul>
+    <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
+    <li class="tabs-maven"><a href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+    Add the following lines to the file <em>oci/build.gradle</em>:
+    <pre><code class="language-java">implementation(&quot;io.micronaut.oraclecloud:micronaut-oraclecloud-vault&quot;)</code></pre>
+    </div>
+    <div id="maven">
+    Add the following line to the file <em>oci/pom.xml</em>:
+    <pre><code class="language-xml">&lt;dependency&gt;
   &lt;groupId&gt;io.micronaut.oraclecloud&lt;/groupId&gt;
   &lt;artifactId&gt;micronaut-oraclecloud-vault&lt;/artifactId&gt;
 &lt;/dependency&gt;</code></pre>
+    </div>
 </div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="verify-flyway-configuration">1.1. Verify Flyway Configuration</h3>
-<div class="paragraph">
+    
+      <h3 id="11-verify-flyway-configuration">
+        
+        
+          1.1. Verify Flyway Configuration <a href="#11-verify-flyway-configuration" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
 <p>The sample project includes Flyway for database migrations.
 Flyway reads migration file(s) in the <em>lib/src/main/resources/db/migration/</em> directory, runs them if necessary, and verifies that the configured datasource is consistent with them.
-Learn more in the <a href="https://micronaut-projects.github.io/micronaut-flyway/latest/guide/">Micronaut integration with Flyway</a>  documentation.</p>
-</div>
-<div class="paragraph">
+Learn more in the <a href="https://micronaut-projects.github.io/micronaut-flyway/latest/guide/" target="_blank">Micronaut integration with Flyway</a> documentation.</p>
+
 <p>The migration file with the sample database schema, <em>lib/src/main/resources/db/migration/V1__schema.sql</em>, was also created for you by the project creation wizard:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">CREATE TABLE "GENRE" (
+
+<pre><code class="language-sql">CREATE TABLE "GENRE" (
    "ID"    NUMBER(19) PRIMARY KEY NOT NULL,
    "NAME"  VARCHAR(255) NOT NULL
 );
-CREATE SEQUENCE "GENRE_SEQ" MINVALUE 1 START WITH 1 NOCACHE NOCYCLE;</code></pre>
-</div>
-</div>
-<div class="paragraph">
+CREATE SEQUENCE "GENRE_SEQ" MINVALUE 1 START WITH 1 NOCACHE NOCYCLE;
+</code></pre>
+
 <p>During application startup, Flyway runs the commands in the SQL file and creates the schema needed for the application.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="create-an-oracle-cloud-infrastructure-autonomous-database">2. Create an Oracle Cloud Infrastructure Autonomous Database</h2>
-<div class="sectionbody">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>In the Oracle Cloud Console, open the navigation menu, click <strong>Oracle Database</strong>. Under <strong>Autonomous Database</strong>, click <strong>Autonomous Transaction Processing</strong>.</p>
-</li>
-<li>
-<p>Click <strong>Create Autonomous Database</strong> and accept the default name for the database.</p>
-</li>
-<li>
-<p>Select <strong>Transaction Processing</strong> and <strong>Serverless</strong>. If you are using a trial account, make sure you select <strong>Always Free</strong>.</p>
-</li>
-<li>
-<p>Create an admin password (must be at least 12 characters and contain a number and an uppercase letter) and select <strong>Secure access from everywhere</strong> as the network access type.</p>
-</li>
-<li>
-<p>Click <strong>Create Autonomous Database</strong> to create your database.</p>
-</li>
-<li>
-<p>On the <strong>Autonomous Database Details</strong> screen click <strong>Copy</strong> to copy the OCID of the database. (This is a unique identifier which you will need later.)</p>
-</li>
+    
+      <h2 id="2-create-an-oracle-cloud-infrastructure-autonomous-database">
+        
+        
+          2. Create an Oracle Cloud Infrastructure Autonomous Database <a href="#2-create-an-oracle-cloud-infrastructure-autonomous-database" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<ol>
+  <li>
+    <p>In the Oracle Cloud Console, open the navigation menu, click <strong>Oracle Database</strong>. Under <strong>Autonomous Database</strong>, click <strong>Autonomous Transaction Processing</strong>.</p>
+  </li>
+  <li>
+    <p>Click <strong>Create Autonomous Database</strong> and accept the default name for the database.</p>
+  </li>
+  <li>
+    <p>Select <strong>Transaction Processing</strong> and <strong>Serverless</strong>. If you are using a trial account, make sure you select <strong>Always Free</strong>.</p>
+  </li>
+  <li>
+    <p>Create an admin password (must be at least 12 characters and contain a number and an uppercase letter) and select <strong>Secure access from everywhere</strong> as the network access type.</p>
+  </li>
+  <li>
+    <p>Click <strong>Create Autonomous Database</strong> to create your database.</p>
+  </li>
+  <li>
+    <p>On the <strong>Autonomous Database Details</strong> screen click <strong>Copy</strong> to copy the OCID of the database. (This is a unique identifier which you will need later.)</p>
+  </li>
 </ol>
-</div>
-<div class="sect2">
-<h3 id="create-a-user">2.1. Create a User</h3>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>When the database has been provisioned, on the <strong>Autonomous Database Details</strong> page, click <strong>Database Actions</strong>. (If necessary, log in with
-username ``ADMIN'' and the admin password you created earlier.)</p>
-</li>
-<li>
-<p>Click <strong>SQL</strong> to open the SQL console.</p>
-</li>
-<li>
-<p>Copy and paste the following SQL commands into the worksheet:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql"> CREATE USER gdk_user IDENTIFIED BY "XXXXXXXXX";
+    
+      <h3 id="21-create-a-user">
+        
+        
+          2.1. Create a User <a href="#21-create-a-user" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<ol>
+  <li>
+    <p>When the database has been provisioned, on the <strong>Autonomous Database Details</strong> page, click <strong>Database Actions</strong>. (If necessary, log in with username “ADMIN” and the admin password you created earlier.)</p>
+  </li>
+  <li>
+    <p>Click <strong>SQL</strong> to open the SQL console.</p>
+  </li>
+  <li>Copy and paste the following SQL commands into the worksheet:
+    <pre><code class="language-sql"> CREATE USER gdk_user IDENTIFIED BY "XXXXXXXXX";
  GRANT CONNECT, RESOURCE TO gdk_user;
  GRANT UNLIMITED TABLESPACE TO gdk_user;
- GRANT CREATE SESSION TO gdk_user;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Create a schema user password (must be at least 12 characters and contain a number and an uppercase letter) and replace the text <code>XXXXXXXXX</code> with that password.</p>
-</div>
-</li>
-<li>
-<p>Click <strong>Run Script</strong> to run the SQL commands.</p>
-</li>
+ GRANT CREATE SESSION TO gdk_user;
+</code></pre>
+
+    <p>Create a schema user password (must be at least 12 characters and contain a number and an uppercase letter) and replace the text “XXXXXXXXX” with that password.</p>
+  </li>
+  <li>Click <strong>Run Script</strong> to run the SQL commands.</li>
 </ol>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="connect-to-your-oracle-cloud-infrastructure-autonomous-database-in-vs-code">3. Connect to Your Oracle Cloud Infrastructure Autonomous Database in VS Code</h2>
-<div class="sectionbody">
-<div class="paragraph">
+    
+      <h2 id="3-connect-to-your-oracle-cloud-infrastructure-autonomous-database-in-vs-code">
+        
+        
+          3. Connect to Your Oracle Cloud Infrastructure Autonomous Database in VS Code <a href="#3-connect-to-your-oracle-cloud-infrastructure-autonomous-database-in-vs-code" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
 <p>Now connect the VS Code developer tooling to your database.</p>
-</div>
-<div class="paragraph">
+
 <p>Within the Explorer panel, open the <strong>DATABASES</strong> pane, as shown in the screenshot below, and click <strong>Add Oracle Autonomous DB</strong>.
 (This is also available in the Command Palette).</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="/gdk/images/tools/db-features/databases-initial-view.png" alt="DATABASES Actions">
-</div>
-</div>
-<div class="paragraph">
+
+<p><img src="/gdk/docs/vscode-tools/images/db-features/databases-initial-view.png" alt="DATABASES Actions" /></p>
+
 <p>It launches a database connection wizard. Follow the prompts:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Select the OCI profile that you wish to use (if you have multiple OCI profiles).</p>
-</li>
-<li>
-<p>From the list of compartments, select the compartment that contains your database.</p>
-</li>
-<li>
-<p>From the list of databases, select your database.</p>
-</li>
-<li>
-<p>Enter the username for the database.</p>
-</li>
-<li>
-<p>Enter the password for the database. Very shortly, the database will be added to the <strong>DATABASES</strong> view in the Explorer panel.</p>
-</li>
-<li>
-<p>Open the database in the view, then right-click, and select <strong>Connect to Database</strong> from the menu:</p>
-<div class="imageblock">
-<div class="content">
-<img src="/gdk/images/tools/db-features/connect-to-database.png" alt="Connect to Database">
-</div>
-</div>
-<div class="paragraph">
-<p>If the credentials you provided (username or password) are incorrect, it will fail to connect.</p>
-</div>
-</li>
+
+<ol>
+  <li>Select the OCI profile that you wish to use (if you have multiple OCI profiles).</li>
+  <li>From the list of compartments, select the compartment that contains your database.</li>
+  <li>From the list of databases, select your database.</li>
+  <li>Enter the username for the database.</li>
+  <li>
+    <p>Enter the password for the database. Very shortly, the database will be added to the <strong>DATABASES</strong> view in the Explorer panel.</p>
+  </li>
+  <li>
+    <p>Open the database in the view, then right-click, and select <strong>Connect to Database</strong> from the menu:</p>
+
+    <p><img src="/gdk/docs/vscode-tools/images/db-features/connect-to-database.png" alt="Connect to Database" /></p>
+
+    <p>If the credentials you provided (username or password) are incorrect, it will fail to connect.</p>
+
+    <p>Once you are connected to the database, you can see empty Tables, Views, and Procedures.</p>
+  </li>
 </ol>
-</div>
-<div class="paragraph">
-<p>Once you are connected to the database, you can see empty Tables, Views, and Procedures.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="run-the-application">4. Run the Application</h2>
-<div class="sectionbody">
-<div class="paragraph">
+    
+      <h2 id="4-run-the-application">
+        
+        
+          4. Run the Application <a href="#4-run-the-application" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
 <p>Now run your application, connected to the Oracle Autonomous Database, and send an HTTP GET request to test it.</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Navigate to the <strong>Micronaut Tools</strong> view and open your application.</p>
-</li>
-<li>
-<p>Click the <strong>Run Application Without Debugging</strong> icon:</p>
-<div class="imageblock">
-<div class="content">
-<img src="/gdk/images/tools/db-features/run-application-from-micronaut-tools.png" alt="Run the application from the view">
-</div>
-</div>
-<div class="paragraph">
-<p>The progress will be indicated in the Output view.</p>
-</div>
-</li>
-<li>
-<p>When the application is running, send an HTTP GET request. Open a new Terminal window and run this command to test creating and storing a new <code>Genre</code> in the database:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -X "POST" "http://localhost:8080/genres" \
-    -H 'Content-Type: application/json; charset=utf-8' \
-    -d $'{ "name": "music" }'</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>You should see a response similar to:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">{"id":1,"name":"music"}</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Confirm that the new <code>Genre</code> is saved in the database by listing its contents:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl localhost:8080/genres/list</code></pre>
-</div>
-</div>
-</li>
+
+<ol>
+  <li>
+    <p>Navigate to the <strong>Micronaut Tools</strong> view and open your application.</p>
+  </li>
+  <li>
+    <p>Click the <strong>Run Application Without Debugging</strong> icon:</p>
+
+    <p><img src="/gdk/docs/vscode-tools/images/db-features/run-application-from-micronaut-tools.png" alt="Run the application from the view" /></p>
+
+    <p>The progress will be indicated in the Output view.</p>
+  </li>
+  <li>
+    <p>When the application is running, send an HTTP GET request. Open a new Terminal window and run this command to test creating and storing a new <code>Genre</code> in the database:</p>
+
+    <pre><code class="language-bash"> curl -X "POST" "http://localhost:8080/genres" \
+     -H 'Content-Type: application/json; charset=utf-8' \
+     -d $'{ "name": "music" }'
+</code></pre>
+    <p>You should see a response similar to:</p>
+    <pre><code> {"id":1,"name":"music"}
+</code></pre>
+  </li>
+  <li>
+    <p>Confirm that the new <code>Genre</code> is saved in the database by listing its contents:</p>
+    <pre><code class="language-bash"> curl localhost:8080/genres/list
+</code></pre>
+  </li>
 </ol>
-</div>
-<div class="paragraph">
+
 <p>The application runs seamlessly against a database configured for your project.
-Learn more about database management in VS Code from the <a href="database-features.md">Database Features extension documentation</a>.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="create-an-oracle-cloud-infrastructure-vault-and-master-encryption-key">5. Create an Oracle Cloud Infrastructure Vault and Master Encryption Key</h2>
-<div class="sectionbody">
-<div class="paragraph">
+Learn more about database management in VS Code from the <a href="/gdk/vscode-tools/database-features/">Database Features extension documentation</a>.</p>
+    
+      <h2 id="5-create-an-oracle-cloud-infrastructure-vault-and-master-encryption-key">
+        
+        
+          5. Create an Oracle Cloud Infrastructure Vault and Master Encryption Key <a href="#5-create-an-oracle-cloud-infrastructure-vault-and-master-encryption-key" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
 <p>Next <a href="https://docs.oracle.com/iaas/Content/KeyManagement/Tasks/managingvaults_topic-To_create_a_new_vault.htm">create an OCI Vault</a> and a <a href="https://docs.oracle.com/iaas/Content/KeyManagement/Tasks/managingkeys_topic-To_create_a_new_key.htm">Master Encryption Key</a>.
 This setup is essential before proceeding with the subsequent steps.</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>In the Oracle Cloud Console, open the navigation menu, click <strong>Identity &amp; Security</strong>. Under <strong>Key Management &amp; Secret Management</strong>, click <strong>Create Vault</strong>.</p>
-</li>
-<li>
-<p>Select a compartment in which you want to create the vault. Enter a name for the vault. Do not select <strong>Make it virtual private vault</strong>. Click <strong>Create Vault</strong>.</p>
-</li>
-<li>
-<p>Once your vault is created, open it. Under resources, click <strong>Master Encryption Keys</strong>, and then click <strong>Create Key</strong>.</p>
-</li>
-<li>
-<p>Choose <strong>Software</strong> for <strong>Protection Mode</strong>.</p>
-</li>
-<li>
-<p>Enter a name to identify the key.</p>
-</li>
-<li>
-<p>For <strong>Key Shape: Algorithm</strong>, select the default, and click <strong>Create Key</strong>.</p>
-</li>
+
+<ol>
+  <li>
+    <p>In the Oracle Cloud Console, open the navigation menu, click <strong>Identity &amp; Security</strong>. Under <strong>Key Management &amp; Secret Management</strong>, click <strong>Create Vault</strong>.</p>
+  </li>
+  <li>
+    <p>Select a compartment in which you want to create the vault. Enter a name for the vault. Do not select <strong>Make it virtual private vault</strong>. Click <strong>Create Vault</strong>.</p>
+  </li>
+  <li>
+    <p>Once your vault is created, open it. Under resources, click <strong>Master Encryption Keys</strong>, and then click <strong>Create Key</strong>.</p>
+  </li>
+  <li>
+    <p>Choose <strong>Software</strong> for <strong>Protection Mode</strong>.</p>
+  </li>
+  <li>
+    <p>Enter a name to identify the key.</p>
+  </li>
+  <li>
+    <p>For <strong>Key Shape: Algorithm</strong>, select the default, and click <strong>Create Key</strong>.</p>
+  </li>
 </ol>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="set-access-to-oracle-container-engine-for-kubernetes-oke">6. Set Access to Oracle Container Engine for Kubernetes (OKE)</h2>
-<div class="sectionbody">
-<div class="paragraph">
+    
+      <h2 id="6-set-access-to-oracle-container-engine-for-kubernetes-oke">
+        
+        
+          6. Set Access to Oracle Container Engine for Kubernetes (OKE) <a href="#6-set-access-to-oracle-container-engine-for-kubernetes-oke" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
 <p>You will package your server application in OCI and deploy it to <a href="https://www.oracle.com/cloud/cloud-native/container-engine-kubernetes/">Oracle Container Engine for Kubernetes (OKE)</a>.
 For that you need to create a Kubernetes cluster (if you do not already have one).</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Create a Kubernetes cluster in the Oracle Cloud console, with default
-settings, using the <strong>Quick Create</strong> workflow:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Open the navigation menu and click <strong>Developer Services</strong>.</p>
-</li>
-<li>
-<p>Under <strong>Containers &amp; Artifacts</strong>, click <strong>Kubernetes Clusters (OKE)</strong>.</p>
-</li>
-<li>
-<p>Then click <strong>Create Cluster</strong> and choose <strong>Quick Create</strong> option. It takes a few minutes to create a cluster.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Set local access to your cluster so you can manage it using <code>kubectl</code>.
-To set local access, review the information that is displayed after OKE Quick Create completes in the Oracle Cloud Console.
-Otherwise, from the Oracle Cloud Console perform the following steps:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Open your newly created OKE cluster (<strong>Developer Services</strong> &gt; <strong>Kubernetes Clusters (OKE)</strong>).</p>
-</li>
-<li>
-<p>Click <strong>Access Cluster</strong>.</p>
-</li>
-<li>
-<p>In the <strong>Access Your Cluster</strong> window, select <strong>Local Access</strong>, and run the commands tied to your user ID from your VS Code terminal window(<strong>View</strong> &gt; <strong>Terminal</strong>). Make sure you access your cluster via the <strong>VCN-Native public endpoint</strong>.</p>
-</li>
-</ul>
-</div>
-</li>
+
+<ol>
+  <li>Create a Kubernetes cluster in the Oracle Cloud console, with default settings, using the <strong>Quick Create</strong> workflow:
+    <ul>
+      <li>Open the navigation menu and click <strong>Developer Services</strong>.</li>
+      <li>Under <strong>Containers &amp; Artifacts</strong>, click <strong>Kubernetes Clusters (OKE)</strong>.</li>
+      <li>Then click <strong>Create Cluster</strong> and choose <strong>Quick Create</strong> option.
+ It takes a few minutes to create a cluster.</li>
+    </ul>
+  </li>
+  <li>Set local access to your cluster so you can manage it using <code>kubectl</code>. To set local access, review the information that is displayed after OKE Quick Create completes in the Oracle Cloud Console. Otherwise, from the Oracle Cloud Console perform the following steps:
+    <ul>
+      <li>Open your newly created OKE cluster (<strong>Developer Services</strong> &gt; <strong>Kubernetes Clusters (OKE)</strong>).</li>
+      <li>Click <strong>Access Cluster</strong>.</li>
+      <li>In the <strong>Access Your Cluster</strong> window, select <strong>Local Access</strong>, and run the commands tied to your user ID from your VS Code terminal window (<strong>View</strong> &gt; <strong>Terminal</strong>). Make sure you access your cluster via the <strong>VCN-Native public endpoint</strong>.</li>
+    </ul>
+
+    <p>Alternatively, see the <a href="https://docs.oracle.com/iaas/Content/ContEng/Tasks/contengdownloadkubeconfigfile.htm#localdownload">Setting Up Local Access to Clusters</a> OCI guide for more information.</p>
+  </li>
 </ol>
-</div>
-<div class="quoteblock">
+
 <blockquote>
-<div class="paragraph">
-<p>Note: Alternatively, see the <a href="https://docs.oracle.com/iaas/Content/ContEng/Tasks/contengdownloadkubeconfigfile.htm#localdownload">Setting
-Up Local Access to Clusters</a> OCI guide for more information.</p>
-</div>
+  <p>Note: On Windows, <code>kubectl</code> is typically installed within the Kubernetes extension and is not added to the system path. Windows users should configure a proxy in the <em>.kube/config</em> file to successfully deploy a project to OCI: add a <code>proxy-url</code> property under <code>cluster</code>:</p>
 </blockquote>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">clusters:
+
+<pre><code class="language-yml">clusters:
 - name: "dev"
  cluster:
  proxy-url: http://user:password@proxy:port
- ...</code></pre>
-</div>
-</div>
-<div class="quoteblock">
+ ...
+</code></pre>
+
 <blockquote>
-<div class="paragraph">
-<p>Note: If VS Code fails to locate a Kubernetes cluster (OKE), or you have not created it yet, the extension will suggest you create one directly in VS Code. However, you are required to <a href="https://docs.oracle.com/iaas/Content/ContEng/Tasks/contengdownloadkubeconfigfile.htm">setup OKE</a>.</p>
-</div>
+  <p>Note: If VS Code fails to locate a Kubernetes cluster (OKE), or you have not created it yet, the extension will suggest you create one directly in VS Code. However, you are required to <a href="https://docs.oracle.com/iaas/Content/ContEng/Tasks/contengdownloadkubeconfigfile.htm">setup OKE</a>.</p>
 </blockquote>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="set-up-an-oracle-cloud-infrastructure-devops-project-in-vs-code">7. Set Up an Oracle Cloud Infrastructure DevOps Project in VS Code</h2>
-<div class="sectionbody">
-<div class="paragraph">
+    
+      <h2 id="7-set-up-an-oracle-cloud-infrastructure-devops-project-in-vs-code">
+        
+        
+          7. Set Up an Oracle Cloud Infrastructure DevOps Project in VS Code <a href="#7-set-up-an-oracle-cloud-infrastructure-devops-project-in-vs-code" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
 <p>Return to your VS Code window and create a DevOps Project as described below.
 This also involves creating a <code>ConfigMap</code> artifact, which will later be used to store information about the selected Vault for database credential storage.</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Expand the <strong>OCI DevOps</strong> pane in the Explorer.</p>
-</li>
-<li>
-<p>Click <strong>Create OCI DevOps Project</strong> to push the project from your local system to a newly created DevOps project:</p>
-<div class="paragraph">
-<p><span class="image"><img src="/gdk/images/tools/oci/create-dev-ops-project.png" alt="create-dev-ops-project.png"></span></p>
-</div>
-<div class="paragraph">
-<p>You will see a notification <strong>Local sources will be pushed to a remote OCI code repository…</strong>. Select <strong>Confirm</strong> to proceed.</p>
-</div>
-</li>
-<li>
-<p>Follow the command prompts:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Select your Oracle Cloud Infrastructure profile (if you have several profiles in your <em>.oci/config</em> file).</p>
-</li>
-<li>
-<p>Select your compartment in Oracle Cloud Infrastructure.</p>
-</li>
-<li>
-<p>Select the OKE cluster where you will deploy your application.</p>
-</li>
-<li>
-<p>Enter a unique DevOps project name (<strong>must be unique per tenancy</strong>). By default, the DevOps project name maps the application opened in your VS Code window or workspace.
-Then the DevOps project generation starts and a progress indicator provides you with feedback: it should take about two minutes to generate an OCI DevOps project.</p>
-</li>
-</ul>
-</div>
-</li>
+
+<ol>
+  <li>
+    <p>Expand the <strong>OCI DevOps</strong> pane in the Explorer.</p>
+  </li>
+  <li>
+    <p>Click <strong>Create OCI DevOps Project</strong> to push the project from your local system to a newly created DevOps project:</p>
+
+    <p><img src="/gdk/docs/vscode-tools/images/oci/create-dev-ops-project.png" alt="create-dev-ops-project.png" /></p>
+
+    <p>You will see a notification <strong>Local sources will be pushed to a remote OCI code repository…</strong>. Select <strong>Confirm</strong> to proceed.</p>
+  </li>
+  <li>
+    <p>Follow the command prompts:</p>
+    <ul>
+      <li>Select your Oracle Cloud Infrastructure profile (if you have several profiles in your <em>.oci/config</em> file).</li>
+      <li>Select your compartment in Oracle Cloud Infrastructure.</li>
+      <li>Select the OKE cluster where you will deploy your application.</li>
+      <li>Enter a unique DevOps project name (<strong>must be unique per tenancy</strong>). By default, the DevOps project name maps the application opened in your VS Code window or workspace.</li>
+    </ul>
+
+    <p>Then the DevOps project generation starts and a progress indicator provides you with feedback: it should take about two minutes to generate an OCI DevOps project.</p>
+  </li>
 </ol>
-</div>
-<div class="paragraph">
-<p>At this step, the extension creates the necessary OCI resources, all of which are described <a href="/gdk/vscode-tools/gdk-vscode-faq/">here</a>.</p>
-</div>
-<div class="paragraph">
+
+<p>At this step, the extension creates the necessary OCI resources, all of which are described <a href="/gdk/vscode-tools/using-gdk-vscode-tools/#oci-resources-summary">here</a>.</p>
+
 <p>Once successfully created, a subset of existing actions is displayed in the <strong>OCI DevOps</strong> pane:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="/gdk/images/tools/oci/devops-ci-jobs.png" alt="devops-ci-jobs.png">
-</div>
-</div>
-<div class="paragraph">
-<p>Learn more about DevOps Tools from the <a href="oci-devops-tools.md">extension documentation</a>.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="add-database-credentials-to-oracle-cloud-infrastructure-vault">8. Add Database Credentials to Oracle Cloud Infrastructure Vault</h2>
-<div class="sectionbody">
-<div class="paragraph">
+
+<p><img src="/gdk/docs/vscode-tools/images/oci/devops-ci-jobs.png" alt="devops-ci-jobs.png" />
+<br /></p>
+
+<p>Learn more about DevOps Tools from the <a href="/gdk/vscode-tools/oci-devops-tools/">extension documentation</a>.</p>
+    
+      <h2 id="8-add-database-credentials-to-oracle-cloud-infrastructure-vault">
+        
+        
+          8. Add Database Credentials to Oracle Cloud Infrastructure Vault <a href="#8-add-database-credentials-to-oracle-cloud-infrastructure-vault" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
 <p>Now store your database connection properties in the OCI Vault.</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Return to the <strong>DATABASES</strong> pane in VS Code.</p>
-</li>
-<li>
-<p>Right-click on your database.</p>
-</li>
-<li>
-<p>Select <strong>Add to OCI Vault</strong> from the context menu and follow the instructions. Follow the prompts: select your compartment, select your Vault, enter a Datasource name.</p>
-<div class="imageblock">
-<div class="content">
-<img src="/gdk/images/tools/db-features/add-to-oci-vault.png" alt="Add to OCI Vault.png">
-</div>
-</div>
-<div class="paragraph">
-<p>Shortly, you see a confirmation pop-up window in the bottom right corner that secrets were created or updated:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="/gdk/images/tools/db-features/secrets-were-created.png" alt="Secrets were created or updated">
-</div>
-</div>
-</li>
+
+<ol>
+  <li>Return to the <strong>DATABASES</strong> pane in VS Code.</li>
+  <li>Right-click on your database.</li>
+  <li>
+    <p>Select <strong>Add to OCI Vault</strong> from the context menu and follow the instructions. Follow the prompts: select your compartment, select your Vault, enter a Datasource name.</p>
+
+    <p><img src="/gdk/docs/vscode-tools/images/db-features/add-to-oci-vault.png" alt="Add to OCI Vault.png" /></p>
+
+    <p>Shortly, you see a confirmation pop-up window in the bottom right corner that secrets were created or updated:</p>
+
+    <p><img src="/gdk/docs/vscode-tools/images/db-features/secrets-were-created.png" alt="Secrets were created or updated" /></p>
+  </li>
 </ol>
-</div>
-<div class="paragraph">
+
 <p>This step encrypts and securely stores your database credentials in a Vault.
 If the DevOps Project includes a <code>ConfigMap</code> artifact, this command will add the OCIDs of the Vault and its compartment, along with a placeholder for datasource properties.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="build-and-run-the-project-in-oci">9. Build and Run the Project in OCI</h2>
-<div class="sectionbody">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Return to the <strong>OCI DevOps</strong> pane and run the <strong>Build OCI Native Executable Container</strong> pipeline.
-It creates a container image containing a native executable of your application.</p>
-</li>
-<li>
-<p>Run the deploy pipeline, <strong>Deploy OCI Native Executable Container to OKE</strong>, to create a <code>ConfigMap</code> resource with all necessary information for the application to use the OCI Vault and connect to Oracle Autonomous Database. This step also involves creating a deployment from the container built in step <strong>1</strong>.</p>
-</li>
+    
+      <h2 id="9-build-and-run-the-project-in-oci">
+        
+        
+          9. Build and Run the Project in OCI <a href="#9-build-and-run-the-project-in-oci" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<ol>
+  <li>Return to the <strong>OCI DevOps</strong> pane and run the <strong>Build OCI Native Executable Container</strong> pipeline.
+It creates a container image containing a native executable of your application.</li>
+  <li>Run the deploy pipeline, <strong>Deploy OCI Native Executable Container to OKE</strong>, to create a <code>ConfigMap</code> resource with all necessary information for the application to use the OCI Vault and connect to Oracle Autonomous Database. This step also involves creating a deployment from the container built in step <strong>1</strong>.</li>
 </ol>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="access-the-application">10. Access the Application</h2>
-<div class="sectionbody">
-<div class="paragraph">
+    
+      <h2 id="10-access-the-application">
+        
+        
+          10. Access the Application <a href="#10-access-the-application" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
 <p>Access the application by clicking the <strong>Open in Browser</strong> icon in the <strong>Deployment</strong> pipeline.
 This action initiates port forwarding, enabling you to interact with your application running in OCI as if it were running locally.</p>
-</div>
-<div class="paragraph">
-<p>To test the application&#8217;s functionality, send an HTTP GET request.
+
+<p>To test the application’s functionality, send an HTTP GET request.
 Open a new Terminal window and run this command to test creating and storing a new <code>Genre</code> in the database:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -X "POST" "http://localhost:8080/genres" \
+
+<pre><code class="language-bash">curl -X "POST" "http://localhost:8080/genres" \
     -H 'Content-Type: application/json; charset=utf-8' \
-    -d $'{ "name": "music" }'</code></pre>
-</div>
-</div>
-<h3 id="summary" class="discrete">Summary</h3>
-<div class="paragraph">
+    -d $'{ "name": "music" }'
+</code></pre>
+    
+      <h3 id="summary">
+        
+        
+          Summary <a href="#summary" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
 <p>This guide demonstrated how to leverage the Oracle Cloud Infrastructure DevOps and Vault services for cloud deployments. This includes:</p>
-</div>
-<div class="ulist">
+
 <ul>
-<li>
-<p>Setting up a DevOps Project</p>
-</li>
-<li>
-<p>Securely adding database credentials to a Vault</p>
-</li>
-<li>
-<p>Building and deploying the project to Oracle Cloud Infrastructure</p>
-</li>
-<li>
-<p>Accessing the application through Oracle Cloud Infrastructure, including port forwarding and local testing</p>
-</li>
+  <li>Setting up a DevOps Project</li>
+  <li>Securely adding database credentials to a Vault</li>
+  <li>Building and deploying the project to Oracle Cloud Infrastructure</li>
+  <li>Accessing the application through Oracle Cloud Infrastructure, including port forwarding and local testing</li>
 </ul>
-</div>
-<div class="paragraph">
+
 <p>Using the OCI Vault support, you can deploy your Java application to different containers that will securely connect to a database using isolated connections.</p>
-</div>
-<h3 id="related-documentation" class="discrete">Related Documentation</h3>
-<div class="ulist">
+    
+      <h3 id="related-documentation">
+        
+        
+          Related Documentation <a href="#related-documentation" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
 <ul>
-<li>
-<p><a href="/gdk/vscode-tools/database-features/">Database Features</a></p>
-</li>
-<li>
-<p><a href="/gdk/vscode-guides/setting-oci-devops-pipeline-in-vscode/">Setting OCI DevOps Build and Development Pipelines in VS Code</a></p>
-</li>
-<li>
-<p><a href="https://marketplace.visualstudio.com/items?itemName=oracle-labs-graalvm.micronaut">Tools for Micronaut® Framework</a></p>
-</li>
+  <li><a href="/gdk/vscode-tools/database-features/">Database Features</a></li>
+  <li><a href="/gdk/vscode-guides/setting-oci-devops-pipeline-in-vscode/">Setting OCI DevOps Build and Development Pipelines in VS Code</a></li>
+  <li><a href="https://marketplace.visualstudio.com/items?itemName=oracle-labs-graalvm.micronaut">Tools for Micronaut<sup>®</sup> Framework</a></li>
 </ul>
-</div>
-</div>
-</div></div>
-                        <div role="button" class="menu-btn menu-btn--sidebar js-show-sidebar" title="sweet hamburger">
-                            <div class="hamburger">
-                                <div class="inner"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
 
+      </div>
 
-
+      <div role="button" class="menu-btn menu-btn--sidebar js-show-sidebar" title="sweet hamburger">
+        <div class="hamburger">
+          <div class="inner"></div>
         </div>
+      </div>
+    </div>
+  </div>
+</article>
 
-    </main>
+</div>
 
+      </main>
 
-    <footer class="footer footer__mobile">
+      
+<footer class="footer footer__mobile">
 
-        <div class="container-fluid container-fluid--custom-sm">
-            <div class="row">
-                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                    <div class="row footer-content">
-                        <div class="col-md-3 col-sm-4">
-                            <h6 class="title-footer" onclick="fadeInAndOut(this)">Learn</h6>
-                            <div class="grow">
-                                <ul class="footer-list">
-                                    <li class="footer-list__item"><a href="/gdk/get-started/">Get Started</a></li>
-                                    <li class="footer-list__item"><a href="/gdk/guides/">Guides</a></li>
-                                    <li class="footer-list__item"><a href="/gdk/hands-on-labs/">Labs</a></li>
-                                    <li class="footer-list__github">
-                                        <img class="footer__icon" src="https://graal-cloud-staging.us.oracle.com/gdk/resources/img/footer/logo-github.svg" alt="Github icon">
-                                        <a href="https://github.com/oracle/graal-dev-kit" target="blank">Github</a>
-                                    </li>
-                                    <li class="footer-list__github">
-                                        <img class="footer__icon" src="https://graal-cloud-staging.us.oracle.com/gdk/resources/img/footer/slack-icon.svg" alt="Github icon">
-                                        <a href="https://bit.ly/odevrel_slack" target="blank">#graal-dev-kit-for-micronaut</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-4">
-                            <h6 class="title-footer" onclick="fadeInAndOut(this)">About</h6>
-                            <div class="grow">
-                                <ul class="footer-list">
-                                    <li class="footer-list__item"><a href="/gdk/about/#gdk-support" target="blank">Commercial Support</a></li>
-                                    <li class="footer-list__item"><a href="https://www.graalvm.org/" target="blank">GraalVM Native Image</a></li>
-                                    <li class="footer-list__item"><a href="https://micronaut.io/" target="_blank">Micronaut<sup>®</sup> Framework</a></li>
-                                    <li class="footer-list__item"><a href="https://www.oracle.com/cloud/multicloud/what-is-multicloud/" target="_blank">Multicloud</a></li>
-                                    <li class="footer-list__item"><a href="https://www.oracle.com/cloud/" target="blank">Oracle Cloud Infrastructure</a></li>
-                                    <li class="footer-list__item"><a href="https://marketplace.visualstudio.com/items?itemName=oracle-labs-graalvm.graal-cloud-native-pack" target="blank">VS Code Tools</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-sm-12 aligning_1024">
-                            <div class="card--footer card--hovered box">
-                                <div>
-                                    <div class="rubber-footer footer__oci-section">
-                                        <p class="title-footer quickstart">Build, test, and deploy applications on Oracle Cloud Infrastructure for free</p>
-                                        <a href="https://www.oracle.com/cloud/free/" target="_blank" class="btn btn-primary">Try Oracle Cloud Infrastructure Free Tier</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <p class="copyright">
-                                    Copyright © 2023-2024, Oracle and/or its affiliates.
-                                    All rights reserved.
-                                    Oracle and Java are registered trademarks of Oracle and/or its affiliates.<br>
-                                    Micronaut<sup>®</sup> is a registered trademark of Object Computing, Inc.
-                                    Use is for referential purposes and does not imply any endorsement or affiliation with any third-party product.
-                                    Unauthorized use is strictly prohibited. Other names may be trademarks of their respective owners.
-                                </p>
-                                <div id="teconsent" consent="0,1,2" aria-label="Open Cookie Preferences Modal" class="truste_caIcon_display" role="complementary"><script async="async" type="text/javascript" crossorigin="" importance="high" src="https://consent.trustarc.com/asset/notice.js/v/v1.7-776"></script><a role="link" id="icon-id0368112092352622" tabindex="0" lang="en" aria-haspopup="dialog" aria-label="Cookie Preferences, opens a dedicated popup modal window" class="truste_cursor_pointer">Cookie Preferences</a></div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
+  <div class="container-fluid container-fluid--custom-sm">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row footer-content">
+          <div class="col-md-3 col-sm-4">
+            <h6 class="title-footer" onclick="fadeInAndOut(this)">Learn</h6>
+            <div class="grow">
+              <ul class="footer-list">
+                <li class="footer-list__item"><a href="/gdk/get-started/">Get Started</a></li>
+                <li class="footer-list__item"><a href="/gdk/guides/">Guides</a></li>
+                <li class="footer-list__item"><a href="/gdk/hands-on-labs/">Labs</a></li>
+                <li class="footer-list__github">
+                  <img class="footer__icon" src="/gdk/resources/img/footer/logo-github.svg" alt="Github icon">
+                  <a href="https://github.com/oracle/graal-dev-kit" target="blank">Github</a>
+                </li>
+                <li class="footer-list__github">
+                  <img class="footer__icon" src="/gdk/resources/img/footer/slack-icon.svg" alt="Github icon">
+                  <a href="https://bit.ly/odevrel_slack" target="blank">#graal-dev-kit-for-micronaut</a>
+                </li>
+              </ul>
             </div>
+          </div>
+          <div class="col-md-3 col-sm-4">
+            <h6 class="title-footer" onclick="fadeInAndOut(this)">About</h6>
+            <div class="grow">
+              <ul class="footer-list">
+                <li class="footer-list__item"><a href="/gdk/about/#gdk-support" target="blank">Commercial Support</a></li>
+                <li class="footer-list__item"><a href="https://www.graalvm.org/" target="blank">GraalVM Native Image</a></li>
+                <li class="footer-list__item"><a href="https://micronaut.io/" target="_blank">Micronaut<sup>&reg;</sup> Framework</a></li>
+                <li class="footer-list__item"><a href="https://www.oracle.com/cloud/multicloud/what-is-multicloud/" target="_blank">Multicloud</a></li>
+                <li class="footer-list__item"><a href="https://www.oracle.com/cloud/" target="blank">Oracle Cloud Infrastructure</a></li>
+                <li class="footer-list__item"><a href="https://marketplace.visualstudio.com/items?itemName=oracle-labs-graalvm.graal-cloud-native-pack" target="blank">VS Code Tools</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-12 aligning_1024">
+            <div class="card--footer card--hovered box">
+              <div>
+                <div class="rubber-footer footer__oci-section">
+                  <p class="title-footer quickstart">Build, test, and deploy applications on Oracle Cloud Infrastructure for free</p>
+                  <a href="https://www.oracle.com/cloud/free/" target="_blank"
+                    class="btn btn-primary">Try Oracle Cloud Infrastructure Free Tier</a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-    </footer>
 
-    <script>
-        function fadeInAndOut(thz) {
-            var elmt = thz.nextElementSibling;//Get the element that is below the button that
-            //was just clicked
-            if (elmt.clientHeight) {
-                elmt.style.height = 0;
-            } else {
-                var wrapper = elmt.querySelector('ul');
-                elmt.style.height = wrapper.clientHeight + "px";
-            }
-            /*
-                elmt.classList.toggle("acordianPanelHidden");//Toggle the class which changes
-                //attributes which triggers the transition CSS
-                */
-        }
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+          <div class="row">
+            <div class="col-sm-12">
+              <p class="copyright">
+                Copyright &copy; 2023-2024, Oracle and/or its affiliates.
+                All rights reserved.
+                Oracle and Java are registered trademarks of Oracle and/or its affiliates.<br/>
+                Micronaut<sup>&reg;</sup> is a registered trademark of Object Computing, Inc.
+                Use is for referential purposes and does not imply any endorsement or affiliation with any third-party product.
+                Unauthorized use is strictly prohibited. Other names may be trademarks of their respective owners.
+              </p>
+              <div id="teconsent"></div>
+            </div>
+          </div>
 
-        // Check TRUSTe Consent for Functional or Implied Approval
-        // The if test verifies if the user has given the consent
-        if ( (oracle.truste.api.getGdprConsentDecision().consentDecision) &&
-            (oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(0) != -1 ||
-                oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(2) != -1) ) {
+        </div>
+      </div>
 
-            //The following is a sample of a Maxymiser Tag being written to the DOM
-            //If the user did not give consent, then the tag is not included and not invoked in the Browser
-            document.write('<script type="text/javascript" src="//service.maxymiser.net/cdn/oracle/js/mmcore.js"><\/script>');
-        }
+    </div>
+  </div>
+</footer>
 
-        // Check TRUSTe Consent for Advertising or Implied Approval
-        // The if test verifies if the user has given the consent
-        if ( (oracle.truste.api.getGdprConsentDecision().consentDecision) &&
-            (oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(0) != -1 ||
-                oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(3) != -1) ) {
+<script>
+  function fadeInAndOut(thz) {
+    var elmt = thz.nextElementSibling;//Get the element that is below the button that
+    //was just clicked
+    if (elmt.clientHeight) {
+      elmt.style.height = 0;
+    } else {
+      var wrapper = elmt.querySelector('ul');
+      elmt.style.height = wrapper.clientHeight + "px";
+    }
+    /*
+        elmt.classList.toggle("acordianPanelHidden");//Toggle the class which changes
+        //attributes which triggers the transition CSS
+        */
+  }
 
-            //The following is a sample of a BlueKai Core Tag being written to the DOM
-            //If the user did not give consent, then the tag is not included and not invoked in the Browser
-            document.write('<script type="text/javascript">' +
-                'window.bk_async = function() { ' +
-                'BKTAG.doTag(62581, 1); }; ' +
-                '(function() { ' +
-                'var scripts = document.getElementsByTagName(\'script\')[0]; ' +
-                'var s = document.createElement(\'script\'); ' +
-                's.async = true; ' +
-                's.src = "https://tags.bkrtx.com/js/bk-coretag.js"; ' +
-                'scripts.parentNode.insertBefore(s, scripts); ' +
-                '}()); ' +
-                '<\/script>');
-        }
-    </script><script type="text/javascript" src="//service.maxymiser.net/cdn/oracle/js/mmcore.js"></script><script type="text/javascript">window.bk_async = function() { BKTAG.doTag(62581, 1); }; (function() { var scripts = document.getElementsByTagName('script')[0]; var s = document.createElement('script'); s.async = true; s.src = "https://tags.bkrtx.com/js/bk-coretag.js"; scripts.parentNode.insertBefore(s, scripts); }()); </script>
+  // Check TRUSTe Consent for Functional or Implied Approval
+  // The if test verifies if the user has given the consent
+  if ( (oracle.truste.api.getGdprConsentDecision().consentDecision) &&
+      (oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(0) != -1 ||
+        oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(2) != -1) ) {
 
-</div>
-<div class="overlay"></div>
+      //The following is a sample of a Maxymiser Tag being written to the DOM
+      //If the user did not give consent, then the tag is not included and not invoked in the Browser
+      document.write('<script type="text/javascript" src="//service.maxymiser.net/cdn/oracle/js/mmcore.js"><\/script>');
+  }
 
-<!-- Start SiteCatalyst code -->
-<script language="JavaScript" src="https://www.oracle.com/us/assets/metrics/ora_otn.js"></script><script type="text/javascript" src="https://www.oracleimg.com/us/assets/metrics/ora_code_otn.js"></script><script type="text/javascript" src="https://www.oracleimg.com/us/assets/metrics/ora_code.js"></script>
-<!-- End SiteCatalyst code -->
+  // Check TRUSTe Consent for Advertising or Implied Approval
+  // The if test verifies if the user has given the consent
+  if ( (oracle.truste.api.getGdprConsentDecision().consentDecision) &&
+      (oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(0) != -1 ||
+        oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(3) != -1) ) {
 
-<script src="https://graal-cloud-staging.us.oracle.com/gdk/resources/lib/slick-slider/slick.min.js"></script>
-<script src='https://graal-cloud-staging.us.oracle.com/gdk/resources/js/main.js'></script>
-<script src="https://graal-cloud-staging.us.oracle.com/gdk/resources/js/ui.js"></script>
-<script src="https://graal-cloud-staging.us.oracle.com/gdk/resources/js/filters.js"></script>
-<script src="https://graal-cloud-staging.us.oracle.com/gdk/resources/js/sidebar.js"></script>
-<script src="https://graal-cloud-staging.us.oracle.com/gdk/resources/js/labs.js"></script>
-<!--<script>-->
-<!--    hljs.initHighlightingOnLoad();-->
-<!--</script>-->
+      //The following is a sample of a BlueKai Core Tag being written to the DOM
+      //If the user did not give consent, then the tag is not included and not invoked in the Browser
+      document.write('<script type="text/javascript">' +
+      'window.bk_async = function() { ' +
+      'BKTAG.doTag(62581, 1); }; ' +
+      '(function() { ' +
+      'var scripts = document.getElementsByTagName(\'script\')[0]; ' +
+      'var s = document.createElement(\'script\'); ' +
+      's.async = true; ' +
+      's.src = "https://tags.bkrtx.com/js/bk-coretag.js"; ' +
+      'scripts.parentNode.insertBefore(s, scripts); ' +
+      '}()); ' +
+      '<\/script>');
+  }
+</script>
 
+    </div>
+    <div class="overlay"></div>
 
-<iframe name="trustarc_notice" id="trustarcNoticeFrame" title="Trustarc Cross-Domain Consent Frame" src="https://consent.trustarc.com/get?name=crossdomain.html&amp;domain=oracle.com" style="display: none;"></iframe></body></html>
+    <!-- Start SiteCatalyst code -->
+    <script language="JavaScript" src="https://www.oracle.com/us/assets/metrics/ora_otn.js"></script>
+    <!-- End SiteCatalyst code -->
+
+    <script src='/gdk/resources/lib/slick-slider/slick.min.js'></script>
+    <script src='/gdk/resources/js/main.js'></script>
+    <script src='/gdk/resources/js/ui.js'></script>
+    <script src='/gdk/resources/js/filters.js'></script>
+    <script src='/gdk/resources/js/sidebar.js'></script>
+    <script src='/gdk/resources/js/labs.js'></script>
+    <script src='/gdk/resources/lib/highlight/highlight.min.js'></script>
+    <script>hljs.highlightAll();</script>
+  </body>
+</html>

@@ -758,9 +758,9 @@ async function copyCode(event) {
 // Toggling between Maven/Gradle
 $(function() {
   function changeTab(tabId) {
-    const elems = document.querySelectorAll(".gradle-maven-tabs");
+    const elems = document.querySelectorAll("div[id*='tabs-doc']");
     elems.forEach(elem => {
-      $(elem).tabs('option', 'active', tabId);
+      $(`#${elem.id}`).tabs('option', 'active', tabId);
     });
   }
 
@@ -779,7 +779,7 @@ $(function() {
     updateBuildToolQueryParam('maven');
   });
 
-  $(".gradle-maven-tabs").tabs();
+  $("#tabs-doc1, #tabs-doc2, #tabs-doc3, #tabs-doc4, #tabs-doc5, #tabs-doc6, #tabs-doc7, #tabs-doc7, #tabs-doc8, #tabs-doc9, #tabs-doc10, #tabs-doc11, #tabs-doc12, #tabs-doc13, #tabs-doc14, #tabs-doc15, #tabs-doc16, #tabs-doc17, #tabs-doc18, #tabs-doc19, #tabs-doc20, #tabs-doc21, #tabs-doc22, #tabs-doc23, #tabs-doc24, #tabs-doc25, #tabs-doc26, #tabs-doc27, #tabs-doc28, #tabs-doc29, #tabs-doc30, #tabs-doc31, #tabs-doc32, #tabs-doc33, #tabs-doc34").tabs();
 
   function updateTabs() {
     const queryString = window.location.search;
@@ -924,4 +924,3 @@ $(function() {
   }
   updateTabs();
 });
-
