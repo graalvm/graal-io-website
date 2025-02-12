@@ -1,843 +1,653 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"><head><style type="text/css">.truste_caIcon_display {display: block !important;}</style><style type="text/css">.truste_cursor_pointer {cursor: pointer;}.truste_border_none {border: none;}</style>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:image" content="https://graal-cloud-staging.us.oracle.com/gdk/resources/img/graalvm.png">
+    <meta name="twitter:widgets:border-color" content="#55acee">
 
-  <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta property="og:image" content="/gdk/resources/img/graalvm.png" />
-  <meta name="twitter:widgets:border-color" content="#55acee">
+    <link rel="stylesheet" href="https://graal-cloud-staging.us.oracle.com/gdk/resources/lib/highlight/highlight.min.js">
+    <script src="https://graal-cloud-staging.us.oracle.com/gdk/resources/lib/highlight/highlight.min.js"></script>
 
-  <title>
-    
-      Oracle Cloud Assets
-    
-  </title>
-  <meta name="description" content="The Graal Development Kit for Micronaut (GDK) is a build of a curated set of Micronaut framework modules and their required libraries for building portable c..."/>
-  <meta name="last_modified" content="2024-11-29 13:55:27 +0000"/>
-  <meta name="last_built" content="2025-02-06 20:58:45 +0000"/>
-  <link rel="stylesheet" href="/gdk/assets/main.css">
-  <link rel="apple-touch-icon" sizes="180x180" href="/gdk/resources/img/favicon/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/gdk/resources/img/favicon/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/gdk/resources/img/favicon/favicon-16x16.png">
-  <link rel="manifest" href="/gdk/resources/img/favicon/site.webmanifest">
-  <link rel="stylesheet" type="text/css" href="/gdk/resources/styles/codicon.css" />
-  <meta name="msapplication-TileColor" content="#da532c">
-  <meta name="theme-color" content="#ffffff">
-  <meta name="google-site-verification" content="-vRqwa9WYn6AaQGnl88xvrLw6ac4xoKVkZkhanmlRhU" />
-  <link rel="canonical" href="https://www.graal.cloud/gdk/vscode-tools/oracle-cloud-assets/">
+    <title>Oracle Cloud Assets</title>
+    <meta name="description" content="The Graal Development Kit for Micronaut (GDK) is a build of a curated set of Micronaut framework modules and their required libraries for building portable c...">
+    <meta name="last_modified" content="2024-10-10 16:30:05 +0000">
+    <meta name="last_built" content="2024-10-29 09:25:27 +0000">
+    <link rel="stylesheet" href="https://graal-cloud-staging.us.oracle.com/gdk/assets/main.css" >
+    <link rel="apple-touch-icon" sizes="180x180" href="https://graal-cloud-staging.us.oracle.com/gdk/resources/img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://graal-cloud-staging.us.oracle.com/gdk/resources/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://graal-cloud-staging.us.oracle.com/gdk/resources/img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="https://graal-cloud-staging.us.oracle.com/gdk/resources/img/favicon/site.webmanifest">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="google-site-verification" content="-vRqwa9WYn6AaQGnl88xvrLw6ac4xoKVkZkhanmlRhU">
+    <link rel="canonical" href="https://www.graal.cloud/gdk/gdk-modules/database/micronaut-data-jdbc-repository/">
 
-  <!-- jQuery UI Tabs -->
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.14.0/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="/gdk/resources/lib/jquery/jquery-ui.css">
-</head>
+    <!-- TODO: move to stylesheet -->
+    <style>
+        @media (min-width: 768px) {
+            .content {
+                padding-top: 60px;
+            }
+        }
 
-      <script src="/gdk/resources/lib/jquery/jquery-3.7.1.min.js"></script>
-    <script src="/gdk/resources/lib/bootstrap/js/bootstrap.min.js"></script>
-    <script src='/gdk/resources/lib/sticky-sidebar/resizeSensor.js'></script>
-    <script src='/gdk/resources/lib/sticky-sidebar/sticky-sidebar.min.js'></script>
-    <script src="/gdk/resources/lib/highlight/highlight.min.js"></script>
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
-    <!-- Add TRUSTe Consent Script and Analytics -->
-    <script async="async" type="text/javascript" src='//consent.trustarc.com/notice?domain=oracle.com&c=teconsent&js=bb&noticeType=bb&text=true&cdn=1&pcookie&gtm=1' crossorigin></script>
-    <script src="https://www.oracle.com/assets/truste-oraclelib.js"></script>
+        .colist table {
+            border: 0;
+
+            td {
+                border: 0;
+            }
+
+            tr {
+                border: 0;
+            }
+        }
+
+        .imageblock {
+            max-width: 50%;
+        }
+
+        main{
+            padding-top: 50px !important;
+        }
+
+        .content{
+            padding-top: 0;
+        }
+
+        ul.sectlevel0 > li > a:first-of-type {
+            color: #F68831 !important;
+            font-weight: 700;
+        }
+
+        ul.sectlevel1 > li > a {
+            color: #dbe6ff;
+            font-weight: 400 !important;
+            padding-left: 20px;
+            font-size: 14px;
+        }
+
+        .conum[data-value]::after {
+            content: attr(data-value);
+            display: inline-block;
+            border: 1px solid;
+            -webkit-border-radius: 50%;
+            border-radius: 50%;
+            text-align: center;
+            font-size: .75em;
+            width: 1.67em;
+            height: 1.67em;
+            line-height: 1.67em;
+            font-family: "Open Sans", "DejaVu Sans", sans-serif;
+            font-style: normal;
+            font-weight: bold;
+        }
+        .conum[data-value]+b {
+            display: none;
+        }
+    </style>
+
     <!-- jQuery UI Tabs -->
-    <script src="https://code.jquery.com/ui/1.14.0/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.14.0/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://graal-cloud-staging.us.oracle.com/gdk/resources/lib/jquery/jquery-ui.css">
+    <script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/a8476471/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script src="https://www.youtube.com/iframe_api"></script><script async="" src="https://tags.bkrtx.com/js/bk-coretag.js"></script><script src="https://graal-cloud-staging.us.oracle.com/gdk/resources/lib/jquery/jquery-3.7.1.min.js"></script><script src="https://graal-cloud-staging.us.oracle.com/gdk/resources/lib/bootstrap/js/bootstrap.min.js"></script><script src="https://graal-cloud-staging.us.oracle.com/gdk/resources/lib/sticky-sidebar/resizeSensor.js"></script><script src="https://graal-cloud-staging.us.oracle.com/gdk/resources/lib/sticky-sidebar/sticky-sidebar.min.js"></script><script async="" defer="" src="https://buttons.github.io/buttons.js"></script><script async="async" type="text/javascript" src="//consent.trustarc.com/notice?domain=oracle.com&amp;c=teconsent&amp;js=bb&amp;noticeType=bb&amp;text=true&amp;cdn=1&amp;pcookie&amp;gtm=1" crossorigin="" id="truste_0.9548969741402604"></script><script src="https://www.oracle.com/assets/truste-oraclelib.js"></script><script src="https://code.jquery.com/ui/1.14.0/jquery-ui.js"></script></head>
+
+<!-- Add TRUSTe Consent Script and Analytics -->
 
 
-  <body class="preload">
-    <!-- Start SiteCatalyst code -->
-    <script language="JavaScript" src="https://www.oracle.com/us/assets/metrics/ora_otn.js"></script>
-    <!-- End SiteCatalyst code -->
+<!-- jQuery UI Tabs -->
 
-    <div  class="wrapper wrapper--nofooter" >
+<body class="">
+<!-- Start SiteCatalyst code -->
+<script language="JavaScript" src="https://www.oracle.com/us/assets/metrics/ora_otn.js"></script><script type="text/javascript" src="https://www.oracleimg.com/us/assets/metrics/ora_code_otn.js"></script><script type="text/javascript" src="https://www.oracleimg.com/us/assets/metrics/ora_code.js"></script>
+<!-- End SiteCatalyst code -->
 
-      <header  class="header header--content" 
-  role="banner">
+<div class="wrapper wrapper--nofooter">
 
-  
-
-  
-
-    <nav class="menu">
-      <div class="menu__row">
-        <div>
-          <a href="/gdk/">
-            <img class="logo-mobile" src="/gdk/resources/img/gdk-logo-new.svg" alt="Graal Development Kit for Micronaut logo">
-          </a>
-        </div>
-        <div class="menu__container">
-          <ul class="menu__list">
-            <li class="menu__item">
-              <a href="/gdk/about/" class="menu__link">About</a>
-            </li>
-            <li class="menu__item">
-              <a href="/gdk/get-started/" class="menu__link">Get Started</a>
-            </li>
-            <li class="menu__item">
-              <div class="stack-container">
-                <a href="#" class="menu__link stack__header">Docs</a>
-                <div class="stack-menu-learn">
-                  <div class="stack-row">
-                    <div class="stack-column">
-                      <div class="stack__item">
-                        <img src='/gdk/resources/img/header-navigation/modules.svg'>
-                        <a href="/gdk/modules/" class="item-line">Modules</a>
-                      </div>
-                      <div class="stack__item">
-                        <img src='/gdk/resources/img/header-navigation/guides.svg'>
-                        <a href="/gdk/guides/" class="item-line">Guides</a>
-                      </div>
-                      <div class="stack__item">
-                        <img src='/gdk/resources/img/header-navigation/labs.svg'>
-                        <a href="/gdk/hands-on-labs/" class="item-line">Hands-On Labs</a>
-                      </div>
-                      <div class="stack__item">
-                        <img src='/gdk/resources/img/header-navigation/tools.svg'>
-                        <a href="/gdk/vscode-tools/" class="item-line">Tools</a>
-                      </div>
-                    </div>
-                  </div>
+    <header class="header header--content" role="banner">
+        <nav class="menu">
+            <div class="menu__row">
+                <div>
+                    <a href="/gdk/" class="activeMenuItem">
+                        <img class="logo-mobile" src="https://graal-cloud-staging.us.oracle.com/gdk/resources/img/gdk-logo-new.svg" alt="Graal Development Kit for Micronaut logo" style="margin-left: 0px;">
+                    </a>
                 </div>
-              </div>
-            </li>
-            <li class="menu__item">
-              <div class="stack-container">
-                <a href="#" class="menu__link stack__header">Graal Projects</a>
-                <div class="stack-menu">
-                  <div class="stack-row">
-                    <div class="stack-column">
-                      <div class="stack__item">
-                        <img src='/gdk/resources/img/header-navigation/graalstack.svg'>
-                        <a href="https://graal.cloud/" class="item-line">Graal</a>
-                      </div>
-                      <div class="stack__item">
-                        <img src='/gdk/resources/img/header-navigation/graalvm.svg'>
-                        <a href="https://graalvm.org/" class="item-line">GraalVM</a>
-                      </div>
-                      <div class="stack__item">
-                        <img src='/gdk/resources/img/header-navigation/graalos.svg'>
-                        <a href="https://graal.cloud/graalos/" class="item-line">GraalOS</a>
-                      </div>
-                    </div>
-                  </div>
+                <div class="menu__container">
+                    <ul class="menu__list">
+                        <li class="menu__item">
+                            <a href="/gdk/about/" class="menu__link">About</a>
+                        </li>
+                        <li class="menu__item">
+                            <a href="/gdk/get-started/" class="menu__link">Get Started</a>
+                        </li>
+                        <li class="menu__item">
+                            <div class="stack-container">
+                                <a href="#" class="menu__link stack__header">Docs</a>
+                                <div class="stack-menu-learn">
+                                    <div class="stack-row">
+                                        <div class="stack-column">
+                                            <div class="stack__item">
+                                                <img src="https://graal-cloud-staging.us.oracle.com/gdk/resources/img/header-navigation/modules.svg">
+                                                <a href="/gdk/modules/" class="item-line">Modules</a>
+                                            </div>
+                                            <div class="stack__item">
+                                                <img src="https://graal-cloud-staging.us.oracle.com/gdk/resources/img/header-navigation/guides.svg">
+                                                <a href="/gdk/guides/" class="item-line">Guides</a>
+                                            </div>
+                                            <div class="stack__item">
+                                                <img src="https://graal-cloud-staging.us.oracle.com/gdk/resources/img/header-navigation/labs.svg">
+                                                <a href="/gdk/hands-on-labs/" class="item-line">Hands-On Labs</a>
+                                            </div>
+                                            <div class="stack__item">
+                                                <img src="https://graal-cloud-staging.us.oracle.com/gdk/resources/img/header-navigation/tools.svg">
+                                                <a href="/gdk/vscode-tools/" class="item-line">Tools</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="menu__item">
+                            <div class="stack-container">
+                                <a href="#" class="menu__link stack__header">Graal Projects</a>
+                                <div class="stack-menu">
+                                    <div class="stack-row">
+                                        <div class="stack-column">
+                                            <div class="stack__item">
+                                                <img src="https://graal-cloud-staging.us.oracle.com/gdk/resources/img/header-navigation/graalstack.svg">
+                                                <a href="/" class="item-line">Graal</a>
+                                            </div>
+                                            <div class="stack__item">
+                                                <img src="https://graal-cloud-staging.us.oracle.com/gdk/resources/img/header-navigation/graalvm.svg">
+                                                <a href="https://graalvm.org/" class="item-line">GraalVM</a>
+                                            </div>
+                                            <div class="stack__item">
+                                                <img src="https://graal-cloud-staging.us.oracle.com/gdk/resources/img/header-navigation/graalos.svg">
+                                                <a href="/graalos/" class="item-line">GraalOS</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="menu__launch__mobile">
+                            <a href="/gdk/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
+                        </li>
+                    </ul>
                 </div>
-              </div>
-            </li>
-            <li class="menu__launch__mobile">
-              <a href="/gdk/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
-            </li>
-          </ul>
-        </div>
-        <div class="menu__launch">
-          <a href="/gdk/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
-        </div>
-      </div>
+                <div class="menu__launch">
+                    <a href="/gdk/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
+                </div>
+            </div>
 
-      <div role="button" class="menu-btn menu-btn--menu js-show-menu" tabindex="-1" title="sweet hamburger">
-        <div class="hamburger">
-          <div class="inner"></div>
-        </div>
-      </div>
-      <button aria-label="hamburger mobile menu" class="btn btn-mobile-menu js-show-menu">
-        <div class="inner"></div>
-      </button>
-    </nav>
-
-  
-</header>
+            <div role="button" class="menu-btn menu-btn--menu js-show-menu" tabindex="-1" title="sweet hamburger">
+                <div class="hamburger">
+                    <div class="inner"></div>
+                </div>
+            </div>
+            <button aria-label="hamburger mobile menu" class="btn btn-mobile-menu js-show-menu">
+                <div class="inner"></div>
+            </button>
+        </nav>
 
 
-      <main  class="content"   aria-label="Content">
+    </header>
+
+
+    <main class="content" aria-label="Content">
         <div class="wrapper wrapper-content">
-  <article>
-  <div class="row d-flex flex-wrap">
-    <div class="col-sm-3 docsimpro col-bg">
-      <div class="sidebar-wrap">
-        <div class="sidebar">
-          <div class="menuabout">
-            <img id="sidebarClose" src="/gdk/resources/img/arrow_sidebar(close).svg" alt="Expand or collapse sidebar"
-              class="btn-color no-display">
-            <img id="sidebarOpen" src="/gdk/resources/img/arrow_sidebar.svg" alt="Expand or collapse sidebar">
-          </div>
-          
-<div class="toc-floating">
+            <article>
+                <div class="row d-flex flex-wrap">
+                    <div class="col-sm-3 docsimpro col-bg">
+                        <div class="sidebar-wrap is-affixed" style="height: 473px; position: relative;"><div class="inner-wrapper-sticky" style="position: fixed; top: 74px; left: 0px; width: 300px;">
+                            <div class="sidebar">
+                                <div class="menuabout">
+                                    <img id="sidebarClose" src="https://graal-cloud-staging.us.oracle.com/gdk/resources/img/arrow_sidebar(close).svg" alt="Expand or collapse sidebar" class="btn-color no-display">
+                                    <img id="sidebarOpen" src="https://graal-cloud-staging.us.oracle.com/gdk/resources/img/arrow_sidebar.svg" alt="Expand or collapse sidebar">
+                                </div>
 
-
-<div class="toc-bullets">
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-
-    
-      
-        
-          <li class="toc-bullets-main">
-        
-          
-          <a href="/gdk/vscode-tools/graal-development-kit-extension-pack/" class="_icon-book">
-            Graal Development Kit for Micronaut Extension Pack
-          </a>
-        </li>
-
-        
-        
-
-        
-        
-          
-          <li class="toc-bullets-sub">
-          
-            
-            <a href="/gdk/vscode-tools/graal-cloud-native-launcher/">
-              Graal Development Kit for Micronaut Launcher
-            </a>
-          </li>
-
-          
-        
-          
-          <li class="toc-bullets-sub">
-          
-            
-            <a href="/gdk/vscode-tools/micronaut-tools/">
-              Tools for Micronaut® Framework
-            </a>
-          </li>
-
-          
-        
-          
-          <li class="toc-bullets-sub">
-          
-            
-            <a href="/gdk/vscode-tools/micronaut-launch/">
-              Launch for Micronaut® Framework
-            </a>
-          </li>
-
-          
-        
-          
-          <li class="toc-bullets-sub">
-          
-            
-            <a href="/gdk/vscode-tools/oci-devops-tools/">
-              OCI DevOps Tools
-            </a>
-          </li>
-
-          
-        
-          
-          <li class="toc-bullets-sub toc-bullets-highlight">
-          
-            
-            <a href="/gdk/vscode-tools/oracle-cloud-assets/">
-              Oracle Cloud Assets
-            </a>
-          </li>
-
-          
-            <div>
-  <script>
-    var scriptElement = document.currentScript;
-    var div = $(scriptElement.parentElement);
-    $(window).on("load", function () {
-      $("#content-wrapper h2").each(function () {
-        var li = $("<li></li>", { class: "toc-bullets-sub toc-bullets-sub-3" });
-        var a = $("<a></a>", { href: "#" + $(this).attr("id") });
-        a.text($(this).text().replace('#', ''));
-        li.append(a);
-        li.click(function (e) {
-          e.preventDefault();
-          var target = $(a.attr('href'));
-          var scrollTo = target.offset().top - 80; // 80 - indent
-          $('html, body').animate({ scrollTop: scrollTo }, 1000);
-        });
-        div.append(li);
-      });
-    });
-  </script>
+                                                                <div class="toc-floating">
+                                <div class="toc-bullets">
+                                    <li class="toc-bullets-main">
+                                        <a href="/gdk/vscode-tools/graal-development-kit-extension-pack/" class="_icon-book">
+                                            Graal Development Kit for Micronaut Extension Pack
+                                        </a>
+                                    </li>
+                                    <li class="toc-bullets-sub toc-bullets-highlight">
+                                        <a href="/gdk/vscode-tools/oracle-cloud-assets/" class="activeMenuItem">
+                                            Oracle Cloud Assets
+                                        </a>
+                                    </li>
+                                    <div id="toc" class="toc">
+<div id="toctitle"></div>
+<ul class="sectlevel1">
+<li><a href="#installation-and-usage">1. Installation and Usage</a></li>
+<li><a href="#adding-resources-to-the-project">2. Adding Resources to the Project</a></li>
+<li><a href="#running-locally">3. Running Locally</a></li>
+<li><a href="#uploading-policies">4. Uploading Policies</a></li>
+<li><a href="#building-a-container-image">5. Building a Container Image</a></li>
+<li><a href="#running-the-application-in-the-cloud">6. Running the Application in the Cloud</a></li>
+<li><a href="#frequently-asked-questions">7. Frequently Asked Questions</a></li>
+</ul>
 </div>
-          
-        
-          
-          <li class="toc-bullets-sub">
-          
-            
-            <a href="/gdk/vscode-tools/database-features/">
-              Database Features
-            </a>
-          </li>
+                                </div>
+                            </div>
 
-          
-        
-      
-    
-      
-        
-          <li class="toc-bullets-main">
-        
-          
-          <a href="/gdk/vscode-guides/" class="_icon-book">
-            VS Code Guides
-          </a>
-        </li>
 
-        
-        
+                            </div>
+                            <div class="resize-sensor" style="position: absolute; inset: 0px; overflow: hidden; z-index: -1; visibility: hidden;"><div class="resize-sensor-expand" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; z-index: -1; visibility: hidden;"><div style="position: absolute; left: 0px; top: 0px; transition: all 0s ease 0s; width: 100000px; height: 100000px;"></div></div><div class="resize-sensor-shrink" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; z-index: -1; visibility: hidden;"><div style="position: absolute; left: 0; top: 0; transition: 0s; width: 200%; height: 200%"></div></div></div></div></div>
+                        <div class="resize-sensor" style="position: absolute; inset: 0px; overflow: hidden; z-index: -1; visibility: hidden;"><div class="resize-sensor-expand" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; z-index: -1; visibility: hidden;"><div style="position: absolute; left: 0px; top: 0px; transition: all 0s ease 0s; width: 100000px; height: 100000px;"></div></div><div class="resize-sensor-shrink" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; z-index: -1; visibility: hidden;"><div style="position: absolute; left: 0; top: 0; transition: 0s; width: 200%; height: 200%"></div></div></div></div>
 
-        
-        
-      
-    
-  
+                    <div class="col-sm-9 docsmod">
+                        <div id="content-wrapper" class="docs-content docs-content--with-sidebar"><h1>Oracle Cloud Assets</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Oracle Cloud Assets simplifies managing Oracle Cloud Infrastructure (OCI) resources for GDK and Micronaut® applications. Enabling developers to easily integrate OCI-based resources—such as databases, Object Storage buckets, vaults, and more—allows your application to be quickly configured and operational, significantly reducing setup time.
 
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-<!-- <li class="search additional-search">
-  <form class="form-inline sidebar" action="/docs/search" autocomplete="on" method="get">
-    <input class="input-search sidebar" type="text" id="search-box" name="query" placeholder="Search">
-    <button type="submit sidebar" class="search-button"></button>
-  </form>
-</li> -->
-
+</p>
 </div>
-  <!-- Search form -->
-  <!-- <form class="search-container" action="/docs/search" autocomplete="on" method="get">
-   <label for="search-box">Search</label>
-    <input type="text" id="search-box" name="query">
-    <button type="submit" class="searchbttn"></button>
-  </form> -->
-</div>
-
-        </div>
-      </div>
-    </div>
-
-    <div class="col-sm-9 docsmod">
-      <div id="content-wrapper" class="docs-content docs-content--with-sidebar">
-        <h1 id="oracle-cloud-assets">
-        
-        
-          Oracle Cloud Assets
-        
-        
-      </h1>
-
-<p>Oracle Cloud Assets simplifies managing Oracle Cloud Infrastructure (OCI) resources for GDK and Micronaut applications. Enabling developers to easily integrate OCI-based resources—such as databases, Object Storage buckets, vaults, and more—allows your application to be quickly configured and operational, significantly reducing setup time.</p>
-
+<div class="paragraph">
 <p>Oracle Cloud Assets can also add target execution environments such as Compute Instances or Oracle Kubernetes Engine (OKE) clusters to your applications.
 Based on the knowledge of the target environment and selected resources, it generates the necessary OCI policies for your application, uploads them, and deploys the application to the target environment.</p>
-
+</div>
+<div class="paragraph">
 <p>By managing resource provisioning, configuration management, and application deployment, Oracle Cloud Assets suits beginners and experienced developers.</p>
-
+</div>
+<div class="paragraph">
 <p>Beginners benefit by learning best practices for configuring and deploying applications, making it easier to get started without in-depth knowledge of the cloud infrastructure.</p>
-
+</div>
+<div class="paragraph">
 <p>Experienced developers save time by offloading the manual work related to application configuration, allowing them to focus on more complex development tasks.</p>
-    
-      <h3 id="supported-java-projects">
-        
-        
-          Supported Java Projects <a href="#supported-java-projects" class="anchor_heading">#</a>
-        
-        
-      </h3>
-
+</div>
+<h2 id="supported-java-projects" class="discrete">Supported Java Projects</h2>
+<div class="ulist">
 <ul>
-  <li><a href="https://micronaut.io">Micronaut</a><sup>®</sup> framework</li>
-  <li><a href="https://www.graal.cloud/gdk/">Graal Development Kit for Micronaut</a> (GDK)</li>
+<li>
+<p><a href="https://micronaut.io">Micronaut®</a> framework</p>
+</li>
+<li>
+<p><a href="https://www.graal.cloud/gdk/">Graal Development Kit for Micronaut</a> (GDK)</p>
+</li>
 </ul>
-    
-      <h2 id="installation-and-usage">
-        
-        
-          Installation and Usage <a href="#installation-and-usage" class="anchor_heading">#</a>
-        
-        
-      </h2>
-
+</div>
+<h2 id="prerequisites" class="discrete">Prerequisites</h2>
+<div class="ulist">
+<ul>
+<li>
+<p>A Java Development Kit (JDK 17 or later).</p>
+</li>
+<li>
+<p>A Docker-API compatible container runtime such as <a href="https://docs.rancherdesktop.io/getting-started/installation/">Rancher Desktop</a> or <a href="https://www.docker.io/gettingstarted/">Docker</a>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="installation-and-usage">1. Installation and Usage</h2>
+<div class="sectionbody">
+<div class="paragraph">
 <p>The Oracle Cloud Assets feature is part of the <a href="https://marketplace.visualstudio.com/items?itemName=oracle-labs-graalvm.graal-cloud-native-pack">Graal Development Kit for Micronaut Extension Pack</a>.
 Once you <a href="/gdk/vscode-tools/graal-development-kit-extension-pack/#installing">install</a> the extension pack, Oracle Cloud Assets will become available.</p>
-    
-      <h3 id="prerequisites">
-        
-        
-          Prerequisites <a href="#prerequisites" class="anchor_heading">#</a>
-        
-        
-      </h3>
-
+</div>
+<div class="paragraph">
+<p>To start using the feature, configure access to OCI (if you have not yet):</p>
+</div>
+<div class="ulist">
 <ul>
-  <li>A Java Development Kit (JDK 17 or later).</li>
-  <li>A Docker-API compatible container runtime such as <a href="https://docs.rancherdesktop.io/getting-started/installation/">Rancher Desktop</a> or <a href="https://www.docker.io/gettingstarted/">Docker</a>.</li>
+<li>
+<p><a href="https://www.oracle.com/cloud/free/">Create an Oracle Cloud account</a> (free tier is supported)</p>
+</li>
+<li>
+<p><a href="https://docs.oracle.com/iaas/Content/API/SDKDocs/cliinstall.htm#configfile">Create an <em>.oci/config</em></a> cloud access configuration file</p>
+</li>
+<li>
+<p><a href="https://docs.oracle.com/iaas/Content/API/SDKDocs/cliinstall.htm#InstallingCLI">Install the OCI CLI</a> (needed for the OKE local access)</p>
+</li>
 </ul>
-
-<p><br />
-To start using the feature, configure access to OCI (if you have not yet):</p>
-<ul>
-  <li><a href="https://www.oracle.com/cloud/free/">Create an Oracle Cloud account</a> (free tier is supported)</li>
-  <li><a href="https://docs.oracle.com/iaas/Content/API/SDKDocs/cliinstall.htm#configfile">Create an <em>.oci/config</em></a> cloud access configuration file</li>
-  <li><a href="https://docs.oracle.com/iaas/Content/API/SDKDocs/cliinstall.htm#InstallingCLI">Install the OCI CLI</a> (needed for the OKE local access)</li>
-</ul>
-
-<p><br />
-Having configured access to OCI, open a Micronaut or GDK project in the VS Code window.
+</div>
+<div class="paragraph">
+<p>Having configured access to OCI, open a Micronaut or GDK project in the VS Code window.
 The Oracle Cloud Assets panel becomes visible in the explorer.</p>
-    
-      <h2 id="adding-resources-to-the-project">
-        
-        
-          Adding Resources to the Project <a href="#adding-resources-to-the-project" class="anchor_heading">#</a>
-        
-        
-      </h2>
-
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="adding-resources-to-the-project">2. Adding Resources to the Project</h2>
+<div class="sectionbody">
+<div class="paragraph">
 <p>Once you open a Micronaut or GDK project in VS Code, Oracle Cloud Assets scans the application dependencies and detects the types of resources needed to run in OCI.
 Suggestions for all detected resource types are displayed in the Oracle Cloud Assets window.
 A suggestion to select the execution environment—either a Compute Instance or a Kubernetes Cluster and Container Repository—is always shown because it is a required configuration step for all projects.
 If your application uses an Oracle Autonomous Database and you add it as a resource, its password is stored separately in a secure store.</p>
-
-<p><img src="/gdk/docs/vscode-tools/images/cloud-assets/panel.png" alt="Oracle Cloud Assets" /></p>
-
-<p>For example, if your application stores files in OCI Object Storage, the option “Select Object Storage Bucket” is shown.
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/gdk/images/tools/cloud-assets/panel.png" alt="Oracle Cloud Assets">
+</div>
+</div>
+<div class="paragraph">
+<p>For example, if your application stores files in OCI Object Storage, the option "Select Object Storage Bucket" is shown.
 Hover over it and click add.
 A new dialogue opens, prepopulated with the values, asking to select the cloud compartment and the required bucket name.</p>
-
+</div>
+<div class="paragraph">
 <p>Next, you decide on the deployment environment and add a Compute Instance or a Kubernetes Cluster as a resource.
 In each case, you need to select a Container Repository in OCI where to push a container image for your application.
-Once you click “Select Container Repository” and select the target compartment, Oracle Cloud Assets offers you to <strong>&lt;create new&gt;</strong>:</p>
-
-<p><img src="/gdk/docs/vscode-tools/images/cloud-assets/create-new-container-repository.png" alt="Create New Container Repository" /></p>
-
+Once you click "Select Container Repository" and select the target compartment, Oracle Cloud Assets offers you to <strong>&lt;create&nbsp;new&gt;</strong>:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/gdk/images/tools/cloud-assets/create-new-container-repository.png" alt="Create New Container Repository">
+</div>
+</div>
+<div class="paragraph">
 <p>When the required resources are assigned, Oracle Cloud Assets is ready to generate the <em>application.properties</em> and <em>bootstrap.properties</em> files.
 Before the application runs locally, these properties files are created and passed to the application as temporary files using the <code>MICRONAUT_CONFIG_FILES</code> environment variable.
 This eliminates the need to set values for the missing datasources manually in the properties file and/or on the command line!</p>
-
+</div>
+<div class="quoteblock">
 <blockquote>
-  <p>Note: You can preview the generated properties by invoking <i class="codicon codicon-settings" aria-hidden="true"></i> -&gt; Open a preview of the config in the editor action.</p>
+<div class="paragraph">
+<p>Note: You can preview the generated properties by invoking &lt;i class="codicon codicon-settings" aria-hidden="true"&gt;&lt;/i&gt;&nbsp;-&gt;&nbsp;Open a preview of the config in the editor action.</p>
+</div>
 </blockquote>
-
-<p><img src="/gdk/docs/vscode-tools/images/cloud-assets/preview-generated-properties.png" alt="Preview Generated Properties" /></p>
-    
-      <h3 id="named-resource-binding">
-        
-        
-          Named Resource Binding <a href="#named-resource-binding" class="anchor_heading">#</a>
-        
-        
-      </h3>
-
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/gdk/images/tools/cloud-assets/preview-generated-properties.png" alt="Preview Generated Properties">
+</div>
+</div>
+<div class="sect2">
+<h3 id="named-resource-binding">2.1. Named Resource Binding</h3>
+<div class="paragraph">
 <p>In the Oracle Cloud Assets window, Database and Object Storage Bucket resources can be assigned names, which are then available through code completion in the <code>@JdbcRepository</code> and <code>@Named</code> annotations within VS Code.</p>
-
-<p><img src="/gdk/docs/vscode-tools/images/cloud-assets/datasource-cc.png" alt="Named Datasource" /></p>
-    
-      <h2 id="running-locally">
-        
-        
-          Running Locally <a href="#running-locally" class="anchor_heading">#</a>
-        
-        
-      </h2>
-
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/gdk/images/tools/cloud-assets/datasource-cc.png" alt="Named Datasource">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="running-locally">3. Running Locally</h2>
+<div class="sectionbody">
+<div class="paragraph">
 <p>After all the required resources are added to Oracle Cloud Assets, the application is now ready to run on a local computer.
-It can be started using the Code Lens in the Application class, through the menu command <strong>Run ‑&gt; Start Debugging</strong>, or in the Micronaut Tools activity panel.
+It can be started using the Code Lens in the Application class, through the menu command <strong>Run&nbsp;&#8209;&gt;&nbsp;Start&nbsp;Debugging</strong>, or in the Micronaut Tools activity panel.
 Configuration files, such as <em>application.properties</em> and <em>bootstrap.properties</em>, are created before the application is executed.</p>
-    
-      <h2 id="uploading-policies">
-        
-        
-          Uploading Policies <a href="#uploading-policies" class="anchor_heading">#</a>
-        
-        
-      </h2>
-
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="uploading-policies">4. Uploading Policies</h2>
+<div class="sectionbody">
+<div class="paragraph">
 <p>Before deploying your application to OCI, it is necessary to create policies that allow access from the execution environment (such as a Compute Instance or Kubernetes Cluster) to other resources, for example, an Object Storage Bucket.
 Oracle Cloud Assets automatically generates the required policies and you can upload them to the cloud compartment, while also providing a preview of the generated policies.
-You can access this feature by clicking the <i class="codicon codicon-key" aria-hidden="true"></i> button. The policies can either be uploaded directly to OCI or viewed as a preview.</p>
-
-<p><img src="/gdk/docs/vscode-tools/images/cloud-assets/policies.png" alt="Policies" /></p>
-    
-      <h2 id="building-a-container-image">
-        
-        
-          Building a Container Image <a href="#building-a-container-image" class="anchor_heading">#</a>
-        
-        
-      </h2>
-
+You can access this feature by clicking the &lt;i class="codicon codicon-key" aria-hidden="true"&gt;&lt;/i&gt; button. The policies can either be uploaded directly to OCI or viewed as a preview.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/gdk/images/tools/cloud-assets/policies.png" alt="Policies">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="building-a-container-image">5. Building a Container Image</h2>
+<div class="sectionbody">
+<div class="paragraph">
 <p>The next step towards deploying to the cloud is building a container image, which will be then used to run the application on both a Compute Instance and Oracle Kubernetes Engine (OKE).
-Click the <i class="codicon codicon-live-share" aria-hidden="true"></i> icon on the Container Repository line.</p>
-
-<p><img src="/gdk/docs/vscode-tools/images/cloud-assets/build-container-image-icon.png" alt="Build and Push a Container Image" /></p>
-
+Click the &lt;i class="codicon codicon-live-share" aria-hidden="true"&gt;&lt;/i&gt; icon on the Container Repository line.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/gdk/images/tools/cloud-assets/build-container-image-icon.png" alt="Build and Push a Container Image">
+</div>
+</div>
+<div class="paragraph">
 <p>A prompt to enter an image tag will appear, pre-filled with the project version.
 You can modify it as needed.
 The container is then built and pushed to the repository.
 Alternatively, you can build a native image version of the container by invoking <strong>Build and Push Native Image container image</strong> from the container repository context menu.</p>
-
-<p><img src="/gdk/docs/vscode-tools/images/cloud-assets/build-native.png" alt="Build Native" /></p>
-
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/gdk/images/tools/cloud-assets/build-native.png" alt="Build Native">
+</div>
+</div>
+<div class="paragraph">
 <p>It is also possible to delete the image tags or versions from within the Oracle Cloud Assets window (hover over the image name and click the delete icon).
 There is no need to do it manually from the OCI console.</p>
-    
-      <h2 id="running-the-application-in-the-cloud">
-        
-        
-          Running the Application in the Cloud <a href="#running-the-application-in-the-cloud" class="anchor_heading">#</a>
-        
-        
-      </h2>
-
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="running-the-application-in-the-cloud">6. Running the Application in the Cloud</h2>
+<div class="sectionbody">
+<div class="paragraph">
 <p>To deploy and run your application in the cloud, use the Run command located at the container image line.
-Click the <i class="codicon codicon-play" aria-hidden="true"></i> icon next to the selected version.
+Click the &lt;i class="codicon codicon-play" aria-hidden="true"&gt;&lt;/i&gt; icon next to the selected version.
 This action deploys the application to the selected execution environment.</p>
-    
-      <h3 id="compute-instance">
-        
-        
-          Compute Instance <a href="#compute-instance" class="anchor_heading">#</a>
-        
-        
-      </h3>
-
+</div>
+<div class="sect2">
+<h3 id="compute-instance">6.1. Compute Instance</h3>
+<div class="paragraph">
 <p>When deployment to the Compute Instance is invoked, the configuration files are generated and uploaded to the remote host.
 If a previously running container exists, it is stopped before starting the new one in the background, using the updated configuration.
-The Output window displays the application’s output, enabling you to monitor its status.</p>
-
+The Output window displays the application&#8217;s output, enabling you to monitor its status.</p>
+</div>
+<div class="quoteblock">
 <blockquote>
-  <p>Note that the CPU architectures of the remote host and your local machine should match.</p>
+<div class="paragraph">
+<p>Note that the CPU architectures of the remote host and your local machine should match.</p>
+</div>
+<div class="paragraph">
+<p>A container runtime such as <a href="https://docs.rancherdesktop.io/getting-started/installation/">Rancher Desktop</a> or <a href="https://www.docker.io/gettingstarted/">Docker</a> should be also installed and enabled on a remote host.</p>
+</div>
 </blockquote>
-
-<blockquote>
-  <p>A container runtime such as <a href="https://docs.rancherdesktop.io/getting-started/installation/">Rancher Desktop</a> or <a href="https://www.docker.io/gettingstarted/">Docker</a> should be also installed and enabled on a remote host.</p>
-</blockquote>
-    
-      <h3 id="oracle-kubernetes-engine-oke">
-        
-        
-          Oracle Kubernetes Engine (OKE) <a href="#oracle-kubernetes-engine-oke" class="anchor_heading">#</a>
-        
-        
-      </h3>
-
+</div>
+</div>
+<div class="sect2">
+<h3 id="oracle-kubernetes-engine-oke">6.2. Oracle Kubernetes Engine (OKE)</h3>
+<div class="paragraph">
 <p>For deployments to the Oracle Kubernetes Engine (OKE), the configuration is first uploaded to the <code>ConfigMap</code> resource.
 Then, a new deployment with the same name as the application is created or updated, if it already exists.</p>
-
+</div>
+<div class="quoteblock">
 <blockquote>
-  <p>Note that the Kubernetes configuration is retrieved from OCI, so there is no need to set it up locally.</p>
+<div class="paragraph">
+<p>Note that the Kubernetes configuration is retrieved from OCI, so there is no need to set it up locally.</p>
+</div>
 </blockquote>
-    
-      <h2 id="frequently-asked-questions">
-        
-        
-          Frequently Asked Questions <a href="#frequently-asked-questions" class="anchor_heading">#</a>
-        
-        
-      </h2>
-
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="frequently-asked-questions">7. Frequently Asked Questions</h2>
+<div class="sectionbody">
+<div class="paragraph">
 <p><em>What is the difference between using the Oracle Cloud Assets and OCI DevOps?</em></p>
-
+</div>
+<div class="paragraph">
 <p>When using Oracle Cloud Assets, a project is developed and built on a local machine and deployed <em>to</em> the cloud.
 Unlike using OCI DevOps, when a project is built and deployed <em>in</em> the cloud.</p>
-
+</div>
+<div class="paragraph">
 <p>Using Oracle Cloud Assets, the container image is built locally, so there is no need to commit and push changes to the source code repository.
 In contrast, OCI DevOps tools use a Build Pipeline, which pulls the code from the source code repository.
 This process requires the changes to be committed and pushed, adding a bit of extra time before your application is live in the cloud.</p>
-
+</div>
+<div class="paragraph">
 <p>To summarize, Oracle Cloud Assets are recommended for development and testing purposes, while OCI DevOps tools are recommended for continuous integration and continuous deployment (CI/CD).</p>
-    
-      <h3 id="related-documentation">
-        
-        
-          Related Documentation <a href="#related-documentation" class="anchor_heading">#</a>
-        
-        
-      </h3>
-
+</div>
+<h3 id="related-documentation" class="discrete">Related Documentation</h3>
+<div class="ulist">
 <ul>
-  <li><a href="/gdk/vscode-tools/oci-devops-tools/">OCI DevOps Tools</a></li>
+<li>
+<p><a href="/gdk/vscode-tools/oci-devops-tools/">OCI DevOps Tools</a></p>
+</li>
 </ul>
+</div>
+</div>
+</div></div>
+                        <div role="button" class="menu-btn menu-btn--sidebar js-show-sidebar" title="sweet hamburger">
+                            <div class="hamburger">
+                                <div class="inner"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
 
-      </div>
 
-      <div role="button" class="menu-btn menu-btn--sidebar js-show-sidebar" title="sweet hamburger">
-        <div class="hamburger">
-          <div class="inner"></div>
+
         </div>
-      </div>
-    </div>
-  </div>
-</article>
+
+    </main>
+
+
+    <footer class="footer footer__mobile">
+
+        <div class="container-fluid container-fluid--custom-sm">
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="row footer-content">
+                        <div class="col-md-3 col-sm-4">
+                            <h6 class="title-footer" onclick="fadeInAndOut(this)">Learn</h6>
+                            <div class="grow">
+                                <ul class="footer-list">
+                                    <li class="footer-list__item"><a href="/gdk/get-started/">Get Started</a></li>
+                                    <li class="footer-list__item"><a href="/gdk/guides/">Guides</a></li>
+                                    <li class="footer-list__item"><a href="/gdk/hands-on-labs/">Labs</a></li>
+                                    <li class="footer-list__github">
+                                        <img class="footer__icon" src="https://graal-cloud-staging.us.oracle.com/gdk/resources/img/footer/logo-github.svg" alt="Github icon">
+                                        <a href="https://github.com/oracle/graal-dev-kit" target="blank">Github</a>
+                                    </li>
+                                    <li class="footer-list__github">
+                                        <img class="footer__icon" src="https://graal-cloud-staging.us.oracle.com/gdk/resources/img/footer/slack-icon.svg" alt="Github icon">
+                                        <a href="https://bit.ly/odevrel_slack" target="blank">#graal-dev-kit-for-micronaut</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-4">
+                            <h6 class="title-footer" onclick="fadeInAndOut(this)">About</h6>
+                            <div class="grow">
+                                <ul class="footer-list">
+                                    <li class="footer-list__item"><a href="/gdk/about/#gdk-support" target="blank">Commercial Support</a></li>
+                                    <li class="footer-list__item"><a href="https://www.graalvm.org/" target="blank">GraalVM Native Image</a></li>
+                                    <li class="footer-list__item"><a href="https://micronaut.io/" target="_blank">Micronaut<sup>®</sup> Framework</a></li>
+                                    <li class="footer-list__item"><a href="https://www.oracle.com/cloud/multicloud/what-is-multicloud/" target="_blank">Multicloud</a></li>
+                                    <li class="footer-list__item"><a href="https://www.oracle.com/cloud/" target="blank">Oracle Cloud Infrastructure</a></li>
+                                    <li class="footer-list__item"><a href="https://marketplace.visualstudio.com/items?itemName=oracle-labs-graalvm.graal-cloud-native-pack" target="blank">VS Code Tools</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 aligning_1024">
+                            <div class="card--footer card--hovered box">
+                                <div>
+                                    <div class="rubber-footer footer__oci-section">
+                                        <p class="title-footer quickstart">Build, test, and deploy applications on Oracle Cloud Infrastructure for free</p>
+                                        <a href="https://www.oracle.com/cloud/free/" target="_blank" class="btn btn-primary">Try Oracle Cloud Infrastructure Free Tier</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <p class="copyright">
+                                    Copyright © 2023-2024, Oracle and/or its affiliates.
+                                    All rights reserved.
+                                    Oracle and Java are registered trademarks of Oracle and/or its affiliates.<br>
+                                    Micronaut<sup>®</sup> is a registered trademark of Object Computing, Inc.
+                                    Use is for referential purposes and does not imply any endorsement or affiliation with any third-party product.
+                                    Unauthorized use is strictly prohibited. Other names may be trademarks of their respective owners.
+                                </p>
+                                <div id="teconsent" consent="0,1,2" aria-label="Open Cookie Preferences Modal" class="truste_caIcon_display" role="complementary"><script async="async" type="text/javascript" crossorigin="" importance="high" src="https://consent.trustarc.com/asset/notice.js/v/v1.7-776"></script><a role="link" id="icon-id0368112092352622" tabindex="0" lang="en" aria-haspopup="dialog" aria-label="Cookie Preferences, opens a dedicated popup modal window" class="truste_cursor_pointer">Cookie Preferences</a></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function fadeInAndOut(thz) {
+            var elmt = thz.nextElementSibling;//Get the element that is below the button that
+            //was just clicked
+            if (elmt.clientHeight) {
+                elmt.style.height = 0;
+            } else {
+                var wrapper = elmt.querySelector('ul');
+                elmt.style.height = wrapper.clientHeight + "px";
+            }
+            /*
+                elmt.classList.toggle("acordianPanelHidden");//Toggle the class which changes
+                //attributes which triggers the transition CSS
+                */
+        }
+
+        // Check TRUSTe Consent for Functional or Implied Approval
+        // The if test verifies if the user has given the consent
+        if ( (oracle.truste.api.getGdprConsentDecision().consentDecision) &&
+            (oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(0) != -1 ||
+                oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(2) != -1) ) {
+
+            //The following is a sample of a Maxymiser Tag being written to the DOM
+            //If the user did not give consent, then the tag is not included and not invoked in the Browser
+            document.write('<script type="text/javascript" src="//service.maxymiser.net/cdn/oracle/js/mmcore.js"><\/script>');
+        }
+
+        // Check TRUSTe Consent for Advertising or Implied Approval
+        // The if test verifies if the user has given the consent
+        if ( (oracle.truste.api.getGdprConsentDecision().consentDecision) &&
+            (oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(0) != -1 ||
+                oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(3) != -1) ) {
+
+            //The following is a sample of a BlueKai Core Tag being written to the DOM
+            //If the user did not give consent, then the tag is not included and not invoked in the Browser
+            document.write('<script type="text/javascript">' +
+                'window.bk_async = function() { ' +
+                'BKTAG.doTag(62581, 1); }; ' +
+                '(function() { ' +
+                'var scripts = document.getElementsByTagName(\'script\')[0]; ' +
+                'var s = document.createElement(\'script\'); ' +
+                's.async = true; ' +
+                's.src = "https://tags.bkrtx.com/js/bk-coretag.js"; ' +
+                'scripts.parentNode.insertBefore(s, scripts); ' +
+                '}()); ' +
+                '<\/script>');
+        }
+    </script><script type="text/javascript" src="//service.maxymiser.net/cdn/oracle/js/mmcore.js"></script><script type="text/javascript">window.bk_async = function() { BKTAG.doTag(62581, 1); }; (function() { var scripts = document.getElementsByTagName('script')[0]; var s = document.createElement('script'); s.async = true; s.src = "https://tags.bkrtx.com/js/bk-coretag.js"; scripts.parentNode.insertBefore(s, scripts); }()); </script>
 
 </div>
+<div class="overlay"></div>
 
-      </main>
+<!-- Start SiteCatalyst code -->
+<script language="JavaScript" src="https://www.oracle.com/us/assets/metrics/ora_otn.js"></script><script type="text/javascript" src="https://www.oracleimg.com/us/assets/metrics/ora_code_otn.js"></script><script type="text/javascript" src="https://www.oracleimg.com/us/assets/metrics/ora_code.js"></script>
+<!-- End SiteCatalyst code -->
 
-      
-<footer class="footer footer__mobile">
+<script src="https://graal-cloud-staging.us.oracle.com/gdk/resources/lib/slick-slider/slick.min.js"></script>
+<script src='https://graal-cloud-staging.us.oracle.com/gdk/resources/js/main.js'></script>
+<script src="https://graal-cloud-staging.us.oracle.com/gdk/resources/js/ui.js"></script>
+<script src="https://graal-cloud-staging.us.oracle.com/gdk/resources/js/filters.js"></script>
+<script src="https://graal-cloud-staging.us.oracle.com/gdk/resources/js/sidebar.js"></script>
+<script src="https://graal-cloud-staging.us.oracle.com/gdk/resources/js/labs.js"></script>
+<!--<script>-->
+<!--    hljs.initHighlightingOnLoad();-->
+<!--</script>-->
 
-  <div class="container-fluid container-fluid--custom-sm">
-    <div class="row">
-      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-        <div class="row footer-content">
-          <div class="col-md-3 col-sm-4">
-            <h6 class="title-footer" onclick="fadeInAndOut(this)">Learn</h6>
-            <div class="grow">
-              <ul class="footer-list">
-                <li class="footer-list__item"><a href="/gdk/get-started/">Get Started</a></li>
-                <li class="footer-list__item"><a href="/gdk/guides/">Guides</a></li>
-                <li class="footer-list__item"><a href="/gdk/hands-on-labs/">Labs</a></li>
-                <li class="footer-list__github">
-                  <img class="footer__icon" src="/gdk/resources/img/footer/logo-github.svg" alt="Github icon">
-                  <a href="https://github.com/oracle/graal-dev-kit" target="blank">Github</a>
-                </li>
-                <li class="footer-list__github">
-                  <img class="footer__icon" src="/gdk/resources/img/footer/slack-icon.svg" alt="Github icon">
-                  <a href="https://bit.ly/odevrel_slack" target="blank">#graal-dev-kit-for-micronaut</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md-3 col-sm-4">
-            <h6 class="title-footer" onclick="fadeInAndOut(this)">About</h6>
-            <div class="grow">
-              <ul class="footer-list">
-                <li class="footer-list__item"><a href="/gdk/about/#gdk-support" target="blank">Commercial Support</a></li>
-                <li class="footer-list__item"><a href="https://www.graalvm.org/" target="blank">GraalVM Native Image</a></li>
-                <li class="footer-list__item"><a href="https://micronaut.io/" target="_blank">Micronaut<sup>&reg;</sup> Framework</a></li>
-                <li class="footer-list__item"><a href="https://www.oracle.com/cloud/multicloud/what-is-multicloud/" target="_blank">Multicloud</a></li>
-                <li class="footer-list__item"><a href="https://www.oracle.com/cloud/" target="blank">Oracle Cloud Infrastructure</a></li>
-                <li class="footer-list__item"><a href="https://marketplace.visualstudio.com/items?itemName=oracle-labs-graalvm.graal-cloud-native-pack" target="blank">VS Code Tools</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md-6 col-sm-12 aligning_1024">
-            <div class="card--footer card--hovered box">
-              <div>
-                <div class="rubber-footer footer__oci-section">
-                  <p class="title-footer quickstart">Build, test, and deploy applications on Oracle Cloud Infrastructure for free</p>
-                  <a href="https://www.oracle.com/cloud/free/" target="_blank"
-                    class="btn btn-primary">Try Oracle Cloud Infrastructure Free Tier</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
 
-        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-          <div class="row">
-            <div class="col-sm-12">
-              <p class="copyright">
-                Copyright &copy; 2023-2024, Oracle and/or its affiliates.
-                All rights reserved.
-                Oracle and Java are registered trademarks of Oracle and/or its affiliates.<br/>
-                Micronaut<sup>&reg;</sup> is a registered trademark of Object Computing, Inc.
-                Use is for referential purposes and does not imply any endorsement or affiliation with any third-party product.
-                Unauthorized use is strictly prohibited. Other names may be trademarks of their respective owners.
-              </p>
-              <div id="teconsent"></div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-    </div>
-  </div>
-</footer>
-
-<script>
-  function fadeInAndOut(thz) {
-    var elmt = thz.nextElementSibling;//Get the element that is below the button that
-    //was just clicked
-    if (elmt.clientHeight) {
-      elmt.style.height = 0;
-    } else {
-      var wrapper = elmt.querySelector('ul');
-      elmt.style.height = wrapper.clientHeight + "px";
-    }
-    /*
-        elmt.classList.toggle("acordianPanelHidden");//Toggle the class which changes
-        //attributes which triggers the transition CSS
-        */
-  }
-
-  // Check TRUSTe Consent for Functional or Implied Approval
-  // The if test verifies if the user has given the consent
-  if ( (oracle.truste.api.getGdprConsentDecision().consentDecision) &&
-      (oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(0) != -1 ||
-        oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(2) != -1) ) {
-
-      //The following is a sample of a Maxymiser Tag being written to the DOM
-      //If the user did not give consent, then the tag is not included and not invoked in the Browser
-      document.write('<script type="text/javascript" src="//service.maxymiser.net/cdn/oracle/js/mmcore.js"><\/script>');
-  }
-
-  // Check TRUSTe Consent for Advertising or Implied Approval
-  // The if test verifies if the user has given the consent
-  if ( (oracle.truste.api.getGdprConsentDecision().consentDecision) &&
-      (oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(0) != -1 ||
-        oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(3) != -1) ) {
-
-      //The following is a sample of a BlueKai Core Tag being written to the DOM
-      //If the user did not give consent, then the tag is not included and not invoked in the Browser
-      document.write('<script type="text/javascript">' +
-      'window.bk_async = function() { ' +
-      'BKTAG.doTag(62581, 1); }; ' +
-      '(function() { ' +
-      'var scripts = document.getElementsByTagName(\'script\')[0]; ' +
-      'var s = document.createElement(\'script\'); ' +
-      's.async = true; ' +
-      's.src = "https://tags.bkrtx.com/js/bk-coretag.js"; ' +
-      'scripts.parentNode.insertBefore(s, scripts); ' +
-      '}()); ' +
-      '<\/script>');
-  }
-</script>
-
-    </div>
-    <div class="overlay"></div>
-
-    <!-- Start SiteCatalyst code -->
-    <script language="JavaScript" src="https://www.oracle.com/us/assets/metrics/ora_otn.js"></script>
-    <!-- End SiteCatalyst code -->
-
-    <script src='/gdk/resources/lib/slick-slider/slick.min.js'></script>
-    <script src='/gdk/resources/js/main.js'></script>
-    <script src='/gdk/resources/js/ui.js'></script>
-    <script src='/gdk/resources/js/filters.js'></script>
-    <script src='/gdk/resources/js/sidebar.js'></script>
-    <script src='/gdk/resources/js/labs.js'></script>
-    <script src='/gdk/resources/lib/highlight/highlight.min.js'></script>
-    <script>hljs.highlightAll();</script>
-  </body>
-</html>
+<iframe name="trustarc_notice" id="trustarcNoticeFrame" title="Trustarc Cross-Domain Consent Frame" src="https://consent.trustarc.com/get?name=crossdomain.html&amp;domain=oracle.com" style="display: none;"></iframe></body></html>

@@ -11131,6 +11131,9 @@ img {
 p img {
   max-width: 50%; }
 
+.imageblock .img {
+  max-width: 50%; }
+
 figure > img {
   display: block; }
 
@@ -12500,6 +12503,15 @@ a.activeMenuItem.toc-bullets-highlight {
   @media (min-width: 576px) {
     .content-section-news {
       padding: 60px 20px; } }
+
+.colist table {
+  border: 0;
+  padding-left: 0px;
+  padding-right: 0px; }
+  .colist table td {
+    border: 0; }
+  .colist table tr {
+    border: 0; }
 
 .site-title {
   font-size: 2.125rem;
