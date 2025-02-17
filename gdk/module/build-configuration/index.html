@@ -1,0 +1,2128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:image" content="/gdk/resources/img/graalvm.png" />
+  <meta name="twitter:widgets:border-color" content="#55acee">
+
+  <title>
+    
+      Build Configuration for Micronaut
+    
+  </title>
+  <meta name="description" content="The Graal Development Kit for Micronaut (GDK) is a build of a curated set of Micronaut framework modules and their required libraries for building portable c..."/>
+  <meta name="last_modified" content="2025-02-17 15:04:13 +0000"/>
+  <meta name="last_built" content="2025-02-17 15:51:08 +0000"/>
+  <link rel="stylesheet" href="/gdk/assets/main.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="/gdk/resources/img/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/gdk/resources/img/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/gdk/resources/img/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/gdk/resources/img/favicon/site.webmanifest">
+  <link rel="stylesheet" type="text/css" href="/gdk/resources/styles/codicon.css" />
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="google-site-verification" content="-vRqwa9WYn6AaQGnl88xvrLw6ac4xoKVkZkhanmlRhU" />
+  <link rel="canonical" href="https://www.graal.cloud/gdk/module/build-configuration/">
+
+  <!-- jQuery UI Tabs -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.14.0/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/gdk/resources/lib/jquery/jquery-ui.css">
+</head>
+
+      <script src="/gdk/resources/lib/jquery/jquery-3.7.1.min.js"></script>
+    <script src="/gdk/resources/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src='/gdk/resources/lib/sticky-sidebar/resizeSensor.js'></script>
+    <script src='/gdk/resources/lib/sticky-sidebar/sticky-sidebar.min.js'></script>
+    <script src="/gdk/resources/lib/highlight/highlight.min.js"></script>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- Add TRUSTe Consent Script and Analytics -->
+    <script async="async" type="text/javascript" src='//consent.trustarc.com/notice?domain=oracle.com&c=teconsent&js=bb&noticeType=bb&text=true&cdn=1&pcookie&gtm=1' crossorigin></script>
+    <script src="https://www.oracle.com/assets/truste-oraclelib.js"></script>
+    <!-- jQuery UI Tabs -->
+    <script src="https://code.jquery.com/ui/1.14.0/jquery-ui.js"></script>
+
+
+  <body class="preload">
+    <!-- Start SiteCatalyst code -->
+    <script language="JavaScript" src="https://www.oracle.com/us/assets/metrics/ora_otn.js"></script>
+    <!-- End SiteCatalyst code -->
+
+    <div  class="wrapper wrapper--nofooter" >
+
+      <header  class="header header--content" 
+  role="banner">
+
+  
+
+  
+
+    <nav class="menu">
+      <div class="menu__row">
+        <div>
+          <a href="/gdk/">
+            <img class="logo-mobile" src="/gdk/resources/img/gdk-logo-new.svg" alt="Graal Development Kit for Micronaut logo">
+          </a>
+        </div>
+        <div class="menu__container">
+          <ul class="menu__list">
+            <li class="menu__item">
+              <a href="/gdk/about/" class="menu__link">About</a>
+            </li>
+            <li class="menu__item">
+              <a href="/gdk/get-started/" class="menu__link">Get Started</a>
+            </li>
+            <li class="menu__item">
+              <div class="stack-container">
+                <a href="#" class="menu__link stack__header">Docs</a>
+                <div class="stack-menu-learn">
+                  <div class="stack-row">
+                    <div class="stack-column">
+                      <div class="stack__item">
+                        <img src='/gdk/resources/img/header-navigation/modules.svg'>
+                        <a href="/gdk/modules/" class="item-line">Modules</a>
+                      </div>
+                      <div class="stack__item">
+                        <img src='/gdk/resources/img/header-navigation/guides.svg'>
+                        <a href="/gdk/guides/" class="item-line">Guides</a>
+                      </div>
+                      <div class="stack__item">
+                        <img src='/gdk/resources/img/header-navigation/labs.svg'>
+                        <a href="/gdk/hands-on-labs/" class="item-line">Hands-On Labs</a>
+                      </div>
+                      <div class="stack__item">
+                        <img src='/gdk/resources/img/header-navigation/tools.svg'>
+                        <a href="/gdk/vscode-tools/" class="item-line">Tools</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="menu__item">
+              <div class="stack-container">
+                <a href="#" class="menu__link stack__header">Graal Projects</a>
+                <div class="stack-menu">
+                  <div class="stack-row">
+                    <div class="stack-column">
+                      <div class="stack__item">
+                        <img src='/gdk/resources/img/header-navigation/graalstack.svg'>
+                        <a href="https://graal.cloud/" class="item-line">Graal</a>
+                      </div>
+                      <div class="stack__item">
+                        <img src='/gdk/resources/img/header-navigation/graalvm.svg'>
+                        <a href="https://graalvm.org/" class="item-line">GraalVM</a>
+                      </div>
+                      <div class="stack__item">
+                        <img src='/gdk/resources/img/header-navigation/graalos.svg'>
+                        <a href="https://graal.cloud/graalos/" class="item-line">GraalOS</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="menu__launch__mobile">
+              <a href="/gdk/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
+            </li>
+          </ul>
+        </div>
+        <div class="menu__launch">
+          <a href="/gdk/launcher/" class="btn-launch btn btn-primary" target="blank">Create App</a>
+        </div>
+      </div>
+
+      <div role="button" class="menu-btn menu-btn--menu js-show-menu" tabindex="-1" title="sweet hamburger">
+        <div class="hamburger">
+          <div class="inner"></div>
+        </div>
+      </div>
+      <button aria-label="hamburger mobile menu" class="btn btn-mobile-menu js-show-menu">
+        <div class="inner"></div>
+      </button>
+    </nav>
+
+  
+</header>
+
+
+      <main  class="content"   aria-label="Content">
+        <div class="wrapper wrapper-content">
+  <article>
+  <div class="row d-flex flex-wrap">
+    <div class="col-sm-3 docsimpro col-bg">
+      <div class="sidebar-wrap">
+        <div class="sidebar">
+          <div class="menuabout">
+            <img id="sidebarClose" src="/gdk/resources/img/arrow_sidebar(close).svg" alt="Expand or collapse sidebar"
+              class="btn-color no-display">
+            <img id="sidebarOpen" src="/gdk/resources/img/arrow_sidebar.svg" alt="Expand or collapse sidebar">
+          </div>
+          
+<div class="toc-floating">
+
+
+<div class="toc-bullets">
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+
+    
+      
+        
+          <li class="toc-bullets-main">
+        
+          
+          <a href="/gdk/modules/" class="_icon-book">
+            GDK Modules
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+          
+          <li class="toc-bullets-sub toc-bullets-highlight">
+          
+            
+            <a href="/gdk/module/build-configuration/">
+              Build Configuration for Micronaut
+            </a>
+          </li>
+
+          
+            <div>
+  <script>
+    var scriptElement = document.currentScript;
+    var div = $(scriptElement.parentElement);
+    $(window).on("load", function () {
+      $("#content-wrapper h2").each(function () {
+        var li = $("<li></li>", { class: "toc-bullets-sub toc-bullets-sub-3" });
+        var a = $("<a></a>", { href: "#" + $(this).attr("id") });
+        a.text($(this).text().replace('#', ''));
+        li.append(a);
+        li.click(function (e) {
+          e.preventDefault();
+          var target = $(a.attr('href'));
+          var scrollTo = target.offset().top - 80; // 80 - indent
+          $('html, body').animate({ scrollTop: scrollTo }, 1000);
+        });
+        div.append(li);
+      });
+    });
+  </script>
+</div>
+          
+        
+      
+    
+  
+
+<!-- <li class="search additional-search">
+  <form class="form-inline sidebar" action="/docs/search" autocomplete="on" method="get">
+    <input class="input-search sidebar" type="text" id="search-box" name="query" placeholder="Search">
+    <button type="submit sidebar" class="search-button"></button>
+  </form>
+</li> -->
+
+</div>
+  <!-- Search form -->
+  <!-- <form class="search-container" action="/docs/search" autocomplete="on" method="get">
+   <label for="search-box">Search</label>
+    <input type="text" id="search-box" name="query">
+    <button type="submit" class="searchbttn"></button>
+  </form> -->
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-9 docsmod">
+      <div id="content-wrapper" class="docs-content docs-content--with-sidebar">
+        <h1 id="build-configuration-for-micronaut">
+        
+        
+          Build Configuration for Micronaut
+        
+        
+      </h1>
+
+<p>An application generated with GDK that uses Micronaut modules has its dependencies (and other configuration details) described in build files (such as <em>build.gradle</em> or <em>pom.xml</em>).</p>
+
+<p>When an application is generated using the <a href="/gdk/get-started/using-gdk-launcher/">GDK Launcher</a> or the <a href="/gdk/get-started/using-gdk-cli/">GDK command</a>, the configuration details are automatically added to the cross-platform build file (in the <em>lib/</em> directory) and/or platform-specific build files (in the <em>oci/</em> directory, for example).</p>
+
+<p>However, there may be occasions when an application requires additional Micronaut modules (for example, to add Logging to an existing Email application).
+In these circumstances, the Micronaut dependencies must be added to the appropriate build file manually.</p>
+
+<blockquote>
+  <p>Note: Dependencies in a cross-platform build file ensure that source files in the <em>lib/</em> directory can be compiled.
+Those dependencies have no effect on a platform-specific build file, so some are repeated in addition to the platform-specific dependencies to compile and run the application.</p>
+</blockquote>
+
+<p>The sections below describe the relevant configuration details for each Micronaut module.</p>
+    
+      <h2 id="mysql-database">
+        
+        
+          MySQL Database <a href="#mysql-database" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>The cross-platform build file requires the following dependencies (including a runtime JDBC driver such as <a href="https://github.com/brettwooldridge/HikariCP">Hikari</a>) and annotation processors:</p>
+
+<div class="gradle-maven-tabs">
+    <ul>
+        <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <p><em>lib/build.gradle</em></p>
+        <pre><code>implementation("io.micronaut.data:micronaut-data-jdbc")
+implementation("io.micronaut.sql:micronaut-jdbc-hikari")
+implementation("io.micronaut.validation:micronaut-validation")
+implementation("jakarta.validation:jakarta.validation-api")
+runtimeOnly("mysql:mysql-connector-java")
+annotationProcessor("io.micronaut.data:micronaut-data-processor")
+annotationProcessor("io.micronaut.validation:micronaut-validation-processor")</code></pre>
+    </div>
+    <div id="maven">
+        <p><em>lib/pom.xml</em></p>
+        <pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.data&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-data-jdbc&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.sql&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-jdbc-hikari&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.validation&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-validation&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;jakarta.validation&lt;/groupId&gt;
+    &lt;artifactId&gt;jakarta.validation-api&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;mysql&lt;/groupId&gt;
+    &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+    &lt;scope&gt;runtime&lt;/scope&gt;
+&lt;/dependency&gt;
+...
+&lt;annotationProcessorPaths combine.self="override"&gt;
+    ...
+    &lt;path&gt;
+        &lt;groupId&gt;io.micronaut&lt;/groupId&gt;
+        &lt;artifactId&gt;micronaut-inject-java&lt;/artifactId&gt;
+        &lt;version&gt;${micronaut.core.version}&lt;/version&gt;
+    &lt;/path&gt;
+    &lt;path&gt;
+        &lt;groupId&gt;io.micronaut.data&lt;/groupId&gt;
+        &lt;artifactId&gt;micronaut-data-processor&lt;/artifactId&gt;
+        &lt;version&gt;${micronaut.data.version}&lt;/version&gt;
+    &lt;/path&gt;
+    &lt;path&gt;
+        &lt;groupId&gt;io.micronaut&lt;/groupId&gt;
+        &lt;artifactId&gt;micronaut-graal&lt;/artifactId&gt;
+        &lt;version&gt;${micronaut.core.version}&lt;/version&gt;
+    &lt;/path&gt;
+    &lt;path&gt;
+        &lt;groupId&gt;io.micronaut.validation&lt;/groupId&gt;
+        &lt;artifactId&gt;micronaut-validation-processor&lt;/artifactId&gt;
+        &lt;version&gt;${micronaut.validation.version}&lt;/version&gt;
+    &lt;/path&gt;
+    ...
+&lt;/annotationProcessorPaths&gt;</code></pre>
+    </div>
+</div>
+    
+      <h3 id="platform-specific-build-file">
+        
+        
+          Platform-Specific Build File <a href="#platform-specific-build-file" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>The platform-specific build file requires the following dependencies and annotation processors:</p>
+
+<div class="gradle-maven-tabs">
+    <ul>
+        <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <p><em>{oci | aws | gcp}/build.gradle</em></p>
+        <pre><code>implementation("io.micronaut.data:micronaut-data-jdbc")
+implementation("io.micronaut.sql:micronaut-jdbc-hikari")
+implementation("io.micronaut.validation:micronaut-validation")
+implementation("jakarta.validation:jakarta.validation-api")
+implementation("io.micronaut.flyway:micronaut-flyway")
+runtimeOnly("org.flywaydb:flyway-mysql")
+runtimeOnly("mysql:mysql-connector-java")
+annotationProcessor("io.micronaut.data:micronaut-data-processor")
+annotationProcessor("io.micronaut.validation:micronaut-validation-processor")</code></pre>
+    </div>
+    <div id="maven">
+        <p><em>{oci | aws | gcp}/pom.xml</em></p>
+        <pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.data&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-data-jdbc&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.sql&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-jdbc-hikari&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.validation&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-validation&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;jakarta.validation&lt;/groupId&gt;
+    &lt;artifactId&gt;jakarta.validation-api&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;mysql&lt;/groupId&gt;
+    &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+    &lt;scope&gt;runtime&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.flyway&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-flyway&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.flywaydb&lt;/groupId&gt;
+    &lt;artifactId&gt;flyway-mysql&lt;/artifactId&gt;
+    &lt;scope&gt;runtime&lt;/scope&gt;
+&lt;/dependency&gt;
+...
+&lt;annotationProcessorPaths combine.self="override"&gt;
+    ...
+    &lt;path&gt;
+        &lt;groupId&gt;io.micronaut&lt;/groupId&gt;
+        &lt;artifactId&gt;micronaut-inject-java&lt;/artifactId&gt;
+        &lt;version&gt;${micronaut.core.version}&lt;/version&gt;
+    &lt;/path&gt;
+    &lt;path&gt;
+        &lt;groupId&gt;io.micronaut.data&lt;/groupId&gt;
+        &lt;artifactId&gt;micronaut-data-processor&lt;/artifactId&gt;
+        &lt;version&gt;${micronaut.data.version}&lt;/version&gt;
+    &lt;/path&gt;
+    &lt;path&gt;
+        &lt;groupId&gt;io.micronaut&lt;/groupId&gt;
+        &lt;artifactId&gt;micronaut-graal&lt;/artifactId&gt;
+        &lt;version&gt;${micronaut.core.version}&lt;/version&gt;
+    &lt;/path&gt;
+    &lt;path&gt;
+        &lt;groupId&gt;io.micronaut.validation&lt;/groupId&gt;
+        &lt;artifactId&gt;micronaut-validation-processor&lt;/artifactId&gt;
+        &lt;version&gt;${micronaut.validation.version}&lt;/version&gt;
+    &lt;/path&gt;
+    ...
+&lt;/annotationProcessorPaths&gt;</code></pre>
+    </div>
+</div>
+    
+      <h2 id="oracle-cloud-infrastructure-autonomous-database">
+        
+        
+          Oracle Cloud Infrastructure Autonomous Database <a href="#oracle-cloud-infrastructure-autonomous-database" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>The cross-platform build file requires the following dependencies (including a runtime JDBC driver such as <a href="https://github.com/brettwooldridge/HikariCP">Hikari</a>) and annotation processors:</p>
+
+<div class="gradle-maven-tabs">
+    <ul>
+        <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <p><em>lib/build.gradle</em></p>
+        <pre><code>implementation("io.micronaut.data:micronaut-data-jdbc")
+implementation("io.micronaut.sql:micronaut-jdbc-hikari")
+implementation("io.micronaut.validation:micronaut-validation")
+implementation("jakarta.validation:jakarta.validation-api")
+implementation("io.micronaut.oraclecloud:micronaut-oraclecloud-atp")
+annotationProcessor("io.micronaut.data:micronaut-data-processor")
+annotationProcessor("io.micronaut.validation:micronaut-validation-processor")</code></pre>
+    </div>
+    <div id="maven">
+        <p><em>lib/pom.xml</em></p>
+        <pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.data&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-data-jdbc&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.sql&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-jdbc-hikari&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.validation&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-validation&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;jakarta.validation&lt;/groupId&gt;
+    &lt;artifactId&gt;jakarta.validation-api&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;mysql&lt;/groupId&gt;
+    &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+    &lt;scope&gt;runtime&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.flyway&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-flyway&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.oraclecloud&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-oraclecloud-httpclient-netty&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.oraclecloud&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-oraclecloud-sdk&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.flywaydb&lt;/groupId&gt;
+    &lt;artifactId&gt;flyway-database-oracle&lt;/artifactId&gt;
+    &lt;scope&gt;runtime&lt;/scope&gt;
+&lt;/dependency&gt;
+...
+&lt;annotationProcessorPaths combine.self="override"&gt;
+    ...
+    &lt;path&gt;
+        &lt;groupId&gt;io.micronaut&lt;/groupId&gt;
+        &lt;artifactId&gt;micronaut-inject-java&lt;/artifactId&gt;
+        &lt;version&gt;${micronaut.core.version}&lt;/version&gt;
+    &lt;/path&gt;
+    &lt;path&gt;
+        &lt;groupId&gt;io.micronaut.data&lt;/groupId&gt;
+        &lt;artifactId&gt;micronaut-data-processor&lt;/artifactId&gt;
+        &lt;version&gt;${micronaut.data.version}&lt;/version&gt;
+    &lt;/path&gt;
+    &lt;path&gt;
+        &lt;groupId&gt;io.micronaut&lt;/groupId&gt;
+        &lt;artifactId&gt;micronaut-graal&lt;/artifactId&gt;
+        &lt;version&gt;${micronaut.core.version}&lt;/version&gt;
+    &lt;/path&gt;
+    &lt;path&gt;
+        &lt;groupId&gt;io.micronaut.validation&lt;/groupId&gt;
+        &lt;artifactId&gt;micronaut-validation-processor&lt;/artifactId&gt;
+        &lt;version&gt;${micronaut.validation.version}&lt;/version&gt;
+    &lt;/path&gt;
+    ...
+&lt;/annotationProcessorPaths&gt;</code></pre>
+    </div>
+</div>
+    
+      <h3 id="platform-specific-build-file-1">
+        
+        
+          Platform-Specific Build File <a href="#platform-specific-build-file-1" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>The platform-specific build file (for Oracle Cloud Infrastructure) requires the following dependencies and annotation processors:</p>
+
+<div class="gradle-maven-tabs">
+    <ul>
+        <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <p><em>oci/build.gradle</em></p>
+        <pre><code>implementation("io.micronaut.data:micronaut-data-jdbc")
+implementation("io.micronaut.sql:micronaut-jdbc-hikari")
+implementation("io.micronaut.validation:micronaut-validation")
+implementation("jakarta.validation:jakarta.validation-api")
+implementation("io.micronaut.flyway:micronaut-flyway")
+implementation("io.micronaut.oraclecloud:micronaut-oraclecloud-httpclient-netty")
+implementation("io.micronaut.oraclecloud:micronaut-oraclecloud-sdk")
+implementation("io.micronaut.oraclecloud:micronaut-oraclecloud-atp")
+runtimeOnly("org.flywaydb:flyway-database-oracle")
+annotationProcessor("io.micronaut.data:micronaut-data-processor")
+annotationProcessor("io.micronaut.validation:micronaut-validation-processor")</code></pre>
+    </div>
+    <div id="maven">
+        <p><em>oci/pom.xml</em></p>
+        <pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.data&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-data-jdbc&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.sql&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-jdbc-hikari&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.validation&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-validation&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;jakarta.validation&lt;/groupId&gt;
+    &lt;artifactId&gt;jakarta.validation-api&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.flyway&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-flyway&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.oraclecloud&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-oraclecloud-httpclient-netty&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.oraclecloud&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-oraclecloud-sdk&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.flywaydb&lt;/groupId&gt;
+    &lt;artifactId&gt;flyway-database-oracle&lt;/artifactId&gt;
+    &lt;scope&gt;runtime&lt;/scope&gt;
+&lt;/dependency&gt;
+...
+&lt;annotationProcessorPaths combine.self="override"&gt;
+    ...
+    &lt;path&gt;
+        &lt;groupId&gt;io.micronaut&lt;/groupId&gt;
+        &lt;artifactId&gt;micronaut-inject-java&lt;/artifactId&gt;
+        &lt;version&gt;${micronaut.core.version}&lt;/version&gt;
+    &lt;/path&gt;
+    &lt;path&gt;
+        &lt;groupId&gt;io.micronaut.data&lt;/groupId&gt;
+        &lt;artifactId&gt;micronaut-data-processor&lt;/artifactId&gt;
+        &lt;version&gt;${micronaut.data.version}&lt;/version&gt;
+    &lt;/path&gt;
+    &lt;path&gt;
+        &lt;groupId&gt;io.micronaut&lt;/groupId&gt;
+        &lt;artifactId&gt;micronaut-graal&lt;/artifactId&gt;
+        &lt;version&gt;${micronaut.core.version}&lt;/version&gt;
+    &lt;/path&gt;
+    &lt;path&gt;
+        &lt;groupId&gt;io.micronaut.validation&lt;/groupId&gt;
+        &lt;artifactId&gt;micronaut-validation-processor&lt;/artifactId&gt;
+        &lt;version&gt;${micronaut.validation.version}&lt;/version&gt;
+    &lt;/path&gt;
+    ...
+&lt;/annotationProcessorPaths&gt;</code></pre>
+    </div>
+</div>
+    
+      <h2 id="email">
+        
+        
+          Email <a href="#email" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>Oracle Cloud Infrastructure and the Google Cloud Platform both rely on the <a href="https://jakartaee.github.io/mail-api/">Jakarta Mail API</a>.</p>
+
+<p>The cross-platform build file requires the following dependencies and annotation processor:</p>
+
+<div class="gradle-maven-tabs">
+    <ul>
+        <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <p><em>lib/build.gradle</em></p>
+        <pre><code>implementation("io.micronaut.validation:micronaut-validation")
+implementation("jakarta.validation:jakarta.validation-api")
+annotationProcessor("io.micronaut.validation:micronaut-validation-processor")</code></pre>
+    </div>
+    <div id="maven">
+        <p><em>lib/pom.xml</em></p>
+        <pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.validation&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-validation&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;jakarta.validation&lt;/groupId&gt;
+    &lt;artifactId&gt;jakarta.validation-api&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+...
+&lt;annotationProcessorPaths combine.self="override"&gt;
+    ...
+    &lt;path&gt;
+        &lt;groupId&gt;io.micronaut.validation&lt;/groupId&gt;
+        &lt;artifactId&gt;micronaut-validation-processor&lt;/artifactId&gt;
+        &lt;version&gt;${micronaut.validation.version}&lt;/version&gt;
+    &lt;/path&gt;
+    ...
+&lt;/annotationProcessorPaths&gt;</code></pre>
+    </div>
+</div>
+    
+      <h3 id="oracle-cloud-infrastructure-email-delivery-service">
+        
+        
+          Oracle Cloud Infrastructure Email Delivery Service <a href="#oracle-cloud-infrastructure-email-delivery-service" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>The platform-specific build file requires the following dependencies:</p>
+
+<div class="gradle-maven-tabs">
+    <ul>
+        <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <p><em>oci/build.gradle</em></p>
+        <pre><code>implementation("io.micronaut.email:micronaut-email-javamail")
+runtimeOnly("org.eclipse.angus:angus-mail")</code></pre>
+    </div>
+    <div id="maven">
+        <p><em>oci/pom.xml</em></p>
+        <pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.email&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-email-javamail&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.eclipse.angus&lt;/groupId&gt;
+    &lt;artifactId&gt;angus-mail&lt;/artifactId&gt;
+    &lt;scope&gt;runtime&lt;/scope&gt;
+&lt;/dependency&gt;</code></pre>
+    </div>
+</div>
+    
+      <h3 id="amazon-simple-email-service">
+        
+        
+          Amazon Simple Email Service <a href="#amazon-simple-email-service" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>The platform-specific build file requires the following dependencies:</p>
+
+<div class="gradle-maven-tabs">
+    <ul>
+        <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <p><em>aws/build.gradle</em></p>
+        <pre><code>implementation("io.micronaut.aws:micronaut-aws-sdk-v2")
+implementation("io.micronaut.email:micronaut-email-amazon-ses")
+</code></pre>
+    </div>
+    <div id="maven">
+        <p><em>aws/pom.xml</em></p>
+        <pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.aws&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-aws-sdk-v2&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.email&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-email-amazon-ses&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;</code></pre>
+    </div>
+</div>
+    
+      <h2 id="kubernetes">
+        
+        
+          Kubernetes <a href="#kubernetes" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>The cross-platform build file requires the following dependencies:</p>
+
+<div class="gradle-maven-tabs">
+    <ul>
+        <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <p><em>lib/build.gradle</em></p>
+        <pre><code>implementation("io.micronaut.kubernetes:micronaut-kubernetes-client")
+implementation("io.micronaut.kubernetes:micronaut-kubernetes-discovery-client")</code></pre>
+    </div>
+    <div id="maven">
+        <p><em>lib/pom.xml</em></p>
+        <pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.kubernetes&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-kubernetes-client&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.kubernetes&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-kubernetes-discovery-client&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;</code></pre>
+    </div>
+</div>
+    
+      <h3 id="platform-specific-build-file-2">
+        
+        
+          Platform-Specific Build File <a href="#platform-specific-build-file-2" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>The platform-specific build file requires the following dependencies:</p>
+
+<div class="gradle-maven-tabs">
+    <ul>
+        <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <p><em>{oci | aws | gcp}/build.gradle</em></p>
+        <pre><code>implementation("io.micronaut.kubernetes:micronaut-kubernetes-client")
+implementation("io.micronaut.kubernetes:micronaut-kubernetes-discovery-client")
+implementation("io.micronaut:micronaut-management")</code></pre>
+    </div>
+    <div id="maven">
+        <p><em>{oci | aws | gcp}/pom.xml</em></p>
+        <pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.kubernetes&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-kubernetes-client&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.kubernetes&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-kubernetes-discovery-client&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-management&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;</code></pre>
+    </div>
+</div>
+    
+      <h2 id="logging">
+        
+        
+          Logging <a href="#logging" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>The cross-platform build file requires the following dependency:</p>
+
+<div class="gradle-maven-tabs">
+    <ul>
+        <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <p><em>lib/build.gradle</em></p>
+        <pre><code>runtimeOnly("io.grpc:grpc-netty")</code></pre>
+    </div>
+    <div id="maven">
+        <p><em>lib/pom.xml</em></p>
+        <pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;io.grpc&lt;/groupId&gt;
+    &lt;artifactId&gt;grpc-netty&lt;/artifactId&gt;
+    &lt;scope&gt;runtime&lt;/scope&gt;
+&lt;/dependency&gt;</code></pre>
+    </div>
+</div>
+    
+      <h3 id="oracle-cloud-infrastructure-logging-service">
+        
+        
+          Oracle Cloud Infrastructure Logging Service <a href="#oracle-cloud-infrastructure-logging-service" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>The platform-specific build file requires the following dependencies:</p>
+
+<div class="gradle-maven-tabs">
+    <ul>
+        <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <p><em>oci/build.gradle</em></p>
+        <pre><code>implementation("ch.qos.logback.contrib:logback-jackson:0.1.5")
+implementation("ch.qos.logback.contrib:logback-json-classic:0.1.5")
+implementation("io.micronaut.oraclecloud:micronaut-oraclecloud-httpclient-netty")
+implementation("io.micronaut.oraclecloud:micronaut-oraclecloud-logging")
+runtimeOnly("io.grpc:grpc-netty")</code></pre>
+    </div>
+    <div id="maven">
+        <p><em>oci/pom.xml</em></p>
+        <pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;io.grpc&lt;/groupId&gt;
+    &lt;artifactId&gt;grpc-netty&lt;/artifactId&gt;
+    &lt;scope&gt;runtime&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;ch.qos.logback.contrib&lt;/groupId&gt;
+    &lt;artifactId&gt;logback-jackson&lt;/artifactId&gt;
+    &lt;version&gt;0.1.5&lt;/version&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;ch.qos.logback.contrib&lt;/groupId&gt;
+    &lt;artifactId&gt;logback-json-classic&lt;/artifactId&gt;
+    &lt;version&gt;0.1.5&lt;/version&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.oraclecloud&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-oraclecloud-httpclient-netty&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.oraclecloud&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-oraclecloud-logging&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;</code></pre>
+    </div>
+</div>
+    
+      <h3 id="amazon-cloudwatch-logs">
+        
+        
+          Amazon CloudWatch Logs <a href="#amazon-cloudwatch-logs" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>The platform-specific build file requires the following dependencies:</p>
+
+<div class="gradle-maven-tabs">
+    <ul>
+        <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <p><em>lib/build.gradle</em></p>
+        <pre><code>implementation("io.micronaut.aws:micronaut-aws-cloudwatch-logging")
+runtimeOnly("io.grpc:grpc-netty")</code></pre>
+    </div>
+    <div id="maven">
+        <p><em>lib/pom.xml</em></p>
+        <pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;io.grpc&lt;/groupId&gt;
+    &lt;artifactId&gt;grpc-netty&lt;/artifactId&gt;
+    &lt;scope&gt;runtime&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.aws&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-aws-cloudwatch-logging&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;</code></pre>
+    </div>
+</div>
+    
+      <h3 id="google-cloud-logging">
+        
+        
+          Google Cloud Logging <a href="#google-cloud-logging" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>The platform-specific build file requires the following dependencies:</p>
+
+<div class="gradle-maven-tabs">
+    <ul>
+        <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <p><em>lib/build.gradle</em></p>
+        <pre><code>implementation("com.google.cloud:google-cloud-logging-logback:0.130.28-alpha")
+runtimeOnly("io.grpc:grpc-netty")</code></pre>
+    </div>
+    <div id="maven">
+        <p><em>lib/pom.xml</em></p>
+        <pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;io.grpc&lt;/groupId&gt;
+    &lt;artifactId&gt;grpc-netty&lt;/artifactId&gt;
+    &lt;scope&gt;runtime&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;com.google.cloud&lt;/groupId&gt;
+    &lt;artifactId&gt;google-cloud-logging-logback&lt;/artifactId&gt;
+    &lt;version&gt;0.130.28-alpha&lt;/version&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;</code></pre>
+    </div>
+</div>
+    
+      <h2 id="metrics">
+        
+        
+          Metrics <a href="#metrics" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>The cross-platform build file requires the following dependencies and annotation processor:</p>
+
+<div class="gradle-maven-tabs">
+    <ul>
+        <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <p><em>lib/build.gradle</em></p>
+        <pre><code>implementation("io.micronaut.micrometer:micronaut-micrometer-core")
+implementation("io.micronaut:micronaut-management")
+runtimeOnly("io.grpc:grpc-netty")
+annotationProcessor("io.micronaut.micrometer:micronaut-micrometer-annotation")</code></pre>
+    </div>
+    <div id="maven">
+        <p><em>lib/pom.xml</em></p>
+        <pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.micrometer&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-micrometer-core&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-management&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.grpc&lt;/groupId&gt;
+    &lt;artifactId&gt;grpc-netty&lt;/artifactId&gt;
+    &lt;scope&gt;runtime&lt;/scope&gt;
+&lt;/dependency&gt;
+...
+&lt;annotationProcessorPaths combine.self="override"&gt;
+    ...
+    &lt;path&gt;
+        &lt;groupId&gt;io.micronaut.micrometer&lt;/groupId&gt;
+        &lt;artifactId&gt;micronaut-micrometer-annotation&lt;/artifactId&gt;
+        &lt;version&gt;${micronaut.micrometer.version}&lt;/version&gt;
+    &lt;/path&gt;
+    ...
+&lt;/annotationProcessorPaths&gt;</code></pre>
+    </div>
+</div>
+    
+      <h3 id="oracle-cloud-infrastructure-monitoring">
+        
+        
+          Oracle Cloud Infrastructure Monitoring <a href="#oracle-cloud-infrastructure-monitoring" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>The platform-specific build file requires the following dependencies and annotation processor:</p>
+
+<div class="gradle-maven-tabs">
+    <ul>
+        <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <p><em>oci/build.gradle</em></p>
+        <pre><code>implementation("io.micronaut.micrometer:micronaut-micrometer-core")
+implementation("io.micronaut:micronaut-management")
+implementation("io.micronaut.oraclecloud:micronaut-oraclecloud-bmc-monitoring")
+implementation("io.micronaut.oraclecloud:micronaut-oraclecloud-httpclient-netty")
+implementation("io.micronaut.oraclecloud:micronaut-oraclecloud-micrometer")
+runtimeOnly("io.grpc:grpc-netty")
+annotationProcessor("io.micronaut.micrometer:micronaut-micrometer-annotation")</code></pre>
+    </div>
+    <div id="maven">
+        <p><em>oci/pom.xml</em></p>
+        <pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.micrometer&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-micrometer-core&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-management&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.grpc&lt;/groupId&gt;
+    &lt;artifactId&gt;grpc-netty&lt;/artifactId&gt;
+    &lt;scope&gt;runtime&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.oraclecloud&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-oraclecloud-bmc-monitoring&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.oraclecloud&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-oraclecloud-httpclient-netty&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.oraclecloud&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-oraclecloud-micrometer&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+...
+&lt;annotationProcessorPaths combine.self="override"&gt;
+    ...
+    &lt;path&gt;
+        &lt;groupId&gt;io.micronaut.micrometer&lt;/groupId&gt;
+        &lt;artifactId&gt;micronaut-micrometer-annotation&lt;/artifactId&gt;
+        &lt;version&gt;${micronaut.micrometer.version}&lt;/version&gt;
+    &lt;/path&gt;
+    ...
+&lt;/annotationProcessorPaths&gt;</code></pre>
+    </div>
+</div>
+    
+      <h3 id="amazon-cloudwatch">
+        
+        
+          Amazon CloudWatch <a href="#amazon-cloudwatch" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>The platform-specific build file requires the following dependencies and annotation processor:</p>
+
+<div class="gradle-maven-tabs">
+    <ul>
+        <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <p><em>aws/build.gradle</em></p>
+        <pre><code>implementation("io.micronaut.micrometer:micronaut-micrometer-core")
+implementation("io.micronaut:micronaut-management")
+implementation("io.micronaut.micrometer:micronaut-micrometer-registry-cloudwatch")
+runtimeOnly("io.grpc:grpc-netty")
+annotationProcessor("io.micronaut.micrometer:micronaut-micrometer-annotation")</code></pre>
+    </div>
+    <div id="maven">
+        <p><em>aws/pom.xml</em></p>
+        <pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.micrometer&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-micrometer-core&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-management&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.grpc&lt;/groupId&gt;
+    &lt;artifactId&gt;grpc-netty&lt;/artifactId&gt;
+    &lt;scope&gt;runtime&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.micrometer&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-micrometer-registry-cloudwatch&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+...
+&lt;annotationProcessorPaths combine.self="override"&gt;
+    ...
+    &lt;path&gt;
+        &lt;groupId&gt;io.micronaut.micrometer&lt;/groupId&gt;
+        &lt;artifactId&gt;micronaut-micrometer-annotation&lt;/artifactId&gt;
+        &lt;version&gt;${micronaut.micrometer.version}&lt;/version&gt;
+    &lt;/path&gt;
+    ...
+&lt;/annotationProcessorPaths&gt;</code></pre>
+    </div>
+</div>
+    
+      <h3 id="google-cloud-monitoring">
+        
+        
+          Google Cloud Monitoring <a href="#google-cloud-monitoring" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>The platform-specific build file requires the following dependencies and annotation processor:</p>
+
+<div class="gradle-maven-tabs">
+    <ul>
+        <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <p><em>gcp/build.gradle</em></p>
+        <pre><code>implementation("io.micronaut.micrometer:micronaut-micrometer-core")
+implementation("io.micronaut:micronaut-management")
+implementation("io.micronaut.micrometer:micronaut-micrometer-registry-stackdriver")
+runtimeOnly("io.grpc:grpc-netty")
+annotationProcessor("io.micronaut.micrometer:micronaut-micrometer-annotation")</code></pre>
+    </div>
+    <div id="maven">
+        <p><em>gcp/pom.xml</em></p>
+        <pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.micrometer&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-micrometer-core&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-management&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.grpc&lt;/groupId&gt;
+    &lt;artifactId&gt;grpc-netty&lt;/artifactId&gt;
+    &lt;scope&gt;runtime&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.micrometer&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-micrometer-registry-stackdriver&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+...
+&lt;annotationProcessorPaths combine.self="override"&gt;
+    ...
+    &lt;path&gt;
+        &lt;groupId&gt;io.micronaut.micrometer&lt;/groupId&gt;
+        &lt;artifactId&gt;micronaut-micrometer-annotation&lt;/artifactId&gt;
+        &lt;version&gt;${micronaut.micrometer.version}&lt;/version&gt;
+    &lt;/path&gt;
+    ...
+&lt;/annotationProcessorPaths&gt;</code></pre>
+    </div>
+</div>
+    
+      <h2 id="object-storage">
+        
+        
+          Object Storage <a href="#object-storage" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>The cross-platform build file requires the following dependencies:</p>
+
+<div class="gradle-maven-tabs">
+    <ul>
+        <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <p><em>lib/build.gradle</em></p>
+        <pre><code>implementation("io.micronaut.objectstorage:micronaut-object-storage-core")
+compileOnly("io.micronaut:micronaut-http-server")
+runtimeOnly("io.grpc:grpc-netty")</code></pre>
+    </div>
+    <div id="maven">
+        <p><em>lib/pom.xml</em></p>
+        <pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;io.grpc&lt;/groupId&gt;
+    &lt;artifactId&gt;grpc-netty&lt;/artifactId&gt;
+    &lt;scope&gt;runtime&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.objectstorage&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-object-storage-core&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-http-server&lt;/artifactId&gt;
+    &lt;scope&gt;provided&lt;/scope&gt;
+&lt;/dependency&gt;</code></pre>
+    </div>
+</div>
+    
+      <h3 id="oracle-cloud-infrastructure-object-storage">
+        
+        
+          Oracle Cloud Infrastructure Object Storage <a href="#oracle-cloud-infrastructure-object-storage" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>The build file requires the following dependencies:</p>
+
+<div class="gradle-maven-tabs">
+    <ul>
+        <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <p><em>oci/build.gradle</em></p>
+        <pre><code>implementation("io.micronaut.objectstorage:micronaut-object-storage-oracle-cloud")
+implementation("io.micronaut.oraclecloud:micronaut-oraclecloud-httpclient-netty")
+implementation("io.micronaut.oraclecloud:micronaut-oraclecloud-sdk")
+runtimeOnly("io.grpc:grpc-netty")</code></pre>
+    </div>
+    <div id="maven">
+        <p><em>oci/pom.xml</em></p>
+        <pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.objectstorage&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-object-storage-oracle-cloud&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.oraclecloud&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-oraclecloud-httpclient-netty&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.oraclecloud&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-oraclecloud-sdk&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.grpc&lt;/groupId&gt;
+    &lt;artifactId&gt;grpc-netty&lt;/artifactId&gt;
+    &lt;scope&gt;runtime&lt;/scope&gt;
+&lt;/dependency&gt;</code></pre>
+    </div>
+</div>
+    
+      <h3 id="amazon-s3-object-storage">
+        
+        
+          Amazon S3 Object Storage <a href="#amazon-s3-object-storage" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>The build file requires the following dependencies:</p>
+
+<div class="gradle-maven-tabs">
+    <ul>
+        <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <p><em>aws/build.gradle</em></p>
+        <pre><code>implementation("io.micronaut.aws:micronaut-aws-sdk-v2")
+implementation("io.micronaut.objectstorage:micronaut-object-storage-aws")
+runtimeOnly("io.grpc:grpc-netty")</code></pre>
+    </div>
+    <div id="maven">
+        <p><em>aws/pom.xml</em></p>
+        <pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.aws&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-aws-sdk-v2&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.objectstorage&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-object-storage-aws&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.grpc&lt;/groupId&gt;
+    &lt;artifactId&gt;grpc-netty&lt;/artifactId&gt;
+    &lt;scope&gt;runtime&lt;/scope&gt;
+&lt;/dependency&gt;</code></pre>
+    </div>
+</div>
+    
+      <h3 id="google-cloud-storage">
+        
+        
+          Google Cloud Storage <a href="#google-cloud-storage" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>The build file requires the following dependencies:</p>
+
+<div class="gradle-maven-tabs">
+    <ul>
+        <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <p><em>gcp/build.gradle</em></p>
+        <pre><code>implementation("io.micronaut.objectstorage:micronaut-object-storage-gcp")
+runtimeOnly("io.grpc:grpc-netty")</code></pre>
+    </div>
+    <div id="maven">
+        <p><em>gcp/pom.xml</em></p>
+        <pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.objectstorage&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-object-storage-gcp&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.grpc&lt;/groupId&gt;
+    &lt;artifactId&gt;grpc-netty&lt;/artifactId&gt;
+    &lt;scope&gt;runtime&lt;/scope&gt;
+&lt;/dependency&gt;</code></pre>
+    </div>
+</div>
+    
+      <h2 id="secret-management">
+        
+        
+          Secret Management <a href="#secret-management" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>The cross-platform build file requires the following dependency:</p>
+
+<div class="gradle-maven-tabs">
+    <ul>
+        <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <p><em>lib/build.gradle</em></p>
+        <pre><code>runtimeOnly("io.grpc:grpc-netty")</code></pre>
+    </div>
+    <div id="maven">
+        <p><em>lib/pom.xml</em></p>
+        <pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;io.grpc&lt;/groupId&gt;
+    &lt;artifactId&gt;grpc-netty&lt;/artifactId&gt;
+    &lt;scope&gt;runtime&lt;/scope&gt;
+&lt;/dependency&gt;</code></pre>
+    </div>
+</div>
+    
+      <h3 id="oracle-cloud-infrastructure-vault">
+        
+        
+          Oracle Cloud Infrastructure Vault <a href="#oracle-cloud-infrastructure-vault" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>The build file requires the following dependencies:</p>
+
+<div class="gradle-maven-tabs">
+    <ul>
+        <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <p><em>oci/build.gradle</em></p>
+        <pre><code>implementation("io.micronaut.oraclecloud:micronaut-oraclecloud-httpclient-netty")
+implementation("io.micronaut.oraclecloud:micronaut-oraclecloud-vault")
+runtimeOnly("io.grpc:grpc-netty")</code></pre>
+    </div>
+    <div id="maven">
+        <p><em>oci/pom.xml</em></p>
+        <pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.oraclecloud&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-oraclecloud-httpclient-netty&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.oraclecloud&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-oraclecloud-vault&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.grpc&lt;/groupId&gt;
+    &lt;artifactId&gt;grpc-netty&lt;/artifactId&gt;
+    &lt;scope&gt;runtime&lt;/scope&gt;
+&lt;/dependency&gt;</code></pre>
+    </div>
+</div>
+    
+      <h3 id="amazon-web-service-secrets-manager">
+        
+        
+          Amazon Web Service Secrets Manager <a href="#amazon-web-service-secrets-manager" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>The build file requires the following dependencies and annotation processor:</p>
+
+<div class="gradle-maven-tabs">
+    <ul>
+        <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <p><em>aws/build.gradle</em></p>
+        <pre><code>implementation("io.micronaut.aws:micronaut-aws-sdk-v2")
+implementation("io.micronaut.aws:micronaut-aws-secretsmanager")
+implementation("io.micronaut.security:micronaut-security-oauth2")
+runtimeOnly("io.grpc:grpc-netty")
+annotationProcessor("io.micronaut.security:micronaut-security-annotations")</code></pre>
+    </div>
+    <div id="maven">
+        <p><em>aws/pom.xml</em></p>
+        <pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.aws&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-aws-sdk-v2&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.aws&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-aws-secretsmanager&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.security&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-security-oauth2&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.grpc&lt;/groupId&gt;
+    &lt;artifactId&gt;grpc-netty&lt;/artifactId&gt;
+    &lt;scope&gt;runtime&lt;/scope&gt;
+&lt;/dependency&gt;
+...
+&lt;annotationProcessorPaths combine.self="override"&gt;
+    ...
+    &lt;path&gt;
+        &lt;groupId&gt;io.micronaut.security&lt;/groupId&gt;
+        &lt;artifactId&gt;micronaut-security-annotations&lt;/artifactId&gt;
+        &lt;version&gt;${micronaut.security.version}&lt;/version&gt;
+    &lt;/path&gt;
+    ...
+&lt;/annotationProcessorPaths&gt;</code></pre>
+    </div>
+</div>
+    
+      <h3 id="google-secret-manager">
+        
+        
+          Google Secret Manager <a href="#google-secret-manager" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>The build file requires the following dependencies:</p>
+
+<div class="gradle-maven-tabs">
+    <ul>
+        <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <p><em>gcp/build.gradle</em></p>
+        <pre><code>implementation("io.micronaut.gcp:micronaut-gcp-secret-manager")
+runtimeOnly("io.grpc:grpc-netty")</code></pre>
+    </div>
+    <div id="maven">
+        <p><em>gcp/pom.xml</em></p>
+        <pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.gcp&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-gcp-secret-manager&lt;/artifactId&gt;
+    lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.grpc&lt;/groupId&gt;
+    &lt;artifactId&gt;grpc-netty&lt;/artifactId&gt;
+    &lt;scope&gt;runtime&lt;/scope&gt;
+&lt;/dependency&gt;</code></pre>
+    </div>
+</div>
+    
+      <h2 id="security">
+        
+        
+          Security <a href="#security" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>The cross-platform build file does not require any additional dependencies.</p>
+    
+      <h3 id="platform-specific-build-file-3">
+        
+        
+          Platform-Specific Build File <a href="#platform-specific-build-file-3" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>The platform-specific build file requires the following dependencies and annotation processor:</p>
+
+<div class="gradle-maven-tabs">
+    <ul>
+        <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <p><em>{oci | aws | gcp}/build.gradle</em></p>
+        <pre><code>implementation("io.micronaut.security:micronaut-security-jwt")
+implementation("io.micronaut.security:micronaut-security-oauth2")
+annotationProcessor("io.micronaut.security:micronaut-security-annotations")</code></pre>
+    </div>
+    <div id="maven">
+        <p><em>{oci | aws | gcp}/pom.xml</em></p>
+        <pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.security&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-security-jwt&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.security&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-security-oauth2&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+...
+&lt;annotationProcessorPaths combine.self="override"&gt;
+    ...
+    &lt;path&gt;
+        &lt;groupId&gt;io.micronaut.security&lt;/groupId&gt;
+        &lt;artifactId&gt;micronaut-security-annotations&lt;/artifactId&gt;
+        &lt;version&gt;${micronaut.security.version}&lt;/version&gt;
+    &lt;/path&gt;
+    ...
+&lt;/annotationProcessorPaths&gt;</code></pre>
+    </div>
+</div>
+    
+      <h2 id="streaming">
+        
+        
+          Streaming <a href="#streaming" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>The cross-platform build file requires the following dependency:</p>
+
+<div class="gradle-maven-tabs">
+    <ul>
+        <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <p><em>lib/build.gradle</em></p>
+        <pre><code>implementation("io.micronaut.kafka:micronaut-kafka")
+</code></pre>
+    </div>
+    <div id="maven">
+        <p><em>lib/pom.xml</em></p>
+        <pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.kafka&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-kafka&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;</code></pre>
+    </div>
+</div>
+    
+      <h3 id="oracle-cloud-infrastructure-streaming-service">
+        
+        
+          Oracle Cloud Infrastructure Streaming Service <a href="#oracle-cloud-infrastructure-streaming-service" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>The build file requires the following dependencies:</p>
+
+<div class="gradle-maven-tabs">
+    <ul>
+        <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <p><em>oci/build.gradle</em></p>
+        <pre><code>implementation("io.micronaut.kafka:micronaut-kafka")
+implementation("io.micronaut.oraclecloud:micronaut-oraclecloud-httpclient-netty")
+implementation("io.micronaut.oraclecloud:micronaut-oraclecloud-sdk")</code></pre>
+    </div>
+    <div id="maven">
+        <p><em>oci/pom.xml</em></p>
+        <pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.kafka&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-kafka&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.oraclecloud&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-oraclecloud-httpclient-netty&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.oraclecloud&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-oraclecloud-sdk&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;</code></pre>
+    </div>
+</div>
+    
+      <h3 id="amazon-managed-streaming-for-apache-kafka">
+        
+        
+          Amazon Managed Streaming for Apache Kafka <a href="#amazon-managed-streaming-for-apache-kafka" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>The build file requires the following dependencies:</p>
+
+<div class="gradle-maven-tabs">
+    <ul>
+        <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <p><em>aws/build.gradle</em></p>
+        <pre><code>implementation("io.micronaut.kafka:micronaut-kafka")
+implementation("io.micronaut.aws:micronaut-aws-sdk-v2")
+runtimeOnly("software.amazon.msk:aws-msk-iam-auth:2.0.3")</code></pre>
+    </div>
+    <div id="maven">
+        <p><em>aws/pom.xml</em></p>
+        <pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.kafka&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-kafka&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.aws&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-aws-sdk-v2&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;software.amazon.msk&lt;/groupId&gt;
+    &lt;artifactId&gt;aws-msk-iam-auth&lt;/artifactId&gt;
+    &lt;version&gt;2.0.3&lt;/version&gt;
+    &lt;scope&gt;runtime&lt;/scope&gt;
+&lt;/dependency&gt;</code></pre>
+    </div>
+</div>
+    
+      <h3 id="google-cloud-platform-apache-kafka">
+        
+        
+          Google Cloud Platform Apache Kafka <a href="#google-cloud-platform-apache-kafka" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>The build file requires the following dependency:</p>
+
+<div class="gradle-maven-tabs">
+    <ul>
+        <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <p><em>gcp/build.gradle</em></p>
+        <pre><code>implementation("io.micronaut.kafka:micronaut-kafka")</code></pre>
+    </div>
+    <div id="maven">
+        <p><em>gcp/pom.xml</em></p>
+        <pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.kafka&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-kafka&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;</code></pre>
+    </div>
+</div>
+    
+      <h2 id="tracing">
+        
+        
+          Tracing <a href="#tracing" class="anchor_heading">#</a>
+        
+        
+      </h2>
+
+<p>The cross-platform build file requires the following dependencies and annotation processor:</p>
+
+<div class="gradle-maven-tabs">
+    <ul>
+        <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <p><em>lib/build.gradle</em></p>
+        <pre><code>implementation("io.micronaut.tracing:micronaut-tracing-opentelemetry")
+implementation("io.micronaut.tracing:micronaut-tracing-opentelemetry-http")
+runtimeOnly("io.grpc:grpc-netty")
+annotationProcessor("io.micronaut.tracing:micronaut-tracing-opentelemetry-annotation")</code></pre>
+    </div>
+    <div id="maven">
+        <p><em>lib/pom.xml</em></p>
+        <pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.tracing&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-tracing-opentelemetry&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.tracing&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-tracing-opentelemetry-http&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.grpc&lt;/groupId&gt;
+    &lt;artifactId&gt;grpc-netty&lt;/artifactId&gt;
+    &lt;scope&gt;runtime&lt;/scope&gt;
+&lt;/dependency&gt;
+...
+&lt;annotationProcessorPaths combine.self="override"&gt;
+    ...
+    &lt;path&gt;
+        &lt;groupId&gt;iio.micronaut.tracing&lt;/groupId&gt;
+        &lt;artifactId&gt;micronaut-tracing-opentelemetry-annotations&lt;/artifactId&gt;
+        &lt;version&gt;${micronaut.tracing.version}&lt;/version&gt;
+    &lt;/path&gt;
+    ...
+&lt;/annotationProcessorPaths&gt;</code></pre>
+    </div>
+</div>
+    
+      <h3 id="oracle-cloud-infrastructure-application-performance-monitoring">
+        
+        
+          Oracle Cloud Infrastructure Application Performance Monitoring <a href="#oracle-cloud-infrastructure-application-performance-monitoring" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>The build file requires the following dependencies:</p>
+
+<div class="gradle-maven-tabs">
+    <ul>
+        <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <p><em>oci/build.gradle</em></p>
+        <pre><code>implementation("io.micronaut.tracing:micronaut-tracing-opentelemetry-zipkin-exporter")
+runtimeOnly("io.grpc:grpc-netty")</code></pre>
+    </div>
+    <div id="maven">
+        <p><em>oci/pom.xml</em></p>
+        <pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.tracing&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-tracing-opentelemetry-zipkin-exporter&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.grpc&lt;/groupId&gt;
+    &lt;artifactId&gt;grpc-netty&lt;/artifactId&gt;
+    &lt;scope&gt;runtime&lt;/scope&gt;
+&lt;/dependency&gt;</code></pre>
+    </div>
+</div>
+    
+      <h3 id="aws-x-ray">
+        
+        
+          AWS X-Ray <a href="#aws-x-ray" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>The platform-specific build file requires the following dependencies and annotation processor:</p>
+
+<div class="gradle-maven-tabs">
+    <ul>
+        <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <p><em>aws/build.gradle</em></p>
+        <pre><code>implementation("io.micronaut.tracing:micronaut-tracing-opentelemetry-http")
+implementation("io.opentelemetry:opentelemetry-exporter-otlp")
+implementation("io.opentelemetry:opentelemetry-extension-aws")
+implementation("io.opentelemetry.contrib:opentelemetry-aws-xray")
+runtimeOnly("io.grpc:grpc-netty")
+annotationProcessor("io.micronaut.tracing:micronaut-tracing-opentelemetry-annotation")</code></pre>
+    </div>
+    <div id="maven">
+        <p><em>aws/pom.xml</em></p>
+        <pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.tracing&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-tracing-opentelemetry-http&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.opentelemetry&lt;/groupId&gt;
+    &lt;artifactId&gt;opentelemetry-exporter-otlp&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.opentelemetry&lt;/groupId&gt;
+    &lt;artifactId&gt;opentelemetry-extension-aws&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.opentelemetry.contrib&lt;/groupId&gt;
+    &lt;artifactId&gt;opentelemetry-aws-xray&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.grpc&lt;/groupId&gt;
+    &lt;artifactId&gt;grpc-netty&lt;/artifactId&gt;
+    &lt;scope&gt;runtime&lt;/scope&gt;
+&lt;/dependency&gt;
+...
+&lt;annotationProcessorPaths combine.self="override"&gt;
+    ...
+    &lt;path&gt;
+        &lt;groupId&gt;io.micronaut.tracing&lt;/groupId&gt;
+        &lt;artifactId&gt;micronaut-tracing-opentelemetry-annotation&lt;/artifactId&gt;
+        &lt;version&gt;${micronaut.tracing.version}&lt;/version&gt;
+    &lt;/path&gt;
+    ...
+&lt;/annotationProcessorPaths&gt;</code></pre>
+    </div>
+</div>
+    
+      <h3 id="google-cloud-trace">
+        
+        
+          Google Cloud Trace <a href="#google-cloud-trace" class="anchor_heading">#</a>
+        
+        
+      </h3>
+
+<p>The platform-specific build file requires the following dependencies and annotation processor:</p>
+
+<div class="gradle-maven-tabs">
+    <ul>
+        <li class="tabs-gradle"><a href="#gradle">Gradle</a></li>
+        <li class="tabs-maven"><a href="#maven">Maven</a></li>
+    </ul>
+    <div id="gradle">
+        <p><em>gcp/build.gradle</em></p>
+        <pre><code>implementation("com.google.cloud.opentelemetry:exporter-auto")
+implementation("io.micronaut.tracing:micronaut-tracing-opentelemetry-http")
+implementation("io.opentelemetry:opentelemetry-semconv")
+runtimeOnly("io.grpc:grpc-netty")
+annotationProcessor("io.micronaut.tracing:micronaut-tracing-opentelemetry-annotation")</code></pre>
+    </div>
+    <div id="maven">
+        <p><em>gcp/pom.xml</em></p>
+        <pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;com.google.cloud.opentelemetry&lt;/groupId&gt;
+    &lt;artifactId&gt;exporter-auto&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.micronaut.tracing&lt;/groupId&gt;
+    &lt;artifactId&gt;micronaut-tracing-opentelemetry-http&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.opentelemetry&lt;/groupId&gt;
+    &lt;artifactId&gt;opentelemetry-semconv&lt;/artifactId&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.grpc&lt;/groupId&gt;
+    &lt;artifactId&gt;grpc-netty&lt;/artifactId&gt;
+    &lt;scope&gt;runtime&lt;/scope&gt;
+&lt;/dependency&gt;
+...
+&lt;annotationProcessorPaths combine.self="override"&gt;
+    ...
+    &lt;path&gt;
+        &lt;groupId&gt;io.micronaut.tracing&lt;/groupId&gt;
+        &lt;artifactId&gt;micronaut-tracing-opentelemetry-annotation&lt;/artifactId&gt;
+        &lt;version&gt;${micronaut.tracing.version}&lt;/version&gt;
+    &lt;/path&gt;
+    ...
+&lt;/annotationProcessorPaths&gt;</code></pre>
+    </div>
+</div>
+
+      </div>
+
+      <div role="button" class="menu-btn menu-btn--sidebar js-show-sidebar" title="sweet hamburger">
+        <div class="hamburger">
+          <div class="inner"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+</div>
+
+      </main>
+
+      
+<footer class="footer footer__mobile">
+
+  <div class="container-fluid container-fluid--custom-sm">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row footer-content">
+          <div class="col-md-3 col-sm-4">
+            <h6 class="title-footer" onclick="fadeInAndOut(this)">Learn</h6>
+            <div class="grow">
+              <ul class="footer-list">
+                <li class="footer-list__item"><a href="/gdk/get-started/">Get Started</a></li>
+                <li class="footer-list__item"><a href="/gdk/guides/">Guides</a></li>
+                <li class="footer-list__item"><a href="/gdk/hands-on-labs/">Labs</a></li>
+                <li class="footer-list__github">
+                  <img class="footer__icon" src="/gdk/resources/img/footer/logo-github.svg" alt="Github icon">
+                  <a href="https://github.com/oracle/graal-dev-kit" target="blank">Github</a>
+                </li>
+                <li class="footer-list__github">
+                  <img class="footer__icon" src="/gdk/resources/img/footer/slack-icon.svg" alt="Github icon">
+                  <a href="https://bit.ly/odevrel_slack" target="blank">#graal-dev-kit-for-micronaut</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-4">
+            <h6 class="title-footer" onclick="fadeInAndOut(this)">About</h6>
+            <div class="grow">
+              <ul class="footer-list">
+                <li class="footer-list__item"><a href="/gdk/about/#gdk-support" target="blank">Commercial Support</a></li>
+                <li class="footer-list__item"><a href="https://www.graalvm.org/" target="blank">GraalVM Native Image</a></li>
+                <li class="footer-list__item"><a href="https://micronaut.io/" target="_blank">Micronaut<sup>&reg;</sup> Framework</a></li>
+                <li class="footer-list__item"><a href="https://www.oracle.com/cloud/multicloud/what-is-multicloud/" target="_blank">Multicloud</a></li>
+                <li class="footer-list__item"><a href="https://www.oracle.com/cloud/" target="blank">Oracle Cloud Infrastructure</a></li>
+                <li class="footer-list__item"><a href="https://marketplace.visualstudio.com/items?itemName=oracle-labs-graalvm.graal-cloud-native-pack" target="blank">VS Code Tools</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-12 aligning_1024">
+            <div class="card--footer card--hovered box">
+              <div>
+                <div class="rubber-footer footer__oci-section">
+                  <p class="title-footer quickstart">Build, test, and deploy applications on Oracle Cloud Infrastructure for free</p>
+                  <a href="https://www.oracle.com/cloud/free/" target="_blank"
+                    class="btn btn-primary">Try Oracle Cloud Infrastructure Free Tier</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+          <div class="row">
+            <div class="col-sm-12">
+              <p class="copyright">
+                Copyright &copy; 2023-2024, Oracle and/or its affiliates.
+                All rights reserved.
+                Oracle and Java are registered trademarks of Oracle and/or its affiliates.<br/>
+                Micronaut<sup>&reg;</sup> is a registered trademark of Object Computing, Inc.
+                Use is for referential purposes and does not imply any endorsement or affiliation with any third-party product.
+                Unauthorized use is strictly prohibited. Other names may be trademarks of their respective owners.
+              </p>
+              <div id="teconsent"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+<script>
+  function fadeInAndOut(thz) {
+    var elmt = thz.nextElementSibling;//Get the element that is below the button that
+    //was just clicked
+    if (elmt.clientHeight) {
+      elmt.style.height = 0;
+    } else {
+      var wrapper = elmt.querySelector('ul');
+      elmt.style.height = wrapper.clientHeight + "px";
+    }
+    /*
+        elmt.classList.toggle("acordianPanelHidden");//Toggle the class which changes
+        //attributes which triggers the transition CSS
+        */
+  }
+
+  // Check TRUSTe Consent for Functional or Implied Approval
+  // The if test verifies if the user has given the consent
+  if ( (oracle.truste.api.getGdprConsentDecision().consentDecision) &&
+      (oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(0) != -1 ||
+        oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(2) != -1) ) {
+
+      //The following is a sample of a Maxymiser Tag being written to the DOM
+      //If the user did not give consent, then the tag is not included and not invoked in the Browser
+      document.write('<script type="text/javascript" src="//service.maxymiser.net/cdn/oracle/js/mmcore.js"><\/script>');
+  }
+
+  // Check TRUSTe Consent for Advertising or Implied Approval
+  // The if test verifies if the user has given the consent
+  if ( (oracle.truste.api.getGdprConsentDecision().consentDecision) &&
+      (oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(0) != -1 ||
+        oracle.truste.api.getGdprConsentDecision().consentDecision.indexOf(3) != -1) ) {
+
+      //The following is a sample of a BlueKai Core Tag being written to the DOM
+      //If the user did not give consent, then the tag is not included and not invoked in the Browser
+      document.write('<script type="text/javascript">' +
+      'window.bk_async = function() { ' +
+      'BKTAG.doTag(62581, 1); }; ' +
+      '(function() { ' +
+      'var scripts = document.getElementsByTagName(\'script\')[0]; ' +
+      'var s = document.createElement(\'script\'); ' +
+      's.async = true; ' +
+      's.src = "https://tags.bkrtx.com/js/bk-coretag.js"; ' +
+      'scripts.parentNode.insertBefore(s, scripts); ' +
+      '}()); ' +
+      '<\/script>');
+  }
+</script>
+
+    </div>
+    <div class="overlay"></div>
+
+    <!-- Start SiteCatalyst code -->
+    <script language="JavaScript" src="https://www.oracle.com/us/assets/metrics/ora_otn.js"></script>
+    <!-- End SiteCatalyst code -->
+
+    <script src='/gdk/resources/lib/slick-slider/slick.min.js'></script>
+    <script src='/gdk/resources/js/main.js'></script>
+    <script src='/gdk/resources/js/ui.js'></script>
+    <script src='/gdk/resources/js/filters.js'></script>
+    <script src='/gdk/resources/js/sidebar.js'></script>
+    <script src='/gdk/resources/js/labs.js'></script>
+    <script src='/gdk/resources/lib/highlight/highlight.min.js'></script>
+    <script>hljs.highlightAll();</script>
+  </body>
+</html>
