@@ -11108,9 +11108,6 @@ body {
   font-kerning: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
-  @media (max-width: 767.98px) {
-    body {
-      font-size: 0.8rem; } }
   body.overflow-hidden {
     overflow: hidden; }
     @media (min-width: 768px) {
