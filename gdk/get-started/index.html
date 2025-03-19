@@ -15,7 +15,7 @@
   </title>
   <meta name="description" content="The Graal Development Kit for Micronaut (GDK) is a build of a curated set of Micronaut framework modules and their required libraries for building portable c..."/>
   <meta name="last_modified" content="2024-05-29 15:07:10 +0000"/>
-  <meta name="last_built" content="2025-03-12 17:59:19 +0000"/>
+  <meta name="last_built" content="2025-03-19 10:19:27 +0000"/>
   <link rel="stylesheet" href="/gdk/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gdk/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gdk/resources/img/favicon/favicon-32x32.png">
@@ -289,10 +289,10 @@
       Object Storage API to create, read, and delete objects in the major cloud providers:
     <ul>
       <li class="gs-root-texts">an interface describing the endpoints of the "profile pictures" microservice:</li>
-      <li><em><a href="/gdk/docs/get-started/src/ProfilePicturesApi.java"
+      <li><em><a href="/gdk/resources/docs/get-started/src/ProfilePicturesApi.java"
             target="_blank">lib/src/main/java/com/example/ProfilePicturesApi.java</a></em></li>
       <li class="gs-root-texts">an implementation with the required dependencies:</li>
-      <li><em><a href="/gdk/docs/get-started/src/ProfilePicturesController.java"
+      <li><em><a href="/gdk/resources/docs/get-started/src/ProfilePicturesController.java"
         target="_blank">lib/src/main/java/com/example/ProfilePicturesController.java</a></em></li>
     </ul>
     </p>
@@ -346,7 +346,7 @@
                     href="https://docs.oracle.com/iaas/Content/Object/Tasks/managingbuckets_topic-To_create_a_bucket.htm"
                     target="_blank">from the Oracle Cloud Console</a>.
                 </p>
-                <p class="gs-root-texts">Update the Oracle Cloud Infrastructure configuration file
+                <p class="gs-root-texts">Add the Oracle Cloud Infrastructure configuration file
                   (<em>oci/src/main/resources/application.properties</em>) with the name of the bucket and its namespace:</p>
                 <pre><code class="language-bash" tabindex="0">micronaut.object-storage.oracle-cloud.default.namespace=OBJECT_STORAGE_NAMESPACE
 micronaut.object-storage.oracle-cloud.default.bucket=OBJECT_STORAGE_BUCKET</code><button tabindex="0">Copy</button></pre>
@@ -362,7 +362,7 @@ micronaut.object-storage.oracle-cloud.default.bucket=OBJECT_STORAGE_BUCKET</code
           <div class="col-12 col-sm-12 col-md-12 col-lg-12">
             <div class="row">
               <div class="col-sm guides-box gs-section-indent aws gradle maven">
-                <p class="gs-root-texts">For this section, you will need an Amazon Web Services account and a S3 bucket created already. See <a
+                <p class="gs-root-texts">For this section, you will need an Amazon Web Services account and an S3 bucket already created. See the <a
                   href="/gdk/gdk-modules/object-storage/micronaut-object-storage-aws/">Amazon S3 Object Storage
                   Guide</a> for assistance.</p>
               <p class="gs-root-texts">Update the Amazon Web Services configuration file (<em>aws/src/main/resources/application.properties</em>)
@@ -774,13 +774,13 @@ micronaut.object-storage.azure.default.endpoint=STORAGE_ENDPOINT</code><button t
       your native executable or a container image with JVM using the predefined Oracle Cloud Infrastructure Build Pipelines.
     </p>
     <p class="gs-root-texts">
-      Learn more about this is in the <a href="/gdk/get-started/setting-oci-devops-pipeline-in-vscode/">Setting Oracle Cloud Infrastructure DevOps Build and
+      Learn more about this is in the <a href="/gdk/vscode-guides/setting-oci-devops-pipeline-in-vscode/">Setting Oracle Cloud Infrastructure DevOps Build and
         Development Pipeline in VS Code guide</a>.
     </p>
 
     <h3 style="color:#ffffff">6.2. AWS</h3>
     <p class="gs-root-texts">
-      A complete guide on <a href="/gdk/get-started/deploy-to-aws-eks-in-vscode/">how to deploy an application to a Kubernetes cluster in AWS EKS</a> is available.
+      A complete guide on <a href="/gdk/vscode-guides/deploy-to-aws-eks-in-vscode/">how to deploy an application to a Kubernetes cluster in AWS EKS</a> is available.
     </p>
     <p class="gs-root-texts">With your AWS account ready and access to EKS configured, simply invoke this command:</p>
 
@@ -818,6 +818,17 @@ micronaut.object-storage.azure.default.endpoint=STORAGE_ENDPOINT</code><button t
           </div>
         </section>
       </div>
+      <div class="container-fluid container-fluid--custom-sm">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="row">
+              <div class="col-sm guides-box gs-section-indent oci maven">
+                <pre><code class="language-bash hljs" tabindex="0">./mvnw deploy -Dpackaging=docker-native -pl aws</code><button tabindex="0">Copy</button></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <div class="container-fluid container-fluid--custom-sm">
         <div class="row">
@@ -835,7 +846,66 @@ micronaut.object-storage.azure.default.endpoint=STORAGE_ENDPOINT</code><button t
         <div class="row">
           <div class="col-12 col-sm-12 col-md-12 col-lg-12">
             <div class="row">
+              <div class="col-sm guides-box gs-section-indent gcp maven">
+                <pre><code class="language-bash hljs" tabindex="0">./mvnw deploy -Dpackaging=docker-native -pl aws</code><button tabindex="0">Copy</button></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid container-fluid--custom-sm">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="row">
+              <div class="col-sm guides-box gs-section-indent azure maven">
+                <pre><code class="language-bash hljs" tabindex="0">./mvnw deploy -Dpackaging=docker-native -pl aws</code><button tabindex="0">Copy</button></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid container-fluid--custom-sm">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="row">
+              <div class="col-sm guides-box gs-section-indent oci gradle">
+                <pre><code class="language-bash hljs" tabindex="0">./gradlew aws:dockerPushNative</code><button tabindex="0">Copy</button></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid container-fluid--custom-sm">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="row">
               <div class="col-sm guides-box gs-section-indent aws gradle">
+                <pre><code class="language-bash hljs" tabindex="0">./gradlew aws:dockerPushNative</code><button tabindex="0">Copy</button></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid container-fluid--custom-sm">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="row">
+              <div class="col-sm guides-box gs-section-indent gcp gradle">
+                <pre><code class="language-bash hljs" tabindex="0">./gradlew aws:dockerPushNative</code><button tabindex="0">Copy</button></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid container-fluid--custom-sm">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="row">
+              <div class="col-sm guides-box gs-section-indent azure gradle">
                 <pre><code class="language-bash hljs" tabindex="0">./gradlew aws:dockerPushNative</code><button tabindex="0">Copy</button></pre>
               </div>
             </div>
@@ -890,6 +960,29 @@ micronaut.object-storage.azure.default.endpoint=STORAGE_ENDPOINT</code><button t
           </div>
         </section>
       </div>
+      <div class="container-fluid container-fluid--custom-sm">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="row">
+              <div class="col-sm guides-box gs-section-indent oci maven">
+                <pre><code class="language-bash hljs" tabindex="0">./mvnw deploy -Dpackaging=docker-native -pl gcp</code><button tabindex="0">Copy</button></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid container-fluid--custom-sm">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="row">
+              <div class="col-sm guides-box gs-section-indent aws maven">
+                <pre><code class="language-bash hljs" tabindex="0">./mvnw deploy -Dpackaging=docker-native -pl gcp</code><button tabindex="0">Copy</button></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <div class="container-fluid container-fluid--custom-sm">
         <div class="row">
@@ -907,7 +1000,55 @@ micronaut.object-storage.azure.default.endpoint=STORAGE_ENDPOINT</code><button t
         <div class="row">
           <div class="col-12 col-sm-12 col-md-12 col-lg-12">
             <div class="row">
+              <div class="col-sm guides-box gs-section-indent azure maven">
+                <pre><code class="language-bash hljs" tabindex="0">./mvnw deploy -Dpackaging=docker-native -pl gcp</code><button tabindex="0">Copy</button></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid container-fluid--custom-sm">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="row">
+              <div class="col-sm guides-box gs-section-indent oci gradle">
+                <pre><code class="language-bash hljs" tabindex="0">./gradlew gcp:dockerPushNative</code><button tabindex="0">Copy</button></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid container-fluid--custom-sm">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="row">
+              <div class="col-sm guides-box gs-section-indent aws gradle">
+                <pre><code class="language-bash hljs" tabindex="0">./gradlew gcp:dockerPushNative</code><button tabindex="0">Copy</button></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid container-fluid--custom-sm">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="row">
               <div class="col-sm guides-box gs-section-indent gcp gradle">
+                <pre><code class="language-bash hljs" tabindex="0">./gradlew gcp:dockerPushNative</code><button tabindex="0">Copy</button></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid container-fluid--custom-sm">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="row">
+              <div class="col-sm guides-box gs-section-indent azure gradle">
                 <pre><code class="language-bash hljs" tabindex="0">./gradlew gcp:dockerPushNative</code><button tabindex="0">Copy</button></pre>
               </div>
             </div>
@@ -967,8 +1108,80 @@ micronaut.object-storage.azure.default.endpoint=STORAGE_ENDPOINT</code><button t
         <div class="row">
           <div class="col-12 col-sm-12 col-md-12 col-lg-12">
             <div class="row">
+              <div class="col-sm guides-box gs-section-indent oci maven">
+                <pre><code class="language-bash hljs" tabindex="0">./mvnw deploy -Dpackaging=docker-native -pl azure</code><button tabindex="0">Copy</button></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid container-fluid--custom-sm">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="row">
+              <div class="col-sm guides-box gs-section-indent aws maven">
+                <pre><code class="language-bash hljs" tabindex="0">./mvnw deploy -Dpackaging=docker-native -pl azure</code><button tabindex="0">Copy</button></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid container-fluid--custom-sm">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="row">
+              <div class="col-sm guides-box gs-section-indent gcp maven">
+                <pre><code class="language-bash hljs" tabindex="0">./mvnw deploy -Dpackaging=docker-native -pl azure</code><button tabindex="0">Copy</button></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid container-fluid--custom-sm">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="row">
               <div class="col-sm guides-box gs-section-indent azure maven">
                 <pre><code class="language-bash hljs" tabindex="0">./mvnw deploy -Dpackaging=docker-native -pl azure</code><button tabindex="0">Copy</button></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid container-fluid--custom-sm">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="row">
+              <div class="col-sm guides-box gs-section-indent oci gradle">
+                <pre><code class="language-bash hljs" tabindex="0">./gradlew azure:dockerPushNative</code><button tabindex="0">Copy</button></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid container-fluid--custom-sm">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="row">
+              <div class="col-sm guides-box gs-section-indent aws gradle">
+                <pre><code class="language-bash hljs" tabindex="0">./gradlew azure:dockerPushNative</code><button tabindex="0">Copy</button></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid container-fluid--custom-sm">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="row">
+              <div class="col-sm guides-box gs-section-indent gcp gradle">
+                <pre><code class="language-bash hljs" tabindex="0">./gradlew azure:dockerPushNative</code><button tabindex="0">Copy</button></pre>
               </div>
             </div>
           </div>
