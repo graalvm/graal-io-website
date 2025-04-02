@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head><style type="text/css">.truste_caIcon_display {display: block !important;}</style><style type="text/css">.truste_cursor_pointer {cursor: pointer;}.truste_border_none {border: none;}</style>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -68,23 +69,28 @@
             font-size: 14px;
         }
 
-        .conum[data-value]::after {
-            content: attr(data-value);
-            display: inline-block;
-            border: 1px solid;
-            -webkit-border-radius: 50%;
-            border-radius: 50%;
-            text-align: center;
-            font-size: .75em;
-            width: 1.67em;
-            height: 1.67em;
-            line-height: 1.67em;
-            font-family: "Open Sans", "DejaVu Sans", sans-serif;
-            font-style: normal;
+            .conum[data-value]::after {
+                content: attr(data-value);
+                display: inline-block;
+                border: 1px solid;
+                -webkit-border-radius: 50%;
+                border-radius: 50%;
+                text-align: center;
+                font-size: .75em;
+                width: 1.67em;
+                height: 1.67em;
+                line-height: 1.67em;
+                font-family: "Open Sans", "DejaVu Sans", sans-serif;
+                font-style: normal;
+                font-weight: bold;
+            }
+            .conum[data-value]+b {
+                display: none;
+            }
+
+        .sectlevel1 a.active {
+            color: #F68831;
             font-weight: bold;
-        }
-        .conum[data-value]+b {
-            display: none;
         }
     </style>
 
@@ -92,7 +98,34 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.14.0/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="https://graal.cloud/gdk/resources/lib/jquery/jquery-ui.css">
     <script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/a8476471/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script src="https://www.youtube.com/iframe_api"></script><script async="" src="https://tags.bkrtx.com/js/bk-coretag.js"></script><script src="https://graal.cloud/gdk/resources/lib/jquery/jquery-3.7.1.min.js"></script><script src="https://graal.cloud/gdk/resources/lib/bootstrap/js/bootstrap.min.js"></script><script src="https://graal.cloud/gdk/resources/lib/sticky-sidebar/resizeSensor.js"></script><script src="https://graal.cloud/gdk/resources/lib/sticky-sidebar/sticky-sidebar.min.js"></script><script async="" defer="" src="https://buttons.github.io/buttons.js"></script><script async="async" type="text/javascript" src="//consent.trustarc.com/notice?domain=oracle.com&amp;c=teconsent&amp;js=bb&amp;noticeType=bb&amp;text=true&amp;cdn=1&amp;pcookie&amp;gtm=1" crossorigin="" id="truste_0.9548969741402604"></script><script src="https://www.oracle.com/assets/truste-oraclelib.js"></script><script src="https://code.jquery.com/ui/1.14.0/jquery-ui.js"></script></head>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+        const menuLinks = document.querySelectorAll(".sectlevel1 a");
 
+        function highlightMenu() {
+            let currentSection = null;
+
+            menuLinks.forEach(link => {
+                const section = document.querySelector(link.getAttribute("href"));
+                if (section) {
+                    const rect = section.getBoundingClientRect();
+                    if (rect.top >= 0 && rect.top < window.innerHeight / 2) {
+                        currentSection = link;
+                    }
+                }
+            });
+
+            menuLinks.forEach(link => link.classList.remove("active"));
+
+            if (currentSection) {
+                currentSection.classList.add("active");
+            }
+        }
+
+
+        window.addEventListener("scroll", highlightMenu);
+        highlightMenu();
+    });</script>
 <!-- Add TRUSTe Consent Script and Analytics -->
 
 
@@ -277,10 +310,10 @@ The application uses <a href="https://micronaut-projects.github.io/micronaut-mic
         <li class="tabs-maven ui-tabs-tab ui-corner-top ui-state-default" role="tab" tabindex="-1" aria-controls="maven" aria-labelledby="ui-id-2" aria-selected="false" aria-expanded="false"><a name="maven" href="#maven" tabindex="-1" class="ui-tabs-anchor" id="ui-id-2">Maven</a></li>
     </ul>
     <div id="gradle" aria-labelledby="ui-id-1" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false">
-        <a href="https://github.com/oracle/graal-dev-kit/releases/download/4.7.3.2/4.7.3.2_metrics_metrics-demo-java-gradle.zip">Gradle Micronaut Metrics Example <img src="https://graal.cloud/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" class="download-img-guides"/></a>
+        <a href="https://github.com/oracle/graal-dev-kit/releases/download/4.3.7.2/4.3.7.2_metrics_metrics-demo-java-gradle.zip">Gradle Micronaut Metrics Example <img src="https://graal.cloud/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" class="download-img-guides"/></a>
     </div>
     <div id="maven" aria-labelledby="ui-id-2" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
-        <a href="https://github.com/oracle/graal-dev-kit/releases/download/4.7.3.2/4.7.3.2_metrics_metrics-demo-java-maven.zip">Maven Micronaut Metrics Example <img src="https://graal.cloud/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" class="download-img-guides"/></a>
+        <a href="https://github.com/oracle/graal-dev-kit/releases/download/4.3.7.2/4.3.7.2_metrics_metrics-demo-java-maven.zip">Maven Micronaut Metrics Example <img src="https://graal.cloud/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" class="download-img-guides"/></a>
     </div>
 </div>
 <div class="paragraph">
@@ -312,7 +345,7 @@ The application uses <a href="https://micronaut-projects.github.io/micronaut-mic
 <p>Create an application using the GDK Launcher.</p>
 <ol>
     <li>
-        <p>Open the <a href="https://graal.cloud/gdk/launcher/?advanced=true">GDK Launcher in advanced mode</a>.</p>
+        <p>Open the <a href="https://graal.cloud/gdk/launcher/?advanced=true" target="_blank">GDK Launcher in advanced mode</a>.</p>
     </li>
     <li>Create a new project using the following selections.
         <ul>
@@ -406,7 +439,7 @@ The GDK Launcher enables Flyway in the <em>src/main/resources/application.proper
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">flyway.datasources.default.enabled=true</code></pre>
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">flyway.datasources.default.enabled=true</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -439,7 +472,7 @@ implementation("org.flywaydb:flyway-mysql")
 <div class="quoteblock">
 <blockquote>
 <div class="paragraph">
-<p>Note: Flyway migrations are not compatible with the default automatic schema generation that is configured in <em>src/main/resources/application.properties</em>. If <code>schema-generate</code> is active, it will conflict with Flyway. So edit <em>src/main/resources/application.properties</em> and either delete the <code>datasources.default.schema-generate=CREATE_DROP</code> line or change that line to <code>datasources.default.schema-generate=NONE</code> to ensure that only Flyway manages your schema.</p>
+<p>Note: Flyway migrations require full control over schema management. By default, the project does not generate schema automatically in <em>src/main/resources/application.properties</em>. If you manually configure <code>datasources.default.schema-generate=CREATE_DROP</code> set it to <code>NONE</code> to ensure that only Flyway manages your schema.</p>
 </div>
 </blockquote>
 </div>
@@ -952,7 +985,7 @@ class MicroserviceBooksNumberTest {
 <p>To make sure that the test works as expected and only three updates of the metric are performed, change the test configuration (in the file <em>src/test/resources/application-test.properties</em>) so that it does not perform scheduled updates for the custom metric. To achieve this, change the <code>customMetrics.initialDelay</code> parameter to a large value, such as <code>10</code> hours. For example:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">customMetrics.initialDelay=10h</code></pre>
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">customMetrics.initialDelay=10h</code></pre>
 </div>
 </div>
 </li>
@@ -1001,21 +1034,21 @@ datasources.default.dialect=MYSQL</code></pre>
 </div>
 <div class="tabs-doc ui-tabs ui-corner-all ui-widget ui-widget-content" data-name="system">
     <div data-value="linux" data-label="Linux &amp; macOS" id="linux" aria-labelledby="ui-id-11" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false" style="">
-      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-built_in">export</span> DATASOURCES_DEFAULT_PASSWORD=&lt;Password&gt;
-<span class="hljs-built_in">export</span> DATASOURCES_DEFAULT_URL=jdbc:mysql://&lt;URL&gt;:3306/gdk
-<span class="hljs-built_in">export</span> DATASOURCES_DEFAULT_USERNAME=&lt;Username&gt;
+      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-built_in">export</span> DATASOURCES_DEFAULT_PASSWORD=<span class="hljs-string">&lt;Password&gt;</span>
+<span class="hljs-built_in">export</span> DATASOURCES_DEFAULT_URL=<span class="hljs-string">jdbc:mysql://&lt;URL&gt;:3306/gdk</span>
+<span class="hljs-built_in">export</span> DATASOURCES_DEFAULT_USERNAME=<span class="hljs-string">&lt;Username&gt;</span>
 </code><button>Copy</button></pre>
     </div>
     <div data-value="windows" data-label="Windows" id="windows" aria-labelledby="ui-id-12" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
-      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-built_in">set</span> DATASOURCES_DEFAULT_PASSWORD=&lt;Password&gt;
-<span class="hljs-built_in">set</span> DATASOURCES_DEFAULT_URL=jdbc:mysql://&lt;URL&gt;:3306/gdk
-<span class="hljs-built_in">set</span> DATASOURCES_DEFAULT_USERNAME=&lt;Username&gt;
+      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-built_in">set</span> DATASOURCES_DEFAULT_PASSWORD=<span class="hljs-string">&lt;Password&gt;</span>
+<span class="hljs-built_in">set</span> DATASOURCES_DEFAULT_URL=<span class="hljs-string">jdbc:mysql://&lt;URL&gt;:3306/gdk</span>
+<span class="hljs-built_in">set</span> DATASOURCES_DEFAULT_USERNAME=<span class="hljs-string">&lt;Username&gt;</span>
 </code><button>Copy</button></pre>
     </div>
     <div data-value="windows-powershell" data-label="Windows PowerShell" id="windows-powershell" aria-labelledby="ui-id-13" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
-      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-variable">$ENV</span> DATASOURCES_DEFAULT_PASSWORD = <span class="hljs-string">"&lt;Password&gt;"</span>
-<span class="hljs-variable">$ENV</span> DATASOURCES_DEFAULT_URL = <span class="hljs-string">"jdbc:mysql://&lt;URL&gt;:3306/gdk"</span>
-<span class="hljs-variable">$ENV</span> DATASOURCES_DEFAULT_USERNAME = <span class="hljs-string">"&lt;Username&gt;"</span>
+      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-variable">$ENV:</span> DATASOURCES_DEFAULT_PASSWORD=<span class="hljs-string">&lt;Password&gt;</span>
+<span class="hljs-variable">$ENV:</span> DATASOURCES_DEFAULT_URL=<span class="hljs-string">jdbc:mysql://&lt;URL&gt;:3306/gdk</span>
+<span class="hljs-variable">$ENV:</span> DATASOURCES_DEFAULT_USERNAME=<span class="hljs-string">&lt;Username&gt;</span>
 </code><button>Copy</button></pre>
     </div>
 </div>
@@ -1211,24 +1244,24 @@ Packaged as a native executable, it significantly reduces application startup ti
 </div>
 <div class="tabs-doc ui-tabs ui-corner-all ui-widget ui-widget-content" data-name="system">
     <div data-value="linux" data-label="Linux &amp; macOS" id="linux" aria-labelledby="ui-id-11" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false" style="">
-      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-built_in">export</span> DATASOURCES_DEFAULT_PASSWORD=User123User!
-<span class="hljs-built_in">export</span> DATASOURCES_DEFAULT_URL=jdbc:mysql://localhost:3306/gdk
-<span class="hljs-built_in">export</span> DOCKER_CONTAINER_NAME=mysql.8
-<span class="hljs-built_in">export</span> DATASOURCES_DEFAULT_USERNAME=guide_user
+      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-built_in">export</span> DATASOURCES_DEFAULT_PASSWORD=<span class="hljs-string">User123User!</span>
+<span class="hljs-built_in">export</span> DATASOURCES_DEFAULT_URL=<span class="hljs-string">jdbc:mysql://localhost:3306/gdk</span>
+<span class="hljs-built_in">export</span> DOCKER_CONTAINER_NAME=<span class="hljs-string">mysql.8</span>
+<span class="hljs-built_in">export</span> DATASOURCES_DEFAULT_USERNAME=<span class="hljs-string">guide_user</span>
 </code><button>Copy</button></pre>
     </div>
     <div data-value="windows" data-label="Windows" id="windows" aria-labelledby="ui-id-12" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
-      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-built_in">set</span> DATASOURCES_DEFAULT_PASSWORD=User123User!
-<span class="hljs-built_in">set</span> DATASOURCES_DEFAULT_URL=jdbc:mysql://localhost:3306/gdk
-<span class="hljs-built_in">set</span> DOCKER_CONTAINER_NAME=mysql.8
-<span class="hljs-built_in">set</span> DATASOURCES_DEFAULT_USERNAME=guide_user
+      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-built_in">set</span> DATASOURCES_DEFAULT_PASSWORD=<span class="hljs-string">User123User!</span>
+<span class="hljs-built_in">set</span> DATASOURCES_DEFAULT_URL=<span class="hljs-string">jdbc:mysql://localhost:3306/gdk</span>
+<span class="hljs-built_in">set</span> DOCKER_CONTAINER_NAME=<span class="hljs-string">mysql.8</span>
+<span class="hljs-built_in">set</span> DATASOURCES_DEFAULT_USERNAME=<span class="hljs-string">guide_user</span>
 </code><button>Copy</button></pre>
     </div>
     <div data-value="windows-powershell" data-label="Windows PowerShell" id="windows-powershell" aria-labelledby="ui-id-13" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
-      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-variable">$ENV</span> DATASOURCES_DEFAULT_PASSWORD = <span class="hljs-string">"User123User!"</span>
-<span class="hljs-variable">$ENV</span> DATASOURCES_DEFAULT_URL = <span class="hljs-string">"jdbc:mysql://localhost:3306/gdk"</span>
-<span class="hljs-variable">$ENV</span> DOCKER_CONTAINER_NAME = <span class="hljs-string">"mysql.8"</span>
-<span class="hljs-variable">$ENV</span> DATASOURCES_DEFAULT_USERNAME = <span class="hljs-string">"guide_user"</span>
+      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-variable">$ENV:</span> DATASOURCES_DEFAULT_PASSWORD=<span class="hljs-string">User123User!</span>
+<span class="hljs-variable">$ENV:</span> DATASOURCES_DEFAULT_URL=<span class="hljs-string">jdbc:mysql://localhost:3306/gdk</span>
+<span class="hljs-variable">$ENV:</span> DOCKER_CONTAINER_NAME=<span class="hljs-string">mysql.8</span>
+<span class="hljs-variable">$ENV:</span> DATASOURCES_DEFAULT_USERNAME=<span class="hljs-string">guide_user</span>
 </code><button>Copy</button></pre>
     </div>
 </div>
@@ -1373,14 +1406,14 @@ Packaged as a native executable, it significantly reduces application startup ti
                         <div class="row">
                             <div class="col-sm-12">
                                 <p class="copyright">
-                                    Copyright © 2023-2024, Oracle and/or its affiliates.
+                                    Copyright © 2023, 2025, Oracle and/or its affiliates.
                                     All rights reserved.
                                     Oracle and Java are registered trademarks of Oracle and/or its affiliates.<br>
                                     Micronaut<sup>®</sup> is a registered trademark of Object Computing, Inc.
                                     Use is for referential purposes and does not imply any endorsement or affiliation with any third-party product.
                                     Unauthorized use is strictly prohibited. Other names may be trademarks of their respective owners.
                                 </p>
-                                <div id="teconsent" consent="0,1,2" aria-label="Open Cookie Preferences Modal" class="truste_caIcon_display" role="complementary"><script async="async" type="text/javascript" crossorigin="" importance="high" src="https://consent.trustarc.com/asset/notice.js/v/v1.7-776"></script><a role="link" id="icon-id0368112092352622" tabindex="0" lang="en" aria-haspopup="dialog" aria-label="Cookie Preferences, opens a dedicated popup modal window" class="truste_cursor_pointer">Cookie Preferences</a></div>
+                                <div id="teconsent"></div>
                             </div>
                         </div>
 

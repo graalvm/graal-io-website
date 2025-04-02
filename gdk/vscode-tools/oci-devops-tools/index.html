@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head><style type="text/css">.truste_caIcon_display {display: block !important;}</style><style type="text/css">.truste_cursor_pointer {cursor: pointer;}.truste_border_none {border: none;}</style>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -68,23 +69,28 @@
             font-size: 14px;
         }
 
-        .conum[data-value]::after {
-            content: attr(data-value);
-            display: inline-block;
-            border: 1px solid;
-            -webkit-border-radius: 50%;
-            border-radius: 50%;
-            text-align: center;
-            font-size: .75em;
-            width: 1.67em;
-            height: 1.67em;
-            line-height: 1.67em;
-            font-family: "Open Sans", "DejaVu Sans", sans-serif;
-            font-style: normal;
+            .conum[data-value]::after {
+                content: attr(data-value);
+                display: inline-block;
+                border: 1px solid;
+                -webkit-border-radius: 50%;
+                border-radius: 50%;
+                text-align: center;
+                font-size: .75em;
+                width: 1.67em;
+                height: 1.67em;
+                line-height: 1.67em;
+                font-family: "Open Sans", "DejaVu Sans", sans-serif;
+                font-style: normal;
+                font-weight: bold;
+            }
+            .conum[data-value]+b {
+                display: none;
+            }
+
+        .sectlevel1 a.active {
+            color: #F68831;
             font-weight: bold;
-        }
-        .conum[data-value]+b {
-            display: none;
         }
     </style>
 
@@ -92,7 +98,34 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.14.0/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="https://graal.cloud/gdk/resources/lib/jquery/jquery-ui.css">
     <script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/a8476471/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script src="https://www.youtube.com/iframe_api"></script><script async="" src="https://tags.bkrtx.com/js/bk-coretag.js"></script><script src="https://graal.cloud/gdk/resources/lib/jquery/jquery-3.7.1.min.js"></script><script src="https://graal.cloud/gdk/resources/lib/bootstrap/js/bootstrap.min.js"></script><script src="https://graal.cloud/gdk/resources/lib/sticky-sidebar/resizeSensor.js"></script><script src="https://graal.cloud/gdk/resources/lib/sticky-sidebar/sticky-sidebar.min.js"></script><script async="" defer="" src="https://buttons.github.io/buttons.js"></script><script async="async" type="text/javascript" src="//consent.trustarc.com/notice?domain=oracle.com&amp;c=teconsent&amp;js=bb&amp;noticeType=bb&amp;text=true&amp;cdn=1&amp;pcookie&amp;gtm=1" crossorigin="" id="truste_0.9548969741402604"></script><script src="https://www.oracle.com/assets/truste-oraclelib.js"></script><script src="https://code.jquery.com/ui/1.14.0/jquery-ui.js"></script></head>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+        const menuLinks = document.querySelectorAll(".sectlevel1 a");
 
+        function highlightMenu() {
+            let currentSection = null;
+
+            menuLinks.forEach(link => {
+                const section = document.querySelector(link.getAttribute("href"));
+                if (section) {
+                    const rect = section.getBoundingClientRect();
+                    if (rect.top >= 0 && rect.top < window.innerHeight / 2) {
+                        currentSection = link;
+                    }
+                }
+            });
+
+            menuLinks.forEach(link => link.classList.remove("active"));
+
+            if (currentSection) {
+                currentSection.classList.add("active");
+            }
+        }
+
+
+        window.addEventListener("scroll", highlightMenu);
+        highlightMenu();
+    });</script>
 <!-- Add TRUSTe Consent Script and Analytics -->
 
 
@@ -680,10 +713,10 @@ Learn more <a href="/gdk/vscode-guides/use-gdk-tools-on-vpn/">here</a>.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://github.com/graalvm/vscode-extensions/issues/new?labels=enhancement">Request a feature</a></p>
+<p><a href="https://github.com/oracle/gdk-vscode-extensions/issues/new?labels=enhancement">Request a feature</a></p>
 </li>
 <li>
-<p><a href="https://github.com/graalvm/vscode-extensions/issues/new?labels=bug">File a bug</a></p>
+<p><a href="https://github.com/oracle/gdk-vscode-extensions/issues/new?labels=bug" class="bare">https://github.com/oracle/gdk-vscode-extensions/issues/new?labels=bug</a> [File a bug]</p>
 </li>
 </ul>
 </div>
@@ -776,14 +809,14 @@ Learn more <a href="/gdk/vscode-guides/use-gdk-tools-on-vpn/">here</a>.</p>
                         <div class="row">
                             <div class="col-sm-12">
                                 <p class="copyright">
-                                    Copyright © 2023-2024, Oracle and/or its affiliates.
+                                    Copyright © 2023, 2025, Oracle and/or its affiliates.
                                     All rights reserved.
                                     Oracle and Java are registered trademarks of Oracle and/or its affiliates.<br>
                                     Micronaut<sup>®</sup> is a registered trademark of Object Computing, Inc.
                                     Use is for referential purposes and does not imply any endorsement or affiliation with any third-party product.
                                     Unauthorized use is strictly prohibited. Other names may be trademarks of their respective owners.
                                 </p>
-                                <div id="teconsent" consent="0,1,2" aria-label="Open Cookie Preferences Modal" class="truste_caIcon_display" role="complementary"><script async="async" type="text/javascript" crossorigin="" importance="high" src="https://consent.trustarc.com/asset/notice.js/v/v1.7-776"></script><a role="link" id="icon-id0368112092352622" tabindex="0" lang="en" aria-haspopup="dialog" aria-label="Cookie Preferences, opens a dedicated popup modal window" class="truste_cursor_pointer">Cookie Preferences</a></div>
+                                <div id="teconsent"></div>
                             </div>
                         </div>
 

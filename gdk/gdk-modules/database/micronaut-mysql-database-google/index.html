@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head><style type="text/css">.truste_caIcon_display {display: block !important;}</style><style type="text/css">.truste_cursor_pointer {cursor: pointer;}.truste_border_none {border: none;}</style>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -68,23 +69,28 @@
             font-size: 14px;
         }
 
-        .conum[data-value]::after {
-            content: attr(data-value);
-            display: inline-block;
-            border: 1px solid;
-            -webkit-border-radius: 50%;
-            border-radius: 50%;
-            text-align: center;
-            font-size: .75em;
-            width: 1.67em;
-            height: 1.67em;
-            line-height: 1.67em;
-            font-family: "Open Sans", "DejaVu Sans", sans-serif;
-            font-style: normal;
+            .conum[data-value]::after {
+                content: attr(data-value);
+                display: inline-block;
+                border: 1px solid;
+                -webkit-border-radius: 50%;
+                border-radius: 50%;
+                text-align: center;
+                font-size: .75em;
+                width: 1.67em;
+                height: 1.67em;
+                line-height: 1.67em;
+                font-family: "Open Sans", "DejaVu Sans", sans-serif;
+                font-style: normal;
+                font-weight: bold;
+            }
+            .conum[data-value]+b {
+                display: none;
+            }
+
+        .sectlevel1 a.active {
+            color: #F68831;
             font-weight: bold;
-        }
-        .conum[data-value]+b {
-            display: none;
         }
     </style>
 
@@ -92,7 +98,34 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.14.0/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="https://graal.cloud/gdk/resources/lib/jquery/jquery-ui.css">
     <script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/a8476471/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script src="https://www.youtube.com/iframe_api"></script><script async="" src="https://tags.bkrtx.com/js/bk-coretag.js"></script><script src="https://graal.cloud/gdk/resources/lib/jquery/jquery-3.7.1.min.js"></script><script src="https://graal.cloud/gdk/resources/lib/bootstrap/js/bootstrap.min.js"></script><script src="https://graal.cloud/gdk/resources/lib/sticky-sidebar/resizeSensor.js"></script><script src="https://graal.cloud/gdk/resources/lib/sticky-sidebar/sticky-sidebar.min.js"></script><script async="" defer="" src="https://buttons.github.io/buttons.js"></script><script async="async" type="text/javascript" src="//consent.trustarc.com/notice?domain=oracle.com&amp;c=teconsent&amp;js=bb&amp;noticeType=bb&amp;text=true&amp;cdn=1&amp;pcookie&amp;gtm=1" crossorigin="" id="truste_0.9548969741402604"></script><script src="https://www.oracle.com/assets/truste-oraclelib.js"></script><script src="https://code.jquery.com/ui/1.14.0/jquery-ui.js"></script></head>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+        const menuLinks = document.querySelectorAll(".sectlevel1 a");
 
+        function highlightMenu() {
+            let currentSection = null;
+
+            menuLinks.forEach(link => {
+                const section = document.querySelector(link.getAttribute("href"));
+                if (section) {
+                    const rect = section.getBoundingClientRect();
+                    if (rect.top >= 0 && rect.top < window.innerHeight / 2) {
+                        currentSection = link;
+                    }
+                }
+            });
+
+            menuLinks.forEach(link => link.classList.remove("active"));
+
+            if (currentSection) {
+                currentSection.classList.add("active");
+            }
+        }
+
+
+        window.addEventListener("scroll", highlightMenu);
+        highlightMenu();
+    });</script>
 <!-- Add TRUSTe Consent Script and Analytics -->
 
 
@@ -285,10 +318,10 @@
         <li class="tabs-maven ui-tabs-tab ui-corner-top ui-state-default" role="tab" tabindex="-1" aria-controls="maven" aria-labelledby="ui-id-2" aria-selected="false" aria-expanded="false"><a name="maven" href="#maven" tabindex="-1" class="ui-tabs-anchor" id="ui-id-2">Maven</a></li>
     </ul>
     <div id="gradle" aria-labelledby="ui-id-1" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false">
-        <a href="https://github.com/oracle/graal-dev-kit/releases/download/4.7.3.2/4.7.3.2_database_gcp-db-demo-java-gradle.zip">Gradle GCP Database Example <img src="https://graal.cloud/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" class="download-img-guides"/></a>
+        <a href="https://github.com/oracle/graal-dev-kit/releases/download/4.3.7.2/4.3.7.2_database_gcp-db-demo-java-gradle.zip">Gradle GCP Database Example <img src="https://graal.cloud/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" class="download-img-guides"/></a>
     </div>
     <div id="maven" aria-labelledby="ui-id-2" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
-        <a href="https://github.com/oracle/graal-dev-kit/releases/download/4.7.3.2/4.7.3.2_database_gcp-db-demo-java-maven.zip">Maven GCP Database Example <img src="https://graal.cloud/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" class="download-img-guides"/></a>
+        <a href="https://github.com/oracle/graal-dev-kit/releases/download/4.3.7.2/4.3.7.2_database_gcp-db-demo-java-maven.zip">Maven GCP Database Example <img src="https://graal.cloud/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" class="download-img-guides"/></a>
     </div>
 </div>
 <div class="paragraph">
@@ -320,7 +353,7 @@
 <p>Create an application using the GDK Launcher.</p>
 <ol>
     <li>
-        <p>Open the <a href="https://graal.cloud/gdk/launcher/?advanced=true">GDK Launcher in advanced mode</a>.</p>
+        <p>Open the <a href="https://graal.cloud/gdk/launcher/?advanced=true" target="_blank">GDK Launcher in advanced mode</a>.</p>
     </li>
     <li>Create a new project using the following selections.
         <ul>
@@ -386,7 +419,7 @@ The GDK Launcher enables Flyway in the <em>gcp/src/main/resources/application.pr
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">flyway.datasources.default.enabled=true</code></pre>
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">flyway.datasources.default.enabled=true</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -419,7 +452,7 @@ implementation("org.flywaydb:flyway-mysql")
 <div class="quoteblock">
 <blockquote>
 <div class="paragraph">
-<p>Note: Flyway migrations are not compatible with the default automatic schema generation that is configured in <em>gcp/src/main/resources/application.properties</em>. If <code>schema-generate</code> is active, it will conflict with Flyway. So edit <em>gcp/src/main/resources/application.properties</em> and either delete the <code>datasources.default.schema-generate=CREATE_DROP</code> line or change that line to <code>datasources.default.schema-generate=NONE</code> to ensure that only Flyway manages your schema.</p>
+<p>Note: Flyway migrations require full control over schema management. By default, the project does not generate schema automatically in <em>gcp/src/main/resources/application.properties</em>. If you manually configure <code>datasources.default.schema-generate=CREATE_DROP</code> set it to <code>NONE</code> to ensure that only Flyway manages your schema.</p>
 </div>
 </blockquote>
 </div>
@@ -506,18 +539,18 @@ See the <a href="https://cloud.google.com/sdk/gcloud/reference/sql">MySQL CLI co
 </div>
 <div class="tabs-doc ui-tabs ui-corner-all ui-widget ui-widget-content" data-name="system">
     <div data-value="linux" data-label="Linux &amp; macOS" id="linux" aria-labelledby="ui-id-11" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false" style="">
-      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-built_in">export</span> DB_INSTANCE_NAME=gdk-guides-mysql
-<span class="hljs-built_in">export</span> LOCAL_IP=&lt;local IP address&gt;
+      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-built_in">export</span> DB_INSTANCE_NAME=<span class="hljs-string">gdk-guides-mysql</span>
+<span class="hljs-built_in">export</span> LOCAL_IP=<span class="hljs-string">&lt;local IP address&gt;</span>
 </code><button>Copy</button></pre>
     </div>
     <div data-value="windows" data-label="Windows" id="windows" aria-labelledby="ui-id-12" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
-      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-built_in">set</span> DB_INSTANCE_NAME=gdk-guides-mysql
-<span class="hljs-built_in">set</span> LOCAL_IP=&lt;local IP address&gt;
+      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-built_in">set</span> DB_INSTANCE_NAME=<span class="hljs-string">gdk-guides-mysql</span>
+<span class="hljs-built_in">set</span> LOCAL_IP=<span class="hljs-string">&lt;local IP address&gt;</span>
 </code><button>Copy</button></pre>
     </div>
     <div data-value="windows-powershell" data-label="Windows PowerShell" id="windows-powershell" aria-labelledby="ui-id-13" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
-      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-variable">$ENV</span> DB_INSTANCE_NAME = <span class="hljs-string">"gdk-guides-mysql"</span>
-<span class="hljs-variable">$ENV</span> LOCAL_IP = <span class="hljs-string">"&lt;local IP address&gt;"</span>
+      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-variable">$ENV:</span> DB_INSTANCE_NAME=<span class="hljs-string">gdk-guides-mysql</span>
+<span class="hljs-variable">$ENV:</span> LOCAL_IP=<span class="hljs-string">&lt;local IP address&gt;</span>
 </code><button>Copy</button></pre>
     </div>
 </div>
@@ -593,15 +626,15 @@ gdk-guides-mysql  MYSQL_8_0         us-east1-c  db-f1-micro  34.xxx.xxx.65    - 
 </div>
 <div class="tabs-doc ui-tabs ui-corner-all ui-widget ui-widget-content" data-name="system">
     <div data-value="linux" data-label="Linux &amp; macOS" id="linux" aria-labelledby="ui-id-11" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false" style="">
-      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-built_in">export</span> DATASOURCES_DEFAULT_PASSWORD=&lt;user password&gt;
+      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-built_in">export</span> DATASOURCES_DEFAULT_PASSWORD=<span class="hljs-string">&lt;user password&gt;</span>
 </code><button>Copy</button></pre>
     </div>
     <div data-value="windows" data-label="Windows" id="windows" aria-labelledby="ui-id-12" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
-      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-built_in">set</span> DATASOURCES_DEFAULT_PASSWORD=&lt;user password&gt;
+      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-built_in">set</span> DATASOURCES_DEFAULT_PASSWORD=<span class="hljs-string">&lt;user password&gt;</span>
 </code><button>Copy</button></pre>
     </div>
     <div data-value="windows-powershell" data-label="Windows PowerShell" id="windows-powershell" aria-labelledby="ui-id-13" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
-      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-variable">$ENV</span> DATASOURCES_DEFAULT_PASSWORD = <span class="hljs-string">"&lt;user password&gt;"</span>
+      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-variable">$ENV:</span> DATASOURCES_DEFAULT_PASSWORD=<span class="hljs-string">&lt;user password&gt;</span>
 </code><button>Copy</button></pre>
     </div>
 </div>
@@ -660,18 +693,18 @@ datasources.default.password=&lt;user password&gt;</code></pre>
 </div>
 <div class="tabs-doc ui-tabs ui-corner-all ui-widget ui-widget-content" data-name="system">
     <div data-value="linux" data-label="Linux &amp; macOS" id="linux" aria-labelledby="ui-id-11" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false" style="">
-      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-built_in">export</span> DATASOURCES_DEFAULT_URL=jdbc:mysql://&lt;MySQL IP address&gt;:3306/demo
-<span class="hljs-built_in">export</span> DATASOURCES_DEFAULT_USERNAME=guide_user
+      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-built_in">export</span> DATASOURCES_DEFAULT_URL=<span class="hljs-string">jdbc:mysql://&lt;MySQL IP address&gt;:3306/demo</span>
+<span class="hljs-built_in">export</span> DATASOURCES_DEFAULT_USERNAME=<span class="hljs-string">guide_user</span>
 </code><button>Copy</button></pre>
     </div>
     <div data-value="windows" data-label="Windows" id="windows" aria-labelledby="ui-id-12" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
-      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-built_in">set</span> DATASOURCES_DEFAULT_URL=jdbc:mysql://&lt;MySQL IP address&gt;:3306/demo
-<span class="hljs-built_in">set</span> DATASOURCES_DEFAULT_USERNAME=guide_user
+      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-built_in">set</span> DATASOURCES_DEFAULT_URL=<span class="hljs-string">jdbc:mysql://&lt;MySQL IP address&gt;:3306/demo</span>
+<span class="hljs-built_in">set</span> DATASOURCES_DEFAULT_USERNAME=<span class="hljs-string">guide_user</span>
 </code><button>Copy</button></pre>
     </div>
     <div data-value="windows-powershell" data-label="Windows PowerShell" id="windows-powershell" aria-labelledby="ui-id-13" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
-      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-variable">$ENV</span> DATASOURCES_DEFAULT_URL = <span class="hljs-string">"jdbc:mysql://&lt;MySQL IP address&gt;:3306/demo"</span>
-<span class="hljs-variable">$ENV</span> DATASOURCES_DEFAULT_USERNAME = <span class="hljs-string">"guide_user"</span>
+      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-variable">$ENV:</span> DATASOURCES_DEFAULT_URL=<span class="hljs-string">jdbc:mysql://&lt;MySQL IP address&gt;:3306/demo</span>
+<span class="hljs-variable">$ENV:</span> DATASOURCES_DEFAULT_USERNAME=<span class="hljs-string">guide_user</span>
 </code><button>Copy</button></pre>
     </div>
 </div>
@@ -973,14 +1006,14 @@ You also learned how to package this application into a native executable.</p>
                         <div class="row">
                             <div class="col-sm-12">
                                 <p class="copyright">
-                                    Copyright © 2023-2024, Oracle and/or its affiliates.
+                                    Copyright © 2023, 2025, Oracle and/or its affiliates.
                                     All rights reserved.
                                     Oracle and Java are registered trademarks of Oracle and/or its affiliates.<br>
                                     Micronaut<sup>®</sup> is a registered trademark of Object Computing, Inc.
                                     Use is for referential purposes and does not imply any endorsement or affiliation with any third-party product.
                                     Unauthorized use is strictly prohibited. Other names may be trademarks of their respective owners.
                                 </p>
-                                <div id="teconsent" consent="0,1,2" aria-label="Open Cookie Preferences Modal" class="truste_caIcon_display" role="complementary"><script async="async" type="text/javascript" crossorigin="" importance="high" src="https://consent.trustarc.com/asset/notice.js/v/v1.7-776"></script><a role="link" id="icon-id0368112092352622" tabindex="0" lang="en" aria-haspopup="dialog" aria-label="Cookie Preferences, opens a dedicated popup modal window" class="truste_cursor_pointer">Cookie Preferences</a></div>
+                                <div id="teconsent"></div>
                             </div>
                         </div>
 

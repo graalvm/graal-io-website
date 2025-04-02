@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head><style type="text/css">.truste_caIcon_display {display: block !important;}</style><style type="text/css">.truste_cursor_pointer {cursor: pointer;}.truste_border_none {border: none;}</style>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -68,23 +69,28 @@
             font-size: 14px;
         }
 
-        .conum[data-value]::after {
-            content: attr(data-value);
-            display: inline-block;
-            border: 1px solid;
-            -webkit-border-radius: 50%;
-            border-radius: 50%;
-            text-align: center;
-            font-size: .75em;
-            width: 1.67em;
-            height: 1.67em;
-            line-height: 1.67em;
-            font-family: "Open Sans", "DejaVu Sans", sans-serif;
-            font-style: normal;
+            .conum[data-value]::after {
+                content: attr(data-value);
+                display: inline-block;
+                border: 1px solid;
+                -webkit-border-radius: 50%;
+                border-radius: 50%;
+                text-align: center;
+                font-size: .75em;
+                width: 1.67em;
+                height: 1.67em;
+                line-height: 1.67em;
+                font-family: "Open Sans", "DejaVu Sans", sans-serif;
+                font-style: normal;
+                font-weight: bold;
+            }
+            .conum[data-value]+b {
+                display: none;
+            }
+
+        .sectlevel1 a.active {
+            color: #F68831;
             font-weight: bold;
-        }
-        .conum[data-value]+b {
-            display: none;
         }
     </style>
 
@@ -92,7 +98,34 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.14.0/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="https://graal.cloud/gdk/resources/lib/jquery/jquery-ui.css">
     <script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/a8476471/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script src="https://www.youtube.com/iframe_api"></script><script async="" src="https://tags.bkrtx.com/js/bk-coretag.js"></script><script src="https://graal.cloud/gdk/resources/lib/jquery/jquery-3.7.1.min.js"></script><script src="https://graal.cloud/gdk/resources/lib/bootstrap/js/bootstrap.min.js"></script><script src="https://graal.cloud/gdk/resources/lib/sticky-sidebar/resizeSensor.js"></script><script src="https://graal.cloud/gdk/resources/lib/sticky-sidebar/sticky-sidebar.min.js"></script><script async="" defer="" src="https://buttons.github.io/buttons.js"></script><script async="async" type="text/javascript" src="//consent.trustarc.com/notice?domain=oracle.com&amp;c=teconsent&amp;js=bb&amp;noticeType=bb&amp;text=true&amp;cdn=1&amp;pcookie&amp;gtm=1" crossorigin="" id="truste_0.9548969741402604"></script><script src="https://www.oracle.com/assets/truste-oraclelib.js"></script><script src="https://code.jquery.com/ui/1.14.0/jquery-ui.js"></script></head>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+        const menuLinks = document.querySelectorAll(".sectlevel1 a");
 
+        function highlightMenu() {
+            let currentSection = null;
+
+            menuLinks.forEach(link => {
+                const section = document.querySelector(link.getAttribute("href"));
+                if (section) {
+                    const rect = section.getBoundingClientRect();
+                    if (rect.top >= 0 && rect.top < window.innerHeight / 2) {
+                        currentSection = link;
+                    }
+                }
+            });
+
+            menuLinks.forEach(link => link.classList.remove("active"));
+
+            if (currentSection) {
+                currentSection.classList.add("active");
+            }
+        }
+
+
+        window.addEventListener("scroll", highlightMenu);
+        highlightMenu();
+    });</script>
 <!-- Add TRUSTe Consent Script and Analytics -->
 
 
@@ -279,19 +312,19 @@ You can accomplish all of this from within VS Code thanks to the <a href="/gdk/v
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>In the Oracle Cloud Console, open the navigation menu, click <strong>Oracle Database</strong>. Under <strong>Autonomous Database</strong>, click <strong>Autonomous Transaction Processing</strong>.</p>
+<p>In the Oracle Cloud Console, open the navigation menu, click <strong>Oracle Database</strong>. Click <strong>Autonomous Database</strong>.</p>
 </li>
 <li>
 <p>Click <strong>Create Autonomous Database</strong> and accept the default name for the database.</p>
 </li>
 <li>
-<p>Select <strong>Transaction Processing</strong> and <strong>Serverless</strong>. If you are using a trial account, make sure you select <strong>Always Free</strong>.</p>
+<p>Select <strong>Transaction Processing</strong>. If you are using a trial account, make sure you select <strong>Always Free</strong>.</p>
 </li>
 <li>
 <p>Create an admin password (must be at least 12 characters and contain a number and an uppercase letter) and select <strong>Secure access from everywhere</strong> as the network access type.</p>
 </li>
 <li>
-<p>Select <strong>License Included</strong> and click <strong>Create Autonomous Database</strong> to create your database.</p>
+<p>Select <strong>License Included</strong> and Click <strong>Create</strong> to create your database.</p>
 </li>
 <li>
 <p>On the <strong>Autonomous Database Details</strong> screen click <strong>Copy</strong> to copy the OCID of the database. (This is a unique identifier for your database instance which you will need later.)</p>
@@ -343,7 +376,7 @@ Follow these steps: <a href="https://docs.oracle.com/en/database/oracle/oracle-d
 <div class="ulist">
 <ul>
 <li>
-<p>Pick the GDK Version: <em>4.7.3.2</em></p>
+<p>Pick the GDK Version: <em>4.3.7.2</em></p>
 </li>
 <li>
 <p>Pick an Application type: <em>Application</em></p>
@@ -743,14 +776,14 @@ Key steps include:
                         <div class="row">
                             <div class="col-sm-12">
                                 <p class="copyright">
-                                    Copyright © 2023-2024, Oracle and/or its affiliates.
+                                    Copyright © 2023, 2025, Oracle and/or its affiliates.
                                     All rights reserved.
                                     Oracle and Java are registered trademarks of Oracle and/or its affiliates.<br>
                                     Micronaut<sup>®</sup> is a registered trademark of Object Computing, Inc.
                                     Use is for referential purposes and does not imply any endorsement or affiliation with any third-party product.
                                     Unauthorized use is strictly prohibited. Other names may be trademarks of their respective owners.
                                 </p>
-                                <div id="teconsent" consent="0,1,2" aria-label="Open Cookie Preferences Modal" class="truste_caIcon_display" role="complementary"><script async="async" type="text/javascript" crossorigin="" importance="high" src="https://consent.trustarc.com/asset/notice.js/v/v1.7-776"></script><a role="link" id="icon-id0368112092352622" tabindex="0" lang="en" aria-haspopup="dialog" aria-label="Cookie Preferences, opens a dedicated popup modal window" class="truste_cursor_pointer">Cookie Preferences</a></div>
+                                <div id="teconsent"></div>
                             </div>
                         </div>
 

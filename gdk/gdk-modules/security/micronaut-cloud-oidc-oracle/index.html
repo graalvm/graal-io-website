@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head><style type="text/css">.truste_caIcon_display {display: block !important;}</style><style type="text/css">.truste_cursor_pointer {cursor: pointer;}.truste_border_none {border: none;}</style>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -68,23 +69,28 @@
             font-size: 14px;
         }
 
-        .conum[data-value]::after {
-            content: attr(data-value);
-            display: inline-block;
-            border: 1px solid;
-            -webkit-border-radius: 50%;
-            border-radius: 50%;
-            text-align: center;
-            font-size: .75em;
-            width: 1.67em;
-            height: 1.67em;
-            line-height: 1.67em;
-            font-family: "Open Sans", "DejaVu Sans", sans-serif;
-            font-style: normal;
+            .conum[data-value]::after {
+                content: attr(data-value);
+                display: inline-block;
+                border: 1px solid;
+                -webkit-border-radius: 50%;
+                border-radius: 50%;
+                text-align: center;
+                font-size: .75em;
+                width: 1.67em;
+                height: 1.67em;
+                line-height: 1.67em;
+                font-family: "Open Sans", "DejaVu Sans", sans-serif;
+                font-style: normal;
+                font-weight: bold;
+            }
+            .conum[data-value]+b {
+                display: none;
+            }
+
+        .sectlevel1 a.active {
+            color: #F68831;
             font-weight: bold;
-        }
-        .conum[data-value]+b {
-            display: none;
         }
     </style>
 
@@ -92,7 +98,34 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.14.0/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="https://graal.cloud/gdk/resources/lib/jquery/jquery-ui.css">
     <script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/a8476471/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script src="https://www.youtube.com/iframe_api"></script><script async="" src="https://tags.bkrtx.com/js/bk-coretag.js"></script><script src="https://graal.cloud/gdk/resources/lib/jquery/jquery-3.7.1.min.js"></script><script src="https://graal.cloud/gdk/resources/lib/bootstrap/js/bootstrap.min.js"></script><script src="https://graal.cloud/gdk/resources/lib/sticky-sidebar/resizeSensor.js"></script><script src="https://graal.cloud/gdk/resources/lib/sticky-sidebar/sticky-sidebar.min.js"></script><script async="" defer="" src="https://buttons.github.io/buttons.js"></script><script async="async" type="text/javascript" src="//consent.trustarc.com/notice?domain=oracle.com&amp;c=teconsent&amp;js=bb&amp;noticeType=bb&amp;text=true&amp;cdn=1&amp;pcookie&amp;gtm=1" crossorigin="" id="truste_0.9548969741402604"></script><script src="https://www.oracle.com/assets/truste-oraclelib.js"></script><script src="https://code.jquery.com/ui/1.14.0/jquery-ui.js"></script></head>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+        const menuLinks = document.querySelectorAll(".sectlevel1 a");
 
+        function highlightMenu() {
+            let currentSection = null;
+
+            menuLinks.forEach(link => {
+                const section = document.querySelector(link.getAttribute("href"));
+                if (section) {
+                    const rect = section.getBoundingClientRect();
+                    if (rect.top >= 0 && rect.top < window.innerHeight / 2) {
+                        currentSection = link;
+                    }
+                }
+            });
+
+            menuLinks.forEach(link => link.classList.remove("active"));
+
+            if (currentSection) {
+                currentSection.classList.add("active");
+            }
+        }
+
+
+        window.addEventListener("scroll", highlightMenu);
+        highlightMenu();
+    });</script>
 <!-- Add TRUSTe Consent Script and Analytics -->
 
 
@@ -256,9 +289,6 @@ The OIDC APIs are easier to work with than OAuth because they use JSON instead o
 <p>An Oracle Cloud Infrastructure account. See <a href="/gdk/get-started/setting-up-cloud-accounts/">Setting up Your Cloud Accounts</a>.</p>
 </li>
 <li>
-<p>The Oracle Cloud Infrastructure <a href="https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/cliinstall.htm">CLI</a> installed with <a href="https://docs.oracle.com/iaas/Content/API/SDKDocs/cliinstall.htm#configfile">local access configured</a>.</p>
-</li>
-<li>
 <p>An Oracle Cloud Infrastructure <a href="https://docs.oracle.com/en/cloud/paas/integration-cloud/oracle-integration-oci/creating-oci-compartment.html">compartment</a>.</p>
 </li>
 <li>
@@ -275,10 +305,10 @@ The OIDC APIs are easier to work with than OAuth because they use JSON instead o
         <li class="tabs-maven ui-tabs-tab ui-corner-top ui-state-default" role="tab" tabindex="-1" aria-controls="maven" aria-labelledby="ui-id-2" aria-selected="false" aria-expanded="false"><a name="maven" href="#maven" tabindex="-1" class="ui-tabs-anchor" id="ui-id-2">Maven</a></li>
     </ul>
     <div id="gradle" aria-labelledby="ui-id-1" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false">
-        <a href="https://github.com/oracle/graal-dev-kit/releases/download/4.7.3.2/4.7.3.2_security_oci-security-demo-java-gradle.zip">Gradle OCI Security Example <img src="https://graal.cloud/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" class="download-img-guides"/></a>
+        <a href="https://github.com/oracle/graal-dev-kit/releases/download/4.3.7.2/4.3.7.2_security_oci-security-demo-java-gradle.zip">Gradle OCI Security Example <img src="https://graal.cloud/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" class="download-img-guides"/></a>
     </div>
     <div id="maven" aria-labelledby="ui-id-2" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
-        <a href="https://github.com/oracle/graal-dev-kit/releases/download/4.7.3.2/4.7.3.2_security_oci-security-demo-java-maven.zip">Maven OCI Security Example <img src="https://graal.cloud/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" class="download-img-guides"/></a>
+        <a href="https://github.com/oracle/graal-dev-kit/releases/download/4.3.7.2/4.3.7.2_security_oci-security-demo-java-maven.zip">Maven OCI Security Example <img src="https://graal.cloud/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" class="download-img-guides"/></a>
     </div>
 </div>
 <div class="paragraph">
@@ -310,7 +340,7 @@ The OIDC APIs are easier to work with than OAuth because they use JSON instead o
 <p>Create an application using the GDK Launcher.</p>
 <ol>
     <li>
-        <p>Open the <a href="https://graal.cloud/gdk/launcher/?advanced=true">GDK Launcher in advanced mode</a>.</p>
+        <p>Open the <a href="https://graal.cloud/gdk/launcher/?advanced=true" target="_blank">GDK Launcher in advanced mode</a>.</p>
     </li>
     <li>Create a new project using the following selections.
         <ul>
@@ -369,7 +399,7 @@ Oracle Cloud-specific configurations in the <strong>oci</strong> subproject.</p>
 <div class="sect2">
 <h3 id="authcontroller">1.1. AuthController</h3>
 <div class="paragraph">
-<p>The GDK Launcher created a class named <code>AuthController</code> to handle requests to <code>/</code>. It displays the email of an authenticated person, if any. The controller endpoint is annotated with a <a href="https://micronaut-projects.github.io/micronaut-views/latest/api/io/micronaut/views/View.html"><code>@View</code></a>annotation that uses a <a href="https://micronaut-projects.github.io/micronaut-views/latest/guide/#jte">JTE template</a> The file named <em>oci/src/main/java/com/example/AuthController.java</em> has the following contents:</p>
+<p>The GDK Launcher created a class named <code>AuthController</code> to handle requests to <code>/</code>. It displays the email of an authenticated person, if any. The controller endpoint is annotated with a <a href="https://micronaut-projects.github.io/micronaut-views/latest/api/io/micronaut/views/View.html"><code>@View</code></a> annotation that uses a <a href="https://micronaut-projects.github.io/micronaut-views/latest/guide/#jte">JTE template</a>. The file named <em>oci/src/main/java/com/example/AuthController.java</em> has the following contents:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -441,7 +471,7 @@ class AuthController {
 <div class="sect2">
 <h3 id="jte-template">1.2. JTE Template</h3>
 <div class="paragraph">
-<p>The GDK Launcher created a <a href="https://micronaut-projects.github.io/micronaut-views/latest/guide/#jte">JTE template</a>in a file named <em>oci/src/main/jte/auth.jte</em> to render the UI for the controller. It has the following contents:</p>
+<p>The GDK Launcher created a <a href="https://micronaut-projects.github.io/micronaut-views/latest/guide/#jte">JTE template</a> in a file named <em>oci/src/main/jte/auth.jte</em> to render the UI for the controller. It has the following contents:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -478,23 +508,26 @@ class AuthController {
 <h2 id="configure-openid-connect-at-oracle-cloud-infrastructure">2. Configure OpenID Connect at Oracle Cloud Infrastructure</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You will use the Oracle Cloud console to create an OAuth 2.0 "Confidential Application" with support for OpenID Connect and a federated user to demonstrate using OpenID Connect with Micronaut&reg; and Oracle Cloud Infrastructure.</p>
+<p>You will use the Oracle Cloud console to create an OAuth 2.0 "Confidential Application" with support for OpenID Connect and a local user in an OCI Domain  to demonstrate using OpenID Connect with Micronaut&reg; and Oracle Cloud Infrastructure.</p>
 </div>
 <div class="sect2">
-<h3 id="create-a-federated-user">2.1. Create a Federated User</h3>
+<h3 id="create-a-local-user-in-an-oci-domain">2.1. Create a Local user in an OCI Domain</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
 <p><a href="https://cloud.oracle.com/">Log in to your Oracle Cloud Infrastructure tenancy</a> as an admin (or as a user with sufficient permissions to create users and applications).</p>
 </li>
 <li>
-<p>In the Oracle Cloud Console, open the navigation menu, click <strong>Identity &amp; Security</strong>. Under <strong>Identity</strong>, click <strong>Federation</strong>.</p>
+<p>In the Oracle Cloud Console, open the navigation menu, click <strong>Identity &amp; Security</strong>. Under <strong>Identity</strong>, click <strong>Domains</strong>.</p>
 </li>
 <li>
-<p>Click <strong>OracleIdentityCloudService</strong>, and then click <strong>Create User</strong>.</p>
+<p>Click <strong>Create domain</strong>.</p>
 </li>
 <li>
-<p>Enter a valid username, for example, "gdk_guide_oidc", and a valid email address, along with a first and last name. Click <strong>Create</strong>.</p>
+<p>Enter a Display name, for example, "gdk_guide_domain", and a short Description then select the Free Domain.</p>
+</li>
+<li>
+<p>Enter a valid first and last name,"gdk_guide_oidc", and a valid email address. Click <strong>Next</strong> then <strong>Create</strong>.</p>
 </li>
 <li>
 <p>Open the email sent to the email address you specified and click the link to set the password for the user.</p>
@@ -510,16 +543,16 @@ class AuthController {
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Navigate again to the <strong>OracleIdentityCloudService</strong> federation and copy the link to the <strong>Oracle Identity Cloud Service Console</strong> (it will resemble <code><a href="https://idcs-7084de14ec…….identity.oraclecloud.com/ui/v1/adminconsole" class="bare">https://idcs-7084de14ec…….identity.oraclecloud.com/ui/v1/adminconsole</a></code>). Save this for later when you create the application: you will need this value to set the <code>OAUTH_ISSUER</code>.</p>
+<p>Navigate  to the <strong>Domain</strong> that you created and copy the link to the <strong>Domain URL</strong> (it will resemble <code>https://idcs-7084de14ec…….identity.oraclecloud.com</code>). Save this for later when you create the application: you will need this value to set the <code>OAUTH_ISSUER</code>.</p>
 </li>
 <li>
-<p>Click <strong>Oracle Identity Cloud Service Console</strong> to open the console.</p>
+<p>Click <strong>Integrated applications</strong> in the navigation menu.</p>
 </li>
 <li>
-<p>Click the button in the top right of the <strong>Applications and Services</strong> section to add a new application.</p>
+<p>Click the button <strong>Add application</strong>  to add a new application.</p>
 </li>
 <li>
-<p>Click <strong>Confidential Application</strong>. You are presented with a Wizard containing five steps.</p>
+<p>Select <strong>Confidential Application</strong> and click <strong>Launch workflow</strong> . You are presented with a Wizard containing three steps.</p>
 </li>
 <li>
 <p>Step 1 of the Wizard: Enter a valid application name, for example, "gdk_guide_oidc_app" and optionally a description. Click <strong>Next</strong> to go to step 2.</p>
@@ -535,28 +568,22 @@ class AuthController {
 <p><strong>Allow non-HTTPS URLs</strong>: <em>check</em></p>
 </li>
 <li>
-<p><strong>Redirect URL</strong>: <em><a href="http://localhost:8080/oauth/callback/gdk" class="bare">http://localhost:8080/oauth/callback/gdk</a></em></p>
+<p><strong>Redirect URL</strong>: <code>http://localhost:8080/oauth/callback/gdk</code></p>
 </li>
 <li>
-<p><strong>Logout URL</strong>: <em><a href="http://localhost:8080/logout" class="bare">http://localhost:8080/logout</a></em></p>
+<p><strong>Logout URL</strong>: <code>http://localhost:8080/logout</code></p>
 </li>
 <li>
-<p><strong>Post Logout Redirect URL</strong>: <em><a href="http://localhost:8080" class="bare">http://localhost:8080</a></em></p>
-<div class="paragraph">
-<p>6.1 Scroll down and in the section titled <strong>Grant the client access to Identity Cloud Service Admin APIs</strong>, click <strong>Add</strong>.</p>
-</div>
-<div class="paragraph">
-<p>6.2 Select <strong>Me</strong>.</p>
-</div>
+<p><strong>Post Logout Redirect URL</strong>: <code>http://localhost:8080</code></p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>Click <strong>Next</strong>, and again click <strong>Next</strong> to accept the defaults for steps 3, 4, and 5 of the Wizard. Then click <strong>Finish</strong>.</p>
+<p>Click <strong>Next</strong> to accept the defaults for step 3 of the Wizard. Then click <strong>Finish</strong>.</p>
 </li>
 <li>
-<p>Save the <strong>Client ID</strong> and <strong>Client Secret</strong> values for later. Then click <strong>Close</strong>.</p>
+<p>Copy the <strong>Client ID</strong> and <strong>Client Secret</strong> values existing under General Information for later.</p>
 </li>
 <li>
 <p>Finally, click <strong>Activate</strong> to make the application available for use.</p>
@@ -579,13 +606,13 @@ class AuthController {
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>In the Oracle Identity Cloud Service console, expand the <strong>Navigation Drawer</strong>, click <strong>Settings</strong>, and then click <strong>Default Settings</strong>.</p>
+<p>In the Identity domain console, in the <strong>Navigation Drawer</strong>, click <strong>Settings</strong>, and then click <strong>Domain Settings</strong>.</p>
 </li>
 <li>
-<p>Turn on the switch under <strong>Access Signing Certificate</strong> to enable clients to access the tenant signing certificate without logging in to Oracle Identity Cloud Service.</p>
+<p>Check the  <strong>Configure client access</strong> to enable clients to access the tenant signing certificate without logging in to Oracle Identity Cloud Service.</p>
 </li>
 <li>
-<p>Click <strong>Save</strong> to save the default settings.</p>
+<p>Click <strong>Save changes</strong> to save the domain settings.</p>
 </li>
 </ol>
 </div>
@@ -611,7 +638,7 @@ Server returned HTTP response code: 401</code></pre>
 <p>Return to the menu on the left and click <strong>Security</strong> and <strong>OAuth</strong>.</p>
 </li>
 <li>
-<p>Enter the issuer URL you saved (the Oracle Identity Cloud Service console URL without the <code>/ui/v1/adminconsole</code> path) in the "Issuer" field, for example, <code><a href="https://idcs-7084de14ec…….identity.oraclecloud.com" class="bare">https://idcs-7084de14ec…….identity.oraclecloud.com</a></code>.</p>
+<p>Enter the issuer URL you saved (the Oracle Identity Cloud Service console URL without the <code>/ui/v1/adminconsole</code> path) in the "Issuer" field, for example, <code>https://idcs-7084de14ec…….identity.oraclecloud.com</code>.</p>
 </li>
 </ol>
 </div>
@@ -623,7 +650,7 @@ Server returned HTTP response code: 401</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">micronaut.application.name=oci
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">micronaut.application.name=oci-security-demo-oci
 <i class="conum" data-value="1"></i><b>(1)</b>
 micronaut.security.authentication=idtoken
 micronaut.security.endpoints.logout.enabled=true
@@ -662,24 +689,24 @@ micronaut.security.token.jwt.signatures.secret.generator.secret=${JWT_GENERATOR_
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Create <code>OAUTH_CLIENT_ID</code>, <code>OAUTH_CLIENT_SECRET</code>, and <code>OAUTH_ISSUER</code> environment variables. Use the client ID and the client secret you saved when you created the Oracle Cloud Infrastructure application, and the issuer URL you saved (the Oracle Identity Cloud Service console URL without the <code>/ui/v1/adminconsole</code> path):</p>
+<p>Create <code>OAUTH_CLIENT_ID</code>, <code>OAUTH_CLIENT_SECRET</code>, and <code>OAUTH_ISSUER</code> environment variables. Use the client ID and the client secret you saved when you created the Oracle Cloud Infrastructure application, and the issuer URL you saved:</p>
 <div class="tabs-doc ui-tabs ui-corner-all ui-widget ui-widget-content" data-name="system">
     <div data-value="linux" data-label="Linux &amp; macOS" id="linux" aria-labelledby="ui-id-11" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false" style="">
-      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-built_in">export</span> OAUTH_CLIENT_SECRET=YYYYYYYYYY
-<span class="hljs-built_in">export</span> OAUTH_CLIENT_ID=XXXXXXXXXX
-<span class="hljs-built_in">export</span> OAUTH_ISSUER=https://idcs-7084de14ec…….identity.oraclecloud.com
+      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-built_in">export</span> OAUTH_CLIENT_SECRET=<span class="hljs-string">YYYYYYYYYY</span>
+<span class="hljs-built_in">export</span> OAUTH_CLIENT_ID=<span class="hljs-string">XXXXXXXXXX</span>
+<span class="hljs-built_in">export</span> OAUTH_ISSUER=<span class="hljs-string">https://idcs-7084de14ec…….identity.oraclecloud.com</span>
 </code><button>Copy</button></pre>
     </div>
     <div data-value="windows" data-label="Windows" id="windows" aria-labelledby="ui-id-12" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
-      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-built_in">set</span> OAUTH_CLIENT_SECRET=YYYYYYYYYY
-<span class="hljs-built_in">set</span> OAUTH_CLIENT_ID=XXXXXXXXXX
-<span class="hljs-built_in">set</span> OAUTH_ISSUER=https://idcs-7084de14ec…….identity.oraclecloud.com
+      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-built_in">set</span> OAUTH_CLIENT_SECRET=<span class="hljs-string">YYYYYYYYYY</span>
+<span class="hljs-built_in">set</span> OAUTH_CLIENT_ID=<span class="hljs-string">XXXXXXXXXX</span>
+<span class="hljs-built_in">set</span> OAUTH_ISSUER=<span class="hljs-string">https://idcs-7084de14ec…….identity.oraclecloud.com</span>
 </code><button>Copy</button></pre>
     </div>
     <div data-value="windows-powershell" data-label="Windows PowerShell" id="windows-powershell" aria-labelledby="ui-id-13" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
-      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-variable">$ENV</span> OAUTH_CLIENT_SECRET = <span class="hljs-string">"YYYYYYYYYY"</span>
-<span class="hljs-variable">$ENV</span> OAUTH_CLIENT_ID = <span class="hljs-string">"XXXXXXXXXX"</span>
-<span class="hljs-variable">$ENV</span> OAUTH_ISSUER = <span class="hljs-string">"https://idcs-7084de14ec…….identity.oraclecloud.com"</span>
+      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-variable">$ENV:</span> OAUTH_CLIENT_SECRET=<span class="hljs-string">YYYYYYYYYY</span>
+<span class="hljs-variable">$ENV:</span> OAUTH_CLIENT_ID=<span class="hljs-string">XXXXXXXXXX</span>
+<span class="hljs-variable">$ENV:</span> OAUTH_ISSUER=<span class="hljs-string">https://idcs-7084de14ec…….identity.oraclecloud.com</span>
 </code><button>Copy</button></pre>
     </div>
 </div>
@@ -701,7 +728,7 @@ micronaut.security.token.jwt.signatures.secret.generator.secret=${JWT_GENERATOR_
 </div>
 </li>
 <li>
-<p>Open <a href="http://localhost:8080/secure" class="bare">http://localhost:8080/secure</a> in a browser, and you will be redirected to the home page (because the controller method is annotated with <code>@Secured(IS_AUTHENTICATED)</code>, and you are not yet authenticated):</p>
+<p>Open <code>http://localhost:8080/secure</code> in a browser, and you will be redirected to the home page (because the controller method is annotated with <code>@Secured(IS_AUTHENTICATED)</code>, and you are not yet authenticated):</p>
 </li>
 </ol>
 </div>
@@ -713,7 +740,7 @@ micronaut.security.token.jwt.signatures.secret.generator.secret=${JWT_GENERATOR_
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Sign in with the username and password for the federated user you created.</p>
+<p>Sign in with the username/email address and password for the local user in the OCI Domain you created.</p>
 </li>
 <li>
 <p>Click <strong>Allow</strong> on the next screen.</p>
@@ -722,7 +749,7 @@ micronaut.security.token.jwt.signatures.secret.generator.secret=${JWT_GENERATOR_
 <p>When redirected to the home page, you will see that you are authenticated and now have a <strong>Logout</strong> link. Several authentication details are also displayed.</p>
 </li>
 <li>
-<p>Navigate again to <a href="http://localhost:8080/secure" class="bare">http://localhost:8080/secure</a> in a browser, and you will see a simple JSON response:</p>
+<p>Navigate again to <code>http://localhost:8080/secure</code> in a browser, and you will see a simple JSON response:</p>
 </li>
 </ol>
 </div>
@@ -886,14 +913,14 @@ Packaged as a native executable, it significantly reduces application startup ti
                         <div class="row">
                             <div class="col-sm-12">
                                 <p class="copyright">
-                                    Copyright © 2023-2024, Oracle and/or its affiliates.
+                                    Copyright © 2023, 2025, Oracle and/or its affiliates.
                                     All rights reserved.
                                     Oracle and Java are registered trademarks of Oracle and/or its affiliates.<br>
                                     Micronaut<sup>®</sup> is a registered trademark of Object Computing, Inc.
                                     Use is for referential purposes and does not imply any endorsement or affiliation with any third-party product.
                                     Unauthorized use is strictly prohibited. Other names may be trademarks of their respective owners.
                                 </p>
-                                <div id="teconsent" consent="0,1,2" aria-label="Open Cookie Preferences Modal" class="truste_caIcon_display" role="complementary"><script async="async" type="text/javascript" crossorigin="" importance="high" src="https://consent.trustarc.com/asset/notice.js/v/v1.7-776"></script><a role="link" id="icon-id0368112092352622" tabindex="0" lang="en" aria-haspopup="dialog" aria-label="Cookie Preferences, opens a dedicated popup modal window" class="truste_cursor_pointer">Cookie Preferences</a></div>
+                                <div id="teconsent"></div>
                             </div>
                         </div>
 

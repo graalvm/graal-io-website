@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head><style type="text/css">.truste_caIcon_display {display: block !important;}</style><style type="text/css">.truste_cursor_pointer {cursor: pointer;}.truste_border_none {border: none;}</style>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -68,23 +69,28 @@
             font-size: 14px;
         }
 
-        .conum[data-value]::after {
-            content: attr(data-value);
-            display: inline-block;
-            border: 1px solid;
-            -webkit-border-radius: 50%;
-            border-radius: 50%;
-            text-align: center;
-            font-size: .75em;
-            width: 1.67em;
-            height: 1.67em;
-            line-height: 1.67em;
-            font-family: "Open Sans", "DejaVu Sans", sans-serif;
-            font-style: normal;
+            .conum[data-value]::after {
+                content: attr(data-value);
+                display: inline-block;
+                border: 1px solid;
+                -webkit-border-radius: 50%;
+                border-radius: 50%;
+                text-align: center;
+                font-size: .75em;
+                width: 1.67em;
+                height: 1.67em;
+                line-height: 1.67em;
+                font-family: "Open Sans", "DejaVu Sans", sans-serif;
+                font-style: normal;
+                font-weight: bold;
+            }
+            .conum[data-value]+b {
+                display: none;
+            }
+
+        .sectlevel1 a.active {
+            color: #F68831;
             font-weight: bold;
-        }
-        .conum[data-value]+b {
-            display: none;
         }
     </style>
 
@@ -92,7 +98,34 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.14.0/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="https://graal.cloud/gdk/resources/lib/jquery/jquery-ui.css">
     <script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/a8476471/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script src="https://www.youtube.com/iframe_api"></script><script async="" src="https://tags.bkrtx.com/js/bk-coretag.js"></script><script src="https://graal.cloud/gdk/resources/lib/jquery/jquery-3.7.1.min.js"></script><script src="https://graal.cloud/gdk/resources/lib/bootstrap/js/bootstrap.min.js"></script><script src="https://graal.cloud/gdk/resources/lib/sticky-sidebar/resizeSensor.js"></script><script src="https://graal.cloud/gdk/resources/lib/sticky-sidebar/sticky-sidebar.min.js"></script><script async="" defer="" src="https://buttons.github.io/buttons.js"></script><script async="async" type="text/javascript" src="//consent.trustarc.com/notice?domain=oracle.com&amp;c=teconsent&amp;js=bb&amp;noticeType=bb&amp;text=true&amp;cdn=1&amp;pcookie&amp;gtm=1" crossorigin="" id="truste_0.9548969741402604"></script><script src="https://www.oracle.com/assets/truste-oraclelib.js"></script><script src="https://code.jquery.com/ui/1.14.0/jquery-ui.js"></script></head>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+        const menuLinks = document.querySelectorAll(".sectlevel1 a");
 
+        function highlightMenu() {
+            let currentSection = null;
+
+            menuLinks.forEach(link => {
+                const section = document.querySelector(link.getAttribute("href"));
+                if (section) {
+                    const rect = section.getBoundingClientRect();
+                    if (rect.top >= 0 && rect.top < window.innerHeight / 2) {
+                        currentSection = link;
+                    }
+                }
+            });
+
+            menuLinks.forEach(link => link.classList.remove("active"));
+
+            if (currentSection) {
+                currentSection.classList.add("active");
+            }
+        }
+
+
+        window.addEventListener("scroll", highlightMenu);
+        highlightMenu();
+    });</script>
 <!-- Add TRUSTe Consent Script and Analytics -->
 
 
@@ -284,10 +317,10 @@
         <li class="tabs-maven ui-tabs-tab ui-corner-top ui-state-default" role="tab" tabindex="-1" aria-controls="maven" aria-labelledby="ui-id-2" aria-selected="false" aria-expanded="false"><a name="maven" href="#maven" tabindex="-1" class="ui-tabs-anchor" id="ui-id-2">Maven</a></li>
     </ul>
     <div id="gradle" aria-labelledby="ui-id-1" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false">
-        <a href="https://github.com/oracle/graal-dev-kit/releases/download/4.7.3.2/4.7.3.2_email_aws-email-demo-java-gradle.zip">Gradle AWS Email Example <img src="https://graal.cloud/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" class="download-img-guides"/></a>
+        <a href="https://github.com/oracle/graal-dev-kit/releases/download/4.3.7.2/4.3.7.2_email_aws-email-demo-java-gradle.zip">Gradle AWS Email Example <img src="https://graal.cloud/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" class="download-img-guides"/></a>
     </div>
     <div id="maven" aria-labelledby="ui-id-2" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
-        <a href="https://github.com/oracle/graal-dev-kit/releases/download/4.7.3.2/4.7.3.2_email_aws-email-demo-java-maven.zip">Maven AWS Email Example <img src="https://graal.cloud/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" class="download-img-guides"/></a>
+        <a href="https://github.com/oracle/graal-dev-kit/releases/download/4.3.7.2/4.3.7.2_email_aws-email-demo-java-maven.zip">Maven AWS Email Example <img src="https://graal.cloud/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" class="download-img-guides"/></a>
     </div>
 </div>
 <div class="paragraph">
@@ -319,7 +352,7 @@
 <p>Create an application using the GDK Launcher.</p>
 <ol>
     <li>
-        <p>Open the <a href="https://graal.cloud/gdk/launcher/?advanced=true">GDK Launcher in advanced mode</a>.</p>
+        <p>Open the <a href="https://graal.cloud/gdk/launcher/?advanced=true" target="_blank">GDK Launcher in advanced mode</a>.</p>
     </li>
     <li>Create a new project using the following selections.
         <ul>
@@ -479,29 +512,20 @@ class MailController {
 }</code></pre>
 </div>
 </div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>The class is defined as a controller with the <a href="https://docs.micronaut.io/latest/api/io/micronaut/http/annotation/Controller.html"><code>@Controller</code></a> annotation mapped to the path <code>/mail/send</code>.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Use constructor injection to inject a bean of type <code>AsyncEmailSender</code>.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>The <a href="https://docs.micronaut.io/latest/api/io/micronaut/http/annotation/Post.html"><code>@Post</code></a> annotation maps the <code>send</code> method to an HTTP POST request on <code>/mail/send</code>.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>You can use a qualifier within the HTTP request body. For example, you can use a reference to a nested JSON attribute.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="5"></i><b>5</b></td>
-<td>Return 202 ACCEPTED as the result if the email delivery succeeds.</td>
-</tr>
-</table>
+<div class="paragraph">
+<p><strong>1</strong>  The class is defined as a controller with the <a href="https://docs.micronaut.io/latest/api/io/micronaut/http/annotation/Controller.html"><code>@Controller</code></a> annotation mapped to the path <code>/mail/send</code>.</p>
+</div>
+<div class="paragraph">
+<p><strong>2</strong>  Use constructor injection to inject a bean of type <code>AsyncEmailSender</code>.</p>
+</div>
+<div class="paragraph">
+<p><strong>3</strong>  The <a href="https://docs.micronaut.io/latest/api/io/micronaut/http/annotation/Post.html"><code>@Post</code></a> annotation maps the <code>send</code> method to an HTTP POST request on <code>/mail/send</code>.</p>
+</div>
+<div class="paragraph">
+<p><strong>4</strong>  You can use a qualifier within the HTTP request body. For example, you can use a reference to a nested JSON attribute.</p>
+</div>
+<div class="paragraph">
+<p><strong>5</strong>  Return 202 ACCEPTED as the result if the email delivery succeeds.</p>
 </div>
 </div>
 <div class="sect2">
@@ -559,13 +583,8 @@ class EmailSenderReplacement implements AsyncTransactionalEmailSender&lt;SesRequ
 }</code></pre>
 </div>
 </div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Combine <a href="https://docs.micronaut.io/latest/api/io/micronaut/context/annotation/Requires.html"><code>@Requires</code></a> and <a href="https://docs.micronaut.io/latest/api/io/micronaut/context/annotation/Property.html"><code>@Property</code></a> to avoid bean pollution.</td>
-</tr>
-</table>
+<div class="paragraph">
+<p><strong>1</strong> Combine <a href="https://docs.micronaut.io/latest/api/io/micronaut/context/annotation/Requires.html"><code>@Requires</code></a> and <a href="https://docs.micronaut.io/latest/api/io/micronaut/context/annotation/Property.html"><code>@Property</code></a> to avoid bean pollution.</p>
 </div>
 <div class="paragraph">
 <p>The GDK Launcher created a test that uses <code>EmailSenderReplacement</code> to verify that the contents of the email match expectations in a file named <em>aws/src/test/java/com/example/MailControllerTest.java</em> with the following content:</p>
@@ -634,21 +653,14 @@ class MailControllerTest {
 }</code></pre>
 </div>
 </div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Combine <a href="https://docs.micronaut.io/latest/api/io/micronaut/context/annotation/Requires.html"><code>@Requires</code></a> and <a href="https://docs.micronaut.io/latest/api/io/micronaut/context/annotation/Property.html"><code>@Property</code></a> to avoid bean pollution.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Annotate the class with <code>@MicronautTest</code> so Micronaut will initialize the application context and the embedded server.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Inject the <code>HttpClient</code> bean and point it to the embedded server.</td>
-</tr>
-</table>
+<div class="paragraph">
+<p><strong>1</strong>  Combine <a href="https://docs.micronaut.io/latest/api/io/micronaut/context/annotation/Requires.html"><code>@Requires</code></a> and <a href="https://docs.micronaut.io/latest/api/io/micronaut/context/annotation/Property.html"><code>@Property</code></a> to avoid bean pollution.</p>
+</div>
+<div class="paragraph">
+<p><strong>2</strong>  Annotate the class with <code>@MicronautTest</code> so Micronaut will initialize the application context and the embedded server.</p>
+</div>
+<div class="paragraph">
+<p><strong>3</strong>  Inject the <code>HttpClient</code> bean and point it to the embedded server.</p>
 </div>
 </div>
 </div>
@@ -704,18 +716,18 @@ class MailControllerTest {
 </div>
 <div class="tabs-doc ui-tabs ui-corner-all ui-widget ui-widget-content" data-name="system">
     <div data-value="linux" data-label="Linux &amp; macOS" id="linux" aria-labelledby="ui-id-11" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false" style="">
-      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-built_in">export</span> AWS_ACCESS_KEY_ID=xxx
-<span class="hljs-built_in">export</span> AWS_SECRET_ACCESS_KEY=xxx
+      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-built_in">export</span> AWS_ACCESS_KEY_ID=<span class="hljs-string">xxx</span>
+<span class="hljs-built_in">export</span> AWS_SECRET_ACCESS_KEY=<span class="hljs-string">xxx</span>
 </code><button>Copy</button></pre>
     </div>
     <div data-value="windows" data-label="Windows" id="windows" aria-labelledby="ui-id-12" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
-      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-built_in">set</span> AWS_ACCESS_KEY_ID=xxx
-<span class="hljs-built_in">set</span> AWS_SECRET_ACCESS_KEY=xxx
+      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-built_in">set</span> AWS_ACCESS_KEY_ID=<span class="hljs-string">xxx</span>
+<span class="hljs-built_in">set</span> AWS_SECRET_ACCESS_KEY=<span class="hljs-string">xxx</span>
 </code><button>Copy</button></pre>
     </div>
     <div data-value="windows-powershell" data-label="Windows PowerShell" id="windows-powershell" aria-labelledby="ui-id-13" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
-      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-variable">$ENV</span> AWS_ACCESS_KEY_ID = <span class="hljs-string">"xxx"</span>
-<span class="hljs-variable">$ENV</span> AWS_SECRET_ACCESS_KEY = <span class="hljs-string">"xxx"</span>
+      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-variable">$ENV:</span> AWS_ACCESS_KEY_ID=<span class="hljs-string">xxx</span>
+<span class="hljs-variable">$ENV:</span> AWS_SECRET_ACCESS_KEY=<span class="hljs-string">xxx</span>
 </code><button>Copy</button></pre>
     </div>
 </div>
@@ -908,14 +920,14 @@ Packaged as a native executable, it significantly reduces application startup ti
                         <div class="row">
                             <div class="col-sm-12">
                                 <p class="copyright">
-                                    Copyright © 2023-2024, Oracle and/or its affiliates.
+                                    Copyright © 2023, 2025, Oracle and/or its affiliates.
                                     All rights reserved.
                                     Oracle and Java are registered trademarks of Oracle and/or its affiliates.<br>
                                     Micronaut<sup>®</sup> is a registered trademark of Object Computing, Inc.
                                     Use is for referential purposes and does not imply any endorsement or affiliation with any third-party product.
                                     Unauthorized use is strictly prohibited. Other names may be trademarks of their respective owners.
                                 </p>
-                                <div id="teconsent" consent="0,1,2" aria-label="Open Cookie Preferences Modal" class="truste_caIcon_display" role="complementary"><script async="async" type="text/javascript" crossorigin="" importance="high" src="https://consent.trustarc.com/asset/notice.js/v/v1.7-776"></script><a role="link" id="icon-id0368112092352622" tabindex="0" lang="en" aria-haspopup="dialog" aria-label="Cookie Preferences, opens a dedicated popup modal window" class="truste_cursor_pointer">Cookie Preferences</a></div>
+                                <div id="teconsent"></div>
                             </div>
                         </div>
 
