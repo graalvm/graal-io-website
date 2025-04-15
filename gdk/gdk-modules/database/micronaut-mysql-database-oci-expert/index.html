@@ -92,6 +92,13 @@
             color: #F68831;
             font-weight: bold;
         }
+        a.external {
+            color: #d6d6d6   !important;
+        }
+        a.external:hover {
+            color: white !important;
+            background-color: #1e2631 !important;
+        }
     </style>
 
     <!-- jQuery UI Tabs -->
@@ -122,10 +129,10 @@
             }
         }
 
-
         window.addEventListener("scroll", highlightMenu);
         highlightMenu();
-    });</script>
+
+        });</script>
 <!-- Add TRUSTe Consent Script and Analytics -->
 
 
@@ -327,10 +334,10 @@
         <li class="tabs-maven ui-tabs-tab ui-corner-top ui-state-default" role="tab" tabindex="-1" aria-controls="maven" aria-labelledby="ui-id-2" aria-selected="false" aria-expanded="false"><a name="maven" href="#maven" tabindex="-1" class="ui-tabs-anchor" id="ui-id-2">Maven</a></li>
     </ul>
     <div id="gradle" aria-labelledby="ui-id-1" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false">
-        <a href="https://github.com/oracle/graal-dev-kit/releases/download/4.7.3.2/4.7.3.2_database_oci-db-demo-java-gradle.zip">Gradle Oracle Cloud Infrastructure MySQL Database Example <img src="https://graal.cloud/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" class="download-img-guides"/></a>
+        <a href="https://github.com/oracle/graal-dev-kit/releases/download/4.7.3.4/4.7.3.4_database_oci-db-demo-java-gradle.zip">Gradle Oracle Cloud Infrastructure MySQL Database Example <img src="https://graal.cloud/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" class="download-img-guides"/></a>
     </div>
     <div id="maven" aria-labelledby="ui-id-2" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
-        <a href="https://github.com/oracle/graal-dev-kit/releases/download/4.7.3.2/4.7.3.2_database_oci-db-demo-java-maven.zip">Maven Oracle Cloud Infrastructure MySQL Database Example <img src="https://graal.cloud/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" class="download-img-guides"/></a>
+        <a href="https://github.com/oracle/graal-dev-kit/releases/download/4.7.3.4/4.7.3.4_database_oci-db-demo-java-maven.zip">Maven Oracle Cloud Infrastructure MySQL Database Example <img src="https://graal.cloud/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" class="download-img-guides"/></a>
     </div>
 </div>
 <div class="paragraph">
@@ -425,7 +432,8 @@ Consider checking <a href="/gdk/gdk-modules/database/micronaut-data-jdbc-reposit
 <div class="sect2">
 <h3 id="configure-datasources">1.1. Configure Datasources</h3>
 <div class="paragraph">
-<p>The GDK Launcher included <a href="http://www.flywaydb.org">Flyway</a> for database migrations. It uses the <a href="https://micronaut-projects.github.io/micronaut-flyway/latest/guide/">Micronaut integration with Flyway</a> that automates schema changes, significantly simplifies schema management tasks, such as migrating, rolling back, and reproducing in multiple environments.
+<p>The GDK Launcher included <a href="http://www.flywaydb.org">Flyway</a> for database migrations.
+It uses the <a href="https://micronaut-projects.github.io/micronaut-flyway/latest/guide/">Micronaut integration with Flyway</a> that automates schema changes, significantly simplifies schema management tasks, such as migrating, rolling back, and reproducing in multiple environments.
 The GDK Launcher enables Flyway in the <em>oci/src/main/resources/application.properties</em> file and configures it to perform migrations on the default datasources.</p>
 </div>
 <div class="listingblock">
@@ -442,12 +450,14 @@ The GDK Launcher enables Flyway in the <em>oci/src/main/resources/application.pr
         <li class="tabs-maven ui-tabs-tab ui-corner-top ui-state-default" role="tab" tabindex="-1" aria-controls="maven" aria-labelledby="ui-id-2" aria-selected="false" aria-expanded="false"><a name="maven" href="#maven" tabindex="-1" class="ui-tabs-anchor" id="ui-id-2">Maven</a></li>
     </ul>
     <div id="gradle" aria-labelledby="ui-id-1" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false">
-        <p>build.gradle</p><pre><code class="language-bash hljs" data-highlighted="yes">implementation("io.micronaut.flyway:micronaut-flyway")
-implementation("org.flywaydb:flyway-mysql")
+        <p>oci/build.gradle</p>
+<pre><code class="language-bash hljs" data-highlighted="yes">implementation("io.micronaut.flyway:micronaut-flyway")
+runtimeOnly("org.flywaydb:flyway-mysql")
 </code><button>Copy</button></pre>
     </div>
     <div id="maven" aria-labelledby="ui-id-2" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
-        <p>pom.xml</p><pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+        <p>oci/pom.xml</p>
+<pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>io.micronaut.flyway<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>micronaut-flyway<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>compile<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span>
@@ -455,7 +465,7 @@ implementation("org.flywaydb:flyway-mysql")
 <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.flywaydb<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>flyway-mysql<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>compile<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>runtime<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
 </code><button>Copy</button></pre>
     </div>
@@ -463,19 +473,25 @@ implementation("org.flywaydb:flyway-mysql")
 <div class="quoteblock">
 <blockquote>
 <div class="paragraph">
-<p>Note: Flyway migrations require full control over schema management. By default, the project does not generate schema automatically in <em>oci/src/main/resources/application.properties</em>. If you manually configure <code>datasources.default.schema-generate=CREATE_DROP</code> set it to <code>NONE</code> to ensure that only Flyway manages your schema.</p>
+<p>Note: Flyway migrations require full control over schema management.
+By default, the project does not generate schema automatically in <em>oci/src/main/resources/application.properties</em>.
+If you manually configure <code>datasources.default.schema-generate=CREATE_DROP</code> set it to <code>NONE</code> to ensure that only Flyway manages your schema.</p>
 </div>
 </blockquote>
 </div>
 <div class="paragraph">
-<p>Configuring multiple datasources is as simple as enabling Flyway for each one. You can also specify directories that will be used for migrating each datasource. For more information, see <a href="https://micronaut-projects.github.io/micronaut-flyway/latest/guide/">Micronaut integration with Flyway</a>.</p>
+<p>Configuring multiple datasources is as simple as enabling Flyway for each one.
+You can also specify directories that will be used for migrating each datasource.
+For more information, see <a href="https://micronaut-projects.github.io/micronaut-flyway/latest/guide/">Micronaut integration with Flyway</a>.</p>
 </div>
 <div class="paragraph">
-<p>Flyway migration is automatically triggered before your application starts. Flyway reads migration file(s) in the <em>lib/src/main/resources/db/migration/</em> directory. The migration file with the database schema, <em>lib/src/main/resources/db/migration/V1__schema.sql</em>, was also created for you by the GDK Launcher.</p>
+<p>Flyway migration is automatically triggered before your application starts.
+Flyway reads migration file(s) in the <em>lib/src/main/resources/db/migration/</em> directory.
+The migration file with the database schema, <em>lib/src/main/resources/db/migration/V1__schema.sql</em>, was also created for you by the GDK Launcher.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">DROP TABLE IF EXISTS genre;
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">DROP TABLE IF EXISTS genre;
 
 CREATE TABLE genre (
    id    BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,

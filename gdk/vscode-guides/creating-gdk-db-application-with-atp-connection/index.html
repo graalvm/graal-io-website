@@ -92,6 +92,13 @@
             color: #F68831;
             font-weight: bold;
         }
+        a.external {
+            color: #d6d6d6   !important;
+        }
+        a.external:hover {
+            color: white !important;
+            background-color: #1e2631 !important;
+        }
     </style>
 
     <!-- jQuery UI Tabs -->
@@ -122,10 +129,10 @@
             }
         }
 
-
         window.addEventListener("scroll", highlightMenu);
         highlightMenu();
-    });</script>
+
+        });</script>
 <!-- Add TRUSTe Consent Script and Analytics -->
 
 
@@ -376,7 +383,7 @@ Follow these steps: <a href="https://docs.oracle.com/en/database/oracle/oracle-d
 <div class="ulist">
 <ul>
 <li>
-<p>Pick the GDK Version: <em>4.7.3.2</em></p>
+<p>Pick the GDK Version: <em>4.7.3.4</em></p>
 </li>
 <li>
 <p>Pick an Application type: <em>Application</em></p>
@@ -439,12 +446,14 @@ datasources.default.walletPassword=</code></pre>
         <li class="tabs-maven ui-tabs-tab ui-corner-top ui-state-default" role="tab" tabindex="-1" aria-controls="maven" aria-labelledby="ui-id-2" aria-selected="false" aria-expanded="false"><a name="maven" href="#maven" tabindex="-1" class="ui-tabs-anchor" id="ui-id-2">Maven</a></li>
     </ul>
     <div id="gradle" aria-labelledby="ui-id-1" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false">
-        <p>build.gradle</p><pre><code class="language-bash hljs" data-highlighted="yes">implementation("io.micronaut.flyway:micronaut-flyway")
-implementation("org.flywaydb:flyway-database-oracle")
+        <p>build.gradle</p>
+<pre><code class="language-bash hljs" data-highlighted="yes">implementation("io.micronaut.flyway:micronaut-flyway")
+runtimeOnly("org.flywaydb:flyway-database-oracle")
 </code><button>Copy</button></pre>
     </div>
     <div id="maven" aria-labelledby="ui-id-2" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
-        <p>pom.xml</p><pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+        <p>pom.xml</p>
+<pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>io.micronaut.flyway<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>micronaut-flyway<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>compile<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span>
@@ -452,7 +461,7 @@ implementation("org.flywaydb:flyway-database-oracle")
 <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.flywaydb<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>flyway-database-oracle<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>compile<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>runtime<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
 </code><button>Copy</button></pre>
     </div>
