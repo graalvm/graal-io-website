@@ -427,17 +427,23 @@ Alternatively, you can specify the <code>azure</code> environment passing it as 
 <div class="tabs-doc ui-tabs ui-corner-all ui-widget ui-widget-content" data-name="system">
     <div data-value="linux" data-label="Linux &amp; macOS" id="linux" aria-labelledby="ui-id-11" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false" style="">
       <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-built_in">export</span> LOCATION=<span class="hljs-string">eastus</span>
-<span class="hljs-built_in">export</span> RESOURCE_GROUP_NAME=<span class="hljs-string">gdkguidelogging</span>
+<span class="hljs-built_in">export</span> REPO_NAME=<span class="hljs-string">gdkrepo</span>
+<span class="hljs-built_in">export</span> RESOURCE_GROUP_NAME=<span class="hljs-string">gdkguides</span>
+<span class="hljs-built_in">export</span> AKS_CLUSTER_NAME=<span class="hljs-string">gdkCluster</span>
 </code><button>Copy</button></pre>
     </div>
     <div data-value="windows" data-label="Windows" id="windows" aria-labelledby="ui-id-12" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
       <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-built_in">set</span> LOCATION=<span class="hljs-string">eastus</span>
-<span class="hljs-built_in">set</span> RESOURCE_GROUP_NAME=<span class="hljs-string">gdkguidelogging</span>
+<span class="hljs-built_in">set</span> REPO_NAME=<span class="hljs-string">gdkrepo</span>
+<span class="hljs-built_in">set</span> RESOURCE_GROUP_NAME=<span class="hljs-string">gdkguides</span>
+<span class="hljs-built_in">set</span> AKS_CLUSTER_NAME=<span class="hljs-string">gdkCluster</span>
 </code><button>Copy</button></pre>
     </div>
     <div data-value="windows-powershell" data-label="Windows PowerShell" id="windows-powershell" aria-labelledby="ui-id-13" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
       <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-variable">$ENV:</span> LOCATION=<span class="hljs-string">eastus</span>
-<span class="hljs-variable">$ENV:</span> RESOURCE_GROUP_NAME=<span class="hljs-string">gdkguidelogging</span>
+<span class="hljs-variable">$ENV:</span> REPO_NAME=<span class="hljs-string">gdkrepo</span>
+<span class="hljs-variable">$ENV:</span> RESOURCE_GROUP_NAME=<span class="hljs-string">gdkguides</span>
+<span class="hljs-variable">$ENV:</span> AKS_CLUSTER_NAME=<span class="hljs-string">gdkCluster</span>
 </code><button>Copy</button></pre>
     </div>
 </div>
@@ -536,10 +542,7 @@ Alternatively, you can specify the <code>azure</code> environment passing it as 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">az acr create \
-   --name gdkrepo \
-   --resource-group gdkguides \
-   --sku Basic</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">az acr create --name $REPO_NAME --resource-group $RESOURCE_GROUP_NAME --sku Basic</code></pre>
 </div>
 </div>
 </div>
@@ -550,13 +553,8 @@ Alternatively, you can specify the <code>azure</code> environment passing it as 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">az aks create \
-   --name gdkCluster \
-   --resource-group gdkguides \
-   --node-count 1 \
-   --dns-name-prefix=gdk \
-   --attach-acr gdkrepo \
-   --generate-ssh-keys</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">az aks create --name $AKS_CLUSTER_NAME --resource-group $RESOURCE_GROUP_NAME --node-count 1 \
+   --dns-name-prefix=gdk --attach-acr $REPO_NAME --generate-ssh-keys</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -584,9 +582,7 @@ Alternatively, you can specify the <code>azure</code> environment passing it as 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">az aks get-credentials \
-   --resource-group gdkguides \
-   --name gdkCluster</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">az aks get-credentials --resource-group $RESOURCE_GROUP_NAME --name $AKS_CLUSTER_NAME</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -594,7 +590,7 @@ Alternatively, you can specify the <code>azure</code> environment passing it as 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">az acr login --name gdkrepo</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">az acr login --name $REPO_NAME</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -605,7 +601,7 @@ Alternatively, you can specify the <code>azure</code> environment passing it as 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export TOKEN=$(az acr login --name gdkrepo --expose-token --output tsv --query accessToken)</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export TOKEN=$(az acr login --name $REPO_NAME --expose-token --output tsv --query accessToken)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -613,9 +609,7 @@ Alternatively, you can specify the <code>azure</code> environment passing it as 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker login gdkrepo.azurecr.io \
-   --username 00000000-0000-0000-0000-000000000000 \
-   --password-stdin &lt;&lt;&lt; $TOKEN</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker login $REPO_NAME.azurecr.io --username 00000000-0000-0000-0000-000000000000 --password-stdin &lt;&lt;&lt; $TOKEN</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -678,7 +672,7 @@ Alternatively, you can specify the <code>azure</code> environment passing it as 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker tag users-azure gdkrepo.azurecr.io/users:latest</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker tag users-azure $REPO_NAME.azurecr.io/users:latest</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -686,7 +680,7 @@ Alternatively, you can specify the <code>azure</code> environment passing it as 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker push gdkrepo.azurecr.io/users:latest</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker push $REPO_NAME.azurecr.io/users:latest</code></pre>
 </div>
 </div>
 </div>
@@ -744,7 +738,7 @@ Alternatively, you can specify the <code>azure</code> environment passing it as 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker tag orders-azure gdkrepo.azurecr.io/orders:latest</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker tag orders-azure $REPO_NAME.azurecr.io/orders:latest</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -752,7 +746,7 @@ Alternatively, you can specify the <code>azure</code> environment passing it as 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker push gdkrepo.azurecr.io/orders:latest</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker push $REPO_NAME.azurecr.io/orders:latest</code></pre>
 </div>
 </div>
 </div>
@@ -810,7 +804,7 @@ Alternatively, you can specify the <code>azure</code> environment passing it as 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker tag api-azure gdkrepo.azurecr.io/api:latest</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker tag api-azure $REPO_NAME.azurecr.io/api:latest</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -818,7 +812,7 @@ Alternatively, you can specify the <code>azure</code> environment passing it as 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker push gdkrepo.azurecr.io/api:latest</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker push $REPO_NAME.azurecr.io/api:latest</code></pre>
 </div>
 </div>
 </div>
@@ -1283,17 +1277,17 @@ spec:
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">az aks delete --name gdkCluster --resource-group gdkguides</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">az aks delete --name $AKS_CLUSTER_NAME --resource-group $RESOURCE_GROUP_NAME</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">az acr delete --name gdkrepo</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">az acr delete --name $REPO_NAME</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">az group delete --name gdkguides</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">az group delete --name $RESOURCE_GROUP_NAME</code></pre>
 </div>
 </div>
 <h3 id="summary" class="discrete">Summary</h3>

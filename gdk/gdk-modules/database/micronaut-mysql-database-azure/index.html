@@ -507,8 +507,7 @@ CREATE TABLE genre (
       <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-built_in">export</span> LOCATION=<span class="hljs-string">eastus</span>
 <span class="hljs-built_in">export</span> DB_INSTANCE_NAME=<span class="hljs-string">gdkmysql</span>
 <span class="hljs-built_in">export</span> ADMIN_PASSWORD=<span class="hljs-string">Passw0rd1234!;</span>
-<span class="hljs-built_in">export</span> DB_GROUP_NAME=<span class="hljs-string">gdkguides</span>
-<span class="hljs-built_in">export</span> RESOURCE_GROUP_NAME=<span class="hljs-string">gdkguidelogging</span>
+<span class="hljs-built_in">export</span> RESOURCE_GROUP_NAME=<span class="hljs-string">gdkguides</span>
 <span class="hljs-built_in">export</span> DB_NAME=<span class="hljs-string">azuredb</span>
 <span class="hljs-built_in">export</span> ADMIN_USERNAME=<span class="hljs-string">gdkadmin</span>
 </code><button>Copy</button></pre>
@@ -517,8 +516,7 @@ CREATE TABLE genre (
       <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-built_in">set</span> LOCATION=<span class="hljs-string">eastus</span>
 <span class="hljs-built_in">set</span> DB_INSTANCE_NAME=<span class="hljs-string">gdkmysql</span>
 <span class="hljs-built_in">set</span> ADMIN_PASSWORD=<span class="hljs-string">Passw0rd1234!;</span>
-<span class="hljs-built_in">set</span> DB_GROUP_NAME=<span class="hljs-string">gdkguides</span>
-<span class="hljs-built_in">set</span> RESOURCE_GROUP_NAME=<span class="hljs-string">gdkguidelogging</span>
+<span class="hljs-built_in">set</span> RESOURCE_GROUP_NAME=<span class="hljs-string">gdkguides</span>
 <span class="hljs-built_in">set</span> DB_NAME=<span class="hljs-string">azuredb</span>
 <span class="hljs-built_in">set</span> ADMIN_USERNAME=<span class="hljs-string">gdkadmin</span>
 </code><button>Copy</button></pre>
@@ -527,8 +525,7 @@ CREATE TABLE genre (
       <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-variable">$ENV:</span> LOCATION=<span class="hljs-string">eastus</span>
 <span class="hljs-variable">$ENV:</span> DB_INSTANCE_NAME=<span class="hljs-string">gdkmysql</span>
 <span class="hljs-variable">$ENV:</span> ADMIN_PASSWORD=<span class="hljs-string">Passw0rd1234!;</span>
-<span class="hljs-variable">$ENV:</span> DB_GROUP_NAME=<span class="hljs-string">gdkguides</span>
-<span class="hljs-variable">$ENV:</span> RESOURCE_GROUP_NAME=<span class="hljs-string">gdkguidelogging</span>
+<span class="hljs-variable">$ENV:</span> RESOURCE_GROUP_NAME=<span class="hljs-string">gdkguides</span>
 <span class="hljs-variable">$ENV:</span> DB_NAME=<span class="hljs-string">azuredb</span>
 <span class="hljs-variable">$ENV:</span> ADMIN_USERNAME=<span class="hljs-string">gdkadmin</span>
 </code><button>Copy</button></pre>
@@ -572,7 +569,7 @@ CREATE TABLE genre (
     --location $LOCATION \
     --name $DB_INSTANCE_NAME \
     --public-access All \
-    --resource-group $DB_GROUP_NAME \
+    --resource-group $RESOURCE_GROUP_NAME \
     --version 8.0.21 | jq -r '.host')</code></pre>
 </div>
 </div>
@@ -605,7 +602,7 @@ CREATE TABLE genre (
 <p>Connect to the database using the MySQL client CLI:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mysql -h $MYSQL_HOST -u gdkadmin -p</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mysql -h $MYSQL_HOST -u $ADMIN_USERNAME -p</code></pre>
 </div>
 </div>
 </li>
