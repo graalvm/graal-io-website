@@ -11837,6 +11837,8 @@ a.enterprise {
   @media only screen and (min-width: 1025px) and (max-width: 1270px) {
     .short .col-sm-3.docsimpro {
       max-width: 5%; } }
+.short .schedule-table {
+  margin-left: 0px; }
 
 .header {
   position: relative;
@@ -13697,6 +13699,10 @@ a.btn.btn-primary.gethelp-sup-about {
   background: #161923;
   max-width: 100%;
   padding-left: 0px; }
+
+.schedule-table {
+  margin-left: 20px;
+  margin-top: 20px; }
 
 .tools-banner {
   max-height: fit-content;

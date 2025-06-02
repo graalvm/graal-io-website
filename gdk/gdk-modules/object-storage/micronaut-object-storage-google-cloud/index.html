@@ -92,6 +92,13 @@
             color: #F68831;
             font-weight: bold;
         }
+        .language-bash a {
+            color: #d6d6d6 !important;
+        }
+        .language-bash a:hover {
+            color: white !important;
+            background-color: #1e2631 !important;
+        }
         a.external {
             color: #d6d6d6   !important;
         }
@@ -649,7 +656,7 @@ class ProfilePicturesController implements ProfilePicturesApi {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">gcloud auth login</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://cloud.google.com/sdk/gcloud/reference/auth/login" class="external" target="_blank" rel="noopener">gcloud auth login</a></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -657,7 +664,7 @@ class ProfilePicturesController implements ProfilePicturesApi {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">gcloud config set project gdk-guides</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://cloud.google.com/sdk/gcloud/reference/config/set" class="external" target="_blank" rel="noopener">gcloud config set project gdk-guides</a></code></pre>
 </div>
 </div>
 <div class="quoteblock">
@@ -675,7 +682,7 @@ class ProfilePicturesController implements ProfilePicturesApi {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">gcloud storage buckets create gs://gdk-guide-object-storage</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://cloud.google.com/sdk/gcloud/reference/storage/buckets/create" class="external" target="_blank" rel="noopener">gcloud storage buckets create gs://gdk-guide-object-storage</a></code></pre>
 </div>
 </div>
 <div class="quoteblock">
@@ -741,7 +748,7 @@ micronaut.server.multipart.max-file-size=20971520</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">gcloud auth application-default login</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://cloud.google.com/sdk/gcloud/reference/auth/application-default/login" class="external" target="_blank" rel="noopener">gcloud auth application-default login</a></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -785,7 +792,7 @@ transfer-encoding: chunked</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">gcloud storage ls --recursive gs://gdk-guide-object-storage</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://cloud.google.com/sdk/gcloud/reference/storage/ls" class="external" target="_blank" rel="noopener">gcloud storage ls --recursive gs://gdk-guide-object-storage</a></code></pre>
 </div>
 </div>
 </div>
@@ -818,7 +825,7 @@ transfer-encoding: chunked</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">gcloud storage ls --recursive gs://gdk-guide-object-storage</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://cloud.google.com/sdk/gcloud/reference/storage/ls" class="external" target="_blank" rel="noopener">gcloud storage ls --recursive gs://gdk-guide-object-storage</a></code></pre>
 </div>
 </div>
 </div>
@@ -921,7 +928,7 @@ Packaged as a native executable, it significantly reduces application startup ti
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">gcloud projects delete gdk-guides</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="{guidesRef}/projects/delete" class="external" target="_blank" rel="noopener">gcloud projects delete gdk-guides</a></code></pre>
 </div>
 </div>
 </div>

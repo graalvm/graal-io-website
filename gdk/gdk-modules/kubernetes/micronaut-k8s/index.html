@@ -92,6 +92,13 @@
             color: #F68831;
             font-weight: bold;
         }
+        .language-bash a {
+            color: #d6d6d6 !important;
+        }
+        .language-bash a:hover {
+            color: white !important;
+            background-color: #1e2631 !important;
+        }
         a.external {
             color: #d6d6d6   !important;
         }
@@ -2561,8 +2568,7 @@ authentication-credentials.password=example-password</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -X "POST" "localhost/api/users" \
      -H 'Content-Type: application/json; charset=utf-8' \
-     -d '{ "first_name": "Nemanja", "last_name": "Mikic", "username": "nmikic" }' \
-     | jq</code></pre>
+     -d '{ "first_name": "Nemanja", "last_name": "Mikic", "username": "nmikic" }'</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2585,8 +2591,7 @@ authentication-credentials.password=example-password</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -X "POST" "localhost/api/orders" \
      -H 'Content-Type: application/json; charset=utf-8' \
-     -d '{ "user_id": 1, "item_ids": [1,2] }' \
-     | jq</code></pre>
+     -d '{ "user_id": 1, "item_ids": [1,2] }'</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2624,8 +2629,7 @@ authentication-credentials.password=example-password</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl "localhost/api/orders" \
-     -H 'Content-Type: application/json; charset=utf-8' \
-     | jq</code></pre>
+     -H 'Content-Type: application/json; charset=utf-8'</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2666,8 +2670,7 @@ authentication-credentials.password=example-password</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -X "POST" "localhost/api/orders" \
      -H 'Content-Type: application/json; charset=utf-8' \
-     -d '{ "user_id": 100, "item_ids": [1,2] }' \
-     | jq</code></pre>
+     -d '{ "user_id": 100, "item_ids": [1,2] }'</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3211,8 +3214,7 @@ spec:
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -X "POST" "localhost/api/users" \
      -H 'Content-Type: application/json; charset=utf-8' \
-     -d '{ "first_name": "Nemanja", "last_name": "Mikic", "username": "nmikic" }' \
-     | jq</code></pre>
+     -d '{ "first_name": "Nemanja", "last_name": "Mikic", "username": "nmikic" }'</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3235,8 +3237,7 @@ spec:
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -X "POST" "localhost/api/orders" \
      -H 'Content-Type: application/json; charset=utf-8' \
-     -d '{ "user_id": 1, "item_ids": [1,2] }' \
-     | jq</code></pre>
+     -d '{ "user_id": 1, "item_ids": [1,2] }'</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3274,8 +3275,7 @@ spec:
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl "localhost/api/orders" \
-     -H 'Content-Type: application/json; charset=utf-8' \
-     | jq</code></pre>
+     -H 'Content-Type: application/json; charset=utf-8'</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3316,8 +3316,7 @@ spec:
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -X "POST" "localhost/api/orders" \
      -H 'Content-Type: application/json; charset=utf-8' \
-     -d '{ "user_id": 100, "item_ids": [1,2] }' \
-     | jq</code></pre>
+     -d '{ "user_id": 100, "item_ids": [1,2] }'</code></pre>
 </div>
 </div>
 <div class="paragraph">

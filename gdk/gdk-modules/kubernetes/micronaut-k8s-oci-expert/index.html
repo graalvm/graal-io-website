@@ -92,6 +92,13 @@
             color: #F68831;
             font-weight: bold;
         }
+        .language-bash a {
+            color: #d6d6d6 !important;
+        }
+        .language-bash a:hover {
+            color: white !important;
+            background-color: #1e2631 !important;
+        }
         a.external {
             color: #d6d6d6   !important;
         }
@@ -447,7 +454,7 @@ Alternatively, you can specify the <code>oraclecloud</code> environment passing 
 <p>Click <strong>Create cluster</strong> and select the <strong>Quick create</strong> option. Click <strong>Submit</strong>.</p>
 </li>
 <li>
-<p>Enter the name for your cluster, for example, <em>gdk-k8s</em>. Select <strong>Public Endpoint</strong> for the Kubernetes API endpoint; <strong>Private Workers</strong> for worker nodes; select the default the shape, and change the number of <strong>Node count</strong> to 1. Click <strong>Next</strong>.</p>
+<p>Enter the name for your cluster, for example, <em>gdk-k8s</em>. Select <strong>Public Endpoint</strong> for the Kubernetes API endpoint; <strong>Private Workers</strong> for worker nodes; select the default shape, and change the number of <strong>Node count</strong> to 1. Click <strong>Next</strong>.</p>
 </li>
 <li>
 <p>Click <strong>Create cluster</strong>.</p>
@@ -591,6 +598,13 @@ export OCI_COMPARTMENT_ID="ocid1.compartment.oc1..aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 </div>
 </div>
 </li>
+</ol>
+</div>
+<div class="tabs-doc ui-tabs ui-corner-all ui-widget ui-widget-content" data-name="system">
+<div data-value="linux" data-label="Linux and macOS" id="linux" aria-labelledby="ui-id-9" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false" style="">
+<div class="olist arabic">
+<ol class="arabic">
 <li>
 <p>Tag the existing <em>users</em> microservice container image with details of the container repository:</p>
 <div class="listingblock">
@@ -604,6 +618,31 @@ export OCI_COMPARTMENT_ID="ocid1.compartment.oc1..aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker push $OCI_REGION.ocir.io/$OCI_TENANCY_NAMESPACE/gdk-k8s/users-oci:latest</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+    <div data-value="windows" data-label="Windows" id="windows" aria-labelledby="ui-id-10" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Tag the existing <em>users</em> microservice container image with details of the container repository:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker tag users-oci:latest %OCI_REGION%.ocir.io/%OCI_TENANCY_NAMESPACE%/gdk-k8s/users-oci:latest</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Push the tagged <em>users</em> microservice container image to the remote repository:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker push %OCI_REGION%.ocir.io/%OCI_TENANCY_NAMESPACE%/gdk-k8s/users-oci:latest</code></pre>
+</div>
+</div>
 </div>
 </div>
 </li>
@@ -738,6 +777,13 @@ spec:
 </div>
 </div>
 </li>
+</ol>
+</div>
+<div class="tabs-doc ui-tabs ui-corner-all ui-widget ui-widget-content" data-name="system">
+<div data-value="linux" data-label="Linux and macOS" id="linux" aria-labelledby="ui-id-9" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false" style="">
+<div class="olist arabic">
+<ol class="arabic">
 <li>
 <p>Tag the existing <em>orders</em> microservice container image with details of the container repository:</p>
 <div class="listingblock">
@@ -751,6 +797,31 @@ spec:
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker push $OCI_REGION.ocir.io/$OCI_TENANCY_NAMESPACE/gdk-k8s/orders-oci:latest</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+    <div data-value="windows" data-label="Windows" id="windows" aria-labelledby="ui-id-10" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Tag the existing <em>orders</em> microservice container image with details of the container repository:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker tag orders-oci:latest %OCI_REGION%.ocir.io/%OCI_TENANCY_NAMESPACE%/gdk-k8s/orders-oci:latest</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Push the tagged <em>orders</em> microservice container image to the remote repository:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker push %OCI_REGION%.ocir.io/%OCI_TENANCY_NAMESPACE%/gdk-k8s/orders-oci:latest</code></pre>
+</div>
+</div>
 </div>
 </div>
 </li>
@@ -885,6 +956,13 @@ spec:
 </div>
 </div>
 </li>
+</ol>
+</div>
+<div class="tabs-doc ui-tabs ui-corner-all ui-widget ui-widget-content" data-name="system">
+<div data-value="linux" data-label="Linux and macOS" id="linux" aria-labelledby="ui-id-9" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false" style="">
+<div class="olist arabic">
+<ol class="arabic">
 <li>
 <p>Tag the existing <em>api</em> microservice container image with details of the container repository:</p>
 <div class="listingblock">
@@ -898,6 +976,31 @@ spec:
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker push $OCI_REGION.ocir.io/$OCI_TENANCY_NAMESPACE/gdk-k8s/api-oci:latest</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+    <div data-value="windows" data-label="Windows" id="windows" aria-labelledby="ui-id-10" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Tag the existing <em>api</em> microservice container image with details of the container repository:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker tag api-oci:latest %OCI_REGION%.ocir.io/%OCI_TENANCY_NAMESPACE%/gdk-k8s/api-oci:latest</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Push the tagged <em>api</em> microservice container image to the remote repository:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker push %OCI_REGION%.ocir.io/%OCI_TENANCY_NAMESPACE%/gdk-k8s/api-oci:latest</code></pre>
+</div>
+</div>
 </div>
 </div>
 </li>

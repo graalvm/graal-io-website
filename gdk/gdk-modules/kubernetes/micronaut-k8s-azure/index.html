@@ -92,6 +92,13 @@
             color: #F68831;
             font-weight: bold;
         }
+        .language-bash a {
+            color: #d6d6d6 !important;
+        }
+        .language-bash a:hover {
+            color: white !important;
+            background-color: #1e2631 !important;
+        }
         a.external {
             color: #d6d6d6   !important;
         }
@@ -433,17 +440,17 @@ Alternatively, you can specify the <code>azure</code> environment passing it as 
 </code><button>Copy</button></pre>
     </div>
     <div data-value="windows" data-label="Windows" id="windows" aria-labelledby="ui-id-12" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
-      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-built_in">set</span> LOCATION=<span class="hljs-string">eastus</span>
-<span class="hljs-built_in">set</span> REPO_NAME=<span class="hljs-string">gdkrepo</span>
-<span class="hljs-built_in">set</span> RESOURCE_GROUP_NAME=<span class="hljs-string">gdkguides</span>
-<span class="hljs-built_in">set</span> AKS_CLUSTER_NAME=<span class="hljs-string">gdkCluster</span>
+      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-built_in">set</span> LOCATION=<span>eastus</span>
+<span class="hljs-built_in">set</span> REPO_NAME=<span>gdkrepo</span>
+<span class="hljs-built_in">set</span> RESOURCE_GROUP_NAME=<span>gdkguides</span>
+<span class="hljs-built_in">set</span> AKS_CLUSTER_NAME=<span>gdkCluster</span>
 </code><button>Copy</button></pre>
     </div>
     <div data-value="windows-powershell" data-label="Windows PowerShell" id="windows-powershell" aria-labelledby="ui-id-13" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
-      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-variable">$ENV:</span> LOCATION=<span class="hljs-string">eastus</span>
-<span class="hljs-variable">$ENV:</span> REPO_NAME=<span class="hljs-string">gdkrepo</span>
-<span class="hljs-variable">$ENV:</span> RESOURCE_GROUP_NAME=<span class="hljs-string">gdkguides</span>
-<span class="hljs-variable">$ENV:</span> AKS_CLUSTER_NAME=<span class="hljs-string">gdkCluster</span>
+      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-variable">$ENV:</span>LOCATION=<span class="hljs-string">"eastus"</span>
+<span class="hljs-variable">$ENV:</span>REPO_NAME=<span class="hljs-string">"gdkrepo"</span>
+<span class="hljs-variable">$ENV:</span>RESOURCE_GROUP_NAME=<span class="hljs-string">"gdkguides"</span>
+<span class="hljs-variable">$ENV:</span>AKS_CLUSTER_NAME=<span class="hljs-string">"gdkCluster"</span>
 </code><button>Copy</button></pre>
     </div>
 </div>
@@ -460,9 +467,22 @@ Alternatively, you can specify the <code>azure</code> environment passing it as 
 <div class="paragraph">
 <p>Run the <a href="https://learn.microsoft.com/en-us/cli/azure/group?view=azure-cli-latest#az-group-create">az group create</a> command to create a resource group named <em>gdkguides</em> in the <em>eastus</em> region:</p>
 </div>
+<div class="tabs-doc ui-tabs ui-corner-all ui-widget ui-widget-content" data-name="system">
+<div data-value="linux" data-label="Linux and macOS" id="linux" aria-labelledby="ui-id-9" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false" style="">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">az group create --location $LOCATION --name $RESOURCE_GROUP_NAME</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/group?view=azure-cli-latest#az-group-create" class="external" target="_blank" rel="noopener">az group create --location $LOCATION --name $RESOURCE_GROUP_NAME</a></code></pre>
+</div>
+</div>
+</div>
+    <div data-value="windows" data-label="Windows" id="windows" aria-labelledby="ui-id-10" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/group?view=azure-cli-latest#az-group-create" class="external" target="_blank" rel="noopener">az group create --location %LOCATION% --name %RESOURCE_GROUP_NAME%</a></code></pre>
+</div>
+</div>
 </div>
 </div>
 <div class="paragraph">
@@ -1264,7 +1284,7 @@ spec:
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">az group delete --name $RESOURCE_GROUP_NAME</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/group?view=azure-cli-latest#az-group-delete" class="external" target="_blank" rel="noopener">az group delete --name $RESOURCE_GROUP_NAME</a></code></pre>
 </div>
 </div>
 <div class="paragraph">

@@ -92,6 +92,13 @@
             color: #F68831;
             font-weight: bold;
         }
+        .language-bash a {
+            color: #d6d6d6 !important;
+        }
+        .language-bash a:hover {
+            color: white !important;
+            background-color: #1e2631 !important;
+        }
         a.external {
             color: #d6d6d6   !important;
         }
@@ -1194,12 +1201,56 @@ kafka.enabled=true</code></pre>
 <div class="paragraph">
 <p>We recommend that you create a new <a href="https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/overview#resource-groups">resource group</a> for this guide, but you can use an existing resource group instead.</p>
 </div>
-<div class="paragraph">
-<p>Run the <a href="https://learn.microsoft.com/en-us/cli/azure/group?view=azure-cli-latest#az-group-create">az group create</a> command to create a resource group named gdkguides in the eastus region:</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Set the following values on the command line or save them in a settings file, then run it:</p>
+</li>
+</ol>
 </div>
+<div class="tabs-doc ui-tabs ui-corner-all ui-widget ui-widget-content" data-name="system">
+<div data-value="linux" data-label="Linux and macOS" id="linux" aria-labelledby="ui-id-9" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false" style="">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">az group create --location eastus --name gdkguides</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export LOCATION="&lt;Location&gt;"
+export RESOURCE_GROUP_NAME="&lt;ResourceGroupName&gt;"
+export AZURE_NAMESPACE_NAME="&lt;AzureNamespaceName&gt;"
+export STREAM_TOPIC_NAME="&lt;StreamTopicName&gt;"</code></pre>
+</div>
+</div>
+</div>
+    <div data-value="windows" data-label="Windows" id="windows" aria-labelledby="ui-id-10" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">set LOCATION="&lt;Location&gt;"
+set RESOURCE_GROUP_NAME="&lt;ResourceGroupName&gt;"
+set AZURE_NAMESPACE_NAME="&lt;AzureNamespaceName&gt;"
+set STREAM_TOPIC_NAME="&lt;StreamTopicName&gt;"</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Then run the <a href="https://learn.microsoft.com/en-us/cli/azure/group?view=azure-cli-latest#az-group-create">az group create</a> command to create a resource group named gdkguides in the eastus region:</p>
+</div>
+<div class="tabs-doc ui-tabs ui-corner-all ui-widget ui-widget-content" data-name="system">
+<div data-value="linux" data-label="Linux and macOS" id="linux" aria-labelledby="ui-id-9" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false" style="">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/group?view=azure-cli-latest#az-group-create" class="external" target="_blank" rel="noopener">az group create --location $LOCATION --name $RESOURCE_GROUP_NAME</a></code></pre>
+</div>
+</div>
+</div>
+    <div data-value="windows" data-label="Windows" id="windows" aria-labelledby="ui-id-10" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/group?view=azure-cli-latest#az-group-create" class="external" target="_blank" rel="noopener">az group create --location %LOCATION% --name %RESOURCE_GROUP_NAME%</a></code></pre>
+</div>
+</div>
 </div>
 </div>
 <div class="paragraph">
@@ -1214,13 +1265,24 @@ kafka.enabled=true</code></pre>
 <div class="paragraph">
 <p>Run the <a href="https://learn.microsoft.com/en-us/cli/azure/eventhubs/namespace?view=azure-cli-latest#az-eventhubs-namespace-create">az eventhubs namespace create</a> command to create an Event Hubs Namespace:</p>
 </div>
+<div class="tabs-doc ui-tabs ui-corner-all ui-widget ui-widget-content" data-name="system">
+<div data-value="linux" data-label="Linux and macOS" id="linux" aria-labelledby="ui-id-9" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false" style="">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">az eventhubs namespace create \
-   --name gdkStreaming \
-   --sku Standard \
-   --enable-kafka true \
-   --resource-group gdkguides</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/eventhubs/namespace?view=azure-cli-latest#az-eventhubs-namespace-create" class="external" target="_blank" rel="noopener">az eventhubs namespace create --name $AZURE_NAMESPACE_NAME --sku Standard \</a>
+   --enable-kafka true --resource-group $RESOURCE_GROUP_NAME</code></pre>
+</div>
+</div>
+</div>
+    <div data-value="windows" data-label="Windows" id="windows" aria-labelledby="ui-id-10" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/eventhubs/namespace?view=azure-cli-latest#az-eventhubs-namespace-create" class="external" target="_blank" rel="noopener">az eventhubs namespace create --name %AZURE_NAMESPACE_NAME% --sku Standard &#94;</a>
+        --enable-kafka true --resource-group %RESOURCE_GROUP_NAME%</code></pre>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -1232,12 +1294,24 @@ kafka.enabled=true</code></pre>
 <div class="paragraph">
 <p>Run the <a href="https://learn.microsoft.com/en-us/cli/azure/eventhubs/eventhub?view=azure-cli-latest#az-eventhubs-eventhub-create">az eventhubs eventhub create</a> command to create an Event Hub:</p>
 </div>
+<div class="tabs-doc ui-tabs ui-corner-all ui-widget ui-widget-content" data-name="system">
+<div data-value="linux" data-label="Linux and macOS" id="linux" aria-labelledby="ui-id-9" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false" style="">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">az eventhubs eventhub create \
-   --name analytics \
-   --namespace-name gdkStreaming \
-   --resource-group gdkguides</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/eventhubs/eventhub?view=azure-cli-latest#az-eventhubs-eventhub-create" class="external" target="_blank" rel="noopener">az eventhubs eventhub create --name $STREAM_TOPIC_NAME \</a>
+   --namespace-name $AZURE_NAMESPACE_NAME --resource-group $RESOURCE_GROUP_NAME</code></pre>
+</div>
+</div>
+</div>
+    <div data-value="windows" data-label="Windows" id="windows" aria-labelledby="ui-id-10" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/eventhubs/eventhub?view=azure-cli-latest#az-eventhubs-eventhub-create" class="external" target="_blank" rel="noopener">az eventhubs eventhub create --name %STREAM_TOPIC_NAME% &#94;</a>
+        --namespace-name %AZURE_NAMESPACE_NAME% --resource-group %RESOURCE_GROUP_NAME%</code></pre>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -1246,12 +1320,28 @@ kafka.enabled=true</code></pre>
 <div class="paragraph">
 <p>Run the <a href="https://learn.microsoft.com/en-us/cli/azure/eventhubs/namespace/authorization-rule/keys?view=azure-cli-latest#az-eventhubs-namespace-authorization-rule-keys-list">az eventhubs namespace authorization-rule keys list</a> command to retrieve the Namespace connection string:</p>
 </div>
+<div class="tabs-doc ui-tabs ui-corner-all ui-widget ui-widget-content" data-name="system">
+<div data-value="linux" data-label="Linux and macOS" id="linux" aria-labelledby="ui-id-9" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false" style="">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">az eventhubs namespace authorization-rule keys list \
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/eventhubs/namespace/authorization-rule/keys?view=azure-cli-latest#az-eventhubs-namespace-authorization-rule-keys-list" class="external" target="_blank" rel="noopener">export AZURE_EVENTHUB_CONNECTION_STRING=$(az eventhubs namespace authorization-rule keys list \</a>
    --name RootManageSharedAccessKey \
-   --namespace-name gdkStreaming \
-   --resource-group gdkguides</code></pre>
+   --namespace-name $AZURE_NAMESPACE_NAME \
+   --resource-group $RESOURCE_GROUP_NAME | jq -r '.primaryConnectionString')</code></pre>
+</div>
+</div>
+</div>
+    <div data-value="windows" data-label="Windows" id="windows" aria-labelledby="ui-id-10" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/eventhubs/namespace/authorization-rule/keys?view=azure-cli-latest#az-eventhubs-namespace-authorization-rule-keys-list" class="external" target="_blank" rel="noopener">az eventhubs namespace authorization-rule keys list &#94;</a>
+   --name RootManageSharedAccessKey --namespace-name %AZURE_NAMESPACE_NAME% ^
+   --resource-group %RESOURCE_GROUP_NAME% | jq -r &quot;.primaryConnectionString&quot; &gt; temp.txt
+set /p AZURE_EVENTHUB_CONNECTION_STRING=&lt;temp.txt</code></pre>
+</div>
+</div>
 </div>
 </div>
 <div class="paragraph">
@@ -1548,27 +1638,63 @@ Packaged as a native executable, it significantly reduces application startup ti
 <div class="paragraph">
 <p>Delete the resource group and all of its resources with:</p>
 </div>
+<div class="tabs-doc ui-tabs ui-corner-all ui-widget ui-widget-content" data-name="system">
+<div data-value="linux" data-label="Linux and macOS" id="linux" aria-labelledby="ui-id-9" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false" style="">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">az group delete --name gdkguides</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">az group delete --name $RESOURCE_GROUP_NAME --yes</code></pre>
+</div>
+</div>
+</div>
+    <div data-value="windows" data-label="Windows" id="windows" aria-labelledby="ui-id-10" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">az group delete --name %RESOURCE_GROUP_NAME% --yes</code></pre>
+</div>
+</div>
 </div>
 </div>
 <div class="paragraph">
-<p>Alternatively, run these commands to delete resources individually:</p>
+<p>or run these commands to delete resources individually:</p>
+</div>
+<div class="tabs-doc ui-tabs ui-corner-all ui-widget ui-widget-content" data-name="system">
+<div data-value="linux" data-label="Linux and macOS" id="linux" aria-labelledby="ui-id-9" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false" style="">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/eventhubs/eventhub?view=azure-cli-latest#az-eventhubs-eventhub-delete" class="external" target="_blank" rel="noopener">az eventhubs eventhub delete --name $STREAM_TOPIC_NAME --namespace-name $AZURE_NAMESPACE_NAME --resource-group $RESOURCE_GROUP_NAME</a></code></pre>
+</div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">az eventhubs eventhub delete --name analytics --namespace-name gdkStreaming  --resource-group gdkguides</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/eventhubs/namespace?view=azure-cli-latest#az-eventhubs-namespace-delete" class="external" target="_blank" rel="noopener">az eventhubs namespace delete --name $AZURE_NAMESPACE_NAME --resource-group $RESOURCE_GROUP_NAME</a></code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">az eventhubs namespace delete --name gdkStreaming --resource-group gdkguides</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/group?view=azure-cli-latest#az-group-delete" class="external" target="_blank" rel="noopener">az group delete --name $RESOURCE_GROUP_NAME --yes</a></code></pre>
+</div>
+</div>
+</div>
+    <div data-value="windows" data-label="Windows" id="windows" aria-labelledby="ui-id-10" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/eventhubs/eventhub?view=azure-cli-latest#az-eventhubs-eventhub-delete" class="external" target="_blank" rel="noopener">az eventhubs eventhub delete --name $STREAM_TOPIC_NAME --namespace-name $AZURE_NAMESPACE_NAME --resource-group $RESOURCE_GROUP_NAME</a></code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">az group delete --name gdkguides</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/eventhubs/namespace?view=azure-cli-latest#az-eventhubs-namespace-delete" class="external" target="_blank" rel="noopener">az eventhubs namespace delete --name $AZURE_NAMESPACE_NAME --resource-group $RESOURCE_GROUP_NAME</a></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/group?view=azure-cli-latest#az-group-delete" class="external" target="_blank" rel="noopener">az group delete --name $RESOURCE_GROUP_NAME --yes</a></code></pre>
+</div>
+</div>
 </div>
 </div>
 <h3 id="summary" class="discrete">Summary</h3>
