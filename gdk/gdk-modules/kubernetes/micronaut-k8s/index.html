@@ -92,13 +92,6 @@
             color: #F68831;
             font-weight: bold;
         }
-        .language-bash a {
-            color: #d6d6d6 !important;
-        }
-        .language-bash a:hover {
-            color: white !important;
-            background-color: #1e2631 !important;
-        }
         a.external {
             color: #d6d6d6   !important;
         }
@@ -347,10 +340,10 @@
         <li class="tabs-maven ui-tabs-tab ui-corner-top ui-state-default" role="tab" tabindex="-1" aria-controls="maven" aria-labelledby="ui-id-2" aria-selected="false" aria-expanded="false"><a name="maven" href="#maven" tabindex="-1" class="ui-tabs-anchor" id="ui-id-2">Maven</a></li>
     </ul>
     <div id="gradle" aria-labelledby="ui-id-1" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false">
-        <a href="https://github.com/oracle/graal-dev-kit/releases/download/4.7.3.4/4.7.3.4_kubernetes_kubernetes-demo-java-gradle.zip">Gradle Micronaut Kubernetes Example <img src="https://graal.cloud/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" class="download-img-guides"/></a>
+        <a href="https://github.com/oracle/graal-dev-kit/releases/download/4.7.3.5/4.7.3.5_kubernetes_kubernetes-demo-java-gradle.zip">Gradle Micronaut Kubernetes Example <img src="https://graal.cloud/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" class="download-img-guides"/></a>
     </div>
     <div id="maven" aria-labelledby="ui-id-2" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
-        <a href="https://github.com/oracle/graal-dev-kit/releases/download/4.7.3.4/4.7.3.4_kubernetes_kubernetes-demo-java-maven.zip">Maven Micronaut Kubernetes Example <img src="https://graal.cloud/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" class="download-img-guides"/></a>
+        <a href="https://github.com/oracle/graal-dev-kit/releases/download/4.7.3.5/4.7.3.5_kubernetes_kubernetes-demo-java-maven.zip">Maven Micronaut Kubernetes Example <img src="https://graal.cloud/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" class="download-img-guides"/></a>
     </div>
 </div>
 <div class="paragraph">
@@ -2568,7 +2561,8 @@ authentication-credentials.password=example-password</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -X "POST" "localhost/api/users" \
      -H 'Content-Type: application/json; charset=utf-8' \
-     -d '{ "first_name": "Nemanja", "last_name": "Mikic", "username": "nmikic" }'</code></pre>
+     -d '{ "first_name": "Nemanja", "last_name": "Mikic", "username": "nmikic" }' \
+     | jq</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2591,7 +2585,8 @@ authentication-credentials.password=example-password</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -X "POST" "localhost/api/orders" \
      -H 'Content-Type: application/json; charset=utf-8' \
-     -d '{ "user_id": 1, "item_ids": [1,2] }'</code></pre>
+     -d '{ "user_id": 1, "item_ids": [1,2] }' \
+     | jq</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2629,7 +2624,8 @@ authentication-credentials.password=example-password</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl "localhost/api/orders" \
-     -H 'Content-Type: application/json; charset=utf-8'</code></pre>
+     -H 'Content-Type: application/json; charset=utf-8' \
+     | jq</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2670,7 +2666,8 @@ authentication-credentials.password=example-password</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -X "POST" "localhost/api/orders" \
      -H 'Content-Type: application/json; charset=utf-8' \
-     -d '{ "user_id": 100, "item_ids": [1,2] }'</code></pre>
+     -d '{ "user_id": 100, "item_ids": [1,2] }' \
+     | jq</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3214,7 +3211,8 @@ spec:
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -X "POST" "localhost/api/users" \
      -H 'Content-Type: application/json; charset=utf-8' \
-     -d '{ "first_name": "Nemanja", "last_name": "Mikic", "username": "nmikic" }'</code></pre>
+     -d '{ "first_name": "Nemanja", "last_name": "Mikic", "username": "nmikic" }' \
+     | jq</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3237,7 +3235,8 @@ spec:
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -X "POST" "localhost/api/orders" \
      -H 'Content-Type: application/json; charset=utf-8' \
-     -d '{ "user_id": 1, "item_ids": [1,2] }'</code></pre>
+     -d '{ "user_id": 1, "item_ids": [1,2] }' \
+     | jq</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3275,7 +3274,8 @@ spec:
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl "localhost/api/orders" \
-     -H 'Content-Type: application/json; charset=utf-8'</code></pre>
+     -H 'Content-Type: application/json; charset=utf-8' \
+     | jq</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3316,7 +3316,8 @@ spec:
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -X "POST" "localhost/api/orders" \
      -H 'Content-Type: application/json; charset=utf-8' \
-     -d '{ "user_id": 100, "item_ids": [1,2] }'</code></pre>
+     -d '{ "user_id": 100, "item_ids": [1,2] }' \
+     | jq</code></pre>
 </div>
 </div>
 <div class="paragraph">

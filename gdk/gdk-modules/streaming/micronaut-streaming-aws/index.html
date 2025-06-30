@@ -92,13 +92,6 @@
             color: #F68831;
             font-weight: bold;
         }
-        .language-bash a {
-            color: #d6d6d6 !important;
-        }
-        .language-bash a:hover {
-            color: white !important;
-            background-color: #1e2631 !important;
-        }
         a.external {
             color: #d6d6d6   !important;
         }
@@ -317,12 +310,6 @@ The application consists of two Micronaut microservices that use Amazon MSK to c
 <p>An AWS user with enough permissions to create and manage the AWS MSK service.</p>
 </li>
 <li>
-<p>An <a href="https://docs.aws.amazon.com/vpc/latest/userguide/create-vpc.html#create-vpc-only">Amazon Virtual Private Cloud</a> to which you have management permissions.</p>
-</li>
-<li>
-<p>An Internet Gateway attached to your Virtual Private Cloud. See How to  <a href="https://docs.aws.amazon.com/cli/latest/reference/ec2/create-internet-gateway.html">create</a> and <a href="https://docs.aws.amazon.com/cli/latest/reference/ec2/attach-internet-gateway.html">attach</a> an internet gateway to your VPC.</p>
-</li>
-<li>
 <p>A Docker-API compatible container runtime such as <a href="https://docs.rancherdesktop.io/getting-started/installation/">Rancher Desktop</a> or <a href="https://www.docker.io/gettingstarted/">Docker</a> installed.</p>
 </li>
 <li>
@@ -339,10 +326,10 @@ The application consists of two Micronaut microservices that use Amazon MSK to c
         <li class="tabs-maven ui-tabs-tab ui-corner-top ui-state-default" role="tab" tabindex="-1" aria-controls="maven" aria-labelledby="ui-id-2" aria-selected="false" aria-expanded="false"><a name="maven" href="#maven" tabindex="-1" class="ui-tabs-anchor" id="ui-id-2">Maven</a></li>
     </ul>
     <div id="gradle" aria-labelledby="ui-id-1" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false">
-        <a href="https://github.com/oracle/graal-dev-kit/releases/download/4.7.3.4/4.7.3.4_streaming_aws-streaming-demo-java-gradle.zip">Gradle AWS Streaming Example <img src="https://graal.cloud/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" class="download-img-guides"/></a>
+        <a href="https://github.com/oracle/graal-dev-kit/releases/download/4.7.3.5/4.7.3.5_streaming_aws-streaming-demo-java-gradle.zip">Gradle AWS Streaming Example <img src="https://graal.cloud/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" class="download-img-guides"/></a>
     </div>
     <div id="maven" aria-labelledby="ui-id-2" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
-        <a href="https://github.com/oracle/graal-dev-kit/releases/download/4.7.3.4/4.7.3.4_streaming_aws-streaming-demo-java-maven.zip">Maven AWS Streaming Example <img src="https://graal.cloud/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" class="download-img-guides"/></a>
+        <a href="https://github.com/oracle/graal-dev-kit/releases/download/4.7.3.5/4.7.3.5_streaming_aws-streaming-demo-java-maven.zip">Maven AWS Streaming Example <img src="https://graal.cloud/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" class="download-img-guides"/></a>
     </div>
 </div>
 <div class="paragraph">
@@ -1348,56 +1335,56 @@ cmd /C "set MICRONAUT_ENVIRONMENTS=ec2 &amp;&amp; mvnw -pl {oci} mn:run"</code><
 </div>
 </div>
 <div class="sect2">
-<h3 id="define-your-vpc-and-internet-gateway-id-and-use-it-to-create-a-route">4.2. Define your VPC and Internet Gateway Id and use it to create a Route:</h3>
-<div class="paragraph">
-<p>First, export your VPC Id and Internet Gateway Id:</p>
-</div>
-<div class="tabs-doc ui-tabs ui-corner-all ui-widget ui-widget-content" data-name="system">
-    <div data-value="linux" data-label="Linux &amp; macOS" id="linux" aria-labelledby="ui-id-11" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false" style="">
-      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-built_in">export</span> VPC_ID=<span class="hljs-string">&lt;your-vpc-id&gt;</span>
-<span class="hljs-built_in">export</span> IG_ID=<span class="hljs-string">&lt;your-ig-id&gt;</span>
-</code><button>Copy</button></pre>
-    </div>
-    <div data-value="windows" data-label="Windows" id="windows" aria-labelledby="ui-id-12" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
-      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-built_in">set</span> VPC_ID=<span>&lt;your-vpc-id&gt;</span>
-<span class="hljs-built_in">set</span> IG_ID=<span>&lt;your-ig-id&gt;</span>
-</code><button>Copy</button></pre>
-    </div>
-    <div data-value="windows-powershell" data-label="Windows PowerShell" id="windows-powershell" aria-labelledby="ui-id-13" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
-      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-variable">$ENV:</span>VPC_ID=<span class="hljs-string">"&lt;your-vpc-id&gt;"</span>
-<span class="hljs-variable">$ENV:</span>IG_ID=<span class="hljs-string">"&lt;your-ig-id&gt;"</span>
-</code><button>Copy</button></pre>
-    </div>
-</div>
-<div class="paragraph">
-<p>Make sure DNS hostname is enabled on your VPC, if not run the following command:</p>
-</div>
-<div class="tabs-doc ui-tabs ui-corner-all ui-widget ui-widget-content" data-name="system">
-<div data-value="linux" data-label="Linux and macOS" id="linux" aria-labelledby="ui-id-9" role="tabpanel"
-         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false" style="">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">aws ec2 modify-vpc-attribute --enable-dns-hostnames --vpc-id $VPC_ID</code></pre>
-</div>
-</div>
-</div>
-    <div data-value="windows" data-label="Windows" id="windows" aria-labelledby="ui-id-10" role="tabpanel"
-         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">aws ec2 modify-vpc-attribute --enable-dns-hostnames --vpc-id %VPC_ID%</code></pre>
-</div>
-</div>
-</div>
-</div>
+<h3 id="create-a-virtual-private-cloud-an-internet-gateway-and-a-route-table">4.2. Create a Virtual Private Cloud, an Internet Gateway, and a Route Table</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Export the <code>RouteTables[].RouteTableId</code> property of your VPC&#8217;s route table:</p>
+<p>Create a virtual private cloud using the following command:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export RT_ID=$(aws ec2 describe-route-tables --filters "Name=vpc-id,Values=$VPC_ID" --query "RouteTables[0].RouteTableId" \
-  --output text)</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">aws ec2 create-vpc --cidr-block 10.0.0.0/16</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Copy the value of the <code>Vpc.VpcId</code> property and export it for later use, as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export VPC_ID=&lt;replace_with_the_copied_value&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Create an internet gateway using the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">aws ec2 create-internet-gateway</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Copy the value of the <code>InternetGateway.InternetGatewayId</code> property and export it for later use, as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export IG_ID=&lt;replace_with_the_copied_value&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Configure route tables using the following commands:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">aws ec2 attach-internet-gateway --internet-gateway-id $IG_ID --vpc-id $VPC_ID
+aws ec2 modify-vpc-attribute --enable-dns-hostnames --vpc-id $VPC_ID
+aws ec2 describe-route-tables --filters "Name=vpc-id,Values=$VPC_ID"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Copy the value of the <code>RouteTables[].RouteTableId</code> property and export it for later use, as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export RT_ID=&lt;replace_with_the_copied_value&gt;</code></pre>
 </div>
 </div>
 </li>
@@ -2036,6 +2023,14 @@ kafka.security.protocol=SASL_SSL</code></pre>
 kafka.sasl.jaas.config=software.amazon.msk.auth.iam.IAMLoginModule required;
 kafka.sasl.mechanism=AWS_MSK_IAM
 kafka.security.protocol=SASL_SSL</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>After you deploy your applications to the AWS EC2 instance, make sure that the following environment variable is exported; Micronaut will set the <code>kafka.bootstrap.servers</code> configuration property from its value:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export KAFKA_BOOTSTRAP_SERVERS=&lt;use the bootstrap string which you saved earlier when MSK cluster was created and promoted to the ACTIVE state&gt;</code></pre>
 </div>
 </div>
 </li>
