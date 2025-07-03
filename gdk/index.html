@@ -15,7 +15,7 @@
   </title>
   <meta name="description" content="The Graal Development Kit for Micronaut (GDK) is a build of a curated set of Micronaut framework modules and their required libraries for building portable c..."/>
   <meta name="last_modified" content="2024-05-29 09:36:18 +0000"/>
-  <meta name="last_built" content="2025-06-30 19:55:01 +0000"/>
+  <meta name="last_built" content="2025-07-03 15:37:01 +0000"/>
   <link rel="stylesheet" href="/gdk/assets/main.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/gdk/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gdk/resources/img/favicon/favicon-32x32.png">
@@ -189,18 +189,50 @@
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-<section class="content-section_why why_graal">
-  <div class="container-fluid container-fluid--custom-sm">
     <div class="why_images">
       <img src="/gdk/resources/img/gdk_home_page/scheme_main_page_v2.1.svg" class="gdk_scheme" alt="graal development kit for Micronaut scheme">
       <img src="/gdk/resources/img/gdk_home_page/scheme_mobile_vertical_v2.1.svg" class="gdk_scheme_mobile" alt="graal development kit for Micronaut scheme">
     </div>
+  </div>
+</section>
 
-  <!-- WHY GDK -->
-
+<!-- WHY GDK -->
+<section class="content-section_why why_graal">
+  <div class="container-fluid container-fluid--custom-sm">
+    <div class="title">
+      <p id="performance" class="title-section_gdk">Fast and Lean Micronaut with GraalVM</p>
+      <p class="text_metrics">Applications compiled with GraalVM Native Image start instantly, deliver peak performance without warmup, and have a low memory footprint.</p>
+    </div>
+    <div class="metrics-section">
+        <h3 class="metrics-title">Simple HelloWorld REST Service</h3>
+        <p class="text_metrics"><span class="orange-text">Simple-demo</span> is a Hello World Micronaut application that serves a single REST endpoint (/hello).
+          Its purpose is to benchmark the minimal startup time and runtime overhead of a Micronaut service, especially when comparing JVM and Native Image performance.
+        </p>
+        <div class="gdk-metrics">
+          <div class="metrics-flex">
+            <div class="metrics-item">
+              <img src="/gdk/resources/img/about_page/mem-foot-rest.svg" class="metrics-about" alt="REST Memory Footprint metrics">
+            </div>
+            <div class="metrics-item">
+              <img src="/gdk/resources/img/about_page/time-res-rest.svg" class="metrics-about" alt="REST Time to First Response">
+            </div>
+          </div>
+        </div>
+        <h3 class="metrics-title">MuShop Catalogue Service</h3>
+        <p class="text_metrics">The <span class="orange-text">MuShop Catalogue Service</span> is a more realistic microservice that is part of the <a href="https://oracle-quickstart.github.io/oci-cloudnative/" class="about-link" target="blank">MuShop demo application</a>;
+          a cloud-native e-commerce application that offers various cat products. The catalogue service handles product listings, making it a good candidate for benchmarking a production-like service built with Micronaut and GraalVM.
+        </p>
+        <div class="gdk-metrics">
+          <div class="metrics-flex">
+            <div class="metrics-item">
+              <img src="/gdk/resources/img/about_page/mem-foot-mushop.svg" class="metrics-about" alt="REST Memory Footprint metrics">
+            </div>
+            <div class="metrics-item">
+              <img src="/gdk/resources/img/about_page/time-res-mushop.svg" class="metrics-about" alt="REST Time to First Response">
+            </div>
+          </div>
+        </div>
+    </div>
     <div class="title_right">
       <p class="title-section_gdk_right">
        Why Use the
@@ -273,7 +305,7 @@
                     <img src="/gdk/resources/img/gdk_home_page/icon_04_productivity.svg" class="why_icon" alt="box">
                   </div>
                   <div class="col-10 col-sm-10 col-md-10 card_mobile">
-                      <h4 class="card__title">Faster and Cheaper</h4>
+                      <h4 class="card__title">Run Faster, Run Leaner</h4>
                       <p>Applications compiled by GraalVM Native Image start instantly, provide peak performance with no warmup, and have a small memory footprint.
                       </p>
                       <a href="https://youtu.be/vyMVyQumUj8" target="_blank">&#10095 Build Performant Apps (3:03)</a>

@@ -11839,6 +11839,8 @@ a.enterprise {
       max-width: 5%; } }
 .short .schedule-table {
   margin-left: 0px; }
+.short .gdk-metrics {
+  padding: 0px; }
 
 .header {
   position: relative;
@@ -12776,7 +12778,7 @@ a.btn.btn-primary.tutorial {
   font-weight: bold;
   font-size: 56px;
   line-height: 64px;
-  margin-top: 64px; }
+  margin-top: 48px; }
   @media only screen and (min-device-width: 481px) and (max-device-width: 1024px) {
     .title-section_gdk {
       font-size: 40px;
@@ -12807,19 +12809,19 @@ a.btn.btn-primary.tutorial {
 
 .why_graal {
   max-height: fit-content;
-  background: #171923 url("/gdk/resources/img/gdk_home_page/cute_mascooot_v3.png") 20% 70%/560px no-repeat; }
+  background: #171923 url("/gdk/resources/img/gdk_home_page/cute_mascooot_v3.png") 20% 100%/560px no-repeat; }
   @media only screen and (min-device-width: 1680px) and (max-device-width: 1920px) {
     .why_graal {
-      background: #171923 url("/gdk/resources/img/gdk_home_page/cute_mascooot_v3.png") 20% 70%/560px no-repeat; } }
+      background: #171923 url("/gdk/resources/img/gdk_home_page/cute_mascooot_v3.png") 20% 100%/560px no-repeat; } }
   @media only screen and (min-device-width: 768px) and (max-device-width: 1230px) {
     .why_graal {
-      background: #171923 url("/gdk/resources/img/gdk_home_page/cute_mascooot_1024x.png") 0% 70%/560px no-repeat; } }
+      background: #171923 url("/gdk/resources/img/gdk_home_page/cute_mascooot_1024x.png") 0% 100%/560px no-repeat; } }
   @media only screen and (min-device-width: 1231px) and (max-device-width: 1440px) {
     .why_graal {
-      background: #171923 url("/gdk/resources/img/gdk_home_page/cute_mascooot_v3.png") 10% 70%/560px no-repeat; } }
+      background: #171923 url("/gdk/resources/img/gdk_home_page/cute_mascooot_v3.png") 10% 100%/560px no-repeat; } }
   @media only screen and (min-device-width: 640px) and (max-device-width: 767px) {
     .why_graal {
-      background: #171923 url("/gdk/resources/img/gdk_home_page/cute_mascooot_480x.png") 10% 90%/560px no-repeat; } }
+      background: #171923 url("/gdk/resources/img/gdk_home_page/cute_mascooot_480x.png") 10% 100%/560px no-repeat; } }
   @media only screen and (min-device-width: 320px) and (max-device-width: 639px) {
     .why_graal {
       background: #171923; } }
@@ -12830,7 +12832,7 @@ a.btn.btn-primary.tutorial {
 
 .gdk_scheme {
   display: block;
-  margin: 0px auto 0px auto;
+  margin: 30px auto 0px auto;
   max-width: 100%; }
   @media only screen and (min-device-width: 320px) and (max-device-width: 479px) {
     .gdk_scheme {
@@ -12877,8 +12879,58 @@ p.title-section_gdk_right {
 .benefit-text p {
   margin-top: 16px; }
 
+.metrics-section {
+  padding-bottom: 40px; }
+
+.metrics-title {
+  color: #ffffff;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  text-align: center; }
+
+p.text_metrics {
+  font-style: normal;
+  font-weight: normal;
+  line-height: 28px;
+  text-align: center;
+  color: #C4D1EE;
+  margin-top: 24px;
+  font-size: 16px; }
+  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    p.text_metrics {
+      font-size: 14px;
+      line-height: 24px; } }
+  @media only screen and (min-device-width: 481px) and (max-device-width: 768px) {
+    p.text_metrics {
+      font-size: 16px;
+      line-height: 24px; } }
+
+.gdk-metrics {
+  display: flex;
+  flex-direction: column;
+  padding: 0px 20px 20px 20px; }
+
+.metrics-flex {
+  display: flex; }
+  @media only screen and (min-device-width: 320px) and (max-device-width: 1024px) {
+    .metrics-flex {
+      flex-wrap: wrap;
+      justify-content: center; } }
+
+.metrics-item {
+  box-sizing: border-box; }
+  @media (max-width: 1024px) {
+    .metrics-item .metrics-item {
+      display: flex;
+      justify-content: center; } }
+
+.metrics-about img {
+  width: 50%;
+  height: auto;
+  display: block; }
+
 .content-section_why {
-  padding: 0px 0px 40px 0px; }
+  padding: 10px 0px 40px 0px; }
 
 .col-12.reason-card {
   margin-top: 20px;
