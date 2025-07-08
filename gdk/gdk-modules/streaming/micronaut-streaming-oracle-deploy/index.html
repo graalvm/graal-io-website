@@ -92,6 +92,13 @@
             color: #F68831;
             font-weight: bold;
         }
+        .language-bash a {
+            color: #d6d6d6 !important;
+        }
+        .language-bash a:hover {
+            color: white !important;
+            background-color: #1e2631 !important;
+        }
         a.external {
             color: #d6d6d6   !important;
         }
@@ -329,10 +336,10 @@
         <li class="tabs-maven ui-tabs-tab ui-corner-top ui-state-default" role="tab" tabindex="-1" aria-controls="maven" aria-labelledby="ui-id-2" aria-selected="false" aria-expanded="false"><a name="maven" href="#maven" tabindex="-1" class="ui-tabs-anchor" id="ui-id-2">Maven</a></li>
     </ul>
     <div id="gradle" aria-labelledby="ui-id-1" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false">
-        <a href="https://github.com/oracle/graal-dev-kit/releases/download/4.7.3.5/4.7.3.5_streaming_oci-streaming-demo-java-gradle.zip">Gradle OCI Streaming Example <img src="https://graal.cloud/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" class="download-img-guides"/></a>
+        <a href="https://github.com/oracle/graal-dev-kit/releases/download/4.7.3.4/4.7.3.4_streaming_oci-streaming-demo-java-gradle.zip">Gradle OCI Streaming Example <img src="https://graal.cloud/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" class="download-img-guides"/></a>
     </div>
     <div id="maven" aria-labelledby="ui-id-2" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
-        <a href="https://github.com/oracle/graal-dev-kit/releases/download/4.7.3.5/4.7.3.5_streaming_oci-streaming-demo-java-maven.zip">Maven OCI Streaming Example <img src="https://graal.cloud/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" class="download-img-guides"/></a>
+        <a href="https://github.com/oracle/graal-dev-kit/releases/download/4.7.3.4/4.7.3.4_streaming_oci-streaming-demo-java-maven.zip">Maven OCI Streaming Example <img src="https://graal.cloud/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" class="download-img-guides"/></a>
     </div>
 </div>
 <div class="paragraph">
@@ -1314,11 +1321,11 @@ cmd /C "set MICRONAUT_ENVIRONMENTS=oraclecloud &amp;&amp; mvnw -pl {oci} mn:run"
 <div class="sect2">
 <h3 id="find-the-ocid-of-the-compartment">4.1. Find the OCID of the Compartment</h3>
 <div class="paragraph">
-<p>Find the <a href="https://docs.oracle.com/iaas/tools/oci-cli/latest/oci_cli_docs/cmdref/iam/compartment/list.html">OCID of the compartment</a>{:target=&quot;_blank&quot;} where you will deploy the microservices. Run this command to list all the compartments in your root compartment:</p>
+<p>Find the <a href="https://docs.oracle.com/iaas/tools/oci-cli/latest/oci_cli_docs/cmdref/iam/compartment/list.html" target="_blank" rel="noopener">OCID of the compartment</a> where you will deploy the microservices. Run this command to list all the compartments in your root compartment:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oci iam compartment list</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://docs.oracle.com/en-us/iaas/tools/oci-cli/3.56.0/oci_cli_docs/cmdref/iam/compartment/list.html" class="external" target="_blank" rel="noopener">oci iam compartment list</a></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1349,55 +1356,94 @@ cmd /C "set MICRONAUT_ENVIRONMENTS=oraclecloud &amp;&amp; mvnw -pl {oci} mn:run"
 <div class="paragraph">
 <p>For convenience, save the compartment OCID as an environment variable. For Linux or macOS, run the following command:</p>
 </div>
+<div class="tabs-doc ui-tabs ui-corner-all ui-widget ui-widget-content" data-name="system">
+<div data-value="linux" data-label="Linux and macOS" id="linux" aria-labelledby="ui-id-9" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false" style="">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export C=ocid1.compartment.oc1..aaaaaaaarkh3s2wcxbbm...</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export COMPARTEMENT_ID=ocid1.compartment.oc1..aaaaaaaarkh3s2wcxbbm...</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>or for Windows, if using <code>cmd</code> run this command:</p>
 </div>
+    <div data-value="windows" data-label="Windows" id="windows" aria-labelledby="ui-id-10" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">set C=ocid1.compartment.oc1..aaaaaaaarkh3s2wcxbbm...</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">set COMPARTEMENT_ID=ocid1.compartment.oc1..aaaaaaaarkh3s2wcxbbm...</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>and if using PowerShell run</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$C = "ocid1.compartment.oc1..aaaaaaaarkh3s2wcxbbm..."</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The examples below use Linux/macOS syntax for environment variables, for example <code>-c $C</code>. If you use Windows <code>cmd</code>, change those to <code>-c %C%</code> (but no change is needed if you use PowerShell).</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="create-a-stream-pool-and-streams">4.2. Create a Stream Pool and Streams</h3>
 <div class="paragraph">
-<p>Use the Oracle Cloud Infrastructure CLI to create a stream pool:</p>
+<p>Use the Oracle Cloud Infrastructure CLI to create a stream pool, and save its ID:</p>
 </div>
+<div class="tabs-doc ui-tabs ui-corner-all ui-widget ui-widget-content" data-name="system">
+<div data-value="linux" data-label="Linux and macOS" id="linux" aria-labelledby="ui-id-9" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false" style="">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oci streaming admin stream-pool create --compartment-id $C --name "gdk-guide-pool"</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://docs.oracle.com/en-us/iaas/tools/oci-cli/3.56.0/oci_cli_docs/cmdref/streaming/admin/stream-pool/create.html" class="external" target="_blank" rel="noopener">export OCI_STREAM_POOL_OCID=$(oci streaming admin stream-pool create \</a>
+      --compartment-id $COMPARTEMENT_ID --name gdk-guide-pool --wait-for-state ACTIVE | jq -r '.data.id')</code></pre>
+</div>
+</div>
+</div>
+    <div data-value="windows" data-label="Windows" id="windows" aria-labelledby="ui-id-10" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://docs.oracle.com/en-us/iaas/tools/oci-cli/3.56.0/oci_cli_docs/cmdref/streaming/admin/stream-pool/create.html" class="external" target="_blank" rel="noopener">oci streaming admin stream-pool create --compartment-id %C% --name gcn-guide-pool-test --wait-for-state ACTIVE | jq -r &quot;.data.id&quot; &gt; temp.txt</a>
+set /p OCI_STREAM_POOL_OCID=&lt;temp.txt</code></pre>
+</div>
+</div>
 </div>
 </div>
 <div class="paragraph">
-<p>Copy value in the <code>id</code> row and export it for later. Also save the fully-qualified domain name (FQDN) URL.</p>
+<p>Also save the fully-qualified domain name (FQDN) URL.</p>
 </div>
+<div class="tabs-doc ui-tabs ui-corner-all ui-widget ui-widget-content" data-name="system">
+<div data-value="linux" data-label="Linux and macOS" id="linux" aria-labelledby="ui-id-9" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false" style="">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export STREAM_POOL_ID=&lt;replace_with_the_copied_value&gt;</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://docs.oracle.com/en-us/iaas/tools/oci-cli/3.56.0/oci_cli_docs/cmdref/streaming/admin/stream-pool/get.html" class="external" target="_blank" rel="noopener">export OCI_STREAM_POOL_FQDN=$(oci streaming admin stream-pool get \</a>
+      --stream-pool-id $OCI_STREAM_POOL_OCID | jq -r '.data.&quot;endpoint-fqdn&quot;')</code></pre>
+</div>
+</div>
+</div>
+    <div data-value="windows" data-label="Windows" id="windows" aria-labelledby="ui-id-10" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://docs.oracle.com/en-us/iaas/tools/oci-cli/3.56.0/oci_cli_docs/cmdref/streaming/admin/stream-pool/get.html" class="external" target="_blank" rel="noopener">oci streaming admin stream-pool get --stream-pool-id %OCI_STREAM_POOL_OCID% | jq -r &quot;.data.\&quot;endpoint-fqdn\&quot;&quot; &gt;  temp.txt</a>
+set /p OCI_STREAM_POOL_FQDN=&lt;temp.txt</code></pre>
+</div>
+</div>
 </div>
 </div>
 <div class="paragraph">
 <p>Create a stream within the pool you created with the topic name used in the microservices ("analytics"):</p>
 </div>
+<div class="tabs-doc ui-tabs ui-corner-all ui-widget ui-widget-content" data-name="system">
+<div data-value="linux" data-label="Linux and macOS" id="linux" aria-labelledby="ui-id-9" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false" style="">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oci streaming admin stream create --stream-pool-id $STREAM_POOL_ID --partitions 1 --name "analytics"</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://docs.oracle.com/en-us/iaas/tools/oci-cli/3.56.0/oci_cli_docs/cmdref/streaming/admin/stream/create.html" class="external" target="_blank" rel="noopener">export STREAM_ID=$(oci streaming admin stream create \</a>
+      --stream-pool-id $OCI_STREAM_POOL_OCID --partitions 1 --name &quot;analytics&quot;  | jq -r '.data.id')</code></pre>
+</div>
+</div>
+</div>
+    <div data-value="windows" data-label="Windows" id="windows" aria-labelledby="ui-id-10" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://docs.oracle.com/en-us/iaas/tools/oci-cli/3.56.0/oci_cli_docs/cmdref/streaming/admin/stream/create.html" class="external" target="_blank" rel="noopener">oci streaming admin stream create --stream-pool-id %OCI_STREAM_POOL_OCID% --partitions 1 --name analytics  | jq -r &quot;.data.id&quot; &gt; temp.txt</a>
+set /p STREAM_ID=&lt; temp.txt</code></pre>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -1408,15 +1454,28 @@ cmd /C "set MICRONAUT_ENVIRONMENTS=oraclecloud &amp;&amp; mvnw -pl {oci} mn:run"
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oci iam user create --description "gdk-guide-streaming-user" --name "gdk-guide-streaming-user"</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://docs.oracle.com/en-us/iaas/tools/oci-cli/3.56.0/oci_cli_docs/cmdref/iam/user/create.html" class="external" target="_blank" rel="noopener">oci iam user create --description &quot;gdk-guide-streaming-user&quot; --name &quot;gdk-guide-streaming-user&quot;</a></code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>Copy the value in the <code>id</code> row and export it for later.</p>
 </div>
+<div class="tabs-doc ui-tabs ui-corner-all ui-widget ui-widget-content" data-name="system">
+<div data-value="linux" data-label="Linux and macOS" id="linux" aria-labelledby="ui-id-9" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false" style="">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export USER_OCID=&lt;replace_with_the_copied_value&gt;</code></pre>
+</div>
+</div>
+</div>
+    <div data-value="windows" data-label="Windows" id="windows" aria-labelledby="ui-id-10" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">set USER_OCID=&lt;replace_with_the_copied_value&gt;</code></pre>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -1438,9 +1497,9 @@ cmd /C "set MICRONAUT_ENVIRONMENTS=oraclecloud &amp;&amp; mvnw -pl {oci} mn:run"
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oci iam dynamic-group create --name gdk-guide-dg \
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://docs.oracle.com/en-us/iaas/tools/oci-cli/3.56.0/oci_cli_docs/cmdref/iam/dynamic-group/create.html" class="external" target="_blank" rel="noopener">oci iam dynamic-group create --name gdk-guide-dg \</a>
        --description gdk-guide-dg \
-       --matching-rule "ALL {instance.compartment.id = '&lt;compartment_ocid&gt;'}" \</code></pre>
+       --matching-rule &quot;ALL {instance.compartment.id = '&lt;compartment_ocid&gt;'}&quot; \</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1453,7 +1512,7 @@ cmd /C "set MICRONAUT_ENVIRONMENTS=oraclecloud &amp;&amp; mvnw -pl {oci} mn:run"
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oci iam auth-token create --description "gdk-guide-token" --user-id $USER_OCID</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://docs.oracle.com/en-us/iaas/tools/oci-cli/3.56.0/oci_cli_docs/cmdref/iam/auth-token/create.html" class="external" target="_blank" rel="noopener">oci iam auth-token create --description &quot;gdk-guide-token&quot; --user-id $USER_OCID</a></code></pre>
 </div>
 </div>
 </div>
@@ -1464,8 +1523,8 @@ cmd /C "set MICRONAUT_ENVIRONMENTS=oraclecloud &amp;&amp; mvnw -pl {oci} mn:run"
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oci iam policy create --compartment-id $C --description “gdk-guide-streaming-policy” --name "gdk-guide-streaming-policy" \
-  --statements '["Allow dynamic-group gdk-guide-dg to manage streams in compartment id &lt;compartment_ocid&gt;"]'</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://docs.oracle.com/en-us/iaas/tools/oci-cli/3.56.0/oci_cli_docs/cmdref/iam/policy/create.html" class="external" target="_blank" rel="noopener">oci iam policy create --compartment-id $COMPARTEMENT_ID --description “gdk-guide-streaming-policy” --name &quot;gdk-guide-streaming-policy&quot; \</a>
+  --statements '[&quot;Allow dynamic-group gdk-guide-dg to manage streams in compartment id &lt;compartment_ocid&gt;&quot;]'</code></pre>
 </div>
 </div>
 </div>
@@ -1667,6 +1726,9 @@ sudo firewall-cmd --reload</code></pre>
 <div class="paragraph">
 <p>Set environment variables, as follows:</p>
 </div>
+<div class="tabs-doc ui-tabs ui-corner-all ui-widget ui-widget-content" data-name="system">
+<div data-value="linux" data-label="Linux and macOS" id="linux" aria-labelledby="ui-id-9" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false" style="">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export OCI_STREAM_POOL_FQDN=&lt;the FQDN URL you saved earlier, for example cell-1.streaming.us-ashburn-1.oci.oraclecloud.com&gt;
@@ -1674,6 +1736,20 @@ export OCI_TENANCY_NAME=&lt;the name of your Oracle Cloud Infrastructure tenancy
 export OCI_USERNAME=&lt;the username you created above&gt;
 export OCI_STREAM_POOL_OCID=&lt;the stream pool OCID you saved earlier&gt;
 export OCI_AUTH_TOKEN=&lt;the auth token value you saved earlier&gt;</code></pre>
+</div>
+</div>
+</div>
+    <div data-value="windows" data-label="Windows" id="windows" aria-labelledby="ui-id-10" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">set OCI_STREAM_POOL_FQDN=&lt;the FQDN URL you saved earlier, for example cell-1.streaming.us-ashburn-1.oci.oraclecloud.com&gt;
+set OCI_TENANCY_NAME=&lt;the name of your Oracle Cloud Infrastructure tenancy&gt;
+set OCI_USERNAME=&lt;the username you created above&gt;
+set OCI_STREAM_POOL_OCID=&lt;the stream pool OCID you saved earlier&gt;
+set OCI_AUTH_TOKEN=&lt;the auth token value you saved earlier&gt;</code></pre>
+</div>
+</div>
 </div>
 </div>
 <div class="paragraph">
@@ -1772,6 +1848,9 @@ sudo firewall-cmd --reload</code></pre>
 <div class="paragraph">
 <p>Set environment variables, as follows:</p>
 </div>
+<div class="tabs-doc ui-tabs ui-corner-all ui-widget ui-widget-content" data-name="system">
+<div data-value="linux" data-label="Linux and macOS" id="linux" aria-labelledby="ui-id-9" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false" style="">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export OCI_STREAM_POOL_FQDN=&lt;the FQDN URL you saved earlier, for example cell-1.streaming.us-ashburn-1.oci.oraclecloud.com&gt;
@@ -1779,6 +1858,20 @@ export OCI_TENANCY_NAME=&lt;the name of your Oracle Cloud Infrastructure tenancy
 export OCI_USERNAME=&lt;the username you created above&gt;
 export OCI_STREAM_POOL_OCID=&lt;the stream pool OCID you saved earlier&gt;
 export OCI_AUTH_TOKEN=&lt;the auth token value you saved earlier&gt;</code></pre>
+</div>
+</div>
+</div>
+    <div data-value="windows" data-label="Windows" id="windows" aria-labelledby="ui-id-10" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">set OCI_STREAM_POOL_FQDN=&lt;the FQDN URL you saved earlier, for example cell-1.streaming.us-ashburn-1.oci.oraclecloud.com&gt;
+set OCI_TENANCY_NAME=&lt;the name of your Oracle Cloud Infrastructure tenancy&gt;
+set OCI_USERNAME=&lt;the username you created above&gt;
+set OCI_STREAM_POOL_OCID=&lt;the stream pool OCID you saved earlier&gt;
+set OCI_AUTH_TOKEN=&lt;the auth token value you saved earlier&gt;</code></pre>
+</div>
+</div>
 </div>
 </div>
 <div class="paragraph">
@@ -1810,7 +1903,7 @@ export OCI_AUTH_TOKEN=&lt;the auth token value you saved earlier&gt;</code></pre
 <p>Download the <a href="#download">example ZIP file</a> and copy it to the Compute instance:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">   scp -i /path/to/ssh-key-*.key /path/to/downloaded/streaming_sample.zip opc@[COMPUTE_INSTANCE_PUBLIC_IP]:~/streaming_sample.zip</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">scp -i /path/to/ssh-key-*.key /path/to/downloaded/streaming_sample.zip opc@[COMPUTE_INSTANCE_PUBLIC_IP]:~/streaming_sample.zip</code></pre>
 </div>
 </div>
 </li>
@@ -1826,8 +1919,8 @@ export OCI_AUTH_TOKEN=&lt;the auth token value you saved earlier&gt;</code></pre
 <p>Unpack the compressed file:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">   sudo yum install unzip
-   unzip streaming_sample.zip</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo yum install unzip
+unzip streaming_sample.zip</code></pre>
 </div>
 </div>
 </li>
@@ -1835,8 +1928,8 @@ export OCI_AUTH_TOKEN=&lt;the auth token value you saved earlier&gt;</code></pre
 <p>Install the packages that GraalVM needs to work properly on OCI:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">   sudo yum -y install libstdc++
-   sudo ln -s /usr/lib64/libstdc++.so.6 /usr/lib/libstdc++.so</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo yum -y install libstdc++
+sudo ln -s /usr/lib64/libstdc++.so.6 /usr/lib/libstdc++.so</code></pre>
 </div>
 </div>
 </li>
@@ -1844,7 +1937,7 @@ export OCI_AUTH_TOKEN=&lt;the auth token value you saved earlier&gt;</code></pre
 <p>Set the value of the <code>JAVA_HOME</code> environment variable to the location of GraalVM, for example:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">   export JAVA_HOME=/usr/lib64/graalvm/graalvm22-ee-java17</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export JAVA_HOME=/usr/lib64/graalvm/graalvm-java17</code></pre>
 </div>
 </div>
 </li>
