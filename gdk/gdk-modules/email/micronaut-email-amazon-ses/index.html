@@ -92,13 +92,6 @@
             color: #F68831;
             font-weight: bold;
         }
-        .language-bash a {
-            color: #d6d6d6 !important;
-        }
-        .language-bash a:hover {
-            color: white !important;
-            background-color: #1e2631 !important;
-        }
         a.external {
             color: #d6d6d6   !important;
         }
@@ -310,6 +303,9 @@
 </li>
 <li>
 <p>An Amazon Web Services (AWS) account. See <a href="/gdk/get-started/setting-up-cloud-accounts/">Setting up Your Cloud Accounts</a>.</p>
+</li>
+<li>
+<p>An AWS user with enough permissions to create and manage AWS S3 buckets.</p>
 </li>
 <li>
 <p>An Amazon SES sender identity. Create an identity at <a href="https://console.aws.amazon.com/ses/home">SES Console</a>.</p>
@@ -734,13 +730,13 @@ class MailControllerTest {
 </code><button>Copy</button></pre>
     </div>
     <div data-value="windows" data-label="Windows" id="windows" aria-labelledby="ui-id-12" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
-      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-built_in">set</span> AWS_ACCESS_KEY_ID=<span>xxx</span>
-<span class="hljs-built_in">set</span> AWS_SECRET_ACCESS_KEY=<span>xxx</span>
+      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-built_in">set</span> AWS_ACCESS_KEY_ID=<span class="hljs-string">xxx</span>
+<span class="hljs-built_in">set</span> AWS_SECRET_ACCESS_KEY=<span class="hljs-string">xxx</span>
 </code><button>Copy</button></pre>
     </div>
     <div data-value="windows-powershell" data-label="Windows PowerShell" id="windows-powershell" aria-labelledby="ui-id-13" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
-      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-variable">$ENV:</span>AWS_ACCESS_KEY_ID=<span class="hljs-string">"xxx"</span>
-<span class="hljs-variable">$ENV:</span>AWS_SECRET_ACCESS_KEY=<span class="hljs-string">"xxx"</span>
+      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-variable">$ENV:</span> AWS_ACCESS_KEY_ID=<span class="hljs-string">xxx</span>
+<span class="hljs-variable">$ENV:</span> AWS_SECRET_ACCESS_KEY=<span class="hljs-string">xxx</span>
 </code><button>Copy</button></pre>
     </div>
 </div>

@@ -92,13 +92,6 @@
             color: #F68831;
             font-weight: bold;
         }
-        .language-bash a {
-            color: #d6d6d6 !important;
-        }
-        .language-bash a:hover {
-            color: white !important;
-            background-color: #1e2631 !important;
-        }
         a.external {
             color: #d6d6d6   !important;
         }
@@ -654,15 +647,15 @@ public class EmailControllerTest {
 </code><button>Copy</button></pre>
     </div>
     <div data-value="windows" data-label="Windows" id="windows" aria-labelledby="ui-id-12" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
-      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-built_in">set</span> FROM_NAME=<span>GDK EMAIL</span>
-<span class="hljs-built_in">set</span> FROM_PASSWORD=<span>&lt;password or app password&gt;</span>
-<span class="hljs-built_in">set</span> FROM_EMAIL=<span>&lt;email@gmail.com&gt;</span>
+      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-built_in">set</span> FROM_NAME=<span class="hljs-string">GDK EMAIL</span>
+<span class="hljs-built_in">set</span> FROM_PASSWORD=<span class="hljs-string">&lt;password or app password&gt;</span>
+<span class="hljs-built_in">set</span> FROM_EMAIL=<span class="hljs-string">&lt;email@gmail.com&gt;</span>
 </code><button>Copy</button></pre>
     </div>
     <div data-value="windows-powershell" data-label="Windows PowerShell" id="windows-powershell" aria-labelledby="ui-id-13" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
-      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-variable">$ENV:</span>FROM_NAME=<span class="hljs-string">"GDK EMAIL"</span>
-<span class="hljs-variable">$ENV:</span>FROM_PASSWORD=<span class="hljs-string">"&lt;password or app password&gt;"</span>
-<span class="hljs-variable">$ENV:</span>FROM_EMAIL=<span class="hljs-string">"&lt;email@gmail.com&gt;"</span>
+      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-variable">$ENV:</span> FROM_NAME=<span class="hljs-string">GDK EMAIL</span>
+<span class="hljs-variable">$ENV:</span> FROM_PASSWORD=<span class="hljs-string">&lt;password or app password&gt;</span>
+<span class="hljs-variable">$ENV:</span> FROM_EMAIL=<span class="hljs-string">&lt;email@gmail.com&gt;</span>
 </code><button>Copy</button></pre>
     </div>
 </div>
@@ -712,7 +705,7 @@ public class EmailControllerTest {
         <pre><code class="language-bash hljs" data-highlighted="yes">./gradlew run</code><button>Copy</button></pre>
     </div>
     <div id="maven" aria-labelledby="ui-id-2" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
-        <pre><code class="language-bash hljs" data-highlighted="yes">./mvnw mn:run</code><button>Copy</button></pre>
+        <pre><code class="language-bash hljs" data-highlighted="yes">./mvnw run</code><button>Copy</button></pre>
     </div>
 </div>
 </div>

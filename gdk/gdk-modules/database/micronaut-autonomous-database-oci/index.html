@@ -92,13 +92,6 @@
             color: #F68831;
             font-weight: bold;
         }
-        .language-bash a {
-            color: #d6d6d6 !important;
-        }
-        .language-bash a:hover {
-            color: white !important;
-            background-color: #1e2631 !important;
-        }
         a.external {
             color: #d6d6d6   !important;
         }
@@ -839,7 +832,7 @@ class GenreControllerTest {
 </div>
 <div id="res-block" class="tabs-doc ui-tabs ui-corner-all ui-widget ui-widget-content" data-name="resource">
 <div data-value="console" data-label="Console" id="console" aria-labelledby="ui-id-20" role="tabpanel"
-         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false" style="">         <style>#console a { color: #1E90FF;}</style>
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false" style="">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -926,15 +919,15 @@ set ADMIN_PASSWORD="&lt;AdbAdminPassword&gt;"  <i class="conum" data-value="4"><
          class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false" style="">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://docs.oracle.com/en-us/iaas/tools/oci-cli/3.56.0/oci_cli_docs/cmdref/db/autonomous-database/create.html" class="external" target="_blank" rel="noopener">export DATASOURCES_DEFAULT_OCID=$(oci db autonomous-database create \</a>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://docs.oracle.com/en-us/iaas/tools/oci-cli/3.54.1/oci_cli_docs/cmdref/db/autonomous-database/create.html" class="external" target="_blank" rel="noopener">export DATASOURCES_DEFAULT_OCID=$(oci db autonomous-database create \</a>
 	--compartment-id $COMPARTMENT_OCID \
 	--display-name $ADB_INSTANCE_DISPLAY_NAME \
 	--db-name $ADB_INSTANCE_NAME \
 	--db-workload OLTP \
 	--admin-password $ADMIN_PASSWORD \
 	--license-model LICENSE_INCLUDED \
-	--data-storage-size-in-gbs 20 \
-	--compute-model ECPU \
+	--data-storage-size-in-tbs 1 \
+	--compute-model OCPU \
 	--wait-for-state AVAILABLE \
 	--compute-count 1  | jq '.data' | jq -r '.id')</code></pre>
 </div>
@@ -944,7 +937,7 @@ set ADMIN_PASSWORD="&lt;AdbAdminPassword&gt;"  <i class="conum" data-value="4"><
          class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://docs.oracle.com/en-us/iaas/tools/oci-cli/3.56.0/oci_cli_docs/cmdref/db/autonomous-database/create.html" class="external" target="_blank" rel="noopener">oci db autonomous-database create &#94;</a>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://docs.oracle.com/en-us/iaas/tools/oci-cli/3.54.1/oci_cli_docs/cmdref/db/autonomous-database/create.html" class="external" target="_blank" rel="noopener">oci db autonomous-database create </a>
       --compartment-id %COMPARTMENT_ID% ^
       --display-name %ADB_INSTANCE_DISPLAY_NAME% ^
       --db-name %ADB_INSTANCE_NAME% ^
@@ -954,7 +947,7 @@ set ADMIN_PASSWORD="&lt;AdbAdminPassword&gt;"  <i class="conum" data-value="4"><
       --data-storage-size-in-tbs 1 ^
       --compute-model OCPU ^
       --wait-for-state AVAILABLE ^
-      --compute-count 1  | jq &quot;.data&quot; | jq -r &quot;.id&quot; &gt; temp.txt
+      --compute-count 1  | jq ".data" | jq -r ".id" &gt; temp.txt
 set /p DATASOURCES_DEFAULT_OCID=&lt;temp.txt</code></pre>
 </div>
 </div>
@@ -1090,17 +1083,17 @@ CREATE SEQUENCE "GENRE_SEQ" MINVALUE 1 START WITH 1 NOCACHE NOCYCLE;</code></pre
 </code><button>Copy</button></pre>
     </div>
     <div data-value="windows" data-label="Windows" id="windows" aria-labelledby="ui-id-12" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
-      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-built_in">set</span> DATASOURCES_DEFAULT_OCID=<span>&lt;ocid&gt; </span><i class="conum" data-value="1"/></i><b>(1)</b>
-<span class="hljs-built_in">set</span> DATASOURCES_DEFAULT_WALLET_PASSWORD=<span>&lt;AdbWalletPassword&gt; </span><i class="conum" data-value="2"/></i><b>(2)</b>
-<span class="hljs-built_in">set</span> DATASOURCES_DEFAULT_USERNAME=<span>&lt;AdbUsername&gt; </span><i class="conum" data-value="3"/></i><b>(3)</b>
-<span class="hljs-built_in">set</span> DATASOURCES_DEFAULT_PASSWORD=<span>&lt;AdbPassword&gt; </span><i class="conum" data-value="4"/></i><b>(4)</b>
+      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-built_in">set</span> DATASOURCES_DEFAULT_OCID=<span class="hljs-string">&lt;ocid&gt; </span><i class="conum" data-value="1"/></i><b>(1)</b>
+<span class="hljs-built_in">set</span> DATASOURCES_DEFAULT_WALLET_PASSWORD=<span class="hljs-string">&lt;AdbWalletPassword&gt; </span><i class="conum" data-value="2"/></i><b>(2)</b>
+<span class="hljs-built_in">set</span> DATASOURCES_DEFAULT_USERNAME=<span class="hljs-string">&lt;AdbUsername&gt; </span><i class="conum" data-value="3"/></i><b>(3)</b>
+<span class="hljs-built_in">set</span> DATASOURCES_DEFAULT_PASSWORD=<span class="hljs-string">&lt;AdbPassword&gt; </span><i class="conum" data-value="4"/></i><b>(4)</b>
 </code><button>Copy</button></pre>
     </div>
     <div data-value="windows-powershell" data-label="Windows PowerShell" id="windows-powershell" aria-labelledby="ui-id-13" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
-      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-variable">$ENV:</span>DATASOURCES_DEFAULT_OCID=<span class="hljs-string">"&lt;ocid&gt; "</span><i class="conum" data-value="1"/></i><b>(1)</b>
-<span class="hljs-variable">$ENV:</span>DATASOURCES_DEFAULT_WALLET_PASSWORD=<span class="hljs-string">"&lt;AdbWalletPassword&gt; "</span><i class="conum" data-value="2"/></i><b>(2)</b>
-<span class="hljs-variable">$ENV:</span>DATASOURCES_DEFAULT_USERNAME=<span class="hljs-string">"&lt;AdbUsername&gt; "</span><i class="conum" data-value="3"/></i><b>(3)</b>
-<span class="hljs-variable">$ENV:</span>DATASOURCES_DEFAULT_PASSWORD=<span class="hljs-string">"&lt;AdbPassword&gt; "</span><i class="conum" data-value="4"/></i><b>(4)</b>
+      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-variable">$ENV:</span> DATASOURCES_DEFAULT_OCID=<span class="hljs-string">&lt;ocid&gt; </span><i class="conum" data-value="1"/></i><b>(1)</b>
+<span class="hljs-variable">$ENV:</span> DATASOURCES_DEFAULT_WALLET_PASSWORD=<span class="hljs-string">&lt;AdbWalletPassword&gt; </span><i class="conum" data-value="2"/></i><b>(2)</b>
+<span class="hljs-variable">$ENV:</span> DATASOURCES_DEFAULT_USERNAME=<span class="hljs-string">&lt;AdbUsername&gt; </span><i class="conum" data-value="3"/></i><b>(3)</b>
+<span class="hljs-variable">$ENV:</span> DATASOURCES_DEFAULT_PASSWORD=<span class="hljs-string">&lt;AdbPassword&gt; </span><i class="conum" data-value="4"/></i><b>(4)</b>
 </code><button>Copy</button></pre>
     </div>
 </div>

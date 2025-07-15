@@ -92,13 +92,6 @@
             color: #F68831;
             font-weight: bold;
         }
-        .language-bash a {
-            color: #d6d6d6 !important;
-        }
-        .language-bash a:hover {
-            color: white !important;
-            background-color: #1e2631 !important;
-        }
         a.external {
             color: #d6d6d6   !important;
         }
@@ -457,7 +450,7 @@
 <div class="paragraph">
 <p>Open the <em>micronaut-cli.yml</em> file, you can see what features are packaged with the application:</p>
 </div>
-<pre><code class="language-bash hljs" data-highlighted="yes">features: [app-name, discovery-kubernetes, gdk-bom, gdk-k8s, gdk-license, gdk-platform-independent, graalvm, http-client, java, java-application, jib, junit, kubernetes, kubernetes-client-openapi, logback, management, maven, maven-enforcer-plugin, micronaut-http-validation, netty-server, properties, readme, security, security-annotations, serialization-jackson, shade, static-resources]</code><button>Copy</button></pre>
+<pre><code class="language-bash hljs" data-highlighted="yes">features: [app-name, discovery-kubernetes, gdk-bom, gdk-k8s, gdk-license, gdk-platform-independent, graalvm, http-client, java, java-application, jib, junit, kubernetes, kubernetes-client, logback, management, maven, maven-enforcer-plugin, micronaut-http-validation, netty-server, properties, readme, security, security-annotations, serialization-jackson, shade, static-resources]</code><button>Copy</button></pre>
 <div class="sect2">
 <h3 id="controllers-in-the-users-microservice">1.1. Controllers in the <em>Users</em> Microservice</h3>
 <div class="olist arabic">
@@ -1017,7 +1010,7 @@ authentication-credentials.password=example-password</code></pre>
 <div class="paragraph">
 <p>Open the <em>micronaut-cli.yml</em> file, you can see what features are packaged with the application:</p>
 </div>
-<pre><code class="language-bash hljs" data-highlighted="yes">features: [app-name, discovery-kubernetes, gdk-bom, gdk-k8s, gdk-license, gdk-platform-independent, graalvm, http-client, java, java-application, jib, junit, kubernetes, kubernetes-client-openapi, logback, management, maven, maven-enforcer-plugin, micronaut-http-validation, netty-server, properties, readme, security, security-annotations, serialization-jackson, shade, static-resources]</code><button>Copy</button></pre>
+<pre><code class="language-bash hljs" data-highlighted="yes">features: [app-name, discovery-kubernetes, gdk-bom, gdk-k8s, gdk-license, gdk-platform-independent, graalvm, http-client, java, java-application, jib, junit, kubernetes, kubernetes-client, logback, management, maven, maven-enforcer-plugin, micronaut-http-validation, netty-server, properties, readme, security, security-annotations, serialization-jackson, shade, static-resources]</code><button>Copy</button></pre>
 <div class="sect2">
 <h3 id="controllers-in-the-orders-microservice">2.1. Controllers in the <em>Orders</em> Microservice</h3>
 <div class="olist arabic">
@@ -1743,7 +1736,7 @@ authentication-credentials.password=example-password</code></pre>
 <div class="paragraph">
 <p>Open the <em>micronaut-cli.yml</em> file, you can see what features are packaged with the application:</p>
 </div>
-<pre><code class="language-bash hljs" data-highlighted="yes">features: [app-name, discovery-kubernetes, gdk-bom, gdk-k8s, gdk-license, gdk-platform-independent, graalvm, http-client, java, java-application, jib, junit, kubernetes, kubernetes-client-openapi, logback, management, maven, maven-enforcer-plugin, micronaut-http-validation, mockito, netty-server, properties, readme, serialization-jackson, shade, static-resources]</code><button>Copy</button></pre>
+<pre><code class="language-bash hljs" data-highlighted="yes">features: [app-name, discovery-kubernetes, gdk-bom, gdk-k8s, gdk-license, gdk-platform-independent, graalvm, http-client, java, java-application, jib, junit, kubernetes, kubernetes-client, logback, management, maven, maven-enforcer-plugin, micronaut-http-validation, mockito, netty-server, properties, readme, serialization-jackson, shade, static-resources]</code><button>Copy</button></pre>
 <div class="sect2">
 <h3 id="controllers-in-the-api-gateway-microservice">3.1. Controllers in the <em>API</em> (Gateway) Microservice</h3>
 <div class="olist arabic">
@@ -2048,7 +2041,7 @@ import io.micronaut.http.filter.ClientFilterChain;
 import io.micronaut.http.filter.HttpClientFilter;
 import org.reactivestreams.Publisher;
 
-@Filter(patterns = Filter.MATCH_ALL_PATTERN, serviceId = { "orders", "users" } )
+@Filter(Filter.MATCH_ALL_PATTERN)
 class AuthClientFilter implements HttpClientFilter {
 
     private final Credentials credentials;
@@ -2568,7 +2561,8 @@ authentication-credentials.password=example-password</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -X "POST" "localhost/api/users" \
      -H 'Content-Type: application/json; charset=utf-8' \
-     -d '{ "first_name": "Nemanja", "last_name": "Mikic", "username": "nmikic" }'</code></pre>
+     -d '{ "first_name": "Nemanja", "last_name": "Mikic", "username": "nmikic" }' \
+     | jq</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2591,7 +2585,8 @@ authentication-credentials.password=example-password</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -X "POST" "localhost/api/orders" \
      -H 'Content-Type: application/json; charset=utf-8' \
-     -d '{ "user_id": 1, "item_ids": [1,2] }'</code></pre>
+     -d '{ "user_id": 1, "item_ids": [1,2] }' \
+     | jq</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2629,7 +2624,8 @@ authentication-credentials.password=example-password</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl "localhost/api/orders" \
-     -H 'Content-Type: application/json; charset=utf-8'</code></pre>
+     -H 'Content-Type: application/json; charset=utf-8' \
+     | jq</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2670,7 +2666,8 @@ authentication-credentials.password=example-password</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -X "POST" "localhost/api/orders" \
      -H 'Content-Type: application/json; charset=utf-8' \
-     -d '{ "user_id": 100, "item_ids": [1,2] }'</code></pre>
+     -d '{ "user_id": 100, "item_ids": [1,2] }' \
+     | jq</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3214,7 +3211,8 @@ spec:
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -X "POST" "localhost/api/users" \
      -H 'Content-Type: application/json; charset=utf-8' \
-     -d '{ "first_name": "Nemanja", "last_name": "Mikic", "username": "nmikic" }'</code></pre>
+     -d '{ "first_name": "Nemanja", "last_name": "Mikic", "username": "nmikic" }' \
+     | jq</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3237,7 +3235,8 @@ spec:
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -X "POST" "localhost/api/orders" \
      -H 'Content-Type: application/json; charset=utf-8' \
-     -d '{ "user_id": 1, "item_ids": [1,2] }'</code></pre>
+     -d '{ "user_id": 1, "item_ids": [1,2] }' \
+     | jq</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3275,7 +3274,8 @@ spec:
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl "localhost/api/orders" \
-     -H 'Content-Type: application/json; charset=utf-8'</code></pre>
+     -H 'Content-Type: application/json; charset=utf-8' \
+     | jq</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3316,7 +3316,8 @@ spec:
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -X "POST" "localhost/api/orders" \
      -H 'Content-Type: application/json; charset=utf-8' \
-     -d '{ "user_id": 100, "item_ids": [1,2] }'</code></pre>
+     -d '{ "user_id": 100, "item_ids": [1,2] }' \
+     | jq</code></pre>
 </div>
 </div>
 <div class="paragraph">
