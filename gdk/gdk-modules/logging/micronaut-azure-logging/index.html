@@ -323,10 +323,10 @@ Typically, application logs are written to <code>stdout</code> and to files, but
         <li class="tabs-maven ui-tabs-tab ui-corner-top ui-state-default" role="tab" tabindex="-1" aria-controls="maven" aria-labelledby="ui-id-2" aria-selected="false" aria-expanded="false"><a name="maven" href="#maven" tabindex="-1" class="ui-tabs-anchor" id="ui-id-2">Maven</a></li>
     </ul>
     <div id="gradle" aria-labelledby="ui-id-1" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false">
-        <a href="https://github.com/oracle/graal-dev-kit/releases/download/4.7.3.4/4.7.3.4_logging_azure-logging-demo-java-gradle.zip">Gradle Azure Logging Example <img src="https://graal.cloud/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" class="download-img-guides"/></a>
+        <a href="https://github.com/oracle/graal-dev-kit/releases/download/4.7.3.5/4.7.3.5_logging_azure-logging-demo-java-gradle.zip">Gradle Azure Logging Example <img src="https://graal.cloud/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" class="download-img-guides"/></a>
     </div>
     <div id="maven" aria-labelledby="ui-id-2" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
-        <a href="https://github.com/oracle/graal-dev-kit/releases/download/4.7.3.4/4.7.3.4_logging_azure-logging-demo-java-maven.zip">Maven Azure Logging Example <img src="https://graal.cloud/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" class="download-img-guides"/></a>
+        <a href="https://github.com/oracle/graal-dev-kit/releases/download/4.7.3.5/4.7.3.5_logging_azure-logging-demo-java-maven.zip">Maven Azure Logging Example <img src="https://graal.cloud/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" class="download-img-guides"/></a>
     </div>
 </div>
 <div class="paragraph">
@@ -463,7 +463,7 @@ class LogController {
 <span class="hljs-built_in">export</span> TABLE_NAME=<span class="hljs-string">GDKTable_CL</span>
 <span class="hljs-built_in">export</span> COLLECTION_ENDPOINT_NAME=<span class="hljs-string">gdkCollectionEndpoint</span>
 <span class="hljs-built_in">export</span> RESOURCE_GROUP_NAME=<span class="hljs-string">gdkguidelogging</span>
-<span class="hljs-built_in">export</span> GDK_WORK_SPACE=<span class="hljs-string">gdktworkspace</span>
+<span class="hljs-built_in">export</span> GDK_WORKSPACE=<span class="hljs-string">gdktworkspace</span>
 <span class="hljs-built_in">export</span> STREAM_NAME=<span class="hljs-string">Custom-GDKTable</span>
 </code><button>Copy</button></pre>
     </div>
@@ -472,7 +472,7 @@ class LogController {
 <span class="hljs-built_in">set</span> TABLE_NAME=<span>GDKTable_CL</span>
 <span class="hljs-built_in">set</span> COLLECTION_ENDPOINT_NAME=<span>gdkCollectionEndpoint</span>
 <span class="hljs-built_in">set</span> RESOURCE_GROUP_NAME=<span>gdkguidelogging</span>
-<span class="hljs-built_in">set</span> GDK_WORK_SPACE=<span>gdktworkspace</span>
+<span class="hljs-built_in">set</span> GDK_WORKSPACE=<span>gdktworkspace</span>
 <span class="hljs-built_in">set</span> STREAM_NAME=<span>Custom-GDKTable</span>
 </code><button>Copy</button></pre>
     </div>
@@ -481,7 +481,7 @@ class LogController {
 <span class="hljs-variable">$ENV:</span>TABLE_NAME=<span class="hljs-string">"GDKTable_CL"</span>
 <span class="hljs-variable">$ENV:</span>COLLECTION_ENDPOINT_NAME=<span class="hljs-string">"gdkCollectionEndpoint"</span>
 <span class="hljs-variable">$ENV:</span>RESOURCE_GROUP_NAME=<span class="hljs-string">"gdkguidelogging"</span>
-<span class="hljs-variable">$ENV:</span>GDK_WORK_SPACE=<span class="hljs-string">"gdktworkspace"</span>
+<span class="hljs-variable">$ENV:</span>GDK_WORKSPACE=<span class="hljs-string">"gdktworkspace"</span>
 <span class="hljs-variable">$ENV:</span>STREAM_NAME=<span class="hljs-string">"Custom-GDKTable"</span>
 </code><button>Copy</button></pre>
     </div>
@@ -554,8 +554,8 @@ cli-block-os::unix-start[]</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/monitor/log-analytics/workspace?view=azure-cli-latest#az-monitor-log-analytics-workspace-create" class="external" target="_blank" rel="noopener">export GDK_WORK_SPACE_ID=$(az monitor log-analytics workspace create \</a>
-    --name $GDK_WORK_SPACE \
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/monitor/log-analytics/workspace?view=azure-cli-latest#az-monitor-log-analytics-workspace-create" class="external" target="_blank" rel="noopener">export GDK_WORKSPACE_ID=$(az monitor log-analytics workspace create \</a>
+    --name $GDK_WORKSPACE \
     --resource-group $RESOURCE_GROUP_NAME \
     | jq -r '.customerId')</code></pre>
 </div>
@@ -566,9 +566,9 @@ cli-block-os::unix-start[]</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/monitor/log-analytics/workspace?view=azure-cli-latest#az-monitor-log-analytics-workspace-create" class="external" target="_blank" rel="noopener">az monitor log-analytics workspace create &#94;</a>
-        --name %GDK_WORK_SPACE% ^
+        --name %GDK_WORKSPACE% ^
         --resource-group %RESOURCE_GROUP_NAME% | jq -r &quot;.customerId&quot; &gt; temp.txt
-set /p GDK_WORK_SPACE_ID=&lt;temp.txt</code></pre>
+set /p GDK_WORKSPACE_ID=&lt;temp.txt</code></pre>
 </div>
 </div>
 </div>
@@ -618,7 +618,7 @@ set /p COLLECTION_ENDPOINT_URL=&lt;temp.txt</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/monitor/log-analytics/workspace/table?view=azure-cli-latest#az-monitor-log-analytics-workspace-table-create" class="external" target="_blank" rel="noopener">az monitor log-analytics workspace table create \</a>
     --name $TABLE_NAME \
-    --workspace-name $GDK_WORK_SPACE \
+    --workspace-name $GDK_WORKSPACE \
     --columns EventTimestamp=long Source=string Subject=string Data=string TimeGenerated=datetime \
     --resource-group $RESOURCE_GROUP_NAME</code></pre>
 </div>
@@ -630,7 +630,7 @@ set /p COLLECTION_ENDPOINT_URL=&lt;temp.txt</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/monitor/log-analytics/workspace/table?view=azure-cli-latest#az-monitor-log-analytics-workspace-table-create" class="external" target="_blank" rel="noopener">az monitor log-analytics workspace table create &#94;</a>
         --name %TABLE_NAME% ^
-        --workspace-name %GDK_WORK_SPACE% ^
+        --workspace-name %GDK_WORKSPACE% ^
         --columns EventTimestamp=long Source=string Subject=string Data=string TimeGenerated=datetime ^
         --resource-group %RESOURCE_GROUP_NAME%</code></pre>
 </div>
@@ -677,7 +677,7 @@ set /p COLLECTION_ENDPOINT_URL=&lt;temp.txt</code></pre>
       "destinations": {
          "logAnalytics": [
             {
-               "workspaceResourceId": "/subscriptions/SUBSCRIPTION_ID/resourceGroups/RESOURCE_GROUP_NAME/providers/microsoft.operationalinsights/workspaces/GDK_WORK_SPACE",
+               "workspaceResourceId": "/subscriptions/SUBSCRIPTION_ID/resourceGroups/RESOURCE_GROUP_NAME/providers/microsoft.operationalinsights/workspaces/GDK_WORKSPACE",
                "name": "gdkLogDestination"
             }
          ]
@@ -709,7 +709,7 @@ set /p COLLECTION_ENDPOINT_URL=&lt;temp.txt</code></pre>
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sed -i -e "s/LOCATION/$LOCATION/" dcr.json
 sed -i -e "s/SUBSCRIPTION_ID/$SUBSCRIPTION_ID/" dcr.json
 sed -i -e "s/RESOURCE_GROUP_NAME/$RESOURCE_GROUP_NAME/" dcr.json
-sed -i -e "s/GDK_WORK_SPACE/$GDK_WORK_SPACE/" dcr.json
+sed -i -e "s/GDK_WORKSPACE/$GDK_WORKSPACE/" dcr.json
 sed -i -e "s/TABLE_NAME/$TABLE_NAME/" dcr.json
 sed -i -e "s/STREAM_NAME/$STREAM_NAME/" dcr.json</code></pre>
 </div>
@@ -722,7 +722,7 @@ sed -i -e "s/STREAM_NAME/$STREAM_NAME/" dcr.json</code></pre>
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sed -i "s/LOCATION/%LOCATION%/" dcr.json
 sed -i "s/SUBSCRIPTION_ID/%SUBSCRIPTION_ID%/" dcr.json
 sed -i "s/RESOURCE_GROUP_NAME/%RESOURCE_GROUP_NAME%/" dcr.json
-sed -i "s/GDK_WORK_SPACE/%GDK_WORK_SPACE%/" dcr.json
+sed -i "s/GDK_WORKSPACE/%GDK_WORKSPACE%/" dcr.json
 sed -i "s/TABLE_NAME/%TABLE_NAME%/" dcr.json
 sed -i "s/STREAM_NAME/%STREAM_NAME%/" dcr.json</code></pre>
 </div>
@@ -914,7 +914,7 @@ echo $POST_RES</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">  LOG_RES=$(az monitor log-analytics query \
-  --workspace $GDK_WORK_SPACE_ID  \
+  --workspace $GDK_WORKSPACE_ID  \
   --analytics-query "search in ($TABLE_NAME) \"$MESSAGE\" | where TimeGenerated &gt; ago(1h) | take 1" )
   echo $LOG_RES</code></pre>
 </div>
@@ -964,7 +964,7 @@ echo $POST_RES</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/monitor/log-analytics/workspace/table?view=azure-cli-latest#az-monitor-log-analytics-workspace-table-delete" class="external" target="_blank" rel="noopener">az monitor log-analytics workspace table delete --name $TABLE_NAME --workspace-name $GDK_WORK_SPACE --resource-group $RESOURCE_GROUP_NAME</a></code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/monitor/log-analytics/workspace/table?view=azure-cli-latest#az-monitor-log-analytics-workspace-table-delete" class="external" target="_blank" rel="noopener">az monitor log-analytics workspace table delete --name $TABLE_NAME --workspace-name $GDK_WORKSPACE --resource-group $RESOURCE_GROUP_NAME</a></code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -974,7 +974,7 @@ echo $POST_RES</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/monitor/log-analytics/workspace?view=azure-cli-latest#az-monitor-log-analytics-workspace-delete" class="external" target="_blank" rel="noopener">az monitor log-analytics workspace delete --workspace-name $GDK_WORK_SPACE --resource-group $RESOURCE_GROUP_NAME --force</a></code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/monitor/log-analytics/workspace?view=azure-cli-latest#az-monitor-log-analytics-workspace-delete" class="external" target="_blank" rel="noopener">az monitor log-analytics workspace delete --workspace-name $GDK_WORKSPACE --resource-group $RESOURCE_GROUP_NAME --force</a></code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -992,7 +992,7 @@ echo $POST_RES</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/monitor/log-analytics/workspace/table?view=azure-cli-latest#az-monitor-log-analytics-workspace-table-delete" class="external" target="_blank" rel="noopener">az monitor log-analytics workspace table delete --name %TABLE_NAME% --workspace-name %GDK_WORK_SPACE% --resource-group %RESOURCE_GROUP_NAME%</a></code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/monitor/log-analytics/workspace/table?view=azure-cli-latest#az-monitor-log-analytics-workspace-table-delete" class="external" target="_blank" rel="noopener">az monitor log-analytics workspace table delete --name %TABLE_NAME% --workspace-name %GDK_WORKSPACE% --resource-group %RESOURCE_GROUP_NAME%</a></code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -1002,7 +1002,7 @@ echo $POST_RES</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/monitor/log-analytics/workspace?view=azure-cli-latest#az-monitor-log-analytics-workspace-delete" class="external" target="_blank" rel="noopener">az monitor log-analytics workspace delete --workspace-name %GDK_WORK_SPACE% --resource-group %RESOURCE_GROUP_NAME% --force</a></code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/monitor/log-analytics/workspace?view=azure-cli-latest#az-monitor-log-analytics-workspace-delete" class="external" target="_blank" rel="noopener">az monitor log-analytics workspace delete --workspace-name %GDK_WORKSPACE% --resource-group %RESOURCE_GROUP_NAME% --force</a></code></pre>
 </div>
 </div>
 <div class="listingblock">

@@ -323,10 +323,10 @@
         <li class="tabs-maven ui-tabs-tab ui-corner-top ui-state-default" role="tab" tabindex="-1" aria-controls="maven" aria-labelledby="ui-id-2" aria-selected="false" aria-expanded="false"><a name="maven" href="#maven" tabindex="-1" class="ui-tabs-anchor" id="ui-id-2">Maven</a></li>
     </ul>
     <div id="gradle" aria-labelledby="ui-id-1" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false">
-        <a href="https://github.com/oracle/graal-dev-kit/releases/download/4.7.3.4/4.7.3.4_metrics_azure-metrics-demo-java-gradle.zip">Gradle Azure Metrics Example <img src="https://graal.cloud/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" class="download-img-guides"/></a>
+        <a href="https://github.com/oracle/graal-dev-kit/releases/download/4.7.3.5/4.7.3.5_metrics_azure-metrics-demo-java-gradle.zip">Gradle Azure Metrics Example <img src="https://graal.cloud/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" class="download-img-guides"/></a>
     </div>
     <div id="maven" aria-labelledby="ui-id-2" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
-        <a href="https://github.com/oracle/graal-dev-kit/releases/download/4.7.3.4/4.7.3.4_metrics_azure-metrics-demo-java-maven.zip">Maven Azure Metrics Example <img src="https://graal.cloud/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" class="download-img-guides"/></a>
+        <a href="https://github.com/oracle/graal-dev-kit/releases/download/4.7.3.5/4.7.3.5_metrics_azure-metrics-demo-java-maven.zip">Maven Azure Metrics Example <img src="https://graal.cloud/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" class="download-img-guides"/></a>
     </div>
 </div>
 <div class="paragraph">
@@ -970,7 +970,7 @@ class MicroserviceBooksNumberTest {
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export LOCATION="&lt;Location&gt;"  <i class="conum" data-value="1"></i><b>(1)</b>
 export RESOURCE_GROUP_NAME="&lt;ResourceGroupName&gt;"  <i class="conum" data-value="2"></i><b>(2)</b>
-export GDK_WORK_SPACE="&lt;GdkWorkSpace&gt;"   <i class="conum" data-value="3"></i><b>(3)</b>
+export GDK_WORKSPACE="&lt;GdkWorkSpace&gt;"   <i class="conum" data-value="3"></i><b>(3)</b>
 export GDK_APP="&lt;GdkApp&gt;"  <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
 </div>
 </div>
@@ -993,7 +993,7 @@ export GDK_APP="&lt;GdkApp&gt;"  <i class="conum" data-value="4"></i><b>(4)</b><
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">set LOCATION="&lt;Location&gt;"    <i class="conum" data-value="1"></i><b>(1)</b>
 set RESOURCE_GROUP_NAME="&lt;ResourceGroupName&gt;"    <i class="conum" data-value="2"></i><b>(2)</b>
-set GDK_WORK_SPACE="&lt;GdkWorkSpace&gt;"  <i class="conum" data-value="3"></i><b>(3)</b>
+set GDK_WORKSPACE="&lt;GdkWorkSpace&gt;"  <i class="conum" data-value="3"></i><b>(3)</b>
 set GDK_APP="&lt;GdkApp&gt;"   <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
 </div>
 </div>
@@ -1069,7 +1069,7 @@ set GDK_APP="&lt;GdkApp&gt;"   <i class="conum" data-value="4"></i><b>(4)</b></c
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">az monitor log-analytics workspace create \
-    --workspace-name $GDK_WORK_SPACE \
+    --workspace-name $GDK_WORKSPACE \
     --resource-group $RESOURCE_GROUP_NAME</code></pre>
 </div>
 </div>
@@ -1079,7 +1079,7 @@ set GDK_APP="&lt;GdkApp&gt;"   <i class="conum" data-value="4"></i><b>(4)</b></c
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/monitor/log-analytics/workspace?view=azure-cli-latest#az-monitor-log-analytics-workspace-create" class="external" target="_blank" rel="noopener">az monitor log-analytics workspace create &#94;</a>
-    --workspace-name %GDK_WORK_SPACE% ^
+    --workspace-name %GDK_WORKSPACE% ^
     --resource-group %RESOURCE_GROUP_NAME%</code></pre>
 </div>
 </div>
@@ -1111,7 +1111,7 @@ set GDK_APP="&lt;GdkApp&gt;"   <i class="conum" data-value="4"></i><b>(4)</b></c
     --app $GDK_APP \
     --location $LOCATION \
     --resource-group $RESOURCE_GROUP_NAME \
-    --workspace $GDK_WORK_SPACE | jq -r '.instrumentationKey')</code></pre>
+    --workspace $GDK_WORKSPACE | jq -r '.instrumentationKey')</code></pre>
 </div>
 </div>
 </div>
@@ -1122,7 +1122,7 @@ set GDK_APP="&lt;GdkApp&gt;"   <i class="conum" data-value="4"></i><b>(4)</b></c
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/monitor/app-insights/component?view=azure-cli-latest#az-monitor-app-insights-component-create" class="external" target="_blank" rel="noopener">az monitor app-insights component create &#94;</a>
         --app %GDK_APP% --location %LOCATION% ^
         --resource-group %RESOURCE_GROUP_NAME% ^
-        --workspace %GDK_WORK_SPACE% | jq -r &quot;.instrumentationKey&quot; &gt; temp.txt
+        --workspace %GDK_WORKSPACE% | jq -r &quot;.instrumentationKey&quot; &gt; temp.txt
 set /p INSTRUMENTATION_KEY=&lt;temp.txt</code></pre>
 </div>
 </div>
@@ -1414,7 +1414,7 @@ Packaged as a native executable, it significantly reduces application startup ti
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/monitor/log-analytics/workspace?view=azure-cli-latest#az-monitor-log-analytics-workspace-delete" class="external" target="_blank" rel="noopener">az monitor log-analytics workspace delete --workspace-name $GDK_WORK_SPACE --resource-group $RESOURCE_GROUP_NAME --yes</a></code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/monitor/log-analytics/workspace?view=azure-cli-latest#az-monitor-log-analytics-workspace-delete" class="external" target="_blank" rel="noopener">az monitor log-analytics workspace delete --workspace-name $GDK_WORKSPACE --resource-group $RESOURCE_GROUP_NAME --yes</a></code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -1432,7 +1432,7 @@ Packaged as a native executable, it significantly reduces application startup ti
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/monitor/log-analytics/workspace?view=azure-cli-latest#az-monitor-log-analytics-workspace-delete" class="external" target="_blank" rel="noopener">az monitor log-analytics workspace delete --workspace-name %GDK_WORK_SPACE% --resource-group %RESOURCE_GROUP_NAME% --yes</a></code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/monitor/log-analytics/workspace?view=azure-cli-latest#az-monitor-log-analytics-workspace-delete" class="external" target="_blank" rel="noopener">az monitor log-analytics workspace delete --workspace-name %GDK_WORKSPACE% --resource-group %RESOURCE_GROUP_NAME% --yes</a></code></pre>
 </div>
 </div>
 <div class="listingblock">

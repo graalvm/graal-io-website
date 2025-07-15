@@ -365,10 +365,10 @@
         <li class="tabs-maven ui-tabs-tab ui-corner-top ui-state-default" role="tab" tabindex="-1" aria-controls="maven" aria-labelledby="ui-id-2" aria-selected="false" aria-expanded="false"><a name="maven" href="#maven" tabindex="-1" class="ui-tabs-anchor" id="ui-id-2">Maven</a></li>
     </ul>
     <div id="gradle" aria-labelledby="ui-id-1" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false">
-        <a href="https://github.com/oracle/graal-dev-kit/releases/download/4.7.3.4/4.7.3.4_serverless_azure-serverless-demo-java-gradle.zip">Gradle Azure Serverless Example <img src="https://graal.cloud/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" class="download-img-guides"/></a>
+        <a href="https://github.com/oracle/graal-dev-kit/releases/download/4.7.3.5/4.7.3.5_serverless_azure-serverless-demo-java-gradle.zip">Gradle Azure Serverless Example <img src="https://graal.cloud/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" class="download-img-guides"/></a>
     </div>
     <div id="maven" aria-labelledby="ui-id-2" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
-        <a href="https://github.com/oracle/graal-dev-kit/releases/download/4.7.3.4/4.7.3.4_serverless_azure-serverless-demo-java-maven.zip">Maven Azure Serverless Example <img src="https://graal.cloud/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" class="download-img-guides"/></a>
+        <a href="https://github.com/oracle/graal-dev-kit/releases/download/4.7.3.5/4.7.3.5_serverless_azure-serverless-demo-java-maven.zip">Maven Azure Serverless Example <img src="https://graal.cloud/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" class="download-img-guides"/></a>
     </div>
 </div>
 <div class="paragraph">
@@ -977,27 +977,40 @@ Status code: 200</code></pre>
 <p>First define the environment variables:</p>
 </div>
 <div class="tabs-doc ui-tabs ui-corner-all ui-widget ui-widget-content" data-name="system">
-    <div data-value="linux" data-label="Linux &amp; macOS" id="linux" aria-labelledby="ui-id-11" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false" style="">
-      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-built_in">export</span> LOCATION=<span class="hljs-string">eastus</span>
-<span class="hljs-built_in">export</span> STORAGE_NAME=<span class="hljs-string">gdkstorage</span>
-<span class="hljs-built_in">export</span> FUNCTION_NAME=<span class="hljs-string">gdkfunction</span>
-<span class="hljs-built_in">export</span> RESOURCE_GROUP_NAME=<span class="hljs-string">gdkguides</span>
-</code><button>Copy</button></pre>
-    </div>
-    <div data-value="windows" data-label="Windows" id="windows" aria-labelledby="ui-id-12" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
-      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-built_in">set</span> LOCATION=<span>eastus</span>
-<span class="hljs-built_in">set</span> STORAGE_NAME=<span>gdkstorage</span>
-<span class="hljs-built_in">set</span> FUNCTION_NAME=<span>gdkfunction</span>
-<span class="hljs-built_in">set</span> RESOURCE_GROUP_NAME=<span>gdkguides</span>
-</code><button>Copy</button></pre>
-    </div>
-    <div data-value="windows-powershell" data-label="Windows PowerShell" id="windows-powershell" aria-labelledby="ui-id-13" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
-      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-variable">$ENV:</span>LOCATION=<span class="hljs-string">"eastus"</span>
-<span class="hljs-variable">$ENV:</span>STORAGE_NAME=<span class="hljs-string">"gdkstorage"</span>
-<span class="hljs-variable">$ENV:</span>FUNCTION_NAME=<span class="hljs-string">"gdkfunction"</span>
-<span class="hljs-variable">$ENV:</span>RESOURCE_GROUP_NAME=<span class="hljs-string">"gdkguides"</span>
-</code><button>Copy</button></pre>
-    </div>
+<div data-value="linux" data-label="Linux and macOS" id="linux" aria-labelledby="ui-id-9" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false" style="">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">  export LOCATION=&lt;Location&gt;    <i class="conum" data-value="1"></i><b>(1)</b>
+  export RESOURCE_GROUP_NAME=&lt;ServerlessResourceGroupName&gt;   <i class="conum" data-value="2"></i><b>(2)</b>
+  export STORAGE_NAME=&lt;ServerlessStorageName&gt;   <i class="conum" data-value="3"></i><b>(3)</b>
+  export FUNCTION_NAME=&lt;FunctionName&gt;   <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
+</div>
+</div>
+</div>
+    <div data-value="windows" data-label="Windows" id="windows" aria-labelledby="ui-id-10" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">set LOCATION="&lt;Location&gt;"  <i class="conum" data-value="1"></i><b>(1)</b>
+set RESOURCE_GROUP_NAME="&lt;ServerlessResourceGroupName&gt;"  <i class="conum" data-value="2"></i><b>(2)</b>
+set STORAGE_NAME="&lt;ServerlessStorageName&gt;"  <i class="conum" data-value="3"></i><b>(3)</b>
+set FUNCTION_NAME="&lt;FunctionName&gt;"  <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>1</strong> Set location Ex. <em>eastus</em></p>
+</div>
+<div class="paragraph">
+<p><strong>2</strong> Set resource group name Ex. <em>gdkguides</em></p>
+</div>
+<div class="paragraph">
+<p><strong>3</strong> Set storage name Ex. <em>gdkstorage</em></p>
+</div>
+<div class="paragraph">
+<p><strong>4</strong> Set function name Ex. _gdkfunction    _</p>
 </div>
 <div class="sect2">
 <h3 id="create-a-resource-group">4.1. Create a Resource Group</h3>
@@ -1025,26 +1038,49 @@ Status code: 200</code></pre>
 </div>
 </div>
 </div>
-<div class="paragraph">
-<p>If you prefer using the region geographically closer to you, run <code>az account list-locations</code> to list all available regions.</p>
-</div>
 </div>
 <div class="sect2">
 <h3 id="register-microsoft-containerregistry-as-a-resource-provider">4.2. Register Microsoft.ContainerRegistry as a Resource Provider</h3>
 <div class="paragraph">
 <p>Run the <a href="https://learn.microsoft.com/cli/azure/provider?view=azure-cli-latest#az-provider-register"><code>az provider register</code></a> command to register <em>Microsoft.ContainerRegistry</em> as a Resource Provider:</p>
 </div>
+<div class="tabs-doc ui-tabs ui-corner-all ui-widget ui-widget-content" data-name="system">
+<div data-value="linux" data-label="Linux and macOS" id="linux" aria-labelledby="ui-id-9" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false" style="">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">az provider register --namespace 'Microsoft.ContainerRegistry'</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/provider?view=azure-cli-latest#az-provider-register" class="external" target="_blank" rel="noopener">az provider register --namespace 'Microsoft.ContainerRegistry' --wait</a></code></pre>
+</div>
+</div>
+</div>
+    <div data-value="windows" data-label="Windows" id="windows" aria-labelledby="ui-id-10" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/provider?view=azure-cli-latest#az-provider-register" class="external" target="_blank" rel="noopener">az provider register --namespace &quot;Microsoft.ContainerRegistry&quot; --wait</a></code></pre>
+</div>
+</div>
 </div>
 </div>
 <div class="paragraph">
 <p>This will take a while to execute. Check the status:</p>
 </div>
+<div class="tabs-doc ui-tabs ui-corner-all ui-widget ui-widget-content" data-name="system">
+<div data-value="linux" data-label="Linux and macOS" id="linux" aria-labelledby="ui-id-9" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false" style="">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">az provider show --namespace Microsoft.ContainerRegistry</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/provider?view=azure-cli-latest#az-provider-show" class="external" target="_blank" rel="noopener">export REGISTRATION_STATE=$(az provider show --namespace Microsoft.ContainerRegistry | jq -r .registrationState)</a></code></pre>
+</div>
+</div>
+</div>
+    <div data-value="windows" data-label="Windows" id="windows" aria-labelledby="ui-id-10" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/provider?view=azure-cli-latest#az-provider-show" class="external" target="_blank" rel="noopener">az provider show --namespace Microsoft.ContainerRegistry | jq -r &quot;.registrationState&quot; &gt; tmp.txt</a></code></pre>
+</div>
+</div>
 </div>
 </div>
 <div class="paragraph">
@@ -1056,17 +1092,43 @@ Status code: 200</code></pre>
 <div class="paragraph">
 <p>Run the <a href="https://learn.microsoft.com/cli/azure/provider?view=azure-cli-latest#az-provider-register"><code>az provider register</code></a> command to register <em>Microsoft.Storage</em> as a Resource Provider:</p>
 </div>
+<div class="tabs-doc ui-tabs ui-corner-all ui-widget ui-widget-content" data-name="system">
+<div data-value="linux" data-label="Linux and macOS" id="linux" aria-labelledby="ui-id-9" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false" style="">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">az provider register --namespace 'Microsoft.Storage'</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/provider?view=azure-cli-latest#az-provider-register" class="external" target="_blank" rel="noopener">az provider register --namespace 'Microsoft.Storage' --wait</a></code></pre>
+</div>
+</div>
+</div>
+    <div data-value="windows" data-label="Windows" id="windows" aria-labelledby="ui-id-10" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/provider?view=azure-cli-latest#az-provider-register" class="external" target="_blank" rel="noopener">az provider register --namespace &quot;Microsoft.Storage&quot; --wait</a></code></pre>
+</div>
+</div>
 </div>
 </div>
 <div class="paragraph">
 <p>This will take a while to execute. Check the status:</p>
 </div>
+<div class="tabs-doc ui-tabs ui-corner-all ui-widget ui-widget-content" data-name="system">
+<div data-value="linux" data-label="Linux and macOS" id="linux" aria-labelledby="ui-id-9" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false" style="">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">az provider show --namespace Microsoft.Storage</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/provider?view=azure-cli-latest#az-provider-show" class="external" target="_blank" rel="noopener">export REGISTRATION_STATE=$(az provider show --namespace 'Microsoft.Storage' | jq -r .registrationState)</a></code></pre>
+</div>
+</div>
+</div>
+    <div data-value="windows" data-label="Windows" id="windows" aria-labelledby="ui-id-10" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/provider?view=azure-cli-latest#az-provider-show" class="external" target="_blank" rel="noopener">az provider show --namespace Microsoft.Storage  | jq -r &quot;.registrationState&quot; &gt; tmp.txt</a></code></pre>
+</div>
+</div>
 </div>
 </div>
 <div class="paragraph">
@@ -1078,17 +1140,43 @@ Status code: 200</code></pre>
 <div class="paragraph">
 <p>Run the <a href="https://learn.microsoft.com/cli/azure/provider?view=azure-cli-latest#az-provider-register"><code>az provider register</code></a> command to register <em>Microsoft.Web</em> as a Resource Provider:</p>
 </div>
+<div class="tabs-doc ui-tabs ui-corner-all ui-widget ui-widget-content" data-name="system">
+<div data-value="linux" data-label="Linux and macOS" id="linux" aria-labelledby="ui-id-9" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false" style="">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">az provider register --namespace 'Microsoft.Web'</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/provider?view=azure-cli-latest#az-provider-register" class="external" target="_blank" rel="noopener">az provider register --namespace 'Microsoft.Web' --wait</a></code></pre>
+</div>
+</div>
+</div>
+    <div data-value="windows" data-label="Windows" id="windows" aria-labelledby="ui-id-10" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/provider?view=azure-cli-latest#az-provider-register" class="external" target="_blank" rel="noopener">az provider register --namespace &quot;Microsoft.Web&quot; --wait</a></code></pre>
+</div>
+</div>
 </div>
 </div>
 <div class="paragraph">
 <p>This will take a while to execute. Check the status:</p>
 </div>
+<div class="tabs-doc ui-tabs ui-corner-all ui-widget ui-widget-content" data-name="system">
+<div data-value="linux" data-label="Linux and macOS" id="linux" aria-labelledby="ui-id-9" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false" style="">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">az provider show --namespace Microsoft.Web</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/provider?view=azure-cli-latest#az-provider-show" class="external" target="_blank" rel="noopener">export REGISTRATION_STATE=$(az provider show --namespace 'Microsoft.Web' | jq -r .registrationState)</a></code></pre>
+</div>
+</div>
+</div>
+    <div data-value="windows" data-label="Windows" id="windows" aria-labelledby="ui-id-10" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/provider?view=azure-cli-latest#az-provider-show" class="external" target="_blank" rel="noopener">az provider show --namespace Microsoft.Web  | jq -r &quot;.registrationState&quot; &gt; tmp.txt</a></code></pre>
+</div>
+</div>
 </div>
 </div>
 <div class="paragraph">
@@ -1100,9 +1188,12 @@ Status code: 200</code></pre>
 <div class="paragraph">
 <p>Run the <a href="https://learn.microsoft.com/cli/azure/storage/account?view=azure-cli-latest#az-storage-account-create"><code>az storage account create</code></a> command to create a storage account:</p>
 </div>
+<div class="tabs-doc ui-tabs ui-corner-all ui-widget ui-widget-content" data-name="system">
+<div data-value="linux" data-label="Linux and macOS" id="linux" aria-labelledby="ui-id-9" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false" style="">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">az storage account create \
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/storage/account?view=azure-cli-latest#az-storage-account-create" class="external" target="_blank" rel="noopener">az storage account create \</a>
    --name $STORAGE_NAME \
    --resource-group $RESOURCE_GROUP_NAME \
    --encryption-services blob \
@@ -1111,14 +1202,32 @@ Status code: 200</code></pre>
 </div>
 </div>
 </div>
+    <div data-value="windows" data-label="Windows" id="windows" aria-labelledby="ui-id-10" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/storage/account?view=azure-cli-latest#az-storage-account-create" class="external" target="_blank" rel="noopener">az storage account create &#94;</a>
+   --name %STORAGE_NAME% ^
+   --resource-group %RESOURCE_GROUP_NAME% ^
+   --encryption-services blob ^
+   --location %LOCATION% ^
+   --sku Standard_ZRS</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 <div class="sect2">
 <h3 id="create-an-azure-function">4.6. Create an Azure Function</h3>
 <div class="paragraph">
 <p>Run the <a href="https://learn.microsoft.com/en-us/cli/azure/functionapp?view=azure-cli-latest#az-functionapp-create"><code>az functionapp create</code></a> command to create an Azure function:</p>
 </div>
+<div class="tabs-doc ui-tabs ui-corner-all ui-widget ui-widget-content" data-name="system">
+<div data-value="linux" data-label="Linux and macOS" id="linux" aria-labelledby="ui-id-9" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false" style="">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export FUNCTION_OUTPUT=$(az functionapp create \
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/functionapp?view=azure-cli-latest#az-functionapp-create" class="external" target="_blank" rel="noopener">export APP_SERVICE_PLAN_ID=$(az functionapp create \</a>
     --name $FUNCTION_NAME \
     --resource-group $RESOURCE_GROUP_NAME \
     --storage-account $STORAGE_NAME \
@@ -1127,7 +1236,27 @@ Status code: 200</code></pre>
     --runtime java \
     --runtime-version 17 \
     --functions-version 4  \
-    --disable-app-insights)</code></pre>
+    --disable-app-insights | jq -r '.serverFarmId')</code></pre>
+</div>
+</div>
+</div>
+    <div data-value="windows" data-label="Windows" id="windows" aria-labelledby="ui-id-10" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/functionapp?view=azure-cli-latest#az-functionapp-create" class="external" target="_blank" rel="noopener">az functionapp create &#94;</a>
+    --name %FUNCTION_NAME% ^
+    --resource-group %RESOURCE_GROUP_NAME% ^
+    --storage-account %STORAGE_NAME% ^
+    --consumption-plan-location %LOCATION% ^
+    --os-type linux ^
+    --runtime java ^
+    --runtime-version 17 ^
+    --functions-version 4  ^
+    --disable-app-insights | jq -r '.serverFarmId') &gt; tmp.txt
+set /p APP_SERVICE_PLAN_ID=&lt;tmp.txt</code></pre>
+</div>
+</div>
 </div>
 </div>
 <div class="paragraph">
@@ -1135,9 +1264,7 @@ Status code: 200</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export APP_SERVICE_PLAN_ID=$(echo "$FUNCTION_OUTPUT" | jq -r '.serverFarmId')
-
-az functionapp plan show --ids $APP_SERVICE_PLAN_ID</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/functionapp/plan?view=azure-cli-latest#az-functionapp-plan-show" class="external" target="_blank" rel="noopener">az functionapp plan show --ids $APP_SERVICE_PLAN_ID</a></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1164,8 +1291,8 @@ az functionapp plan show --ids $APP_SERVICE_PLAN_ID</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy"> azurefunctions {
-     resourceGroup = [RESOURCE GROUP]
-     appName = [FUNCTION NAME]
+     resourceGroup = [RESOURCE_GROUP_NAME]
+     appName = [FUNCTION_NAME]
      pricingTier = "Consumption"
      region = [LOCATION]
      runtime {
@@ -1179,7 +1306,7 @@ az functionapp plan show --ids $APP_SERVICE_PLAN_ID</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p>Replace <code>[FUNCTION NAME]</code>, <code>[LOCATION]</code> and <code>[RESOURCE GROUP]</code> with their corresponding values.</p>
+<p>Replace <code>[FUNCTION_NAME]</code>, <code>[LOCATION]</code> and <code>[RESOURCE_GROUP_NAME]</code> with their corresponding values.</p>
 </li>
 </ul>
 </div>
@@ -1200,9 +1327,9 @@ az functionapp plan show --ids $APP_SERVICE_PLAN_ID</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml"> &lt;properties&gt;
    ...
-   &lt;functionAppName&gt;[FUNCTION NAME]&lt;/functionAppName&gt;
+   &lt;functionAppName&gt;[FUNCTION_NAME]&lt;/functionAppName&gt;
    &lt;functionAppRegion&gt;[LOCATION]&lt;/functionAppRegion&gt;
-   &lt;functionResourceGroup&gt;[RESOURCE GROUP]&lt;/functionResourceGroup&gt;
+   &lt;functionResourceGroup&gt;[RESOURCE_GROUP_NAME]&lt;/functionResourceGroup&gt;
    &lt;functionRuntimeJavaVersion&gt;17&lt;/functionRuntimeJavaVersion&gt;
    &lt;functionRuntimeOs&gt;linux&lt;/functionRuntimeOs&gt;
    ...
@@ -1212,7 +1339,7 @@ az functionapp plan show --ids $APP_SERVICE_PLAN_ID</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p>Replace <code>[FUNCTION NAME]</code>, <code>[LOCATION]</code> and <code>[RESOURCE GROUP]</code> with their corresponding values.</p>
+<p>Replace <code>[FUNCTION_NAME]</code>, <code>[LOCATION]</code> and <code>[RESOURCE_GROUP_NAME]</code> with their corresponding values.</p>
 </li>
 </ul>
 </div>
@@ -1352,27 +1479,40 @@ Status code: 200</code></pre>
 <p>Set the following environment variables:</p>
 </div>
 <div class="tabs-doc ui-tabs ui-corner-all ui-widget ui-widget-content" data-name="system">
-    <div data-value="linux" data-label="Linux &amp; macOS" id="linux" aria-labelledby="ui-id-11" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false" style="">
-      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-built_in">export</span> DOCKER_IMAGE_NAME=<span class="hljs-string">gdkAzureFunction</span>
-<span class="hljs-built_in">export</span> REPO_NAME=<span class="hljs-string">gdkrepo</span>
-<span class="hljs-built_in">export</span> FUNCTION_NAME_NATIVE=<span class="hljs-string">gdkfunction-native</span>
-<span class="hljs-built_in">export</span> APP_SERVICE_PLAN=<span class="hljs-string">gdkAppServicePlan</span>
-</code><button>Copy</button></pre>
-    </div>
-    <div data-value="windows" data-label="Windows" id="windows" aria-labelledby="ui-id-12" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
-      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-built_in">set</span> DOCKER_IMAGE_NAME=<span>gdkAzureFunction</span>
-<span class="hljs-built_in">set</span> REPO_NAME=<span>gdkrepo</span>
-<span class="hljs-built_in">set</span> FUNCTION_NAME_NATIVE=<span>gdkfunction-native</span>
-<span class="hljs-built_in">set</span> APP_SERVICE_PLAN=<span>gdkAppServicePlan</span>
-</code><button>Copy</button></pre>
-    </div>
-    <div data-value="windows-powershell" data-label="Windows PowerShell" id="windows-powershell" aria-labelledby="ui-id-13" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
-      <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-variable">$ENV:</span>DOCKER_IMAGE_NAME=<span class="hljs-string">"gdkAzureFunction"</span>
-<span class="hljs-variable">$ENV:</span>REPO_NAME=<span class="hljs-string">"gdkrepo"</span>
-<span class="hljs-variable">$ENV:</span>FUNCTION_NAME_NATIVE=<span class="hljs-string">"gdkfunction-native"</span>
-<span class="hljs-variable">$ENV:</span>APP_SERVICE_PLAN=<span class="hljs-string">"gdkAppServicePlan"</span>
-</code><button>Copy</button></pre>
-    </div>
+<div data-value="linux" data-label="Linux and macOS" id="linux" aria-labelledby="ui-id-9" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false" style="">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export DOCKER_IMAGE_NAME=&lt;DockerImageName&gt;    <i class="conum" data-value="1"></i><b>(1)</b>
+export REPO_NAME=&lt;RepoName&gt;     <i class="conum" data-value="2"></i><b>(2)</b>
+export FUNCTION_NAME_NATIVE=&lt;FunctionNameNative&gt;     <i class="conum" data-value="3"></i><b>(3)</b>
+export APP_SERVICE_PLAN=&lt;AppServicePlan&gt;     <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
+</div>
+</div>
+</div>
+    <div data-value="windows" data-label="Windows" id="windows" aria-labelledby="ui-id-10" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">set DOCKER_IMAGE_NAME="&lt;DockerImageName&gt;"   <i class="conum" data-value="1"></i><b>(1)</b>
+set REPO_NAME="&lt;RepoName&gt;"   <i class="conum" data-value="2"></i><b>(2)</b>
+set FUNCTION_NAME_NATIVE="&lt;FunctionNameNative&gt;"   <i class="conum" data-value="3"></i><b>(3)</b>
+set APP_SERVICE_PLAN="&lt;AppServicePlan&gt;"  <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>1</strong> Set docker image name Ex. <em>gdkAzureFunction</em></p>
+</div>
+<div class="paragraph">
+<p><strong>2</strong> Set repo name Ex. <em>gdkrepo</em></p>
+</div>
+<div class="paragraph">
+<p><strong>3</strong> Set native function name Ex. <em>gdkfunction-native</em></p>
+</div>
+<div class="paragraph">
+<p><strong>4</strong> Set app service name Ex. <em>gdkAppServicePlan</em></p>
 </div>
 <div class="sect2">
 <h3 id="configure-the-application">7.1. Configure the Application</h3>
@@ -1470,9 +1610,12 @@ Status code: 200</code></pre>
 <div class="paragraph">
 <p>Run the <a href="https://learn.microsoft.com/en-us/cli/azure/functionapp/plan?view=azure-cli-latest#az-functionapp-plan-create"><code>az functionapp plan create</code></a> command to create an App Service Plan:</p>
 </div>
+<div class="tabs-doc ui-tabs ui-corner-all ui-widget ui-widget-content" data-name="system">
+<div data-value="linux" data-label="Linux and macOS" id="linux" aria-labelledby="ui-id-9" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false" style="">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">az functionapp plan create \
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/functionapp/plan?view=azure-cli-latest#az-functionapp-plan-create" class="external" target="_blank" rel="noopener">az functionapp plan create \</a>
    --name $APP_SERVICE_PLAN \
    --resource-group $RESOURCE_GROUP_NAME \
    --location $LOCATION \
@@ -1481,18 +1624,50 @@ Status code: 200</code></pre>
 </div>
 </div>
 </div>
+    <div data-value="windows" data-label="Windows" id="windows" aria-labelledby="ui-id-10" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/functionapp/plan?view=azure-cli-latest#az-functionapp-plan-create" class="external" target="_blank" rel="noopener">az functionapp plan create  &#94;</a>
+   --name %APP_SERVICE_PLAN%  ^
+   --resource-group %RESOURCE_GROUP_NAME%  ^
+   --location %LOCATION%  ^
+   --sku B1  ^
+   --is-linux</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 <div class="sect2">
 <h3 id="create-an-azure-container-registry">7.3. Create an Azure Container Registry</h3>
 <div class="paragraph">
 <p>Run the <a href="https://learn.microsoft.com/en-us/cli/azure/acr#az-acr-create"><code>az acr create</code></a> command to create an Azure Container Registry:</p>
 </div>
+<div class="tabs-doc ui-tabs ui-corner-all ui-widget ui-widget-content" data-name="system">
+<div data-value="linux" data-label="Linux and macOS" id="linux" aria-labelledby="ui-id-9" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false" style="">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">az acr create \
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/acr?view=azure-cli-latest#az-acr-create" class="external" target="_blank" rel="noopener">az acr create \</a>
    --name $REPO_NAME \
    --resource-group $RESOURCE_GROUP_NAME \
    --sku Basic \
    --admin-enabled true</code></pre>
+</div>
+</div>
+</div>
+    <div data-value="windows" data-label="Windows" id="windows" aria-labelledby="ui-id-10" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/acr?view=azure-cli-latest#az-acr-create" class="external" target="_blank" rel="noopener">az acr create  &#94;</a>
+   --name %REPO_NAME%  ^
+   --resource-group %RESOURCE_GROUP_NAME%  ^
+   --sku Basic  ^
+   --admin-enabled true</code></pre>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -1512,19 +1687,29 @@ Status code: 200</code></pre>
 <div class="paragraph">
 <p>Run <code>az acr login</code> with the <code>--expose-token</code> flag to generate an access token, and save it in the <code>TOKEN</code> environment variable:</p>
 </div>
+<div class="tabs-doc ui-tabs ui-corner-all ui-widget ui-widget-content" data-name="system">
+<div data-value="linux" data-label="Linux and macOS" id="linux" aria-labelledby="ui-id-9" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false" style="">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export TOKEN=$(az acr login --name $REPO_NAME --expose-token --output tsv --query accessToken)</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Then run:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker login $REPO_NAME.azurecr.io \
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/acr?view=azure-cli-latest#az-acr-login" class="external" target="_blank" rel="noopener">export TOKEN=$(az acr login --name $REPO_NAME --expose-token --output tsv --query accessToken)</a>
+docker login $REPO_NAME.azurecr.io \
    --username 00000000-0000-0000-0000-000000000000 \
    --password-stdin &lt;&lt;&lt; $TOKEN</code></pre>
+</div>
+</div>
+</div>
+    <div data-value="windows" data-label="Windows" id="windows" aria-labelledby="ui-id-10" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/acr?view=azure-cli-latest#az-acr-login" class="external" target="_blank" rel="noopener">az acr login --name $REPO_NAME --expose-token --output tsv --query accessToken &gt; tmp.txt</a>
+set /p TOKEN=&lt;tmp.txt
+docker login %REPO_NAME%.azurecr.io  ^
+   --username 00000000-0000-0000-0000-000000000000  ^
+   --password-stdin &lt;&lt;&lt; %TOKEN%</code></pre>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -1729,37 +1914,53 @@ Status code: 200</code></pre>
 <div class="paragraph">
 <p>Delete the resource group and all of its resources with:</p>
 </div>
+<div class="tabs-doc ui-tabs ui-corner-all ui-widget ui-widget-content" data-name="system">
+<div data-value="linux" data-label="Linux and macOS" id="linux" aria-labelledby="ui-id-9" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false" style="">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/group?view=azure-cli-latest#az-group-delete" class="external" target="_blank" rel="noopener">az group delete --name $RESOURCE_GROUP_NAME --yes</a></code></pre>
+</div>
+</div>
+</div>
+    <div data-value="windows" data-label="Windows" id="windows" aria-labelledby="ui-id-10" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/group?view=azure-cli-latest#az-group-delete" class="external" target="_blank" rel="noopener">az group delete --name %RESOURCE_GROUP_NAME% --yes</a></code></pre>
+</div>
+</div>
+</div>
+</div>
 <div class="paragraph">
 <p>Alternatively, run these commands to delete resources individually:</p>
 </div>
+<div class="tabs-doc ui-tabs ui-corner-all ui-widget ui-widget-content" data-name="system">
+<div data-value="linux" data-label="Linux and macOS" id="linux" aria-labelledby="ui-id-9" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false" style="">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">az functionapp delete --name $FUNCTION_NAME --resource-group $RESOURCE_GROUP_NAME</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/functionapp/function?view=azure-cli-latest#az-functionapp-function-delete" class="external" target="_blank" rel="noopener">az functionapp delete --name $FUNCTION_NAME --resource-group $RESOURCE_GROUP_NAME</a>
+<a href="https://learn.microsoft.com/en-us/cli/azure/functionapp/function?view=azure-cli-latest#az-functionapp-function-delete" class="external" target="_blank" rel="noopener">az functionapp delete --name $FUNCTION_NAME_NATIVE --resource-group $RESOURCE_GROUP_NAME</a>
+<a href="https://learn.microsoft.com/en-us/cli/azure/functionapp/plan?view=azure-cli-latest#az-functionapp-plan-delete" class="external" target="_blank" rel="noopener">az functionapp plan delete --name $APP_SERVICE_PLAN --resource-group $RESOURCE_GROUP_NAME --yes</a>
+<a href="https://learn.microsoft.com/en-us/cli/azure/storage/account?view=azure-cli-latest#az-storage-account-delete" class="external" target="_blank" rel="noopener">az storage account delete --name $STORAGE_NAME --resource-group $RESOURCE_GROUP_NAME --yes</a>
+<a href="https://learn.microsoft.com/en-us/cli/azure/acr?view=azure-cli-latest#az-acr-delete" class="external" target="_blank" rel="noopener">az acr delete --name $REPO_NAME --yes</a>
+<a href="https://learn.microsoft.com/en-us/cli/azure/group?view=azure-cli-latest#az-group-delete" class="external" target="_blank" rel="noopener">az group delete --name $RESOURCE_GROUP_NAME --yes</a></code></pre>
 </div>
 </div>
+</div>
+    <div data-value="windows" data-label="Windows" id="windows" aria-labelledby="ui-id-10" role="tabpanel"
+         class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">az functionapp delete --name $FUNCTION_NAME_NATIVE --resource-group $RESOURCE_GROUP_NAME</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/functionapp/function?view=azure-cli-latest#az-functionapp-function-delete" class="external" target="_blank" rel="noopener">az functionapp delete --name %FUNCTION_NAME% --resource-group %RESOURCE_GROUP_NAME% -yes</a>
+<a href="https://learn.microsoft.com/en-us/cli/azure/functionapp/function?view=azure-cli-latest#az-functionapp-function-delete" class="external" target="_blank" rel="noopener">az functionapp delete --name %FUNCTION_NAME_NATIVE% --resource-group %RESOURCE_GROUP_NAME% -yes</a>
+<a href="https://learn.microsoft.com/en-us/cli/azure/functionapp/plan?view=azure-cli-latest#az-functionapp-plan-delete" class="external" target="_blank" rel="noopener">az functionapp plan delete --name %APP_SERVICE_PLAN% --resource-group %RESOURCE_GROUP_NAME% -yes</a>
+<a href="https://learn.microsoft.com/en-us/cli/azure/storage/account?view=azure-cli-latest#az-storage-account-delete" class="external" target="_blank" rel="noopener">az storage account delete --name %STORAGE_NAME% --resource-group %RESOURCE_GROUP_NAME% --yes</a>
+<a href="https://learn.microsoft.com/en-us/cli/azure/acr?view=azure-cli-latest#az-acr-delete" class="external" target="_blank" rel="noopener">az acr delete --name %REPO_NAME% --yes</a>
+<a href="https://learn.microsoft.com/en-us/cli/azure/group?view=azure-cli-latest#az-group-delete" class="external" target="_blank" rel="noopener">az group delete --name %RESOURCE_GROUP_NAME% --yes</a></code></pre>
 </div>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">az functionapp plan delete --name $APP_SERVICE_PLAN --resource-group $RESOURCE_GROUP_NAME</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">az storage account delete --name $STORAGE_NAME --resource-group $RESOURCE_GROUP_NAME --yes</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">az acr delete --name $REPO_NAME --yes</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">az group delete --name $RESOURCE_GROUP_NAME --yes</code></pre>
 </div>
 </div>
 <h3 id="summary" class="discrete">Summary</h3>
