@@ -1,3 +1,3 @@
-# Build Output Repository for GCN Website
+# Graal Development Kit for Micronaut Website
 
-This repository contains the build output for the GCN website: www.graal.cloud.
+This repository contains the GDK website: [graal.cloud](https://graal.cloud/).
