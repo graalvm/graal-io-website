@@ -951,8 +951,8 @@ set ADMIN_PASSWORD="&lt;AdbAdminPassword&gt;"  <i class="conum" data-value="4"><
       --db-workload OLTP ^
       --admin-password %ADMIN_PASSWORD% ^
       --license-model LICENSE_INCLUDED ^
-      --data-storage-size-in-tbs 1 ^
-      --compute-model OCPU ^
+      --data-storage-size-in-gbs 20 ^
+      --compute-model ECPU ^
       --wait-for-state AVAILABLE ^
       --compute-count 1  | jq &quot;.data&quot; | jq -r &quot;.id&quot; &gt; temp.txt
 set /p DATASOURCES_DEFAULT_OCID=&lt;temp.txt</code></pre>
