@@ -271,9 +271,9 @@
 <ul class="sectlevel1">
 <li><a href="#create-the-books-microservice">1. Create the <em>books</em> Microservice</a></li>
 <li><a href="#create-the-analytics-microservice">2. Create the <em>analytics</em> Microservice</a></li>
-<li><a href="#run-the-microservices">3. Run the Microservices</a></li>
-<li><a href="#set-up-aws-resources">4. Set up AWS Resources</a></li>
-<li><a href="#_configure_microservices">5. Configure Microservices</a></li>
+<li><a href="#set-up-aws-resources">3. Set up AWS Resources</a></li>
+<li><a href="#_configure_microservices">4. Configure Microservices</a></li>
+<li><a href="#run-the-microservices">5. Run the Microservices</a></li>
 <li><a href="#_generate_native_executables_using_graalvm">6. Generate Native Executables Using GraalVM</a></li>
 <li><a href="#deploy-the-books-microservice-to-aws-cloud">7. Deploy the <em>Books</em> Microservice to AWS Cloud</a></li>
 <li><a href="#deploy-the-analytics-microservice-to-aws-cloud">8. Deploy the <em>Analytics</em> Microservice to AWS Cloud</a></li>
@@ -1202,146 +1202,19 @@ kafka.enabled=true</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="run-the-microservices">3. Run the Microservices</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="run-the-books-microservice">3.1. Run the <em>books</em> Microservice</h3>
-<div class="paragraph">
-<p>Run the <em>books</em> microservice as follows:</p>
-</div>
-<div class="gradle-maven-tabs ui-tabs ui-corner-all ui-widget ui-widget-content">
-    <ul role="tablist" class="ui-tabs-nav ui-corner-all ui-helper-reset ui-helper-clearfix ui-widget-header">
-        <li class="tabs-gradle ui-tabs-tab ui-corner-top ui-state-default ui-tabs-active ui-state-active" role="tab" tabindex="0" aria-controls="gradle" aria-labelledby="ui-id-1" aria-selected="true" aria-expanded="true"><a name="gradle" href="#gradle" tabindex="-1" class="ui-tabs-anchor" id="ui-id-1">Gradle</a></li>
-        <li class="tabs-maven ui-tabs-tab ui-corner-top ui-state-default" role="tab" tabindex="-1" aria-controls="maven" aria-labelledby="ui-id-2" aria-selected="false" aria-expanded="false"><a name="maven" href="#maven" tabindex="-1" class="ui-tabs-anchor" id="ui-id-2">Maven</a></li>
-    </ul>
-    <div id="gradle" aria-labelledby="ui-id-1" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false">
-        <pre><code class="language-bash hljs" data-highlighted="yes">MICRONAUT_ENVIRONMENTS=ec2  ./gradlew :aws:run</code><button>Copy</button></pre>
-    </div>
-    <div id="maven" aria-labelledby="ui-id-2" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
-        <pre><code class="language-bash hljs" data-highlighted="yes">./mvnw install -pl lib -am
-MICRONAUT_ENVIRONMENTS=ec2 ./mvnw mn:run -pl aws</code><button>Copy</button></pre>
-    </div>
-</div>
-<div class="paragraph">
-<p>Or if you use Windows:</p>
-</div>
-<div class="gradle-maven-tabs ui-tabs ui-corner-all ui-widget ui-widget-content">
-    <ul role="tablist" class="ui-tabs-nav ui-corner-all ui-helper-reset ui-helper-clearfix ui-widget-header">
-        <li class="tabs-gradle ui-tabs-tab ui-corner-top ui-state-default ui-tabs-active ui-state-active" role="tab" tabindex="0" aria-controls="gradle" aria-labelledby="ui-id-1" aria-selected="true" aria-expanded="true"><a name="gradle" href="#gradle" tabindex="-1" class="ui-tabs-anchor" id="ui-id-1">Gradle</a></li>
-        <li class="tabs-maven ui-tabs-tab ui-corner-top ui-state-default" role="tab" tabindex="-1" aria-controls="maven" aria-labelledby="ui-id-2" aria-selected="false" aria-expanded="false"><a name="maven" href="#maven" tabindex="-1" class="ui-tabs-anchor" id="ui-id-2">Maven</a></li>
-    </ul>
-    <div id="gradle" aria-labelledby="ui-id-1" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false">
-        <pre><code class="language-bash hljs" data-highlighted="yes">cmd /C "set MICRONAUT_ENVIRONMENTS=ec2 &amp;&amp; gradlew :aws:run"</code><button>Copy</button></pre>
-    </div>
-    <div id="maven" aria-labelledby="ui-id-2" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
-        <pre><code class="language-bash hljs" data-highlighted="yes">./mvnw install -pl lib -am
-cmd /C "set MICRONAUT_ENVIRONMENTS=ec2 &amp;&amp; mvnw -pl {oci} mn:run"</code><button>Copy</button></pre>
-    </div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="run-the-analytics-microservice">3.2. Run the <em>analytics</em> Microservice</h3>
-<div class="paragraph">
-<p>Run the <em>analytics</em> microservice as follows:</p>
-</div>
-<div class="gradle-maven-tabs ui-tabs ui-corner-all ui-widget ui-widget-content">
-    <ul role="tablist" class="ui-tabs-nav ui-corner-all ui-helper-reset ui-helper-clearfix ui-widget-header">
-        <li class="tabs-gradle ui-tabs-tab ui-corner-top ui-state-default ui-tabs-active ui-state-active" role="tab" tabindex="0" aria-controls="gradle" aria-labelledby="ui-id-1" aria-selected="true" aria-expanded="true"><a name="gradle" href="#gradle" tabindex="-1" class="ui-tabs-anchor" id="ui-id-1">Gradle</a></li>
-        <li class="tabs-maven ui-tabs-tab ui-corner-top ui-state-default" role="tab" tabindex="-1" aria-controls="maven" aria-labelledby="ui-id-2" aria-selected="false" aria-expanded="false"><a name="maven" href="#maven" tabindex="-1" class="ui-tabs-anchor" id="ui-id-2">Maven</a></li>
-    </ul>
-    <div id="gradle" aria-labelledby="ui-id-1" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false">
-        <pre><code class="language-bash hljs" data-highlighted="yes">MICRONAUT_ENVIRONMENTS=ec2  ./gradlew :aws:run</code><button>Copy</button></pre>
-    </div>
-    <div id="maven" aria-labelledby="ui-id-2" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
-        <pre><code class="language-bash hljs" data-highlighted="yes">./mvnw install -pl lib -am
-MICRONAUT_ENVIRONMENTS=ec2 ./mvnw mn:run -pl aws</code><button>Copy</button></pre>
-    </div>
-</div>
-<div class="paragraph">
-<p>Or if you use Windows:</p>
-</div>
-<div class="gradle-maven-tabs ui-tabs ui-corner-all ui-widget ui-widget-content">
-    <ul role="tablist" class="ui-tabs-nav ui-corner-all ui-helper-reset ui-helper-clearfix ui-widget-header">
-        <li class="tabs-gradle ui-tabs-tab ui-corner-top ui-state-default ui-tabs-active ui-state-active" role="tab" tabindex="0" aria-controls="gradle" aria-labelledby="ui-id-1" aria-selected="true" aria-expanded="true"><a name="gradle" href="#gradle" tabindex="-1" class="ui-tabs-anchor" id="ui-id-1">Gradle</a></li>
-        <li class="tabs-maven ui-tabs-tab ui-corner-top ui-state-default" role="tab" tabindex="-1" aria-controls="maven" aria-labelledby="ui-id-2" aria-selected="false" aria-expanded="false"><a name="maven" href="#maven" tabindex="-1" class="ui-tabs-anchor" id="ui-id-2">Maven</a></li>
-    </ul>
-    <div id="gradle" aria-labelledby="ui-id-1" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false">
-        <pre><code class="language-bash hljs" data-highlighted="yes">cmd /C "set MICRONAUT_ENVIRONMENTS=ec2 &amp;&amp; gradlew :aws:run"</code><button>Copy</button></pre>
-    </div>
-    <div id="maven" aria-labelledby="ui-id-2" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
-        <pre><code class="language-bash hljs" data-highlighted="yes">./mvnw install -pl lib -am
-cmd /C "set MICRONAUT_ENVIRONMENTS=ec2 &amp;&amp; mvnw -pl {oci} mn:run"</code><button>Copy</button></pre>
-    </div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="test-the-microservices">3.3. Test the Microservices</h3>
-<div class="paragraph">
-<p>Use <code>curl</code> to test the microservices, as follows.</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Retrieve the list of books:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl http://localhost:8080/books</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">[{"isbn":"1491950358","name":"Building Microservices"},{"isbn":"1680502395","name":"Release It!"},{"isbn":"0321601912","name":"Continuous Delivery"}]</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Retrieve the details of a specified book:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl http://localhost:8080/books/1491950358</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{"isbn":"1491950358","name":"Building Microservices"}</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Retrieve the analytics:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl http://localhost:8081/analytics</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">[{"bookIsbn":"1491950358","count":1}]</code></pre>
-</div>
-</div>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>Update the <code>curl</code> command to the <em>Books</em> microservice to retrieve other books and repeat the invocations, then re-run the <code>curl</code> command to the <em>Analytics</em> microservice to see that the counts increase.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="set-up-aws-resources">4. Set up AWS Resources</h2>
+<h2 id="set-up-aws-resources">3. Set up AWS Resources</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Start with creating an administrator account, then set up the networking, the Kafka cluster, and configure the AWS EC2 instance.</p>
 </div>
 <div class="sect2">
-<h3 id="create-an-administrator-account">4.1. Create an Administrator Account</h3>
+<h3 id="create-an-administrator-account">3.1. Create an Administrator Account</h3>
 <div class="paragraph">
 <p>Instead of using your AWS root account, use an administrator account. If you do not have one already, see <a href="/gdk/get-started/setting-up-cloud-accounts/">Setting up Your Cloud Accounts</a>.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="define-your-vpc-and-internet-gateway-id-and-use-it-to-create-a-route">4.2. Define your VPC and Internet Gateway Id and use it to create a Route:</h3>
+<h3 id="define-your-vpc-and-internet-gateway-id-and-use-it-to-create-a-route">3.2. Define your VPC and Internet Gateway Id and use it to create a Route:</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1459,7 +1332,7 @@ set /p RT_ID=&lt;temp.txt</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="create-subnets">4.3. Create Subnets</h3>
+<h3 id="create-subnets">3.3. Create Subnets</h3>
 <div class="tabs-doc ui-tabs ui-corner-all ui-widget ui-widget-content" data-name="system">
 <div data-value="linux" data-label="Linux and macOS" id="linux" aria-labelledby="ui-id-9" role="tabpanel"
          class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false" style="">
@@ -1566,7 +1439,7 @@ set /p SN2_ID=&lt;temp.txt</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configure-a-msk-kafka-cluster">4.4. Configure a MSK Kafka Cluster</h3>
+<h3 id="configure-a-msk-kafka-cluster">3.4. Configure a MSK Kafka Cluster</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1677,7 +1550,7 @@ set /p KAFKA_BOOTSTRAP_SERVERS=&lt;temp.txt</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configure-network">4.5. Configure Network</h3>
+<h3 id="configure-network">3.5. Configure Network</h3>
 <div class="tabs-doc ui-tabs ui-corner-all ui-widget ui-widget-content" data-name="system">
 <div data-value="linux" data-label="Linux and macOS" id="linux" aria-labelledby="ui-id-9" role="tabpanel"
          class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false" style="">
@@ -1824,7 +1697,7 @@ set /p SG_ID=&lt;temp.txt</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="launch-an-ec2-instance">4.6. Launch an EC2 Instance</h3>
+<h3 id="launch-an-ec2-instance">3.6. Launch an EC2 Instance</h3>
 <div class="tabs-doc ui-tabs ui-corner-all ui-widget ui-widget-content" data-name="system">
 <div data-value="linux" data-label="Linux and macOS" id="linux" aria-labelledby="ui-id-9" role="tabpanel"
          class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false" style="">
@@ -2037,7 +1910,7 @@ echo %CURRENT_SG_IDS%</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configure-role-and-policy">4.7. Configure Role and Policy</h3>
+<h3 id="configure-role-and-policy">3.7. Configure Role and Policy</h3>
 <div class="paragraph">
 <p>Add the role and the policy for the EC2 instance to be able to interact with the Amazon MSK cluster.</p>
 </div>
@@ -2183,7 +2056,7 @@ echo %CURRENT_SG_IDS%</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="install-and-configure-a-kafka-client">4.8. Install and Configure a Kafka Client</h3>
+<h3 id="install-and-configure-a-kafka-client">3.8. Install and Configure a Kafka Client</h3>
 <div class="paragraph">
 <p>Install and configure a Kafka client library on the EC2 instance.</p>
 </div>
@@ -2295,7 +2168,7 @@ sasl.client.callback.handler.class=software.amazon.msk.auth.iam.IAMClientCallbac
 </div>
 </div>
 <div class="sect2">
-<h3 id="create-a-kafka-topic">4.9. Create a Kafka Topic</h3>
+<h3 id="create-a-kafka-topic">3.9. Create a Kafka Topic</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2333,7 +2206,7 @@ sasl.client.callback.handler.class=software.amazon.msk.auth.iam.IAMClientCallbac
 </div>
 </div>
 <div class="sect1">
-<h2 id="_configure_microservices">5. Configure Microservices</h2>
+<h2 id="_configure_microservices">4. Configure Microservices</h2>
 <div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
@@ -2384,6 +2257,133 @@ kafka.security.protocol=SASL_SSL</code></pre>
 </div>
 </li>
 </ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="run-the-microservices">5. Run the Microservices</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="run-the-books-microservice">5.1. Run the <em>books</em> Microservice</h3>
+<div class="paragraph">
+<p>Run the <em>books</em> microservice as follows:</p>
+</div>
+<div class="gradle-maven-tabs ui-tabs ui-corner-all ui-widget ui-widget-content">
+    <ul role="tablist" class="ui-tabs-nav ui-corner-all ui-helper-reset ui-helper-clearfix ui-widget-header">
+        <li class="tabs-gradle ui-tabs-tab ui-corner-top ui-state-default ui-tabs-active ui-state-active" role="tab" tabindex="0" aria-controls="gradle" aria-labelledby="ui-id-1" aria-selected="true" aria-expanded="true"><a name="gradle" href="#gradle" tabindex="-1" class="ui-tabs-anchor" id="ui-id-1">Gradle</a></li>
+        <li class="tabs-maven ui-tabs-tab ui-corner-top ui-state-default" role="tab" tabindex="-1" aria-controls="maven" aria-labelledby="ui-id-2" aria-selected="false" aria-expanded="false"><a name="maven" href="#maven" tabindex="-1" class="ui-tabs-anchor" id="ui-id-2">Maven</a></li>
+    </ul>
+    <div id="gradle" aria-labelledby="ui-id-1" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false">
+        <pre><code class="language-bash hljs" data-highlighted="yes">MICRONAUT_ENVIRONMENTS=ec2  ./gradlew :aws:run</code><button>Copy</button></pre>
+    </div>
+    <div id="maven" aria-labelledby="ui-id-2" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
+        <pre><code class="language-bash hljs" data-highlighted="yes">./mvnw install -pl lib -am
+MICRONAUT_ENVIRONMENTS=ec2 ./mvnw mn:run -pl aws</code><button>Copy</button></pre>
+    </div>
+</div>
+<div class="paragraph">
+<p>Or if you use Windows:</p>
+</div>
+<div class="gradle-maven-tabs ui-tabs ui-corner-all ui-widget ui-widget-content">
+    <ul role="tablist" class="ui-tabs-nav ui-corner-all ui-helper-reset ui-helper-clearfix ui-widget-header">
+        <li class="tabs-gradle ui-tabs-tab ui-corner-top ui-state-default ui-tabs-active ui-state-active" role="tab" tabindex="0" aria-controls="gradle" aria-labelledby="ui-id-1" aria-selected="true" aria-expanded="true"><a name="gradle" href="#gradle" tabindex="-1" class="ui-tabs-anchor" id="ui-id-1">Gradle</a></li>
+        <li class="tabs-maven ui-tabs-tab ui-corner-top ui-state-default" role="tab" tabindex="-1" aria-controls="maven" aria-labelledby="ui-id-2" aria-selected="false" aria-expanded="false"><a name="maven" href="#maven" tabindex="-1" class="ui-tabs-anchor" id="ui-id-2">Maven</a></li>
+    </ul>
+    <div id="gradle" aria-labelledby="ui-id-1" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false">
+        <pre><code class="language-bash hljs" data-highlighted="yes">cmd /C "set MICRONAUT_ENVIRONMENTS=ec2 &amp;&amp; gradlew :aws:run"</code><button>Copy</button></pre>
+    </div>
+    <div id="maven" aria-labelledby="ui-id-2" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
+        <pre><code class="language-bash hljs" data-highlighted="yes">./mvnw install -pl lib -am
+cmd /C "set MICRONAUT_ENVIRONMENTS=ec2 &amp;&amp; mvnw -pl {oci} mn:run"</code><button>Copy</button></pre>
+    </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="run-the-analytics-microservice">5.2. Run the <em>analytics</em> Microservice</h3>
+<div class="paragraph">
+<p>Run the <em>analytics</em> microservice as follows:</p>
+</div>
+<div class="gradle-maven-tabs ui-tabs ui-corner-all ui-widget ui-widget-content">
+    <ul role="tablist" class="ui-tabs-nav ui-corner-all ui-helper-reset ui-helper-clearfix ui-widget-header">
+        <li class="tabs-gradle ui-tabs-tab ui-corner-top ui-state-default ui-tabs-active ui-state-active" role="tab" tabindex="0" aria-controls="gradle" aria-labelledby="ui-id-1" aria-selected="true" aria-expanded="true"><a name="gradle" href="#gradle" tabindex="-1" class="ui-tabs-anchor" id="ui-id-1">Gradle</a></li>
+        <li class="tabs-maven ui-tabs-tab ui-corner-top ui-state-default" role="tab" tabindex="-1" aria-controls="maven" aria-labelledby="ui-id-2" aria-selected="false" aria-expanded="false"><a name="maven" href="#maven" tabindex="-1" class="ui-tabs-anchor" id="ui-id-2">Maven</a></li>
+    </ul>
+    <div id="gradle" aria-labelledby="ui-id-1" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false">
+        <pre><code class="language-bash hljs" data-highlighted="yes">MICRONAUT_ENVIRONMENTS=ec2  ./gradlew :aws:run</code><button>Copy</button></pre>
+    </div>
+    <div id="maven" aria-labelledby="ui-id-2" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
+        <pre><code class="language-bash hljs" data-highlighted="yes">./mvnw install -pl lib -am
+MICRONAUT_ENVIRONMENTS=ec2 ./mvnw mn:run -pl aws</code><button>Copy</button></pre>
+    </div>
+</div>
+<div class="paragraph">
+<p>Or if you use Windows:</p>
+</div>
+<div class="gradle-maven-tabs ui-tabs ui-corner-all ui-widget ui-widget-content">
+    <ul role="tablist" class="ui-tabs-nav ui-corner-all ui-helper-reset ui-helper-clearfix ui-widget-header">
+        <li class="tabs-gradle ui-tabs-tab ui-corner-top ui-state-default ui-tabs-active ui-state-active" role="tab" tabindex="0" aria-controls="gradle" aria-labelledby="ui-id-1" aria-selected="true" aria-expanded="true"><a name="gradle" href="#gradle" tabindex="-1" class="ui-tabs-anchor" id="ui-id-1">Gradle</a></li>
+        <li class="tabs-maven ui-tabs-tab ui-corner-top ui-state-default" role="tab" tabindex="-1" aria-controls="maven" aria-labelledby="ui-id-2" aria-selected="false" aria-expanded="false"><a name="maven" href="#maven" tabindex="-1" class="ui-tabs-anchor" id="ui-id-2">Maven</a></li>
+    </ul>
+    <div id="gradle" aria-labelledby="ui-id-1" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false">
+        <pre><code class="language-bash hljs" data-highlighted="yes">cmd /C "set MICRONAUT_ENVIRONMENTS=ec2 &amp;&amp; gradlew :aws:run"</code><button>Copy</button></pre>
+    </div>
+    <div id="maven" aria-labelledby="ui-id-2" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
+        <pre><code class="language-bash hljs" data-highlighted="yes">./mvnw install -pl lib -am
+cmd /C "set MICRONAUT_ENVIRONMENTS=ec2 &amp;&amp; mvnw -pl {oci} mn:run"</code><button>Copy</button></pre>
+    </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="test-the-microservices">5.3. Test the Microservices</h3>
+<div class="paragraph">
+<p>Use <code>curl</code> to test the microservices, as follows.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Retrieve the list of books:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl http://localhost:8080/books</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">[{"isbn":"1491950358","name":"Building Microservices"},{"isbn":"1680502395","name":"Release It!"},{"isbn":"0321601912","name":"Continuous Delivery"}]</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Retrieve the details of a specified book:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl http://localhost:8080/books/1491950358</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{"isbn":"1491950358","name":"Building Microservices"}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Retrieve the analytics:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl http://localhost:8081/analytics</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">[{"bookIsbn":"1491950358","count":1}]</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Update the <code>curl</code> command to the <em>Books</em> microservice to retrieve other books and repeat the invocations, then re-run the <code>curl</code> command to the <em>Analytics</em> microservice to see that the counts increase.</p>
+</div>
 </div>
 </div>
 </div>

@@ -11958,7 +11958,7 @@ a.stack__header {
   top: 90%;
   left: -145px;
   display: none;
-  width: 210px;
+  width: 260px;
   padding: 12px;
   background-color: #282b39;
   opacity: 95%;
@@ -11969,8 +11969,8 @@ a.stack__header {
   @media only screen and (min-width: 320px) and (max-width: 767px) {
     .stack-menu-learn {
       top: 20%;
-      left: 90px;
-      width: 230px;
+      left: 78px;
+      width: 270px;
       padding: 30px;
       background-color: #171923; } }
 
@@ -14434,7 +14434,7 @@ p.gs-modified-at::before {
 
 .nextsteps__card {
   flex-wrap: wrap;
-  width: 48%;
+  width: 32%;
   padding: 20px;
   margin-top: 24px;
   background: #1E2631;

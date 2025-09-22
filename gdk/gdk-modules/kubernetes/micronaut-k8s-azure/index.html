@@ -850,20 +850,20 @@ Alternatively, you can specify the <code>azure</code> environment passing it as 
 kind: Deployment
 metadata:
   namespace: gdk-k8s
-  name: {az_k8s_app}
+  name: users
 spec:
   selector:
     matchLabels:
-      app: {az_k8s_app}
+      app: users
   template:
     metadata:
       labels:
-        app: {az_k8s_app}
+        app: users
     spec:
       serviceAccountName: gdk-service
       containers:
-        - name: {az_k8s_app}
-          image: 'gdkrepo.azurecr.io/{az_k8s_app}:latest' <i class="conum" data-value="1"></i><b>(1)</b>
+        - name: users
+          image: 'gdkrepo.azurecr.io/users:latest' <i class="conum" data-value="1"></i><b>(1)</b>
           imagePullPolicy: Always <i class="conum" data-value="2"></i><b>(2)</b>
           ports:
             - name: http
@@ -889,11 +889,11 @@ apiVersion: v1
 kind: Service
 metadata:
   namespace: gdk-k8s
-  name: {az_k8s_app}
+  name: users
 spec:
   selector:
-    app: {az_k8s_app}
-  type: {az_k8s_type}
+    app: users
+  type: NodePort
   ports:
     - protocol: TCP
       port: 8080</code></pre>
@@ -917,20 +917,20 @@ spec:
 kind: Deployment
 metadata:
   namespace: gdk-k8s
-  name: {az_k8s_app}
+  name: orders
 spec:
   selector:
     matchLabels:
-      app: {az_k8s_app}
+      app: orders
   template:
     metadata:
       labels:
-        app: {az_k8s_app}
+        app: orders
     spec:
       serviceAccountName: gdk-service
       containers:
-        - name: {az_k8s_app}
-          image: 'gdkrepo.azurecr.io/{az_k8s_app}:latest' <i class="conum" data-value="1"></i><b>(1)</b>
+        - name: orders
+          image: 'gdkrepo.azurecr.io/orders:latest' <i class="conum" data-value="1"></i><b>(1)</b>
           imagePullPolicy: Always <i class="conum" data-value="2"></i><b>(2)</b>
           ports:
             - name: http
@@ -956,11 +956,11 @@ apiVersion: v1
 kind: Service
 metadata:
   namespace: gdk-k8s
-  name: {az_k8s_app}
+  name: orders
 spec:
   selector:
-    app: {az_k8s_app}
-  type: {az_k8s_type}
+    app: orders
+  type: NodePort
   ports:
     - protocol: TCP
       port: 8080</code></pre>
@@ -984,20 +984,20 @@ spec:
 kind: Deployment
 metadata:
   namespace: gdk-k8s
-  name: {az_k8s_app}
+  name: api
 spec:
   selector:
     matchLabels:
-      app: {az_k8s_app}
+      app: api
   template:
     metadata:
       labels:
-        app: {az_k8s_app}
+        app: api
     spec:
       serviceAccountName: gdk-service
       containers:
-        - name: {az_k8s_app}
-          image: 'gdkrepo.azurecr.io/{az_k8s_app}:latest' <i class="conum" data-value="1"></i><b>(1)</b>
+        - name: api
+          image: 'gdkrepo.azurecr.io/api:latest' <i class="conum" data-value="1"></i><b>(1)</b>
           imagePullPolicy: Always <i class="conum" data-value="2"></i><b>(2)</b>
           ports:
             - name: http
@@ -1023,11 +1023,11 @@ apiVersion: v1
 kind: Service
 metadata:
   namespace: gdk-k8s
-  name: {az_k8s_app}
+  name: api
 spec:
   selector:
-    app: {az_k8s_app}
-  type: {az_k8s_type}
+    app: api
+  type: LoadBalancer
   ports:
     - protocol: TCP
       port: 8080</code></pre>

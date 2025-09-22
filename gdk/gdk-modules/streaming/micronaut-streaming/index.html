@@ -1188,44 +1188,10 @@ A fast way to start Kafka is via a <a href="https://hub.docker.com/r/confluentin
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Copy the following contents into a file named <em>docker-compose.yml</em> in a directory named <em>docker/</em></p>
+<p>Generate a cluster ID for the Kafka cluster for KRaft mode operation</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yml hljs" data-lang="yml">version: '2'
-services:
-  zookeeper:
-    image: confluentinc/cp-zookeeper
-    ports:
-      - 2181:2181 <i class="conum" data-value="1"></i><b>(1)</b>
-    environment:
-      ZOOKEEPER_CLIENT_PORT: 2181
-      ZOOKEEPER_TICK_TIME: 2000
-  kafka:
-    image: confluentinc/cp-kafka
-    depends_on:
-      - zookeeper
-    ports:
-      - 9092:9092 <i class="conum" data-value="2"></i><b>(2)</b>
-    environment:
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092
-      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
-      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
-      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><strong>1</strong> ZooKeeper uses port 2181 by default, but you can change the value if necessary.</p>
-</div>
-<div class="paragraph">
-<p><strong>2</strong> Kafka uses port 9092 by default, but you can change the value if necessary.</p>
-</div>
-</li>
-<li>
-<p>Start ZooKeeper and Kafka as follows:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker-compose up</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">CLUSTER_ID=$(docker run --rm confluentinc/cp-kafka kafka-storage random-uuid)</code></pre>
 </div>
 </div>
 </li>
@@ -1234,12 +1200,26 @@ services:
 <div class="quoteblock">
 <blockquote>
 <div class="paragraph">
-<p>Note: to shut down the container, use the command <code>docker-compose down</code>.</p>
+<p>Note: For more details on KRaft mode operation, see the <a href="https://docs.confluent.io/platform/current/installation/docker/config-reference.html#cp-kafka-example">Confluent documentation</a>.</p>
 </div>
 </blockquote>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
+<li>
+<p>Start Kafka container as follows:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker run -d --name kafka --hostname kafka -p 9092:9092 -e KAFKA_NODE_ID=1 -e KAFKA_PROCESS_ROLES="broker,controller" \
+    -e KAFKA_LISTENERS="PLAINTEXT://kafka:29092,CONTROLLER://kafka:29093,PLAINTEXT_HOST://0.0.0.0:9092" \
+    -e KAFKA_ADVERTISED_LISTENERS="PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092" \
+    -e KAFKA_LISTENER_SECURITY_PROTOCOL_MAP="PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT,CONTROLLER:PLAINTEXT" \
+    -e KAFKA_CONTROLLER_LISTENER_NAMES="CONTROLLER" \
+    -e KAFKA_CONTROLLER_QUORUM_VOTERS="1@kafka:29093" -e KAFKA_INTER_BROKER_LISTENER_NAME="PLAINTEXT" -e KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1 \
+    -e CLUSTER_ID=$CLUSTER_ID confluentinc/cp-kafka</code></pre>
+</div>
+</div>
+</li>
 <li>
 <p>To run the microservices locally, add the <code>bootstrap.servers</code> configuration to each microservice&#8217;s <em>application.properties</em> file.</p>
 <div class="listingblock">

@@ -1343,7 +1343,7 @@ API_URL=http://%IP_ADDRESS%:8080</code></pre>
 <p>Run a <code>curl</code> command to create a new user via the <em>api</em> microservice:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -X "POST" "{url}/api/users" \
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -X "POST" "$API_URL/api/users" \
      -H 'Content-Type: application/json; charset=utf-8' \
      -d '{ "first_name": "Nemanja", "last_name": "Mikic", "username": "nmikic" }'</code></pre>
 </div>
@@ -1366,7 +1366,7 @@ API_URL=http://%IP_ADDRESS%:8080</code></pre>
 <p>Run a <code>curl</code> command to create a new order via the <em>api</em> microservice:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -X "POST" "{url}/api/orders" \
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -X "POST" "$API_URL/api/orders" \
      -H 'Content-Type: application/json; charset=utf-8' \
      -d '{ "user_id": 1, "item_ids": [1,2] }'</code></pre>
 </div>
@@ -1405,7 +1405,7 @@ API_URL=http://%IP_ADDRESS%:8080</code></pre>
 <p>Run a <code>curl</code> command to list the orders:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl "{url}/api/orders" \
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl "$API_URL/api/orders" \
      -H 'Content-Type: application/json; charset=utf-8'</code></pre>
 </div>
 </div>
@@ -1445,7 +1445,7 @@ API_URL=http://%IP_ADDRESS%:8080</code></pre>
 <p>Try to place an order for a user who does not exist (with <code>id</code> 100). Run a <code>curl</code> command:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -X "POST" "{url}/api/orders" \
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -X "POST" "$API_URL/api/orders" \
      -H 'Content-Type: application/json; charset=utf-8' \
      -d '{ "user_id": 100, "item_ids": [1,2] }'</code></pre>
 </div>

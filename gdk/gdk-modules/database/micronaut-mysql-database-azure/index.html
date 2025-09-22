@@ -527,12 +527,12 @@ export DB_NAME=&lt;DbName&gt;   <i class="conum" data-value="6"></i><b>(6)</b></
          class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">set RESOURCE_GROUP_NAME="&lt;MySqlResourceGroupName&gt;"  <i class="conum" data-value="1"></i><b>(1)</b>
-set LOCATION="&lt;Location&gt;"  <i class="conum" data-value="2"></i><b>(2)</b>
-set DB_INSTANCE_NAME="&lt;DbInstanceName&gt;"  <i class="conum" data-value="3"></i><b>(3)</b>
-set ADMIN_USERNAME="&lt;AdminUserName&gt;"  <i class="conum" data-value="4"></i><b>(4)</b>
-set ADMIN_PASSWORD="&lt;AdminPassword&gt;"  <i class="conum" data-value="5"></i><b>(5)</b>
-set DB_NAME="&lt;DbName&gt;"  <i class="conum" data-value="6"></i><b>(6)</b></code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">set RESOURCE_GROUP_NAME=&lt;MySqlResourceGroupName&gt;  <i class="conum" data-value="1"></i><b>(1)</b>
+set LOCATION=&lt;Location&gt;  <i class="conum" data-value="2"></i><b>(2)</b>
+set DB_INSTANCE_NAME=&lt;DbInstanceName&gt;  <i class="conum" data-value="3"></i><b>(3)</b>
+set ADMIN_USERNAME=&lt;AdminUserName&gt;  <i class="conum" data-value="4"></i><b>(4)</b>
+set ADMIN_PASSWORD=&lt;AdminPassword&gt;  <i class="conum" data-value="5"></i><b>(5)</b>
+set DB_NAME=&lt;DbName&gt;  <i class="conum" data-value="6"></i><b>(6)</b></code></pre>
 </div>
 </div>
 </div>
@@ -614,7 +614,7 @@ set DB_NAME="&lt;DbName&gt;"  <i class="conum" data-value="6"></i><b>(6)</b></co
         --database-name %DB_NAME%  ^
         --name %DB_INSTANCE_NAME%  ^
         --location %LOCATION% --public-access All   ^
-        --resource-group %DB_GROUP_NAME%  ^
+        --resource-group %RESOURCE_GROUP_NAME%  ^
         --version 8.0.21   ^
         --output json | jq -r &quot;.host&quot; &gt; tmp.txt
 set /p MYSQL_HOST=&lt;tmp.txt</code></pre>
@@ -876,7 +876,7 @@ echo "Result: $TEST_RES"</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/mysql/flexible-server?view=azure-cli-latest#az-mysql-flexible-server-delete" class="external" target="_blank" rel="noopener">az mysql flexible-server delete --resource-group %DB_GROUP_NAME% --name %DB_INSTANCE_NAME% --yes</a>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/mysql/flexible-server?view=azure-cli-latest#az-mysql-flexible-server-delete" class="external" target="_blank" rel="noopener">az mysql flexible-server delete --resource-group %RESOURCE_GROUP_NAME% --name %DB_INSTANCE_NAME% --yes</a>
 <a href="https://learn.microsoft.com/en-us/cli/azure/group?view=azure-cli-latest#az-group-delete" class="external" target="_blank" rel="noopener">az group delete --name $DB_GROUP_NAME --yes</a></code></pre>
 </div>
 </div>
