@@ -347,10 +347,10 @@
         <li class="tabs-maven ui-tabs-tab ui-corner-top ui-state-default" role="tab" tabindex="-1" aria-controls="maven" aria-labelledby="ui-id-2" aria-selected="false" aria-expanded="false"><a name="maven" href="#maven" tabindex="-1" class="ui-tabs-anchor" id="ui-id-2">Maven</a></li>
     </ul>
     <div id="gradle" aria-labelledby="ui-id-1" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false">
-        <a href="https://github.com/oracle/graal-dev-kit/releases/download/4.9.1.4/4.9.1.4_object-storage_azure-storage-demo-java-gradle.zip">Gradle Azure Object Storage Example <img src="https://graal.cloud/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" class="download-img-guides"/></a>
+        <a href="https://github.com/oracle/graal-dev-kit/releases/download/4.10.1.1/4.10.1.1_object-storage_azure-storage-demo-java-gradle.zip">Gradle Azure Object Storage Example <img src="https://graal.cloud/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" class="download-img-guides"/></a>
     </div>
     <div id="maven" aria-labelledby="ui-id-2" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
-        <a href="https://github.com/oracle/graal-dev-kit/releases/download/4.9.1.4/4.9.1.4_object-storage_azure-storage-demo-java-maven.zip">Maven Azure Object Storage Example <img src="https://graal.cloud/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" class="download-img-guides"/></a>
+        <a href="https://github.com/oracle/graal-dev-kit/releases/download/4.10.1.1/4.10.1.1_object-storage_azure-storage-demo-java-maven.zip">Maven Azure Object Storage Example <img src="https://graal.cloud/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" class="download-img-guides"/></a>
     </div>
 </div>
 <div class="paragraph">
@@ -718,19 +718,8 @@ class ProfilePicturesController implements ProfilePicturesApi {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/role/assignment?view=azure-cli-latest#az-role-assignment-create" class="external" target="_blank" rel="noopener">az provider register --namespace 'Microsoft.Storage'</a></code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/role/assignment?view=azure-cli-latest#az-role-assignment-create" class="external" target="_blank" rel="noopener">az provider register --namespace 'Microsoft.Storage' --wait</a></code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>This will take a while to execute. Check the status with</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://learn.microsoft.com/en-us/cli/azure/provider?view=azure-cli-latest#az-provider-show" class="external" target="_blank" rel="noopener">az provider show --namespace Microsoft.Storage</a></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Once the <code>"registrationState": "Registering"</code> changes to <code>"registrationState": "Registered"</code>, the registration is complete.</p>
 </div>
 </div>
 <div class="sect2">
