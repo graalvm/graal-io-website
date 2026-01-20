@@ -407,7 +407,7 @@ The application uses <a href="https://micronaut-projects.github.io/micronaut-mic
 <div class="paragraph">
 <p>Open the <em>micronaut-cli.yml</em> file, you can see what features are packaged with the application:</p>
 </div>
-<pre><code class="language-bash hljs" data-highlighted="yes">features: [app-name, gdk-bom, gdk-license, gdk-oci-cloud-app, gdk-oci-metrics, graalvm, http-client, java, java-application, junit, logback, management, maven, maven-enforcer-plugin, micrometer, micrometer-annotation, micrometer-oracle-cloud, micronaut-http-validation, netty-server, properties, readme, serialization-jackson, shade, static-resources]</code><button>Copy</button></pre>
+<pre><code class="language-bash hljs" data-highlighted="yes">features: [app-name, gdk-bom, gdk-license, gdk-oci-cloud-app, gdk-oci-metrics, graalvm, http-client, java, java-application, junit, logback, management, maven, maven-enforcer-plugin, micrometer, micrometer-annotation, micrometer-oracle-cloud, micronaut-http-validation, native-image-properties, netty-server, properties, readme, serialization-jackson, shade, static-resources]</code><button>Copy</button></pre>
 <div class="paragraph">
 <p>The GDK Launcher creates a multi-module project with two subprojects: <strong>oci</strong> for Oracle Cloud, and <strong>lib</strong> for common code and configuration shared across cloud platforms.
 You develop the application logic in the <strong>lib</strong> subproject, and keep the
@@ -935,7 +935,7 @@ class MicroserviceBooksNumberTest {
     </div>
     <div id="maven" aria-labelledby="ui-id-2" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
         <pre><code class="language-bash hljs" data-highlighted="yes">./mvnw install -pl lib -am
-./mvnw mn:test -pl oci</code><button>Copy</button></pre>
+./mvnw test -pl oci</code><button>Copy</button></pre>
     </div>
 </div>
 <div class="paragraph">
