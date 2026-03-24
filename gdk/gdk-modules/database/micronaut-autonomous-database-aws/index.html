@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://graal.cloud/gdk/resources/lib/highlight/highlight.min.js">
     <script src="https://graal.cloud/gdk/resources/lib/highlight/highlight.min.js"></script>
 
-    <title>Create and Connect a Micronaut Application to an Oracle Database on Amazon Relational Database Service</title>
+    <title>Create and Connect a Micronaut Application to an Oracle AI Database on Amazon Relational Database Service</title>
     <meta name="description" content="The Graal Development Kit for Micronaut (GDK) is a build of a curated set of Micronaut framework modules and their required libraries for building portable c...">
     <meta name="last_modified" content="2024-10-10 16:30:05 +0000">
     <meta name="last_built" content="2024-10-29 09:25:27 +0000">
@@ -263,14 +263,14 @@
                                     </li>
                                     <li class="toc-bullets-sub toc-bullets-highlight">
                                         <a href="/gdk/gdk-modules/database/micronaut-autonomous-database-aws/" class="activeMenuItem">
-                                            Create and Connect a Micronaut Application to an Oracle Database on Amazon Relational Database Service
+                                            Create and Connect a Micronaut Application to an Oracle AI Database on Amazon Relational Database Service
                                         </a>
                                     </li>
                                     <div id="toc" class="toc">
 <div id="toctitle"></div>
 <ul class="sectlevel1">
 <li><a href="#create-the-application">1. Create the Application</a></li>
-<li><a href="#create-an-oracle-database-on-amazon-rds">2. Create an Oracle Database on Amazon RDS</a></li>
+<li><a href="#create-an-oracle-ai-database-on-amazon-rds">2. Create an Oracle AI Database on Amazon RDS</a></li>
 <li><a href="#configuration">3. Configuration</a></li>
 <li><a href="#run-the-application">4. Run the Application</a></li>
 <li><a href="#test-the-application">5. Test the Application</a></li>
@@ -288,11 +288,11 @@
                         <div class="resize-sensor" style="position: absolute; inset: 0px; overflow: hidden; z-index: -1; visibility: hidden;"><div class="resize-sensor-expand" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; z-index: -1; visibility: hidden;"><div style="position: absolute; left: 0px; top: 0px; transition: all 0s ease 0s; width: 100000px; height: 100000px;"></div></div><div class="resize-sensor-shrink" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; z-index: -1; visibility: hidden;"><div style="position: absolute; left: 0; top: 0; transition: 0s; width: 200%; height: 200%"></div></div></div></div>
 
                     <div class="col-sm-9 docsmod">
-                        <div id="content-wrapper" class="docs-content docs-content--with-sidebar"><h1>Create and Connect a Micronaut Application to an Oracle Database on Amazon Relational Database Service</h1>
+                        <div id="content-wrapper" class="docs-content docs-content--with-sidebar"><h1>Create and Connect a Micronaut Application to an Oracle AI Database on Amazon Relational Database Service</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>This guide describes how to create a database application using the Graal Development Kit for Micronaut (GDK). The application presents REST endpoints and stores data in an Oracle Database running on Amazon Relational Database Service (RDS) using Micronaut® Data.</p>
+<p>This guide describes how to create a database application using the Graal Development Kit for Micronaut (GDK). The application presents REST endpoints and stores data in an Oracle AI Database running on Amazon Relational Database Service (RDS) using Micronaut® Data.</p>
 </div>
 <div class="paragraph">
 <p><a href="https://micronaut-projects.github.io/micronaut-data/latest/guide/">Micronaut Data</a> is a database access toolkit that uses ahead-of-time compilation to precompute queries for repository interfaces that are then executed by a thin, lightweight runtime layer. Micronaut Data supports the following back ends: JPA (Hibernate and Hibernate Reactive); SQL (JDBC, R2DBC); and MongoDB.</p>
@@ -329,10 +329,10 @@
         <li class="tabs-maven ui-tabs-tab ui-corner-top ui-state-default" role="tab" tabindex="-1" aria-controls="maven" aria-labelledby="ui-id-2" aria-selected="false" aria-expanded="false"><a name="maven" href="#maven" tabindex="-1" class="ui-tabs-anchor" id="ui-id-2">Maven</a></li>
     </ul>
     <div id="gradle" aria-labelledby="ui-id-1" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false">
-        <a href="https://github.com/oracle/graal-dev-kit/releases/download/4.10.1.2/4.10.1.2_database_aws-odb-demo-java-gradle.zip">Gradle AWS Database Example <img src="https://graal.cloud/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" class="download-img-guides"/></a>
+        <a href="https://github.com/oracle/graal-dev-kit/releases/download/4.10.1.3/4.10.1.3_database_aws-odb-demo-java-gradle.zip">Gradle AWS Database Example <img src="https://graal.cloud/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" class="download-img-guides"/></a>
     </div>
     <div id="maven" aria-labelledby="ui-id-2" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
-        <a href="https://github.com/oracle/graal-dev-kit/releases/download/4.10.1.2/4.10.1.2_database_aws-odb-demo-java-maven.zip">Maven AWS Database Example <img src="https://graal.cloud/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" class="download-img-guides"/></a>
+        <a href="https://github.com/oracle/graal-dev-kit/releases/download/4.10.1.3/4.10.1.3_database_aws-odb-demo-java-maven.zip">Maven AWS Database Example <img src="https://graal.cloud/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" class="download-img-guides"/></a>
     </div>
 </div>
 <div class="paragraph">
@@ -414,7 +414,7 @@
 <div class="paragraph">
 <p>Open the <em>micronaut-cli.yml</em> file, you can see what features are packaged with the application:</p>
 </div>
-<pre><code class="language-bash hljs" data-highlighted="yes">features: [app-name, data, data-jdbc, flyway, gdk-aws-cloud-app, gdk-aws-database, gdk-bom, gdk-license, graalvm, http-client, java, java-application, jdbc-hikari, junit, logback, maven, maven-enforcer-plugin, micronaut-http-validation, native-image-properties, netty-server, oracle, properties, readme, serialization-jackson, shade, static-resources, test-resources, validation]</code><button>Copy</button></pre>
+<pre><code class="language-bash hljs" data-highlighted="yes">features: [app-name, data, data-jdbc, flyway, gdk-aws-cloud-app, gdk-aws-database, gdk-bom, gdk-license, graalvm, http-client, java, java-application, jdbc-hikari, junit, logback, maven, maven-enforcer-plugin, micronaut-http-validation, micronaut-processing-compiler-args, native-image-properties, netty-server, oracle, properties, readme, serialization-jackson, shade, static-resources, test-resources, validation]</code><button>Copy</button></pre>
 <div class="paragraph">
 <p>The GDK Launcher creates a multi-module project with two subprojects: <strong>aws</strong> for Amazon Web Services, and <strong>lib</strong> for common code and configuration shared across cloud platforms.
 You develop the application logic in the <strong>lib</strong> subproject, and keep the
@@ -822,10 +822,10 @@ class GenreControllerTest {
 </div>
 </div>
 <div class="sect1">
-<h2 id="create-an-oracle-database-on-amazon-rds">2. Create an Oracle Database on Amazon RDS</h2>
+<h2 id="create-an-oracle-ai-database-on-amazon-rds">2. Create an Oracle AI Database on Amazon RDS</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You will create an Oracle Database instance with the AWS CLI.
+<p>You will create an Oracle AI Database instance with the AWS CLI.
 See the <a href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/rds/index.html">AWS CLI <code>rds</code> Command Reference</a> to learn more about AWS RDS.</p>
 </div>
 <div class="sect2">
@@ -1665,7 +1665,7 @@ Run these commands:</p>
 </div>
 <h3 id="summary" class="discrete">Summary</h3>
 <div class="paragraph">
-<p>This guide demonstrated how to use the GDK to create a database application that stores data in an Oracle Database on Amazon RDS using Micronaut Data. You also saw how to package this application into a native executable.</p>
+<p>This guide demonstrated how to use the GDK to create a database application that stores data in an Oracle AI Database on Amazon RDS using Micronaut Data. You also saw how to package this application into a native executable.</p>
 </div>
 <h3 id="related-documentation" class="discrete">Related Documentation</h3>
 <div class="ulist">
