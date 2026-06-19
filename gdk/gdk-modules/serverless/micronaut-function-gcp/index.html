@@ -186,10 +186,6 @@
                                                 <img src="https://graal.cloud/gdk/resources/img/header-navigation/labs.svg">
                                                 <a href="/gdk/hands-on-labs/" class="item-line">Hands-On Labs</a>
                                             </div>
-                                            <div class="stack__item">
-                                                <img src="https://graal.cloud/gdk/resources/img/header-navigation/tools.svg">
-                                                <a href="/gdk/vscode-tools/" class="item-line">Tools</a>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -315,7 +311,7 @@ Similarly to Google Cloud Functions, the service provisions and manages servers 
 <div class="ulist">
 <ul>
 <li>
-<p>JDK 17 or higher. See <a href="/gdk/get-started/setting-up-desktop/">Setting up Your Desktop</a>.</p>
+<p>JDK 25 or higher. See <a href="/gdk/get-started/setting-up-desktop/">Setting up Your Desktop</a>.</p>
 </li>
 <li>
 <p>A Google Cloud Platform (GCP) account. See <a href="/gdk/get-started/setting-up-cloud-accounts/">Setting up Your Cloud Accounts</a>.</p>
@@ -340,10 +336,10 @@ Similarly to Google Cloud Functions, the service provisions and manages servers 
         <li class="tabs-maven ui-tabs-tab ui-corner-top ui-state-default" role="tab" tabindex="-1" aria-controls="maven" aria-labelledby="ui-id-2" aria-selected="false" aria-expanded="false"><a name="maven" href="#maven" tabindex="-1" class="ui-tabs-anchor" id="ui-id-2">Maven</a></li>
     </ul>
     <div id="gradle" aria-labelledby="ui-id-1" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false">
-        <a href="https://github.com/oracle/graal-dev-kit/releases/download/4.10.16/4.10.16_serverless_gcp-serverless-demo-java-gradle.zip">Gradle GCP Serverless Example <img src="https://graal.cloud/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" class="download-img-guides"/></a>
+        <a href="https://github.com/oracle/graal-dev-kit/releases/download/5.0.2/5.0.2_serverless_gcp-serverless-demo-java-gradle.zip">Gradle GCP Serverless Example <img src="https://graal.cloud/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" class="download-img-guides"/></a>
     </div>
     <div id="maven" aria-labelledby="ui-id-2" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
-        <a href="https://github.com/oracle/graal-dev-kit/releases/download/4.10.16/4.10.16_serverless_gcp-serverless-demo-java-maven.zip">Maven GCP Serverless Example <img src="https://graal.cloud/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" class="download-img-guides"/></a>
+        <a href="https://github.com/oracle/graal-dev-kit/releases/download/5.0.2/5.0.2_serverless_gcp-serverless-demo-java-maven.zip">Maven GCP Serverless Example <img src="https://graal.cloud/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" class="download-img-guides"/></a>
     </div>
 </div>
 <div class="paragraph">
@@ -351,7 +347,7 @@ Similarly to Google Cloud Functions, the service provisions and manages servers 
 </div>
 <h4 id="a-note-regarding-your-development-environment" class="discrete">A note regarding your development environment</h4>
 <div class="paragraph">
-<p>Consider using Visual Studio Code, which provides native support for developing applications with the <a href="https://marketplace.visualstudio.com/items?itemName=oracle-labs-graalvm.graal-cloud-native-pack">Graal Development Kit for Micronaut Extension Pack</a>.</p>
+<p>Use the editor or IDE of your choice together with the GDK Launcher or GDK CLI to create, build, and test your application locally.</p>
 </div>
 <div class="quoteblock">
 <blockquote>
@@ -389,7 +385,7 @@ Similarly to Google Cloud Functions, the service provisions and manages servers 
             <li><strong>Build Tool</strong>: <em>Gradle (Groovy)</em> or <em>Maven</em></li>
             <li><strong>Language</strong>: <em>Java</em> (Default)</li>
             <li><strong>Test Framework</strong>: <em>JUnit</em> (Default)</li>
-            <li><strong>Java Version</strong>: <em>17</em> (Default)</li>
+            <li><strong>Java Version</strong>: <em>25</em> (Default)</li>
             <li><strong>Micronaut Version</strong>: (Default)</li>
             <li><strong>Cloud Services</strong>: </li>
             <li><strong>Features</strong>: <em>GraalVM Native Image</em>, <em>Micronaut Validation</em></li>
@@ -412,7 +408,7 @@ Similarly to Google Cloud Functions, the service provisions and manages servers 
  --features=graalvm,validation \
  --example-code=false \
  --build=gradle \
- --jdk=17  \
+ --jdk=25 \
  --lang=java</code><button>Copy</button></pre>
     </div>
     <div id="maven" aria-labelledby="ui-id-2" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
@@ -421,14 +417,14 @@ Similarly to Google Cloud Functions, the service provisions and manages servers 
  --features=graalvm,validation \
  --example-code=false \
  --build=maven \
- --jdk=17  \
+ --jdk=25 \
  --lang=java</code><button>Copy</button></pre>
     </div>
 </div>
 <div class="paragraph">
 <p>Open the <em>micronaut-cli.yml</em> file, you can see what features are packaged with the application:</p>
 </div>
-<pre><code class="language-bash hljs" data-highlighted="yes">features: [app-name, gdk-bom, gdk-gcp-cloud-gateway-function, gdk-license, google-cloud-function, google-cloud-function-http, graalvm, http-client, jackson-databind, java, java-application, junit, logback, maven, maven-enforcer-plugin, micronaut-http-validation, micronaut-processing-compiler-args, native-image-properties, properties, readme, serialization-jackson, shade, static-resources, validation]</code><button>Copy</button></pre>
+<pre><code class="language-bash hljs" data-highlighted="yes">features: [app-name, gdk-bom, gdk-gcp-cloud-gateway-function, gdk-license, google-cloud-function, google-cloud-function-http, graalvm, http-client, jackson-databind, java, java-application, junit, logback, maven, maven-enforcer-plugin, micronaut-configuration-validation-gradle-plugin, micronaut-http-validation, micronaut-processing-compiler-args, native-image-properties, properties, readme, serialization-jackson, shade, static-resources, validation]</code><button>Copy</button></pre>
 <div class="paragraph">
 <p>The GDK Launcher creates a multi-module project with two subprojects: <strong>gcp</strong> for Google Cloud Platform, and <strong>lib</strong> for common code and configuration shared across cloud platforms.
 You develop the application logic in the <strong>lib</strong> subproject, and keep the
@@ -920,34 +916,19 @@ set REGION=&lt;Region&gt;     <i class="conum" data-value="3"></i><b>(3)</b></co
 <p>The command should create the file gcp/build/libs/gcp-1.0-SNAPSHOT-all.jar. The JAR file is the only one in the directory, which is required for correct deployment.</p>
 </div>
 <div class="paragraph">
-<p>Create a function from the JAR file with the name given in <code>$FUNCTION_NAME:</code> set the entry point, the Java runtime version (select <code>java17</code> or <code>java21</code>), the trigger, and the source.</p>
+<p>Create a function from the JAR file with the name given in <code>$FUNCTION_NAME:</code> set the entry point, the Java runtime version (select <code>java25</code>), the trigger, and the source.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>For JDK 17:</p>
+<p>For JDK 25:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://cloud.google.com/sdk/gcloud/reference/functions/deploy" class="external" target="_blank" rel="noopener">gcloud functions deploy $FUNCTION_NAME \</a>
         --region $REGION \
         --gen2 \
         --entry-point io.micronaut.gcp.function.http.HttpFunction \
-        --runtime java17 \
-        --trigger-http \
-        --source gcp/build/libs \
-        --allow-unauthenticated</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>For JDK 21:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://cloud.google.com/sdk/gcloud/reference/functions/deploy" class="external" target="_blank" rel="noopener">gcloud functions deploy $FUNCTION_NAME \</a>
-        --region $REGION \
-        --gen2 \
-        --entry-point io.micronaut.gcp.function.http.HttpFunction \
-        --runtime java21 \
+        --runtime java25 \
         --trigger-http \
         --source gcp/build/libs \
         --allow-unauthenticated</code></pre>
@@ -976,34 +957,19 @@ mv gcp/target/gcp-1.0-SNAPSHOT.jar gcp/target/jar/gcp.jar</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Create a function from the JAR file with the name given in the <code>$FUNCTION_NAME:</code> set the entry point, the Java runtime version (select <code>java17</code> or <code>java21</code>), the trigger, and the source.</p>
+<p>Create a function from the JAR file with the name given in the <code>$FUNCTION_NAME:</code> set the entry point, the Java runtime version (select <code>java25</code>), the trigger, and the source.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>For JDK 17:</p>
+<p>For JDK 25:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://cloud.google.com/sdk/gcloud/reference/functions/deploy" class="external" target="_blank" rel="noopener">gcloud functions deploy $FUNCTION_NAME \</a>
     --region $REGION
     --gen2 \
     --entry-point io.micronaut.gcp.function.http.HttpFunction \
-    --runtime java17 \
-    --trigger-http \
-    --source gcp/target/jar \
-    --allow-unauthenticated</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>For JDK 21:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://cloud.google.com/sdk/gcloud/reference/functions/deploy" class="external" target="_blank" rel="noopener">gcloud functions deploy $FUNCTION_NAME \</a>
-    --region $REGION
-    --gen2 \
-    --entry-point io.micronaut.gcp.function.http.HttpFunction \
-    --runtime java21 \
+    --runtime java25 \
     --trigger-http \
     --source gcp/target/jar \
     --allow-unauthenticated</code></pre>
@@ -1393,7 +1359,6 @@ Status code: 200</code></pre>
                                     <li class="footer-list__item"><a href="https://micronaut.io/" target="_blank">Micronaut<sup>®</sup> Framework</a></li>
                                     <li class="footer-list__item"><a href="https://www.oracle.com/cloud/multicloud/what-is-multicloud/" target="_blank">Multicloud</a></li>
                                     <li class="footer-list__item"><a href="https://www.oracle.com/cloud/" target="blank">Oracle Cloud Infrastructure</a></li>
-                                    <li class="footer-list__item"><a href="https://marketplace.visualstudio.com/items?itemName=oracle-labs-graalvm.graal-cloud-native-pack" target="blank">VS Code Tools</a></li>
                                 </ul>
                             </div>
                         </div>

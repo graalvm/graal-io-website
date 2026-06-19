@@ -186,10 +186,6 @@
                                                 <img src="https://graal.cloud/gdk/resources/img/header-navigation/labs.svg">
                                                 <a href="/gdk/hands-on-labs/" class="item-line">Hands-On Labs</a>
                                             </div>
-                                            <div class="stack__item">
-                                                <img src="https://graal.cloud/gdk/resources/img/header-navigation/tools.svg">
-                                                <a href="/gdk/vscode-tools/" class="item-line">Tools</a>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -313,7 +309,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>JDK 17 or higher. See <a href="/gdk/get-started/setting-up-desktop/">Setting up Your Desktop</a>.</p>
+<p>JDK 25 or higher. See <a href="/gdk/get-started/setting-up-desktop/">Setting up Your Desktop</a>.</p>
 </li>
 <li>
 <p>An Oracle Cloud Infrastructure account. See <a href="/gdk/get-started/setting-up-cloud-accounts/">Setting up Your Cloud Accounts</a>.</p>
@@ -341,10 +337,10 @@
         <li class="tabs-maven ui-tabs-tab ui-corner-top ui-state-default" role="tab" tabindex="-1" aria-controls="maven" aria-labelledby="ui-id-2" aria-selected="false" aria-expanded="false"><a name="maven" href="#maven" tabindex="-1" class="ui-tabs-anchor" id="ui-id-2">Maven</a></li>
     </ul>
     <div id="gradle" aria-labelledby="ui-id-1" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false">
-        <a href="https://github.com/oracle/graal-dev-kit/releases/download/4.10.16/4.10.16_database_oci-db-demo-java-gradle.zip">Gradle Oracle Cloud Infrastructure MySQL Database Example <img src="https://graal.cloud/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" class="download-img-guides"/></a>
+        <a href="https://github.com/oracle/graal-dev-kit/releases/download/5.0.2/5.0.2_database_oci-db-demo-java-gradle.zip">Gradle Oracle Cloud Infrastructure MySQL Database Example <img src="https://graal.cloud/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" class="download-img-guides"/></a>
     </div>
     <div id="maven" aria-labelledby="ui-id-2" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
-        <a href="https://github.com/oracle/graal-dev-kit/releases/download/4.10.16/4.10.16_database_oci-db-demo-java-maven.zip">Maven Oracle Cloud Infrastructure MySQL Database Example <img src="https://graal.cloud/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" class="download-img-guides"/></a>
+        <a href="https://github.com/oracle/graal-dev-kit/releases/download/5.0.2/5.0.2_database_oci-db-demo-java-maven.zip">Maven Oracle Cloud Infrastructure MySQL Database Example <img src="https://graal.cloud/gdk/resources/img/gdk_modules/download-archive.png" alt="Download completed example" class="download-img-guides"/></a>
     </div>
 </div>
 <div class="paragraph">
@@ -352,7 +348,7 @@
 </div>
 <h4 id="a-note-regarding-your-development-environment" class="discrete">A note regarding your development environment</h4>
 <div class="paragraph">
-<p>Consider using Visual Studio Code, which provides native support for developing applications with the <a href="https://marketplace.visualstudio.com/items?itemName=oracle-labs-graalvm.graal-cloud-native-pack">Graal Development Kit for Micronaut Extension Pack</a>.</p>
+<p>Use the editor or IDE of your choice together with the GDK Launcher or GDK CLI to create, build, and test your application locally.</p>
 </div>
 <div class="quoteblock">
 <blockquote>
@@ -387,7 +383,7 @@
             <li><strong>Build Tool</strong>: <em>Gradle (Groovy)</em> or <em>Maven</em></li>
             <li><strong>Language</strong>: <em>Java</em> (Default)</li>
             <li><strong>Test Framework</strong>: <em>JUnit</em> (Default)</li>
-            <li><strong>Java Version</strong>: <em>17</em> (Default)</li>
+            <li><strong>Java Version</strong>: <em>25</em> (Default)</li>
             <li><strong>Micronaut Version</strong>: (Default)</li>
             <li><strong>Cloud Services</strong>: <em>Database</em></li>
             <li><strong>Features</strong>: <em>GraalVM Native Image</em>, <em>MySQL</em></li>
@@ -410,7 +406,7 @@
  --services=database \
  --features=graalvm,mysql \
  --build=gradle \
- --jdk=17  \
+ --jdk=25 \
  --lang=java</code><button>Copy</button></pre>
     </div>
     <div id="maven" aria-labelledby="ui-id-2" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: none;">
@@ -419,14 +415,14 @@
  --services=database \
  --features=graalvm,mysql \
  --build=maven \
- --jdk=17  \
+ --jdk=25 \
  --lang=java</code><button>Copy</button></pre>
     </div>
 </div>
 <div class="paragraph">
 <p>Open the <em>micronaut-cli.yml</em> file, you can see what features are packaged with the application:</p>
 </div>
-<pre><code class="language-bash hljs" data-highlighted="yes">features: [app-name, data, data-jdbc, flyway, gdk-bom, gdk-license, gdk-oci-cloud-app, gdk-oci-database, graalvm, http-client, java, java-application, jdbc-hikari, junit, logback, maven, maven-enforcer-plugin, micronaut-http-validation, micronaut-processing-compiler-args, mysql, native-image-properties, netty-server, properties, readme, serialization-jackson, shade, static-resources, test-resources, validation]</code><button>Copy</button></pre>
+<pre><code class="language-bash hljs" data-highlighted="yes">features: [app-name, data, data-jdbc, flyway, gdk-bom, gdk-license, gdk-oci-cloud-app, gdk-oci-database, graalvm, http-client, java, java-application, jdbc-hikari, junit, logback, maven, maven-enforcer-plugin, micronaut-configuration-validation-gradle-plugin, micronaut-http-validation, micronaut-processing-compiler-args, mysql, native-image-properties, netty-server, properties, readme, serialization-jackson, shade, static-resources, test-resources, validation]</code><button>Copy</button></pre>
 <div class="paragraph">
 <p>The GDK Launcher creates a multi-module project with two subprojects: <strong>oci</strong> for Oracle Cloud, and <strong>lib</strong> for common code and configuration shared across cloud platforms.
 You develop the application logic in the <strong>lib</strong> subproject, and keep the
@@ -1148,7 +1144,7 @@ Later, you will install a MySQL client on that Compute instance and connect your
 </div>
 </li>
 <li>
-<p>Once connected, install Oracle GraalVM for JDK 17 (it will be required at a later step).</p>
+<p>Once connected, install Oracle GraalVM for JDK 25 (it will be required at a later step).</p>
 <div class="paragraph">
 <p>On Oracle Linux 8 and 9, run these commands one by one:</p>
 </div>
@@ -1156,7 +1152,7 @@ Later, you will install a MySQL client on that Compute instance and connect your
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo dnf update -y oraclelinux-release-el8
 sudo dnf config-manager --set-enabled ol8_codeready_builder
-sudo dnf install graalvm-17-native-image</code></pre>
+sudo dnf install graalvm-25-native-image</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1170,7 +1166,7 @@ sudo dnf install graalvm-17-native-image</code></pre>
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo yum -y install oracle-softwarecollection-release-el7
 sudo yum install devtoolset-10
 echo 'source scl_source enable devtoolset-10' &gt;&gt; ~/.bashrc
-sudo yum install graalvm-17-native-image</code></pre>
+sudo yum install graalvm-25-native-image</code></pre>
 </div>
 </div>
 </li>
@@ -1597,7 +1593,6 @@ docker rm container_temp</code></pre>
                                     <li class="footer-list__item"><a href="https://micronaut.io/" target="_blank">Micronaut<sup>®</sup> Framework</a></li>
                                     <li class="footer-list__item"><a href="https://www.oracle.com/cloud/multicloud/what-is-multicloud/" target="_blank">Multicloud</a></li>
                                     <li class="footer-list__item"><a href="https://www.oracle.com/cloud/" target="blank">Oracle Cloud Infrastructure</a></li>
-                                    <li class="footer-list__item"><a href="https://marketplace.visualstudio.com/items?itemName=oracle-labs-graalvm.graal-cloud-native-pack" target="blank">VS Code Tools</a></li>
                                 </ul>
                             </div>
                         </div>

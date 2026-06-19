@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="The Graal Development Kit for Micronaut (GDK) is a build of a curated set of Micronaut framework modules and their required libraries for building portable c..."/>
-  <meta name="last_modified" content="2025-08-18 14:14:46 +0000"/>
-  <meta name="last_built" content="2026-06-09 09:19:15 +0000"/>
+  <meta name="last_modified" content="2025-11-03 17:58:11 +0000"/>
+  <meta name="last_built" content="2026-06-19 15:14:03 +0000"/>
   <link rel="stylesheet" href='/gdk/assets/main.css'>
   <link rel="apple-touch-icon" sizes="180x180" href="/gdk/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gdk/resources/img/favicon/favicon-32x32.png">
@@ -96,10 +96,6 @@
                         <img src='/gdk/resources/img/header-navigation/course.svg'>
                         <a href="https://mylearn.oracle.com/ou/course/micronaut-fundamentals/151938/" class="item-line">Training</a>
                       </div>
-                      <div class="stack__item">
-                        <img src='/gdk/resources/img/header-navigation/tools.svg'>
-                        <a href="/gdk/vscode-tools/" class="item-line">Tools</a>
-                      </div>
                     </div>
                   </div>
                 </div>
@@ -171,7 +167,7 @@
             <span class="orange-text">The Graal Development Kit for Micronaut (GDK)</span> is a build of a curated set of Micronaut<sup>&reg;</sup>
             framework modules and their required libraries for building portable cloud native microservices that take
             full advantage of powerful cloud platform services and that can be compiled ahead-of-time by GraalVM Native Image.
-            The GDK also provides project creation utilities and VS Code extensions for application development and deployment.
+            The GDK also provides project creation utilities for application development and deployment.
           </p>
           <p class="gs-first-texts">
             The modules provide platform-independent support for a set of core cloud services including object storage,
@@ -263,9 +259,9 @@
         Open the <a href="/gdk/launcher/?advanced=true">GDK Launcher</a>.
       </li>
       <li>Create a new project using the following selections. (Alternatively, use these shortcuts for <a
-          href="/gdk/launcher/?advanced=true&amp;type=APPLICATION&amp;name=GettingStarted&amp;package=com.example&amp;clouds=AWS%7COCI%7CGCP%7CAzure&amp;language=JAVA&amp;buildTool=MAVEN&amp;test=JUNIT&amp;java-version=JDK_17&amp;sample-code=true&amp;services=OBJECTSTORE">Maven</a>
+          href="/gdk/launcher/?advanced=true&amp;type=APPLICATION&amp;name=GettingStarted&amp;package=com.example&amp;clouds=AWS%7COCI%7CGCP%7CAzure&amp;language=JAVA&amp;buildTool=MAVEN&amp;test=JUNIT&amp;java-version=JDK_25&amp;sample-code=true&amp;services=OBJECTSTORE">Maven</a>
         or <a
-          href="/gdk/launcher/?advanced=true&amp;type=APPLICATION&amp;name=GettingStarted&amp;package=com.example&amp;clouds=AWS%7COCI%7CGCP%7CAzure&amp;language=JAVA&amp;buildTool=GRADLE&amp;test=JUNIT&amp;java-version=JDK_17&amp;sample-code=true&amp;services=OBJECTSTORE">Gradle</a>.)
+          href="/gdk/launcher/?advanced=true&amp;type=APPLICATION&amp;name=GettingStarted&amp;package=com.example&amp;clouds=AWS%7COCI%7CGCP%7CAzure&amp;language=JAVA&amp;buildTool=GRADLE&amp;test=JUNIT&amp;java-version=JDK_25&amp;sample-code=true&amp;services=OBJECTSTORE">Gradle</a>.)
         <ul>
           <li><strong style="color:#C4D1EE">Project Type</strong>: <em>Application</em> (Default)</li>
           <li><strong style="color:#C4D1EE">Project Name</strong>: <em>GettingStarted</em></li>
@@ -275,18 +271,18 @@
           <li><strong style="color:#C4D1EE">Language</strong>: <em>Java</em> (Default)</li>
           <li><strong style="color:#C4D1EE">Build Tool</strong>: <em>Gradle (Groovy)</em> or <em>Maven</em></li>
           <li><strong style="color:#C4D1EE">Test Framework</strong>: <em>JUnit</em> (Default)</li>
-          <li><strong style="color:#C4D1EE">Java Version</strong>: <em>17</em> (Default)</li>
+          <li><strong style="color:#C4D1EE">Java Version</strong>: <em>25</em> (Default)</li>
           <li><strong style="color:#C4D1EE">Micronaut Version</strong>: (Default)</li>
           <li><strong style="color:#C4D1EE">Cloud Services</strong>: <em>Object Storage</em></li>
           <li><strong style="color:#C4D1EE">Features</strong>: <em>GraalVM Native Image</em> (Default)</li>
           <li><strong style="color:#C4D1EE">Sample Code</strong>: <em>Yes</em> (Default)</li>
         </ul>
-        <p><br/><img src="/gdk/resources/img/get-started/GDKlauncher-4.7.3.png" class="gs-images" alt="GDK Launcher"></p>
+        <p><br/><img src="/gdk/resources/img/get-started/GDKlauncher-5.0.2.png" class="gs-images" alt="GDK Launcher"></p>
       </li>
       <li>Click <strong style="color:#C4D1EE">Generate Project</strong> and then click
         <strong style="color:#C4D1EE">Download Zip</strong>. The GDK Launcher creates an application with
         the default package <code>com.example</code> in a directory named <em>GettingStarted</em>. The application ZIP
-        file will be downloaded to your default downloads directory. Unzip it, open it in Visual Studio (VS) Code, and
+        file will be downloaded to your default downloads directory. Unzip it, open it in your code editor, and
         proceed to the next steps.</li>
     </ol>
     <p class="gs-root-texts">The GDK Launcher creates the following sample source code files that use the Micronaut
@@ -751,41 +747,18 @@ micronaut.object-storage.azure.default.endpoint=STORAGE_ENDPOINT</code><button t
       </div>
     </div>
 
-    <h2 style="color:#ffffff">5. Use VS Code and Oracle Cloud Infrastructure DevOps Service</h2>
-    <p class="gs-root-texts">
-      Thanks to the <a href="/gdk/vscode-tools/">GDK extension</a>, you can leverage the Oracle Cloud Infrastructure DevOps Resources in VS Code to build a native
-      executable of your application on the cloud instead of locally.
-    </p>
-
-    <h2 style="color:#ffffff">6. Deploy the Application as a Container on the Cloud</h2>
+    <h2 style="color:#ffffff">5. Deploy the Application as a Container on the Cloud</h2>
     <p class="gs-root-texts">
       Next you can create a container with Native Image version of the application and deploy it
       on a Kubernetes cluster on Oracle Cloud Infrastructure, Amazon Web Services, Google Cloud Platform, and Microsoft Azure.
     </p>
 
-    <h3 style="color:#ffffff">6.1. Oracle Cloud Infrastructure</h3>
+    <h3 style="color:#ffffff">5.1. Oracle Cloud Infrastructure</h3>
     <p class="gs-root-texts">
-      You can install the Visual Studio Code extensions for GDK, covered in <a href="/gdk/vscode-tools/graal-development-kit-extension-pack/">Installing the Graal Development Kit Tools</a>,
-      and use <a href="/gdk/vscode-tools/oci-devops-tools/">OCI DevOps Resources</a> to use the Oracle Cloud Infrastructure DevOps service to deploy your application
-      to a pre-created Kubernetes cluster from within VS Code.
-      </p>
-    <p><img src="/gdk/resources/img/get-started/VSCode_OCIServices.png" class="gs-images" alt="OCI Services in VS Code">
-    </p>
-    <p class="gs-root-texts">
-      Using the <a href="/gdk/vscode-tools/oci-devops-tools/">OCI DevOps Resources in VS Code</a>,
-      you can easily deploy a Java application to Oracle Cloud Infrastructure, make source code changes,
-      push them into the Oracle Cloud Infrastructure Git repository, and then trigger the build of a container image with
-      your native executable or a container image with JVM using the predefined Oracle Cloud Infrastructure Build Pipelines.
-    </p>
-    <p class="gs-root-texts">
-      Learn more about this is in the <a href="/gdk/vscode-guides/setting-oci-devops-pipeline-in-vscode/">Setting Oracle Cloud Infrastructure DevOps Build and
-        Development Pipeline in VS Code guide</a>.
+      A complete lab on <a href="/gdk/hands-on-labs/">how to deploy an application to Oracle Cloud Infrastructure Container Engine for Kubernetes</a> is available.
     </p>
 
-    <h3 style="color:#ffffff">6.2. AWS</h3>
-    <p class="gs-root-texts">
-      A complete guide on <a href="/gdk/vscode-guides/deploy-to-aws-eks-in-vscode/">how to deploy an application to a Kubernetes cluster in AWS EKS</a> is available.
-    </p>
+    <h3 style="color:#ffffff">5.2. AWS</h3>
     <p class="gs-root-texts">With your AWS account ready and access to EKS configured, simply invoke this command:</p>
 
     <div class="gs-border-tab">
@@ -924,10 +897,7 @@ micronaut.object-storage.azure.default.endpoint=STORAGE_ENDPOINT</code><button t
     </p>
     <pre><code class="language-bash hljs" tabindex="0">kubectl apply -f deployment.yml</code><button tabindex="0">Copy</button></pre>
 
-    <h3 style="color:#ffffff">6.3. GCP</h3>
-    <p class="gs-root-texts">
-      A complete guide on <a href="/gdk/vscode-guides/deploy-to-google-k8s-engine-in-vscode/">how to deploy an application to Google Kubernetes Engine</a> is available.
-    </p>
+    <h3 style="color:#ffffff">5.3. GCP</h3>
     <p class="gs-root-texts">With your GCP account ready and access to GKE configured, simply invoke this command:</p>
 
     <div class="gs-border-tab">
@@ -1067,7 +1037,7 @@ micronaut.object-storage.azure.default.endpoint=STORAGE_ENDPOINT</code><button t
     </p>
     <pre><code class="language-bash hljs" tabindex="0">kubectl apply -f deployment.yml</code><button tabindex="0">Copy</button></pre>
 
-    <h3 style="color:#ffffff">6.4. Azure</h3>
+    <h3 style="color:#ffffff">5.4. Azure</h3>
     <p class="gs-root-texts">
       A complete guide on <a href="/gdk/gdk-modules/kubernetes/micronaut-k8s-azure/">how to deploy an application to Azure Kubernetes Engine</a> is available.
     </p>
@@ -1211,35 +1181,6 @@ micronaut.object-storage.azure.default.endpoint=STORAGE_ENDPOINT</code><button t
     </p>
     <pre><code class="language-bash hljs" tabindex="0">kubectl apply -f deployment.yml</code><button tabindex="0">Copy</button></pre>
 
-    <h2 style="color:#ffffff">7. Developing the Application in VS Code</h2>
-    <p class="gs-root-texts">
-      Develop Java applications in VS Code with Graal Development Kit support.
-      It offers help in the
-      form of relevant code completion suggestions when editing GDK-specific configuration files.
-    </p>
-    <p>
-      <img src="/gdk/resources/img/get-started/Step9-1.png" class="gs-images" alt="VS Code Hints">
-    </p>
-    <p class="gs-root-texts">
-      Java language support speeds up development of Java code with hints, etc.
-    </p>
-    <p>
-      <img src="/gdk/resources/img/get-started/Step9-2.png" class="gs-images" alt="VS Code Quick Fix">
-    </p>
-    <p class="gs-root-texts">
-      When developing database applications, the GDK tooling provides advanced database related
-      code completion for <code>find… ()</code> methods:
-    </p>
-    <p>
-      <img src="/gdk/resources/img/get-started/Step9-3.png" class="gs-images" alt="VS Code Completion">
-    </p>
-    <p class="gs-root-texts">
-      It offers the SQL code completion in <code>@Query</code> annotations among others, and so on.
-    </p>
-    <p>
-      <img src="/gdk/resources/img/get-started/Step9-4.png" class="gs-images" alt="VS SQL Code Completion">
-    </p>
-
     <div class="gs-guide__maintitle whatsnext__title">Next Steps</div>
     <div class="wrapper">
       <div class="nextsteps reasons">
@@ -1338,7 +1279,6 @@ micronaut.object-storage.azure.default.endpoint=STORAGE_ENDPOINT</code><button t
                 <li class="footer-list__item"><a href="https://micronaut.io/" target="_blank">Micronaut<sup>&reg;</sup> Framework</a></li>
                 <li class="footer-list__item"><a href="https://www.oracle.com/cloud/multicloud/what-is-multicloud/" target="_blank">Multicloud</a></li>
                 <li class="footer-list__item"><a href="https://www.oracle.com/cloud/" target="blank">Oracle Cloud Infrastructure</a></li>
-                <li class="footer-list__item"><a href="https://marketplace.visualstudio.com/items?itemName=oracle-labs-graalvm.graal-cloud-native-pack" target="blank">VS Code Tools</a></li>
               </ul>
             </div>
           </div>
