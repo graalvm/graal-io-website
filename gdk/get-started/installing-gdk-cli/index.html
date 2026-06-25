@@ -14,8 +14,8 @@
     
   </title>
   <meta name="description" content="The Graal Development Kit for Micronaut (GDK) is a build of a curated set of Micronaut framework modules and their required libraries for building portable c..."/>
-  <meta name="last_modified" content="2026-06-18 07:31:14 +0000"/>
-  <meta name="last_built" content="2026-06-19 15:14:03 +0000"/>
+  <meta name="last_modified" content="2026-06-25 08:40:39 +0000"/>
+  <meta name="last_built" content="2026-06-25 09:45:38 +0000"/>
   <link rel="stylesheet" href='/gdk/assets/main.css'>
   <link rel="apple-touch-icon" sizes="180x180" href="/gdk/resources/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/gdk/resources/img/favicon/favicon-32x32.png">
@@ -303,19 +303,28 @@ Before installing, check if you have latest version of SDKMAN! installed. If not
 <pre><code class="language-bash">sdk update
 </code></pre>
 
-<p>To install the GDK CLI, run following command:</p>
+<p>To install the GDK CLI, install the <code>gcn</code> SDKMAN! candidate:</p>
 
-<pre><code class="language-bash">sdk install gdk
+<pre><code class="language-bash">sdk install gcn
+</code></pre>
+
+<p>To see the available versions, run:</p>
+
+<pre><code class="language-bash">sdk list gcn
 </code></pre>
 
 <p>You can also specify the version to the <code>sdk install</code> command, for example:</p>
 
-<pre><code class="language-bash">sdk install gdk {project-version}
+<pre><code class="language-bash">sdk install gcn 5.0.2
 </code></pre>
 
 <p>For more information about using SDKMAN!, see <a href="http://sdkman.io/usage">SDKMAN! Usage</a>.</p>
 
-<p>You should now be able to run the GDK CLI.</p>
+<blockquote>
+  <p>Note: The SDKMAN! candidate is named <code>gcn</code>. It installs the GDK CLI, which is available as the <code>gdk</code> command.</p>
+</blockquote>
+
+<p>You should now be able to run the GDK CLI:</p>
 
 <pre><code class="language-shell">gdk
 | Starting interactive mode...
@@ -334,16 +343,33 @@ gdk&gt;
       </h3>
 
 <p>Setup the tap for the cask:</p>
-<pre><code class="language-bash">brew tap oracle/gdk https://github.com/oracle/gdk
+
+<pre><code class="language-bash">brew tap oracle/gdk https://github.com/oracle/graal-dev-kit
+</code></pre>
+
+<pre><code class="language-bash">brew trust oracle/gdk
 </code></pre>
 
 <p>Then install the GDK CLI tool:</p>
-<pre><code class="language-bash">brew install gdk
+
+<pre><code class="language-bash">brew install oracle/gdk/gdk-&lt;version&gt;
+</code></pre>
+
+<p>For example:</p>
+
+<pre><code class="language-bash">brew install oracle/gdk/gdk-5.0
 </code></pre>
 
 <p>For more information about using Homebrew, visit their <a href="https://brew.sh/">homepage</a>.</p>
 
-<p>You should now be able to run the GDK CLI.</p>
+<p>If macOS displays a message that Apple could not verify <code>gdk</code>, open <strong>System Settings</strong>, go to <strong>Privacy &amp; Security</strong>, and click <strong>Open Anyway</strong> for <code>gdk</code>.</p>
+
+<p>Alternatively, remove the quarantine attribute from the installed command:</p>
+
+<pre><code class="language-bash">xattr -dr com.apple.quarantine "$(which gdk)"
+</code></pre>
+
+<p>You should now be able to run the GDK CLI:</p>
 
 <pre><code class="language-shell">gdk
 | Starting interactive mode...
