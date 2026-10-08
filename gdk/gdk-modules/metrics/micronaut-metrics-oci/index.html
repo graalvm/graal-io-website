@@ -407,7 +407,7 @@ The application uses <a href="https://micronaut-projects.github.io/micronaut-mic
 <div class="paragraph">
 <p>Open the <em>micronaut-cli.yml</em> file, you can see what features are packaged with the application:</p>
 </div>
-<pre><code class="language-bash hljs" data-highlighted="yes">features: [app-name, gdk-bom, gdk-license, gdk-oci-cloud-app, gdk-oci-metrics, graalvm, http-client, java, java-application, junit, logback, management, maven, maven-enforcer-plugin, micrometer, micrometer-annotation, micrometer-oracle-cloud, micronaut-configuration-validation-gradle-plugin, micronaut-http-validation, micronaut-processing-compiler-args, native-image-properties, netty-server, properties, readme, serialization-jackson, shade, static-resources]</code><button>Copy</button></pre>
+<pre><code class="language-bash hljs" data-highlighted="yes">features: [app-name, gdk-bom, gdk-license, gdk-oci-cloud-app, gdk-oci-metrics, gitignore, graalvm, http-client, java, java-application, junit, logback, management, maven, maven-enforcer-plugin, micrometer, micrometer-annotation, micrometer-oracle-cloud, micronaut-http-validation, micronaut-processing-compiler-args, native-image-properties, netty-server, properties, readme, serialization-jackson, static-resources]</code><button>Copy</button></pre>
 <div class="paragraph">
 <p>The GDK Launcher creates a multi-module project with two subprojects: <strong>oci</strong> for Oracle Cloud, and <strong>lib</strong> for common code and configuration shared across cloud platforms.
 You develop the application logic in the <strong>lib</strong> subproject, and keep the
@@ -627,6 +627,7 @@ micronaut.metrics.export.oraclecloud.enabled=false</code></pre>
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package com.example;
 
 import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.FunctionCounter;
 import io.micrometer.core.instrument.MeterRegistry;
 import io.micrometer.core.instrument.Tags;
 import io.micrometer.core.instrument.Timer;
@@ -721,7 +722,7 @@ class BookControllerMetricsTest {
     @Test
     void testLogback() {
 
-        Counter counter = meterRegistry.counter("logback.events", Tags.of("level", "info"));
+        FunctionCounter counter = meterRegistry.find("logback.events").tag("level", "info").functionCounter();
         double initial = counter.count();
 
         Logger logger = LoggerFactory.getLogger("testing.testing");
