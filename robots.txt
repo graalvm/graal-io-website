@@ -1,1 +1,1 @@
-Sitemap: https://www.graal.cloud/gdk/sitemap.xml
+Sitemap: https://www.graal.cloud/sitemap.xml

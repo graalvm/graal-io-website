@@ -151,10 +151,12 @@ function establishSessionAndCreateTerminal(serverUrl) {
 
 $(document).ready(function () {
 
-  // Highlightjs init
-  $('pre code').each(function (i, block) {
-    hljs.highlightElement(block);
-  });
+  // Highlight code blocks only when a highlighter is loaded.
+  if (window.hljs) {
+    $('pre code').each(function (i, block) {
+      hljs.highlightElement(block);
+    });
+  }
 
 //Header loading
 (document, 'script', 'twitter-wjs');
